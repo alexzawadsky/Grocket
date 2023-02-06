@@ -1,23 +1,48 @@
 import Navbar from './components/Navbar'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Outlet } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Sell from './pages/Sell'
-import Main from './pages/Main'
-import MyProfile from './pages/MyProfile'
+import Landing from './pages/Landing'
+import Profile from './pages/Profile'
+import Footer from './components/Footer'
+import NotFound from './pages/NotFound';
 
-function App() {
-
+const PageIndex = () => {
     return (
         <div className='flex flex-col h-full'>
             <Navbar />
-            <div className='mt-20 border-2 border-primary-900 rounded-2xl container mx-auto flex-grow px-5  '>
-                <Routes>
-                    <Route path='/' element={<Main />} />
-                    <Route path='/profile' element={<MyProfile />} />
-                    <Route path='/sell' element={<Sell />} />
-                </Routes>
+            <div className='mt-20 container mx-auto flex-grow px-5  '>
+                <Outlet />
             </div>
+            <Footer />
         </div>
     )
+}
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <PageIndex />,
+        errorElement: <NotFound />,
+        children: [
+            {
+                path: '',
+                element: <Landing />
+            },
+            {
+                path: "profile",
+                element: <Profile />,
+            },
+            {
+                path: "sell",
+                element: <Sell />,
+            },
+        ],
+    },
+]);
+
+function App() {
+    return <RouterProvider router={router} />
 }
 
 export default App

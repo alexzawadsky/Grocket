@@ -8,7 +8,7 @@ const ItemCard = ({ content }) => {
     const [favourite, setFavourite] = useState(false)
 
     return (
-        <div className='border-black border-2 rounded-2xl p-5 grid gap-2'>
+        <div className='border-black border-2 rounded-2xl p-5 grid gap-2 shadow-lg'>
             <img src={content.img_url} className='rounded-lg w-full' />
             <div className="flex items-center justify-between">
                 <NavLink className='hover:text-accent-orange text-sm md:text-xl' to={`/item/${content.id}`}>{content.name}</NavLink>

@@ -1,11 +1,16 @@
 import Navbar from './components/Navbar'
-import { Routes, Route, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Sell from './pages/Sell'
 import Landing from './pages/Landing'
-import Profile from './pages/Profile'
+import MyProfile from './pages/Profile'
+import MyReviews from './pages/MyReviews';
 import Footer from './components/Footer'
 import NotFound from './pages/NotFound';
+import UserProfile from './pages/UserProfile';
+import ReviewsPage from './pages/ReviewsPage';
+import MyLots from './pages/MyLots';
+
 
 const PageIndex = () => {
     return (
@@ -31,12 +36,32 @@ const router = createBrowserRouter([
             },
             {
                 path: "profile",
-                element: <Profile />,
+                element: <MyProfile />,
+                children: [
+                    {
+                        path: 'reviews',
+                        element: <MyReviews />
+                    },
+                    {
+                        path: 'lots',
+                        element: <MyLots />
+                    }
+                ]
             },
             {
                 path: "sell",
                 element: <Sell />,
             },
+            {
+                path: 'user/:userId',
+                element: <UserProfile />,
+                children: [
+                    {
+                        path: 'reviews',
+                        element: <ReviewsPage />
+                    }
+                ]
+            }
         ],
     },
 ]);

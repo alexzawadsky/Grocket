@@ -25,7 +25,7 @@ const Landing = () => {
                 <div>
                     <h1 className='pb-5 font-bold text-2xl'>Goods especially for you</h1>
                     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
-                        {Array(8).fill(0).map((el, key) => <ItemCard content={card} />)}
+                        {Array(8).fill(0).map((el, key) => <ItemCard key={key} content={card} />)}
                     </div>
                 </div>
                 <div>

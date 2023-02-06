@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "grocket";
+  src: url("../fonts/NunitoSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'grocketbold';
+  src: url('../fonts/NunitoSans-Bold.ttf')
+}
+
+@font-face {
+  font-family: 'grocketbolditalic';
+  src: url('../fonts/NunitoSans-ExtraBoldItalic.ttf')
+}
+
+* {
+  @apply box-border
+}

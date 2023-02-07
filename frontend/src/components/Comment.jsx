@@ -1,7 +1,7 @@
 import React from 'react'
 import RatingStars from './RatingStars'
 
-const Review = ({ content }) => {
+const Comment = ({ content }) => {
     return (
         <div className='border-2 border-black rounded-lg p-5'>
             <p className='font-bold text-lg'>{content.author.name} {content.author.last_name}</p>
@@ -12,4 +12,4 @@ const Review = ({ content }) => {
     )
 }
 
-export default Review
+export default Comment

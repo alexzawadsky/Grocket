@@ -5,7 +5,7 @@ const RatingStars = ({ rating }) => {
         <div className='flex gap-1'>
             {[...Array(5)].map((n, i) => (
                 <div
-                    key={n}
+                    key={i}
                     style={{
                         color: i + 1 <= rating + 0.3 ? '#FF9001' : '#C0D6E4',
                     }}

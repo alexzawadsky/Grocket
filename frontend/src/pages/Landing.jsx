@@ -8,6 +8,7 @@ const card = {
     id: 123123,
     name: 'Apple Watch Ultra',
     author: {
+        id: 4545545,
         name: 'Timur',
         last_name: 'Ramazanov'
     },

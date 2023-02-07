@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ReviewsPage = () => {
+const UserComments = () => {
     return (
         <div>ReviewsPage</div>
     )
 }
 
-export default ReviewsPage
+export default UserComments

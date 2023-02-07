@@ -4,12 +4,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Sell from './pages/Sell'
 import Landing from './pages/Landing'
 import MyProfile from './pages/Profile'
-import MyReviews from './pages/MyReviews';
+import MyComments from './pages/MyComments';
 import Footer from './components/Footer'
 import NotFound from './pages/NotFound';
-import UserProfile from './pages/UserProfile';
-import ReviewsPage from './pages/ReviewsPage';
+import UserProfile, { userProfileLoader } from './pages/UserProfile';
+import UserComments from './pages/UserComments';
 import MyLots from './pages/MyLots';
+import ProductPage, { productLoader } from './pages/ProductPage';
+import UserLots, { userLotsLoader } from './pages/UserLots';
 
 
 const PageIndex = () => {
@@ -39,8 +41,8 @@ const router = createBrowserRouter([
                 element: <MyProfile />,
                 children: [
                     {
-                        path: 'reviews',
-                        element: <MyReviews />
+                        path: 'comments',
+                        element: <MyComments />
                     },
                     {
                         path: 'lots',
@@ -54,13 +56,24 @@ const router = createBrowserRouter([
             },
             {
                 path: 'user/:userId',
+                loader: userProfileLoader,
                 element: <UserProfile />,
                 children: [
                     {
-                        path: 'reviews',
-                        element: <ReviewsPage />
+                        path: '',
+                        loader: userLotsLoader,
+                        element: <UserLots />
+                    },
+                    {
+                        path: 'comments',
+                        element: <UserComments />
                     }
                 ]
+            },
+            {
+                path: 'product/:productId',
+                loader: productLoader,
+                element: <ProductPage />
             }
         ],
     },

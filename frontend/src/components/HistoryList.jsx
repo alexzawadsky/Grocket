@@ -11,13 +11,13 @@ const item = {
 
 const HistoryItem = ({ content }) => {
     return (
-        <div className='border-2 border-black rounded-lg p-5 flex gap-3 items-center shadow-lg'>
+        <NavLink to={`/product/${content.id}`} className='border-2 border-black rounded-lg p-5 flex gap-3 items-center shadow-lg'>
             <img src={content.img_url} className='w-1/4' />
             <div>
-                <NavLink className='text-lg hover:text-accent-orange' to={`/item/${content.id}`}>{content.name}</NavLink>
+                <p className='text-lg hover:text-accent-orange'>{content.name}</p>
                 <p className='font-bold'>{content.price}$</p>
             </div>
-        </div>
+        </NavLink>
     )
 }
 

@@ -50,6 +50,8 @@ const ProductPage = () => {
                     </div>
                     <h2 className='font-bold text-2xl'>Description</h2>
                     <p>{product.description}</p>
+                    <h2 className='font-bold text-2xl'>Adress</h2>
+                    <p>{product.adress}</p>
                 </div>
                 <div className='grid gap-5 h-fit'>
                     <h2 className='font-bold text-3xl'>{product.price}$</h2>
@@ -77,7 +79,7 @@ const ProductPage = () => {
                         <RatingStars rating={product.author.rate} />
                         <p className='text-sm text-primary-300'>Joined since {product.author.date_joined}</p>
                     </NavLink>
-                    <NavLink to={`/user/${product.author.id}/chat`}>Send message</NavLink>
+                    <NavLink className='bg-accent-orange text-white rounded-xl font-bold text-center px-7 py-3 w-fit' to={`/user/${product.author.id}/chat`}>Send message</NavLink>
                 </div>
 
             </div>

@@ -36,7 +36,8 @@ const UserProfile = () => {
                         <NavLink className='text-accent-orange underline' to='comments'>Comments</NavLink>
                     </div>
                 </div>
-                <NavLink className='font-bold text-lg' to={`/user/${user.id}`}>{user.name}'s lots</NavLink>
+                <NavLink className='font-bold text-xl' to={`/user/${user.id}`}>{user.name}'s lots</NavLink>
+                <NavLink className='text-xl font-bold' to={`/uset/${user.id}/chat`}>Messages</NavLink>
             </div>
             <div>
                 <Outlet />

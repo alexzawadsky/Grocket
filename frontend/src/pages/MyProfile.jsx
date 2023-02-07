@@ -35,8 +35,9 @@ const MyProfile = () => {
                         <NavLink className='text-accent-orange underline' to='comments'>Comments</NavLink>
                     </div>
                 </div>
-                <nav className='mt-5'>
+                <nav className='mt-5 flex flex-col gap-3'>
                     <NavLink className='font-bold text-xl' to='lots'>My lots</NavLink>
+                    <NavLink className='font-bold text-xl' to='favourites'>My favourites</NavLink>
                 </nav>
             </div>
 

@@ -7,7 +7,7 @@ SECRET_KEY = 'django-insecure-ixh5=+g%x22o)3f58^+tm$#%dz)gf_cy7+m&_8_7j#%mh9vhuu
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -19,7 +19,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonenumber_field',
     'djmoney',
-    'address',
+    'django_countries',
+    'mptt',
+    'django_mptt_admin',
     'users',
     'products',
     'core',
@@ -101,6 +103,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # ссылки:
+#  -- Поле с деньгами
 # https://github.com/django-money/django-money
+#  -- Поле с телефоном
 # https://django-phonenumber-field.readthedocs.io/en/latest/#
+#  -- Поле с адресом (пока не работает)
 # https://github.com/furious-luke/django-address
+# -- Поле с несколькими фото
+# https://medium.com/ibisdev/upload-multiple-images-to-a-model-with-django-fd00d8551a1c
+# -- Поле со страной
+# https://github.com/SmileyChris/django-countries#countryfield
+# древовидгые категории
+# https://tretyakov.net/post/drevovidnye-kategorii-v-django/

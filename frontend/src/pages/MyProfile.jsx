@@ -3,7 +3,7 @@ import { BsFillTelephoneFill } from 'react-icons/bs'
 import { HiOutlineMail } from 'react-icons/hi'
 import { NavLink, Outlet } from 'react-router-dom'
 import RatingStars from '../components/RatingStars'
-import Flag from 'react-flags'
+// import Flag from 'react-flags'
 
 const auth = {
     id: 1121212,
@@ -26,7 +26,7 @@ const MyProfile = () => {
                     <img className='w-72 object-cover rounded-full' src={auth.avatar_url} alt="" />
                     <div className="flex items-center justify-between">
                         <p className='text-xl'>{auth.last_name} {auth.name}</p>
-                        <Flag name={auth.country} format='png' pngSize={64} shiny={true} />
+                        {/* <Flag name={auth.country} format='png' pngSize={64} shiny={true} /> */}
                     </div>
                     <p className='flex items-center gap-3'><BsFillTelephoneFill />{auth.phone_number}</p>
                     <p className='flex gap-3 items-center'><HiOutlineMail width={1.5} />{auth.email}</p>

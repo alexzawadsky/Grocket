@@ -6,6 +6,8 @@ const AuthContext = createContext();
 
 export default AuthContext
 
+const baseUrl = 'http://127.0.0.1:8000'
+
 export const AuthProvider = ({ children }) => {
 
     const navigate = useNavigate()
@@ -25,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     const loginUser = async ({ email, password, redirectFrom }) => {
         try {
             const response = await api.post(
-                'api/v1/auth/jwt/create',
+                `${baseUrl}/api/v1/auth/jwt/create`,
                 JSON.stringify({ email, password }),
                 {
                     headers: {

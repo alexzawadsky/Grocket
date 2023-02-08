@@ -6,7 +6,10 @@ Pillow==9.4.0
 django-countries==7.5.1
 django-mptt==0.14.0
 django-mptt-admin==2.4.1
-djoser
-djangorestframework_simplejwt
-djangorestframework
+djoser==2.1.0
+djangorestframework_simplejwt==4.8.0
+djangorestframework==3.14.0
 drf-extra-fields==3.4.1
+python-dotenv==0.21.0
+gunicorn
+psycopg2-binary

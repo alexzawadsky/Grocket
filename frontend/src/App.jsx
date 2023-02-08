@@ -16,6 +16,8 @@ import MyFavourites, { favouritesLoader } from './pages/MyFavourites';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Reset from './pages/Reset';
+import { Context } from './contexts/Context';
+import useLocalStorage from './hooks/useLocalStorage';
 
 
 const PageIndex = () => {
@@ -102,7 +104,33 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    return <RouterProvider router={router} />
+
+    const [lookHistory, setLookHistory] = useLocalStorage('lookHistory', [])
+
+    const updateHistory = (product) => {
+        console.log('product', product, typeof (product))
+        console.log(lookHistory)
+        if (lookHistory.length === 0) setLookHistory(product)
+        if (lookHistory.filter((el) => el.id === product.id).length > 0) return
+        setLookHistory([...lookHistory, product])
+    }
+
+    const clearHistory = () => {
+        setLookHistory([])
+    }
+
+    return (
+        <Context.Provider
+            value={{
+                lookHistory,
+                updateHistory,
+                clearHistory
+            }}
+        >
+            <RouterProvider router={router} />
+        </Context.Provider>
+
+    )
 }
 
 export default App

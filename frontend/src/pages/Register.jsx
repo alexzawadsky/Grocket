@@ -20,7 +20,7 @@ const Register = () => {
                     e.preventDefault()
                     api.register(nameRef.current.value, lastNameRef.current.value, emailRef.current.value, pwdRef.current.value, setLoading)
                 }}>
-                    <div className="grid md:grid-cols-2 gap-5">
+                    <div className="grid lg:grid-cols-2 gap-5">
                         <div className='w-full grid gap-1'>
                             <label className='text-xl' htmlFor="email">Name:</label>
                             <br />

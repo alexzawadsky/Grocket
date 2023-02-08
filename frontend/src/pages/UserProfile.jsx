@@ -37,7 +37,7 @@ const UserProfile = () => {
                     </div>
                 </div>
                 <NavLink className='font-bold text-xl' to={`/user/${user.id}`}>{user.name}'s lots</NavLink>
-                <NavLink className='text-xl font-bold' to={`/uset/${user.id}/chat`}>Messages</NavLink>
+                <NavLink className='text-xl font-bold' to={`/user/${user.id}/chat`}>Messages</NavLink>
             </div>
             <div>
                 <Outlet />

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink, useLoaderData } from 'react-router-dom'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import api from '../api/api';
 import RatingStars from '../components/RatingStars';
+import { Context } from '../contexts/Context';
+import { useContext } from 'react';
 
 export const productLoader = ({ request, params }) => {
     console.log(params.productId)
@@ -31,6 +33,11 @@ export const productLoader = ({ request, params }) => {
 const ProductPage = () => {
 
     const product = useLoaderData()
+    const { updateHistory } = useContext(Context)
+
+    useEffect(() => {
+        updateHistory(product)
+    })
 
     return (
         <>

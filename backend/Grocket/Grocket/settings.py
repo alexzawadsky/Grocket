@@ -22,6 +22,8 @@ INSTALLED_APPS = [
     'django_countries',
     'mptt',
     'django_mptt_admin',
+    'rest_framework',
+    'djoser',
     'users',
     'products',
     'core',
@@ -100,6 +102,32 @@ STATIC_URL = '/static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
+
+DJOSER = {
+    'HIDE_USERS': False,
+    'USER_ID_FIELD': 'pk',
+    'LOGIN_FIELD': 'email',
+    'USERNAME_FIELD': 'email',
+    # 'PERMISSIONS': {
+    #     'user_list': ['rest_framework.permissions.AllowAny'],
+    #     'user': ['rest_framework.permissions.IsAuthenticated'],
+    #     'user_delete': ['rest_framework.permissions.AllowAny'],
+    # },
+    'SERIALIZERS': {
+        'user_create': 'api.serializers.CustomUserCreateSerializer',
+    },
+}
 
 
 # ссылки:

@@ -30,8 +30,8 @@ class User(AbstractUser):
     )
     country = CountryField(default='US')
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ('first_name', 'last_name', 'email',)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ('first_name', 'last_name', 'username', 'phone',)
 
     class Meta:
         verbose_name = 'User'

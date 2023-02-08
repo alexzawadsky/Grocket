@@ -31,7 +31,7 @@ class Category(MPTTModel):
         blank=True,
         related_name='children',
         db_index=True,
-        verbose_name='Родительская категория'
+        verbose_name='parent category'
     )
     slug = models.SlugField(
         max_length=150,
@@ -42,8 +42,8 @@ class Category(MPTTModel):
 
     class Meta:
         unique_together = [['parent', 'slug']]
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categorys'
 
     def get_absolute_url(self):
         return reverse('post-by-category', args=[str(self.slug)])
@@ -151,6 +151,8 @@ class Comment(WithDateModel):
         ordering = ('-id',)
         verbose_name = 'comment'
         verbose_name_plural = 'comments'
+        constraints = [models.UniqueConstraint(fields=['user', 'product'],
+                       name='unique сomment')]
 
     def __str__(self):
         return f'{self.user.username}, {self.product.name}, {self.rate}'

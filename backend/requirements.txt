@@ -6,3 +6,6 @@ Pillow==9.4.0
 django-countries==7.5.1
 django-mptt==0.14.0
 django-mptt-admin==2.4.1
+djoser==2.1.0
+djangorestframework_simplejwt==5.2.2
+djangorestframework==3.14.0

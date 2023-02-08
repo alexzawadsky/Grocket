@@ -11,5 +11,5 @@ djangorestframework_simplejwt==4.8.0
 djangorestframework==3.14.0
 drf-extra-fields==3.4.1
 python-dotenv==0.21.0
-gunicorn
-psycopg2-binary
+gunicorn==20.1.0
+psycopg2-binary==2.9.5

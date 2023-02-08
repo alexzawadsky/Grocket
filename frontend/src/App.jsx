@@ -16,19 +16,21 @@ import MyFavourites, { favouritesLoader } from './pages/MyFavourites';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Reset from './pages/Reset';
-import { Context } from './contexts/Context';
-import useLocalStorage from './hooks/useLocalStorage';
+import { SearchHistoryProvider } from './contexts/HistoryContext';
+import { AuthProvider } from './contexts/AuthProvider';
 
 
 const PageIndex = () => {
     return (
-        <div className='flex flex-col h-full'>
-            <Navbar />
-            <div className='mt-20 container mx-auto flex-grow px-5  '>
-                <Outlet />
+        <AuthProvider>
+            <div className='flex flex-col h-full'>
+                <Navbar />
+                <div className='mt-20 container mx-auto flex-grow px-5'>
+                    <Outlet />
+                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
+        </AuthProvider>
     )
 }
 
@@ -104,29 +106,10 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-
-    const [lookHistory, setLookHistory] = useLocalStorage('lookHistory', [])
-
-    const updateHistory = (product) => {
-        if (lookHistory.filter((el) => el.id === product.id).length > 0) return
-        setLookHistory([...lookHistory, product])
-    }
-
-    const clearHistory = () => {
-        setLookHistory([])
-    }
-
     return (
-        <Context.Provider
-            value={{
-                lookHistory,
-                updateHistory,
-                clearHistory
-            }}
-        >
+        <SearchHistoryProvider>
             <RouterProvider router={router} />
-        </Context.Provider>
-
+        </SearchHistoryProvider>
     )
 }
 

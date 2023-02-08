@@ -1,9 +1,13 @@
 import React from 'react'
-import api from '../api/api'
-import { useRef, useState } from 'react'
-import { NavLink, redirect } from 'react-router-dom'
+import { useRef, useState, useContext } from 'react'
+import { NavLink, useSearchParams } from 'react-router-dom'
+import AuthContext from '../contexts/AuthProvider'
 
 const Login = () => {
+
+    const { loginUser } = useContext(AuthContext)
+
+    const [searchParams, setSearchParams] = useSearchParams()
 
     const emailRef = useRef()
     const pwdRef = useRef()
@@ -11,16 +15,15 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = (e) => {
-        e.preventDefault()
         setLoading(true)
+        e.preventDefault()
         const data = {
             email: emailRef.current.value,
-            pwd: pwdRef.current.value
+            password: pwdRef.current.value,
+            redirectFrom: searchParams.get('redirectFrom')
         }
-        api.login(data).then(res => redirect('/')).catch(err => {
-            setLoading(false)
-            alert(err)
-        })
+        loginUser(data)
+        setLoading(false)
     }
 
     return (

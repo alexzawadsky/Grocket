@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { IoBookOutline } from 'react-icons/io5'
-import { Context } from '../contexts/Context'
+import SearchHistoryContext from '../contexts/HistoryContext'
 import { useContext } from 'react'
 import { BsFillTrashFill } from 'react-icons/bs'
 
@@ -19,7 +19,7 @@ const HistoryItem = ({ content }) => {
 
 const HistoryList = () => {
 
-    const { lookHistory, clearHistory } = useContext(Context)
+    const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
         <div className='grid gap-5 w-64'>

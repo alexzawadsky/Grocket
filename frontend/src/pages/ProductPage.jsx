@@ -7,9 +7,9 @@ import api from '../api/api';
 import RatingStars from '../components/RatingStars';
 import { Context } from '../contexts/Context';
 import { useContext } from 'react';
+import Map from '../components/Map';
 
 export const productLoader = ({ request, params }) => {
-    console.log(params.productId)
     return {
         id: params.productId,
         name: 'Apple Watch Ultra',
@@ -22,7 +22,7 @@ export const productLoader = ({ request, params }) => {
             date_joined: '2022-02-20'
         },
         price: 1000,
-        adress: 'Prof, 45 k1',
+        adress: 'ул. Гримау, д. 11А, строение 3, Москва, 117449',
         pub_date: 'Yesterday, 17:00',
         img_urls: ['/watch.jpeg', '/iphone.jpg',],
         is_favourite: false,
@@ -46,8 +46,8 @@ const ProductPage = () => {
                 <div className='grid gap-3 w-1/2'>
                     <h1 className="text-3xl font-bold">{product.name}</h1>
                     <p className='text-primary-300'>{product.pub_date}</p>
-                    <div className='w-full md:w-2/3'>
-                        <Carousel showStatus={false} useKeyboardArrows={true}>
+                    <div className='w-full'>
+                        <Carousel showStatus={false} useKeyboardArrows={true} centerMode={true}>
                             {product.img_urls.map((img_url, key) => (
                                 <div key={key} className='border-2 border-primary-100 h-full'>
                                     <img className='w-1/2' src={img_url} />
@@ -58,6 +58,7 @@ const ProductPage = () => {
                     <h2 className='font-bold text-2xl'>Description</h2>
                     <p>{product.description}</p>
                     <h2 className='font-bold text-2xl'>Adress</h2>
+                    <Map adress={product.adress} />
                     <p>{product.adress}</p>
                 </div>
                 <div className='grid gap-5 h-fit'>
@@ -76,15 +77,17 @@ const ProductPage = () => {
                         )}
                     </button>
                     <p className='font-bold text-xl'>Seller:</p>
-                    <NavLink to={`/user/${product.author.id}`} className='border-2 border-black p-5 rounded-lg grid gap-3'>
+                    <NavLink to={`/user/${product.author.id}`} className='border-2 border-black p-5 rounded-xl grid gap-3'>
                         <div className='flex items-center gap-5'>
                             <div>
                                 <img src={product.author.avatar} alt="" className='w-10 rounded-full h-10 object-cover' />
                             </div>
-                            <p className='hover:text-accent-orange'>{product.author.last_name} {product.author.name}</p>
+                            <div>
+                                <p className='hover:text-accent-orange'>{product.author.last_name} {product.author.name}</p>
+                                <RatingStars rating={product.author.rate} />
+                            </div>
                         </div>
-                        <RatingStars rating={product.author.rate} />
-                        <p className='text-sm text-primary-300'>Joined since {product.author.date_joined}</p>
+                        <p className='text-sm text-primary-300'>On Grocket since {product.author.date_joined}</p>
                     </NavLink>
                     <NavLink className='bg-accent-orange text-white rounded-xl font-bold text-center px-7 py-3 w-fit' to={`/user/${product.author.id}/chat`}>Send message</NavLink>
                 </div>

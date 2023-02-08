@@ -108,9 +108,6 @@ function App() {
     const [lookHistory, setLookHistory] = useLocalStorage('lookHistory', [])
 
     const updateHistory = (product) => {
-        console.log('product', product, typeof (product))
-        console.log(lookHistory)
-        if (lookHistory.length === 0) setLookHistory(product)
         if (lookHistory.filter((el) => el.id === product.id).length > 0) return
         setLookHistory([...lookHistory, product])
     }

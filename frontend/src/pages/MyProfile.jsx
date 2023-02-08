@@ -14,7 +14,7 @@ const auth = {
     country: 'RUS',
     date_joined: '21 Feb 2023',
     avatar_url: '/avatar.jpg',
-    rating: 3.7
+    rating: 3.29
 }
 
 
@@ -32,6 +32,7 @@ const MyProfile = () => {
                     <p className='flex gap-3 items-center'><HiOutlineMail width={1.5} />{auth.email}</p>
                     <div className='flex gap-3'>
                         <RatingStars rating={auth.rating} />
+                        <p>{auth.rating}</p>
                         <NavLink className='text-accent-orange underline' to='comments'>Comments</NavLink>
                     </div>
                 </div>

@@ -13,7 +13,6 @@ const RatingStars = ({ rating }) => {
                     &#9733;
                 </div>
             ))}
-            <p className='pl-2'>{rating}/5</p>
         </div>
     )
 }

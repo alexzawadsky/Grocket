@@ -80,7 +80,7 @@ const Register = () => {
                 <form onSubmit={handleSubmit} className='w-1/3 flex flex-col justify-around'>
                     <div className="flex w-full gap-5">
                         <div className='w-full'>
-                            <label htmlFor="name">Name:</label>
+                            <label htmlFor="name">First name:</label>
                             <input className='grocket-input w-full' onChange={e => setName(e.target.value)} type="text" />
                         </div>
                         <div className='w-full'>

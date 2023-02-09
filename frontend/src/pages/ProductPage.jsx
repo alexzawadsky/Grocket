@@ -82,7 +82,7 @@ const ProductPage = () => {
                         <NavLink to={`/user/${product.author.id}`} className='border-2 border-black p-5 rounded-xl grid gap-3'>
                             <div className='flex items-center gap-5'>
                                 <div className='w-10 h-10'>
-                                    <Avatar small={true} avatar={product.author.avatar} firstName={product.author.first_name} lastName={product.author.last_name} />
+                                    <Avatar avatar={product.author.avatar} />
                                 </div>
                                 <div>
                                     <p className='hover:text-accent-orange'>{product.author.last_name} {product.author.first_name}</p>

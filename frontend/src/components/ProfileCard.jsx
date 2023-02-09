@@ -9,7 +9,7 @@ const ProfileCard = ({ firstName, lastName, email, phone, rating, avatar, withCo
     return (
         <div className='grid gap-4 border-2 border-black p-5 rounded-xl shrink-0 h-fit'>
             <div className="h-72 w-72">
-                <Avatar avatar={avatar} firstName={firstName} lastName={lastName} />
+                <Avatar avatar={avatar} />
             </div>
             <div className="flex items-center gap-2">
                 {firstName ? <p className='text-xl'>{firstName}</p> : <p className='text-primary-100 text-xl'>Name</p>}

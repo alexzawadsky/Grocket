@@ -26,7 +26,7 @@ const Register = () => {
 
     const [loading, setLoading] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (imageInInput && !adjSaved && !avatar) {
             alert('Please adjust your avatar before submitting')
@@ -40,7 +40,7 @@ const Register = () => {
             email: email,
             username: username,
             country: country,
-            avatar: toBase64(fileInputRef.current.value)
+            avatar: await toBase64(fileInputRef.current.files[0])
         }
         console.log(data)
         registerUser(data)
@@ -72,7 +72,7 @@ const Register = () => {
                     lastName={lastName}
                     email={email}
                     phone={phone}
-                    rating={5}
+                    rating={5.00}
                     avatar={avatar}
                     withComments={false}
                 />

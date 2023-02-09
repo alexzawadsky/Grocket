@@ -1,9 +1,8 @@
-import React from 'react'
-import { BsFillTelephoneFill } from 'react-icons/bs'
-import { HiOutlineMail } from 'react-icons/hi'
+import React, { useContext } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
-import RatingStars from '../components/RatingStars'
+import { FiLogOut } from 'react-icons/fi'
 import ProfileCard from '../components/ProfileCard'
+import AuthContext from '../contexts/AuthProvider'
 // import Flag from 'react-flags'
 
 const auth = {
@@ -20,9 +19,12 @@ const auth = {
 
 
 const MyProfile = () => {
+
+    const { logoutUser } = useContext(AuthContext)
+
     return (
         <div className='flex gap-5'>
-            <div className='shrink-0'>
+            <div className='shrink-0 grid gap-5'>
                 <ProfileCard
                     firstName={auth.first_name}
                     lastName={auth.last_name}
@@ -32,10 +34,11 @@ const MyProfile = () => {
                     phone={auth.phone}
                     withComments={true}
                 />
-                <nav className='mt-5 flex flex-col gap-3 pl-10'>
+                <nav className='flex flex-col gap-3 pl-10'>
                     <NavLink className='font-bold text-xl list-item' to='lots'>My lots</NavLink>
                     <NavLink className='font-bold text-xl list-item' to='favourites'>My favourites</NavLink>
                 </nav>
+                <button onClick={logoutUser} className='w-fit hover:bg-accent-red/[0.1] border-2 border-accent-red rounded-xl text-accent-red px-5 py-3 font-bold flex items-center gap-2'>Logout from account<FiLogOut /></button>
             </div>
             <div>
                 <Outlet />

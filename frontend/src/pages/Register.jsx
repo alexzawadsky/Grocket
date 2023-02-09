@@ -40,6 +40,7 @@ const Register = () => {
             email: email,
             username: username,
             country: country,
+            password: pwd,
             avatar: await toBase64(fileInputRef.current.files[0])
         }
         console.log(data)

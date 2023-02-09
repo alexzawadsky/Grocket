@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
     const registerUser = ({ first_name, last_name, username, email, password, phone, country, avatar }) => {
         api.post(
-            'api/v1/users',
+            'api/v1/users/',
             JSON.stringify({
                 first_name,
                 last_name,
@@ -59,7 +59,8 @@ export const AuthProvider = ({ children }) => {
             {
                 headers: {
                     'accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': ''
                 }
             }
         ).then(res => console.log(res)).catch(err => alert('err'))

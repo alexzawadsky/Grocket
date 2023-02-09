@@ -4,6 +4,8 @@ import { BsPersonFill } from 'react-icons/bs'
 import { MdOutlineSell } from 'react-icons/md'
 import AuthContext from '../contexts/AuthProvider'
 import { useContext } from 'react'
+import { BsFillPersonPlusFill } from 'react-icons/bs'
+import { FiLogIn } from 'react-icons/fi'
 
 const Navbar = () => {
 
@@ -17,7 +19,11 @@ const Navbar = () => {
                     user ?
                         <NavLink className='flex items-center gap-2 h-10' to='/profile'><BsPersonFill />Profile</NavLink>
                         :
-                        <NavLink to='/login'>Login</NavLink>
+                        <>
+                            <NavLink to='/register' className='flex items-center gap-2 border-2 border-accent-orange text-accent-orange py-3 px-5 rounded-xl'><BsFillPersonPlusFill />Register</NavLink>
+                            <NavLink to='/login' className='flex items-center gap-3'><FiLogIn />Login</NavLink>
+                        </>
+
                 }
                 <NavLink className='px-6 h-12 gap-2 bg-accent-orange rounded-xl hover:bg-accent-orange/[0.8] flex items-center text-white text-sm md:text-lg' to='/sell'>Sell item<MdOutlineSell /></NavLink>
             </div>

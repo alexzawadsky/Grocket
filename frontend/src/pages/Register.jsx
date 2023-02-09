@@ -1,53 +1,127 @@
-import React, { useState } from 'react'
-import { useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-import api from '../api/api'
+import { BsFillTrashFill } from 'react-icons/bs'
+import AuthContext from '../contexts/AuthProvider'
+import { toBase64 } from "../utils";
+import AvatarCrop from '../components/AvatarCrop'
+import ProfileCard from '../components/ProfileCard'
 
 const Register = () => {
 
-    const nameRef = useRef()
-    const lastNameRef = useRef()
-    const emailRef = useRef()
-    const pwdRef = useRef()
+    const { registerUser } = useContext(AuthContext)
+
+    const [name, setName] = useState()
+    const [lastName, setLastName] = useState()
+    const [email, setEmail] = useState()
+    const [pwd, setPwd] = useState()
+    const [phone, setPhone] = useState()
+    const [avatar, setAvatar] = useState(null)
+    const [username, setUsername] = useState()
+    const [country, setCountry] = useState()
+    const [imageInInput, setImageInInput] = useState()
+    const [adjSaved, setAjdSaved] = useState(false)
+
+    const editorRef = useRef()
+    const fileInputRef = useRef()
 
     const [loading, setLoading] = useState(false)
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (imageInInput && !adjSaved && !avatar) {
+            alert('Please adjust your avatar before submitting')
+            return
+        }
+        setLoading(true)
+        const data = {
+            first_name: name,
+            last_name: lastName,
+            phone: phone,
+            email: email,
+            username: username,
+            country: country,
+            avatar: toBase64(fileInputRef.current.value)
+        }
+        console.log(data)
+        registerUser(data)
+        setLoading(false)
+    }
+
+    const handleAdjSave = async () => {
+        if (editorRef) {
+            const dataUrl = editorRef.current.getImage().toDataURL()
+            const result = await fetch(dataUrl)
+            const blob = await result.blob()
+            setAvatar(window.URL.createObjectURL(blob))
+        }
+        setAjdSaved(true)
+    }
+
+    const removePhoto = () => {
+        fileInputRef.current.value = null
+        setImageInInput(false)
+        setAvatar(null)
+    }
+
     return (
-        <div className='w-full h-full flex items-center justify-center'>
-            <div className='w-1/3'>
-                <h1 className='text-accent-orange text-7xl font-bolditalic pb-5'>Grocket</h1>
-                <form className='grid gap-5' onSubmit={(e) => {
-                    e.preventDefault()
-                    api.register(nameRef.current.value, lastNameRef.current.value, emailRef.current.value, pwdRef.current.value, setLoading)
-                }}>
-                    <div className="grid lg:grid-cols-2 gap-5">
-                        <div className='w-full grid gap-1'>
-                            <label className='text-xl' htmlFor="email">Name:</label>
-                            <br />
-                            <input ref={nameRef} className='grocket-input' type="text" id='email' />
+        <div>
+            <h1 className='font-bold text-3xl pb-5'>Create account</h1>
+            <div className="flex w-full justify-between">
+                <ProfileCard
+                    firstName={name}
+                    lastName={lastName}
+                    email={email}
+                    phone={phone}
+                    rating={5}
+                    avatar={avatar}
+                    withComments={false}
+                />
+                <form onSubmit={handleSubmit} className='w-1/3 flex flex-col justify-around'>
+                    <div className="flex w-full gap-5">
+                        <div className='w-full'>
+                            <label htmlFor="name">Name:</label>
+                            <input className='grocket-input w-full' onChange={e => setName(e.target.value)} type="text" />
                         </div>
-                        <div className='w-full grid gap-1'>
-                            <label className='text-xl' htmlFor="email">Last name:</label>
-                            <br />
-                            <input ref={lastNameRef} className='grocket-input' type="text" id='email' />
+                        <div className='w-full'>
+                            <label htmlFor="lastname">Last name:</label>
+                            <input className='grocket-input w-full' onChange={e => setLastName(e.target.value)} type="text" />
                         </div>
                     </div>
-                    <div className='w-full grid gap-1'>
-                        <label className='text-xl' htmlFor="email">Email:</label>
-                        <br />
-                        <input ref={emailRef} className='grocket-input' type="text" id='email' />
+                    <label htmlFor="name">Username:</label>
+                    <input className='grocket-input' onChange={e => setUsername(e.target.value)} type="text" />
+                    <div className="flex w-full gap-5">
+                        <div className='w-full'>
+                            <label htmlFor="name">Phone number:</label>
+                            <input className='grocket-input w-full' onChange={e => setPhone(e.target.value)} type="text" />
+                        </div>
+                        <div className='w-full'>
+                            <label htmlFor="lastname">Country:</label>
+                            <input className='grocket-input w-full' onChange={e => setCountry(e.target.value)} type="text" />
+                        </div>
                     </div>
-                    <div className='w-full grid gap-1'>
-                        <label className='text-xl' htmlFor="email">Password:</label>
-                        <br />
-                        <input ref={pwdRef} className='grocket-input' type="password" id='email' />
+                    <label htmlFor="email">Email:</label>
+                    <input className='grocket-input' onChange={e => setEmail(e.target.value)} type="text" />
+                    <label htmlFor="">Password:</label>
+                    <input className='grocket-input' onChange={e => setPwd(e.target.value)} type="password" />
+                    <div className="flex items-center gap-3 justify-between mt-3">
+                        <input ref={fileInputRef} onChange={e => setImageInInput(e.target.files[0])} type="file" />
+                        {imageInInput ? <button onClick={removePhoto} type='button' className='border-2 border-accent-red hover:bg-accent-red/[0.1] text-accent-red h-full px-2 font-bold rounded-full flex items-center gap-2'><BsFillTrashFill />delete</button> : null}
                     </div>
-                    <button className='bg-accent-orange py-3 text-white rounded-xl font-bold'>{!loading ? 'Register' : 'Loading...'}</button>
-                    <NavLink to='/login'>Already have the account?</NavLink>
+                    <button className='bg-accent-orange text-white font-bold py-3 rounded-xl mt-3'>{!loading ? 'Register' : 'Loading...'}</button>
                 </form>
+                <AvatarCrop
+                    editorRef={editorRef}
+                    image={imageInInput}
+                    setState={setAjdSaved}
+                    adjSaved={adjSaved}
+                    onSave={handleAdjSave}
+                />
             </div>
-        </div>
-    )
+            <div className='flex gap-2'>
+                <p>Already have the account?</p>
+                <NavLink to='/login' className='underline text-accent-orange hover:text-blue-900'>Login</NavLink>
+            </div>
+        </div>)
 }
 
 export default Register

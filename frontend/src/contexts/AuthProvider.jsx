@@ -1,12 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import { redirect, useNavigate } from "react-router-dom";
+import jwt_decode from 'jwt-decode'
 import api from "../api/api";
 
 const AuthContext = createContext();
 
 export default AuthContext
-
-const baseUrl = 'http://127.0.0.1:8000'
 
 export const AuthProvider = ({ children }) => {
 
@@ -27,7 +26,7 @@ export const AuthProvider = ({ children }) => {
     const loginUser = async ({ email, password, redirectFrom }) => {
         try {
             const response = await api.post(
-                `${baseUrl}/api/v1/auth/jwt/create`,
+                '/api/v1/auth/jwt/create',
                 JSON.stringify({ email, password }),
                 {
                     headers: {
@@ -44,23 +43,26 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const registerUser = async (name, surname, username, email, password) => {
-        try {
-            // eslint-disable-next-line no-unused-vars
-            const response = await api.post(
-                'api/register',
-                JSON.stringify({ name, surname, username, email, password }),
-                {
-                    headers: {
-                        'accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
+    const registerUser = ({ first_name, last_name, username, email, password, phone, country, avatar }) => {
+        api.post(
+            'api/v1/users',
+            JSON.stringify({
+                first_name,
+                last_name,
+                username,
+                email,
+                password,
+                country,
+                phone,
+                avatar
+            }),
+            {
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
-            )
-            return ['', true]
-        } catch (err) {
-            alert('err')
-        }
+            }
+        ).then(res => console.log(res)).catch(err => alert('err'))
     };
 
     const logoutUser = () => {

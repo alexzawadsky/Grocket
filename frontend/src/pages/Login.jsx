@@ -20,7 +20,7 @@ const Login = () => {
         const data = {
             email: emailRef.current.value,
             password: pwdRef.current.value,
-            redirectFrom: searchParams.get('redirectFrom')
+            redirectFrom: searchParams.get('redirectFrom') || '/'
         }
         loginUser(data)
         setLoading(false)

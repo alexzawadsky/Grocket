@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { YMaps, Map, Placemark } from "react-yandex-maps";
+// import { YMaps, Map, Placemark } from "react-yandex-maps";
 
 
 
@@ -26,13 +26,14 @@ const YMap = ({ adress }) => {
     return (
         <div className='w-full'>
             {coords ? (
-                <YMaps>
-                    <Map width={'100%'} defaultState={mapState}>
-                        <Placemark defaultGeometry={coords} properties={{
-                            balloonContentBody: 'Product adress'
-                        }} />
-                    </Map>
-                </YMaps>
+                // <YMaps>
+                //     <Map width={'100%'} defaultState={mapState}>
+                //         <Placemark defaultGeometry={coords} properties={{
+                //             balloonContentBody: 'Product adress'
+                //         }} />
+                //     </Map>
+                // </YMaps>
+                null
             ) : null}
 
         </div >

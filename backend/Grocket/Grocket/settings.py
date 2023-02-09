@@ -130,8 +130,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
+
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
@@ -139,9 +140,9 @@ REST_FRAMEWORK = {
     # 'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
 }
 
-# SIMPLE_JWT = {
-#    'AUTH_HEADER_TYPES': ('JWT',),
-# }
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ("Bearer",),
+}
 
 DJOSER = {
     'HIDE_USERS': False,
@@ -149,11 +150,12 @@ DJOSER = {
     # 'LOGIN_FIELD': 'email',
     'USERNAME_FIELD': 'email',
     'PERMISSIONS': {
-        'user_list': ['rest_framework.permissions.AllowAny'],
         'user': ['rest_framework.permissions.IsAuthenticated'],
     #     'user_delete': ['rest_framework.permissions.AllowAny'],
     },
     'SERIALIZERS': {
         'user_create': 'api.serializers.CustomUserCreateSerializer',
+        'user': 'api.serializers.CustomUserSerializer',
+        'current_user': 'api.serializers.CustomUserSerializer',
     },
 }

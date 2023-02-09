@@ -13,3 +13,14 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
         fields = ('id', 'username', 'email', 'first_name', 'last_name',
                   'password', 'avatar', 'phone', 'country',)
         read_only_fields = ('id',)
+
+
+class CustomUserSerializer(djserializers.UserSerializer):
+    """Сериализатор модели User."""
+
+    avatar = Base64ImageField(allow_null=True, required=False)
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'first_name', 'last_name',
+                'avatar', 'phone', 'country',)

@@ -20,11 +20,13 @@ services:
     # env_file:
     #   - ./.env
 
+
   frontend:
     build:
       context: ../frontend
     volumes:
       - react_build:/react/dist
+
 
   nginx:
     image: nginx:1.19.3

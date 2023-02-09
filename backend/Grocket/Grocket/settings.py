@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv('../../infra/.env')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,6 +28,7 @@ INSTALLED_APPS = [
     'django_mptt_admin',
     'rest_framework',
     'djoser',
+    'rest_framework.authtoken',
     'users',
     'products',
     'core',
@@ -64,12 +68,25 @@ WSGI_APPLICATION = 'Grocket.wsgi.application'
 AUTH_USER_MODEL = 'users.User'
 
 
+# SQLITE3 DB:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# POSTGRES DB:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv('DB_ENGINE'),
+#         'NAME': os.getenv('DB_NAME'),
+#         'USER': os.getenv('POSTGRES_USER'),
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+#         'HOST': os.getenv('DB_HOST'),
+#         'PORT': os.getenv('DB_PORT')
+#     }
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -112,41 +129,31 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    # 'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
 }
 
-SIMPLE_JWT = {
-   'AUTH_HEADER_TYPES': ('JWT',),
-}
+# SIMPLE_JWT = {
+#    'AUTH_HEADER_TYPES': ('JWT',),
+# }
 
 DJOSER = {
     'HIDE_USERS': False,
     'USER_ID_FIELD': 'pk',
-    'LOGIN_FIELD': 'email',
+    # 'LOGIN_FIELD': 'email',
     'USERNAME_FIELD': 'email',
-    # 'PERMISSIONS': {
-    #     'user_list': ['rest_framework.permissions.AllowAny'],
-    #     'user': ['rest_framework.permissions.IsAuthenticated'],
+    'PERMISSIONS': {
+        'user_list': ['rest_framework.permissions.AllowAny'],
+        'user': ['rest_framework.permissions.IsAuthenticated'],
     #     'user_delete': ['rest_framework.permissions.AllowAny'],
-    # },
+    },
     'SERIALIZERS': {
         'user_create': 'api.serializers.CustomUserCreateSerializer',
     },
 }
-
-
-# ссылки:
-#  -- Поле с деньгами
-# https://github.com/django-money/django-money
-#  -- Поле с телефоном
-# https://django-phonenumber-field.readthedocs.io/en/latest/#
-#  -- Поле с адресом (пока не работает)
-# https://github.com/furious-luke/django-address
-# -- Поле с несколькими фото
-# https://medium.com/ibisdev/upload-multiple-images-to-a-model-with-django-fd00d8551a1c
-# -- Поле со страной
-# https://github.com/SmileyChris/django-countries#countryfield
-# древовидгые категории
-# https://tretyakov.net/post/drevovidnye-kategorii-v-django/

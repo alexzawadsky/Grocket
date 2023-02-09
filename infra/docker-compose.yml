@@ -20,6 +20,12 @@ services:
     # env_file:
     #   - ./.env
 
+  frontend:
+    build:
+      context: ../frontend
+    volumes:
+      - react_build:/react/dist
+
   nginx:
     image: nginx:1.19.3
     ports:
@@ -28,11 +34,13 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - static_value:/var/html/static/
       - media_value:/var/html/media/
+      - react_build:/var/www/react
     depends_on:
+      - frontend
       - web
 
 volumes:
   static_value:
   media_value:
-  data_value:
-  # postgres_data:
+  data_value: # postgres_data:
+  react_build:

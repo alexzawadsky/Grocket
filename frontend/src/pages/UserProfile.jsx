@@ -32,7 +32,7 @@ const UserProfile = () => {
                     lastName={user.last_name}
                     email={user.email}
                     phone={user.phone}
-                    avatar={user.avatar}
+                    avatar={null}
                     rating={user.rating}
                     withComments={true}
                 />

@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
 import api from "../api/api";
+import { getCookie } from "../utils";
 
 const AuthContext = createContext();
 
@@ -60,7 +61,7 @@ export const AuthProvider = ({ children }) => {
                 headers: {
                     'accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': ''
+                    'X-CSRFToken': getCookie('csrftoken')
                 }
             }
         ).then(res => console.log(res)).catch(err => alert('err'))

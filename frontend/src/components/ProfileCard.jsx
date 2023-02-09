@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { HiOutlineMail } from 'react-icons/hi'
 import { NavLink } from 'react-router-dom'
+import Avatar from './Avatar'
 import RatingStars from './RatingStars'
-
 
 const ProfileCard = ({ firstName, lastName, email, phone, rating, avatar, withComments }) => {
     return (
         <div className='grid gap-4 border-2 border-black p-5 rounded-xl shrink-0 h-fit'>
-            <img className='w-72 object-cover rounded-full h-72' src={avatar ? avatar : '/images/default-avatar.png'} alt="" />
+            <div className="h-72 w-72">
+                <Avatar avatar={avatar} firstName={firstName} lastName={lastName} />
+            </div>
             <div className="flex items-center gap-2">
                 {firstName ? <p className='text-xl'>{firstName}</p> : <p className='text-primary-100 text-xl'>Name</p>}
                 {lastName ? <p className='text-xl'>{lastName}</p> : <p className='text-primary-100 text-xl'>Last name</p>}

@@ -15,7 +15,7 @@ const card = {
     price: 1000,
     adress: 'Prof, 45 k1',
     pub_date: 'Yesterday, 17:00',
-    img_url: 'watch.jpeg'
+    img_urls: ['watch.jpeg']
 }
 
 const Landing = () => {

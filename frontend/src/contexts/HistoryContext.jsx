@@ -11,7 +11,7 @@ export const SearchHistoryProvider = ({ children }) => {
 
     const updateHistory = (product) => {
         if (lookHistory.filter((el) => el.id === product.id).length > 0) return
-        setLookHistory([...lookHistory, product])
+        setLookHistory([product, ...lookHistory])
     }
 
     const clearHistory = () => {

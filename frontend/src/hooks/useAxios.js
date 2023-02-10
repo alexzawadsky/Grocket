@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import jwt_decode from "jwt-decode";
 import AuthContext from "../contexts/AuthProvider";
 
-const axiosApiInstance = () => {
+const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
 
     const axiosInstance = axios.create({
@@ -35,4 +35,4 @@ const axiosApiInstance = () => {
     return axiosInstance;
 };
 
-export default axiosApiInstance;
+export default useAxios;

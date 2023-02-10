@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Sell from './pages/Sell'
 import Landing from './pages/Landing'
-import MyProfile, { myProfileLoader } from './pages/MyProfile'
+import MyProfile from './pages/MyProfile'
 import MyComments, { commentsLoader } from './pages/MyComments';
 import NotFound from './pages/NotFound';
 import UserProfile, { userProfileLoader } from './pages/UserProfile';
@@ -19,6 +19,7 @@ import Reset from './pages/Reset';
 import SearchHistoryPage from './pages/SearchHistoryPage';
 import { SearchHistoryProvider } from './contexts/HistoryContext';
 import { AuthProvider } from './contexts/AuthProvider';
+import PrivateRoute from './components/PrivateRoute';
 
 
 const PageIndex = () => {
@@ -47,8 +48,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "profile",
-                loader: myProfileLoader,
-                element: <MyProfile />,
+                element: <PrivateRoute element={<MyProfile />} />,
                 children: [
                     {
                         path: 'comments',

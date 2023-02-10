@@ -25,7 +25,7 @@ const HistoryList = () => {
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
-        <div className='grid gap-5 grow h-fit'>
+        <div className='grid gap-5 grow h-fit w-full'>
             {isTablet ? (
                 <>
                     <h2 to='/history' className='text-2xl font-bold flex items-center gap-3 text-truncate'><IoBookOutline />You looked earlier</h2>

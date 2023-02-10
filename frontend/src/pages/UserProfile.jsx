@@ -1,10 +1,8 @@
 import React from 'react'
 import { useLoaderData } from 'react-router-dom'
-import { BsFillTelephoneFill } from 'react-icons/bs'
-import { HiOutlineMail } from 'react-icons/hi'
-import { NavLink, Outlet } from 'react-router-dom'
-import RatingStars from '../components/RatingStars'
+import { NavLink, Outlet, useOutlet } from 'react-router-dom'
 import ProfileCard from '../components/ProfileCard'
+import { useMediaQuery } from 'react-responsive'
 
 export const userProfileLoader = ({ request, params }) => {
     return {
@@ -23,26 +21,29 @@ export const userProfileLoader = ({ request, params }) => {
 const UserProfile = () => {
 
     const user = useLoaderData()
+    const outlet = useOutlet()
+    const isTablet = useMediaQuery({ query: '(min-width: 768px)' })
 
     return (
-        <div className='flex gap-5'>
-            <div className='shrink-0 grid gap-5'>
-                <ProfileCard
-                    firstName={user.first_name}
-                    lastName={user.last_name}
-                    email={user.email}
-                    phone={user.phone}
-                    avatar={null}
-                    rating={user.rating}
-                    withComments={true}
-                />
-                <NavLink className='font-bold text-xl' to={`/user/${user.id}`}>{user.first_name}'s lots</NavLink>
-                <NavLink className='text-xl font-bold' to={`/user/${user.id}/chat`}>Messages</NavLink>
-            </div>
-            <div>
-                <Outlet />
-            </div>
-
+        <div className='flex flex-col items-center md:items-start md:flex-row gap-5'>
+            {outlet && !isTablet ?
+                null :
+                (
+                    <div className='grow grid gap-5 w-fit'>
+                        <ProfileCard
+                            firstName={user.first_name}
+                            lastName={user.last_name}
+                            email={user.email}
+                            phone={user.phone}
+                            avatar={null}
+                            rating={user.rating}
+                            withComments={true}
+                        />
+                        <NavLink className='font-bold text-xl' to='lots'>{user.first_name}'s lots</NavLink>
+                        <NavLink className='text-xl font-bold' to='chat'>Messages</NavLink>
+                    </div>
+                )}
+            <Outlet />
         </div>
     )
 }

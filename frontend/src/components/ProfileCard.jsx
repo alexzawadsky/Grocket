@@ -7,8 +7,8 @@ import RatingStars from './RatingStars'
 
 const ProfileCard = ({ firstName, lastName, email, phone, rating, avatar, withComments }) => {
     return (
-        <div className='grid gap-4 border-2 border-black p-5 rounded-xl shrink-0 h-fit'>
-            <div className="h-72 w-72">
+        <div className='grid gap-4 border-2 border-black p-5 rounded-xl shrink-0 h-fit w-fit'>
+            <div className="w-full max-w-[18rem] aspect-square">
                 <Avatar avatar={avatar} />
             </div>
             <div className="flex items-center gap-2">

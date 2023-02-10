@@ -22,16 +22,14 @@ const Landing = () => {
     return (
         <div className='grid gap-5'>
             <Search />
-            <div className='flex gap-7'>
+            <div className='flex flex-col-reverse md:flex-row gap-3 md:gap-7'>
                 <div>
                     <h1 className='pb-5 font-bold text-2xl'>Goods especially for you</h1>
-                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+                    <div className='grid grid-cols-2 lg:grid-cols-4 gap-5 w-fit'>
                         {Array(8).fill(0).map((el, key) => <ItemCard key={key} content={card} />)}
                     </div>
                 </div>
-                <div>
-                    <HistoryList />
-                </div>
+                <HistoryList />
             </div>
         </div>
 

@@ -28,7 +28,7 @@ const Login = () => {
 
     return (
         <div className='w-full h-full flex items-center justify-center'>
-            <div className='w-1/3'>
+            <div className='lg:w-1/3'>
                 <h1 className='text-accent-orange text-7xl font-bolditalic pb-5'>Grocket</h1>
                 <form className='grid gap-5' onSubmit={handleSubmit}>
                     <div className='w-full grid gap-1'>

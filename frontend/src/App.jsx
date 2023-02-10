@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Sell from './pages/Sell'
 import Landing from './pages/Landing'
-import MyProfile from './pages/MyProfile'
+import MyProfile, { myProfileLoader } from './pages/MyProfile'
 import MyComments, { commentsLoader } from './pages/MyComments';
 import NotFound from './pages/NotFound';
 import UserProfile, { userProfileLoader } from './pages/UserProfile';
@@ -47,6 +47,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "profile",
+                loader: myProfileLoader,
                 element: <MyProfile />,
                 children: [
                     {
@@ -75,7 +76,7 @@ const router = createBrowserRouter([
                 element: <UserProfile />,
                 children: [
                     {
-                        path: '',
+                        path: 'lots',
                         loader: userLotsLoader,
                         element: <UserLots />
                     },

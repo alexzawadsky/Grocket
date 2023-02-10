@@ -41,7 +41,7 @@ const Register = () => {
             username: username,
             country: country,
             password: pwd,
-            avatar: await toBase64(fileInputRef.current.files[0])
+            avatar: await toBase64(editorRef.current.getImage())
         }
         console.log(data)
         registerUser(data)

@@ -31,7 +31,6 @@ const MyProfile = () => {
 
     useEffect(_ => {
         api.get('/api/v1/users/me').then(res => setUser(res)).catch(err => alert(err))
-        setUser(auth)
     }, [])
 
     return (

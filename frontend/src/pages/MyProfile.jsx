@@ -30,7 +30,7 @@ const MyProfile = () => {
     const api = useAxios()
 
     useEffect(_ => {
-        api.get('/api/v1/users/me').then(res => setUser(res)).catch(err => alert(err))
+        api.get('/api/v1/users/me').then(res => setUser(res.data)).catch(err => alert(err))
     }, [])
 
     return (
@@ -47,7 +47,7 @@ const MyProfile = () => {
                                     lastName={user.last_name}
                                     email={user.email}
                                     avatar={user.avatar}
-                                    rating={user.rating}
+                                    rating={5.00}
                                     phone={user.phone}
                                     withComments={true}
                                 />

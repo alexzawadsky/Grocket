@@ -28,6 +28,9 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const dataUrl = editorRef.current.getImage().toDataURL()
+        const result = await fetch(dataUrl)
+        const blob = await result.blob()
         if (imageInInput && !adjSaved && !avatar) {
             alert('Please adjust your avatar before submitting')
             return
@@ -41,7 +44,7 @@ const Register = () => {
             username: username,
             country: country,
             password: pwd,
-            avatar: await toBase64(editorRef.current.getImage())
+            avatar: await toBase64(blob)
         }
         console.log(data)
         registerUser(data)

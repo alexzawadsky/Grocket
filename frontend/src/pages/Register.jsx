@@ -28,6 +28,9 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const dataUrl = editorRef.current.getImage().toDataURL()
+        const result = await fetch(dataUrl)
+        const blob = await result.blob()
         if (imageInInput && !adjSaved && !avatar) {
             alert('Please adjust your avatar before submitting')
             return
@@ -41,7 +44,7 @@ const Register = () => {
             username: username,
             country: country,
             password: pwd,
-            avatar: await toBase64(fileInputRef.current.files[0])
+            avatar: await toBase64(blob)
         }
         console.log(data)
         registerUser(data)
@@ -80,7 +83,7 @@ const Register = () => {
                 <form onSubmit={handleSubmit} className='w-1/3 flex flex-col justify-around'>
                     <div className="flex w-full gap-5">
                         <div className='w-full'>
-                            <label htmlFor="name">Name:</label>
+                            <label htmlFor="name">First name:</label>
                             <input className='grocket-input w-full' onChange={e => setName(e.target.value)} type="text" />
                         </div>
                         <div className='w-full'>

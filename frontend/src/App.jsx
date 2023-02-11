@@ -1,11 +1,11 @@
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import { Outlet } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Sell from './pages/Sell'
 import Landing from './pages/Landing'
 import MyProfile from './pages/MyProfile'
 import MyComments, { commentsLoader } from './pages/MyComments';
-import Footer from './components/Footer'
 import NotFound from './pages/NotFound';
 import UserProfile, { userProfileLoader } from './pages/UserProfile';
 import UserComments from './pages/UserComments';
@@ -16,8 +16,10 @@ import MyFavourites, { favouritesLoader } from './pages/MyFavourites';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Reset from './pages/Reset';
+import SearchHistoryPage from './pages/SearchHistoryPage';
 import { SearchHistoryProvider } from './contexts/HistoryContext';
 import { AuthProvider } from './contexts/AuthProvider';
+import PrivateRoute from './components/PrivateRoute';
 
 
 const PageIndex = () => {
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "profile",
-                element: <MyProfile />,
+                element: <PrivateRoute element={<MyProfile />} />,
                 children: [
                     {
                         path: 'comments',
@@ -74,7 +76,7 @@ const router = createBrowserRouter([
                 element: <UserProfile />,
                 children: [
                     {
-                        path: '',
+                        path: 'lots',
                         loader: userLotsLoader,
                         element: <UserLots />
                     },
@@ -100,6 +102,10 @@ const router = createBrowserRouter([
             {
                 path: 'reset',
                 element: <Reset />
+            },
+            {
+                path: 'history',
+                element: <SearchHistoryPage />
             }
         ],
     },

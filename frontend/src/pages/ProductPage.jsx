@@ -8,6 +8,7 @@ import RatingStars from '../components/RatingStars';
 import SearchHistoryContext from '../contexts/HistoryContext';
 import { useContext } from 'react';
 import Map from '../components/Map';
+import Avatar from '../components/Avatar';
 
 export const productLoader = ({ request, params }) => {
     return {
@@ -15,9 +16,9 @@ export const productLoader = ({ request, params }) => {
         name: 'Apple Watch Ultra',
         author: {
             id: 4545545,
-            name: 'Alex',
+            first_name: 'Alex',
             last_name: 'Zawadsky',
-            avatar: '/avatar2.png',
+            avatar: null,
             rate: 4.7,
             date_joined: '2022-02-20'
         },
@@ -80,11 +81,11 @@ const ProductPage = () => {
                         <p className='font-bold text-xl'>Seller:</p>
                         <NavLink to={`/user/${product.author.id}`} className='border-2 border-black p-5 rounded-xl grid gap-3'>
                             <div className='flex items-center gap-5'>
-                                <div>
-                                    <img src={product.author.avatar} alt="" className='w-10 rounded-full h-10 object-cover' />
+                                <div className='w-10 h-10'>
+                                    <Avatar avatar={product.author.avatar} />
                                 </div>
                                 <div>
-                                    <p className='hover:text-accent-orange'>{product.author.last_name} {product.author.name}</p>
+                                    <p className='hover:text-accent-orange'>{product.author.last_name} {product.author.first_name}</p>
                                     <RatingStars rating={product.author.rate} />
                                 </div>
                             </div>

@@ -13,6 +13,7 @@ const Login = () => {
     const pwdRef = useRef()
 
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState()
 
     const handleSubmit = (e) => {
         setLoading(true)
@@ -22,7 +23,7 @@ const Login = () => {
             password: pwdRef.current.value,
             redirectFrom: searchParams.get('redirectFrom') || '/'
         }
-        loginUser(data)
+        loginUser(data, setError)
         setLoading(false)
     }
 
@@ -42,6 +43,8 @@ const Login = () => {
                         <input ref={pwdRef} className='grocket-input' type="password" id='email' />
                     </div>
                     <button className='bg-accent-orange py-3 text-white rounded-xl'>{!loading ? 'Log In' : 'Loading...'}</button>
+                    {error ? <p className='text-accent-red font-bold'>{error.status} {error.message}</p> : null}
+                    {error && error.status === 401 ? <NavLink to='/password-reset' className='hover:text-accent-orange'>Reset password</NavLink> : null}
                     <NavLink to='/register'>Don't have an account?</NavLink>
                 </form>
             </div>

@@ -20,6 +20,7 @@ import SearchHistoryPage from './pages/SearchHistoryPage';
 import { SearchHistoryProvider } from './contexts/HistoryContext';
 import { AuthProvider } from './contexts/AuthProvider';
 import PrivateRoute from './components/PrivateRoute';
+import PasswordReset from './pages/PasswordReset';
 
 
 const PageIndex = () => {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
             {
                 path: 'history',
                 element: <SearchHistoryPage />
+            },
+            {
+                path: 'password-reset',
+                element: <PasswordReset />
             }
         ],
     },

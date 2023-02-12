@@ -29,7 +29,7 @@ const HistoryList = () => {
             {isTablet ? (
                 <>
                     <h2 to='/history' className='text-2xl font-bold flex items-center gap-3 text-truncate'><IoBookOutline />You looked earlier</h2>
-                    <button onClick={clearHistory} className='border-2 border-accent-red flex items-center justify-center gap-5 text-accent-red py-3 rounded-xl hover:bg-accent-red/[0.1] font-bold'><BsFillTrashFill />Clear history</button>
+                    <button onClick={clearHistory} className='button-outline-red'><BsFillTrashFill />Clear history</button>
                     {lookHistory.slice(0, 4).map((el, key) => <HistoryItem key={key} content={el} />)}
                 </>
             ) : null}

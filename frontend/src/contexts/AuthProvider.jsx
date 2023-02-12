@@ -24,27 +24,24 @@ export const AuthProvider = ({ children }) => {
             : null
     );
 
-    const loginUser = async ({ email, password, redirectFrom }) => {
-        try {
-            const response = await api.post(
-                '/api/v1/auth/jwt/create',
-                JSON.stringify({ email, password }),
-                {
-                    headers: {
-                        'accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
+    const loginUser = async ({ email, password, redirectFrom }, setError) => {
+        api.post(
+            '/api/v1/auth/jwt/create',
+            JSON.stringify({ email, password }),
+            {
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
-            )
-            setAuthTokens(response.data);
-            localStorage.setItem("authTokens", JSON.stringify(response.data));
+            }
+        ).then(res => {
+            setAuthTokens(res.data);
+            localStorage.setItem("authTokens", JSON.stringify(res.data));
             navigate(redirectFrom);
-        } catch (err) {
-            alert('err')
-        }
+        }).catch(err => setError({ status: err.response.status, message: err.response.data }))
     };
 
-    const registerUser = ({ first_name, last_name, username, email, password, phone, country, avatar }) => {
+    const registerUser = ({ first_name, last_name, username, email, password, re_password, phone, country, avatar }) => {
         api.post(
             'api/v1/users/',
             JSON.stringify({
@@ -53,6 +50,7 @@ export const AuthProvider = ({ children }) => {
                 username,
                 email,
                 password,
+                re_password,
                 country,
                 phone,
                 avatar
@@ -64,7 +62,7 @@ export const AuthProvider = ({ children }) => {
                     'X-CSRFToken': getCookie('csrftoken')
                 }
             }
-        ).then(res => console.log(res)).catch(err => alert('err'))
+        ).then(res => console.log(res)).catch(err => alert(err))
     };
 
     const logoutUser = () => {

@@ -1,10 +1,11 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
-from djmoney.models.fields import MoneyField
-from users.models import User
-from core.models import WithDateModel
-from mptt.models import MPTTModel, TreeForeignKey
 from django.urls import reverse
+from djmoney.models.fields import MoneyField
+from mptt.models import MPTTModel, TreeForeignKey
+
+from core.models import WithDateModel
+from users.models import User
 
 
 class Image(models.Model):

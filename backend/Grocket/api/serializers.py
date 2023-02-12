@@ -1,6 +1,7 @@
 from djoser import serializers as djserializers
-from users.models import User
 from drf_extra_fields.fields import Base64ImageField
+
+from users.models import User
 
 
 class CustomUserSerializer(djserializers.UserSerializer):

@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Product, Comment, Favourite, Image, Category
 from django_mptt_admin.admin import DjangoMpttAdmin
+
+from .models import Category, Comment, Favourite, Image, Product
 
 
 @admin.register(Product)

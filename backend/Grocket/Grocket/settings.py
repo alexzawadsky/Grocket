@@ -155,7 +155,9 @@ DJOSER = {
         'user_delete': ['rest_framework.permissions.IsAuthenticated'],
     },
     'SERIALIZERS': {
-        'user_create': 'api.serializers.CustomUserCreateSerializer',
+        'user_create_password_retype': (
+            'api.serializers.CustomUserCreateSerializer'
+        ),
         'user': 'api.serializers.CustomUserSerializer',
         'current_user': 'api.serializers.CustomUserSerializer',
     },

@@ -1,8 +1,8 @@
-from django.urls import path
 from django.conf.urls import include
+from django.urls import path
 from djoser.views import UserViewSet
-from .views import CustomUserRetrieveViewSet
 
+from .views import CustomUserRegisterViewSet, CustomUserRetrieveViewSet
 
 app_name = 'api'
 
@@ -24,7 +24,7 @@ urlpatterns = [
         UserViewSet.as_view({'post': 'set_password'}),
         name='set_password'),
     path(
-        'v1/users/', UserViewSet.as_view({'post': 'create'}),
-        name='users'),
+        'v1/users/', CustomUserRegisterViewSet.as_view({'post': 'create'}),
+        name='register'),
     path('v1/auth/', include('djoser.urls.jwt')),
 ]

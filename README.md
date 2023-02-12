@@ -1,4 +1,6 @@
+```
 Cсылки:
+
 -- Поле с деньгами
 https://github.com/django-money/django-money
 -- Поле с телефоном
@@ -11,7 +13,9 @@ https://medium.com/ibisdev/upload-multiple-images-to-a-model-with-django-fd00d85
 https://github.com/SmileyChris/django-countries#countryfield
 -- древовидгые категории
 https://tretyakov.net/post/drevovidnye-kategorii-v-django/
-
+-- jwt токены
+https://django-rest-framework-simplejwt.readthedocs.io/en/latest/
+```
 
 ~/Grocket/infra/.env
 ```

@@ -3,6 +3,17 @@ from users.models import User
 from drf_extra_fields.fields import Base64ImageField
 
 
+class CustomUserSerializer(djserializers.UserSerializer):
+    """Сериализатор модели User."""
+
+    avatar = Base64ImageField(allow_null=True, required=False)
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'first_name', 'last_name',
+                  'avatar', 'phone', 'country',)
+
+
 class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
     """Кастомный сериализатор создания модели User."""
 
@@ -13,14 +24,3 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
         fields = ('id', 'username', 'email', 'first_name', 'last_name',
                   'password', 'avatar', 'phone', 'country',)
         read_only_fields = ('id',)
-
-
-class CustomUserSerializer(djserializers.UserSerializer):
-    """Сериализатор модели User."""
-
-    avatar = Base64ImageField(allow_null=True, required=False)
-
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name',
-                'avatar', 'phone', 'country',)

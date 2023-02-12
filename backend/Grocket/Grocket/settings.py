@@ -132,28 +132,52 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
     ],
-    # 'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
 }
 
-# SIMPLE_JWT = {
-#    'AUTH_HEADER_TYPES': ('JWT',),
-# }
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 DJOSER = {
+    'SET_PASSWORD_RETYPE': True,
+    'USER_CREATE_PASSWORD_RETYPE': True,
     'HIDE_USERS': False,
     'USER_ID_FIELD': 'pk',
     # 'LOGIN_FIELD': 'email',
     'USERNAME_FIELD': 'email',
     'PERMISSIONS': {
-        'user_list': ['rest_framework.permissions.AllowAny'],
         'user': ['rest_framework.permissions.IsAuthenticated'],
-    #     'user_delete': ['rest_framework.permissions.AllowAny'],
+        'user_delete': ['rest_framework.permissions.IsAuthenticated'],
     },
     'SERIALIZERS': {
         'user_create': 'api.serializers.CustomUserCreateSerializer',
+        'user': 'api.serializers.CustomUserSerializer',
+        'current_user': 'api.serializers.CustomUserSerializer',
     },
+}
+
+
+AVATAR = {
+    'COLORS': [
+        'fbf8cc',
+        'fde4cf',
+        'ffcfd2',
+        'f1c0e8',
+        'cfbaf0',
+        'a3c4f3',
+        '90dbf4',
+        '8eecf5',
+        '98f5e1',
+        'b9fbc0',
+    ],
+    'SIZE': (500, 500),
+    'FONT': 'fonts/arial_black.ttf',
+    'FONT_SIZE': 200,
+    'FONT_INDENTS': (100, 100),
+    'FONT_FILL': '#1C0606',
 }

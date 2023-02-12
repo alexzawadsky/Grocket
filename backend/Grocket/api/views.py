@@ -1,5 +1,6 @@
-from djoser import views as djviews
+from djoser.views import UserViewSet
+from rest_framework import permissions
 
 
-class CustomUserViewSet(djviews.UserViewSet):
-    http_method_names = ['get', 'post']
+class CustomUserRetrieveViewSet(UserViewSet):
+    permission_classes = (permissions.AllowAny,)

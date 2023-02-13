@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import AuthContext from '../contexts/AuthProvider'
-import Title from './Title'
+import { Title } from './'
 
 const PrivateRoute = ({ element }) => {
 

@@ -1,26 +1,25 @@
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import { Navbar, Footer, PrivateRoute } from './components'
 import { Outlet } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Sell from './pages/Sell'
-import Landing from './pages/Landing'
-import MyProfile from './pages/MyProfile'
-import MyComments, { commentsLoader } from './pages/MyComments';
-import NotFound from './pages/NotFound';
-import UserProfile, { userProfileLoader } from './pages/UserProfile';
-import UserComments from './pages/UserComments';
-import MyLots from './pages/MyLots';
-import ProductPage, { productLoader } from './pages/ProductPage';
-import UserLots, { userLotsLoader } from './pages/UserLots';
-import MyFavourites, { favouritesLoader } from './pages/MyFavourites';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Reset from './pages/Reset';
-import SearchHistoryPage from './pages/SearchHistoryPage';
 import { SearchHistoryProvider } from './contexts/HistoryContext';
 import { AuthProvider } from './contexts/AuthProvider';
-import PrivateRoute from './components/PrivateRoute';
-import PasswordReset from './pages/PasswordReset';
+import {
+    Landing,
+    Login,
+    Sell,
+    MyProfile,
+    MyComments,
+    NotFound,
+    UserProfile,
+    UserComments,
+    MyLots,
+    ProductPage,
+    UserLots,
+    MyFavourites,
+    Register,
+    PasswordReset,
+    SearchHistoryPage
+} from './pages'
 
 
 const PageIndex = () => {
@@ -53,7 +52,6 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: 'comments',
-                        loader: commentsLoader,
                         element: <MyComments />
                     },
                     {
@@ -62,7 +60,6 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'favourites',
-                        loader: favouritesLoader,
                         element: <MyFavourites />
                     }
                 ]
@@ -73,12 +70,10 @@ const router = createBrowserRouter([
             },
             {
                 path: 'user/:userId',
-                loader: userProfileLoader,
                 element: <UserProfile />,
                 children: [
                     {
                         path: 'lots',
-                        loader: userLotsLoader,
                         element: <UserLots />
                     },
                     {
@@ -88,8 +83,7 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: 'product/:productId',
-                loader: productLoader,
+                path: 'products/:productId',
                 element: <ProductPage />
             },
             {
@@ -99,10 +93,6 @@ const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register />
-            },
-            {
-                path: 'reset',
-                element: <Reset />
             },
             {
                 path: 'history',

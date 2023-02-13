@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { HiOutlineMail } from 'react-icons/hi'
 import { NavLink } from 'react-router-dom'
-import Avatar from './Avatar'
-import RatingStars from './RatingStars'
+import { Avatar, RatingStars } from './'
 
 const ProfileCard = ({ firstName, lastName, email, phone, rating, avatar, withComments }) => {
     return (

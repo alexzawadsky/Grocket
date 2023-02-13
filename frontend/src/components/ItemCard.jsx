@@ -1,24 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useState } from 'react'
+import { BiCategoryAlt, BiTimeFive } from 'react-icons/bi'
+import { FiMapPin } from 'react-icons/fi'
+import useAxios from '../hooks/useAxios'
+import { alertErr } from '../utils'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
+import { useMediaQuery } from 'react-responsive'
 
-const ItemCard = ({ content }) => {
+const ItemCard = ({ product }) => {
+
+    const [isFavourite, setIsFavourite] = useState(product.is_favourite)
+    const isPC = useMediaQuery({ query: '(min-width: 1024px)' })
+    const api = useAxios()
+
+    const handleFavourite = () => {
+        api.post(`/`).then(res => product.id = res.data.state).catch(err => alertErr(err))
+        console.log(product.id, 'toggle')
+    }
 
     return (
-        <NavLink to={`/product/${content.id}`} className='border-black border-2 rounded-2xl p-3 lg:p-5 grid gap-0.5 lg:gap-2 shadow-lg w-fit'>
-            <img src={content.img_urls[0]} className='rounded-lg w-full' />
-            <div className="flex items-center justify-between">
-                <p className='hover:text-accent-orange text-sm md:text-xl'>{content.name}</p>
-                {/* <button onClick={() => setFavourite(!favourite)}>{favourite ? <AiFillHeart color='#FF1500' /> : <AiOutlineHeart color='#FF9001' />}</button> */}
+        <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden h-80 md:h-80 lg:h-96'>
+            <NavLink to={`/products/${product.id}`} className="relative h-1/2 flex items-center justify-center overflow-hidden">
+                <img src={product.images[0]} className='h-full absolute z-10 object-scale-down' />
+                <img src={product.images[0]} className='h-full blur-sm w-full brightness-125' />
+            </NavLink>
+            <div className='p-3 md:p-5 min-h-fit h-1/2 flex justify-around flex-col md:gap-2'>
+                <div className="flex justify-between gap-2 max-h-12">
+                    <div className='overflow-hidden'>
+                        <NavLink to={`/products/${product.id}`} className='hover:text-accent-orange text-sm xl:text-lg'>{product.name}</NavLink>
+                    </div>
+                    <button onClick={() => setIsFavourite(prevState => !prevState)}>{isFavourite ? <AiFillHeart color='#FF1500' /> : <AiOutlineHeart color='#FF9001' />}</button>
+                </div>
+                <p className='font-bolditalic text-md xl:text-xl leading-none'>{product.price} {product.price_currency}</p>
+                <div className='grid gap-y-1.5 xl:gap-y-1 grid-cols-[auto_1fr] gap-x-2 items-center'>
+                    {isPC ? <><BiCategoryAlt /><p className='text-[0.6rem] xl:text-sm truncate'>{product.category.title}</p></> : null}
+                    <FiMapPin />
+                    <div className="overflow-hidden">
+                        <p className='text-[0.6rem] xl:text-sm truncate'>{product.address}</p>
+                    </div>
+                    <BiTimeFive />
+                    <div className="overflow-hidden">
+                        <p className='text-[0.6rem] xl:text-sm truncate'>{product.pub_date}</p>
+                    </div>
+                </div>
             </div>
-            <p className='font-bolditalic text-xl'>{content.price}$</p>
-            <div>
-                <p className='text-primary-300'>{content.adress}</p>
-                <p className='text-primary-100'>{content.pub_date}</p>
-            </div>
-
-        </NavLink>
+        </div>
     )
 }
 

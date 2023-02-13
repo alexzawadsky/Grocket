@@ -5,8 +5,8 @@ export const toBase64 = file => new Promise((resolve, reject) => {
     reader.onerror = error => reject(error);
 });
 
-export const fromBase64 = (file) => {
-
+export const alertErr = (err) => {
+    alert(`${err.response.status} ${err.response.data}`)
 }
 
 export const getCookie = (name) => {

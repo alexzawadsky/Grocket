@@ -8,11 +8,11 @@ import { useMediaQuery } from 'react-responsive'
 
 const HistoryItem = ({ content }) => {
     return (
-        <NavLink to={`/product/${content.id}`} className='border-2 border-black rounded-lg p-5 flex gap-3 items-center shadow-lg'>
+        <NavLink to={`/products/${content.id}`} className='border-2 border-black rounded-lg p-5 flex gap-3 items-center shadow-lg w-fit'>
             <img src={content.img_urls[0]} className='w-1/4' />
-            <div>
-                <p className='text-lg hover:text-accent-orange'>{content.name}</p>
-                <p className='font-bold'>{content.price}$</p>
+            <div className='grid gap-0.5'>
+                <p className='text-sm xl:text-lg hover:text-accent-orange'>{content.name}</p>
+                <p className='font-bold'>{content.price} {content.price_currency}</p>
             </div>
         </NavLink>
     )
@@ -25,11 +25,11 @@ const HistoryList = () => {
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
-        <div className='grid gap-5 grow h-fit w-full'>
+        <div className='grid gap-5 h-fit'>
             {isTablet ? (
                 <>
                     <h2 to='/history' className='text-2xl font-bold flex items-center gap-3 text-truncate'><IoBookOutline />You looked earlier</h2>
-                    <button onClick={clearHistory} className='button-outline-red'><BsFillTrashFill />Clear history</button>
+                    <button onClick={clearHistory} className='button-outline-red !w-full justify-center'><BsFillTrashFill />Clear history</button>
                     {lookHistory.slice(0, 4).map((el, key) => <HistoryItem key={key} content={el} />)}
                 </>
             ) : null}

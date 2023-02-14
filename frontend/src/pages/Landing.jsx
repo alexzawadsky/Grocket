@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Title, Search, HistoryList, ItemCard } from '../components'
-import useAxios from '../hooks/useAxios'
+import axios from 'axios'
 import ReactPaginate from 'react-paginate'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import { useMediaQuery } from 'react-responsive'
@@ -32,11 +32,8 @@ const Landing = () => {
 
     const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
 
-    const api = useAxios()
-
     const loadPage = () => {
-        console.log(page)
-        api.get(`/api/v1/products/?limit=4&page=${page}`).then(res => {
+        axios.get(`/api/v1/products/?limit=4&page=${page + 1}`).then(res => {
             setProducts(res.data.results)
             setPagesCount(res.data.pages_count)
         }).catch(err => alert(`${err.response.status} ${err.response.message}`))
@@ -54,7 +51,7 @@ const Landing = () => {
         <div className='flex flex-col gap-5 items-center md:items-start'>
             <Search />
             <div className='md:grid md:grid-cols-[2fr_1fr] lg:grid-cols-[3fr_1fr] flex flex-col-reverse gap-3 md:gap-7 w-full'>
-                <div className='grid gap-5 w-full'>
+                <div className='grid gap-5 w-full h-fit'>
                     <Title text='Goods especially for you' />
                     <div className='grid gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                         {products ? products.map((el, key) => <ItemCard key={key} product={el} />) : null}

@@ -21,7 +21,7 @@ const ItemCard = ({ product }) => {
     return (
         <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden '>
             <NavLink to={`/products/${product.id}`} className="">
-                <img src={product.images[0]} className='' />
+                {product.images ? <img src={product.images[0].image} className='' /> : null}
             </NavLink>
             <div className='p-3 md:p-5 flex justify-around flex-col gap-2'>
                 <div className="flex justify-between gap-2 max-h-12">

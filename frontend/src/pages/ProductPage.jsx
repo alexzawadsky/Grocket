@@ -8,7 +8,6 @@ import SearchHistoryContext from '../contexts/HistoryContext';
 import { useContext } from 'react';
 import Map from '../components/Map';
 import Avatar from '../components/Avatar';
-import useAxios from '../hooks/useAxios';
 import 'lightbox.js-react/dist/index.css'
 import { SlideshowLightbox } from 'lightbox.js-react'
 import { BiTimeFive } from 'react-icons/bi'
@@ -16,6 +15,7 @@ import { FiMapPin } from 'react-icons/fi'
 import { BsArrowRight } from 'react-icons/bs';
 import { useMediaQuery } from 'react-responsive';
 import { ReadMore } from '../components';
+import axios from 'axios';
 
 const productMock = {
     id: 1111111,
@@ -72,16 +72,14 @@ const SellerCard = ({ user }) => {
 const ProductPage = () => {
 
     const { updateHistory } = useContext(SearchHistoryContext)
-    const [product, setProcuct] = useState()
-    const [isFavourite, setIsFavourite] = useState()
-    const api = useAxios()
+    const [product, setProduct] = useState(null)
+    const [isFavourite, setIsFavourite] = useState(false)
     const { productId } = useParams()
     const isTablet = useMediaQuery({ query: '(max-width: 1023px)' })
 
     useEffect(() => {
-        api.get(`/api/v1/products/${productId}`).then(res => {
-            console.log(res)
-            setProcuct(res.data)
+        axios.get(`/api/v1/products/${productId}`).then(res => {
+            setProduct(res.data)
             setIsFavourite(res.data.is_favourited)
             updateHistory(res.data)
         }).catch(err => alert(err.response.status))
@@ -93,9 +91,9 @@ const ProductPage = () => {
     }
 
     return (
-        <>
+        <div>
             {product ?
-                <div>
+                <>
                     <p className='text-primary-100 pb-3'>ID: {product.id}</p>
                     <div className='grid lg:grid-cols-[2fr_1fr] gap-10'>
                         <div className='grid gap-3'>
@@ -122,21 +120,22 @@ const ProductPage = () => {
                             <h2 className='font-bold text-2xl flex items-center gap-5'>Description</h2>
                             <ReadMore text={product.description} />
                             <h2 className='font-bold text-2xl flex items-center gap-2'><FiMapPin />Adress</h2>
-                            {/* <Map adress={product.address} /> */}
+                            <Map adress={product.address} />
                             <p>{product.address}</p>
-                            {isTablet ? <><p className='font-bold text-2xl'>Seller</p><SellerCard user={product.author} /></> : null}
+                            {isTablet ? <><p className='font-bold text-2xl'>Seller</p><SellerCard user={product.user} /></> : null}
                         </div>
                         {!isTablet ? <div className='w-full'>
                             <div className='grid gap-3 h-fit fixed'>
                                 <h2 className='font-bold text-3xl'>{product.price} {product.price_currency}</h2>
                                 <p className='font-bold text-2xl'>Seller:</p>
-                                <SellerCard user={product.author} />
+                                <SellerCard user={product.user} />
                             </div>
                         </div> : null}
                     </div>
-                </div>
-                : null}
-        </>
+                </>
+                : null
+            }
+        </div>
     )
 }
 

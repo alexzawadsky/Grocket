@@ -1,7 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.urls import reverse
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -46,20 +45,14 @@ class Category(MPTTModel):
         db_index=True,
         verbose_name='parent category'
     )
-    slug = models.SlugField(
-        max_length=150,
-    )
 
     class MPTTMeta:
         order_insertion_by = ['title']
 
     class Meta:
-        unique_together = [['parent', 'slug']]
+        unique_together = [['parent', 'title']]
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-
-    def get_absolute_url(self):
-        return reverse('post-by-category', args=[str(self.slug)])
 
     def __str__(self):
         return self.title
@@ -75,9 +68,6 @@ class Product(WithDateModel):
         on_delete=models.CASCADE,
         related_name='products',
         verbose_name='seller',
-    )
-    slug = models.SlugField(
-        max_length=150,
     )
     category = TreeForeignKey(
         'Category',
@@ -111,7 +101,7 @@ class Product(WithDateModel):
         verbose_name_plural = 'products'
 
     def __str__(self):
-        return f'{self.name}, {self.user.username}, {self.price}'
+        return f'{self.id}, {self.name}, {self.user.username}'
 
 
 class Favourite(models.Model):

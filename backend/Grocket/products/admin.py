@@ -13,12 +13,13 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name', 'user', 'price',)
     list_filter = ('user', 'price', 'pub_date',)
     empty_value_display = '-empty-'
-    prepopulated_fields = {'slug': ('name',)}
+    # prepopulated_fields = {'title': ('name',)}
 
 
 @admin.register(Category)
 class CategoryAdmin(DjangoMpttAdmin):
-    prepopulated_fields = {'slug': ('title',)}
+    # prepopulated_fields = {'title': ('title',)}
+    pass
 
 
 @admin.register(Comment)

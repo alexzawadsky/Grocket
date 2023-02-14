@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from core.views import avatar_img_creating
 from products.models import Product, Category
 from .serializers import (ProductRetrieveSerializer, ProductListSerializer,
-                          CategoryListSerializer)
+                          CategoryListSerializer, ProductCreateSerializer)
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -70,8 +70,8 @@ class ProductViewSet(viewsets.ModelViewSet):
             return ProductRetrieveSerializer
         elif self.action == 'list':
             return ProductListSerializer
-        # elif self.action == 'create':
-        #     return ProductCreateSerializer
+        elif self.action == 'create':
+            return ProductCreateSerializer
 
     def get_permissions(self):
         if self.action in ('retrieve', 'list'):

@@ -77,6 +77,14 @@ class ProductImageSerializer(serializers.ModelSerializer):
         fields = ('image', 'is_main',)
 
 
+class ProductListImageSerializer(serializers.ModelSerializer):
+    image = Base64ImageField(allow_null=True, required=False)
+
+    class Meta:
+        model = Image
+        fields = ('image',)
+
+
 class ProductSerializer(serializers.ModelSerializer):
     is_favourited = serializers.SerializerMethodField()
 
@@ -97,7 +105,7 @@ class ProductRetrieveSerializer(ProductSerializer):
     class Meta:
         model = Product
         fields = (
-            'id', 'name', 'user', 'slug',
+            'id', 'name', 'user',
             'description', 'price', 'price_currency',
             'address', 'is_archived', 'is_sold', 'is_favourited',
             'category', 'images',
@@ -107,49 +115,82 @@ class ProductRetrieveSerializer(ProductSerializer):
 class ProductListSerializer(ProductSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     category = CategorySerializer(read_only=True)
-    # image = serializers.SerializerMethodField()
+    images = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
         fields = (
-            'id', 'name', 'user', 'slug',
+            'id', 'name', 'user',
             'price', 'price_currency', 'address',
             'is_archived', 'is_sold', 'is_favourited',
-            'category',
+            'category', 'images',
         )
 
-    # def get_image(self, obj):
-    #     images = Image.objects.filter(product=obj, is_main=True)
-    #     if images.exists():
-    #         return images[0].image
-    #     return None
+    def get_images(self, obj):
+        images = Image.objects.filter(product=obj, is_main=True)
+        serializer = ProductImageSerializer(
+            instance=images,
+            many=True
+        )
+
+        return serializer.data
 
 
-# class ProductCreateSerializer(serializers.ModelSerializer):
-#     user = serializers.HiddenField(
-#         default=serializers.CurrentUserDefault()
-#     )
-#     category = serializers.PrimaryKeyRelatedField(
-#         queryset=Category.objects.all()
-#     )
-#     # Проверить !!!!
-#     is_archived = serializers.HiddenField(
-#         default=False
-#     )
-#     is_sold = serializers.HiddenField(
-#         default=False
-#     )
+class ProductCreateSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    category = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all()
+    )
+    is_archived = serializers.HiddenField(default=False)
+    is_sold = serializers.HiddenField(default=False)
+    images = ProductImageSerializer(many=True)
 
-#     class Meta:
-#         model = Product
-#         fields = (
-#             'id', 'name', 'user',
-#             'description', 'price', 'price_currency',
-#             'address', 'is_archived', 'is_sold',
-#             'category',
-#         )
+    class Meta:
+        model = Product
+        fields = (
+            'id', 'name', 'user',
+            'description', 'price', 'price_currency',
+            'address', 'is_archived', 'is_sold',
+            'category', 'images',
+        )
 
-#     def to_representation(self, product):
-#         serializer = ProductRetrieveSerializer(product, context=self.context)
+    def validate_images(self, value):
+        main = False
 
-#         return serializer.data
+        for image in value:
+            if image['is_main']:
+                if main:
+                    raise serializers.ValidationError(
+                        'Нельзя добавить больше одной главной фотографии.'
+                    )
+                main = True
+
+        if not main:
+            raise serializers.ValidationError(
+                'Нужно добавить главную фотографию.'
+            )
+
+        return value
+
+    def creating_images(self, images, product):
+        for image in images:
+            Image.objects.create(
+                image=image['image'],
+                is_main=image['is_main'],
+                product=product
+            )
+
+    def create(self, validated_data):
+        images = validated_data.pop('images')
+        product = Product.objects.create(**validated_data)
+
+        self.creating_images(images, product)
+
+        return product
+
+    def to_representation(self, product):
+        serializer = ProductRetrieveSerializer(product, context=self.context)
+
+        return serializer.data

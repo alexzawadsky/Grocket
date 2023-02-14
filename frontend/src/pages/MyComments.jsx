@@ -13,7 +13,7 @@ export const commentsLoader = ({ request, params }) => {
 
 const MyComments = () => {
 
-    const reviews = useLoaderData()
+    const reviews = reviewsMock
     const isTablet = useMediaQuery({ query: '(min-width: 768px)' })
 
     return (

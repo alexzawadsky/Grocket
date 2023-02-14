@@ -57,7 +57,7 @@ const Landing = () => {
                 <div className='grid gap-5 w-full'>
                     <Title text='Goods especially for you' />
                     <div className='grid gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-                        {products.map((el, key) => <ItemCard key={key} product={card} />)}
+                        {products ? products.map((el, key) => <ItemCard key={key} product={el} />) : null}
                     </div>
                 </div>
                 <HistoryList />

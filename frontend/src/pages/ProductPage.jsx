@@ -80,8 +80,9 @@ const ProductPage = () => {
 
     useEffect(() => {
         api.get(`/api/v1/products/${productId}`).then(res => {
+            console.log(res)
             setProcuct(res.data)
-            setIsFavourite(res.data.is_favourite)
+            setIsFavourite(res.data.is_favourited)
             updateHistory(res.data)
         }).catch(err => alert(err.response.status))
     }, [])
@@ -116,7 +117,7 @@ const ProductPage = () => {
                             </div>
                             {isTablet ? <h2 className='font-bold text-3xl'>{product.price} {product.price_currency}</h2> : null}
                             <SlideshowLightbox theme='lightbox' className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center gap-5'>
-                                {product.images.map((el, key) => <img key={key} src={el} className='border-2 rounded-xl aspect-auto' />)}
+                                {product.images.map((el, key) => <img key={key} src={el.image} className='border-2 rounded-xl aspect-auto' />)}
                             </SlideshowLightbox>
                             <h2 className='font-bold text-2xl flex items-center gap-5'>Description</h2>
                             <ReadMore text={product.description} />

@@ -132,10 +132,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
-
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_PAGINATION_CLASS': 'api.paginators.PageLimitPagination',
+    'PAGE_SIZE': 20,
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
 }
 
@@ -152,10 +153,11 @@ DJOSER = {
     'USERNAME_FIELD': 'email',
     'PERMISSIONS': {
         'user': ['rest_framework.permissions.IsAuthenticated'],
-        'user_delete': ['rest_framework.permissions.IsAuthenticated'],
     },
     'SERIALIZERS': {
-        'user_create': 'api.serializers.CustomUserCreateSerializer',
+        'user_create_password_retype': (
+            'api.serializers.CustomUserCreateSerializer'
+        ),
         'user': 'api.serializers.CustomUserSerializer',
         'current_user': 'api.serializers.CustomUserSerializer',
     },

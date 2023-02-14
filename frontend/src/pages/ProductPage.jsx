@@ -82,10 +82,8 @@ const ProductPage = () => {
         api.get(`/api/v1/products/${productId}`).then(res => {
             setProcuct(res.data)
             setIsFavourite(res.data.is_favourite)
+            updateHistory(res.data)
         }).catch(err => alert(err.response.status))
-        setProcuct(productMock)
-        setIsFavourite(productMock.is_favourite)
-        updateHistory(productMock)
     }, [])
 
     const handleFavourite = () => {

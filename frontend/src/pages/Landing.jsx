@@ -26,29 +26,29 @@ const card = {
 
 const Landing = () => {
 
-    const [products, setProducts] = useState([card, card, card, card, card])
-    const [next, setNext] = useState('')
-    const [previous, setPrevious] = useState('')
+    const [products, setProducts] = useState([])
+    const [page, setPage] = useState(0)
     const [pagesCount, setPagesCount] = useState(1)
 
     const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
 
     const api = useAxios()
 
-    const loadPage = (page) => {
-        console.log(page.selected || 0)
-        api.get('/products').then(res => {
+    const loadPage = () => {
+        console.log(page)
+        api.get(`/api/v1/products/?limit=4&page=${page}`).then(res => {
             setProducts(res.data.results)
-            setNext(res.data.next)
-            setPrevious(res.data.previous)
             setPagesCount(res.data.pages_count)
-            setCurrentPage(res.data.page_number)
         }).catch(err => alert(`${err.response.status} ${err.response.message}`))
     }
 
     useEffect(_ => {
-        loadPage(0)
+        loadPage()
     }, [])
+
+    useEffect(_ => {
+        loadPage()
+    }, [page])
 
     return (
         <div className='flex flex-col gap-5 items-center md:items-start'>
@@ -56,7 +56,7 @@ const Landing = () => {
             <div className='md:grid md:grid-cols-[2fr_1fr] lg:grid-cols-[3fr_1fr] flex flex-col-reverse gap-3 md:gap-7 w-full'>
                 <div className='grid gap-5 w-full'>
                     <Title text='Goods especially for you' />
-                    <div className='grid gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 5 g'>
+                    <div className='grid gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                         {products.map((el, key) => <ItemCard key={key} product={card} />)}
                     </div>
                 </div>
@@ -66,7 +66,7 @@ const Landing = () => {
                 pageCount={pagesCount}
                 pageRangeDisplayed={isPhone ? 1 : 3}
                 marginPagesDisplayed={isPhone ? 1 : 3}
-                onPageChange={loadPage}
+                onPageChange={(page) => setPage(page.selected)}
                 className='flex gap-5'
                 activeClassName='font-bold'
                 pageClassName='hover:text-accent-orange'

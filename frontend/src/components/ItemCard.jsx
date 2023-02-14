@@ -19,12 +19,11 @@ const ItemCard = ({ product }) => {
     }
 
     return (
-        <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden h-80 md:h-80 lg:h-96'>
-            <NavLink to={`/products/${product.id}`} className="relative h-1/2 flex items-center justify-center overflow-hidden">
-                <img src={product.images[0]} className='h-full absolute z-10 object-scale-down' />
-                <img src={product.images[0]} className='h-full blur-sm w-full brightness-125' />
+        <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden '>
+            <NavLink to={`/products/${product.id}`} className="">
+                <img src={product.images[0]} className='' />
             </NavLink>
-            <div className='p-3 md:p-5 min-h-fit h-1/2 flex justify-around flex-col md:gap-2'>
+            <div className='p-3 md:p-5 flex justify-around flex-col gap-2'>
                 <div className="flex justify-between gap-2 max-h-12">
                     <div className='overflow-hidden'>
                         <NavLink to={`/products/${product.id}`} className='hover:text-accent-orange text-sm xl:text-lg'>{product.name}</NavLink>

@@ -16,7 +16,7 @@ const SearchHistoryPage = () => {
                 <button onClick={clearHistory} className='border-2 border-accent-red flex items-center justify-center gap-3 px-2 md:px-5 text-accent-red py-3 rounded-xl hover:bg-accent-red/[0.1] font-bold w-fit'><BsFillTrashFill />Clear history</button>
             </div>
             <div className='grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5'>
-                {lookHistory.map((el, key) => <ItemCard content={el} />)}
+                {lookHistory.map((el, key) => <ItemCard product={el} />)}
             </div>
         </div>
     )

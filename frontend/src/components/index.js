@@ -14,6 +14,7 @@ import RatingStars from "./RatingStars";
 import Search from "./Search";
 import Title from "./Title";
 import Pagination from "./Pagination";
+import ReadMore from "./ReadMore";
 
 export {
     Avatar,
@@ -31,5 +32,6 @@ export {
     RatingStars,
     Search,
     Title,
-    Pagination
+    Pagination,
+    ReadMore
 }

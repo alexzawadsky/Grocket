@@ -78,9 +78,9 @@ class ProductImageSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    is_favorited = serializers.SerializerMethodField()
+    is_favourited = serializers.SerializerMethodField()
 
-    def get_is_favorited(self, obj):
+    def get_is_favourited(self, obj):
         user = self.context['request'].user
 
         if user.is_authenticated:
@@ -99,7 +99,7 @@ class ProductRetrieveSerializer(ProductSerializer):
         fields = (
             'id', 'name', 'user', 'slug',
             'description', 'price', 'price_currency',
-            'address', 'is_archived', 'is_sold', 'is_favorited',
+            'address', 'is_archived', 'is_sold', 'is_favourited',
             'category', 'images',
         )
 
@@ -114,7 +114,7 @@ class ProductListSerializer(ProductSerializer):
         fields = (
             'id', 'name', 'user', 'slug',
             'price', 'price_currency', 'address',
-            'is_archived', 'is_sold', 'is_favorited',
+            'is_archived', 'is_sold', 'is_favourited',
             'category',
         )
 

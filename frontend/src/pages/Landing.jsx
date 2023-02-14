@@ -17,7 +17,7 @@ const card = {
     price_currency: "RUB",
     address: 'Moscow, Profsoyuznaya 45555555555555555555555',
     pub_date: 'Yesterday, 17:00',
-    images: ['watch.jpg'],
+    images: ['1.jpg'],
     category: {
         id: 1,
         title: 'Smart watches'

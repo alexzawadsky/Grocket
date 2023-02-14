@@ -42,7 +42,7 @@ const Register = () => {
             const dataUrl = editorRef.current.getImage().toDataURL()
             const result = await fetch(dataUrl)
             const blob = await result.blob()
-            avatar = await toBase64(blob)
+            setAvatar(await toBase64(blob))
         }
         setLoading(true)
         const data = {

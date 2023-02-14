@@ -1,8 +1,10 @@
 from django.conf.urls import include
 from django.urls import path
 from djoser.views import UserViewSet
+from rest_framework.routers import DefaultRouter
 
-from .views import CustomUserRegisterViewSet, CustomUserRetrieveViewSet
+from .views import (CustomUserRegisterViewSet, CustomUserRetrieveViewSet,
+                    ProductViewSet, CategoryViewSet)
 
 app_name = 'api'
 
@@ -14,7 +16,13 @@ ME_METHODS = {
 }
 
 
+router = DefaultRouter()
+router.register('products', ProductViewSet, basename='product')
+router.register('categories', CategoryViewSet, basename='category')
+
+
 urlpatterns = [
+    path('v1/', include(router.urls)),
     path('v1/users/me/', UserViewSet.as_view(ME_METHODS), name='me'),
     path('v1/users/<int:pk>/',
          CustomUserRetrieveViewSet.as_view({'get': 'retrieve'}),

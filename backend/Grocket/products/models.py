@@ -1,4 +1,5 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 from djmoney.models.fields import MoneyField
@@ -6,6 +7,17 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 from core.models import WithDateModel
 from users.models import User
+
+
+def lower_category_validate(value):
+    category = Category.objects.filter(id=value)
+
+    if not category.exists():
+        raise ValidationError('Нет такой категории.')
+    if not category[0].is_leaf_node():
+        raise ValidationError(
+            'Можно добавить только в конечную категорию.'
+        )
 
 
 class Image(models.Model):
@@ -44,7 +56,7 @@ class Category(MPTTModel):
     class Meta:
         unique_together = [['parent', 'slug']]
         verbose_name = 'Category'
-        verbose_name_plural = 'Categorys'
+        verbose_name_plural = 'Categories'
 
     def get_absolute_url(self):
         return reverse('post-by-category', args=[str(self.slug)])
@@ -71,7 +83,8 @@ class Product(WithDateModel):
         'Category',
         on_delete=models.PROTECT,
         related_name='posts',
-        verbose_name='Категория'
+        verbose_name='сategory',
+        validators=[lower_category_validate],
     )
     description = models.TextField(
         max_length=1000,

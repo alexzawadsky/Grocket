@@ -2,8 +2,8 @@ from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
+from products.models import Category, Favourite, Image, Product
 from users.models import User
-from products.models import Product, Category, Favourite, Image
 
 
 class CustomUserSerializer(djserializers.UserSerializer):
@@ -55,9 +55,7 @@ class ProductCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = (
-            'id', 'title', 'parents',
-        )
+        fields = ('id', 'title', 'parents',)
 
     def get_parents(self, obj):
         parents = obj.get_ancestors(ascending=False, include_self=False)
@@ -75,14 +73,6 @@ class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
         fields = ('image', 'is_main',)
-
-
-class ProductListImageSerializer(serializers.ModelSerializer):
-    image = Base64ImageField(allow_null=True, required=False)
-
-    class Meta:
-        model = Image
-        fields = ('image',)
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -108,7 +98,7 @@ class ProductRetrieveSerializer(ProductSerializer):
             'id', 'name', 'user',
             'description', 'price', 'price_currency',
             'address', 'is_archived', 'is_sold', 'is_favourited',
-            'category', 'images',
+            'category', 'images', 'pub_date',
         )
 
 
@@ -123,20 +113,21 @@ class ProductListSerializer(ProductSerializer):
             'id', 'name', 'user',
             'price', 'price_currency', 'address',
             'is_archived', 'is_sold', 'is_favourited',
-            'category', 'images',
+            'category', 'images', 'pub_date',
         )
 
     def get_images(self, obj):
         images = Image.objects.filter(product=obj, is_main=True)
         serializer = ProductImageSerializer(
             instance=images,
+            read_only=True,
             many=True
         )
 
         return serializer.data
 
 
-class ProductCreateSerializer(serializers.ModelSerializer):
+class ProductCreateUpdateSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
     )
@@ -158,7 +149,6 @@ class ProductCreateSerializer(serializers.ModelSerializer):
 
     def validate_images(self, value):
         main = False
-
         for image in value:
             if image['is_main']:
                 if main:
@@ -166,7 +156,6 @@ class ProductCreateSerializer(serializers.ModelSerializer):
                         'Нельзя добавить больше одной главной фотографии.'
                     )
                 main = True
-
         if not main:
             raise serializers.ValidationError(
                 'Нужно добавить главную фотографию.'
@@ -189,6 +178,15 @@ class ProductCreateSerializer(serializers.ModelSerializer):
         self.creating_images(images, product)
 
         return product
+
+    def update(self, instance, validated_data):
+        images = validated_data.pop('images')
+        Image.objects.filter(product=instance).delete()
+        instance = super().update(instance, validated_data)
+
+        self.creating_images(images, instance)
+
+        return instance
 
     def to_representation(self, product):
         serializer = ProductRetrieveSerializer(product, context=self.context)

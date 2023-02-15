@@ -43,7 +43,7 @@ const Login = () => {
                         <input ref={pwdRef} className='grocket-input' type="password" id='email' />
                     </div>
                     <button className='bg-accent-orange py-3 text-white rounded-xl'>{!loading ? 'Log In' : 'Loading...'}</button>
-                    {error ? <p className='text-accent-red font-bold'>{error.status} {error.message}</p> : null}
+                    {/* {error ? <p className='text-accent-red font-bold'>{error.status} {error.message}</p> : null} */}
                     {error && error.status === 401 ? <NavLink to='/password-reset' className='hover:text-accent-orange'>Reset password</NavLink> : null}
                     <NavLink to='/register'>Don't have an account?</NavLink>
                 </form>

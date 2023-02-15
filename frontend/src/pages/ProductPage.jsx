@@ -16,9 +16,13 @@ import { BsArrowRight } from 'react-icons/bs';
 import { useMediaQuery } from 'react-responsive';
 import { ReadMore } from '../components';
 import api from '../api/api';
+import { alertErr } from '../utils';
 
 
 const SellerCard = ({ user }) => {
+    const date = new Date(user.date_joined).toLocaleDateString(undefined,
+        { year: 'numeric', month: 'short', day: 'numeric' }
+    )
     return (
         <div className='border-2 border-black p-5 rounded-xl grid gap-3 w-full'>
             <div className='flex items-center gap-5'>
@@ -30,7 +34,7 @@ const SellerCard = ({ user }) => {
                     <RatingStars rating={user.rate} />
                 </div>
             </div>
-            <p className='text-sm text-primary-300'>On Grocket since {user.date_joined.split("T")[0].split("-").reverse().join(".")}</p>
+            <p className='text-sm text-primary-300'>{`On Grocket since ${date}`}</p>
             <NavLink className='button-fill-orange justify-center !w-full' to={`/user/${user.id}/chat`}>Send message</NavLink>
         </div>
     )
@@ -41,7 +45,6 @@ const ProductPage = () => {
     const { updateHistory } = useContext(SearchHistoryContext)
     const [product, setProduct] = useState()
     const [isFavourite, setIsFavourite] = useState()
-    const [pubDate, setPubDate] = useState()
     const { productId } = useParams()
     const isTablet = useMediaQuery({ query: '(max-width: 1023px)' })
 
@@ -49,9 +52,8 @@ const ProductPage = () => {
         api.get(`/api/v1/products/${productId}`).then(res => {
             setProduct(res.data)
             setIsFavourite(res.data.is_favourited)
-            setPubDate(res.data.pub_date)
             updateHistory(res.data)
-        }).catch(err => alert(err.response.status))
+        }).catch(err => alertErr(err))
     }, [])
 
     const handleFavourite = () => {
@@ -73,12 +75,9 @@ const ProductPage = () => {
                             <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">
                                 <span className='text-primary-300 flex items-center gap-2'>
                                     <BiTimeFive />
-                                    <p>
-                                        {product.pub_date.split('T')[0].split('-').reverse().join('.')}
-                                    </p>
-                                    <p>
-                                        {[product.pub_date.split('T')[1].split(':')[0], product.pub_date.split('T')[1].split(':')[1]].join(':')}
-                                    </p>
+                                    {new Date(product.pub_date).toLocaleDateString(undefined,
+                                        { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+                                    )}
                                 </span>
                                 <div className="flex gap-3 md:gap-5 flex-wrap  items-center">
                                     {product.category.parents.map((el, key) => (

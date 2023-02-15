@@ -8,11 +8,11 @@ import { useMediaQuery } from 'react-responsive'
 
 const HistoryItem = ({ content }) => {
     return (
-        <NavLink to={`/products/${content.id}`} className='border-2 border-black rounded-lg p-5 flex gap-3 items-center shadow-lg w-full'>
-            <img src={content.images[0].image} className='w-1/4' />
+        <NavLink to={`/products/${content.id}`} className='border-2 border-black rounded-lg p-5 flex gap-5 items-center shadow-lg w-full'>
+            <img src={content.images[0].image} className='w-1/4 rounded-lg' />
             <div className='grid gap-0.5'>
-                <p className='text-sm xl:text-lg hover:text-accent-orange'>{content.name}</p>
-                <p className='font-bold'>{content.price} {content.price_currency}</p>
+                <p className='text-sm xl:text-lg hover:text-accent-orange overflow-hidden truncate'>{content.name}</p>
+                <p className='font-bold'>{parseFloat(content.price).toFixed(0)} {content.price_currency}</p>
             </div>
         </NavLink>
     )

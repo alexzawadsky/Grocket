@@ -22,7 +22,7 @@ const ProfileCard = ({ firstName, lastName, email, phone, rating, avatar, withCo
             </p>
             <div className='flex gap-3'>
                 <RatingStars rating={rating} />
-                <p>{rating.toFixed(2)}</p>
+                <p>{rating ? rating.toFixed(2) : '0.00'}</p>
                 {withComments ? <NavLink className='text-accent-orange underline' to='comments'>Comments</NavLink> : null}
             </div>
         </div>

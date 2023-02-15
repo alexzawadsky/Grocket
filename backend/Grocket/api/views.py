@@ -3,9 +3,12 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
 
 from core.views import avatar_img_creating
-from products.models import Product, Category
-from .serializers import (ProductRetrieveSerializer, ProductListSerializer,
-                          CategoryListSerializer, ProductCreateSerializer)
+from products.models import Category, Product
+
+from .permissions import IsOwnerOrReadOnly
+from .serializers import (CategoryListSerializer,
+                          ProductCreateUpdateSerializer, ProductListSerializer,
+                          ProductRetrieveSerializer)
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -56,7 +59,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    http_method_names = ['get', 'post']
+    http_method_names = ['get', 'post', 'put', 'delete']
+    permission_classes = (IsOwnerOrReadOnly,)
 
     def get_queryset(self):
         queryset = Product.objects.filter(
@@ -70,13 +74,5 @@ class ProductViewSet(viewsets.ModelViewSet):
             return ProductRetrieveSerializer
         elif self.action == 'list':
             return ProductListSerializer
-        elif self.action == 'create':
-            return ProductCreateSerializer
-
-    def get_permissions(self):
-        if self.action in ('retrieve', 'list'):
-            self.permission_classes = (permissions.AllowAny,)
-        elif self.action == 'create':
-            self.permission_classes = (permissions.IsAuthenticated,)
-
-        return super().get_permissions()
+        elif self.action in ('create', 'update'):
+            return ProductCreateUpdateSerializer

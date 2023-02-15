@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Title, Search, HistoryList, ItemCard } from '../components'
-import axios from 'axios'
+import api from '../api/api'
 import ReactPaginate from 'react-paginate'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import { useMediaQuery } from 'react-responsive'
@@ -33,7 +33,7 @@ const Landing = () => {
     const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
 
     const loadPage = () => {
-        axios.get(`/api/v1/products/?limit=4&page=${page + 1}`).then(res => {
+        api.get(`/api/v1/products/?limit=4&page=${page + 1}`).then(res => {
             setProducts(res.data.results)
             setPagesCount(res.data.pages_count)
         }).catch(err => alert(`${err.response.status} ${err.response.message}`))

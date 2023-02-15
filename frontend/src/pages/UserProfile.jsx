@@ -3,7 +3,8 @@ import { useLoaderData, useParams } from 'react-router-dom'
 import { NavLink, Outlet, useOutlet } from 'react-router-dom'
 import { ProfileCard } from '../components/'
 import { useMediaQuery } from 'react-responsive'
-import useAxios from '../hooks/useAxios'
+import api from '../api/api'
+import { alertErr } from '../utils'
 
 const userMock = {
     id: 111,
@@ -23,11 +24,9 @@ const UserProfile = () => {
     const [user, setUser] = useState()
     const outlet = useOutlet()
     const isTablet = useMediaQuery({ query: '(min-width: 768px)' })
-    const api = useAxios()
 
     useEffect(_ => {
-        api.get(`/api/v1/users/${userId}`).then(res => setUser(res.data)).catch(err => alert(err.response.status))
-        setUser(userMock)
+        api.get(`/api/v1/users/${userId}`).then(res => setUser(res.data)).catch(err => alertErr(err))
     }, [])
 
     return (

@@ -6,7 +6,8 @@ export const toBase64 = file => new Promise((resolve, reject) => {
 });
 
 export const alertErr = (err) => {
-    alert(`${err.response.status} ${err.response.data}`)
+    // alert(`${err.response.status} ${err.response.data}`)
+    alert(err)
 }
 
 export const getCookie = (name) => {

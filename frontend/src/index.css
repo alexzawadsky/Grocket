@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "grocket";
+  src: url("../fonts/NunitoSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'grocketbold';
+  src: url('../fonts/NunitoSans-Bold.ttf')
+}
+
+@font-face {
+  font-family: 'grocketbolditalic';
+  src: url('../fonts/NunitoSans-ExtraBoldItalic.ttf')
+}
+
+* {
+  @apply box-border
+}
+
+.grocket-input {
+  @apply border-2 border-black rounded-xl h-10 p-3
+}
+
+.button-base {
+  @apply font-bold w-fit px-5 py-3 flex items-center gap-2 rounded-xl
+}
+
+.button-fill-orange {
+  @apply button-base text-white bg-accent-orange hover:bg-accent-orange/[0.8]
+}
+
+.button-outline-orange {
+  @apply button-base text-accent-orange border-2 border-accent-orange hover:bg-accent-orange/[0.1]
+}
+
+.button-outline-green {
+  @apply button-base text-green-600 border-green-600 border-2
+}
+
+.button-outline-red {
+  @apply button-base text-accent-red border-accent-red border-2 hover:bg-accent-red/[0.1]
+}

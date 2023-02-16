@@ -8,7 +8,10 @@ import api from "../api/api";
 const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
 
-    const axiosInstance = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })
+    const axiosInstance = axios.create({
+        baseURL: import.meta.env.VITE_API_URL || 'http://localhost',
+        headers: { Authorization: `Bearer ${authTokens?.access}` }
+    })
 
     axiosInstance.interceptors.request.use(async req => {
         const user = jwt_decode(authTokens.access);

@@ -77,7 +77,7 @@ const Sell = () => {
             category: category[category.length - 1].id,
             images: images
         }
-        api.post('/api/v1/products', data).then(res => setProduct(res.data)).catch(err => alertErr(err))
+        api.post('/api/v1/products/', data).then(res => setProduct(res.data)).catch(err => alertErr(err))
     }
 
     const deleteImage = (imageIndex) => {

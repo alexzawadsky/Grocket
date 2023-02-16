@@ -15,6 +15,9 @@ import Search from "./Search";
 import Title from "./Title";
 import Pagination from "./Pagination";
 import ReadMore from "./ReadMore";
+import Input from "./Input";
+import CategoryList from "./CategoryList";
+import Spinner from "./Spinner";
 
 export {
     Avatar,
@@ -33,5 +36,8 @@ export {
     Search,
     Title,
     Pagination,
-    ReadMore
+    ReadMore,
+    Input,
+    CategoryList,
+    Spinner
 }

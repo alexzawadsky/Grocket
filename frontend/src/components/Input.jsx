@@ -44,7 +44,7 @@ const Input = ({ id, type, instance, className, title, autoRef, disabled, split,
                     {(instance.isDirty && instance.intError) && <p className="text-accent-red font-bold">Not integer</p>}
                     {(instance.isDirty && instance.floatError) && <p className="text-accent-red font-bold">Not float</p>}
                 </div>
-                <button className="h-10 w-fit text-accent-red px-5" onClick={() => instance.clear()}><BsFillTrashFill /></button>
+                <button type="button" className="h-10 w-fit text-accent-red px-5" onClick={() => instance.clear()}><BsFillTrashFill /></button>
             </>
         )
     } else {

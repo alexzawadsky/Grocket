@@ -16,6 +16,8 @@ import Title from "./Title";
 import Pagination from "./Pagination";
 import ReadMore from "./ReadMore";
 import Input from "./Input";
+import CategoryList from "./CategoryList";
+import Spinner from "./Spinner";
 
 export {
     Avatar,
@@ -35,5 +37,7 @@ export {
     Title,
     Pagination,
     ReadMore,
-    Input
+    Input,
+    CategoryList,
+    Spinner
 }

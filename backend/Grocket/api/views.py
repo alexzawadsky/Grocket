@@ -1,10 +1,11 @@
 from djoser import views as djviews
 from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
-
+from rest_framework.decorators import action
 from core.views import avatar_img_creating
 from products.models import Category, Product
-
+from users.models import User
+from django.shortcuts import get_object_or_404
 from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer,
                           ProductCreateUpdateSerializer, ProductListSerializer,
@@ -67,12 +68,40 @@ class ProductViewSet(viewsets.ModelViewSet):
             is_sold=False,
             is_archived=False
         )
+        user = self.request.user
+        if self.action == 'me_products' and user.is_authenticated:
+            queryset = queryset.filter(user=user)
+
         return queryset
+
+    def get_permissions(self):
+        if self.action == 'me_products':
+            self.permission_classes = (permissions.IsAuthenticated,)
+        return super().get_permissions()
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
             return ProductRetrieveSerializer
-        elif self.action == 'list':
+        elif self.action in ('list', 'me_products', 'user_products'):
             return ProductListSerializer
         elif self.action in ('create', 'update'):
             return ProductCreateUpdateSerializer
+
+    @action(['get'], detail=False)
+    def me_products(self, request):
+        return self.list(request)
+
+    @action(['get'], detail=False)
+    def user_products(self, request, pk):
+        user = get_object_or_404(User, id=pk)
+        queryset = self.get_queryset().filter(user=user)
+        page = self.paginate_queryset(queryset)
+
+        serializer_class = self.get_serializer_class()
+        serializer = serializer_class(
+            page,
+            context={'request': request},
+            many=True,
+        )
+
+        return self.get_paginated_response(serializer.data)

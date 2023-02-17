@@ -1,11 +1,13 @@
 from djoser import views as djviews
-from rest_framework import permissions, status, viewsets
+from django_filters import rest_framework as django_filters
+from rest_framework import permissions, status, viewsets, filters
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from core.views import avatar_img_creating
 from products.models import Category, Product
 from users.models import User
 from django.shortcuts import get_object_or_404
+from .filters import ProductFilter
 from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer,
                           ProductCreateUpdateSerializer, ProductListSerializer,
@@ -62,15 +64,18 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'put', 'delete']
     permission_classes = (IsOwnerOrReadOnly,)
+    filter_backends = [
+        filters.OrderingFilter,
+        django_filters.DjangoFilterBackend,
+    ]
+    filterset_class = ProductFilter
+    ordering_fields = ['price', 'pub_date']
 
     def get_queryset(self):
         queryset = Product.objects.filter(
             is_sold=False,
             is_archived=False
         )
-        user = self.request.user
-        if self.action == 'me_products' and user.is_authenticated:
-            queryset = queryset.filter(user=user)
 
         return queryset
 
@@ -87,16 +92,8 @@ class ProductViewSet(viewsets.ModelViewSet):
         elif self.action in ('create', 'update'):
             return ProductCreateUpdateSerializer
 
-    @action(['get'], detail=False)
-    def me_products(self, request):
-        return self.list(request)
-
-    @action(['get'], detail=False)
-    def user_products(self, request, pk):
-        user = get_object_or_404(User, id=pk)
-        queryset = self.get_queryset().filter(user=user)
+    def user_products_serialize(self, queryset, request):
         page = self.paginate_queryset(queryset)
-
         serializer_class = self.get_serializer_class()
         serializer = serializer_class(
             page,
@@ -105,3 +102,28 @@ class ProductViewSet(viewsets.ModelViewSet):
         )
 
         return self.get_paginated_response(serializer.data)
+
+    @action(['get'], detail=False)
+    def me_products(self, request):
+        user = self.request.user
+        queryset = self.filter_queryset(Product.objects.filter(user=user))
+
+        if self.request.query_params.get('is_sold') == '1':
+            queryset = queryset.filter(is_sold=True)
+        elif self.request.query_params.get('is_archived') == '1':
+            queryset = queryset.filter(is_archived=True)
+        else:
+            queryset = queryset.filter(is_sold=False, is_archived=False)
+
+        return self.user_products_serialize(queryset, request)
+
+    @action(['get'], detail=False)
+    def user_products(self, request, pk):
+        user = get_object_or_404(User, id=pk)
+        queryset = self.filter_queryset(
+            Product.objects.filter(user=user, is_archived=False))
+
+        if self.request.query_params.get('is_sold') == '1':
+            queryset = queryset.filter(is_sold=True)
+
+        return self.user_products_serialize(queryset, request)

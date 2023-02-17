@@ -3,7 +3,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
-
 from core.models import WithDateModel
 from users.models import User
 
@@ -96,7 +95,7 @@ class Product(WithDateModel):
     is_sold = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ('-id',)
+        ordering = ('-pub_date',)
         verbose_name = 'product'
         verbose_name_plural = 'products'
 
@@ -152,7 +151,7 @@ class Comment(WithDateModel):
     )
 
     class Meta:
-        ordering = ('-id',)
+        ordering = ('-pub_date',)
         verbose_name = 'comment'
         verbose_name_plural = 'comments'
         constraints = [models.UniqueConstraint(fields=['user', 'product'],

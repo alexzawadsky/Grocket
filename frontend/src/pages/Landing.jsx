@@ -38,10 +38,6 @@ const Landing = () => {
 
     useEffect(_ => {
         loadPage()
-    }, [])
-
-    useEffect(_ => {
-        loadPage()
     }, [page])
 
     return (

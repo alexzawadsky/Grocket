@@ -20,6 +20,8 @@ import {
     PasswordReset,
     SearchHistoryPage
 } from './pages'
+import Sold from './pages/Sold';
+import Archieved from './pages/Archieved';
 
 
 const PageIndex = () => {
@@ -61,6 +63,14 @@ const router = createBrowserRouter([
                     {
                         path: 'favourites',
                         element: <MyFavourites />
+                    },
+                    {
+                        path: 'sold',
+                        element: <Sold />
+                    },
+                    {
+                        path: 'archive',
+                        element: <Archieved />
                     }
                 ]
             },

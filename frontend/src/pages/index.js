@@ -13,6 +13,7 @@ import Sell from "./Sell";
 import UserComments from "./UserComments";
 import UserLots from "./UserLots";
 import UserProfile from "./UserProfile";
+import Archieved from "./Archieved";
 
 export {
     Landing,

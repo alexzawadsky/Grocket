@@ -4,17 +4,27 @@ import { useMediaQuery } from 'react-responsive'
 import { BsArrowLeft } from 'react-icons/bs'
 import api from '../api/api'
 import { alertErr } from '../utils'
-import { ItemCard } from '../components'
+import { ItemCard, Pagination } from '../components'
 
 const UserLots = () => {
 
     const { userId } = useParams()
     const [products, setProducts] = useState()
+    const [page, setPage] = useState(0)
+    const [pagesCount, setPagesCount] = useState(1)
     const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
 
-    useEffect(() => {
-        api.get(`/api/v1/users/${userId}/products/`).then(res => setProducts(res.data.results)).catch(err => alertErr(err))
-    }, [])
+
+    const loadPage = () => {
+        api.get(`/api/v1/user/${userId}/products/?limit=4&page=${page + 1}`).then(res => {
+            setProducts(res.data.results)
+            setPagesCount(res.data.pages_count)
+        }).catch(err => alert(`${err.response.status} ${err.response.message}`))
+    }
+
+    useEffect(_ => {
+        loadPage()
+    }, [page])
 
     return (
         <div className='grid gap-5'>
@@ -22,6 +32,7 @@ const UserLots = () => {
             <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {products && products.map((el, key) => <ItemCard product={el} key={key} />)}
             </div>
+            <Pagination pagesCount={pagesCount} setPage={setPage} />
         </div>
     )
 }

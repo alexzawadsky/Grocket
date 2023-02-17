@@ -15,7 +15,7 @@ const MyLots = () => {
 
 
     const loadPage = () => {
-        api.get(`/api/v1/user/me/products/?limit=4&page=${page + 1}&is_sold=0&is_archived=0`).then(res => {
+        api.get(`/api/v1/users/me/products/?limit=4&page=${page + 1}&is_sold=0&is_archived=0`).then(res => {
             setProducts(res.data.results)
             setPagesCount(res.data.pages_count)
         }).catch(err => alert(`${err.response.status} ${err.response.message}`))

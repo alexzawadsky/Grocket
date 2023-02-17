@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Title, Search, HistoryList, ItemCard } from '../components'
+import { Title, Search, HistoryList, ItemCard, Pagination } from '../components'
 import api from '../api/api'
-import ReactPaginate from 'react-paginate'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import { useMediaQuery } from 'react-responsive'
 
@@ -30,8 +29,6 @@ const Landing = () => {
     const [page, setPage] = useState(0)
     const [pagesCount, setPagesCount] = useState(1)
 
-    const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
-
     const loadPage = () => {
         api.get(`/api/v1/products/?limit=4&page=${page + 1}`).then(res => {
             setProducts(res.data.results)
@@ -59,19 +56,7 @@ const Landing = () => {
                 </div>
                 <HistoryList />
             </div>
-            <ReactPaginate
-                pageCount={pagesCount}
-                pageRangeDisplayed={isPhone ? 1 : 3}
-                marginPagesDisplayed={isPhone ? 1 : 3}
-                onPageChange={(page) => setPage(page.selected)}
-                className='flex gap-5'
-                activeClassName='font-bold'
-                pageClassName='hover:text-accent-orange'
-                previousClassName='text-accent-orange font-bold'
-                nextClassName='text-accent-orange font-bold'
-                previousLabel={<p className='flex items-center gap-2'><BsArrowLeft />Previous</p>}
-                nextLabel={<p className='flex items-center gap-2'>Next<BsArrowRight /></p>}
-            />
+            <Pagination pagesCount={pagesCount} setPage={setPage} />
         </div>
 
     )

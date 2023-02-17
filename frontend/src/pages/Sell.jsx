@@ -121,13 +121,13 @@ const Sell = () => {
             {stage === 2 && !product ?
                 <form onSubmit={handleSubmit} className='grid grid-cols-[1fr_2fr_1fr] gap-2'>
                     <h2 className='col-span-full text-xl font-bold'>Info</h2>
-                    <Input title='Name' instance={name} split={true} />
-                    <Input title='Description' instance={description} split={true} large={true} />
+                    <Input title='Name' instance={name} split={true} must={true} />
+                    <Input title='Description' instance={description} split={true} large={true} must={true} />
                     <h2 className="text-xl font-bold col-span-full pt-5">Price</h2>
-                    <Input title='Price' instance={price} split={true} />
-                    <Input title='Currency' instance={currency} split={true} />
+                    <Input title='Price' instance={price} split={true} must={true} />
+                    <Input title='Currency' instance={currency} split={true} must={true} />
                     <h2 className="text-xl font-bold col-span-full pt-5">Location</h2>
-                    <Input title='Address' instance={address} split={true} />
+                    <Input title='Address' instance={address} split={true} must={true} />
                     <div className='mt-2 bg-zinc-100 h-44 col-start-2 col-end-3 flex items-center justify-center'>
                         MAP
                     </div>

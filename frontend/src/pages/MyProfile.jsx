@@ -5,7 +5,7 @@ import ProfileCard from '../components/ProfileCard'
 import AuthContext from '../contexts/AuthProvider'
 import { useMediaQuery } from 'react-responsive'
 import useAxios from '../hooks/useAxios'
-import { AiFillHeart } from 'react-icons/ai'
+import { AiFillHeart, AiOutlineSetting } from 'react-icons/ai'
 import { BsCartCheck, BsCartDash, BsCart } from 'react-icons/bs'
 // import Flag from 'react-flags'
 
@@ -57,7 +57,8 @@ const MyProfile = () => {
                                 <NavLink className='font-bold text-xl flex items-center gap-2' to='archive'><BsCartDash />Archived items</NavLink>
                                 <NavLink className='font-bold text-xl flex items-center gap-2' to='sold'><BsCartCheck />Sold items</NavLink>
                                 <NavLink className='font-bold text-xl flex items-center gap-2' to='favourites'><AiFillHeart color={'red'} />Favourites</NavLink>
-                                <button onClick={logoutUser} className='w-fit hover:bg-accent-red/[0.1] border-2 border-accent-red rounded-xl text-accent-red px-5 py-3 font-bold flex items-center gap-2'>Logout from account<FiLogOut /></button>
+                                <NavLink className='font-bold text-xl flex items-center gap-2' to='settings'><AiOutlineSetting />Settings</NavLink>
+                                <button onClick={logoutUser} className='text-accent-red font-bold flex items-center gap-2 hover:gap-3 transition-all duration-150'>Logout from account<FiLogOut /></button>
                             </div>
                         )
                     }

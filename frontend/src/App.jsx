@@ -18,10 +18,14 @@ import {
     MyFavourites,
     Register,
     PasswordReset,
-    SearchHistoryPage
+    SearchHistoryPage,
+    Sold,
+    Archieved,
+    ProfileSettings,
+    ChangeAvatar,
+    UpdateProfile,
+    DeleteProfile
 } from './pages'
-import Sold from './pages/Sold';
-import Archieved from './pages/Archieved';
 
 
 const PageIndex = () => {
@@ -71,6 +75,28 @@ const router = createBrowserRouter([
                     {
                         path: 'archive',
                         element: <Archieved />
+                    },
+                    {
+                        path: 'settings',
+                        element: <ProfileSettings />,
+                        children: [
+                            {
+                                path: 'password',
+                                element: <PasswordReset />
+                            },
+                            {
+                                path: 'avatar',
+                                element: <ChangeAvatar />
+                            },
+                            {
+                                path: 'info',
+                                element: <UpdateProfile />
+                            },
+                            {
+                                path: 'delete',
+                                element: <DeleteProfile />
+                            }
+                        ]
                     }
                 ]
             },
@@ -108,10 +134,10 @@ const router = createBrowserRouter([
                 path: 'history',
                 element: <SearchHistoryPage />
             },
-            {
-                path: 'password-reset',
-                element: <PasswordReset />
-            }
+            // {
+            //     path: 'password-reset',
+            //     element: <PasswordReset />
+            // }
         ],
     },
 ]);

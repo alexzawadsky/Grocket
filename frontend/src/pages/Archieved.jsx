@@ -8,13 +8,13 @@ import { BsArrowLeft } from 'react-icons/bs'
 const Archieved = () => {
     const [products, setProducts] = useState()
     const [page, setPage] = useState(0)
-    const [pagesCount, setPagesCount] = useState(1)
+    const [pagesCount, setPagesCount] = useState(0)
     const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
     const api = useAxios()
 
 
     const loadPage = () => {
-        api.get(`/api/v1/user/me/products/?limit=4&page=${page + 1}&is_archived=1`).then(res => {
+        api.get(`/api/v1/users/me/products/?limit=4&page=${page + 1}&is_archived=1`).then(res => {
             setProducts(res.data.results)
             setPagesCount(res.data.pages_count)
         }).catch(err => alert(`${err.response.status} ${err.response.message}`))

@@ -90,46 +90,40 @@ const Register = () => {
                     avatar={avatar}
                     withComments={false}
                 /> : null}
-                <form onSubmit={handleSubmit} className='w-full lg:w-1/3 flex flex-col gap-2 justify-around md:shrink'>
-                    <div className="flex flex-col md:flex-row gap-2 md:gap-5">
-                        <div>
-                            <label htmlFor="name">First name:</label>
-                            <input className='grocket-input w-full' onChange={e => setName(e.target.value)} type="text" />
-                        </div>
-                        <div>
-                            <label htmlFor="lastname">Last name:</label>
-                            <input className='grocket-input w-full' onChange={e => setLastName(e.target.value)} type="text" />
-                        </div>
+                <form onSubmit={handleSubmit} className='w-full lg:w-1/3 grid md:grid-cols-2 gap-2 md:shrink'>
+                    <div>
+                        <label htmlFor="name">First name:</label>
+                        <input className='grocket-input w-full' onChange={e => setName(e.target.value)} type="text" />
                     </div>
-                    <div className='grid'>
+                    <div>
+                        <label htmlFor="lastname">Last name:</label>
+                        <input className='grocket-input w-full' onChange={e => setLastName(e.target.value)} type="text" />
+                    </div>
+                    <div className='grid col-span-full'>
                         <label htmlFor="name">Username:</label>
                         <input className='grocket-input' onChange={e => setUsername(e.target.value)} type="text" />
                     </div>
-                    <div className="flex flex-col md:flex-row gap-2 md:gap-5">
-                        <div>
-                            <label htmlFor="name">Phone number:</label>
-                            <input className='grocket-input w-full' onChange={e => setPhone(e.target.value)} type="text" />
-                        </div>
-                        <div>
-                            <label htmlFor="lastname">Country:</label>
-                            <input className='grocket-input w-full' onChange={e => setCountry(e.target.value)} type="text" />
-                        </div>
+                    <div>
+                        <label htmlFor="name">Phone number:</label>
+                        <input className='grocket-input w-full' onChange={e => setPhone(e.target.value)} type="text" />
                     </div>
-                    <div className="grid">
+                    <div>
+                        <label htmlFor="lastname">Country:</label>
+                        <input className='grocket-input w-full' onChange={e => setCountry(e.target.value)} type="text" />
+                    </div>
+                    <div className="grid col-span-full">
                         <label htmlFor="email">Email:</label>
                         <input className='grocket-input' onChange={e => setEmail(e.target.value)} type="text" />
                     </div>
-                    <div className="flex flex-col md:flex-row gap-2 md:gap-5">
-                        <div>
-                            <label htmlFor="">Password:</label>
-                            <input className='grocket-input w-full' onChange={e => setPwd(e.target.value)} type="password" />
-                        </div>
-                        <div>
-                            <label htmlFor="">Repeat pwd:</label>
-                            <input className='grocket-input w-full' onChange={e => setRePwd(e.target.value)} type="password" />
-                        </div>
+                    <div>
+                        <label htmlFor="">Password:</label>
+                        <input className='grocket-input w-full' onChange={e => setPwd(e.target.value)} type="password" />
                     </div>
-                    <div className="flex items-center gap-3 justify-between">
+                    <div>
+                        <label htmlFor="">Repeat pwd:</label>
+                        <input className='grocket-input w-full' onChange={e => setRePwd(e.target.value)} type="password" />
+                    </div>
+                    <div className="flex items-center gap-3 justify-between col-span-full">
                         <input ref={fileInputRef} onChange={e => setImageInInput(e.target.files[0])} type="file" />
                         {imageInInput ? <button onClick={removePhoto} type='button' className='border-2 border-accent-red hover:bg-accent-red/[0.1] text-accent-red h-full px-2 font-bold rounded-full flex items-center gap-2'><BsFillTrashFill />delete</button> : null}
                     </div>
@@ -140,7 +134,7 @@ const Register = () => {
                         adjSaved={adjSaved}
                         onSave={handleAdjSave}
                     /> : adjSaved && !adjSaved ? <p className='text-green-600 font-bold'>Saved!</p> : null}
-                    <button className='bg-accent-orange text-white font-bold py-3 rounded-xl mt-3'>{!loading ? 'Register' : 'Loading...'}</button>
+                    <button className='button-fill-orange col-span-full !w-full mt-3'><p>{!loading ? 'Register' : 'Loading...'}</p></button>
                 </form>
                 {isTablet ? <AvatarCrop
                     editorRef={editorRef}

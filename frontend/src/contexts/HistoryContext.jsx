@@ -1,5 +1,6 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import useLocalStorage from '../hooks/useLocalStorage'
+import AuthContext from "./AuthProvider";
 
 const SearchHistoryContext = createContext();
 
@@ -11,6 +12,7 @@ export const SearchHistoryProvider = ({ children }) => {
 
     const updateHistory = (product) => {
         if (lookHistory.filter((el) => el.id === product.id).length > 0) return
+        if (product.user.id === user.user_id) return
         setLookHistory([product, ...lookHistory])
     }
 

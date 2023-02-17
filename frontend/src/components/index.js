@@ -18,6 +18,7 @@ import ReadMore from "./ReadMore";
 import Input from "./Input";
 import CategoryList from "./CategoryList";
 import Spinner from "./Spinner";
+import MyLot from "./MyLot";
 
 export {
     Avatar,
@@ -39,5 +40,6 @@ export {
     ReadMore,
     Input,
     CategoryList,
-    Spinner
+    Spinner,
+    MyLot
 }

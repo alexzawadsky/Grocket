@@ -5,6 +5,8 @@ import ProfileCard from '../components/ProfileCard'
 import AuthContext from '../contexts/AuthProvider'
 import { useMediaQuery } from 'react-responsive'
 import useAxios from '../hooks/useAxios'
+import { AiFillHeart } from 'react-icons/ai'
+import { BsCartCheck, BsCartDash, BsCart } from 'react-icons/bs'
 // import Flag from 'react-flags'
 
 const auth = {
@@ -51,8 +53,10 @@ const MyProfile = () => {
                                     phone={user.phone}
                                     withComments={true}
                                 />
-                                <NavLink className='font-bold text-xl ' to='lots'>My lots</NavLink>
-                                <NavLink className='font-bold text-xl' to='favourites'>My favourites</NavLink>
+                                <NavLink className='font-bold text-xl flex items-center gap-2' to='lots'><BsCart />Active items</NavLink>
+                                <NavLink className='font-bold text-xl flex items-center gap-2' to='archive'><BsCartDash />Archived items</NavLink>
+                                <NavLink className='font-bold text-xl flex items-center gap-2' to='sold'><BsCartCheck />Sold items</NavLink>
+                                <NavLink className='font-bold text-xl flex items-center gap-2' to='favourites'><AiFillHeart color={'red'} />Favourites</NavLink>
                                 <button onClick={logoutUser} className='w-fit hover:bg-accent-red/[0.1] border-2 border-accent-red rounded-xl text-accent-red px-5 py-3 font-bold flex items-center gap-2'>Logout from account<FiLogOut /></button>
                             </div>
                         )

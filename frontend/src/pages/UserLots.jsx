@@ -16,10 +16,10 @@ const UserLots = () => {
 
 
     const loadPage = () => {
-        api.get(`/api/v1/user/${userId}/products/?limit=4&page=${page + 1}`).then(res => {
+        api.get(`/api/v1/users/${userId}/products/?limit=4&page=${page + 1}`).then(res => {
             setProducts(res.data.results)
             setPagesCount(res.data.pages_count)
-        }).catch(err => alert(`${err.response.status} ${err.response.message}`))
+        }).catch(err => alertErr(err))
     }
 
     useEffect(_ => {

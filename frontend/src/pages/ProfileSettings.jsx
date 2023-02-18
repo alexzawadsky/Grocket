@@ -50,7 +50,6 @@ export const PasswordReset = () => {
 export const ChangeAvatar = () => {
     return (
         <div>
-            <BackButton />
             change avatar
         </div>
     )
@@ -111,7 +110,7 @@ const ProfileSettings = () => {
                     <Title text='Profile settings' />
                     <p className='font-bolditalic'>Select option:</p>
                     <NavLink to='password' className='flex items-center gap-2'><MdPassword />Change password</NavLink>
-                    <NavLink to='avatar' className='flex items-center gap-2'><BsPersonBoundingBox />Change avatar</NavLink>
+                    {/* <NavLink to='avatar' className='flex items-center gap-2'><BsPersonBoundingBox />Change avatar</NavLink> */}
                     <NavLink to='info' className='flex items-center gap-2'><BsPersonLinesFill />Change profile info</NavLink>
                     <NavLink to='delete' className='flex items-center gap-2 text-accent-red font-bold'><BsFillPersonXFill />Delete profile</NavLink>
                 </>}

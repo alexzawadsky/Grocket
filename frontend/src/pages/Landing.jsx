@@ -1,27 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Title, Search, HistoryList, ItemCard, Pagination } from '../components'
 import api from '../api/api'
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
-import { useMediaQuery } from 'react-responsive'
-
-const card = {
-    id: 123123,
-    name: 'Apple Watch Ultraaaaaa aaaaaaaaaaaa aaaaaaaaa aaaaaaa aaaaa',
-    author: {
-        id: 4545545,
-        name: 'Timur',
-        last_name: 'Ramazanov'
-    },
-    price: 1000,
-    price_currency: "RUB",
-    address: 'Moscow, Profsoyuznaya 45555555555555555555555',
-    pub_date: 'Yesterday, 17:00',
-    images: ['1.jpg'],
-    category: {
-        id: 1,
-        title: 'Smart watches'
-    }
-}
 
 const Landing = () => {
 

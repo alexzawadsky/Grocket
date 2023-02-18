@@ -1,14 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { BsFillTelephoneFill } from 'react-icons/bs'
+import { BiPencil } from 'react-icons/bi'
 import { HiOutlineMail } from 'react-icons/hi'
 import { NavLink } from 'react-router-dom'
+import AuthContext from '../contexts/AuthProvider'
 import { Avatar, RatingStars } from './'
 
-const ProfileCard = ({ firstName, lastName, email, phone, rating, avatar, withComments }) => {
+const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, withComments }) => {
+
+    const { user } = useContext(AuthContext)
     return (
         <div className='grid gap-4 border-2 border-black p-5 rounded-xl shrink-0 h-fit w-fit'>
-            <div className="w-full max-w-[18rem] aspect-square">
+            <div className="w-full max-w-[18rem] aspect-square relative">
                 <Avatar avatar={avatar} />
+                {user.user_id === id ? <NavLink to='settings/avatar' className='absolute right-1 bottom-1 text-xl border-2 border-accent-orange text-accent-orange p-2 rounded-full'><BiPencil /></NavLink> : null}
             </div>
             <div className="flex items-center gap-2">
                 {firstName ? <p className='text-xl'>{firstName}</p> : <p className='text-primary-100 text-xl'>Name</p>}

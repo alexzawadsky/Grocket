@@ -3,10 +3,8 @@ import { NavLink } from 'react-router-dom'
 import { BsFillTrashFill } from 'react-icons/bs'
 import AuthContext from '../contexts/AuthProvider'
 import { toBase64 } from "../utils";
-import AvatarCrop from '../components/AvatarCrop'
-import ProfileCard from '../components/ProfileCard'
+import { AvatarCrop, ProfileCard, Title } from '../components'
 import { useMediaQuery } from 'react-responsive';
-import Title from '../components/Title';
 
 const Register = () => {
 

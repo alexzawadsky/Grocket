@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { NavLink, Outlet, useOutlet } from 'react-router-dom'
+import { NavLink, Outlet, useOutlet, useNavigate } from 'react-router-dom'
 import { AvatarCrop, Input, Title } from '../components'
 import { MdPassword } from 'react-icons/md'
 import { BsPersonBoundingBox, BsPersonLinesFill, BsArrowLeft, BsFillPersonXFill } from 'react-icons/bs'
@@ -121,33 +121,26 @@ export const UpdateProfile = () => {
         e.preventDefault()
         const changedFields = Object.entries(formData).filter(([key, value]) => value !== user[key])
         const data = Object.fromEntries(changedFields)
-        console.log(data)
+        api.patch('/api/v1/users/me', data)
+            .then(res => notification('Your profile has been updated')).catch(err => alertErr(err))
     }
 
     return (
-        <div className='grid gap-3'>
+        <div className='grid gap-3 w-full md:w-2/3 lg:w-1/2'>
             <BackButton />
-            <h2 className='font-bold text-2xl'>Update profile info</h2>
-            <form onSubmit={handleSubmit} className='w-full lg:w-1/2 grid md:grid-cols-2 gap-2 md:shrink'>
-                <div>
-                    <Input title='First name' instance={name} />
-                </div>
-                <div>
-                    <Input title='Last name' instance={lastName} />
-                </div>
-                <div className='grid col-span-full'>
+            <h2 className="text-2xl font-bold">Update profile info</h2>
+            <form className="grid md:grid-cols-2 gap-3" onSubmit={handleSubmit}>
+                <Input title='First name' instance={name} />
+                <Input title='Last name' instance={lastName} />
+                <div className="col-span-full">
                     <Input title='Username' instance={username} />
                 </div>
-                <div>
-                    <Input title='Phone' instance={phone} />
-                </div>
-                <div>
-                    <Input title='Country' instance={country} />
-                </div>
-                <div className="grid col-span-full">
+                <Input title='Phone' instance={phone} />
+                <Input title='Country' instance={country} />
+                <div className="col-span-full">
                     <Input title='Email' instance={email} />
                 </div>
-                <button className='button-fill-orange col-span-full !w-full mt-3'>Update profile</button>
+                <button className="button-fill-orange">Update</button>
             </form>
         </div>
     )

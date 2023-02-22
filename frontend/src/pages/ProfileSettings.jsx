@@ -1,13 +1,14 @@
-import React, { useContext, useRef, useState } from 'react'
-import { NavLink, Outlet, useOutlet, useNavigate } from 'react-router-dom'
-import { Input, Title } from '../components'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { NavLink, Outlet, useOutlet } from 'react-router-dom'
+import { AvatarCrop, Input, Title } from '../components'
 import { MdPassword } from 'react-icons/md'
 import { BsPersonBoundingBox, BsPersonLinesFill, BsArrowLeft, BsFillPersonXFill } from 'react-icons/bs'
 import useAxios from '../hooks/useAxios'
-import { alertErr } from '../utils'
+import { alertErr, notification, toBase64 } from '../utils'
 import useInput from '../hooks/useInput'
 import AuthContext from '../contexts/AuthProvider'
 import { useMediaQuery } from 'react-responsive'
+
 
 const BackButton = () => {
     return (
@@ -31,7 +32,7 @@ export const PasswordReset = () => {
         }
         axios.post('/api/v1/users/set_password', data).then(res => {
             if (res.status === 204) {
-                alert('updated')
+                notification('Your password has been updated')
             }
         }).catch(err => alertErr(err))
     }
@@ -39,27 +40,115 @@ export const PasswordReset = () => {
     return (
         <form onSubmit={handleSubmit} className='grid gap-3 w-full md:w-2/3 lg:w-1/2'>
             <BackButton />
+            <h2 className='font-bold text-2xl'>Change password</h2>
             <Input title='Old password' type='password' instance={oldPwd} must={true} />
             <Input title='New password' type='password' instance={newPwd} must={true} />
             <Input title='Repeat new password' type='password' instance={repeatNewPwd} must={true} />
-            <button className='button-fill-orange'>Update password</button>
+            <button className='button-fill-orange'>Change password</button>
         </form>
     )
 }
 
 export const ChangeAvatar = () => {
+
+    const [imageInInput, setImageInInput] = useState(null)
+    const [saved, setSaved] = useState(false)
+    const editorRef = useRef()
+    const api = useAxios()
+
+    const handleAdjSave = async () => {
+        let avatar
+        if (editorRef) {
+            const dataUrl = editorRef.current.getImage().toDataURL()
+            const result = await fetch(dataUrl)
+            const blob = await result.blob()
+            avatar = await toBase64(blob)
+        }
+        api.patch('/api/v1/users/me', { avatar }).then(res => notification('Your avatar has been updated')).catch(err => alertErr(err))
+    }
+
     return (
-        <div>
-            change avatar
+        <div className='grid gap-3'>
+            <BackButton />
+            <h2 className='text-2xl font-bold'>Choose new avatar to upload, then click <i>Save adjustments</i></h2>
+            <input type="file" onChange={(e) => setImageInInput(e.target.files[0])} />
+            <div className="w-fit">
+                <AvatarCrop
+                    editorRef={editorRef}
+                    image={imageInInput}
+                    setState={setSaved}
+                    adjSaved={saved}
+                    onSave={handleAdjSave}
+                />
+            </div>
         </div>
     )
 }
 
 export const UpdateProfile = () => {
+
+    const name = useInput('', { isEmpty: true })
+    const lastName = useInput('', { isEmpty: true })
+    const username = useInput('', { isEmpty: true })
+    const email = useInput('', { isEmpty: true })
+    const phone = useInput('', { isEmpty: true })
+    const country = useInput('', { isEmpty: true })
+    const [user, setUser] = useState(null)
+    const api = useAxios()
+
+    const formData = {
+        first_name: name.value,
+        last_name: lastName.value,
+        username: username.value,
+        email: email.value,
+        phone: phone.value,
+        country: country.value
+    }
+
+    useEffect(() => {
+        api.get('/api/v1/users/me').then(res => {
+            setUser(res.data)
+            name.setValue(res.data.first_name)
+            lastName.setValue(res.data.last_name)
+            username.setValue(res.data.username)
+            email.setValue(res.data.email)
+            phone.setValue(res.data.phone)
+            country.setValue(res.data.country)
+        })
+    }, [])
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const changedFields = Object.entries(formData).filter(([key, value]) => value !== user[key])
+        const data = Object.fromEntries(changedFields)
+        console.log(data)
+    }
+
     return (
-        <div>
+        <div className='grid gap-3'>
             <BackButton />
-            update profile
+            <h2 className='font-bold text-2xl'>Update profile info</h2>
+            <form onSubmit={handleSubmit} className='w-full lg:w-1/2 grid md:grid-cols-2 gap-2 md:shrink'>
+                <div>
+                    <Input title='First name' instance={name} />
+                </div>
+                <div>
+                    <Input title='Last name' instance={lastName} />
+                </div>
+                <div className='grid col-span-full'>
+                    <Input title='Username' instance={username} />
+                </div>
+                <div>
+                    <Input title='Phone' instance={phone} />
+                </div>
+                <div>
+                    <Input title='Country' instance={country} />
+                </div>
+                <div className="grid col-span-full">
+                    <Input title='Email' instance={email} />
+                </div>
+                <button className='button-fill-orange col-span-full !w-full mt-3'>Update profile</button>
+            </form>
         </div>
     )
 }
@@ -70,7 +159,6 @@ export const DeleteProfile = () => {
     const [agreed, setAgreed] = useState(false)
     const api = useAxios()
     const pwd = useInput('', { isEmpty: true })
-    const navigate = useNavigate()
     const { logoutUser } = useContext(AuthContext)
 
     const handleDelete = () => {
@@ -84,6 +172,7 @@ export const DeleteProfile = () => {
     return (
         <div className='grid gap-3 w-full md:w-2/3 lg:w-1/2'>
             <BackButton />
+            <h2 className='font-bold text-2xl'>Delete profile</h2>
             <h1 className='text-accent-red font-bold text-2xl border-2 border-accent-red rounded-xl text-center p-5'>THIS ACTION IS NOT REVERSIBLE, THINK TWICE BEFORE DOING IT!</h1>
             <Input title='Password' instance={pwd} type='password' must={true} />
             <div>
@@ -110,7 +199,7 @@ const ProfileSettings = () => {
                     <Title text='Profile settings' />
                     <p className='font-bolditalic'>Select option:</p>
                     <NavLink to='password' className='flex items-center gap-2'><MdPassword />Change password</NavLink>
-                    {/* <NavLink to='avatar' className='flex items-center gap-2'><BsPersonBoundingBox />Change avatar</NavLink> */}
+                    <NavLink to='avatar' className='flex items-center gap-2'><BsPersonBoundingBox />Change avatar</NavLink>
                     <NavLink to='info' className='flex items-center gap-2'><BsPersonLinesFill />Change profile info</NavLink>
                     <NavLink to='delete' className='flex items-center gap-2 text-accent-red font-bold'><BsFillPersonXFill />Delete profile</NavLink>
                 </>}

@@ -33,9 +33,9 @@ const PageIndex = () => {
         <AuthProvider>
             <div className='flex flex-col h-full'>
                 <Navbar />
-                <div className='mt-20 container mx-auto flex-grow px-5'>
+                <main className='mt-20 container mx-auto flex-grow px-5'>
                     <Outlet />
-                </div>
+                </main>
                 <Footer />
             </div>
         </AuthProvider>

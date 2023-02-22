@@ -100,7 +100,7 @@ const ProductPage = () => {
                         {!isTablet ? <div className='w-full'>
                             <div className='grid gap-3 h-fit fixed'>
                                 <h2 className='font-bold text-3xl'>{parseFloat(product.price).toFixed(0)} {product.price_currency}</h2>
-                                <p className='font-bold text-2xl'>Seller:</p>
+                                {/* <p className='font-bold text-2xl'>Seller:</p> */}
                                 <SellerCard profile={product.user} user={user} />
                             </div>
                         </div> : null}

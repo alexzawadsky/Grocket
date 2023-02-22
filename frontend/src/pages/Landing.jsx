@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Title, Search, HistoryList, ItemCard, Pagination } from '../components'
 import api from '../api/api'
+import { alertErr } from '../utils'
 
 const Landing = () => {
 
@@ -12,7 +13,7 @@ const Landing = () => {
         api.get(`/api/v1/products/?limit=4&page=${page + 1}`).then(res => {
             setProducts(res.data.results)
             setPagesCount(res.data.pages_count)
-        }).catch(err => alert(`${err.response.status} ${err.response.message}`))
+        }).catch(err => alertErr(err))
     }
 
     useEffect(_ => {

@@ -188,7 +188,8 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
         queryset=Category.objects.all()
     )
     promotion = serializers.PrimaryKeyRelatedField(
-        queryset=Promotion.objects.all()
+        queryset=Promotion.objects.all(),
+        default=None
     )
     is_archived = serializers.HiddenField(default=False)
     is_sold = serializers.HiddenField(default=False)

@@ -35,3 +35,14 @@ export const notification = (text) => {
         backdrop: false
     })
 }
+
+export const info = (text) => {
+    Swal.fire({
+        title: text,
+        icon: 'info',
+        timer: 1500,
+        showConfirmButton: false,
+        position: 'top',
+        backdrop: false
+    })
+}

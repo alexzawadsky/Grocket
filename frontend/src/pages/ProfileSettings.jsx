@@ -4,7 +4,7 @@ import { AvatarCrop, Input, Title } from '../components'
 import { MdPassword } from 'react-icons/md'
 import { BsPersonBoundingBox, BsPersonLinesFill, BsArrowLeft, BsFillPersonXFill } from 'react-icons/bs'
 import useAxios from '../hooks/useAxios'
-import { alertErr, notification, toBase64 } from '../utils'
+import { alertErr, info, notification, toBase64 } from '../utils'
 import useInput from '../hooks/useInput'
 import AuthContext from '../contexts/AuthProvider'
 import { useMediaQuery } from 'react-responsive'
@@ -44,7 +44,7 @@ export const PasswordReset = () => {
             <Input title='Old password' type='password' instance={oldPwd} must={true} />
             <Input title='New password' type='password' instance={newPwd} must={true} />
             <Input title='Repeat new password' type='password' instance={repeatNewPwd} must={true} />
-            <button className='button-fill-orange'>Change password</button>
+            <button className='button-fill-orange' disabled={!oldPwd.allValid || !newPwd.allValid || !repeatNewPwd.allValid}>Change password</button>
         </form>
     )
 }
@@ -121,6 +121,10 @@ export const UpdateProfile = () => {
         e.preventDefault()
         const changedFields = Object.entries(formData).filter(([key, value]) => value !== user[key])
         const data = Object.fromEntries(changedFields)
+        if (Object.keys(data).length === 0) {
+            info('No changes found')
+            return
+        }
         api.patch('/api/v1/users/me', data)
             .then(res => notification('Your profile has been updated')).catch(err => alertErr(err))
     }

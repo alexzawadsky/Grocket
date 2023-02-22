@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
 import api from "../api/api";
-import { getCookie } from "../utils";
+import { alertErr, getCookie } from "../utils";
 
 const AuthContext = createContext();
 
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
             setAuthTokens(res.data);
             localStorage.setItem("authTokens", JSON.stringify(res.data));
             navigate(redirectFrom);
-        }).catch(err => setError({ status: err.response.status, message: err.response.data }))
+        }).catch(err => { setError({ status: err.response.status, message: err.response.data }); alertErr(err) })
     };
 
     const registerUser = ({ first_name, last_name, username, email, password, re_password, phone, country, avatar }) => {

@@ -21,7 +21,8 @@
     "react-paginate": "^8.1.4",
     "react-responsive": "^9.0.2",
     "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.8.0"
+    "react-router-dom": "^6.8.0",
+    "sweetalert2": "^11.7.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

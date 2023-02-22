@@ -12,11 +12,12 @@ const useInput = (initialValue, validations) => {
     }
 
     const clear = () => {
-        setValue(initialValue)
+        setValue('')
     }
 
     return {
         value,
+        setValue,
         isDirty,
         checkValue,
         allValid,

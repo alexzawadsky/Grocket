@@ -5,7 +5,7 @@ import MyFavourites from "./MyFavourites";
 import MyLots from "./MyLots";
 import MyProfile from "./MyProfile";
 import NotFound from "./NotFound";
-import PasswordReset from "./PasswordReset";
+// import PasswordReset from "./PasswordReset";
 import ProductPage from "./ProductPage";
 import Register from "./Register";
 import SearchHistoryPage from "./SearchHistoryPage";
@@ -14,6 +14,9 @@ import UserComments from "./UserComments";
 import UserLots from "./UserLots";
 import UserProfile from "./UserProfile";
 import Archieved from "./Archieved";
+import Sold from "./Sold";
+import ProfileSettings from "./ProfileSettings";
+import { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProfile } from "./ProfileSettings";
 
 export {
     Landing,
@@ -30,5 +33,12 @@ export {
     Sell,
     UserComments,
     UserLots,
-    UserProfile
+    UserProfile,
+    Archieved,
+    Sold,
+    ProfileSettings,
+    PasswordReset,
+    ChangeAvatar,
+    UpdateProfile,
+    DeleteProfile
 }

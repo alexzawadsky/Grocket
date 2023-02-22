@@ -21,7 +21,7 @@ const AvatarCrop = ({ editorRef, image, setState, onSave, adjSaved }) => {
                 onImageChange={() => setState(false)}
                 onPositionChange={() => setState(false)}
             />
-            <input value={avatarSize} className='' type="range" min={1} max={2} step={0.01} onChange={e => {
+            <input value={avatarSize} className='w-full' type="range" min={1} max={2} step={0.01} onChange={e => {
                 setAvatarSize(e.target.value)
                 setState(false)
             }} />

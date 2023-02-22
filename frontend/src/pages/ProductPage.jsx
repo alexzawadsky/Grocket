@@ -2,17 +2,14 @@ import React, { useEffect, useState, useContext } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import RatingStars from '../components/RatingStars';
 import SearchHistoryContext from '../contexts/HistoryContext';
-import Map from '../components/Map';
-import Avatar from '../components/Avatar';
+import { Avatar, RatingStars, ReadMore } from '../components';
 import 'lightbox.js-react/dist/index.css'
 import { SlideshowLightbox } from 'lightbox.js-react'
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 import { BsArrowRight } from 'react-icons/bs';
 import { useMediaQuery } from 'react-responsive';
-import { ReadMore } from '../components';
 import api from '../api/api';
 import { alertErr } from '../utils';
 import AuthContext from '../contexts/AuthProvider';
@@ -29,7 +26,7 @@ const SellerCard = ({ profile, user }) => {
                     <Avatar avatar={profile.avatar} />
                 </div>
                 <div>
-                    <NavLink to={!user || user.user_id !== profile.id ? `/user/${profile.id}` : '/profile'} className='hover:text-accent-orange'>{profile.last_name} {profile.first_name}</NavLink>
+                    <NavLink to={!user || user.user_id !== profile.id ? `/user/${profile.id}` : '/profile'} className='hover:text-accent-orange'>{profile.last_name} {profile.first_name} {user.user_id === profile.id ? '(me)' : null}</NavLink>
                     <RatingStars rating={profile.rate} />
                 </div>
             </div>
@@ -103,7 +100,7 @@ const ProductPage = () => {
                         {!isTablet ? <div className='w-full'>
                             <div className='grid gap-3 h-fit fixed'>
                                 <h2 className='font-bold text-3xl'>{parseFloat(product.price).toFixed(0)} {product.price_currency}</h2>
-                                <p className='font-bold text-2xl'>Seller:</p>
+                                {/* <p className='font-bold text-2xl'>Seller:</p> */}
                                 <SellerCard profile={product.user} user={user} />
                             </div>
                         </div> : null}

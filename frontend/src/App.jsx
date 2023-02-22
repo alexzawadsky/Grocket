@@ -18,10 +18,14 @@ import {
     MyFavourites,
     Register,
     PasswordReset,
-    SearchHistoryPage
+    SearchHistoryPage,
+    Sold,
+    Archieved,
+    ProfileSettings,
+    ChangeAvatar,
+    UpdateProfile,
+    DeleteProfile
 } from './pages'
-import Sold from './pages/Sold';
-import Archieved from './pages/Archieved';
 
 
 const PageIndex = () => {
@@ -29,9 +33,9 @@ const PageIndex = () => {
         <AuthProvider>
             <div className='flex flex-col h-full'>
                 <Navbar />
-                <div className='mt-20 container mx-auto flex-grow px-5'>
+                <main className='mt-20 container mx-auto flex-grow px-5'>
                     <Outlet />
-                </div>
+                </main>
                 <Footer />
             </div>
         </AuthProvider>
@@ -71,6 +75,28 @@ const router = createBrowserRouter([
                     {
                         path: 'archive',
                         element: <Archieved />
+                    },
+                    {
+                        path: 'settings',
+                        element: <ProfileSettings />,
+                        children: [
+                            {
+                                path: 'password',
+                                element: <PasswordReset />
+                            },
+                            {
+                                path: 'avatar',
+                                element: <ChangeAvatar />
+                            },
+                            {
+                                path: 'info',
+                                element: <UpdateProfile />
+                            },
+                            {
+                                path: 'delete',
+                                element: <DeleteProfile />
+                            }
+                        ]
                     }
                 ]
             },
@@ -108,10 +134,10 @@ const router = createBrowserRouter([
                 path: 'history',
                 element: <SearchHistoryPage />
             },
-            {
-                path: 'password-reset',
-                element: <PasswordReset />
-            }
+            // {
+            //     path: 'password-reset',
+            //     element: <PasswordReset />
+            // }
         ],
     },
 ]);

@@ -22,11 +22,11 @@
 }
 
 .grocket-input {
-  @apply border-2 border-black rounded-xl h-10 p-3
+  @apply border-2 border-black rounded-xl h-10 p-3 w-full
 }
 
 .button-base {
-  @apply font-bold w-fit px-5 py-3 flex items-center gap-2 rounded-xl
+  @apply font-bold w-fit px-5 py-3 flex items-center gap-2 rounded-xl justify-center disabled:!text-slate-600 disabled:!border-2 disabled:!border-slate-600 disabled:!cursor-not-allowed disabled:!bg-transparent
 }
 
 .button-fill-orange {
@@ -43,4 +43,8 @@
 
 .button-outline-red {
   @apply button-base text-accent-red border-accent-red border-2 hover:bg-accent-red/[0.1]
+}
+
+.button-disabled {
+  @apply button-base text-slate-600 border-slate-600 border-2
 }

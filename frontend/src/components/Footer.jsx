@@ -2,11 +2,11 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <div className='w-full bg-accent-orange mt-10'>
-            <div className="container mx-auto p-5">
-                Footer
+        <footer className='w-full bg-accent-orange mt-5'>
+            <div className="container mx-auto p-5 text-white">
+                © Grocket, 2023
             </div>
-        </div>
+        </footer>
     )
 }
 

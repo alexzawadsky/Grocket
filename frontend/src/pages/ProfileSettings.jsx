@@ -30,7 +30,7 @@ export const PasswordReset = () => {
             re_new_password: repeatNewPwd.value,
             current_password: oldPwd.value
         }
-        axios.post('/api/v1/users/set_password', data).then(res => {
+        axios.post('/api/v1/users/set_password/', data).then(res => {
             if (res.status === 204) {
                 notification('Your password has been updated')
             }
@@ -64,7 +64,7 @@ export const ChangeAvatar = () => {
             const blob = await result.blob()
             avatar = await toBase64(blob)
         }
-        api.patch('/api/v1/users/me', { avatar }).then(res => notification('Your avatar has been updated')).catch(err => alertErr(err))
+        api.patch('/api/v1/users/me/', { avatar }).then(res => notification('Your avatar has been updated')).catch(err => alertErr(err))
     }
 
     return (
@@ -125,7 +125,7 @@ export const UpdateProfile = () => {
             info('No changes found')
             return
         }
-        api.patch('/api/v1/users/me', data)
+        api.patch('/api/v1/users/me/', data)
             .then(res => notification('Your profile has been updated')).catch(err => alertErr(err))
     }
 
@@ -159,7 +159,7 @@ export const DeleteProfile = () => {
     const { logoutUser } = useContext(AuthContext)
 
     const handleDelete = () => {
-        api.delete('/api/v1/users/me', { current_password: pwd.value }).then(res => {
+        api.delete('/api/v1/users/me/', { current_password: pwd.value }).then(res => {
             if (res.status === 204) {
                 logoutUser()
             }

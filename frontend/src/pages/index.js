@@ -26,7 +26,7 @@ export {
     MyLots,
     MyProfile,
     NotFound,
-    PasswordReset,
+    // PasswordReset,
     ProductPage,
     Register,
     SearchHistoryPage,

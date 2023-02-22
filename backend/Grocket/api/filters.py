@@ -1,5 +1,6 @@
 from django_filters import rest_framework as django_filters
-from products.models import Product, Category
+
+from products.models import Category, Product
 
 
 class ProductFilter(django_filters.FilterSet):

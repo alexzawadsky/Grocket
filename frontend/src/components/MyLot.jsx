@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { BiCategoryAlt, BiTimeFive, BiPencil } from 'react-icons/bi'
 import { BsTrashFill } from 'react-icons/bs'
+import useAxios from '../hooks/useAxios'
 
 const MyLot = ({ product }) => {
+
     return (
         <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden flex flex-col'>
             <NavLink to={`/products/${product.id}`} className="">
@@ -23,22 +25,9 @@ const MyLot = ({ product }) => {
                     </p>
                 </div>
             </div>
-            <div className='grid gap-2 pt-0 p-5'>
-                <div className="">
-                    {product.is_sold ? <button className='hover:underline hover:text-accent-orange w-fit'>Remove from sold</button> : null}
-                    {product.is_archived ? <button className='hover:underline hover:text-accent-orange w-fit'>Remove from archive</button> : null}
-                    {!product.is_sold && !product.is_archived ?
-                        <>
-                            <button className='hover:underline hover:text-accent-orange w-fit'>Move to archive</button>
-                            <button className='hover:underline hover:text-accent-orange w-fit'>Mark as selled</button>
-                        </>
-                        : null}
-                </div>
-
-                <div className="flex gap-2 items-center">
-                    {!product.is_sold && <button className='text-accent-orange'><BiPencil /></button>}
-                    <button className='text-accent-red'><BsTrashFill /></button>
-                </div>
+            <div className="grid grid-cols-2 gap-2 items-center p-5 py-3 pt-0">
+                {product.is_sold ? <button className='text-accent-orange flex items-center gap-2'><BiPencil />Edit</button> : <span></span>}
+                <button className='text-accent-red flex items-center gap-2'><BsTrashFill />Delete</button>
             </div>
         </div>
     )

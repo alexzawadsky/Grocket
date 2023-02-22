@@ -126,7 +126,10 @@ export const UpdateProfile = () => {
             return
         }
         api.patch('/api/v1/users/me', data)
-            .then(res => notification('Your profile has been updated')).catch(err => alertErr(err))
+            .then(res => {
+                notification('Your profile has been updated')
+                setUser(res.data)
+            }).catch(err => alertErr(err))
     }
 
     return (

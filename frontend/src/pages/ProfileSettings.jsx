@@ -159,7 +159,8 @@ export const DeleteProfile = () => {
     const { logoutUser } = useContext(AuthContext)
 
     const handleDelete = () => {
-        api.delete('/api/v1/users/me/', { current_password: pwd.value }).then(res => {
+        const data = { current_password: pwd.value }
+        api.delete('/api/v1/users/me/', data).then(res => {
             if (res.status === 204) {
                 logoutUser()
             }

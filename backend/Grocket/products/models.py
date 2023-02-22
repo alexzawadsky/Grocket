@@ -3,6 +3,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
+
 from core.models import WithDateModel
 from users.models import User
 
@@ -57,6 +58,36 @@ class Category(MPTTModel):
         return self.title
 
 
+class Promotion(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='name',
+        unique=True,
+    )
+    title = models.CharField(
+        max_length=100,
+        verbose_name='title',
+    )
+    price = MoneyField(
+        max_digits=19,
+        decimal_places=2,
+        default_currency='USD',
+        verbose_name='price',
+    )
+    description = models.TextField(
+        max_length=500,
+        verbose_name='description',
+    )
+
+    class Meta:
+        ordering = ('-id',)
+        verbose_name = 'promotion'
+        verbose_name_plural = 'promotions'
+
+    def __str__(self):
+        return self.name
+
+
 class Product(WithDateModel):
     name = models.CharField(
         max_length=200,
@@ -90,6 +121,14 @@ class Product(WithDateModel):
         max_length=150,
         verbose_name='product address',
         default='no address',
+    )
+    promotion = models.ForeignKey(
+        'Promotion',
+        on_delete=models.PROTECT,
+        related_name='products',
+        verbose_name='product promote type',
+        blank=True,
+        null=True,
     )
     is_archived = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)

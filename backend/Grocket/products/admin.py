@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django_mptt_admin.admin import DjangoMpttAdmin
 
-from .models import Category, Comment, Favourite, Image, Product
+from .models import Category, Comment, Favourite, Image, Product, Promotion
 
 
 @admin.register(Product)
@@ -13,12 +13,10 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name', 'user', 'price',)
     list_filter = ('user', 'price', 'pub_date',)
     empty_value_display = '-empty-'
-    # prepopulated_fields = {'title': ('name',)}
 
 
 @admin.register(Category)
 class CategoryAdmin(DjangoMpttAdmin):
-    # prepopulated_fields = {'title': ('title',)}
     pass
 
 
@@ -43,4 +41,11 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ('pk', 'product', 'is_main',)
     search_fields = ('product',)
     list_filter = ('product', 'is_main',)
+    empty_value_display = '-empty-'
+
+
+@admin.register(Promotion)
+class PromotionAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'name', 'price',)
+    search_fields = ('name',)
     empty_value_display = '-empty-'

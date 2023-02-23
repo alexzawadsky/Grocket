@@ -1,17 +1,19 @@
-from djoser import views as djviews
-from django_filters import rest_framework as django_filters
-from rest_framework import permissions, status, viewsets, filters
-from rest_framework.response import Response
-from rest_framework.decorators import action
-from core.views import avatar_img_creating
-from products.models import Category, Product
-from users.models import User
 from django.shortcuts import get_object_or_404
+from django_filters import rest_framework as django_filters
+from djoser import views as djviews
+from rest_framework import filters, permissions, status, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
+from core.views import avatar_img_creating
+from products.models import Category, Favourite, Product, Promotion
+from users.models import User
+
 from .filters import ProductFilter
 from .permissions import IsOwnerOrReadOnly
-from .serializers import (CategoryListSerializer,
+from .serializers import (CategoryListSerializer, FavouriteSerializer,
                           ProductCreateUpdateSerializer, ProductListSerializer,
-                          ProductRetrieveSerializer)
+                          ProductRetrieveSerializer, PromotionSerializer)
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -59,6 +61,45 @@ class CategoryViewSet(viewsets.ModelViewSet):
             return queryset.filter(parent=None)
 
         return queryset.filter(parent=parent_id)
+
+
+class PromotionViewSet(viewsets.ModelViewSet):
+    queryset = Promotion.objects.all()
+    http_method_names = ['get']
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = PromotionSerializer
+    pagination_class = None
+
+
+class FavouriteViewSet(viewsets.ModelViewSet):
+    queryset = Favourite.objects.all()
+    http_method_names = ['post', 'delete']
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = FavouriteSerializer
+
+    def post(self, request, pk):
+        data = {
+            'user': request.user.id,
+            'product': pk
+        }
+        serializer = self.serializer_class(
+            data=data,
+            context={'request': request}
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED)
+
+    def delete(self, request, pk):
+        obj = self.queryset.filter(user=request.user, product__id=pk)
+
+        if obj.exists():
+            obj.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -127,3 +168,55 @@ class ProductViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(is_sold=True)
 
         return self.user_products_serialize(queryset, request)
+
+    @action(['post'], detail=False)
+    def promote(self, request, product_pk, promotion_pk):
+        product = get_object_or_404(Product, id=product_pk)
+
+        if product.promotion is None:
+            promotion = get_object_or_404(Promotion, id=promotion_pk)
+            product.promotion = promotion
+            product.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    @action(['post', 'delete'], detail=True)
+    def sell(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+
+        if request.method == 'DELETE':
+            if product.is_sold:
+                product.is_sold = False
+                product.save()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        if request.method == 'POST':
+            if not product.is_sold:
+                product.is_sold = True
+                product.save()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    @action(['post', 'delete'], detail=True)
+    def archive(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
+
+        if request.method == 'DELETE':
+            if product.is_archived:
+                product.is_archived = False
+                product.save()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        if request.method == 'POST':
+            if not product.is_archived:
+                product.is_archived = True
+                product.save()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)

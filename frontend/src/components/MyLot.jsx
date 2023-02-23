@@ -6,6 +6,20 @@ import useAxios from '../hooks/useAxios'
 
 const MyLot = ({ product }) => {
 
+    const [sold, setSold] = useState(product.is_sold)
+    const [archived, setArchived] = useState(product.is_archived)
+    const api = useAxios()
+
+    const sell = () => {
+        api({ url: `/api/v1/products/${product.id}/sell/`, method: sold ? 'DELETE' : 'POST' })
+            .then(res => setSold(!sold))
+    }
+
+    const archive = () => {
+        api({ url: `/api/v1/products/${product.id}/archive/`, method: archived ? 'DELETE' : 'POST' })
+            .then(res => setArchived(!archived))
+    }
+
     return (
         <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden flex flex-col'>
             <NavLink to={`/products/${product.id}`} className="">
@@ -25,9 +39,23 @@ const MyLot = ({ product }) => {
                     </p>
                 </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 items-center p-5 py-3 pt-0">
-                {product.is_sold ? <button className='text-accent-orange flex items-center gap-2'><BiPencil />Edit</button> : <span></span>}
-                <button className='text-accent-red flex items-center gap-2'><BsTrashFill />Delete</button>
+            <div className='grid gap-2 pt-0 p-5'>
+                {/* <div className="">
+                    {product.is_sold ? <button className='hover:underline hover:text-accent-orange w-fit'>Remove from sold</button> : null}
+                    {product.is_archived ? <button className='hover:underline hover:text-accent-orange w-fit'>Remove from archive</button> : null}
+                    {!product.is_sold && !product.is_archived ?
+                        <>
+                            <button className='hover:underline hover:text-accent-orange w-fit'>Move to archive</button>
+                            <button className='hover:underline hover:text-accent-orange w-fit'>Mark as selled</button>
+                        </>
+                        : null}
+                </div> */}
+                <button onClick={archive}>{archived ? 'Remove from archive' : 'Add to archive'}</button>
+                <button onClick={sell}>{sold ? 'Mark as sold' : 'List active'}</button>
+                <div className="flex gap-2 items-center">
+                    {!sold && <button className='text-accent-orange'><BiPencil /></button>}
+                    <button className='text-accent-red'><BsTrashFill /></button>
+                </div>
             </div>
         </div>
     )

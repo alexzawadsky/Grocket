@@ -14,8 +14,9 @@ const ItemCard = ({ product }) => {
     const api = useAxios()
 
     const handleFavourite = () => {
-        api.post(`/`).then(res => product.id = res.data.state).catch(err => alertErr(err))
-        console.log(product.id, 'toggle')
+        console.log('here! :)')
+        api({ url: `/api/v1/products/${product.id}/favourite/`, method: isFavourite ? 'DELETE' : 'POST' })
+            .then(res => setIsFavourite(!isFavourite)).catch(err => alertErr(err))
     }
 
     return (
@@ -28,7 +29,7 @@ const ItemCard = ({ product }) => {
                     <div className='overflow-hidden'>
                         <NavLink to={`/products/${product.id}`} className='hover:text-accent-orange text-sm xl:text-lg'>{product.name}</NavLink>
                     </div>
-                    <button onClick={() => setIsFavourite(prevState => !prevState)}>{isFavourite ? <AiFillHeart color='#FF1500' /> : <AiOutlineHeart color='#FF9001' />}</button>
+                    <button onClick={handleFavourite}>{isFavourite ? <AiFillHeart color='#FF1500' /> : <AiOutlineHeart color='#FF9001' />}</button>
                 </div>
                 <p className='font-bolditalic text-md xl:text-xl leading-none'>{parseFloat(product.price).toFixed(0)} {product.price_currency}</p>
                 <div className='grid gap-y-1.5 xl:gap-y-1 grid-cols-[auto_1fr] gap-x-2 items-center'>

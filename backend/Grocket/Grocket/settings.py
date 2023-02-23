@@ -184,3 +184,5 @@ AVATAR = {
     'FONT_INDENTS': (100, 100),
     'FONT_FILL': '#1C0606',
 }
+
+APPEND_SLASH = False

@@ -1,14 +1,26 @@
 import React from 'react'
+import { BsArrowRight, BsArrowLeft } from 'react-icons/bs'
+import ReactPaginate from 'react-paginate'
+import { useMediaQuery } from 'react-responsive'
 
-const Pagination = ({ onNext, onPrev, pagesCount, currentPage, loadNTH }) => {
+const Pagination = ({ pagesCount, setPage }) => {
+
+    const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
+
     return (
-        <div className='flex gap-5 w-fit items-center'>
-            <button className='button-outline-orange' disabled={true} onClick={onPrev}>Prev</button>
-            <div className='grow flex gap-2'>
-                {Array(pagesCount).fill(0).map((el, key) => <button key={key} className={`w-10 h-10 border-2 hover:border-accent-orange rounded-full ${key + 1 == currentPage ? 'font-bold' : null}`}>{key + 1}</button>)}
-            </div>
-            <button className='button-outline-orange' disabled={onNext} onClick={onNext}>Next</button>
-        </div>
+        <ReactPaginate
+            pageCount={pagesCount}
+            pageRangeDisplayed={isPhone ? 1 : 3}
+            marginPagesDisplayed={isPhone ? 1 : 3}
+            onPageChange={(page) => setPage(page.selected)}
+            className='flex gap-5'
+            activeClassName='font-bold'
+            pageClassName='hover:text-accent-orange'
+            previousClassName='text-accent-orange font-bold'
+            nextClassName='text-accent-orange font-bold'
+            previousLabel={<p className='flex items-center gap-2'><BsArrowLeft />Previous</p>}
+            nextLabel={<p className='flex items-center gap-2'>Next<BsArrowRight /></p>}
+        />
     )
 }
 

@@ -150,7 +150,6 @@ DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'HIDE_USERS': False,
     'USER_ID_FIELD': 'pk',
-    # 'LOGIN_FIELD': 'email',
     'USERNAME_FIELD': 'email',
     'PERMISSIONS': {
         'user': ['rest_framework.permissions.IsAuthenticated'],
@@ -184,3 +183,6 @@ AVATAR = {
     'FONT_INDENTS': (100, 100),
     'FONT_FILL': '#1C0606',
 }
+
+
+CSV_URL = 'csv'

@@ -9,7 +9,7 @@ const ReadMore = ({ text }) => {
         <p className="text">
             {isReadMore ? text.slice(0, 150) : text}
             <span onClick={toggleReadMore} className="text-accent-orange cursor-pointer">
-                {isReadMore ? "...read more" : "show less"}
+                {isReadMore ? "...read more" : "  read less"}
             </span>
         </p>
     );

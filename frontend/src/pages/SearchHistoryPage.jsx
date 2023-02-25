@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import ItemCard from '../components/ItemCard'
+import { ItemCard } from '../components'
 import SearchHistoryContext from '../contexts/HistoryContext'
 import { BsFillTrashFill, BsArrowLeft } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'

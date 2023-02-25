@@ -78,8 +78,13 @@ class FavouriteViewSet(viewsets.ModelViewSet):
     serializer_class = FavouriteSerializer
 
     def post(self, request, pk):
+        user = request.user.id
+
+        if get_object_or_404(Product, id=pk).user.id == user:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
         data = {
-            'user': request.user.id,
+            'user': user,
             'product': pk
         }
         serializer = self.serializer_class(
@@ -90,7 +95,7 @@ class FavouriteViewSet(viewsets.ModelViewSet):
         serializer.save()
 
         return Response(
-            serializer.data, status=status.HTTP_201_CREATED)
+            status=status.HTTP_201_CREATED)
 
     def delete(self, request, pk):
         obj = self.queryset.filter(user=request.user, product__id=pk)
@@ -103,7 +108,7 @@ class FavouriteViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    http_method_names = ['get', 'post', 'put', 'delete']
+    http_method_names = ['get', 'post', 'patch', 'delete']
     permission_classes = (IsOwnerOrReadOnly,)
     filter_backends = [
         filters.OrderingFilter,
@@ -130,7 +135,7 @@ class ProductViewSet(viewsets.ModelViewSet):
             return ProductRetrieveSerializer
         elif self.action in ('list', 'me_products', 'user_products'):
             return ProductListSerializer
-        elif self.action in ('create', 'update'):
+        elif self.action in ('create', 'partial_update'):
             return ProductCreateUpdateSerializer
 
     def user_products_serialize(self, queryset, request):

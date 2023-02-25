@@ -14,7 +14,7 @@ class CustomUserSerializer(djserializers.UserSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name',
-                  'avatar', 'phone', 'country', 'date_joined',)
+                  'avatar', 'phone', 'country', 'date_joined', 'last_login',)
 
 
 class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
@@ -25,7 +25,8 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name',
-                  'password', 'avatar', 'phone', 'country',)
+                  'password', 'avatar', 'phone', 'country', 'date_joined',
+                  'last_login',)
         read_only_fields = ('id',)
 
 
@@ -74,12 +75,6 @@ class FavouriteSerializer(serializers.ModelSerializer):
             )
 
         return value
-
-    def to_representation(self, favourite):
-        serializer = ProductSerializer(
-            favourite.product, context=self.context)
-
-        return serializer.data
 
 
 class ProductCategorySerializer(serializers.ModelSerializer):
@@ -220,6 +215,14 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
 
         return value
 
+    def validate_category(self, value):
+        if not value.is_leaf_node():
+            raise serializers.ValidationError(
+                'Можно добавить только в конечную категорию.'
+            )
+
+        return value
+
     def creating_images(self, images, product):
         for image in images:
             Image.objects.create(
@@ -237,11 +240,16 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
         return product
 
     def update(self, instance, validated_data):
-        images = validated_data.pop('images')
-        Image.objects.filter(product=instance).delete()
+        images = validated_data.get('images')
+
+        if images is not None:
+            images = validated_data.pop('images')
+            Image.objects.filter(product=instance).delete()
+
         instance = super().update(instance, validated_data)
 
-        self.creating_images(images, instance)
+        if images is not None:
+            self.creating_images(images, instance)
 
         return instance
 

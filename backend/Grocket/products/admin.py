@@ -17,7 +17,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(DjangoMpttAdmin):
-    pass
+    list_display = ('pk', 'title', 'parent',)
+    search_fields = ('title',)
+    empty_value_display = '-empty-'
 
 
 @admin.register(Comment)

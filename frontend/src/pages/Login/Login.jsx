@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRef, useState, useContext } from 'react'
 import { NavLink, useSearchParams } from 'react-router-dom'
-import AuthContext from '../contexts/AuthProvider'
+import AuthContext from '../../contexts/AuthProvider'
 
 const Login = () => {
 

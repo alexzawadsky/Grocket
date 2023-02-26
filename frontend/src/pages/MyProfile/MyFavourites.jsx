@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { ItemCard, Pagination, Title } from '../components'
+import { ItemCard, Pagination, Title } from '../../components'
 import { useMediaQuery } from 'react-responsive'
 import { BsArrowLeft } from 'react-icons/bs'
-import useAxios from '../hooks/useAxios'
+import useAxios from '../../hooks/useAxios'
 import { AiFillHeart } from 'react-icons/ai'
 
 

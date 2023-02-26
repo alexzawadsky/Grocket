@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams, NavLink } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { BsArrowLeft } from 'react-icons/bs'
-import api from '../api/api'
-import { alertErr } from '../utils'
-import { ItemCard, Pagination } from '../components'
+import api from '../../api/api'
+import { alertErr } from '../../utils'
+import { ItemCard, Pagination } from '../../components'
 
 const UserLots = () => {
 

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { BiCategoryAlt, BiTimeFive, BiPencil } from 'react-icons/bi'
 import { BsTrashFill } from 'react-icons/bs'
-import useAxios from '../hooks/useAxios'
-import { alertErr, confirm, notification } from '../utils'
+import useAxios from '../../hooks/useAxios'
+import { alertErr, confirm, notification } from '../../utils'
 import { IoIosArrowUp } from 'react-icons/io'
 
 const MyLot = ({ product }) => {

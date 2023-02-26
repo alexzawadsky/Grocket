@@ -4,21 +4,21 @@ import Comment from "./Comment";
 import CommentsStats from "./CommentsStats";
 import Filters from "./Filters";
 import Footer from "./Footer";
-import HistoryList from "./HistoryList";
+import HistoryList from "../pages/Landing/HistoryList";
 import ItemCard from "./ItemCard";
 import YMap from './Map'
 import Navbar from "./Navbar";
 import PrivateRoute from "./PrivateRoute";
 import ProfileCard from "./ProfileCard";
 import RatingStars from "./RatingStars";
-import Search from "./Search";
+import Search from "../pages/Landing/Search";
 import Title from "./Title";
 import Pagination from "./Pagination";
 import ReadMore from "./ReadMore";
 import Input from "./Input";
 import CategoryList from "./CategoryList";
 import Spinner from "./Spinner";
-import MyLot from "./MyLot";
+import MyLot from "../pages/MyProfile/MyLot";
 
 export {
     Avatar,

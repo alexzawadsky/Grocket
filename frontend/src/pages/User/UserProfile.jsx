@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { NavLink, Outlet, useOutlet } from 'react-router-dom'
-import { ProfileCard } from '../components/'
+import { ProfileCard } from '../../components'
 import { useMediaQuery } from 'react-responsive'
-import api from '../api/api'
-import { alertErr } from '../utils'
+import api from '../../api/api'
+import { alertErr } from '../../utils'
 
 const UserProfile = () => {
 

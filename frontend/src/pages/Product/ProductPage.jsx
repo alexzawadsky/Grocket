@@ -2,17 +2,17 @@ import React, { useEffect, useState, useContext } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import SearchHistoryContext from '../contexts/HistoryContext';
-import { Avatar, RatingStars, ReadMore } from '../components';
+import SearchHistoryContext from '../../contexts/HistoryContext';
+import { Avatar, RatingStars, ReadMore } from '../../components';
 import 'lightbox.js-react/dist/index.css'
 import { SlideshowLightbox } from 'lightbox.js-react'
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 import { BsArrowRight } from 'react-icons/bs';
 import { useMediaQuery } from 'react-responsive';
-import api from '../api/api';
-import { alertErr } from '../utils';
-import AuthContext from '../contexts/AuthProvider';
+import api from '../../api/api';
+import { alertErr } from '../../utils';
+import AuthContext from '../../contexts/AuthProvider';
 
 
 const SellerCard = ({ profile, user }) => {

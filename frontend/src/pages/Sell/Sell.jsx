@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Title, Input, CategoryList } from '../components'
-import useInput from '../hooks/useInput'
+import { Title, Input, CategoryList } from '../../components'
+import useInput from '../../hooks/useInput'
 import { BsCheckCircleFill, BsTrashFill } from 'react-icons/bs'
 import { AiOutlineCheck, AiOutlineRotateRight, AiOutlineRotateLeft } from 'react-icons/ai'
-import AuthContext from '../contexts/AuthProvider'
-import useAxios from '../hooks/useAxios'
-import { alertErr, toBase64 } from '../utils'
+import AuthContext from '../../contexts/AuthProvider'
+import useAxios from '../../hooks/useAxios'
+import { alertErr, toBase64 } from '../../utils'
 import AvatarEditor from 'react-avatar-editor'
 
 const Sell = () => {

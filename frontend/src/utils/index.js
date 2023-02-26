@@ -46,3 +46,19 @@ export const info = (text) => {
         backdrop: false
     })
 }
+
+export const confirm = (text, onConfirm, onConfirmText, onDenyText) => {
+    Swal.fire({
+        title: text,
+        icon: 'warning',
+        position: 'top',
+        backdrop: null,
+        confirmButtonColor: '#dc2626',
+        showCancelButton: true,
+        confirmButtonText: 'Delete',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            onConfirm()
+        }
+    })
+}

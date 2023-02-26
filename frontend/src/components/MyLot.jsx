@@ -3,26 +3,37 @@ import { NavLink } from 'react-router-dom'
 import { BiCategoryAlt, BiTimeFive, BiPencil } from 'react-icons/bi'
 import { BsTrashFill } from 'react-icons/bs'
 import useAxios from '../hooks/useAxios'
+import { alertErr, confirm, notification } from '../utils'
+import { IoIosArrowUp } from 'react-icons/io'
 
 const MyLot = ({ product }) => {
 
     const [sold, setSold] = useState(product.is_sold)
     const [archived, setArchived] = useState(product.is_archived)
+    const [deleted, setDeleted] = useState(false)
     const api = useAxios()
 
     const sell = () => {
         api({ url: `/api/v1/products/${product.id}/sell/`, method: sold ? 'DELETE' : 'POST' })
-            .then(res => setSold(!sold))
+            .then(_ => setSold(!sold)).catch(err => alertErr(err))
     }
 
     const archive = () => {
         api({ url: `/api/v1/products/${product.id}/archive/`, method: archived ? 'DELETE' : 'POST' })
-            .then(res => setArchived(!archived))
+            .then(_ => setArchived(!archived)).catch(err => alertErr(err))
+    }
+
+    const del = () => {
+        api.delete(`/api/v1/products/${product.id}/`)
+            .then(_ => {
+                notification(`<b>${product.name}</b> has been deleted`)
+                setDeleted(true)
+            }).catch(err => alertErr(err))
     }
 
     return (
-        <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden flex flex-col'>
-            <NavLink to={`/products/${product.id}`} className="">
+        <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl flex flex-col'>
+            <NavLink to={`/products/${product.id}`} className="overflow-hidden">
                 {product.images ? <img src={product.images[0].image} className='' /> : null}
             </NavLink>
             <div className='p-3 md:p-5 flex justify-around flex-col gap-2 grow'>
@@ -40,21 +51,18 @@ const MyLot = ({ product }) => {
                 </div>
             </div>
             <div className='grid gap-2 pt-0 p-5'>
-                {/* <div className="">
-                    {product.is_sold ? <button className='hover:underline hover:text-accent-orange w-fit'>Remove from sold</button> : null}
-                    {product.is_archived ? <button className='hover:underline hover:text-accent-orange w-fit'>Remove from archive</button> : null}
-                    {!product.is_sold && !product.is_archived ?
-                        <>
-                            <button className='hover:underline hover:text-accent-orange w-fit'>Move to archive</button>
-                            <button className='hover:underline hover:text-accent-orange w-fit'>Mark as selled</button>
-                        </>
-                        : null}
-                </div> */}
-                <button onClick={archive}>{archived ? 'Remove from archive' : 'Add to archive'}</button>
-                <button onClick={sell}>{sold ? 'Mark as sold' : 'List active'}</button>
-                <div className="flex gap-2 items-center">
-                    {!sold && <button className='text-accent-orange'><BiPencil /></button>}
-                    <button className='text-accent-red'><BsTrashFill /></button>
+                <div className="relative w-fit flex items-end justify-end text-left group/dropdown">
+                    <div className="hidden w-44 group-hover/dropdown:block absolute -bottom-0 left-0 z-10 p-2  origin-top-right rounded-md bg-white border-2" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
+                        <div className="py-1  gap-2 flex flex-col items-start" role="none">
+                            {!sold && <button className='text-sm' onClick={archive}>{archived ? 'Remove from archive' : 'Add to archive'}</button>}
+                            {!archived && <button className='text-sm' onClick={sell}>{sold ? 'Publish again' : 'Mark as sold'}</button>}
+                            {!sold && <NavLink to={`/products/${product.id}/edit`} className='flex items-center gap-2 text-sm'><BiPencil />Edit</NavLink>}
+                            <button onClick={() => confirm(`Delete <b>${product.name}</b>`, del, `${product.name} has been deleted`, '')} className='text-accent-red flex items-center gap-2 text-sm'><BsTrashFill />Delete</button>
+                        </div>
+                    </div>
+                    <button type="button" className="flex justify-center items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 min-w-32" id="menu-button" aria-expanded="false">
+                        Manage<IoIosArrowUp />
+                    </button>
                 </div>
             </div>
         </div>

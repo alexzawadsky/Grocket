@@ -26,12 +26,12 @@ const SellerCard = ({ profile, user }) => {
                     <Avatar avatar={profile.avatar} />
                 </div>
                 <div>
-                    <NavLink to={!user || user.user_id !== profile.id ? `/user/${profile.id}` : '/profile'} className='hover:text-accent-orange'>{profile.last_name} {profile.first_name} {user.user_id === profile.id ? '(me)' : null}</NavLink>
+                    <NavLink to={!user || user.user_id !== profile.id ? `/users/${profile.id}` : '/profile'} className='hover:text-accent-orange'>{profile.last_name} {profile.first_name} {user && user.user_id === profile.id ? '(me)' : null}</NavLink>
                     <RatingStars rating={profile.rate} />
                 </div>
             </div>
             <p className='text-sm text-primary-300'>{`On Grocket since ${date}`}</p>
-            {!user || user.user_id !== profile.id ? <NavLink className='button-fill-orange justify-center !w-full' to={`/user/${profile.id}/chat`}>Send message</NavLink> : null}
+            {!user || user.user_id !== profile.id ? <NavLink className='button-fill-orange justify-center !w-full' to={`/users/${profile.id}/chat`}>Send message</NavLink> : null}
         </div>
     )
 }

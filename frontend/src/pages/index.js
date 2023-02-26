@@ -17,6 +17,7 @@ import Archieved from "./Archieved";
 import Sold from "./Sold";
 import ProfileSettings from "./ProfileSettings";
 import { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProfile } from "./ProfileSettings";
+import EditProduct from "./EditProduct";
 
 export {
     Landing,
@@ -40,5 +41,6 @@ export {
     PasswordReset,
     ChangeAvatar,
     UpdateProfile,
-    DeleteProfile
+    DeleteProfile,
+    EditProduct
 }

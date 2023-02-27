@@ -5,7 +5,6 @@ import CommentsStats from "./CommentsStats";
 import Filters from "./Filters";
 import Footer from "./Footer";
 import ItemCard from "./ItemCard";
-import YMap from './Map'
 import Navbar from "./Navbar";
 import PrivateRoute from "./PrivateRoute";
 import ProfileCard from "./ProfileCard";
@@ -14,7 +13,6 @@ import Title from "./Title";
 import Pagination from "./Pagination";
 import ReadMore from "./ReadMore";
 import Input from "./Input";
-import CategoryList from "./CategoryList";
 import Spinner from "./Spinner";
 import Map from "./Map";
 
@@ -26,7 +24,7 @@ export {
     Filters,
     Footer,
     ItemCard,
-    YMap,
+    Map,
     Navbar,
     PrivateRoute,
     ProfileCard,
@@ -35,7 +33,5 @@ export {
     Pagination,
     ReadMore,
     Input,
-    CategoryList,
     Spinner,
-    Map
 }

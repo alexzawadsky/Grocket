@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Title, Input } from '../../components'
+import { Title, Input, Spinner } from '../../components'
 import useInput from '../../hooks/useInput'
 import { BsCheckCircleFill, BsTrashFill } from 'react-icons/bs'
 import { AiOutlineCheck, AiOutlineRotateRight, AiOutlineRotateLeft } from 'react-icons/ai'
@@ -82,7 +82,6 @@ const Sell = () => {
             images: images
         }
         addProductMutation.mutate(body)
-        setProduct(addProductMutation.data)
     }
 
     if (!user) return <Title text='You need to login to your account to be able to sell items' />
@@ -93,7 +92,7 @@ const Sell = () => {
                 text='Sell your item'
                 className='col-span-full'
             />
-            {stage >= 1 && !product &&
+            {stage >= 1 && !addProductMutation.data &&
                 <>
                     <h2 className='col-span-full text-xl font-bold' >
                         Category
@@ -103,7 +102,7 @@ const Sell = () => {
                         setCategory={setCategory}
                     />
                 </>}
-            {stage === 2 && !product &&
+            {stage === 2 && !addProductMutation.data &&
                 <form
                     onSubmit={handleSubmit}
                     className='grid grid-cols-[1fr_2fr_1fr] gap-2'
@@ -228,17 +227,18 @@ const Sell = () => {
                         disabled={!allValid}
                         className="button-fill-orange mt-5 disabled:border-2 disabled:bg-white disabled:cursor-not-allowed disabled:border-slate-600 disabled:text-slate-600"
                     >
-                        <AiOutlineCheck />Place item
+                        <AiOutlineCheck />{addProductMutation.isLoading ? <Spinner /> : 'Place item'}
                     </button>
+                    {addProductMutation.isError && addProductMutation.error.message}
                 </form>}
-            {product ?
+            {addProductMutation.data ?
                 <div className='grid gap-5'>
                     <h2 className='text text-xl text-green-600 flex items-center gap-3'><BsCheckCircleFill />Your item had been succesfully placed!</h2>
                     <span className='flex gap-1'>
                         <p>You can check</p>
                         <NavLink
                             className='text-accent-orange hover:underline'
-                            to={`/products/${product.id}`}
+                            to={`/products/${addProductMutation.data.id}`}
                         >
                             it's page
                         </NavLink>
@@ -247,12 +247,6 @@ const Sell = () => {
                             className='text-accent-orange hover:underline'
                             to='/profile/lots'>all your items</NavLink>
                     </span>
-                    <button
-                        className='button-outline-orange'
-                        onClick={() => { setCategory(null); setProduct(null) }}
-                    >
-                        Sell another item
-                    </button>
                 </div> : null
             }
         </div >

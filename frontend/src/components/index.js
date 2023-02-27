@@ -15,6 +15,7 @@ import ReadMore from "./ReadMore";
 import Input from "./Input";
 import Spinner from "./Spinner";
 import Map from "./Map";
+import ProductsList from "./ProductsList";
 
 export {
     Avatar,
@@ -34,4 +35,5 @@ export {
     ReadMore,
     Input,
     Spinner,
+    ProductsList
 }

@@ -3,12 +3,13 @@ import { BsArrowRight, BsArrowLeft } from 'react-icons/bs'
 import ReactPaginate from 'react-paginate'
 import { useMediaQuery } from 'react-responsive'
 
-const Pagination = ({ pagesCount, setPage }) => {
+const Pagination = ({ page, pagesCount, setPage }) => {
 
     const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
 
     return (
         <ReactPaginate
+            initialPage={page}
             pageCount={pagesCount}
             pageRangeDisplayed={isPhone ? 1 : 3}
             marginPagesDisplayed={isPhone ? 1 : 3}

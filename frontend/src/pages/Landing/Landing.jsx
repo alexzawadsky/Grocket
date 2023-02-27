@@ -1,5 +1,5 @@
 import { Title } from '../../components'
-import ProductsList from './ProductsList'
+import ProductsList from '../../components/ProductsList'
 import Search from './Search'
 import HistoryList from './HistoryList'
 

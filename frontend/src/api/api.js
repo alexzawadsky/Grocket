@@ -2,11 +2,10 @@ import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useAxios from "../hooks/useAxios";
 
-
-
-export const useProducts = (page) => {
+export const useProducts = (queryParams) => {
     const api = useAxios()
-    return useQuery(['products', page], () => api.get(`/api/v1/products/?limit=4&page=${page + 1}`).then(res => res.data))
+    return useQuery(['products', queryParams], () => api.get(`/api/v1/products`,
+        { params: { ...queryParams, limit: 10 } }).then(res => res.data))
 }
 
 export const useProcuct = (productId) => {
@@ -14,11 +13,16 @@ export const useProcuct = (productId) => {
     return useQuery(['product', productId], () => api.get(`/api/v1/products/${productId}`).then(res => res.data))
 }
 
-export const useAddProduct = (product) => {
+export const useAddProduct = () => {
     const queryClient = useQueryClient()
     const api = useAxios()
-    return useMutation(() => api.post('/api/v1/products/', product).then(res => res.data),
+    return useMutation((product) => api.post('/api/v1/products/', product).then(res => res.data),
         { onSuccess: () => queryClient.invalidateQueries('products') })
+}
+
+export const useProductsMe = (queryParams) => {
+    const api = useAxios()
+    return useQuery(['products', 'me', queryParams], () => api.get('/api/v1/users/me/products', { params: queryParams })).then(res => res.data)
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

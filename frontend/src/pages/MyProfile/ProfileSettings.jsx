@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { NavLink, Outlet, useOutlet, useNavigate } from 'react-router-dom'
-import { AvatarCrop, Input, Title } from '../components'
+import { AvatarCrop, Input, Title } from '../../components'
 import { MdPassword } from 'react-icons/md'
 import { BsPersonBoundingBox, BsPersonLinesFill, BsArrowLeft, BsFillPersonXFill } from 'react-icons/bs'
-import useAxios from '../hooks/useAxios'
-import { alertErr, info, notification, toBase64 } from '../utils'
-import useInput from '../hooks/useInput'
-import AuthContext from '../contexts/AuthProvider'
+import useAxios from '../../hooks/useAxios'
+import { alertErr, info, notification, toBase64 } from '../../utils'
+import useInput from '../../hooks/useInput'
+import AuthContext from '../../contexts/AuthProvider'
 import { useMediaQuery } from 'react-responsive'
 
 
@@ -126,7 +126,10 @@ export const UpdateProfile = () => {
             return
         }
         api.patch('/api/v1/users/me/', data)
-            .then(res => notification('Your profile has been updated')).catch(err => alertErr(err))
+            .then(res => {
+                notification('Your profile has been updated')
+                setUser(res.data)
+            }).catch(err => alertErr(err))
     }
 
     return (

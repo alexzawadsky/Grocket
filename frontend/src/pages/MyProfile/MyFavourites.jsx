@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { ItemCard, Pagination, Title } from '../components'
+import { ItemCard, Pagination, Title } from '../../components'
 import { useMediaQuery } from 'react-responsive'
 import { BsArrowLeft } from 'react-icons/bs'
-import useAxios from '../hooks/useAxios'
+import useAxios from '../../hooks/useAxios'
 import { AiFillHeart } from 'react-icons/ai'
 
 
@@ -73,7 +73,6 @@ const MyFavourites = () => {
 
     const loadPage = () => {
         api.get(`/api/v1/products/?limit=4&page=${page + 1}&is_favourited=1`).then(res => {
-            console.log(res)
             setProducts(res.data.results)
             setPagesCount(res.data.pages_count)
         }).catch(err => alert(`${err.response.status} ${err.response.message}`))

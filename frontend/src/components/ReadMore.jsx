@@ -2,15 +2,14 @@ import React, { useState } from 'react'
 
 const ReadMore = ({ text }) => {
     const [isReadMore, setIsReadMore] = useState(true);
-    const toggleReadMore = () => {
-        setIsReadMore(!isReadMore);
-    };
+    const long = text.length > 150
+
     return (
         <p className="text">
-            {isReadMore ? text.slice(0, 150) : text}
-            <span onClick={toggleReadMore} className="text-accent-orange cursor-pointer">
+            {long && isReadMore ? text.slice(0, 150) : text}
+            {long ? <span onClick={() => setIsReadMore(prevState => !prevState)} className="text-accent-orange cursor-pointer">
                 {isReadMore ? "...read more" : "  read less"}
-            </span>
+            </span> : null}
         </p>
     );
 };

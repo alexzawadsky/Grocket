@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import useAxios from '../../hooks/useAxios'
 import { useMediaQuery } from 'react-responsive'
 import { NavLink } from 'react-router-dom'
-import { Pagination, MyLot } from '../../components'
+import MyLot from './MyLot'
+import { Pagination } from '../../components'
 import { BsArrowLeft } from 'react-icons/bs'
 
 const Archieved = () => {

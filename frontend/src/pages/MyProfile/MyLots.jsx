@@ -3,7 +3,8 @@ import { useMediaQuery } from 'react-responsive'
 import { BsArrowLeft } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 import useAxios from '../../hooks/useAxios'
-import { Pagination, MyLot } from '../../components'
+import MyLot from './MyLot'
+import { Pagination } from '../../components'
 
 const MyLots = () => {
 

@@ -9,7 +9,7 @@ const ProductsList = () => {
     const { isLoading, data, error } = useProducts(page)
 
     if (isLoading) return <Spinner />
-    if (error) return error
+    if (error) return error.message
 
     return (
         <>

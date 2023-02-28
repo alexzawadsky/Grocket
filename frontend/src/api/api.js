@@ -10,7 +10,8 @@ export const useProducts = (queryParams) => {
 
 export const useProcuct = (productId) => {
     const api = useAxios()
-    return useQuery(['product', productId], () => api.get(`/api/v1/products/${productId}`).then(res => res.data))
+    return useQuery(['product', productId],
+        () => api.get(`/api/v1/products/${productId}`).then(res => res.data))
 }
 
 export const useAddProduct = () => {
@@ -22,7 +23,14 @@ export const useAddProduct = () => {
 
 export const useProductsMe = (queryParams) => {
     const api = useAxios()
-    return useQuery(['products', 'me', queryParams], () => api.get('/api/v1/users/me/products', { params: queryParams })).then(res => res.data)
+    return useQuery(['products', 'me', queryParams],
+        () => api.get('/api/v1/users/me/products', { params: queryParams }).then(res => res.data))
+}
+
+export const useCategories = (parentId) => {
+    const api = useAxios()
+    return useQuery(['categories', { parent_id: parentId }],
+        () => api.get(`/api/v1/categories/`, { params: { parent_id: parentId } }).then(res => res.data))
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

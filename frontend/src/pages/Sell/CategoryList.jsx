@@ -5,7 +5,6 @@ import Spinner from '../../components/Spinner'
 
 const CategoryList = ({ category, setCategory }) => {
 
-    const [categoryStageList, setCategoryStageList] = useState()
     const [parentId, setParentId] = useState(null)
     const { data, isLoading, error } = useCategories(parentId)
 

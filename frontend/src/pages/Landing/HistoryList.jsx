@@ -10,7 +10,6 @@ import HistoryItem from './HistoryItem'
 const HistoryList = () => {
 
     const isTablet = useMediaQuery({ query: '(min-width: 768px)' })
-
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (

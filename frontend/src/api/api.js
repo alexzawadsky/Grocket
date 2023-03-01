@@ -2,10 +2,13 @@ import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useAxios from "../hooks/useAxios";
 
+const limit = 10;
+
 export const useProducts = (queryParams) => {
     const api = useAxios()
     return useQuery(['products', queryParams], () => api.get(`/api/v1/products`,
-        { params: { ...queryParams, limit: 10 } }).then(res => res.data))
+        { params: { ...queryParams, limit: limit } }).then(res => res.data),
+        { keepPreviousData: true })
 }
 
 export const useProcuct = (productId) => {
@@ -24,13 +27,20 @@ export const useAddProduct = () => {
 export const useProductsMe = (queryParams) => {
     const api = useAxios()
     return useQuery(['products', 'me', queryParams],
-        () => api.get('/api/v1/users/me/products', { params: queryParams }).then(res => res.data))
+        () => api.get('/api/v1/users/me/products',
+            { params: { ...queryParams, limit: limit } }).then(res => res.data))
 }
 
 export const useCategories = (parentId) => {
     const api = useAxios()
     return useQuery(['categories', { parent_id: parentId }],
-        () => api.get(`/api/v1/categories/`, { params: { parent_id: parentId } }).then(res => res.data))
+        () => api.get(`/api/v1/categories`, { params: { parent_id: parentId } }).then(res => res.data))
+}
+
+export const useProfile = (userId) => {
+    const api = useAxios()
+    return useQuery(['users', userId ? userId : 'me'],
+        () => api.get(`/api/v1/users/${userId ? userId : 'me'}`).then(res => res.data))
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

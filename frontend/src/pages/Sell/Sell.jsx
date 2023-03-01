@@ -5,26 +5,24 @@ import useInput from '../../hooks/useInput'
 import { BsCheckCircleFill, BsTrashFill } from 'react-icons/bs'
 import { AiOutlineCheck, AiOutlineRotateRight, AiOutlineRotateLeft } from 'react-icons/ai'
 import AuthContext from '../../contexts/AuthProvider'
-import useAxios from '../../hooks/useAxios'
 import AvatarEditor from 'react-avatar-editor'
 import CategoryList from './CategoryList'
 import { useAddProduct } from '../../api/api'
 import { deleteImage, saveImage } from './utils'
+import AddressField from '../../components/AddressField'
 
 const Sell = () => {
 
     const { user } = useContext(AuthContext)
-    const api = useAxios()
     const editorRef = useRef()
     const imageInputRef = useRef()
     const editorWidth = 360 * (window.innerWidth / 1920)
 
     const [stage, setStage] = useState(1)
-    const [product, setProduct] = useState()
-    const [category, setCategory] = useState()
+    const [category, setCategory] = useState([])
     const [currentImage, setCurrentImage] = useState()
     const [images, setImages] = useState(null)
-    const [imageSize, setImageSize] = useState(1)
+    const [imageSize, setImageSize] = useState(0)
     const [imageRotation, setImageRotation] = useState(0)
     const [mainImageIndex, setMainImageIndex] = useState(0)
     const [allValid, setAllValid] = useState(false)
@@ -34,11 +32,12 @@ const Sell = () => {
     const price = useInput('', { isInt: true })
     const currency = useInput('', { isEmpty: true })
     const address = useInput('', { isEmpty: true })
+    // const [address, setAddress] = useState('')
 
     let addProductMutation = useAddProduct()
 
     useEffect(() => {
-        if (category && category[category.length - 1].is_lower) {
+        if (category.length > 0 && category[category.length - 1].is_lower) {
             setStage(2)
         } else {
             setStage(1)
@@ -46,7 +45,7 @@ const Sell = () => {
             description.clear()
             price.clear()
             currency.clear()
-            address.clear()
+            // address.clear()
             setImageRotation(0)
             setImageSize(1)
             setImages(null)
@@ -144,7 +143,12 @@ const Sell = () => {
                         title='Address'
                         instance={address}
                         split={true}
-                        must={true} />
+                        must={true}
+                    />
+                    {/* <AddressField
+                        setAddress={setAddress}
+                        split={true}
+                    /> */}
                     <div className='mt-2 bg-zinc-100 h-44 col-start-2 col-end-3 flex items-center justify-center'>
                         MAP
                     </div>
@@ -176,6 +180,7 @@ const Sell = () => {
                                     min={1}
                                     max={2}
                                     step={0.01}
+                                    value={imageSize}
                                     onChange={(e) => setImageSize(e.target.value)}
                                     className='grow'
                                     type="range"

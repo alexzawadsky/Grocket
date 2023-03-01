@@ -5,28 +5,21 @@ import Spinner from '../../components/Spinner'
 
 const CategoryList = ({ category, setCategory }) => {
 
+    const [lastChild, setLastChild] = useState(null)
     const [parentId, setParentId] = useState(null)
     const { data, isLoading, error } = useCategories(parentId)
 
     useEffect(() => {
-        if (category) {
-            setParentId(category[category.length - 1].id)
-        } else {
-            setParentId(null)
-        }
-    }, [category])
+        setParentId(lastChild?.id)
+    }, [lastChild])
 
     const updateCategory = (newCategory) => {
-        if (!category) {
-            setCategory([newCategory])
-        } else {
-            setCategory([...category, newCategory])
-        }
+        setCategory([...category, newCategory])
+        setLastChild(newCategory)
     }
-
     return (
         <div className="flex gap-5">
-            {category && <div className="flex gap-3 md:gap-5 flex-wrap items-center h-fit">
+            {category.length > 0 && <div className="flex gap-3 md:gap-5 flex-wrap items-center h-fit">
                 {category.map((el, key) => (
                     <div key={key} className='flex gap-5 items-center'>
                         <p className={`${el.is_lower ? 'font-bold' : null}`}>{el.title}</p>
@@ -34,7 +27,7 @@ const CategoryList = ({ category, setCategory }) => {
                     </div>
                 ))}
             </div>}
-            {!category || !category[category.length - 1].is_lower ?
+            {!lastChild?.is_lower ?
                 <div className='grid gap-2 px-5 h-fit'>
                     {isLoading ? <Spinner /> :
                         error ? error.message : data.map((el, key) =>
@@ -42,7 +35,7 @@ const CategoryList = ({ category, setCategory }) => {
                                 {el.title}
                             </div>)}
                 </div> : null}
-            {category && category[category.length - 1].is_lower && <button className='text-accent-red' onClick={() => setCategory(null)}><BsTrashFill /></button>}
+            {lastChild?.is_lower && <button className='text-accent-red' onClick={() => setCategory(null)}><BsTrashFill /></button>}
         </div>
     )
 }

@@ -13,7 +13,7 @@ export const SearchHistoryProvider = ({ children }) => {
     const { user } = useContext(AuthContext)
 
     const updateHistory = (product) => {
-        if (user && product.user.id === user.user_id) return
+        if (product.user.id === user?.user_id) return
         if (lookHistory.filter((el) => el.id === product.id).length > 0) return
         setLookHistory([product, ...lookHistory])
     }

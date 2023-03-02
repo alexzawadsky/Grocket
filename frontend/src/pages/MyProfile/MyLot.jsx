@@ -16,13 +16,13 @@ const MyLot = ({ product }) => {
     return (
         <div
             to={`/product/${product.id}`}
-            className='border-black border-2 rounded-2xl flex flex-col'
+            className='border-black border-2 rounded-2xl flex flex-col overflow-hidden'
         >
             <NavLink
                 to={`/products/${product.id}`}
-                className="overflow-hidden"
+                className="overflow-hidden w-full"
             >
-                {product.images ? <img src={product.images[0].image} className='' /> : null}
+                {product.images ? <img src={product.images[0].image} className='w-full' /> : null}
             </NavLink>
             <div
                 className='p-3 md:p-5 flex justify-around flex-col gap-2 grow'

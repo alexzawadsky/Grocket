@@ -10,7 +10,7 @@ const useAxios = () => {
 
     const axiosInstance = axios.create({
         baseURL: import.meta.env.VITE_API_URL || 'http://localhost',
-        headers: { Authorization: `Bearer ${authTokens?.access}` }
+        headers: authTokens ? { Authorization: `Bearer ${authTokens?.access}` } : null
     })
 
     axiosInstance.interceptors.request.use(async req => {

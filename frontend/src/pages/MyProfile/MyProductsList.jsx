@@ -11,6 +11,7 @@ const MyProductsList = ({ query }) => {
 
     if (isLoading) return <Spinner />
     if (error) return error.message
+    if (data?.results?.length === 0) return 'No results found'
 
     return (
         <>

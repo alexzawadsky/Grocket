@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive'
 import { AiFillHeart, AiOutlineSetting } from 'react-icons/ai'
 import { BsCartCheck, BsCartDash, BsCart } from 'react-icons/bs'
 import { useProfile } from '../../api/api'
+import { Helmet } from 'react-helmet-async'
 // import Flag from 'react-flags'
 
 const MyProfile = () => {
@@ -22,6 +23,9 @@ const MyProfile = () => {
 
     return (
         <div className='grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr] items-center md:items-start md:flex-row gap-5'>
+            <Helmet>
+                <title>{data.first_name} {data.last_name} (me) - Grocket</title>
+            </Helmet>
             {outlet && !isTablet ?
                 null
                 :

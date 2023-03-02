@@ -5,7 +5,7 @@ from rest_framework import filters, permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from core.views import avatar_img_creating
+from users.services import UserService
 from products.models import Category, Favourite, Product, Promotion
 from users.models import User
 
@@ -14,6 +14,9 @@ from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer, FavouriteSerializer,
                           ProductCreateUpdateSerializer, ProductListSerializer,
                           ProductRetrieveSerializer, PromotionSerializer)
+
+
+users_services = UserService()
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -33,7 +36,8 @@ class CustomUserRegisterViewSet(djviews.UserViewSet):
         last_name = data['last_name']
 
         if 'avatar' not in data_keys:
-            data['avatar'] = avatar_img_creating(first_name, last_name)
+            data['avatar'] = users_services.avatar_img_creating(
+                first_name, last_name)
 
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)

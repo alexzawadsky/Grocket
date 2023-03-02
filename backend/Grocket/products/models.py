@@ -4,7 +4,6 @@ from django.db import models
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
 
-from core.models import WithDateModel
 from users.models import User
 
 
@@ -17,6 +16,19 @@ def lower_category_validate(value):
         raise ValidationError(
             'Можно добавить только в конечную категорию.'
         )
+
+
+class WithDateModel(models.Model):
+    """Абстрактная модель. Добавляет дату создания."""
+
+    pub_date = models.DateTimeField(
+        'Дата создания',
+        auto_now_add=True,
+        db_index=True,
+    )
+
+    class Meta:
+        abstract = True
 
 
 class Image(models.Model):

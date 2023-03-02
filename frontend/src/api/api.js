@@ -43,12 +43,29 @@ export const useProfile = (userId) => {
         () => api.get(`/api/v1/users/${userId ? userId : 'me'}`).then(res => res.data))
 }
 
-export const useSellProduct = (productId, sold) => {
+export const useSellProduct = () => {
     const api = useAxios()
-    return useMutation((productId) => api({
-        url: `/api/v1/products/${productId}/sell`,
-        method: sold ? 'delete' : 'post'
-    }), { onSuccess: null })
+    const queryClient = useQueryClient()
+    return useMutation((data) => api({
+        url: `/api/v1/products/${data.id}/sell/`,
+        method: data.state ? 'delete' : 'post'
+    }), { onSuccess: () => queryClient.invalidateQueries('products') })
+}
+
+export const useArchiveProduct = () => {
+    const api = useAxios()
+    const queryClient = useQueryClient()
+    return useMutation((data) => api({
+        url: `/api/v1/products/${data.id}/archive/`,
+        method: data.state ? 'delete' : 'post'
+    }), { onSuccess: () => queryClient.invalidateQueries('products') })
+}
+
+export const useDeleteProduct = () => {
+    const api = useAxios()
+    const queryClient = useQueryClient()
+    return useMutation((productId) => api.delete(`/api/v1/products/${productId}/`),
+        { onSuccess: () => queryClient.invalidateQueries('products') })
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

@@ -13,7 +13,7 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
         <div className='flex flex-row md:flex-col md:items-start items-center gap-4 border-2 border-black p-5 rounded-xl shrink-0 h-fit'>
             <div className="w-full aspect-square relative">
                 <Avatar avatar={avatar} />
-                {user?.user_id === id ? <NavLink to='settings' className='absolute right-1 bottom-1 text-xl border-2 border-accent-orange text-accent-orange p-2 rounded-full'><BiPencil /></NavLink> : null}
+                {user?.user_id === id ? <NavLink to='settings' className='absolute right-1 bottom-1 text-xl border-2 border-accent-orange text-accent-orange p-2 rounded-full bg-white'><BiPencil /></NavLink> : null}
             </div>
             <div className="grid gap-2 md:gap-4">
                 <div className="flex items-center gap-2">

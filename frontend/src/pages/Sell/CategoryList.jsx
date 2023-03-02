@@ -1,39 +1,32 @@
 import React, { useState, useEffect } from 'react'
-import api from '../../api/api'
+import api, { useCategories } from '../../api/api'
 import { BsArrowRight, BsTrashFill } from 'react-icons/bs'
 import Spinner from '../../components/Spinner'
 
 const CategoryList = ({ category, setCategory }) => {
 
-    const [categoryStageList, setCategoryStageList] = useState()
+    const [lastChild, setLastChild] = useState(null)
+    const [parentId, setParentId] = useState(null)
+    const { data, isLoading, error } = useCategories(parentId)
 
     useEffect(() => {
-        if (category) {
-            fetchCategories(category[category.length - 1].id)
-        } else {
-            fetchCategories()
-        }
-    }, [category])
+        setParentId(lastChild?.id)
+    }, [lastChild])
 
     const updateCategory = (newCategory) => {
-        if (!category) {
-            setCategoryStageList(null)
-            setCategory([newCategory])
-        } else {
-            setCategoryStageList(null)
-            setCategory([...category, newCategory])
-        }
+        setCategory([...category, newCategory])
+        setLastChild(newCategory)
     }
 
-    const fetchCategories = (parentId) => {
-        api.get(`/api/v1/categories/${parentId ? '?parent_id=' + parentId : ''}`)
-            .then(res => setCategoryStageList(res.data))
-            .catch(err => console.log(err))
+    const clear = () => {
+        setCategory([])
+        setLastChild(null)
+        setParentId(null)
     }
 
     return (
         <div className="flex gap-5">
-            {category && <div className="flex gap-3 md:gap-5 flex-wrap items-center h-fit">
+            {category.length > 0 && <div className="flex gap-3 md:gap-5 flex-wrap items-center h-fit">
                 {category.map((el, key) => (
                     <div key={key} className='flex gap-5 items-center'>
                         <p className={`${el.is_lower ? 'font-bold' : null}`}>{el.title}</p>
@@ -41,14 +34,15 @@ const CategoryList = ({ category, setCategory }) => {
                     </div>
                 ))}
             </div>}
-            {!category || !category[category.length - 1].is_lower ?
+            {!lastChild?.is_lower ?
                 <div className='grid gap-2 px-5 h-fit'>
-                    {categoryStageList ? categoryStageList.map((el, key) =>
-                        <div className='list-item cursor-pointer hover:marker:text-accent-orange' key={key} onClick={() => updateCategory(el)}>
-                            {el.title}
-                        </div>) : <Spinner />}
+                    {isLoading ? <Spinner /> :
+                        error ? error.message : data.map((el, key) =>
+                            <div className='list-item cursor-pointer hover:marker:text-accent-orange' key={key} onClick={() => updateCategory(el)}>
+                                {el.title}
+                            </div>)}
                 </div> : null}
-            {category && category[category.length - 1].is_lower && <button className='text-accent-red' onClick={() => setCategory(null)}><BsTrashFill /></button>}
+            {lastChild?.is_lower && <button className='text-accent-red' onClick={clear}><BsTrashFill /></button>}
         </div>
     )
 }

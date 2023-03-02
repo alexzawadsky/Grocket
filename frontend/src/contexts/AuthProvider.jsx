@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
                     'X-CSRFToken': getCookie('csrftoken')
                 }
             }
-        ).then(res => console.log(res)).catch(err => alert(err))
+        ).then(_ => navigate('/login')).catch(err => alert(err))
     };
 
     const logoutUser = () => {

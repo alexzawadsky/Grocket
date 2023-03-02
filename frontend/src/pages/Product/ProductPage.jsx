@@ -11,6 +11,7 @@ import { useProcuct } from '../../api/api';
 import SellerCard from './SellerCard';
 import ImagesGallery from './ImagesGallery';
 import Category from './Category';
+import { Helmet } from 'react-helmet-async';
 
 const ProductPage = () => {
 
@@ -26,6 +27,24 @@ const ProductPage = () => {
 
     return (
         <div>
+            <Helmet>
+                <meta
+                    name='application-name'
+                    content='Grocket'
+                />
+                <title>{data?.name} - Grocket</title>
+                <meta
+                    name='og:title'
+                    content={`${data?.name} - ${data.price}${data?.price_currency}`}
+                />
+                <meta
+                    name='og:image'
+                    content={data?.images[0].image} />
+                <meta
+                    name='og:desctiption'
+                    content={`Buy ${data?.name} on Grocket for just ${data?.price}${data?.price_currency}`}
+                />
+            </Helmet>
             <p className='text-primary-100 pb-3'>ID: {data.id}</p>
             <div className='grid lg:grid-cols-[2fr_1fr] gap-10'>
                 <div className='grid gap-3'>

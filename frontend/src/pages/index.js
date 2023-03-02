@@ -1,9 +1,9 @@
 import Landing from "./Landing/Landing";
 import Login from "./Login/Login";
-import MyComments from "./MyProfile/MyComments";
-import MyFavourites from "./MyProfile/MyFavourites";
-import MyLots from "./MyProfile/MyLots";
-import MyProfile from "./MyProfile/MyProfile";
+import MyComments from "./MyProfile/Comments";
+import MyFavourites from "./MyProfile/Favourites";
+import MyLots from "./MyProfile/ActiveProducts";
+import MyProfile from "./MyProfile/Profile";
 import NotFound from "./NotFound/NotFound";
 import ProductPage from "./Product/ProductPage";
 import Register from "./Register/Register";
@@ -12,8 +12,8 @@ import Sell from "./Sell/Sell";
 import UserComments from "./User/UserComments";
 import UserLots from "./User/UserLots";
 import UserProfile from "./User/UserProfile";
-import Archieved from "./MyProfile/Archieved";
-import Sold from "./MyProfile/Sold";
+import Archieved from "./MyProfile/ArchievedProducts";
+import Sold from "./MyProfile/SoldProducts";
 import ProfileSettings, { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProfile } from "./MyProfile/ProfileSettings";
 import EditProduct from "./Product/EditProduct";
 

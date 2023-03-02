@@ -20,12 +20,12 @@ const ItemCard = ({ product }) => {
     }
 
     return (
-        <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden '>
+        <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden flex flex-col'>
             <NavLink to={`/products/${product.id}`} className="">
-                {product.images ? <img src={product.images[0].image} className='' /> : null}
+                {product.images ? <img src={product?.images[0].image} className='' /> : null}
             </NavLink>
-            <div className='p-3 md:p-5 flex justify-around flex-col gap-2'>
-                <div className="flex justify-between gap-2 max-h-12 grow">
+            <div className='p-3 md:p-5 flex justify-around flex-col gap-2 grow'>
+                <div className="flex justify-between gap-2 grow items-center">
                     <div className='overflow-hidden'>
                         <NavLink to={`/products/${product.id}`} className='hover:text-accent-orange text-sm xl:text-lg'>{product.name}</NavLink>
                     </div>

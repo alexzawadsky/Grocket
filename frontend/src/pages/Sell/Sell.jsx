@@ -1,30 +1,28 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Title, Input } from '../../components'
+import { Title, Input, Spinner } from '../../components'
 import useInput from '../../hooks/useInput'
 import { BsCheckCircleFill, BsTrashFill } from 'react-icons/bs'
 import { AiOutlineCheck, AiOutlineRotateRight, AiOutlineRotateLeft } from 'react-icons/ai'
 import AuthContext from '../../contexts/AuthProvider'
-import useAxios from '../../hooks/useAxios'
 import AvatarEditor from 'react-avatar-editor'
 import CategoryList from './CategoryList'
 import { useAddProduct } from '../../api/api'
 import { deleteImage, saveImage } from './utils'
+import AddressField from '../../components/AddressField'
 
 const Sell = () => {
 
     const { user } = useContext(AuthContext)
-    const api = useAxios()
     const editorRef = useRef()
     const imageInputRef = useRef()
     const editorWidth = 360 * (window.innerWidth / 1920)
 
     const [stage, setStage] = useState(1)
-    const [product, setProduct] = useState()
-    const [category, setCategory] = useState()
+    const [category, setCategory] = useState([])
     const [currentImage, setCurrentImage] = useState()
     const [images, setImages] = useState(null)
-    const [imageSize, setImageSize] = useState(1)
+    const [imageSize, setImageSize] = useState(0)
     const [imageRotation, setImageRotation] = useState(0)
     const [mainImageIndex, setMainImageIndex] = useState(0)
     const [allValid, setAllValid] = useState(false)
@@ -34,11 +32,12 @@ const Sell = () => {
     const price = useInput('', { isInt: true })
     const currency = useInput('', { isEmpty: true })
     const address = useInput('', { isEmpty: true })
+    // const [address, setAddress] = useState('')
 
     let addProductMutation = useAddProduct()
 
     useEffect(() => {
-        if (category && category[category.length - 1].is_lower) {
+        if (category.length > 0 && category[category.length - 1].is_lower) {
             setStage(2)
         } else {
             setStage(1)
@@ -46,7 +45,7 @@ const Sell = () => {
             description.clear()
             price.clear()
             currency.clear()
-            address.clear()
+            // address.clear()
             setImageRotation(0)
             setImageSize(1)
             setImages(null)
@@ -82,7 +81,6 @@ const Sell = () => {
             images: images
         }
         addProductMutation.mutate(body)
-        setProduct(addProductMutation.data)
     }
 
     if (!user) return <Title text='You need to login to your account to be able to sell items' />
@@ -93,7 +91,7 @@ const Sell = () => {
                 text='Sell your item'
                 className='col-span-full'
             />
-            {stage >= 1 && !product &&
+            {stage >= 1 && !addProductMutation.data &&
                 <>
                     <h2 className='col-span-full text-xl font-bold' >
                         Category
@@ -103,7 +101,7 @@ const Sell = () => {
                         setCategory={setCategory}
                     />
                 </>}
-            {stage === 2 && !product &&
+            {stage === 2 && !addProductMutation.data &&
                 <form
                     onSubmit={handleSubmit}
                     className='grid grid-cols-[1fr_2fr_1fr] gap-2'
@@ -145,7 +143,12 @@ const Sell = () => {
                         title='Address'
                         instance={address}
                         split={true}
-                        must={true} />
+                        must={true}
+                    />
+                    {/* <AddressField
+                        setAddress={setAddress}
+                        split={true}
+                    /> */}
                     <div className='mt-2 bg-zinc-100 h-44 col-start-2 col-end-3 flex items-center justify-center'>
                         MAP
                     </div>
@@ -177,6 +180,7 @@ const Sell = () => {
                                     min={1}
                                     max={2}
                                     step={0.01}
+                                    value={imageSize}
                                     onChange={(e) => setImageSize(e.target.value)}
                                     className='grow'
                                     type="range"
@@ -228,17 +232,18 @@ const Sell = () => {
                         disabled={!allValid}
                         className="button-fill-orange mt-5 disabled:border-2 disabled:bg-white disabled:cursor-not-allowed disabled:border-slate-600 disabled:text-slate-600"
                     >
-                        <AiOutlineCheck />Place item
+                        <AiOutlineCheck />{addProductMutation.isLoading ? <Spinner /> : 'Place item'}
                     </button>
+                    {addProductMutation.isError && addProductMutation.error.message}
                 </form>}
-            {product ?
+            {addProductMutation.data ?
                 <div className='grid gap-5'>
                     <h2 className='text text-xl text-green-600 flex items-center gap-3'><BsCheckCircleFill />Your item had been succesfully placed!</h2>
                     <span className='flex gap-1'>
                         <p>You can check</p>
                         <NavLink
                             className='text-accent-orange hover:underline'
-                            to={`/products/${product.id}`}
+                            to={`/products/${addProductMutation.data.id}`}
                         >
                             it's page
                         </NavLink>
@@ -247,12 +252,6 @@ const Sell = () => {
                             className='text-accent-orange hover:underline'
                             to='/profile/lots'>all your items</NavLink>
                     </span>
-                    <button
-                        className='button-outline-orange'
-                        onClick={() => { setCategory(null); setProduct(null) }}
-                    >
-                        Sell another item
-                    </button>
                 </div> : null
             }
         </div >

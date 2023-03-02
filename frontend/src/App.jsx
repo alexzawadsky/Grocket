@@ -1,6 +1,5 @@
 import { Navbar, Footer, PrivateRoute } from './components'
 import { Outlet, Routes, Route, BrowserRouter } from 'react-router-dom'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { SearchHistoryProvider } from './contexts/HistoryContext';
 import { AuthProvider } from './contexts/AuthProvider';
 import {
@@ -28,12 +27,12 @@ import {
     EditProduct
 } from './pages'
 
-
 function App() {
     return (
         <BrowserRouter>
             <AuthProvider>
                 <SearchHistoryProvider>
+                    {/* <ReactQueryDevtools /> */}
                     <div className='flex flex-col h-full'>
                         <Navbar />
                         <main className='mt-20 container mx-auto flex-grow px-5'>

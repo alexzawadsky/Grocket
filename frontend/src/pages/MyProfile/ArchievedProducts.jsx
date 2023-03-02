@@ -5,7 +5,7 @@ import MyProductsList from './MyProductsList'
 
 const Archieved = () => {
 
-    const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
+    const isPhone = useMediaQuery({ query: '(max-width: 764px)' })
 
     return (
         <div className='grid gap-5 w-full'>

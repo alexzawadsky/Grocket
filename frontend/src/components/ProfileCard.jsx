@@ -10,25 +10,27 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
 
     const { user } = useContext(AuthContext)
     return (
-        <div className='grid gap-4 border-2 border-black p-5 rounded-xl shrink-0 h-fit w-fit'>
-            <div className="w-full max-w-[18rem] aspect-square relative">
+        <div className='flex flex-row md:flex-col items-center gap-4 border-2 border-black p-5 rounded-xl shrink-0 h-fit'>
+            <div className="w-full aspect-square relative">
                 <Avatar avatar={avatar} />
                 {user && user.user_id === id ? <NavLink to='settings' className='absolute right-1 bottom-1 text-xl border-2 border-accent-orange text-accent-orange p-2 rounded-full'><BiPencil /></NavLink> : null}
             </div>
-            <div className="flex items-center gap-2">
-                {firstName ? <p className='text-xl'>{firstName}</p> : <p className='text-primary-100 text-xl'>First name</p>}
-                {lastName ? <p className='text-xl'>{lastName}</p> : <p className='text-primary-100 text-xl'>Last name</p>}
-            </div>
-            <p className='flex items-center gap-3'><BsFillTelephoneFill />
-                {phone ? <p>{phone}</p> : <p className='text-primary-100'>+XXXXXXXXXXX</p>}
-            </p>
-            <p className='flex gap-3 items-center'><HiOutlineMail width={1.5} />
-                {email ? <p>{email}</p> : <p className='text-primary-100'>email@email.com</p>}
-            </p>
-            <div className='flex gap-3'>
-                <RatingStars rating={rating} />
-                <p>{rating ? rating.toFixed(2) : '0.00'}</p>
-                {withComments ? <NavLink className='text-accent-orange underline' to='comments'>Comments</NavLink> : null}
+            <div className="grid gap-2 md:gap-4">
+                <div className="flex items-center gap-2">
+                    {firstName ? <p className='text-xl'>{firstName}</p> : <p className='text-primary-100 text-xl'>First name</p>}
+                    {lastName ? <p className='text-xl'>{lastName}</p> : <p className='text-primary-100 text-xl'>Last name</p>}
+                </div>
+                <p className='flex items-center gap-3'><BsFillTelephoneFill />
+                    {phone ? <p>{phone}</p> : <p className='text-primary-100'>+XXXXXXXXXXX</p>}
+                </p>
+                <p className='flex gap-3 items-center'><HiOutlineMail width={1.5} />
+                    {email ? <p>{email}</p> : <p className='text-primary-100'>email@email.com</p>}
+                </p>
+                <div className='flex gap-3'>
+                    <RatingStars rating={rating} />
+                    <p>{rating ? rating.toFixed(2) : '0.00'}</p>
+                    {withComments ? <NavLink className='text-accent-orange underline' to='comments'>Comments</NavLink> : null}
+                </div>
             </div>
         </div>
     )

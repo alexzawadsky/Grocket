@@ -16,7 +16,7 @@ const Pagination = ({ page, pagesCount, setPage }) => {
             onPageChange={(page) => setPage(page.selected)}
             className='flex gap-5'
             activeClassName='font-bold'
-            pageClassName='hover:text-accent-orange'
+            pageClassName='[&:not(.font-bold)]:hover:text-accent-orange'
             previousClassName='text-accent-orange font-bold'
             nextClassName='text-accent-orange font-bold'
             previousLabel={<p className='flex items-center gap-2'><BsArrowLeft />Previous</p>}

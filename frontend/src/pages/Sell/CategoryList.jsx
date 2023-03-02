@@ -17,6 +17,13 @@ const CategoryList = ({ category, setCategory }) => {
         setCategory([...category, newCategory])
         setLastChild(newCategory)
     }
+
+    const clear = () => {
+        setCategory([])
+        setLastChild(null)
+        setParentId(null)
+    }
+
     return (
         <div className="flex gap-5">
             {category.length > 0 && <div className="flex gap-3 md:gap-5 flex-wrap items-center h-fit">
@@ -35,7 +42,7 @@ const CategoryList = ({ category, setCategory }) => {
                                 {el.title}
                             </div>)}
                 </div> : null}
-            {lastChild?.is_lower && <button className='text-accent-red' onClick={() => setCategory(null)}><BsTrashFill /></button>}
+            {lastChild?.is_lower && <button className='text-accent-red' onClick={clear}><BsTrashFill /></button>}
         </div>
     )
 }

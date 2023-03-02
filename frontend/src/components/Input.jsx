@@ -47,7 +47,7 @@ const Input = ({ id, type, instance, className, title, autoRef, disabled, split,
                 <div
                     role='button'
                     type="button"
-                    className="h-10 w-fit text-accent-red px-5 flex justify-center"
+                    className="h-10 w-fit text-accent-red px-5 flex items-center"
                     onClick={() => instance.clear()}
                 >
                     <BsFillTrashFill />

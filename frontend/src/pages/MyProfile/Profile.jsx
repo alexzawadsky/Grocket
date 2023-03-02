@@ -21,7 +21,7 @@ const MyProfile = () => {
     if (error) return error.message
 
     return (
-        <div className='flex flex-col items-center md:items-start md:flex-row gap-5'>
+        <div className='grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr] items-center md:items-start md:flex-row gap-5'>
             {outlet && !isTablet ?
                 null
                 :
@@ -37,12 +37,12 @@ const MyProfile = () => {
                             phone={data.phone}
                             withComments={true}
                         />
-                        <NavLink className='font-bold text-xl flex items-center gap-2' to='lots'><BsCart />Active items</NavLink>
-                        <NavLink className='font-bold text-xl flex items-center gap-2' to='archive'><BsCartDash />Archived items</NavLink>
-                        <NavLink className='font-bold text-xl flex items-center gap-2' to='sold'><BsCartCheck />Sold items</NavLink>
-                        <NavLink className='font-bold text-xl flex items-center gap-2' to='favourites'><AiFillHeart color={'red'} />Favourites</NavLink>
-                        <NavLink className='font-bold text-xl flex items-center gap-2' to='settings'><AiOutlineSetting />Settings</NavLink>
-                        <button onClick={logoutUser} className='text-accent-red font-bold flex items-center gap-2 hover:gap-3 transition-all duration-150'>Logout from account<FiLogOut /></button>
+                        <NavLink className='font-bold text-xl flex items-center gap-2 w-fit' to='lots'><BsCart />Active items</NavLink>
+                        <NavLink className='font-bold text-xl flex items-center gap-2 w-fit' to='archive'><BsCartDash />Archived items</NavLink>
+                        <NavLink className='font-bold text-xl flex items-center gap-2 w-fit' to='sold'><BsCartCheck />Sold items</NavLink>
+                        <NavLink className='font-bold text-xl flex items-center gap-2 w-fit' to='favourites'><AiFillHeart color={'red'} />Favourites</NavLink>
+                        <NavLink className='font-bold text-xl flex items-center gap-2 w-fit' to='settings'><AiOutlineSetting />Settings</NavLink>
+                        <button onClick={logoutUser} className='text-accent-red font-bold flex items-center gap-2 hover:gap-3 transition-all duration-150 w-fit'>Logout from account<FiLogOut /></button>
                     </div>
                 )
             }

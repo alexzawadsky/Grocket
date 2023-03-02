@@ -28,7 +28,7 @@ export const useProductsMe = (queryParams) => {
     const api = useAxios()
     return useQuery(['products', 'me', queryParams],
         () => api.get('/api/v1/users/me/products',
-            { params: { ...queryParams, limit: limit } }).then(res => res.data))
+            { params: { ...queryParams, limit: limit } }).then(res => res.data), { keepPreviousData: true })
 }
 
 export const useCategories = (parentId) => {
@@ -41,6 +41,14 @@ export const useProfile = (userId) => {
     const api = useAxios()
     return useQuery(['users', userId ? userId : 'me'],
         () => api.get(`/api/v1/users/${userId ? userId : 'me'}`).then(res => res.data))
+}
+
+export const useSellProduct = (productId, sold) => {
+    const api = useAxios()
+    return useMutation((productId) => api({
+        url: `/api/v1/products/${productId}/sell`,
+        method: sold ? 'delete' : 'post'
+    }), { onSuccess: null })
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

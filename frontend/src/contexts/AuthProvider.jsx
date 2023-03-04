@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode'
 import api from "../api/api";
 import { alertErr, getCookie } from "../utils";
 import { useQueryClient } from "react-query";
+import SearchHistoryContext from "./HistoryContext";
 
 const AuthContext = createContext();
 
@@ -12,8 +13,7 @@ export default AuthContext
 export const AuthProvider = ({ children }) => {
 
     const navigate = useNavigate()
-    const { clearHistory } = useContext(AuthContext)
-    const queryClient = useQueryClient()
+    // const queryClient = useQueryClient()
 
     const [authTokens, setAuthTokens] = useState(() =>
         localStorage.getItem("authTokens")
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }) => {
     const logoutUser = () => {
         setAuthTokens(null);
         setUser(null);
-        clearHistory();
+        localStorage.removeItem('lookHistory');
         // queryClient.invalidateQueries()
         localStorage.removeItem("authTokens");
         navigate("/login");

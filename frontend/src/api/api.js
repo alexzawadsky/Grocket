@@ -74,7 +74,7 @@ export const useDeleteProduct = () => {
 export const useUpdateProfile = () => {
     const api = useAxios()
     const queryClient = useQueryClient()
-    return useMutation((data) => api.patch('/api/v1/users/me', data),
+    return useMutation((data) => api.patch('/api/v1/users/me/', data),
         {
             onSuccess: () => {
                 queryClient.invalidateQueries(['users', 'me'])
@@ -85,7 +85,7 @@ export const useUpdateProfile = () => {
 
 export const useUpdatePassword = () => {
     const api = useAxios()
-    return useMutation((data) => api.post('/api/v1/users/set_password', data),
+    return useMutation((data) => api.post('/api/v1/users/set_password/', data),
         { onSuccess: () => notification('Your password has been updated') })
 }
 

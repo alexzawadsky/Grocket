@@ -71,7 +71,7 @@ export const ChangeAvatar = () => {
     return (
         <div className='grid gap-3'>
             <BackButton />
-            <h2 className='text-2xl font-bold'>Choose new avatar to upload, then click <i>Save adjustments</i></h2>
+            <h2 className='text-2xl font-bold'>Choose new avatar to upload and click <i>Save adjustments</i></h2>
             <input type="file" onChange={(e) => setImageInInput(e.target.files[0])} />
             <div className="w-fit">
                 <AvatarCrop

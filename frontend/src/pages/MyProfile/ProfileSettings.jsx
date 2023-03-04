@@ -8,7 +8,7 @@ import { alertErr, info, notification, toBase64 } from '../../utils'
 import useInput from '../../hooks/useInput'
 import AuthContext from '../../contexts/AuthProvider'
 import { useMediaQuery } from 'react-responsive'
-import { useProfile, useUpdateProfile } from '../../api/api'
+import { useProfile, useUpdatePassword, useUpdateProfile } from '../../api/api'
 
 
 const BackButton = () => {
@@ -23,7 +23,7 @@ export const PasswordReset = () => {
     const newPwd = useInput('', { isEmpty: true })
     const repeatNewPwd = useInput('', { isEmpty: true })
 
-    const updateProfileMutation = useUpdateProfile()
+    const updatePasswordMutation = useUpdatePassword()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -32,7 +32,7 @@ export const PasswordReset = () => {
             re_new_password: repeatNewPwd.value,
             current_password: oldPwd.value
         }
-        updateProfileMutation.mutate(data)
+        updatePasswordMutation.mutate(data)
     }
 
     return (

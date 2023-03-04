@@ -85,7 +85,7 @@ export const useUpdateProfile = () => {
 
 export const useUpdatePassword = () => {
     const api = useAxios()
-    return useMutation((data) => api.post('/api/v1/users/me/set_password', data),
+    return useMutation((data) => api.post('/api/v1/users/set_password', data),
         { onSuccess: () => notification('Your password has been updated') })
 }
 

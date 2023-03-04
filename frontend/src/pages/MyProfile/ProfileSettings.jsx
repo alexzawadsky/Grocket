@@ -8,6 +8,7 @@ import { alertErr, info, notification, toBase64 } from '../../utils'
 import useInput from '../../hooks/useInput'
 import AuthContext from '../../contexts/AuthProvider'
 import { useMediaQuery } from 'react-responsive'
+import { useProfile, useUpdateProfile } from '../../api/api'
 
 
 const BackButton = () => {
@@ -21,7 +22,8 @@ export const PasswordReset = () => {
     const oldPwd = useInput('', { isEmpty: true })
     const newPwd = useInput('', { isEmpty: true })
     const repeatNewPwd = useInput('', { isEmpty: true })
-    const axios = useAxios()
+
+    const updateProfileMutation = useUpdateProfile()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,11 +32,7 @@ export const PasswordReset = () => {
             re_new_password: repeatNewPwd.value,
             current_password: oldPwd.value
         }
-        axios.post('/api/v1/users/set_password/', data).then(res => {
-            if (res.status === 204) {
-                notification('Your password has been updated')
-            }
-        }).catch(err => alertErr(err))
+        updateProfileMutation.mutate(data)
     }
 
     return (
@@ -54,7 +52,8 @@ export const ChangeAvatar = () => {
     const [imageInInput, setImageInInput] = useState(null)
     const [saved, setSaved] = useState(false)
     const editorRef = useRef()
-    const api = useAxios()
+
+    const updateProfileMutation = useUpdateProfile()
 
     const handleAdjSave = async () => {
         let avatar
@@ -64,7 +63,7 @@ export const ChangeAvatar = () => {
             const blob = await result.blob()
             avatar = await toBase64(blob)
         }
-        api.patch('/api/v1/users/me/', { avatar }).then(res => notification('Your avatar has been updated')).catch(err => alertErr(err))
+        updateProfileMutation.mutate({ avatar })
     }
 
     return (
@@ -94,7 +93,9 @@ export const UpdateProfile = () => {
     const phone = useInput('', { isEmpty: true })
     const country = useInput('', { isEmpty: true })
     const [user, setUser] = useState(null)
-    const api = useAxios()
+
+    const updateProfileMutation = useUpdateProfile()
+    const { data } = useProfile()
 
     const formData = {
         first_name: name.value,
@@ -106,16 +107,16 @@ export const UpdateProfile = () => {
     }
 
     useEffect(() => {
-        api.get('/api/v1/users/me').then(res => {
-            setUser(res.data)
-            name.setValue(res.data.first_name)
-            lastName.setValue(res.data.last_name)
-            username.setValue(res.data.username)
-            email.setValue(res.data.email)
-            phone.setValue(res.data.phone)
-            country.setValue(res.data.country)
-        })
-    }, [])
+        if (data) {
+            setUser(data)
+            name.setValue(data.first_name)
+            lastName.setValue(data.last_name)
+            username.setValue(data.username)
+            email.setValue(data.email)
+            phone.setValue(data.phone)
+            country.setValue(data.country)
+        }
+    }, [data])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -125,11 +126,7 @@ export const UpdateProfile = () => {
             info('No changes found')
             return
         }
-        api.patch('/api/v1/users/me/', data)
-            .then(res => {
-                notification('Your profile has been updated')
-                setUser(res.data)
-            }).catch(err => alertErr(err))
+        updateProfileMutation.mutate(data)
     }
 
     return (
@@ -147,7 +144,7 @@ export const UpdateProfile = () => {
                 <div className="col-span-full">
                     <Input title='Email' instance={email} />
                 </div>
-                <button className="button-fill-orange">Update</button>
+                <button className="button-fill-orange">{updateProfileMutation.isLoading ? 'Loading' : 'Update'}</button>
             </form>
         </div>
     )

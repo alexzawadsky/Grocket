@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useAxios from "../hooks/useAxios";
+import { notification } from "../utils";
 
 const limit = 10;
 
 export const useProducts = (queryParams) => {
     const api = useAxios()
-    return useQuery(['products', queryParams], () => api.get(`/api/v1/products`,
-        { params: { ...queryParams, limit: limit } }).then(res => res.data),
+    return useQuery(['products', queryParams],
+        () => api.get(`/api/v1/products`,
+            { params: { ...queryParams, limit: limit } }).then(res => res.data),
         { keepPreviousData: true })
 }
 
@@ -28,7 +30,8 @@ export const useProductsMe = (queryParams) => {
     const api = useAxios()
     return useQuery(['products', 'me', queryParams],
         () => api.get('/api/v1/users/me/products',
-            { params: { ...queryParams, limit: limit } }).then(res => res.data), { keepPreviousData: true })
+            { params: { ...queryParams, limit: limit } }).then(res => res.data),
+        { keepPreviousData: true })
 }
 
 export const useCategories = (parentId) => {
@@ -66,6 +69,24 @@ export const useDeleteProduct = () => {
     const queryClient = useQueryClient()
     return useMutation((productId) => api.delete(`/api/v1/products/${productId}/`),
         { onSuccess: () => queryClient.invalidateQueries('products') })
+}
+
+export const useUpdateProfile = () => {
+    const api = useAxios()
+    const queryClient = useQueryClient()
+    return useMutation((data) => api.patch('/api/v1/users/me', data),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries(['users', 'me'])
+                notification('Your profile has been updated')
+            }
+        })
+}
+
+export const useUpdatePassword = () => {
+    const api = useAxios()
+    return useMutation((data) => api.post('/api/v1/users/me/set_password', data),
+        { onSuccess: () => notification('Your password has been updated') })
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

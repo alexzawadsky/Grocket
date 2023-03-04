@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { NavLink, Outlet, useOutlet, useNavigate } from 'react-router-dom'
-import { AvatarCrop, Input, Title } from '../../components'
+import { AvatarCrop, Input, Spinner, Title } from '../../components'
 import { MdPassword } from 'react-icons/md'
 import { BsPersonBoundingBox, BsPersonLinesFill, BsArrowLeft, BsFillPersonXFill } from 'react-icons/bs'
 import useAxios from '../../hooks/useAxios'
@@ -42,7 +42,9 @@ export const PasswordReset = () => {
             <Input title='Old password' type='password' instance={oldPwd} must={true} />
             <Input title='New password' type='password' instance={newPwd} must={true} />
             <Input title='Repeat new password' type='password' instance={repeatNewPwd} must={true} />
-            <button className='button-fill-orange' disabled={!oldPwd.allValid || !newPwd.allValid || !repeatNewPwd.allValid}>Change password</button>
+            <button className='button-fill-orange' disabled={!oldPwd.allValid || !newPwd.allValid || !repeatNewPwd.allValid}>
+                {updatePasswordMutation.isLoading ? <Spinner /> : 'Change password'}
+            </button>
         </form>
     )
 }
@@ -79,6 +81,7 @@ export const ChangeAvatar = () => {
                     adjSaved={saved}
                     onSave={handleAdjSave}
                 />
+                {updateProfileMutation.isLoading && <Spinner />}
             </div>
         </div>
     )
@@ -144,7 +147,7 @@ export const UpdateProfile = () => {
                 <div className="col-span-full">
                     <Input title='Email' instance={email} />
                 </div>
-                <button className="button-fill-orange">{updateProfileMutation.isLoading ? 'Loading' : 'Update'}</button>
+                <button className="button-fill-orange">{updateProfileMutation.isLoading ? <Spinner /> : 'Update'}</button>
             </form>
         </div>
     )

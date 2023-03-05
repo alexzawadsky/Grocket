@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import SearchHistoryContext from '../../contexts/HistoryContext';
-import { ReadMore, Spinner, Map } from '../../components';
+import { ReadMore, Spinner, Map, Title } from '../../components';
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 import { useMediaQuery } from 'react-responsive';
@@ -12,16 +12,26 @@ import SellerCard from './SellerCard';
 import ImagesGallery from './ImagesGallery';
 import Category from './Category';
 import { Helmet } from 'react-helmet-async';
+import AuthContext from '../../contexts/AuthProvider';
+import ManageProductMenu from '../../components/ManageProductMenu';
 
 const ProductPage = () => {
 
     const { updateHistory } = useContext(SearchHistoryContext)
+    const { user } = useContext(AuthContext)
     const { productId } = useParams()
     const isTablet = useMediaQuery({ query: '(max-width: 1023px)' })
 
     const { data, error, isLoading } = useProcuct(productId)
 
     if (data) updateHistory(data)
+    if (error?.response?.status === 404) return (
+        <div className='grid gap-3'>
+            <Title text='Product not found' />
+            <p>This can happen if product has been archived or deleted</p>
+            {user && <p>If it is your product you can find it in your <NavLink to='/profile' className='text-accent-orange'>profile</NavLink></p>}
+        </div>
+    )
     if (error) return error.message
     if (isLoading) return <Spinner />
 
@@ -39,7 +49,7 @@ const ProductPage = () => {
                 />
                 <meta
                     name='og:image'
-                    content={data?.images[0].image} />
+                    content={data?.images[0]?.image} />
                 <meta
                     name='og:desctiption'
                     content={`Buy ${data?.name} on Grocket for just ${data?.price}${data?.price_currency}`}
@@ -68,12 +78,27 @@ const ProductPage = () => {
                     <h2 className='font-bold text-2xl flex items-center gap-2'><FiMapPin />Address</h2>
                     <Map adress={data.address} />
                     <p>{data.address}</p>
-                    {isTablet && <><p className='font-bold text-2xl'>Seller</p><SellerCard profile={data.user} /></>}
+                    {isTablet && <>
+                        <p className='font-bold text-2xl'>Seller</p>
+                        <SellerCard profile={data.user} />
+                        {data.user.id === user?.user_id && (
+                            <div className='pb-3 grid gap-3'>
+                                <h2 className='text-xl font-bold'>Manage your product</h2>
+                                <ManageProductMenu product={data} />
+                            </div>
+                        )}
+                    </>}
                 </div>
                 {!isTablet && <div className='w-full'>
                     <div className='grid gap-3 h-fit fixed'>
                         <h2 className='font-bold text-3xl'>{parseFloat(data.price).toFixed(0)} {data.price_currency}</h2>
                         <SellerCard profile={data.user} />
+                        {data.user.id === user?.user_id && (
+                            <div className='pb-3 grid gap-3'>
+                                <h2 className='text-xl font-bold'>Manage your product</h2>
+                                <ManageProductMenu product={data} />
+                            </div>
+                        )}
                     </div>
                 </div>}
             </div>

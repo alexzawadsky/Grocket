@@ -52,7 +52,13 @@ export const useSellProduct = () => {
     return useMutation((data) => api({
         url: `/api/v1/products/${data.id}/sell/`,
         method: data.state ? 'delete' : 'post'
-    }), { onSuccess: () => queryClient.invalidateQueries('products') })
+    }), {
+        onSuccess: () => {
+            notification()
+            queryClient.invalidateQueries('products')
+            queryClient.invalidateQueries('product')
+        }
+    })
 }
 
 export const useArchiveProduct = () => {
@@ -61,14 +67,26 @@ export const useArchiveProduct = () => {
     return useMutation((data) => api({
         url: `/api/v1/products/${data.id}/archive/`,
         method: data.state ? 'delete' : 'post'
-    }), { onSuccess: () => queryClient.invalidateQueries('products') })
+    }), {
+        onSuccess: () => {
+            notification()
+            queryClient.invalidateQueries('products')
+            queryClient.invalidateQueries('product')
+        }
+    })
 }
 
 export const useDeleteProduct = () => {
     const api = useAxios()
     const queryClient = useQueryClient()
     return useMutation((productId) => api.delete(`/api/v1/products/${productId}/`),
-        { onSuccess: () => queryClient.invalidateQueries('products') })
+        {
+            onSuccess: () => {
+                notification()
+                queryClient.invalidateQueries('products')
+                queryClient.invalidateQueries('product')
+            }
+        })
 }
 
 export const useUpdateProfile = () => {
@@ -87,6 +105,21 @@ export const useUpdatePassword = () => {
     const api = useAxios()
     return useMutation((data) => api.post('/api/v1/users/set_password/', data),
         { onSuccess: () => notification('Your password has been updated') })
+}
+
+export const useFavouriteProduct = () => {
+    const api = useAxios()
+    const queryClient = useQueryClient()
+    return useMutation((data) => api({
+        url: `/api/v1/products/${data.id}/favourite/`,
+        method: data.state ? 'DELETE' : 'POST'
+    }).then(res => res.data),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries('products')
+                queryClient.invalidateQueries('product')
+            }
+        })
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

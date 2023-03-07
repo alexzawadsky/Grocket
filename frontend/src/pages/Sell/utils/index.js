@@ -8,14 +8,9 @@ export const deleteImage = (imageIndex, images, setMainImageIndex, setImages) =>
 }
 
 export const saveImage = async (editorRef, images, setImages, setCurrentImage, imageInputRef) => {
-    const dataUrl = editorRef.current.getImage().toDataURL()
-    const result = await fetch(dataUrl)
-    const blob = await result.blob()
-    const img_href = window.URL.createObjectURL(blob)
     const newImage = {
         is_main: images ? false : true,
-        image: await toBase64(blob),
-        image_href: img_href
+        image: editorRef.current.getImage().toDataURL()
     }
     if (images) {
         setImages([...images, newImage])
@@ -24,4 +19,13 @@ export const saveImage = async (editorRef, images, setImages, setCurrentImage, i
     }
     imageInputRef.current.value = null
     setCurrentImage(null)
+}
+
+export const prepareImages = (images) => {
+    return images.map(image =>
+        Object.keys(image).includes('id') ? {
+            id: image.id,
+            is_main: image.is_main
+        } : image
+    )
 }

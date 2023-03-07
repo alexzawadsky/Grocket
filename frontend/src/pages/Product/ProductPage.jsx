@@ -7,7 +7,7 @@ import { ReadMore, Spinner, Map, Title } from '../../components';
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 import { useMediaQuery } from 'react-responsive';
-import { useProcuct } from '../../api/api';
+import { useProduct } from '../../api/api';
 import SellerCard from './SellerCard';
 import ImagesGallery from './ImagesGallery';
 import Category from './Category';
@@ -22,7 +22,7 @@ const ProductPage = () => {
     const { productId } = useParams()
     const isTablet = useMediaQuery({ query: '(max-width: 1023px)' })
 
-    const { data, error, isLoading } = useProcuct(productId)
+    const { data, error, isLoading } = useProduct(productId)
 
     if (data) updateHistory(data)
     if (error?.response?.status === 404) return (

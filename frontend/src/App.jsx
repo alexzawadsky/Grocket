@@ -62,6 +62,7 @@ function App() {
                                             <Route path='comments' element={<MyComments />} />
                                         </Route>
                                         <Route path='sell' element={<Sell />} />
+                                        <Route path='products/:productId/edit' element={<EditProduct />} />
                                     </Route>
                                     <Route path='*' element={<NotFound />} />
                                 </Route>

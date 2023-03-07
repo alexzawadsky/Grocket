@@ -15,7 +15,7 @@ import UserProfile from "./User/UserProfile";
 import Archieved from "./MyProfile/ArchievedProducts";
 import Sold from "./MyProfile/SoldProducts";
 import ProfileSettings, { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProfile } from "./MyProfile/ProfileSettings";
-import EditProduct from "./Product/EditProduct";
+import EditProduct from "./Sell/EditProduct";
 
 export {
     Landing,

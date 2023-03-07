@@ -13,7 +13,7 @@ export const useProducts = (queryParams) => {
         { keepPreviousData: true })
 }
 
-export const useProcuct = (productId) => {
+export const useProduct = (productId) => {
     const api = useAxios()
     return useQuery(['product', productId],
         () => api.get(`/api/v1/products/${productId}`).then(res => res.data))
@@ -24,6 +24,19 @@ export const useAddProduct = () => {
     const api = useAxios()
     return useMutation((product) => api.post('/api/v1/products/', product).then(res => res.data),
         { onSuccess: () => queryClient.invalidateQueries('products') })
+}
+
+export const useUpdateProduct = () => {
+    const api = useAxios()
+    const queryClient = useQueryClient()
+    return useMutation((data) => api.patch(`/api/v1/products/${data.id}`, data.body).then(res => res.data),
+        {
+            onSuccess: () => {
+                notification('Changes saved')
+                queryClient.invalidateQueries('product')
+                queryClient.invalidateQueries('products')
+            }
+        })
 }
 
 export const useProductsMe = (queryParams) => {

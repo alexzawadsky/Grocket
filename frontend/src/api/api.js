@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import useAxios from "../hooks/useAxios";
 import { notification } from "../utils";
 
-const limit = 10;
+const limit = 12;
 
 export const useProducts = (queryParams) => {
     const api = useAxios()
@@ -29,7 +29,7 @@ export const useAddProduct = () => {
 export const useUpdateProduct = () => {
     const api = useAxios()
     const queryClient = useQueryClient()
-    return useMutation((data) => api.patch(`/api/v1/products/${data.id}`, data.body).then(res => res.data),
+    return useMutation((data) => api.patch(`/api/v1/products/${data.id}/`, data.body).then(res => res.data),
         {
             onSuccess: () => {
                 notification('Changes saved')

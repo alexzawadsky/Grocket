@@ -9,7 +9,7 @@ export const deleteImage = (imageIndex, images, setMainImageIndex, setImages) =>
 
 export const saveImage = async (editorRef, images, setImages, setCurrentImage, imageInputRef) => {
     const newImage = {
-        is_main: images ? false : true,
+        is_main: images.length > 0 ? false : true,
         image: editorRef.current.getImage().toDataURL()
     }
     if (images) {

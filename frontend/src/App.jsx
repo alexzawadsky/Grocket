@@ -1,6 +1,5 @@
 import { Navbar, Footer, PrivateRoute } from './components'
-import { Outlet } from 'react-router-dom'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Outlet, Routes, Route, BrowserRouter } from 'react-router-dom'
 import { SearchHistoryProvider } from './contexts/HistoryContext';
 import { AuthProvider } from './contexts/AuthProvider';
 import {
@@ -24,129 +23,55 @@ import {
     ProfileSettings,
     ChangeAvatar,
     UpdateProfile,
-    DeleteProfile
+    DeleteProfile,
+    EditProduct
 } from './pages'
-
-
-const PageIndex = () => {
-    return (
-        <AuthProvider>
-            <div className='flex flex-col h-full'>
-                <Navbar />
-                <main className='mt-20 container mx-auto flex-grow px-5'>
-                    <Outlet />
-                </main>
-                <Footer />
-            </div>
-        </AuthProvider>
-    )
-}
-
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <PageIndex />,
-        errorElement: <NotFound />,
-        children: [
-            {
-                path: '',
-                element: <Landing />
-            },
-            {
-                path: "profile",
-                element: <PrivateRoute element={<MyProfile />} />,
-                children: [
-                    {
-                        path: 'comments',
-                        element: <MyComments />
-                    },
-                    {
-                        path: 'lots',
-                        element: <MyLots />
-                    },
-                    {
-                        path: 'favourites',
-                        element: <MyFavourites />
-                    },
-                    {
-                        path: 'sold',
-                        element: <Sold />
-                    },
-                    {
-                        path: 'archive',
-                        element: <Archieved />
-                    },
-                    {
-                        path: 'settings',
-                        element: <ProfileSettings />,
-                        children: [
-                            {
-                                path: 'password',
-                                element: <PasswordReset />
-                            },
-                            {
-                                path: 'avatar',
-                                element: <ChangeAvatar />
-                            },
-                            {
-                                path: 'info',
-                                element: <UpdateProfile />
-                            },
-                            {
-                                path: 'delete',
-                                element: <DeleteProfile />
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                path: "sell",
-                element: <Sell />,
-            },
-            {
-                path: 'user/:userId',
-                element: <UserProfile />,
-                children: [
-                    {
-                        path: 'lots',
-                        element: <UserLots />
-                    },
-                    {
-                        path: 'comments',
-                        element: <UserComments />
-                    }
-                ]
-            },
-            {
-                path: 'products/:productId',
-                element: <ProductPage />
-            },
-            {
-                path: 'login',
-                element: <Login />
-            },
-            {
-                path: 'register',
-                element: <Register />
-            },
-            {
-                path: 'history',
-                element: <SearchHistoryPage />
-            },
-            // {
-            //     path: 'password-reset',
-            //     element: <PasswordReset />
-            // }
-        ],
-    },
-]);
 
 function App() {
     return (
-        <SearchHistoryProvider>
-            <RouterProvider router={router} />
-        </SearchHistoryProvider>
+        <BrowserRouter>
+            <AuthProvider>
+                <SearchHistoryProvider>
+                    {/* <ReactQueryDevtools /> */}
+                    <div className='flex flex-col h-full'>
+                        <Navbar />
+                        <main className='mt-20 container mx-auto flex-grow px-5'>
+                            <Routes>
+                                <Route path='/' errorElement={<NotFound />}>
+                                    <Route path='' element={<Landing />} />
+                                    <Route path='login' element={<Login />} />
+                                    <Route path='register' element={<Register />} />
+                                    <Route path='history' element={<SearchHistoryPage />} />
+                                    <Route path='users/:userId' element={<UserProfile />}>
+                                        <Route path='lots' element={<UserLots />} />
+                                        <Route path='comments' element={<UserComments />} />
+                                    </Route>
+                                    <Route path='products/:productId' element={<ProductPage />} />
+                                    <Route element={<PrivateRoute />}>
+                                        <Route path='profile' element={<MyProfile />}>
+                                            <Route path='settings' element={<ProfileSettings />}>
+                                                <Route path='password' element={<PasswordReset />} />
+                                                <Route path='avatar' element={<ChangeAvatar />} />
+                                                <Route path='info' element={<UpdateProfile />} />
+                                                <Route path='delete' element={<DeleteProfile />} />
+                                            </Route>
+                                            <Route path='lots' element={<MyLots />} />
+                                            <Route path='favourites' element={<MyFavourites />} />
+                                            <Route path='archive' element={<Archieved />} />
+                                            <Route path='sold' element={<Sold />} />
+                                            <Route path='comments' element={<MyComments />} />
+                                        </Route>
+                                        <Route path='sell' element={<Sell />} />
+                                    </Route>
+                                    <Route path='*' element={<NotFound />} />
+                                </Route>
+                            </Routes>
+                        </main>
+                        <Footer />
+                    </div>
+                </SearchHistoryProvider>
+            </AuthProvider>
+        </BrowserRouter>
     )
 }
 

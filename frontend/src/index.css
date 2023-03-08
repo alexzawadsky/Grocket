@@ -17,6 +17,10 @@
   src: url('/fonts/NunitoSans-ExtraBoldItalic.ttf')
 }
 
+.swal2-popup {
+  font-family: 'grocket';
+}
+
 * {
   @apply box-border
 }

@@ -1,9 +1,9 @@
 import React, { useState, useRef, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { BsFillTrashFill } from 'react-icons/bs'
-import AuthContext from '../contexts/AuthProvider'
-import { toBase64 } from "../utils";
-import { AvatarCrop, ProfileCard, Title } from '../components'
+import AuthContext from '../../contexts/AuthProvider'
+import { toBase64 } from "../../utils";
+import { AvatarCrop, ProfileCard, Title } from '../../components'
 import { useMediaQuery } from 'react-responsive';
 
 const Register = () => {

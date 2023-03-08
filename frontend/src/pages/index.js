@@ -1,22 +1,21 @@
-import Landing from "./Landing";
-import Login from "./Login";
-import MyComments from "./MyComments";
-import MyFavourites from "./MyFavourites";
-import MyLots from "./MyLots";
-import MyProfile from "./MyProfile";
-import NotFound from "./NotFound";
-// import PasswordReset from "./PasswordReset";
-import ProductPage from "./ProductPage";
-import Register from "./Register";
-import SearchHistoryPage from "./SearchHistoryPage";
-import Sell from "./Sell";
-import UserComments from "./UserComments";
-import UserLots from "./UserLots";
-import UserProfile from "./UserProfile";
-import Archieved from "./Archieved";
-import Sold from "./Sold";
-import ProfileSettings from "./ProfileSettings";
-import { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProfile } from "./ProfileSettings";
+import Landing from "./Landing/Landing";
+import Login from "./Login/Login";
+import MyComments from "./MyProfile/Comments";
+import MyFavourites from "./MyProfile/Favourites";
+import MyLots from "./MyProfile/ActiveProducts";
+import MyProfile from "./MyProfile/Profile";
+import NotFound from "./NotFound/NotFound";
+import ProductPage from "./Product/ProductPage";
+import Register from "./Register/Register";
+import SearchHistoryPage from "./SearchHistoryPage/SearchHistoryPage";
+import Sell from "./Sell/Sell";
+import UserComments from "./User/UserComments";
+import UserLots from "./User/UserLots";
+import UserProfile from "./User/UserProfile";
+import Archieved from "./MyProfile/ArchievedProducts";
+import Sold from "./MyProfile/SoldProducts";
+import ProfileSettings, { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProfile } from "./MyProfile/ProfileSettings";
+import EditProduct from "./Product/EditProduct";
 
 export {
     Landing,
@@ -26,7 +25,6 @@ export {
     MyLots,
     MyProfile,
     NotFound,
-    // PasswordReset,
     ProductPage,
     Register,
     SearchHistoryPage,
@@ -40,5 +38,6 @@ export {
     PasswordReset,
     ChangeAvatar,
     UpdateProfile,
-    DeleteProfile
+    DeleteProfile,
+    EditProduct
 }

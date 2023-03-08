@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 
 
-const YMap = ({ adress }) => {
+const Map = ({ adress }) => {
 
     const [coords, setCoords] = useState()
 
@@ -33,7 +33,9 @@ const YMap = ({ adress }) => {
                 //         }} />
                 //     </Map>
                 // </YMaps>
-                null
+                <div className='w-full h-52 bg-slate-300'>
+                    Map{coords}
+                </div>
             ) : null}
 
         </div >
@@ -41,4 +43,4 @@ const YMap = ({ adress }) => {
     )
 }
 
-export default YMap
+export default Map

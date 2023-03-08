@@ -1,8 +1,10 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
 import api from "../api/api";
 import { alertErr, getCookie } from "../utils";
+import { useQueryClient } from "react-query";
+import SearchHistoryContext from "./HistoryContext";
 
 const AuthContext = createContext();
 
@@ -11,6 +13,7 @@ export default AuthContext
 export const AuthProvider = ({ children }) => {
 
     const navigate = useNavigate()
+    // const queryClient = useQueryClient()
 
     const [authTokens, setAuthTokens] = useState(() =>
         localStorage.getItem("authTokens")
@@ -62,12 +65,14 @@ export const AuthProvider = ({ children }) => {
                     'X-CSRFToken': getCookie('csrftoken')
                 }
             }
-        ).then(res => console.log(res)).catch(err => alert(err))
+        ).then(_ => navigate('/login')).catch(err => alert(err))
     };
 
     const logoutUser = () => {
         setAuthTokens(null);
         setUser(null);
+        localStorage.removeItem('lookHistory');
+        // queryClient.invalidateQueries()
         localStorage.removeItem("authTokens");
         navigate("/login");
     };

@@ -10,10 +10,11 @@ const useAxios = () => {
 
     const axiosInstance = axios.create({
         baseURL: import.meta.env.VITE_API_URL || 'http://localhost',
-        headers: { Authorization: `Bearer ${authTokens?.access}` }
+        headers: authTokens ? { Authorization: `Bearer ${authTokens?.access}` } : null
     })
 
     axiosInstance.interceptors.request.use(async req => {
+        if (!authTokens) return req
         const user = jwt_decode(authTokens.access);
         const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
 
@@ -24,7 +25,7 @@ const useAxios = () => {
 
         localStorage.setItem("authTokens", JSON.stringify({ access: response.data.access, refresh: authTokens.refresh }));
 
-        setAuthTokens(response.data);
+        setAuthTokens({ ...authTokens, access: response.data.access });
         setUser(jwt_decode(response.data.access));
 
         req.headers.Authorization = `Bearer ${response.data.access}`;

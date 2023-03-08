@@ -10,18 +10,15 @@ const CategoryList = ({ category, setCategory }) => {
     const { data, isLoading, error } = useCategories(parentId)
 
     useEffect(() => {
+        setLastChild(category.length > 0 ? category[category.length - 1] : null)
+    }, [category])
+
+    useEffect(() => {
         setParentId(lastChild?.id)
     }, [lastChild])
 
     const updateCategory = (newCategory) => {
         setCategory([...category, newCategory])
-        setLastChild(newCategory)
-    }
-
-    const clear = () => {
-        setCategory([])
-        setLastChild(null)
-        setParentId(null)
     }
 
     return (
@@ -42,7 +39,7 @@ const CategoryList = ({ category, setCategory }) => {
                                 {el.title}
                             </div>)}
                 </div> : null}
-            {lastChild?.is_lower && <button className='text-accent-red' onClick={clear}><BsTrashFill /></button>}
+            {lastChild?.is_lower && <button className='text-accent-red' onClick={() => setCategory([])}><BsTrashFill /></button>}
         </div>
     )
 }

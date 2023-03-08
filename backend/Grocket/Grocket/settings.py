@@ -1,6 +1,7 @@
 import os
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv('../../infra/.env')
@@ -111,13 +112,15 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/'
+DATA_ROOT = os.path.join(BASE_DIR, 'data')
 
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CSV_URL = 'data/csv'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -183,11 +186,12 @@ AVATAR = {
         'b9fbc0',
     ],
     'SIZE': (500, 500),
-    'FONT': 'fonts/arial_black.ttf',
+    'FONT': 'data/fonts/arial_black.ttf',
     'FONT_SIZE': 200,
     'FONT_INDENTS': (100, 100),
     'FONT_FILL': '#1C0606',
 }
 
 
-CSV_URL = 'csv'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'

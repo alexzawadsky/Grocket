@@ -1,11 +1,11 @@
 import csv
 import random
+
+from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from products.models import Category, Promotion, Product
+from products.models import Category, Product, Promotion
 from users.models import User
-from django.conf import settings
-
 
 url = settings.CSV_URL
 
@@ -295,7 +295,7 @@ class Command(BaseCommand):
             self.local_data["products"]["added"])
         ))
 
-        print('Users:')
+        print('Products:')
         print(f'  Added: {added}')
 
     def handle(self, *args, **options):

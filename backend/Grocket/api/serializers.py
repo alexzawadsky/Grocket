@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 from products.models import Category, Favourite, Image, Product, Promotion
 from users.models import User
+from users.services import UserService
 
 
 class CustomUserSerializer(djserializers.UserSerializer):
@@ -15,6 +16,22 @@ class CustomUserSerializer(djserializers.UserSerializer):
         model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name',
                   'avatar', 'phone', 'country', 'date_joined', 'last_login',)
+
+    def update(self, instance, validated_data):
+        avatar = validated_data.get('avatar')
+        if not instance.avatar or avatar is not None:
+            first_name = instance.first_name
+            last_name = instance.last_name
+            username = instance.username
+            avatar = UserService().create_avatar(
+                avatar=avatar,
+                first_name=first_name,
+                last_name=last_name,
+                username=username,
+            )
+            validated_data['avatar'] = avatar
+
+        return super().update(instance, validated_data)
 
 
 class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
@@ -28,6 +45,22 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
                   'password', 'avatar', 'phone', 'country', 'date_joined',
                   'last_login',)
         read_only_fields = ('id',)
+
+    def create(self, validated_data):
+        avatar = validated_data.get('avatar')
+        first_name = validated_data.get('first_name')
+        last_name = validated_data.get('last_name')
+        username = validated_data.get('username')
+
+        avatar = UserService().create_avatar(
+            avatar=avatar,
+            first_name=first_name,
+            last_name=last_name,
+            username=username,
+        )
+        validated_data['avatar'] = avatar
+
+        return super().create(validated_data)
 
 
 class CategorySerializer(serializers.ModelSerializer):

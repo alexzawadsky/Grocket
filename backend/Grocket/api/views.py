@@ -7,15 +7,12 @@ from rest_framework.response import Response
 
 from products.models import Category, Favourite, Product, Promotion
 from users.models import User
-from users.services import UserService
 
 from .filters import ProductFilter
 from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer, FavouriteSerializer,
                           ProductCreateUpdateSerializer, ProductListSerializer,
                           ProductRetrieveSerializer, PromotionSerializer)
-
-users_services = UserService()
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -24,31 +21,6 @@ class CustomUserRetrieveViewSet(djviews.UserViewSet):
 
 class CustomUserRegisterViewSet(djviews.UserViewSet):
     pass
-    # def create(self, request):
-    #     data = request.data
-    #     data_keys = data.keys()
-
-    #     if 'first_name' not in data_keys or 'last_name' not in data_keys:
-    #         serializer = self.get_serializer(data=data)
-    #         serializer.is_valid(raise_exception=True)
-
-    #     first_name = data['first_name']
-    #     last_name = data['last_name']
-
-    #     if 'avatar' not in data_keys:
-    #         data['avatar'] = users_services.avatar_img_creating(
-    #             first_name, last_name)
-
-    #     serializer = self.get_serializer(data=data)
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_create(serializer)
-    #     headers = self.get_success_headers(serializer.data)
-
-    #     return Response(
-    #         serializer.data,
-    #         status=status.HTTP_201_CREATED,
-    #         headers=headers
-    #     )
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

@@ -1,0 +1,14 @@
+TITLE,PARENT,ID
+Furniture,null,1
+Kitchen,1,2
+Tables,2,3
+Bedroom,1,13
+Beds,13,14
+Wardrobes,13,15
+Electronics,null,4
+Apple,4,9
+Iphones,9,5
+Ipads,9,8
+DJI,4,10
+Drones,10,11
+Stabilizers,10,12

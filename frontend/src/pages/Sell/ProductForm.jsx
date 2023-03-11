@@ -19,6 +19,7 @@ const ProductForm = ({ data, setData, setValid }) => {
     const [imageRotation, setImageRotation] = useState(0)
     const [mainImageIndex, setMainImageIndex] = useState(0)
     const [allValid, setAllValid] = useState(false)
+    const [imageUploading, setImageUploading] = useState(false)
 
     const name = useInput(data?.name || '', { isEmpty: true })
     const description = useInput(data?.description || '', { isEmpty: true })
@@ -36,7 +37,6 @@ const ProductForm = ({ data, setData, setValid }) => {
     }, [mainImageIndex])
 
     useEffect(() => {
-        console.log('update')
         if ([name, description, price, currency, address].every(el => el.allValid) && images.length > 0) {
             setAllValid(true)
         } else {
@@ -105,10 +105,10 @@ const ProductForm = ({ data, setData, setValid }) => {
                 MAP
             </div>
             <span></span>
-            <div className='grid gap-2 pt-5'>
+            <div className='grid gap-2 pt-5 h-fit'>
                 <h2 className="text-xl font-bold">Photos</h2>
                 <input ref={imageInputRef} type="file" onChange={(e) => setCurrentImage(e.target.files[0])} />
-                <div className='grid gap-3 w-fit'>
+                <div className='grid gap-3 w-fit h-fit'>
                     <AvatarEditor
                         ref={editorRef}
                         image={currentImage}
@@ -145,13 +145,17 @@ const ProductForm = ({ data, setData, setValid }) => {
                             <AiOutlineRotateRight />
                         </button>
                     </div>
-                    <button
-                        onClick={() => saveImage(editorRef, images, setImages, setCurrentImage, imageInputRef)}
-                        className='button-outline-orange'
-                        type='button'
-                    >
-                        Save image
-                    </button>
+                    <div className="flex items-center gap-5">
+                        <button
+                            onClick={() => { saveImage(editorRef, images, setImages, setCurrentImage, imageInputRef, setImageUploading) }}
+                            className='button-outline-orange'
+                            type='button'
+                            disabled={imageUploading || !currentImage}
+                        >
+                            Save image
+                        </button>
+                        {imageUploading && 'Uploading...'}
+                    </div>
                 </div>
             </div>
             <div className='grid gap-2 col-span-2 h-fit pt-5'>

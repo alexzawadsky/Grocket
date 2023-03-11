@@ -135,4 +135,10 @@ export const useFavouriteProduct = () => {
         })
 }
 
+export const usePromotions = () => {
+    const api = useAxios()
+    return useQuery(['promotions'],
+        () => api.get('/api/v1/promotions').then(res => res.data))
+}
+
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

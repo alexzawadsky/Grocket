@@ -21,7 +21,7 @@ const HistoryList = () => {
                     {lookHistory.slice(0, 4).map((el, key) => <HistoryItem key={key} content={el} />)}
                 </>
             ) : null}
-            <NavLink className='flex items-center gap-5 hover:text-accent-orange' to='/history'>View full browsing history<BsArrowRight /></NavLink>
+            <NavLink className='flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange' to='/history'>View full browsing history<BsArrowRight /></NavLink>
         </div>
     )
 }

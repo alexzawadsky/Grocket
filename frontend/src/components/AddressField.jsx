@@ -8,8 +8,6 @@ const AddressField = ({ setAddress, split }) => {
     }
     aucompleteObject.addListener('place_changed', handleAddress)
 
-
-
     if (split) {
         return (
             <>

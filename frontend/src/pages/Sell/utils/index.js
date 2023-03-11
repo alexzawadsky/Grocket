@@ -24,7 +24,7 @@ export const saveImage = async (editorRef, images, setImages, setCurrentImage, i
 export const prepareImages = (images) => {
     return images.map(image =>
         Object.keys(image).includes('id') ? {
-            id: image.id,
+            image: image.id,
             is_main: image.is_main
         } : image
     )

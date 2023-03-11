@@ -24,7 +24,8 @@ import {
     ChangeAvatar,
     UpdateProfile,
     DeleteProfile,
-    EditProduct
+    EditProduct,
+    Promote
 } from './pages'
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
                                         </Route>
                                         <Route path='sell' element={<Sell />} />
                                         <Route path='products/:productId/edit' element={<EditProduct />} />
+                                        <Route path='products/:productId/promote' element={<Promote />} />
                                     </Route>
                                     <Route path='*' element={<NotFound />} />
                                 </Route>

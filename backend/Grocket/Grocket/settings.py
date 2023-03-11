@@ -112,6 +112,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+DATA_URL = '/data/'
 DATA_ROOT = os.path.join(BASE_DIR, 'data')
 
 STATIC_URL = '/static/'
@@ -147,7 +148,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=500),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
     'UPDATE_LAST_LOGIN': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
@@ -174,22 +175,22 @@ DJOSER = {
 
 AVATAR = {
     'COLORS': [
-        'fbf8cc',
-        'fde4cf',
-        'ffcfd2',
-        'f1c0e8',
-        'cfbaf0',
-        'a3c4f3',
-        '90dbf4',
-        '8eecf5',
-        '98f5e1',
-        'b9fbc0',
+        'fbf8cc', 'fde4cf', 'ffcfd2', 'f1c0e8', 'cfbaf0',
+        '90dbf4', '8eecf5', '98f5e1', 'b9fbc0', 'a3c4f3',
     ],
     'SIZE': (500, 500),
-    'FONT': 'data/fonts/arial_black.ttf',
+    'FONT_URL': os.path.join(DATA_ROOT, 'fonts'),
+    'FONT_FILE_NAME': 'arial_black.ttf',
     'FONT_SIZE': 200,
     'FONT_INDENTS': (100, 100),
     'FONT_FILL': '#1C0606',
+}
+
+PRODUCT_IMAGE = {
+    'SIZE': (400, 400),
+    'WATERMARK_INDENTS': (100, 100),
+    'WATERMARK_URL': os.path.join(DATA_ROOT, 'img_templates'),
+    'WATERMARK_FILE_NAME': 'watermark.png',
 }
 
 

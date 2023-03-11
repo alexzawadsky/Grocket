@@ -55,7 +55,9 @@ class UserService:
 
         img = Image.new('RGB', avatar_settings['SIZE'], color=(color))
         font = ImageFont.truetype(
-            avatar_settings['FONT'], size=avatar_settings['FONT_SIZE'])
+            f"{avatar_settings['FONT_URL']}/"
+            f"{avatar_settings['FONT_FILE_NAME']}",
+            size=avatar_settings['FONT_SIZE'])
         draw_text = ImageDraw.Draw(img)
 
         draw_text.text(

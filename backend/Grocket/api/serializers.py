@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 from api.fields import ProductImagesField
 from products.models import Category, Favourite, Image, Product, Promotion
+from products.services import ProductService
 from users.models import User
 from users.services import UserService
 
@@ -151,6 +152,15 @@ class ProductImageCreateSerializer(serializers.ModelSerializer):
         model = Image
         fields = ('image', 'is_main', 'product',)
 
+    def create(self, validated_data):
+        image = validated_data.pop('image')
+        product = validated_data.get('product')
+
+        prepared_image = ProductService().prepair_image(product.id, image)
+        image = Image.objects.create(image=prepared_image, **validated_data)
+
+        return image
+
 
 class ProductSerializer(serializers.ModelSerializer):
     is_favourited = serializers.SerializerMethodField()
@@ -256,13 +266,25 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
 
         return serializer.data
 
-    def creating_images(self, images, product):
-        '''Создает новые картинки.'''
-        pass
+    def creating_images(self, new_images, product):
+        '''Создает и обрабатывает картинки.'''
+        for image in new_images:
+            image_base64 = image[0]
+            is_main = image[1]
+
+            images_serializer = ProductImageCreateSerializer(
+                data={
+                    'image': image_base64,
+                    'is_main': is_main,
+                    'product': product.id
+                }
+            )
+            images_serializer.is_valid(raise_exception=True)
+            images_serializer.save()
 
 
 class ProductCreateSerializer(ProductCreateUpdateSerializer):
-    images = ProductImageSerializer(many=True)
+    images = serializers.ListField()
 
     def validate_images(self, value):
         super().validate_images(value)
@@ -286,14 +308,13 @@ class ProductCreateSerializer(ProductCreateUpdateSerializer):
         return value
 
     def creating_images(self, images, product):
-        super().creating_images(images, product)
-
-        for image in images:
-            Image.objects.create(
-                image=image['image'],
-                is_main=image['is_main'],
-                product=product
+        new_images = []
+        for new_image in images:
+            new_images.append(
+                (new_image['image'], new_image['is_main'])
             )
+
+        super().creating_images(new_images, product)
 
     def create(self, validated_data):
         images = validated_data.pop('images')
@@ -352,21 +373,7 @@ class ProductUpdateSerializer(ProductCreateUpdateSerializer):
         return value
 
     def creating_images(self, new_images, product):
-        super().creating_images(new_images, product)
-
-        for image in new_images.items():
-            image_base64 = image[0]
-            is_main = image[1]
-
-            images_serializer = ProductImageCreateSerializer(
-                data={
-                    'image': image_base64,
-                    'is_main': is_main,
-                    'product': product.id
-                }
-            )
-            images_serializer.is_valid(raise_exception=True)
-            images_serializer.save()
+        super().creating_images(new_images.items(), product)
 
     def _images_updating(self, images, instance):
         '''Запускает все манипудяции с обновлением картинок.'''

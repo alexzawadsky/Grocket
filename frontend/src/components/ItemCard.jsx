@@ -4,17 +4,11 @@ import { FiMapPin } from 'react-icons/fi'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { useMediaQuery } from 'react-responsive'
 import { useFavouriteProduct } from '../api/api'
-import { alertErr } from '../utils'
 
 const ItemCard = ({ product }) => {
 
     const isPC = useMediaQuery({ query: '(min-width: 1024px)' })
     const favouriteProductMutation = useFavouriteProduct()
-
-    // if (favouriteProductMutation.error) {
-    //     alertErr(favouriteProductMutation.error)
-    //     return
-    // }
 
     return (
         <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden flex flex-col'>

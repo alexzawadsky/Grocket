@@ -36,7 +36,7 @@ class Image(models.Model):
         'Product',
         related_name='images',
         on_delete=models.CASCADE,
-        verbose_name='product image',
+        verbose_name='product',
     )
     image = models.ImageField(upload_to='images/')
     is_main = models.BooleanField(default=False)

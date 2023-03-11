@@ -11,8 +11,9 @@ from users.models import User
 from .filters import ProductFilter
 from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer, FavouriteSerializer,
-                          ProductCreateUpdateSerializer, ProductListSerializer,
-                          ProductRetrieveSerializer, PromotionSerializer)
+                          ProductCreateSerializer, ProductListSerializer,
+                          ProductRetrieveSerializer, ProductUpdateSerializer,
+                          PromotionSerializer)
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -107,12 +108,14 @@ class ProductViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
     def get_serializer_class(self):
-        if self.action == 'retrieve':
+        if self.action in ('retrieve',):
             return ProductRetrieveSerializer
-        elif self.action in ('list', 'me_products', 'user_products'):
+        elif self.action in ('list', 'me_products', 'user_products',):
             return ProductListSerializer
-        elif self.action in ('create', 'partial_update'):
-            return ProductCreateUpdateSerializer
+        elif self.action in ('create',):
+            return ProductCreateSerializer
+        elif self.action in ('partial_update',):
+            return ProductUpdateSerializer
 
     def user_products_serialize(self, queryset, request):
         page = self.paginate_queryset(queryset)

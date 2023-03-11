@@ -2,6 +2,7 @@ from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
+from api.fields import ProductImagesField
 from products.models import Category, Favourite, Image, Product, Promotion
 from users.models import User
 from users.services import UserService
@@ -63,27 +64,6 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
         return super().create(validated_data)
 
 
-class CategorySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Category
-        fields = ('id', 'title',)
-
-
-class CategoryListSerializer(serializers.ModelSerializer):
-    is_lower = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Category
-        fields = (
-            'id', 'title', 'tree_id', 'level', 'parent',
-            'is_lower',
-        )
-
-    def get_is_lower(self, obj):
-        return obj.is_leaf_node()
-
-
 class FavouriteSerializer(serializers.ModelSerializer):
     """Сериализатор для избранного."""
 
@@ -110,6 +90,35 @@ class FavouriteSerializer(serializers.ModelSerializer):
         return value
 
 
+class PromotionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Promotion
+        fields = ('id', 'name', 'title', 'price',
+                  'price_currency', 'description',)
+
+
+class CategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = ('id', 'title',)
+
+
+class CategoryListSerializer(serializers.ModelSerializer):
+    is_lower = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Category
+        fields = (
+            'id', 'title', 'tree_id', 'level', 'parent',
+            'is_lower',
+        )
+
+    def get_is_lower(self, obj):
+        return obj.is_leaf_node()
+
+
 class ProductCategorySerializer(serializers.ModelSerializer):
     parents = serializers.SerializerMethodField()
 
@@ -132,15 +141,15 @@ class ProductImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
-        fields = ('image', 'is_main',)
+        fields = ('id', 'image', 'is_main',)
 
 
-class PromotionSerializer(serializers.ModelSerializer):
+class ProductImageCreateSerializer(serializers.ModelSerializer):
+    image = Base64ImageField(allow_null=True, required=False)
 
     class Meta:
-        model = Promotion
-        fields = ('id', 'name', 'title', 'price',
-                  'price_currency', 'description',)
+        model = Image
+        fields = ('image', 'is_main', 'product',)
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -221,7 +230,6 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
     )
     is_archived = serializers.HiddenField(default=False)
     is_sold = serializers.HiddenField(default=False)
-    images = ProductImageSerializer(many=True)
 
     class Meta:
         model = Product
@@ -232,22 +240,6 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
             'category', 'images', 'promotion',
         )
 
-    def validate_images(self, value):
-        main = False
-        for image in value:
-            if image['is_main']:
-                if main:
-                    raise serializers.ValidationError(
-                        'Нельзя добавить больше одной главной фотографии.'
-                    )
-                main = True
-        if not main:
-            raise serializers.ValidationError(
-                'Нужно добавить главную фотографию.'
-            )
-
-        return value
-
     def validate_category(self, value):
         if not value.is_leaf_node():
             raise serializers.ValidationError(
@@ -256,7 +248,46 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
 
         return value
 
+    def validate_images(self, value):
+        pass
+
+    def to_representation(self, product):
+        serializer = ProductRetrieveSerializer(product, context=self.context)
+
+        return serializer.data
+
     def creating_images(self, images, product):
+        '''Создает новые картинки.'''
+        pass
+
+
+class ProductCreateSerializer(ProductCreateUpdateSerializer):
+    images = ProductImageSerializer(many=True)
+
+    def validate_images(self, value):
+        super().validate_images(value)
+
+        main = False
+        for image in value:
+            is_main = image['is_main']
+            image = image['image']
+            if is_main:
+                if main:
+                    raise serializers.ValidationError(
+                        'Нельзя добавить больше одной главной фотографии.'
+                    )
+                main = True
+
+        if not main:
+            raise serializers.ValidationError(
+                'Нужно добавить главную фотографию.'
+            )
+
+        return value
+
+    def creating_images(self, images, product):
+        super().creating_images(images, product)
+
         for image in images:
             Image.objects.create(
                 image=image['image'],
@@ -267,26 +298,104 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         images = validated_data.pop('images')
         product = Product.objects.create(**validated_data)
-
         self.creating_images(images, product)
 
         return product
+
+
+class ProductUpdateSerializer(ProductCreateUpdateSerializer):
+    images = ProductImagesField()
+
+    def validate_images(self, value):
+        super().validate_images(value)
+
+        product = self.instance
+        images_album, new_images = value
+        images_album_keys = list(images_album.keys())
+        images_album_values = list(images_album.values())
+        new_images_values = list(new_images.values())
+
+        for image in images_album_keys:
+            image_obj = Image.objects.filter(id=image)
+            if not image_obj.exists():
+                raise serializers.ValidationError(
+                    f'Картинки с id={image} нет.'
+                )
+            if not image_obj.filter(product=product).exists():
+                raise serializers.ValidationError(
+                    f'Картинка с id={image} не от этого товара.'
+                )
+
+        product_images = list(
+            product.images.select_related().exclude(
+                id__in=images_album_keys
+            ).filter(
+                id__in=images_album_keys
+            ).values_list(
+                'is_main', flat=True
+            )
+        )
+
+        all_is_main = (images_album_values +
+                       new_images_values +
+                       product_images)
+
+        if True not in all_is_main:
+            raise serializers.ValidationError(
+                'Надо добавить хотябы одну главную картинку.'
+            )
+        if all_is_main.count(True) > 1:
+            raise serializers.ValidationError(
+                'Может быть только одна главная картинка.'
+            )
+
+        return value
+
+    def creating_images(self, new_images, product):
+        super().creating_images(new_images, product)
+
+        for image in new_images.items():
+            image_base64 = image[0]
+            is_main = image[1]
+
+            images_serializer = ProductImageCreateSerializer(
+                data={
+                    'image': image_base64,
+                    'is_main': is_main,
+                    'product': product.id
+                }
+            )
+            images_serializer.is_valid(raise_exception=True)
+            images_serializer.save()
+
+    def _images_updating(self, images, instance):
+        '''Запускает все манипудяции с обновлением картинок.'''
+        # (images_album - старые, new_images - которые надо создать)
+        images_album, new_images = images
+        # Удаляем картинки, которые юзер удалил
+        Image.objects.filter(
+            product=instance).exclude(id__in=images_album.keys()).delete()
+        # Берем все картинки после удаления
+        images_after_deleting = Image.objects.filter(
+            product=instance).only('id', 'is_main')
+        # Меняем все is_main
+        for image_after_deleting in images_after_deleting:
+            if image_after_deleting.id in images_album.keys():
+                image_after_deleting.is_main = images_album[
+                    image_after_deleting.id]
+                image_after_deleting.save()
+        # Создаем новые картинки
+        self.creating_images(new_images, instance)
 
     def update(self, instance, validated_data):
         images = validated_data.get('images')
 
         if images is not None:
             images = validated_data.pop('images')
-            Image.objects.filter(product=instance).delete()
 
-        instance = super().update(instance, validated_data)
+            instance = super().update(instance, validated_data)
+            self._images_updating(images, instance)
 
-        if images is not None:
-            self.creating_images(images, instance)
+            return instance
 
-        return instance
-
-    def to_representation(self, product):
-        serializer = ProductRetrieveSerializer(product, context=self.context)
-
-        return serializer.data
+        return super().update(instance, validated_data)

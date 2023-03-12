@@ -13,7 +13,7 @@ from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer, FavouriteSerializer,
                           ProductCreateSerializer, ProductListSerializer,
                           ProductRetrieveSerializer, ProductUpdateSerializer,
-                          PromotionSerializer)
+                          PromotionSerializer, PromotionCreateUpdateSerializer)
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -116,6 +116,8 @@ class ProductViewSet(viewsets.ModelViewSet):
             return ProductCreateSerializer
         elif self.action in ('partial_update',):
             return ProductUpdateSerializer
+        elif self.action in ('promote',):
+            return PromotionCreateUpdateSerializer
 
     def user_products_serialize(self, queryset, request):
         page = self.paginate_queryset(queryset)
@@ -154,12 +156,17 @@ class ProductViewSet(viewsets.ModelViewSet):
         return self.user_products_serialize(queryset, request)
 
     @action(['post'], detail=False)
-    def promote(self, request, product_pk, promotion_pk):
-        product = get_object_or_404(Product, id=product_pk)
+    def promote(self, request, pk):
+        product = get_object_or_404(Product, id=pk)
 
-        if product.promotion is None:
-            promotion = get_object_or_404(Promotion, id=promotion_pk)
-            product.promotion = promotion
+        serializer = PromotionCreateUpdateSerializer(
+            data=request.data
+        )
+        serializer.is_valid(raise_exception=True)
+        promotions = serializer.validated_data.get('promotions')
+
+        if promotions is not None:
+            product.promotions.set(promotions)
             product.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
 

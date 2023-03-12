@@ -134,13 +134,10 @@ class Product(WithDateModel):
         verbose_name='product address',
         default='no address',
     )
-    promotion = models.ForeignKey(
-        'Promotion',
-        on_delete=models.PROTECT,
+    promotions = models.ManyToManyField(
+        Promotion,
         related_name='products',
-        verbose_name='product promote type',
-        blank=True,
-        null=True,
+        verbose_name='product promotion types',
     )
     is_archived = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)

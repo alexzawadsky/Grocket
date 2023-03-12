@@ -27,7 +27,7 @@ urlpatterns = [
     path('v1/products/<int:pk>/sell/',
          ProductViewSet.as_view({'post': 'sell', 'delete': 'sell'}),
          name='sell'),
-    path('v1/products/<int:product_pk>/promote/<int:promotion_pk>/',
+    path('v1/products/<int:pk>/promote/',
          ProductViewSet.as_view({'post': 'promote'}),
          name='promote'),
     path('v1/products/<int:pk>/favourite/',

@@ -8,7 +8,9 @@ load_dotenv('../../infra/.env')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-ixh5=+g%x22o)3f58^+tm$#%dz)gf_cy7+m&_8_7j#%mh9vhuu'
+SECRET_KEY = (
+    'django-insecure-ixh5=+g%x22o)3f58^+tm$#%dz)gf_cy7+m&_8_7j#%mh9vhuu'
+)
 
 DEBUG = True
 
@@ -85,20 +87,7 @@ DATABASES = {
 }
 
 
-AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    # },
-]
+AUTH_PASSWORD_VALIDATORS = []  # В конце добавить валидаторы!!!
 
 
 LANGUAGE_CODE = 'en-us'

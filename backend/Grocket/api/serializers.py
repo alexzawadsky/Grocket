@@ -99,6 +99,17 @@ class PromotionSerializer(serializers.ModelSerializer):
                   'price_currency', 'description',)
 
 
+class PromotionCreateUpdateSerializer(serializers.ModelSerializer):
+    promotions = serializers.PrimaryKeyRelatedField(
+        queryset=Promotion.objects.all(),
+        many=True
+    )
+
+    class Meta:
+        model = Promotion
+        fields = ('promotions',)
+
+
 class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -162,13 +173,10 @@ class ProductImageCreateSerializer(serializers.ModelSerializer):
         return image
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductReadOnlySerializer(serializers.ModelSerializer):
     is_favourited = serializers.SerializerMethodField()
-    promotion_name = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Product
-        fields = ('is_favourited', 'promotion_name',)
+    promotions = serializers.SerializerMethodField()
+    user = CustomUserSerializer(read_only=True)
 
     def get_is_favourited(self, obj):
         user = self.context['request'].user
@@ -178,17 +186,14 @@ class ProductSerializer(serializers.ModelSerializer):
 
         return False
 
-    def get_promotion_name(self, obj):
-        promotion = obj.promotion
+    def get_promotions(self, obj):
+        promotions = obj.promotions.values_list('name', flat=True)
 
-        if promotion is not None:
-            return promotion.name
-
-        return None
+        return list(promotions)
 
 
-class ProductRetrieveSerializer(ProductSerializer):
-    user = CustomUserSerializer(read_only=True)
+class ProductRetrieveSerializer(ProductReadOnlySerializer):
+    # user = CustomUserSerializer(read_only=True)
     category = ProductCategorySerializer(read_only=True)
     images = ProductImageSerializer(read_only=True, many=True)
 
@@ -198,12 +203,12 @@ class ProductRetrieveSerializer(ProductSerializer):
             'id', 'name', 'user',
             'description', 'price', 'price_currency',
             'address', 'is_archived', 'is_sold', 'is_favourited',
-            'category', 'images', 'pub_date', 'promotion_name',
+            'category', 'images', 'pub_date', 'promotions',
         )
 
 
-class ProductListSerializer(ProductSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
+class ProductListSerializer(ProductReadOnlySerializer):
+    # user = serializers.PrimaryKeyRelatedField(read_only=True)
     category = CategorySerializer(read_only=True)
     images = serializers.SerializerMethodField()
 
@@ -213,7 +218,7 @@ class ProductListSerializer(ProductSerializer):
             'id', 'name', 'user',
             'price', 'price_currency', 'address',
             'is_archived', 'is_sold', 'is_favourited',
-            'category', 'images', 'pub_date', 'promotion_name',
+            'category', 'images', 'pub_date', 'promotions',
         )
 
     def get_images(self, obj):
@@ -234,10 +239,6 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(
         queryset=Category.objects.all()
     )
-    promotion = serializers.PrimaryKeyRelatedField(
-        queryset=Promotion.objects.all(),
-        default=None
-    )
     is_archived = serializers.HiddenField(default=False)
     is_sold = serializers.HiddenField(default=False)
 
@@ -247,7 +248,7 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
             'id', 'name', 'user',
             'description', 'price', 'price_currency',
             'address', 'is_archived', 'is_sold',
-            'category', 'images', 'promotion',
+            'category', 'images',
         )
 
     def validate_category(self, value):

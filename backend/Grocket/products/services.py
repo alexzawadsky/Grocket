@@ -1,10 +1,12 @@
-from io import BytesIO
 from datetime import datetime
+from io import BytesIO
+
+from django.conf import settings
 from django.core.files import File
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db.models import Manager, Model
 from PIL import Image
-from django.conf import settings
-from django.core.files.uploadedfile import SimpleUploadedFile
+
 from products.models import Product
 
 

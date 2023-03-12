@@ -238,10 +238,10 @@ class Command(BaseCommand):
                 while not category.is_leaf_node():
                     category = random.choice(categories)
                 user = random.choice(users)
-                if promotions is not None:
-                    promotion = random.choice(promotions)
-                else:
-                    promotion = None
+                # if promotions is not None:
+                #     promotion = random.choice(promotions)
+                # else:
+                #     promotion = None
 
                 product = Product.objects.create(
                     name=fields['name'],
@@ -252,9 +252,10 @@ class Command(BaseCommand):
                     is_archived=fields['is_archived'],
                     is_sold=fields['is_sold'],
                     category=category,
-                    user=user,
-                    promotion=promotion
+                    user=user
                 )
+                product.promotions.set(promotions)
+                product.save()
 
                 self.local_data['products']['added'].append(product)
 

@@ -16,7 +16,7 @@ const Navbar = () => {
     return (
         <nav className='w-full fixed z-50 left-0 top-0 bg-white shadow-lg'>
             <div className='flex container px-5 mx-auto gap-3 md:gap-10 h-16 items-center'>
-                <NavLink className='flex-grow text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
+                <NavLink className='mr-auto text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
                     {/* <img className='h-12' src='/images/logo.png' /> */}
                     {isTablet && 'Grocket'}
                 </NavLink>

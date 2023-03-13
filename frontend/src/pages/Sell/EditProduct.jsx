@@ -51,12 +51,12 @@ const EditProduct = () => {
     if (error) return error.message
 
     return (
-        <div className='grid gap-3'>
-            <NavLink to={`/products/${productId}`} className='button-outline-orange'><BsArrowLeft />Open product page</NavLink>
-            <div className="flex items-center gap-2">
+        <div className='grid gap-4'>
+            <NavLink to={`/products/${productId}`} className='flex items-center gap-2 hover:text-accent-orange font-bold'><BsArrowLeft />Open product page</NavLink>
+            {/* <div className="flex items-center gap-2">
                 <p className="text-3xl"><BiPencil /></p>
                 <Title text='Edit product' />
-            </div>
+            </div> */}
             <h2 className='font-bold text-xl'>Change category</h2>
             <CategoryList
                 category={category}

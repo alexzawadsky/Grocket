@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
                     'X-CSRFToken': getCookie('csrftoken')
                 }
             }
-        ).then(_ => navigate('/login')).catch(err => alert(err))
+        ).then(_ => alert('Acc created, activate to login')).catch(err => alert(err))
     };
 
     const logoutUser = () => {

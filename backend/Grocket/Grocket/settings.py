@@ -143,7 +143,22 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+# # smtp
+# EMAIL_HOST = 'smtp.yandex.ru'
+# # RECIPIENT_ADDRESS = 'alesha.zawadsky@yandex.ru'
+# EMAIL_HOST_USER = 'alesha.zawadsky@yandex.ru'
+# DEFAULT_FROM_EMAIL = 'alesha.zawadsky@yandex.ru'
+# EMAIL_HOST_PASSWORD = 'bpidlejlypkoyicx'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 465
+
+# email settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_NAME = 'Grocket'
+
 DJOSER = {
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
     'USER_CREATE_PASSWORD_RETYPE': True,
     'HIDE_USERS': False,

@@ -193,7 +193,6 @@ class ProductReadOnlySerializer(serializers.ModelSerializer):
 
 
 class ProductRetrieveSerializer(ProductReadOnlySerializer):
-    # user = CustomUserSerializer(read_only=True)
     category = ProductCategorySerializer(read_only=True)
     images = ProductImageSerializer(read_only=True, many=True)
 
@@ -208,7 +207,6 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
 
 
 class ProductListSerializer(ProductReadOnlySerializer):
-    # user = serializers.PrimaryKeyRelatedField(read_only=True)
     category = CategorySerializer(read_only=True)
     images = serializers.SerializerMethodField()
 

@@ -13,7 +13,7 @@ from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer, FavouriteSerializer,
                           ProductCreateSerializer, ProductListSerializer,
                           ProductRetrieveSerializer, ProductUpdateSerializer,
-                          PromotionSerializer, PromotionCreateUpdateSerializer)
+                          PromotionCreateUpdateSerializer, PromotionSerializer)
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):

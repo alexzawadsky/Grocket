@@ -24,6 +24,7 @@ router.register('categories', CategoryViewSet, basename='category')
 
 
 urlpatterns = [
+    # <--------- Products --------->
     path('v1/products/<int:pk>/sell/',
          ProductViewSet.as_view({'post': 'sell', 'delete': 'sell'}),
          name='sell'),
@@ -39,18 +40,26 @@ urlpatterns = [
     path('v1/users/me/products/',
          ProductViewSet.as_view({'get': 'me_products'}),
          name='me_products'),
+    # <--------- Products --------->
+
+    # <--------- Users --------->
     path('v1/users/me/',
          UserViewSet.as_view(ME_METHODS),
          name='me'),
     path('v1/users/<int:pk>/',
          CustomUserRetrieveViewSet.as_view({'get': 'retrieve'}),
          name='users_detail'),
+    path('v1/users/activation/',
+         UserViewSet.as_view({'post': 'activation'}),
+         name='set_password'),
     path('v1/users/set_password/',
          UserViewSet.as_view({'post': 'set_password'}),
          name='set_password'),
     path('v1/users/',
          CustomUserRegisterViewSet.as_view({'post': 'create'}),
          name='register'),
-    path('v1/', include(router.urls)),
     path('v1/auth/', include('djoser.urls.jwt')),
+    # <--------- Users --------->
+
+    path('v1/', include(router.urls)),
 ]

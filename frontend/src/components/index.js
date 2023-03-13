@@ -16,6 +16,9 @@ import Input from "./Input";
 import Spinner from "./Spinner";
 import Map from "./Map";
 import ProductsList from "./ProductsList";
+import Price from "./Price";
+import SearchItemCard from "./SearchItemCard";
+import PublishTime from "./PublishTime";
 
 export {
     Avatar,
@@ -35,5 +38,8 @@ export {
     ReadMore,
     Input,
     Spinner,
-    ProductsList
+    ProductsList,
+    Price,
+    SearchItemCard,
+    PublishTime
 }

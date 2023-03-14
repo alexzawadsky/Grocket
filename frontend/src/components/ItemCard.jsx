@@ -8,6 +8,7 @@ import Price from './Price'
 import { useContext } from 'react'
 import AuthContext from '../contexts/AuthProvider'
 import PublishTime from './PublishTime'
+import ImagesCarousel from './ImagesCarousel'
 
 const ItemCard = ({ product }) => {
 
@@ -20,7 +21,7 @@ const ItemCard = ({ product }) => {
     return (
         <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden flex flex-col'>
             <NavLink to={`/products/${product.id}`} className="w-full">
-                {product.images ? <img src={product?.images[0]?.image} className='w-full' /> : null}
+                <ImagesCarousel images={product.images} />
             </NavLink>
             <div className='p-3 md:p-5 flex justify-around flex-col gap-2 grow'>
                 <div className="flex justify-between gap-2 grow items-center">

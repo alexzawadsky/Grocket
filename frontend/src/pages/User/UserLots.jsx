@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, NavLink } from 'react-router-dom'
-import { useMediaQuery } from 'react-responsive'
 import { BsArrowLeft } from 'react-icons/bs'
 import api from '../../api/api'
 import { alertErr } from '../../utils'
 import { ItemCard, Pagination } from '../../components'
+import useScreen from '../../hooks/useScreen'
 
 const UserLots = () => {
 
@@ -12,7 +12,7 @@ const UserLots = () => {
     const [products, setProducts] = useState()
     const [page, setPage] = useState(0)
     const [pagesCount, setPagesCount] = useState(1)
-    const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
+    const { isMaxPhone } = useScreen()
 
 
     const loadPage = () => {
@@ -28,7 +28,7 @@ const UserLots = () => {
 
     return (
         <div className='grid gap-5'>
-            {isPhone ? <NavLink className='flex items-center gap-2' to={`/user/${userId}`}><BsArrowLeft />Back to profile</NavLink> : null}
+            {isMaxPhone ? <NavLink className='flex items-center gap-2' to={`/user/${userId}`}><BsArrowLeft />Back to profile</NavLink> : null}
             <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {products && products.map((el, key) => <ItemCard product={el} key={key} />)}
             </div>

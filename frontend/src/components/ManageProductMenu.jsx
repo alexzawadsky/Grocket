@@ -1,10 +1,8 @@
 import React from 'react'
 import { useArchiveProduct, useSellProduct, useDeleteProduct } from '../api/api'
-import { BsMegaphoneFill, BsTrashFill } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 import { IoIosArrowUp } from 'react-icons/io'
-import { BiPencil } from 'react-icons/bi'
-import { BsFillMegaphoneFill } from 'react-icons/bs'
+import { BsMegaphone, BsPen, BsTrashFill } from 'react-icons/bs'
 import { confirm } from '../utils'
 
 const MenuInner = ({ product }) => {
@@ -37,13 +35,13 @@ const MenuInner = ({ product }) => {
                         to={`/products/${product.id}/edit`}
                         className='flex items-center gap-2 text-sm'
                     >
-                        <BiPencil />Edit
+                        <BsPen />Edit
                     </NavLink>
                     <NavLink
                         to={`/products/${product.id}/promote`}
                         className='flex items-center gap-2 text-sm'
                     >
-                        <BsMegaphoneFill />Promote
+                        <BsMegaphone />Promote
                     </NavLink>
                 </>
             }

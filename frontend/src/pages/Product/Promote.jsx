@@ -6,6 +6,7 @@ import { useProduct, usePromotions } from '../../api/api'
 import { Price, Spinner, Title, SearchItemCard } from '../../components'
 import useAxios from '../../hooks/useAxios'
 import { alertErr } from '../../utils'
+import SearchItemCardTemplate from './SearchItemCardTemplate'
 
 const Promote = () => {
 
@@ -31,7 +32,7 @@ const Promote = () => {
     if (promotions.error) return promotions.error.message
 
     return (
-        <div className='grid grid-cols-[1fr_3fr] gap-5'>
+        <div className='grid lg:grid-cols-[1fr_3fr] gap-5'>
             <NavLink
                 to={`/products/${product.data?.id}`}
                 className='col-span-full flex items-center gap-2 font-bold hover:text-accent-orange'
@@ -81,13 +82,25 @@ const Promote = () => {
                     Proseed to checkout
                 </button>
             </div>
-            <div>
+            <div className='relative overflow-hidden'>
+                <div style={{
+                    WebkitMaskImage: '-webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
+                }}>
+                    <div className='-mt-32'>
+                        <SearchItemCardTemplate />
+                    </div>
+                </div>
                 <SearchItemCard
                     product={{
                         ...product.data,
                         promotions: [...selected.map(el => el.name), ...product.data?.promotions]
                     }}
                 />
+                <div style={{
+                    WebkitMaskImage: '-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
+                }}>
+                    <SearchItemCardTemplate />
+                </div>
             </div>
         </div>
     )

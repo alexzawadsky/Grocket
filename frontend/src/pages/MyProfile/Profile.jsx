@@ -8,11 +8,12 @@ import { AiFillHeart, AiOutlineSetting } from 'react-icons/ai'
 import { BsCartCheck, BsCartDash, BsCart } from 'react-icons/bs'
 import { useProfile } from '../../api/api'
 import { Helmet } from 'react-helmet-async'
+import useScreen from '../../hooks/useScreen'
 // import Flag from 'react-flags'
 
 const MyProfile = () => {
 
-    const isTablet = useMediaQuery({ query: '(min-width: 768px)' })
+    const { isMaxPhone } = useScreen()
     const { logoutUser } = useContext(AuthContext)
     const outlet = useOutlet()
 
@@ -26,7 +27,7 @@ const MyProfile = () => {
             <Helmet>
                 <title>{data.first_name} {data.last_name} (me) - Grocket</title>
             </Helmet>
-            {outlet && !isTablet ?
+            {outlet && isMaxPhone ?
                 null
                 :
                 (

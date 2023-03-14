@@ -52,7 +52,7 @@ const EditProduct = () => {
 
     return (
         <div className='grid gap-4'>
-            <NavLink to={`/products/${productId}`} className='flex items-center gap-2 hover:text-accent-orange font-bold'><BsArrowLeft />Open product page</NavLink>
+            <NavLink to={`/products/${productId}`} className='flex items-center gap-2 hover:text-accent-orange font-bold'><BsArrowLeft />Product page</NavLink>
             {/* <div className="flex items-center gap-2">
                 <p className="text-3xl"><BiPencil /></p>
                 <Title text='Edit product' />

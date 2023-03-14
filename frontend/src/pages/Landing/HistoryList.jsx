@@ -4,17 +4,17 @@ import { IoBookOutline } from 'react-icons/io5'
 import SearchHistoryContext from '../../contexts/HistoryContext'
 import { useContext } from 'react'
 import { BsFillTrashFill, BsArrowRight } from 'react-icons/bs'
-import { useMediaQuery } from 'react-responsive'
 import HistoryItem from './HistoryItem'
+import useScreen from '../../hooks/useScreen'
 
 const HistoryList = () => {
 
-    const isTablet = useMediaQuery({ query: '(min-width: 768px)' })
+    const { isMinTablet } = useScreen()
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
         <div className='grid gap-5 h-fit'>
-            {isTablet ? (
+            {isMinTablet ? (
                 <>
                     <h2 to='/history' className='text-2xl font-bold flex items-center gap-3 text-truncate'><IoBookOutline />You looked earlier</h2>
                     <button onClick={clearHistory} className='button-outline-red !w-full justify-center'><BsFillTrashFill />Clear history</button>

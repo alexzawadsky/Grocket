@@ -1,15 +1,15 @@
-import { useMediaQuery } from 'react-responsive'
 import { BsArrowLeft } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 import MyProductsList from './MyProductsList'
+import useScreen from '../../hooks/useScreen'
 
 const MyLots = () => {
 
-    const isPhone = useMediaQuery({ query: '(max-width: 764px)' })
+    const { isMaxPhone } = useScreen()
 
     return (
         <div className='grid gap-5 w-full'>
-            {isPhone ? <NavLink className='flex items-center gap-2' to='/profile'><BsArrowLeft />Back to profile</NavLink> : null}
+            {isMaxPhone ? <NavLink className='flex items-center gap-2' to='/profile'><BsArrowLeft />Back to profile</NavLink> : null}
             <h1 className='font-bold text-3xl'>Active items</h1>
             <MyProductsList />
         </div>

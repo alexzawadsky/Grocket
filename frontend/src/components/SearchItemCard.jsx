@@ -9,26 +9,30 @@ import RatingStars from './RatingStars'
 import { TbPhoneCheck } from 'react-icons/tb'
 import AuthContext from '../contexts/AuthProvider'
 import { FiMail } from 'react-icons/fi'
+import ImagesCarousel from './ImagesCarousel'
 
 const SearchItemCard = ({ product }) => {
 
     const { user } = useContext(AuthContext)
 
     return (
-        <div className='grid grid-cols-[1fr_2fr_1fr] rounded-2xl border-2 border-black overflow-hidden h-fit'>
+        <NavLink className='grid grid-cols-[1fr_2fr] lg:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50' to={`/products/${product?.id}`}>
             <NavLink
                 to={`/products/${product?.id}`}
-                className='grid grid-cols-2 gap-0.5 h-full'
+                className='grid grid-cols-2 gap-1'
             >
-                <img className='col-span-2' src={product?.images[0]?.image} />
+                <div className="col-span-full rounded-lg overflow-hidden">
+                    <ImagesCarousel images={product.images} />
+                </div>
+
                 {product?.promotions.includes('xl') &&
                     <>
-                        <img src={product?.images[1]?.image} />
-                        <img src={product?.images[2]?.image} />
+                        <img className='rounded-lg' src={product?.images[1]?.image} />
+                        <img className='rounded-lg' src={product?.images[2]?.image} />
                     </>
                 }
             </NavLink>
-            <div className={`flex items-start h-full flex-col justify-center ${product?.promotions.includes('xl') ? 'gap-3' : 'gap-2'}   p-4`}>
+            <div className={`flex items-start h-full flex-col justify-center ${product?.promotions.includes('xl') ? 'gap-3' : 'gap-2'} p-4`}>
                 <NavLink
                     className={`font-bold hover:text-accent-orange ${product?.promotions.includes('xl') ? 'text-md xl:text-2xl' : 'text-md xl:text-xl'}`}
                     to={`/products/${product.id}`}
@@ -42,7 +46,7 @@ const SearchItemCard = ({ product }) => {
                         WebkitLineClamp: 2
                     }}
                 >
-                    {product?.description.slice(0, product?.promotions.includes('xl') ? 200 : 100)}...
+                    {product?.description.slice(0, product?.promotions.includes('xl') ? 200 : 100)}{product?.description.length > (product?.promotions.includes('xl') ? 200 : 100) ? '...' : ''}
                 </p>
                 <p
                     className={
@@ -69,7 +73,7 @@ const SearchItemCard = ({ product }) => {
                     </p>
                 </div>
             </div>
-            <div className='px-4 py-7 hidden lg:flex gap-4 text-sm'>
+            <div className='px-4 py-7 hidden lg:flex gap-4 text-sm h-full'>
                 <div className='w-10 h-fit'>
                     <Avatar avatar={product?.user?.avatar} />
                 </div>
@@ -103,7 +107,7 @@ const SearchItemCard = ({ product }) => {
                     </p>
                 </div>
             </div>
-        </div>
+        </NavLink>
     )
 }
 

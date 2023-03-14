@@ -4,11 +4,11 @@ import { AvatarCrop, Input, Spinner, Title } from '../../components'
 import { MdPassword } from 'react-icons/md'
 import { BsPersonBoundingBox, BsPersonLinesFill, BsArrowLeft, BsFillPersonXFill } from 'react-icons/bs'
 import useAxios from '../../hooks/useAxios'
-import { alertErr, info, notification, toBase64 } from '../../utils'
+import { alertErr, info, toBase64 } from '../../utils'
 import useInput from '../../hooks/useInput'
 import AuthContext from '../../contexts/AuthProvider'
-import { useMediaQuery } from 'react-responsive'
 import { useProfile, useUpdatePassword, useUpdateProfile } from '../../api/api'
+import useScreen from '../../hooks/useScreen'
 
 
 const BackButton = () => {
@@ -188,7 +188,7 @@ export const DeleteProfile = () => {
 const ProfileSettings = () => {
 
     const outlet = useOutlet()
-    const isPhone = useMediaQuery({ query: '(max-width: 639px)' })
+    const { isMaxPhone } = useScreen()
 
     return (
         <div className='grid gap-3 w-full'>
@@ -196,7 +196,7 @@ const ProfileSettings = () => {
                 <Outlet />
                 :
                 <>
-                    {isPhone ? <NavLink className='flex items-center gap-2' to='/profile'><BsArrowLeft />Back to profile</NavLink> : null}
+                    {isMaxPhone ? <NavLink className='flex items-center gap-2' to='/profile'><BsArrowLeft />Back to profile</NavLink> : null}
                     <Title text='Profile settings' />
                     <p className='font-bolditalic'>Select option:</p>
                     <NavLink to='password' className='flex items-center gap-2'><MdPassword />Change password</NavLink>

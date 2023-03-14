@@ -14,13 +14,14 @@ import Category from './Category';
 import { Helmet } from 'react-helmet-async';
 import AuthContext from '../../contexts/AuthProvider';
 import ManageProductMenu from '../../components/ManageProductMenu';
+import useScreen from '../../hooks/useScreen';
 
 const ProductPage = () => {
 
     const { updateHistory } = useContext(SearchHistoryContext)
     const { user } = useContext(AuthContext)
     const { productId } = useParams()
-    const isTablet = useMediaQuery({ query: '(max-width: 1023px)' })
+    const { isMaxTablet } = useScreen()
 
     const { data, error, isLoading } = useProduct(productId)
 
@@ -71,14 +72,14 @@ const ProductPage = () => {
                         </span>
                         <Category category={data.category} />
                     </div>
-                    {isTablet && <h2 className='font-bold text-3xl'>{parseFloat(data.price).toFixed(0)} {data.price_currency}</h2>}
+                    {isMaxTablet && <h2 className='font-bold text-3xl'>{parseFloat(data.price).toFixed(0)} {data.price_currency}</h2>}
                     <ImagesGallery images={data.images} />
                     <h2 className='font-bold text-2xl flex items-center gap-5'>Description</h2>
                     <ReadMore text={data.description} />
                     <h2 className='font-bold text-2xl flex items-center gap-2'><FiMapPin />Address</h2>
                     <Map adress={data.address} />
                     <p>{data.address}</p>
-                    {isTablet && <>
+                    {isMaxTablet && <>
                         <p className='font-bold text-2xl'>Seller</p>
                         <SellerCard profile={data.user} />
                         {data.user.id === user?.user_id && (
@@ -89,7 +90,7 @@ const ProductPage = () => {
                         )}
                     </>}
                 </div>
-                {!isTablet && <div className='w-full'>
+                {!isMaxTablet && <div className='w-full'>
                     <div className='grid gap-3 h-fit fixed'>
                         <h2 className='font-bold text-3xl'>{parseFloat(data.price).toFixed(0)} {data.price_currency}</h2>
                         <SellerCard profile={data.user} />

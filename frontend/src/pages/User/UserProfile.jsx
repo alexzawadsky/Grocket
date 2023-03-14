@@ -25,6 +25,7 @@ const UserProfile = () => {
                 (
                     <div className='shring-0 grid gap-5'>
                         <ProfileCard
+                            id={data.id}
                             firstName={data.first_name}
                             lastName={data.last_name}
                             email={data.email}

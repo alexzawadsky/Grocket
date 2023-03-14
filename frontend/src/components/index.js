@@ -19,6 +19,7 @@ import ProductsList from "./ProductsList";
 import Price from "./Price";
 import SearchItemCard from "./SearchItemCard";
 import PublishTime from "./PublishTime";
+import ImagesCarousel from "./ImagesCarousel";
 
 export {
     Avatar,
@@ -41,5 +42,6 @@ export {
     ProductsList,
     Price,
     SearchItemCard,
-    PublishTime
+    PublishTime,
+    ImagesCarousel
 }

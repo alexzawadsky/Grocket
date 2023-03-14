@@ -5,6 +5,7 @@ import AuthContext from '../../contexts/AuthProvider'
 import { toBase64 } from "../../utils";
 import { AvatarCrop, ProfileCard, Title } from '../../components'
 import { useMediaQuery } from 'react-responsive';
+import useScreen from '../../hooks/useScreen';
 
 const Register = () => {
 
@@ -25,8 +26,7 @@ const Register = () => {
     const editorRef = useRef()
     const fileInputRef = useRef()
 
-    const isPC = useMediaQuery({ query: '(min-width: 1024px)' })
-    const isTablet = useMediaQuery({ query: '(min-width: 768px)' })
+    const { isMinPC, isMinTablet, isLargePC } = useScreen()
 
     const [loading, setLoading] = useState(false)
 
@@ -78,8 +78,9 @@ const Register = () => {
     return (
         <div className='grid gap-5'>
             <Title text='Create account' />
-            <div className="flex flex-col md:flex-row max-w-full justify-between gap-5">
-                {isPC ? <ProfileCard
+            <div className="grid md:grid-cols-[2fr_1fr] xl:grid-cols-[1fr_2fr_1fr] gap-5">
+                {isLargePC ? <ProfileCard
+                    id={0}
                     firstName={name}
                     lastName={lastName}
                     email={email}
@@ -88,7 +89,7 @@ const Register = () => {
                     avatar={avatar}
                     withComments={false}
                 /> : null}
-                <form onSubmit={handleSubmit} className='w-full lg:w-1/3 grid md:grid-cols-2 gap-2 md:shrink'>
+                <form onSubmit={handleSubmit} className='grid w-full lg:w-2/3 mx-auto md:grid-cols-2 gap-2 lg:gap-5 h-fit'>
                     <div>
                         <label htmlFor="name">First name:</label>
                         <input className='grocket-input w-full' onChange={e => setName(e.target.value)} type="text" />
@@ -125,7 +126,7 @@ const Register = () => {
                         <input ref={fileInputRef} onChange={e => setImageInInput(e.target.files[0])} type="file" />
                         {imageInInput ? <button onClick={removePhoto} type='button' className='border-2 border-accent-red hover:bg-accent-red/[0.1] text-accent-red h-full px-2 font-bold rounded-full flex items-center gap-2'><BsFillTrashFill />delete</button> : null}
                     </div>
-                    {!isTablet && !adjSaved ? <AvatarCrop
+                    {!isMinTablet && !adjSaved ? <AvatarCrop
                         editorRef={editorRef}
                         image={imageInInput}
                         setState={setAjdSaved}
@@ -134,7 +135,7 @@ const Register = () => {
                     /> : adjSaved && !adjSaved ? <p className='text-green-600 font-bold'>Saved!</p> : null}
                     <button className='button-fill-orange col-span-full !w-full mt-3'><p>{!loading ? 'Register' : 'Loading...'}</p></button>
                 </form>
-                {isTablet ? <AvatarCrop
+                {isMinTablet ? <AvatarCrop
                     editorRef={editorRef}
                     image={imageInInput}
                     setState={setAjdSaved}

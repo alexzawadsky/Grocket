@@ -85,7 +85,7 @@ const Promote = () => {
                 <SearchItemCard
                     product={{
                         ...product.data,
-                        promotions: selected.map(el => el.name)
+                        promotions: [...selected.map(el => el.name), ...product.data?.promotions]
                     }}
                 />
             </div>

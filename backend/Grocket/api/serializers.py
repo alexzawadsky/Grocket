@@ -3,7 +3,8 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.fields import ProductImagesField
-from products.models import Category, Favourite, Image, Product, Promotion
+from products.models import (Category, Favourite, Image, Product, Promotion,
+                             Comment, CommentImage)
 from products.services import ProductService
 from users.models import User
 from users.services import UserService
@@ -405,3 +406,35 @@ class ProductUpdateSerializer(ProductCreateUpdateSerializer):
             return instance
 
         return super().update(instance, validated_data)
+
+
+class ProductCommentSerializer(ProductReadOnlySerializer):
+
+    class Meta:
+        model = Product
+        fields = ('id', 'name',)
+
+
+class CommentImageSerializer(serializers.ModelSerializer):
+    image = Base64ImageField(allow_null=True, required=False)
+    test = serializers.SerializerMethodField()
+    class Meta:
+        model = CommentImage
+        fields = ('id', 'image',)
+
+    def get_test(self, obj):
+        return self.instance
+
+
+class CommentReadOnlySerializer(serializers.ModelSerializer):
+    user = CustomUserSerializer(read_only=True)
+    product = ProductCommentSerializer(read_only=True)
+    images = CommentImageSerializer(read_only=True, many=True)
+    # images = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Comment
+        fields = ('id', 'user', 'product', 'text', 'rate', 'images',)
+
+    # def get_images(self, obj):
+    #     return 1

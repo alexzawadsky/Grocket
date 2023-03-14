@@ -5,7 +5,8 @@ from rest_framework.routers import DefaultRouter
 
 from .views import (CategoryViewSet, CustomUserRegisterViewSet,
                     CustomUserRetrieveViewSet, FavouriteViewSet,
-                    ProductViewSet, PromotionViewSet)
+                    ProductViewSet, PromotionViewSet,
+                    CommentViewSet)
 
 app_name = 'api'
 
@@ -42,7 +43,25 @@ urlpatterns = [
          name='me_products'),
     # <--------- Products --------->
 
-    # <--------- Users --------->
+    # <--------- Comments --------->
+    path('v1/comments/<int:pk>/reply/',
+         CommentViewSet.as_view({'post': 'reply'}),
+         name='reply'),
+    path('v1/comments/<int:pk>/',
+         CommentViewSet.as_view({'delete': 'delete'}),
+         name='delete_comment'),
+    path('v1/comments/',
+         CommentViewSet.as_view({'post': 'post'}),
+         name='add_comment'),
+    path('v1/users/<int:pk>/comments/',
+         CommentViewSet.as_view({'get': 'user_comments'}),
+         name='user_comments'),
+    path('v1/users/me/comments/',
+         CommentViewSet.as_view({'get': 'me_comments'}),
+         name='me_comments'),
+    # <--------- Comments --------->
+
+    # <--------- Users ------------>
     path('v1/users/me/',
          UserViewSet.as_view(ME_METHODS),
          name='me'),
@@ -59,7 +78,7 @@ urlpatterns = [
          CustomUserRegisterViewSet.as_view({'post': 'create'}),
          name='register'),
     path('v1/auth/', include('djoser.urls.jwt')),
-    # <--------- Users --------->
+    # <--------- Users ------------>
 
     path('v1/', include(router.urls)),
 ]

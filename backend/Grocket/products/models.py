@@ -156,7 +156,7 @@ class Favourite(models.Model):
         User,
         related_name='favorites',
         on_delete=models.CASCADE,
-        verbose_name='customer',
+        verbose_name='user',
     )
     product = models.ForeignKey(
         'Product',
@@ -176,17 +176,33 @@ class Favourite(models.Model):
         return f'{self.user.username}, {self.product.name}'
 
 
+class CommentImage(models.Model):
+    comment = models.ForeignKey(
+        'Comment',
+        related_name='comment_images',
+        on_delete=models.CASCADE,
+        verbose_name='comment image',
+    )
+    image = models.ImageField(upload_to='comments/')
+
+
 class Comment(WithDateModel):
     user = models.ForeignKey(
         User,
-        related_name='comments',
+        related_name='user_comments',
+        on_delete=models.CASCADE,
+        verbose_name='user',
+    )
+    customer = models.ForeignKey(
+        User,
+        related_name='customer_comments',
         on_delete=models.CASCADE,
         verbose_name='customer',
     )
     product = models.ForeignKey(
         'Product',
         related_name='comments',
-        on_delete=models.CASCADE,
+        on_delete=models.CASCADE,  # Мб потом поменять!!!
         verbose_name='commented product',
     )
     text = models.TextField(
@@ -202,8 +218,41 @@ class Comment(WithDateModel):
         ordering = ('-pub_date',)
         verbose_name = 'comment'
         verbose_name_plural = 'comments'
-        constraints = [models.UniqueConstraint(fields=['user', 'product'],
-                       name='unique сomment')]
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'product'],
+                name='unique сomment'
+            )
+        ]
 
     def __str__(self):
         return f'{self.user.username}, {self.product.name}, {self.rate}'
+
+
+class CommentReply(WithDateModel):
+    user = models.ForeignKey(
+        User,
+        related_name='comment_replies',
+        on_delete=models.CASCADE,
+        verbose_name='customer',
+    )
+    comment = models.ForeignKey(
+        'Comment',
+        related_name='comment_replies',
+        on_delete=models.CASCADE,
+        verbose_name='comment',
+    )
+    text = models.TextField(
+        max_length=500,
+        verbose_name='reply comment text',
+    )
+
+    class Meta:
+        ordering = ('-pub_date',)
+        verbose_name = 'comment reply'
+        verbose_name_plural = 'comment replies'
+        constraints = [models.UniqueConstraint(fields=['user', 'comment'],
+                       name='unique сomment reply')]
+
+    def __str__(self):
+        return f'{self.user.username}, init comment: {self.comment.id}'

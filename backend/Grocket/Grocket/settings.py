@@ -158,7 +158,7 @@ SITE_NAME = 'Grocket'
 
 DJOSER = {
     'ACTIVATION_URL': 'activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': False,  # Это менять чтоб письмо отправлялось
     'SET_PASSWORD_RETYPE': True,
     'USER_CREATE_PASSWORD_RETYPE': True,
     'HIDE_USERS': False,

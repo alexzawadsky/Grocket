@@ -4,24 +4,25 @@ import { IoBookOutline } from 'react-icons/io5'
 import SearchHistoryContext from '../../contexts/HistoryContext'
 import { useContext } from 'react'
 import { BsFillTrashFill, BsArrowRight } from 'react-icons/bs'
-import { useMediaQuery } from 'react-responsive'
 import HistoryItem from './HistoryItem'
+import useScreen from '../../hooks/useScreen'
+import { useTranslation } from 'react-i18next'
 
 const HistoryList = () => {
 
-    const isTablet = useMediaQuery({ query: '(min-width: 768px)' })
+    const { t } = useTranslation()
+    const { isMinTablet } = useScreen()
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
-
     return (
         <div className='grid gap-5 h-fit'>
-            {isTablet ? (
+            {isMinTablet ? (
                 <>
-                    <h2 to='/history' className='text-2xl font-bold flex items-center gap-3 text-truncate'><IoBookOutline />You looked earlier</h2>
-                    <button onClick={clearHistory} className='button-outline-red !w-full justify-center'><BsFillTrashFill />Clear history</button>
+                    <h2 to='/history' className='text-2xl font-bold flex items-center gap-3 text-truncate'><IoBookOutline />{t('you_looked_earlier')}</h2>
+                    <button onClick={clearHistory} className='button-outline-red !w-full justify-center'><BsFillTrashFill />{t('clear_history')}</button>
                     {lookHistory.slice(0, 4).map((el, key) => <HistoryItem key={key} content={el} />)}
                 </>
             ) : null}
-            <NavLink className='flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange' to='/history'>View full browsing history<BsArrowRight /></NavLink>
+            <NavLink className='flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange' to='/history'>{t('view_full_history')}<BsArrowRight /></NavLink>
         </div>
     )
 }

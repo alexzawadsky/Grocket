@@ -2,9 +2,11 @@ import { useContext } from "react"
 import { NavLink } from "react-router-dom"
 import AuthContext from "../../contexts/AuthProvider"
 import { Avatar, RatingStars } from "../../components"
+import { useTranslation } from "react-i18next"
 
 const SellerCard = ({ profile }) => {
 
+    const { t } = useTranslation()
     const { user } = useContext(AuthContext)
     const date = new Date(profile.date_joined).toLocaleDateString(undefined,
         { year: 'numeric', month: 'short', day: 'numeric' }
@@ -18,13 +20,13 @@ const SellerCard = ({ profile }) => {
                 </div>
                 <div>
                     <NavLink
-                        to={!user || user.user_id !== profile.id ? `/users/${profile.id}` : '/profile'}
+                        to={!user || user.user_id !== profile.id ? `/users/${profile.id}` : '/users/me'}
                         className='hover:text-accent-orange'
-                    >{profile.last_name} {profile.first_name} {user && user.user_id === profile.id ? '(me)' : null}</NavLink>
+                    >{profile.last_name} {profile.first_name} {user && user.user_id === profile.id ? `(${t('me')})` : null}</NavLink>
                     <RatingStars rating={profile.rate} />
                 </div>
             </div>
-            <p className='text-sm text-primary-300'>{`On Grocket since ${date}`}</p>
+            <p className='text-sm text-primary-300'>{`${t('on_grocket_since')} ${date}`}</p>
             {!user || user.user_id !== profile.id ? <NavLink className='button-fill-orange justify-center !w-full' to={`/users/${profile.id}/chat`}>Send message</NavLink> : null}
         </div>
     )

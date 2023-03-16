@@ -1,0 +1,18 @@
+{
+    "SE": {
+        "name": "Sverige",
+        "code": "se"
+    },
+    "RU": {
+        "name": "Русский",
+        "code": "ru"
+    },
+    "NL": {
+        "name": "Netherlands",
+        "code": "nl"
+    },
+    "EN": {
+        "name": "English",
+        "code": "en"
+    }
+}

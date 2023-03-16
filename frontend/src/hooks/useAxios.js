@@ -3,14 +3,16 @@ import { useContext } from "react";
 import dayjs from "dayjs";
 import jwt_decode from "jwt-decode";
 import AuthContext from "../contexts/AuthProvider";
-import api from "../api/api";
 
 const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
 
     const axiosInstance = axios.create({
         baseURL: import.meta.env.VITE_API_URL || 'http://localhost',
-        headers: authTokens ? { Authorization: `Bearer ${authTokens?.access}` } : null
+        headers: {
+            Authorization: authTokens ? `Bearer ${authTokens?.access}` : null,
+            'Accept-Language': localStorage.getItem('i18nextLng') || 'en'
+        }
     })
 
     axiosInstance.interceptors.request.use(async req => {

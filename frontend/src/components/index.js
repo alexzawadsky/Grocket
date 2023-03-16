@@ -1,7 +1,5 @@
 import Avatar from "./Avatar";
 import AvatarCrop from "./AvatarCrop";
-import Comment from "./Comment";
-import CommentsStats from "./CommentsStats";
 import Filters from "./Filters";
 import Footer from "./Footer";
 import ItemCard from "./ItemCard";
@@ -19,12 +17,13 @@ import ProductsList from "./ProductsList";
 import Price from "./Price";
 import SearchItemCard from "./SearchItemCard";
 import PublishTime from "./PublishTime";
+import ImagesCarousel from "./ImagesCarousel";
+import ImagesGallery from "./ImagesGallery";
+import LanguageSelectionBanner from "./LanguageSelectionBanner";
 
 export {
     Avatar,
     AvatarCrop,
-    Comment,
-    CommentsStats,
     Filters,
     Footer,
     ItemCard,
@@ -41,5 +40,8 @@ export {
     ProductsList,
     Price,
     SearchItemCard,
-    PublishTime
+    PublishTime,
+    ImagesCarousel,
+    ImagesGallery,
+    LanguageSelectionBanner
 }

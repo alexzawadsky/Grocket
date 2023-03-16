@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { BsArrowLeft } from 'react-icons/bs'
 import { useParams } from 'react-router'
 import { NavLink } from 'react-router-dom'
@@ -6,9 +7,11 @@ import { useProduct, usePromotions } from '../../api/api'
 import { Price, Spinner, Title, SearchItemCard } from '../../components'
 import useAxios from '../../hooks/useAxios'
 import { alertErr } from '../../utils'
+import SearchItemCardTemplate from './SearchItemCardTemplate'
 
 const Promote = () => {
 
+    const { t } = useTranslation()
     const { productId } = useParams()
     const promotions = usePromotions()
     const product = useProduct(productId)
@@ -31,16 +34,16 @@ const Promote = () => {
     if (promotions.error) return promotions.error.message
 
     return (
-        <div className='grid grid-cols-[1fr_3fr] gap-5'>
+        <div className='grid lg:grid-cols-[1fr_3fr] gap-5'>
             <NavLink
                 to={`/products/${product.data?.id}`}
                 className='col-span-full flex items-center gap-2 font-bold hover:text-accent-orange'
             >
                 <BsArrowLeft />
-                Product page
+                {t('product_page')}
             </NavLink>
             <div className="col-span-full">
-                <Title text='Buy promotions for your product' />
+                <Title text={t('buy_promotions_head')} />
             </div>
             <div className='grid h-fit gap-4'>
                 {
@@ -65,8 +68,9 @@ const Promote = () => {
                                 />
                                 <label htmlFor={`select-${promo?.name}`}>
                                     {
-                                        selected.filter(el => el.id === promo.id).length > 0 || product.data?.promotions.includes(promo?.name) ?
-                                            'Selected' : 'Select'
+                                        product.data?.promotions.includes(promo?.name) ? t('active') :
+                                            selected.filter(el => el.id === promo.id).length > 0 ?
+                                                t('selected') : t('select')
                                     }
                                 </label>
                             </div>
@@ -78,16 +82,28 @@ const Promote = () => {
                     className='button-fill-orange'
                     onClick={handleSubmit}
                 >
-                    Proseed to checkout
+                    {t('proceed_to_checkout')}
                 </button>
             </div>
-            <div>
+            <div className='relative overflow-hidden'>
+                <div style={{
+                    WebkitMaskImage: '-webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
+                }}>
+                    <div className='-mt-32'>
+                        <SearchItemCardTemplate />
+                    </div>
+                </div>
                 <SearchItemCard
                     product={{
                         ...product.data,
                         promotions: [...selected.map(el => el.name), ...product.data?.promotions]
                     }}
                 />
+                <div style={{
+                    WebkitMaskImage: '-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
+                }}>
+                    <SearchItemCardTemplate />
+                </div>
             </div>
         </div>
     )

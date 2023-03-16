@@ -7,9 +7,11 @@ import ProductForm from './ProductForm'
 import { BsArrowLeft } from 'react-icons/bs'
 import CategoryList from './CategoryList'
 import { prepareImages } from './utils'
+import { useTranslation } from 'react-i18next'
 
 const EditProduct = () => {
 
+    const { t } = useTranslation()
     const { productId } = useParams()
     const { data, isLoading, error } = useProduct(productId)
     const [formData, setFormData] = useState()
@@ -52,12 +54,12 @@ const EditProduct = () => {
 
     return (
         <div className='grid gap-4'>
-            <NavLink to={`/products/${productId}`} className='flex items-center gap-2 hover:text-accent-orange font-bold'><BsArrowLeft />Open product page</NavLink>
+            <NavLink to={`/products/${productId}`} className='flex items-center gap-2 hover:text-accent-orange font-bold'><BsArrowLeft />{t('product_page')}</NavLink>
             {/* <div className="flex items-center gap-2">
                 <p className="text-3xl"><BiPencil /></p>
                 <Title text='Edit product' />
             </div> */}
-            <h2 className='font-bold text-xl'>Change category</h2>
+            <h2 className='font-bold text-xl'>{t('change_category')}</h2>
             <CategoryList
                 category={category}
                 setCategory={setCategory}
@@ -72,7 +74,7 @@ const EditProduct = () => {
                 className='button-fill-orange'
                 disabled={!valid || Object.keys(changes).length === 0}
             >
-                {updateProductMutation.isLoading ? 'Updating' : 'Update'}
+                {updateProductMutation.isLoading ? t('loading') : t('update')}
             </button>
             {updateProductMutation.error && updateProductMutation.error.message}
         </div>

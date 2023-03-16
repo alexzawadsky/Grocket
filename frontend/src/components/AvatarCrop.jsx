@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import AvatarEditor from 'react-avatar-editor'
+import { useTranslation } from 'react-i18next'
 
 const AvatarCrop = ({ editorRef, image, setState, onSave, adjSaved }) => {
 
+    const { t } = useTranslation()
     const [avatarSize, setAvatarSize] = useState(1)
 
     return (
@@ -25,12 +27,12 @@ const AvatarCrop = ({ editorRef, image, setState, onSave, adjSaved }) => {
                 setAvatarSize(e.target.value)
                 setState(false)
             }} />
-            <p className='font-bolditalic text-accent-red'>Please adjust your avatar before submitting</p>
+            <p className='font-bolditalic text-accent-red'>{t('please_save_adj')}</p>
             <button
                 onClick={onSave}
                 className={adjSaved ? 'button-outline-green' : 'button-outline-orange'}
                 type='button'>
-                {adjSaved ? 'Saved!' : 'Save adjustments'}
+                {adjSaved ? t('saved') : t('save_adj')}
             </button>
         </div>
     )

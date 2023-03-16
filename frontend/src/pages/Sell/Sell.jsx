@@ -5,15 +5,16 @@ import useInput from '../../hooks/useInput'
 import { BsCheckCircleFill, BsTrashFill } from 'react-icons/bs'
 import { AiOutlineCheck, AiOutlineRotateRight, AiOutlineRotateLeft } from 'react-icons/ai'
 import AuthContext from '../../contexts/AuthProvider'
-
 import CategoryList from './CategoryList'
 import { useAddProduct } from '../../api/api'
 import { deleteImage, saveImage } from './utils'
 import AddressField from '../../components/AddressField'
 import ProductForm from './ProductForm'
+import { useTranslation } from 'react-i18next'
 
 const Sell = () => {
 
+    const { t } = useTranslation()
     const { user } = useContext(AuthContext)
     const [formData, setFormData] = useState(null)
     const [stage, setStage] = useState(1)
@@ -43,13 +44,13 @@ const Sell = () => {
     return (
         <div className='grid gap-5'>
             <Title
-                text='Sell your item'
+                text={t('sell_your_item')}
                 className='col-span-full'
             />
             {stage >= 1 && !addProductMutation.data &&
                 <>
                     <h2 className='col-span-full text-xl font-bold' >
-                        Category
+                        {t('category')}
                     </h2>
                     <CategoryList
                         category={category}
@@ -64,26 +65,26 @@ const Sell = () => {
                         className="button-fill-orange mt-5 disabled:border-2 disabled:bg-white disabled:cursor-not-allowed disabled:border-slate-600 disabled:text-slate-600"
                         onClick={handleSubmit}
                     >
-                        <AiOutlineCheck />{addProductMutation.isLoading ? <Spinner /> : 'Place item'}
+                        <AiOutlineCheck />{addProductMutation.isLoading ? <Spinner /> : t('place_item')}
                     </button>
                     {addProductMutation.isError && addProductMutation.error.message}
                 </div>
             }
             {addProductMutation.data ?
                 <div className='grid gap-5'>
-                    <h2 className='text text-xl text-green-600 flex items-center gap-3'><BsCheckCircleFill />Your item had been succesfully placed!</h2>
+                    <h2 className='text text-xl text-green-600 flex items-center gap-3'><BsCheckCircleFill />{t('sell_success')}</h2>
                     <span className='flex gap-1'>
-                        <p>You can check</p>
+                        <p>{t('you_can_check')}</p>
                         <NavLink
                             className='text-accent-orange hover:underline'
                             to={`/products/${addProductMutation.data.id}`}
                         >
-                            it's page
+                            {t('its_page')}
                         </NavLink>
-                        <p>now or open a list of</p>
+                        <p>{t('list_of')}</p>
                         <NavLink
                             className='text-accent-orange hover:underline'
-                            to='/profile/lots'>all your items</NavLink>
+                            to='/profile/lots'>{t('all_your_items')}</NavLink>
                     </span>
                 </div> : null
             }

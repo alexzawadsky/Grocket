@@ -1,14 +1,14 @@
 import React from 'react'
 import { useArchiveProduct, useSellProduct, useDeleteProduct } from '../api/api'
-import { BsMegaphoneFill, BsTrashFill } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 import { IoIosArrowUp } from 'react-icons/io'
-import { BiPencil } from 'react-icons/bi'
-import { BsFillMegaphoneFill } from 'react-icons/bs'
+import { BsMegaphone, BsPen, BsTrash } from 'react-icons/bs'
 import { confirm } from '../utils'
+import { useTranslation } from 'react-i18next'
 
 const MenuInner = ({ product }) => {
 
+    const { t } = useTranslation()
     const archiveProductMutation = useArchiveProduct()
     const sellProductMutation = useSellProduct()
     const deleteProductMutation = useDeleteProduct()
@@ -22,14 +22,14 @@ const MenuInner = ({ product }) => {
                 <button
                     className='text-sm'
                     onClick={() => archiveProductMutation.mutate({ id: product.id, state: product.is_archived })}>
-                    {product.is_archived ? 'Remove from archive' : 'Add to archive'}
+                    {product.is_archived ? t('remove_from_archive') : t('add_to_archive')}
                 </button>}
             {!product.is_archived &&
                 <button
                     className='text-sm'
                     onClick={() => sellProductMutation.mutate({ id: product.id, state: product.is_sold })}
                 >
-                    {product.is_sold ? 'Publish again' : 'Mark as sold'}
+                    {product.is_sold ? t('publish_again') : t('mark_as_sold')}
                 </button>}
             {!product.is_sold &&
                 <>
@@ -37,13 +37,13 @@ const MenuInner = ({ product }) => {
                         to={`/products/${product.id}/edit`}
                         className='flex items-center gap-2 text-sm'
                     >
-                        <BiPencil />Edit
+                        <BsPen />{t('edit')}
                     </NavLink>
                     <NavLink
                         to={`/products/${product.id}/promote`}
                         className='flex items-center gap-2 text-sm'
                     >
-                        <BsMegaphoneFill />Promote
+                        <BsMegaphone />{t('promote')}
                     </NavLink>
                 </>
             }
@@ -54,7 +54,7 @@ const MenuInner = ({ product }) => {
                     `${product.name} has been deleted`,
                     '')}
                 className='text-accent-red flex items-center gap-2 text-sm'>
-                <BsTrashFill />Delete
+                <BsTrash />{t('delete')}
             </button>
         </div>
     )
@@ -62,6 +62,7 @@ const MenuInner = ({ product }) => {
 
 const ManageProductMenu = ({ product, dropdown }) => {
 
+    const { t } = useTranslation()
     if (!dropdown) return <MenuInner product={product} />
 
     return (
@@ -82,7 +83,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
                 className="flex justify-center items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 min-w-32"
                 id="menu-button"
                 aria-expanded="false">
-                Manage<IoIosArrowUp />
+                {t('manage')}<IoIosArrowUp />
             </button>
         </div>
     )

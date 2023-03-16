@@ -72,6 +72,7 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem('lookHistory');
+        localStorage.removeItem('languageSelected')
         // queryClient.invalidateQueries()
         localStorage.removeItem("authTokens");
         navigate("/login");

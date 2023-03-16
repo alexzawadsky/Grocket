@@ -9,26 +9,32 @@ import RatingStars from './RatingStars'
 import { TbPhoneCheck } from 'react-icons/tb'
 import AuthContext from '../contexts/AuthProvider'
 import { FiMail } from 'react-icons/fi'
+import ImagesCarousel from './ImagesCarousel'
+import { useTranslation } from 'react-i18next'
 
 const SearchItemCard = ({ product }) => {
 
+    const { t } = useTranslation()
     const { user } = useContext(AuthContext)
 
     return (
-        <div className='grid grid-cols-[1fr_2fr_1fr] rounded-2xl border-2 border-black overflow-hidden h-fit'>
+        <NavLink className='grid grid-cols-[1fr_2fr] lg:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 transition-all duration-150' to={`/products/${product?.id}`}>
             <NavLink
                 to={`/products/${product?.id}`}
-                className='grid grid-cols-2 gap-0.5 h-full'
+                className='grid grid-cols-2 gap-1'
             >
-                <img className='col-span-2' src={product?.images[0]?.image} />
+                <div className="col-span-full rounded-lg overflow-hidden">
+                    <ImagesCarousel images={product.images} />
+                </div>
+
                 {product?.promotions.includes('xl') &&
                     <>
-                        <img src={product?.images[1]?.image} />
-                        <img src={product?.images[2]?.image} />
+                        <img className='rounded-lg' src={product?.images[1]?.image} />
+                        <img className='rounded-lg' src={product?.images[2]?.image} />
                     </>
                 }
             </NavLink>
-            <div className={`flex items-start h-full flex-col justify-center ${product?.promotions.includes('xl') ? 'gap-3' : 'gap-2'}   p-4`}>
+            <div className={`flex items-start h-full flex-col justify-center ${product?.promotions.includes('xl') ? 'gap-3' : 'gap-2'} p-4`}>
                 <NavLink
                     className={`font-bold hover:text-accent-orange ${product?.promotions.includes('xl') ? 'text-md xl:text-2xl' : 'text-md xl:text-xl'}`}
                     to={`/products/${product.id}`}
@@ -42,7 +48,7 @@ const SearchItemCard = ({ product }) => {
                         WebkitLineClamp: 2
                     }}
                 >
-                    {product?.description.slice(0, product?.promotions.includes('xl') ? 200 : 100)}...
+                    {product?.description.slice(0, product?.promotions.includes('xl') ? 200 : 100)}{product?.description.length > (product?.promotions.includes('xl') ? 200 : 100) ? '...' : ''}
                 </p>
                 <p
                     className={
@@ -69,41 +75,41 @@ const SearchItemCard = ({ product }) => {
                     </p>
                 </div>
             </div>
-            <div className='px-4 py-7 hidden lg:flex gap-4 text-sm'>
+            <div className='px-4 py-7 hidden lg:flex gap-4 text-sm h-full'>
                 <div className='w-10 h-fit'>
                     <Avatar avatar={product?.user?.avatar} />
                 </div>
                 <div className='flex flex-col gap-1.5'>
                     <NavLink
-                        to={product?.user?.id === user?.user_id ? '/profile' : `/users/${product?.user?.id}`}
+                        to={product?.user?.id === user?.user_id ? '/users/me' : `/users/${product?.user?.id}`}
                         className='font-bold hover:text-accent-orange flex-wrap flex'
                     >
-                        {product?.user?.first_name} {product?.user?.last_name} {product?.user?.id === user?.user_id && '(me)'}
+                        {product?.user?.first_name} {product?.user?.last_name} {product?.user?.id === user?.user_id && `(${t('me')})`}
                     </NavLink>
                     <div className='flex items-center gap-2'>
                         <RatingStars rating={5} />
                         <NavLink
-                            to={product?.user?.id === user?.user_id ? '/profile/comments' : `/users/${product?.user?.id}/comments`}
+                            to={product?.user?.id === user?.user_id ? '/users/me/comments' : `/users/${product?.user?.id}/comments`}
                             className='text-sm hover:text-accent-orange'
                         >
-                            23 comments
+                            {t('comments')} (23)
                         </NavLink>
                     </div>
-                    <p>12 items sold</p>
+                    <p>12 {t('items_sold')}</p>
                     {product?.user?.id !== user?.user_id && <NavLink
                         className='text-accent-orange flex items-center gap-2 h-fit'
                         to={`/users/${product?.user?.id}`}
                     >
                         <FiMail />
-                        Send message
+                        {t('send_message')}
                     </NavLink>}
                     <p className='flex items-center gap-2 text-green-600 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mt-auto'>
                         <TbPhoneCheck />
-                        Phone verified
+                        {t('phone_verified')}
                     </p>
                 </div>
             </div>
-        </div>
+        </NavLink>
     )
 }
 

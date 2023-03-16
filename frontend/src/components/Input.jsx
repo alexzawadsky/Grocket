@@ -1,9 +1,11 @@
 import React from "react";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { BsFillTrashFill } from 'react-icons/bs'
 
 const Input = ({ id, type, instance, className, title, autoRef, disabled, split, large, must }) => {
 
+    const { t } = useTranslation()
     const inputRef = useRef()
 
     useEffect(() => {
@@ -36,13 +38,13 @@ const Input = ({ id, type, instance, className, title, autoRef, disabled, split,
                         disabled={disabled}
                         className='grocket-input'
                     />}
-                    {(instance.isDirty && instance.emailError) && <p className="text-accent-red font-bold">Not valid email</p>}
-                    {(instance.isDirty && instance.pwdError) && <p className="text-accent-red font-bold">Pass err</p>}
-                    {(instance.isDirty && instance.isEmpty) && <p className="text-accent-red font-bold">Field can't be empty</p>}
-                    {(instance.isDirty && instance.matchError) && <p className="text-accent-red font-bold">Pass mismatch</p>}
+                    {(instance.isDirty && instance.emailError) && <p className="text-accent-red font-bold">{t('not_email_err')}</p>}
+                    {(instance.isDirty && instance.pwdError) && <p className="text-accent-red font-bold">{t('pass_err')}</p>}
+                    {(instance.isDirty && instance.isEmpty) && <p className="text-accent-red font-bold">{t('empty_field_err')}</p>}
+                    {(instance.isDirty && instance.matchError) && <p className="text-accent-red font-bold">{t('pass_miss_error')}</p>}
                     {(instance.isDirty && instance.minLengthError) && <p className="text-accent-red font-bold">Value is too short</p>}
-                    {(instance.isDirty && instance.intError) && <p className="text-accent-red font-bold">Not integer</p>}
-                    {(instance.isDirty && instance.floatError) && <p className="text-accent-red font-bold">Not float</p>}
+                    {(instance.isDirty && instance.intError) && <p className="text-accent-red font-bold">{t('not_int_err')}</p>}
+                    {(instance.isDirty && instance.floatError) && <p className="text-accent-red font-bold">{t('not_float_err')}</p>}
                 </div>
                 <div
                     role='button'
@@ -69,13 +71,13 @@ const Input = ({ id, type, instance, className, title, autoRef, disabled, split,
                 disabled={disabled}
                 className='grocket-input w-1/2'
             />
-            {(instance.isDirty && instance.emailError) && <p className="text-accent-red font-bold">Not valid email</p>}
-            {(instance.isDirty && instance.pwdError) && <p className="text-accent-red font-bold">Pass err</p>}
-            {(instance.isDirty && instance.isEmpty) && <p className="text-accent-red font-bold">Field can't be empty</p>}
-            {(instance.isDirty && instance.matchError) && <p className="text-accent-red font-bold">Pass mismatch</p>}
+            {(instance.isDirty && instance.emailError) && <p className="text-accent-red font-bold">{t('not_email_err')}</p>}
+            {(instance.isDirty && instance.pwdError) && <p className="text-accent-red font-bold">{t('pass_err')}</p>}
+            {(instance.isDirty && instance.isEmpty) && <p className="text-accent-red font-bold">{t('empty_field_err')}</p>}
+            {(instance.isDirty && instance.matchError) && <p className="text-accent-red font-bold">{t('pass_miss_error')}</p>}
             {(instance.isDirty && instance.minLengthError) && <p className="text-accent-red font-bold">Value is too short</p>}
-            {(instance.isDirty && instance.intError) && <p className="text-accent-red font-bold">Not integer</p>}
-            {(instance.isDirty && instance.floatError) && <p className="text-accent-red font-bold">Not float</p>}
+            {(instance.isDirty && instance.intError) && <p className="text-accent-red font-bold">{t('not_int_err')}</p>}
+            {(instance.isDirty && instance.floatError) && <p className="text-accent-red font-bold">{t('not_float_err')}</p>}
         </div>
     )
 }

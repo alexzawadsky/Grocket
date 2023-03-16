@@ -30,11 +30,11 @@
 }
 
 .button-base {
-  @apply font-bold w-fit px-5 py-3 flex items-center gap-2 rounded-xl justify-center disabled:!text-slate-600 disabled:!border-2 disabled:!border-slate-600 disabled:!cursor-not-allowed disabled:!bg-transparent
+  @apply transition-all duration-100 font-bold w-fit px-5 py-3 flex items-center gap-2 rounded-xl justify-center disabled:!text-slate-600 disabled:!border-2 disabled:!border-slate-600 disabled:!cursor-not-allowed disabled:!bg-transparent
 }
 
 .button-fill-orange {
-  @apply button-base text-white bg-accent-orange hover:bg-accent-orange/[0.8]
+  @apply button-base text-white border-2  border-accent-orange bg-accent-orange hover:bg-accent-orange/[0.8]
 }
 
 .button-outline-orange {

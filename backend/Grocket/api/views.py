@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 from django_filters import rest_framework as django_filters
 from djoser import views as djviews
 from rest_framework import filters, permissions, status, viewsets
@@ -6,6 +7,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from products.models import Category, Favourite, Product, Promotion
+from comments.models import Comment, CommentReply
 from users.models import User
 
 from .filters import ProductFilter
@@ -13,7 +15,9 @@ from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer, FavouriteSerializer,
                           ProductCreateSerializer, ProductListSerializer,
                           ProductRetrieveSerializer, ProductUpdateSerializer,
-                          PromotionCreateUpdateSerializer, PromotionSerializer)
+                          PromotionCreateUpdateSerializer, PromotionSerializer,
+                          CommentReadOnlySerializer, CommentCreateSerializer,
+                          CommentReplyCreateSerializer)
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -22,6 +26,91 @@ class CustomUserRetrieveViewSet(djviews.UserViewSet):
 
 class CustomUserRegisterViewSet(djviews.UserViewSet):
     pass
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    http_method_names = ['get', 'post', 'delete']
+    permission_classes = (IsOwnerOrReadOnly,)
+
+    def get_queryset(self):
+        comments = Comment.objects.all()
+        return comments
+
+    def get_permissions(self):
+        if self.action in ('user_comments',):
+            self.permission_classes = (permissions.AllowAny,)
+        elif self.action in ('create', 'reply', 'me_comments',):
+            self.permission_classes = (permissions.IsAuthenticated,)
+        return super().get_permissions()
+
+    def get_serializer_class(self):
+        if self.action in ('user_comments', 'me_comments',):
+            return CommentReadOnlySerializer
+        elif self.action in ('create',):
+            return CommentCreateSerializer
+        elif self.action in ('reply',):
+            return CommentReplyCreateSerializer
+
+    def _user_comments_list(self, user, request):
+        queryset = self.filter_queryset(
+            Comment.objects.filter(seller=user))
+
+        page = self.paginate_queryset(queryset)
+        serializer_class = self.get_serializer_class()
+        serializer = serializer_class(
+            instance=page,
+            context={'request': request},
+            many=True,
+        )
+
+        return self.get_paginated_response(serializer.data)
+
+    @action(['get'], detail=False)
+    def me_comments(self, request):
+        user = self.request.user
+        return self._user_comments_list(user, request)
+
+    @action(['get'], detail=False)
+    def user_comments(self, request, pk):
+        user = get_object_or_404(User, id=pk)
+        return self._user_comments_list(user, request)
+
+    @action(['post', 'delete'], detail=True)
+    def reply(self, request, pk):
+        if request.method == 'POST':
+            comment = get_object_or_404(Comment, id=pk)
+
+            if CommentReply.objects.filter(
+                comment=comment
+            ).exists() or comment.user == self.request.user:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+            serializer_class = self.get_serializer_class()
+            data = request.data
+            data['comment'] = pk
+            serializer = serializer_class(
+                data=data,
+                context={'request': request}
+            )
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        elif request.method == 'DELETE':
+            reply = get_object_or_404(CommentReply, id=pk)
+            reply.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    @action(['get'], detail=False)
+    def statuses(self, request):
+        statuses = settings.COMMENT_STATUSES
+        data = {
+            'statuses': statuses
+        }
+
+        return Response(data, status=status.HTTP_200_OK)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -119,7 +208,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         elif self.action in ('promote',):
             return PromotionCreateUpdateSerializer
 
-    def user_products_serialize(self, queryset, request):
+    def _user_products_serialize(self, queryset, request):
         page = self.paginate_queryset(queryset)
         serializer_class = self.get_serializer_class()
         serializer = serializer_class(
@@ -142,7 +231,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         else:
             queryset = queryset.filter(is_sold=False, is_archived=False)
 
-        return self.user_products_serialize(queryset, request)
+        return self._user_products_serialize(queryset, request)
 
     @action(['get'], detail=False)
     def user_products(self, request, pk):
@@ -153,7 +242,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         if self.request.query_params.get('is_sold') == '1':
             queryset = queryset.filter(is_sold=True)
 
-        return self.user_products_serialize(queryset, request)
+        return self._user_products_serialize(queryset, request)
 
     @action(['post'], detail=False)
     def promote(self, request, pk):

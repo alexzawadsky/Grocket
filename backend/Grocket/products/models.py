@@ -1,5 +1,4 @@
 from django.core.exceptions import ValidationError
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
@@ -18,19 +17,6 @@ def lower_category_validate(value):
         )
 
 
-class WithDateModel(models.Model):
-    """Абстрактная модель. Добавляет дату создания."""
-
-    pub_date = models.DateTimeField(
-        'Дата создания',
-        auto_now_add=True,
-        db_index=True,
-    )
-
-    class Meta:
-        abstract = True
-
-
 class Image(models.Model):
     product = models.ForeignKey(
         'Product',
@@ -40,6 +26,14 @@ class Image(models.Model):
     )
     image = models.ImageField(upload_to='images/')
     is_main = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('-id',)
+        verbose_name = 'product image'
+        verbose_name_plural = 'product images'
+
+    def __str__(self):
+        return f'product: {self.product.id}, {self.is_main}'
 
 
 class Category(MPTTModel):
@@ -100,7 +94,7 @@ class Promotion(models.Model):
         return self.name
 
 
-class Product(WithDateModel):
+class Product(models.Model):
     name = models.CharField(
         max_length=200,
         verbose_name='product name',
@@ -141,6 +135,11 @@ class Product(WithDateModel):
     )
     is_archived = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
+    pub_date = models.DateTimeField(
+        'Pub date',
+        auto_now_add=True,
+        db_index=True,
+    )
 
     class Meta:
         ordering = ('-pub_date',)
@@ -174,85 +173,3 @@ class Favourite(models.Model):
 
     def __str__(self):
         return f'{self.user.username}, {self.product.name}'
-
-
-class CommentImage(models.Model):
-    comment = models.ForeignKey(
-        'Comment',
-        related_name='comment_images',
-        on_delete=models.CASCADE,
-        verbose_name='comment image',
-    )
-    image = models.ImageField(upload_to='comments/')
-
-
-class Comment(WithDateModel):
-    user = models.ForeignKey(
-        User,
-        related_name='user_comments',
-        on_delete=models.CASCADE,
-        verbose_name='user',
-    )
-    customer = models.ForeignKey(
-        User,
-        related_name='customer_comments',
-        on_delete=models.CASCADE,
-        verbose_name='customer',
-    )
-    product = models.ForeignKey(
-        'Product',
-        related_name='comments',
-        on_delete=models.CASCADE,  # Мб потом поменять!!!
-        verbose_name='commented product',
-    )
-    text = models.TextField(
-        max_length=500,
-        blank=True,
-        verbose_name='comment text',
-    )
-    rate = models.SmallIntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)],
-    )
-
-    class Meta:
-        ordering = ('-pub_date',)
-        verbose_name = 'comment'
-        verbose_name_plural = 'comments'
-        constraints = [
-            models.UniqueConstraint(
-                fields=['user', 'product'],
-                name='unique сomment'
-            )
-        ]
-
-    def __str__(self):
-        return f'{self.user.username}, {self.product.name}, {self.rate}'
-
-
-class CommentReply(WithDateModel):
-    user = models.ForeignKey(
-        User,
-        related_name='comment_replies',
-        on_delete=models.CASCADE,
-        verbose_name='customer',
-    )
-    comment = models.ForeignKey(
-        'Comment',
-        related_name='comment_replies',
-        on_delete=models.CASCADE,
-        verbose_name='comment',
-    )
-    text = models.TextField(
-        max_length=500,
-        verbose_name='reply comment text',
-    )
-
-    class Meta:
-        ordering = ('-pub_date',)
-        verbose_name = 'comment reply'
-        verbose_name_plural = 'comment replies'
-        constraints = [models.UniqueConstraint(fields=['user', 'comment'],
-                       name='unique сomment reply')]
-
-    def __str__(self):
-        return f'{self.user.username}, init comment: {self.comment.id}'

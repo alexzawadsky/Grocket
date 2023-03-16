@@ -22,6 +22,7 @@ router = DefaultRouter()
 router.register('products', ProductViewSet, basename='product')
 router.register('promotions', PromotionViewSet, basename='promotion')
 router.register('categories', CategoryViewSet, basename='category')
+# router.register('comments', CommentViewSet, basename='comment')
 
 
 urlpatterns = [
@@ -48,10 +49,13 @@ urlpatterns = [
          CommentViewSet.as_view({'post': 'reply'}),
          name='reply'),
     path('v1/comments/<int:pk>/',
-         CommentViewSet.as_view({'delete': 'delete'}),
+         CommentViewSet.as_view({'delete': 'destroy'}),
          name='delete_comment'),
+    path('v1/comments/replies/<int:pk>/',
+         CommentViewSet.as_view({'delete': 'reply'}),
+         name='delete_reply'),
     path('v1/comments/',
-         CommentViewSet.as_view({'post': 'post'}),
+         CommentViewSet.as_view({'post': 'create'}),
          name='add_comment'),
     path('v1/users/<int:pk>/comments/',
          CommentViewSet.as_view({'get': 'user_comments'}),
@@ -59,6 +63,9 @@ urlpatterns = [
     path('v1/users/me/comments/',
          CommentViewSet.as_view({'get': 'me_comments'}),
          name='me_comments'),
+    path('v1/comments/statuses/',
+         CommentViewSet.as_view({'get': 'statuses'}),
+         name='statuses'),
     # <--------- Comments --------->
 
     # <--------- Users ------------>

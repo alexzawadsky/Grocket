@@ -1,7 +1,7 @@
 import os
 from datetime import timedelta
 from pathlib import Path
-
+# from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 load_dotenv('../../infra/.env')
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'users',
     'products',
+    'comments',
 ]
 
 MIDDLEWARE = [
@@ -45,6 +46,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'Grocket.urls'
@@ -70,6 +72,7 @@ WSGI_APPLICATION = 'Grocket.wsgi.application'
 
 AUTH_USER_MODEL = 'users.User'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DATABASES = {
     'default': {
@@ -90,6 +93,12 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = []  # В конце добавить валидаторы!!!
 
 
+# LANGUAGES = [
+#     ('se', _('Swedish')),
+#     ('en', _('English')),
+#     ('ru', _('Russian')),
+# ]
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -101,6 +110,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+# <--- Настройка путей --->
 DATA_URL = '/data/'
 DATA_ROOT = os.path.join(BASE_DIR, 'data')
 
@@ -111,11 +121,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CSV_URL = 'data/csv'
+# <--- Настройка путей --->
 
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Email бекенд
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_NAME = 'Grocket'
 
-
+# API
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -136,6 +149,7 @@ REST_FRAMEWORK = {
     }
 }
 
+# JWT токены
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=500),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
@@ -143,19 +157,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-# # smtp
-# EMAIL_HOST = 'smtp.yandex.ru'
-# # RECIPIENT_ADDRESS = 'alesha.zawadsky@yandex.ru'
-# EMAIL_HOST_USER = 'alesha.zawadsky@yandex.ru'
-# DEFAULT_FROM_EMAIL = 'alesha.zawadsky@yandex.ru'
-# EMAIL_HOST_PASSWORD = 'bpidlejlypkoyicx'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 465
-
-# email settings
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-SITE_NAME = 'Grocket'
-
+# User api
 DJOSER = {
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': False,
@@ -177,6 +179,7 @@ DJOSER = {
 }
 
 
+# Обработка изображения аватарки
 AVATAR = {
     'COLORS': [
         'fbf8cc', 'fde4cf', 'ffcfd2', 'f1c0e8', 'cfbaf0',
@@ -190,6 +193,7 @@ AVATAR = {
     'FONT_FILL': '#1C0606',
 }
 
+# Обработка изображения товара и добавления вотермарки
 PRODUCT_IMAGE = {
     'SIZE': (400, 400),
     'WATERMARK_INDENTS': (100, 100),
@@ -197,6 +201,15 @@ PRODUCT_IMAGE = {
     'WATERMARK_FILE_NAME': 'watermark.png',
 }
 
+# Список статусов комментариев
+COMMENT_STATUSES = [
+    'Bought',
+    'Did not agree',
+    'Ignored',
+    'Other',
+]
 
+
+# Брокер для Celery
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'

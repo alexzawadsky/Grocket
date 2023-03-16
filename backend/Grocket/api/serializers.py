@@ -1,10 +1,11 @@
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
+from django.conf import settings
 
 from api.fields import ProductImagesField
-from products.models import (Category, Favourite, Image, Product, Promotion,
-                             Comment, CommentImage)
+from products.models import Category, Favourite, Image, Product, Promotion
+from comments.models import Comment, CommentImage, CommentReply
 from products.services import ProductService
 from users.models import User
 from users.services import UserService
@@ -415,26 +416,150 @@ class ProductCommentSerializer(ProductReadOnlySerializer):
         fields = ('id', 'name',)
 
 
+class CommentUserSerializer(CustomUserSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name',)
+
+
 class CommentImageSerializer(serializers.ModelSerializer):
-    image = Base64ImageField(allow_null=True, required=False)
-    test = serializers.SerializerMethodField()
+    image = Base64ImageField(read_only=True)
+
     class Meta:
         model = CommentImage
-        fields = ('id', 'image',)
+        fields = ('id', 'image', )
 
-    def get_test(self, obj):
-        return self.instance
+
+class CommentImageCreateSerializer(serializers.ModelSerializer):
+    image = Base64ImageField()
+
+    class Meta:
+        model = CommentImage
+        fields = ('image', 'comment',)
+
+
+class CommentReplyCreateSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    comment = serializers.PrimaryKeyRelatedField(
+        queryset=Comment.objects.all()
+    )
+
+    class Meta:
+        model = CommentReply
+        fields = ('user', 'comment', 'text')
+
+
+class CommentReplyReadOnlySerializer(serializers.ModelSerializer):
+    user = CommentUserSerializer(read_only=True)
+
+    class Meta:
+        model = CommentReply
+        fields = ('id', 'user', 'text')
 
 
 class CommentReadOnlySerializer(serializers.ModelSerializer):
-    user = CustomUserSerializer(read_only=True)
+    user = CommentUserSerializer(read_only=True)
     product = ProductCommentSerializer(read_only=True)
-    images = CommentImageSerializer(read_only=True, many=True)
-    # images = serializers.SerializerMethodField()
+    images = serializers.SerializerMethodField()
+    replies = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
-        fields = ('id', 'user', 'product', 'text', 'rate', 'images',)
+        fields = ('id', 'status', 'rate', 'text', 'images',
+                  'replies', 'user', 'product',)
 
-    # def get_images(self, obj):
-    #     return 1
+    def get_replies(self, obj):
+        replies = CommentReply.objects.filter(comment=obj)
+        serializer = CommentReplyReadOnlySerializer(
+            instance=replies,
+            many=True,
+            read_only=True
+        )
+
+        return serializer.data
+
+    def get_images(self, obj):
+        images = CommentImage.objects.filter(comment=obj)
+        serializer = CommentImageSerializer(
+            instance=images,
+            many=True,
+            read_only=True
+        )
+
+        return serializer.data
+
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    product = serializers.PrimaryKeyRelatedField(
+        queryset=Product.objects.all(),
+    )
+    images = serializers.ListField()
+    status = serializers.CharField()
+
+    class Meta:
+        model = Comment
+        fields = ('user', 'product', 'images', 'rate', 'text', 'status',)
+
+    def validate_status(self, value):
+        if value not in settings.COMMENT_STATUSES:
+            raise serializers.ValidationError('Нет такого статуса.')
+
+        return value
+
+    def to_representation(self, comment):
+        serializer = CommentReadOnlySerializer(comment, context=self.context)
+
+        return serializer.data
+
+    def creating_images(self, images, comment):
+        '''Создает и обрабатывает картинки.'''
+        for image in images:
+            images_serializer = CommentImageCreateSerializer(
+                data={
+                    'image': image['image'],
+                    'comment': comment.id
+                }
+            )
+            images_serializer.is_valid(raise_exception=True)
+            images_serializer.save()
+
+    def validate_product(self, obj):
+        if obj.is_archived:
+            raise serializers.ValidationError(
+                'Нет такого товара или он находится в архиве.'
+            )
+        return obj
+
+    def create(self, validated_data):
+        product = validated_data.get('product')
+        user = validated_data.get('user')
+        images = validated_data.pop('images')
+        seller = product.user
+
+        comments_exists = Comment.objects.filter(
+            user=user,
+            product=product
+        ).exists()
+
+        if seller == user:
+            raise serializers.ValidationError(
+                'Нельзя добавить комментарий на свой товар.'
+            )
+
+        if not comments_exists:
+            comment = Comment.objects.create(
+                seller=seller,
+                **validated_data
+            )
+            self.creating_images(images, comment)
+        else:
+            raise serializers.ValidationError(
+                'Нельзя добавить 2 комментария на один товар.'
+            )
+
+        return comment

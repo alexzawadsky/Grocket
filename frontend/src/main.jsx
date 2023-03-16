@@ -5,6 +5,7 @@ import './index.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { HelmetProvider } from 'react-helmet-async'
+import './i18n'
 
 const queryClient = new QueryClient({
   defaultOptions: {

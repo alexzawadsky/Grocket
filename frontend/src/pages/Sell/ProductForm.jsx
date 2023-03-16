@@ -6,9 +6,11 @@ import { AiOutlineRotateLeft, AiOutlineRotateRight } from 'react-icons/ai'
 import { saveImage, deleteImage } from './utils'
 import { BsTrashFill } from 'react-icons/bs'
 import { prepareImages } from './utils'
+import { useTranslation } from 'react-i18next'
 
 const ProductForm = ({ data, setData, setValid }) => {
 
+    const { t } = useTranslation()
     const editorRef = useRef()
     const imageInputRef = useRef()
     const editorWidth = 360 * (window.innerWidth / 1920)
@@ -23,7 +25,7 @@ const ProductForm = ({ data, setData, setValid }) => {
 
     const name = useInput(data?.name || '', { isEmpty: true })
     const description = useInput(data?.description || '', { isEmpty: true })
-    const price = useInput(data?.price || '', { isInt: true })
+    const price = useInput(data?.price || '', { isFloat: true })
     const currency = useInput(data?.price_currency || '', { isEmpty: true })
     const address = useInput(data?.address || '', { isEmpty: true })
     // const [address, setAddress] = useState('')
@@ -59,40 +61,40 @@ const ProductForm = ({ data, setData, setValid }) => {
     return (
         <form className='grid grid-cols-[1fr_2fr_1fr] gap-2'>
             <h2 className='col-span-full text-xl font-bold'>
-                Info
+                {t('info')}
             </h2>
             <Input
-                title='Name'
+                title={t('product_name')}
                 instance={name}
                 split={true}
                 must={true}
             />
             <Input
-                title='Description'
+                title={t('description')}
                 instance={description}
                 split={true}
                 large={true}
                 must={true} />
             <h2 className="text-xl font-bold col-span-full pt-5">
-                Price
+                {t('price')}
             </h2>
             <Input
-                title='Price'
+                title={t('price')}
                 instance={price}
                 split={true}
                 must={true}
             />
             <Input
-                title='Currency'
+                title={t('currency')}
                 instance={currency}
                 split={true}
                 must={true}
             />
             <h2 className="text-xl font-bold col-span-full pt-5">
-                Location
+                {t('location')}
             </h2>
             <Input
-                title='Address'
+                title={t('address')}
                 instance={address}
                 split={true}
                 must={true}
@@ -106,7 +108,7 @@ const ProductForm = ({ data, setData, setValid }) => {
             </div>
             <span></span>
             <div className='grid gap-2 pt-5 h-fit'>
-                <h2 className="text-xl font-bold">Photos</h2>
+                <h2 className="text-xl font-bold">{t('photos')}</h2>
                 <input ref={imageInputRef} type="file" onChange={(e) => setCurrentImage(e.target.files[0])} />
                 <div className='grid gap-3 w-fit h-fit'>
                     <AvatarEditor
@@ -152,15 +154,15 @@ const ProductForm = ({ data, setData, setValid }) => {
                             type='button'
                             disabled={imageUploading || !currentImage}
                         >
-                            Save image
+                            {t('save_image')}
                         </button>
-                        {imageUploading && 'Uploading...'}
+                        {imageUploading && `${t('loading')}...`}
                     </div>
                 </div>
             </div>
             <div className='grid gap-2 col-span-2 h-fit pt-5'>
-                <h2 className='text-xl font-bold'>List of uploaded item's photos</h2>
-                <p className='col-span-2'>You can choose main image by pressing on a circle below it</p>
+                <h2 className='text-xl font-bold'>{t('list_of_images')}</h2>
+                <p className='col-span-2'>{t('you_can_choose_main_image')}</p>
                 {images.length > 0 ?
                     <div className='col-span-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 h-fit'>
                         {images.map((el, key) =>
@@ -182,7 +184,7 @@ const ProductForm = ({ data, setData, setValid }) => {
                             </div>)}
                     </div>
                     :
-                    <p className='col-span-2 text-accent-red font-bold'>Upload at least one image to place an item</p>}
+                    <p className='col-span-2 text-accent-red font-bold'>{t('upload_one_image')}</p>}
             </div>
         </form>
     )

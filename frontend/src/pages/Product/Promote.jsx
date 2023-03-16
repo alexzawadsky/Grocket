@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { BsArrowLeft } from 'react-icons/bs'
 import { useParams } from 'react-router'
 import { NavLink } from 'react-router-dom'
@@ -10,6 +11,7 @@ import SearchItemCardTemplate from './SearchItemCardTemplate'
 
 const Promote = () => {
 
+    const { t } = useTranslation()
     const { productId } = useParams()
     const promotions = usePromotions()
     const product = useProduct(productId)
@@ -38,10 +40,10 @@ const Promote = () => {
                 className='col-span-full flex items-center gap-2 font-bold hover:text-accent-orange'
             >
                 <BsArrowLeft />
-                Product page
+                {t('product_page')}
             </NavLink>
             <div className="col-span-full">
-                <Title text='Buy promotions for your product' />
+                <Title text={t('buy_promotions_head')} />
             </div>
             <div className='grid h-fit gap-4'>
                 {
@@ -66,8 +68,9 @@ const Promote = () => {
                                 />
                                 <label htmlFor={`select-${promo?.name}`}>
                                     {
-                                        selected.filter(el => el.id === promo.id).length > 0 || product.data?.promotions.includes(promo?.name) ?
-                                            'Selected' : 'Select'
+                                        product.data?.promotions.includes(promo?.name) ? t('active') :
+                                            selected.filter(el => el.id === promo.id).length > 0 ?
+                                                t('selected') : t('select')
                                     }
                                 </label>
                             </div>
@@ -79,7 +82,7 @@ const Promote = () => {
                     className='button-fill-orange'
                     onClick={handleSubmit}
                 >
-                    Proseed to checkout
+                    {t('proceed_to_checkout')}
                 </button>
             </div>
             <div className='relative overflow-hidden'>

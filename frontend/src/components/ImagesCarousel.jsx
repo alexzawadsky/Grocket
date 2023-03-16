@@ -11,7 +11,7 @@ const ImagesCarousel = ({ images }) => {
             <div className='absolute w-full h-full left-0 top-0 flex' onMouseLeave={() => setCurrentIndex(0)}>
                 {images.length > 1 && Array(images.length).fill(0).map((_, key) =>
                     <div
-                        className='h-full hover:border-b-4 hover:border-b-accent-orange'
+                        className='h-full hover:border-b-4 hover:border-b-accent-orange transition-all'
                         style={{ width: `${100 / images.length}%` }}
                         key={key}
                         onMouseEnter={() => setCurrentIndex(key)}

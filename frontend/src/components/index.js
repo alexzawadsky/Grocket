@@ -1,7 +1,5 @@
 import Avatar from "./Avatar";
 import AvatarCrop from "./AvatarCrop";
-import Comment from "./Comment";
-import CommentsStats from "./CommentsStats";
 import Filters from "./Filters";
 import Footer from "./Footer";
 import ItemCard from "./ItemCard";
@@ -24,8 +22,6 @@ import ImagesCarousel from "./ImagesCarousel";
 export {
     Avatar,
     AvatarCrop,
-    Comment,
-    CommentsStats,
     Filters,
     Footer,
     ItemCard,

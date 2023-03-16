@@ -39,10 +39,10 @@ export const useUpdateProduct = () => {
         })
 }
 
-export const useProductsMe = (queryParams) => {
+export const useUserProducts = (userId, queryParams) => {
     const api = useAxios()
-    return useQuery(['products', 'me', queryParams],
-        () => api.get('/api/v1/users/me/products',
+    return useQuery(['products', userId, queryParams],
+        () => api.get(`/api/v1/users/${userId}/products`,
             { params: { ...queryParams, limit: limit } }).then(res => res.data),
         { keepPreviousData: true })
 }
@@ -55,8 +55,8 @@ export const useCategories = (parentId) => {
 
 export const useProfile = (userId) => {
     const api = useAxios()
-    return useQuery(['users', userId ? userId : 'me'],
-        () => api.get(`/api/v1/users/${userId ? userId : 'me'}`).then(res => res.data))
+    return useQuery(['users', userId],
+        () => api.get(`/api/v1/users/${userId}`).then(res => res.data))
 }
 
 export const useSellProduct = () => {
@@ -139,6 +139,12 @@ export const usePromotions = () => {
     const api = useAxios()
     return useQuery(['promotions'],
         () => api.get('/api/v1/promotions').then(res => res.data))
+}
+
+export const useUserComments = (userId) => {
+    const api = useAxios()
+    return useQuery(['comments', userId],
+        () => api.get(`/api/v1/users/${userId}/comments`).then(res => res.data))
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

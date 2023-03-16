@@ -9,8 +9,9 @@ import { useContext } from 'react'
 import AuthContext from '../contexts/AuthProvider'
 import PublishTime from './PublishTime'
 import ImagesCarousel from './ImagesCarousel'
+import ManageProductMenu from './ManageProductMenu'
 
-const ItemCard = ({ product }) => {
+const ItemCard = ({ product, managable }) => {
 
     const isPC = useMediaQuery({ query: '(min-width: 1024px)' })
     const favouriteProductMutation = useFavouriteProduct()
@@ -33,7 +34,7 @@ const ItemCard = ({ product }) => {
                             {product.name}
                         </NavLink>
                     </div>
-                    {user?.user_id !== product?.user?.id &&
+                    {user?.user_id !== product?.user &&
                         <button
                             onClick={handleFavourite}
                         >
@@ -50,15 +51,21 @@ const ItemCard = ({ product }) => {
                 </p>
                 <div className='grid gap-y-1.5 xl:gap-y-1 grid-cols-[auto_1fr] gap-x-2 items-center'>
                     {isPC ? <><BiCategoryAlt /><p className='text-[0.6rem] xl:text-sm truncate'>{product.category.title}</p></> : null}
-                    <FiMapPin />
-                    <div className="overflow-hidden">
-                        <p className='text-[0.6rem] xl:text-sm truncate'>{product.address}</p>
-                    </div>
+                    {(!managable || (user?.user_id !== product?.user)) &&
+                        <>
+                            <FiMapPin />
+                            <div className="overflow-hidden">
+                                <p className='text-[0.6rem] xl:text-sm truncate'>{product.address}</p>
+                            </div>
+                        </>}
                     <BiTimeFive />
                     <p className='text-[0.6rem] xl:text-sm'>
                         <PublishTime pubDate={product?.pub_date} />
                     </p>
                 </div>
+                {managable && (user?.user_id === product?.user) && <div className='grid gap-2'>
+                    <ManageProductMenu product={product} dropdown />
+                </div>}
             </div>
         </div>
     )

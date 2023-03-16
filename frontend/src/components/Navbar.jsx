@@ -7,9 +7,11 @@ import { useContext } from 'react'
 import { BsFillPersonPlusFill } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
 import { useMediaQuery } from 'react-responsive'
+import { useTranslation } from 'react-i18next'
 
 const Navbar = () => {
 
+    const { t } = useTranslation()
     const { user } = useContext(AuthContext)
     const isTablet = useMediaQuery({ query: '(min-width: 768px)' })
 
@@ -22,15 +24,15 @@ const Navbar = () => {
                 </NavLink>
                 {
                     user ?
-                        <NavLink className='flex items-center gap-2 h-10' to='/profile'><BsPersonFill />Profile</NavLink>
+                        <NavLink className='flex items-center gap-2 h-10' to='/users/me'><BsPersonFill />{t('profile')}</NavLink>
                         :
                         <>
-                            {isTablet ? <NavLink to='/register' className='flex items-center gap-2 border-2 border-accent-orange text-accent-orange py-3 px-5 rounded-xl'><BsFillPersonPlusFill />Register</NavLink> : null}
-                            <NavLink to='/login' className='flex items-center gap-3'><FiLogIn />Login</NavLink>
+                            {isTablet ? <NavLink to='/register' className='flex items-center gap-2 border-2 border-accent-orange text-accent-orange py-3 px-5 rounded-xl'><BsFillPersonPlusFill />{t('register')}</NavLink> : null}
+                            <NavLink to='/login' className='flex items-center gap-3'><FiLogIn />{t('login')}</NavLink>
                         </>
 
                 }
-                <NavLink className='px-6 h-12 gap-2 bg-accent-orange rounded-xl hover:bg-accent-orange/[0.8] flex items-center text-white text-lg' to='/sell'>{isTablet ? 'Sell item' : 'Sell'}<MdOutlineSell /></NavLink>
+                <NavLink className='px-6 h-12 gap-2 bg-accent-orange rounded-xl hover:bg-accent-orange/[0.8] flex items-center text-white text-lg' to='/sell'>{isTablet ? t('sell_item') : t('sell')}<MdOutlineSell /></NavLink>
             </div>
         </nav>
     )

@@ -1,6 +1,8 @@
-import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 const AddressField = ({ setAddress, split }) => {
+
+    const { t } = useTranslation()
 
     const aucompleteObject = new google.maps.places.Autocomplete(document.getElementById('address'))
     const handleAddress = () => {
@@ -11,7 +13,7 @@ const AddressField = ({ setAddress, split }) => {
     if (split) {
         return (
             <>
-                <label for='address'>Address</label>
+                <label for='address'>{t('address')}</label>
                 <input
                     type="text"
                     id='address'

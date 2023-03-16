@@ -3,7 +3,7 @@ import { NavLink, useParams } from 'react-router-dom'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import SearchHistoryContext from '../../contexts/HistoryContext';
-import { ReadMore, Spinner, Map, Title } from '../../components';
+import { ReadMore, Spinner, Map, Title, Price } from '../../components';
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 import { useMediaQuery } from 'react-responsive';
@@ -15,9 +15,11 @@ import { Helmet } from 'react-helmet-async';
 import AuthContext from '../../contexts/AuthProvider';
 import ManageProductMenu from '../../components/ManageProductMenu';
 import useScreen from '../../hooks/useScreen';
+import { useTranslation } from 'react-i18next';
 
 const ProductPage = () => {
 
+    const { t } = useTranslation()
     const { updateHistory } = useContext(SearchHistoryContext)
     const { user } = useContext(AuthContext)
     const { productId } = useParams()
@@ -74,9 +76,9 @@ const ProductPage = () => {
                     </div>
                     {isMaxTablet && <h2 className='font-bold text-3xl'>{parseFloat(data.price).toFixed(0)} {data.price_currency}</h2>}
                     <ImagesGallery images={data.images} />
-                    <h2 className='font-bold text-2xl flex items-center gap-5'>Description</h2>
+                    <h2 className='font-bold text-2xl flex items-center gap-5'>{t('description')}</h2>
                     <ReadMore text={data.description} />
-                    <h2 className='font-bold text-2xl flex items-center gap-2'><FiMapPin />Address</h2>
+                    <h2 className='font-bold text-2xl flex items-center gap-2'><FiMapPin />{t('address')}</h2>
                     <Map adress={data.address} />
                     <p>{data.address}</p>
                     {isMaxTablet && <>
@@ -84,7 +86,7 @@ const ProductPage = () => {
                         <SellerCard profile={data.user} />
                         {data.user.id === user?.user_id && (
                             <div className='pb-3 grid gap-3'>
-                                <h2 className='text-xl font-bold'>Manage your product</h2>
+                                <h2 className='text-xl font-bold'>{t('manage_your_product')}</h2>
                                 <ManageProductMenu product={data} />
                             </div>
                         )}
@@ -92,11 +94,11 @@ const ProductPage = () => {
                 </div>
                 {!isMaxTablet && <div className='w-full'>
                     <div className='grid gap-3 h-fit fixed'>
-                        <h2 className='font-bold text-3xl'>{parseFloat(data.price).toFixed(0)} {data.price_currency}</h2>
+                        <h2 className='font-bold text-3xl'><Price price={data?.price} currency={data?.price_currency} /></h2>
                         <SellerCard profile={data.user} />
                         {data.user.id === user?.user_id && (
                             <div className='pb-3 grid gap-3'>
-                                <h2 className='text-xl font-bold'>Manage your product</h2>
+                                <h2 className='text-xl font-bold'>{t('manage_your_product')}</h2>
                                 <ManageProductMenu product={data} />
                             </div>
                         )}

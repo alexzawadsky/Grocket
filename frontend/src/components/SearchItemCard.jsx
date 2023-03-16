@@ -10,13 +10,15 @@ import { TbPhoneCheck } from 'react-icons/tb'
 import AuthContext from '../contexts/AuthProvider'
 import { FiMail } from 'react-icons/fi'
 import ImagesCarousel from './ImagesCarousel'
+import { useTranslation } from 'react-i18next'
 
 const SearchItemCard = ({ product }) => {
 
+    const { t } = useTranslation()
     const { user } = useContext(AuthContext)
 
     return (
-        <NavLink className='grid grid-cols-[1fr_2fr] lg:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50' to={`/products/${product?.id}`}>
+        <NavLink className='grid grid-cols-[1fr_2fr] lg:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 transition-all duration-150' to={`/products/${product?.id}`}>
             <NavLink
                 to={`/products/${product?.id}`}
                 className='grid grid-cols-2 gap-1'
@@ -79,31 +81,31 @@ const SearchItemCard = ({ product }) => {
                 </div>
                 <div className='flex flex-col gap-1.5'>
                     <NavLink
-                        to={product?.user?.id === user?.user_id ? '/profile' : `/users/${product?.user?.id}`}
+                        to={product?.user?.id === user?.user_id ? '/users/me' : `/users/${product?.user?.id}`}
                         className='font-bold hover:text-accent-orange flex-wrap flex'
                     >
-                        {product?.user?.first_name} {product?.user?.last_name} {product?.user?.id === user?.user_id && '(me)'}
+                        {product?.user?.first_name} {product?.user?.last_name} {product?.user?.id === user?.user_id && `(${t('me')})`}
                     </NavLink>
                     <div className='flex items-center gap-2'>
                         <RatingStars rating={5} />
                         <NavLink
-                            to={product?.user?.id === user?.user_id ? '/profile/comments' : `/users/${product?.user?.id}/comments`}
+                            to={product?.user?.id === user?.user_id ? '/users/me/comments' : `/users/${product?.user?.id}/comments`}
                             className='text-sm hover:text-accent-orange'
                         >
-                            23 comments
+                            {t('comments')} (23)
                         </NavLink>
                     </div>
-                    <p>12 items sold</p>
+                    <p>12 {t('items_sold')}</p>
                     {product?.user?.id !== user?.user_id && <NavLink
                         className='text-accent-orange flex items-center gap-2 h-fit'
                         to={`/users/${product?.user?.id}`}
                     >
                         <FiMail />
-                        Send message
+                        {t('send_message')}
                     </NavLink>}
                     <p className='flex items-center gap-2 text-green-600 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mt-auto'>
                         <TbPhoneCheck />
-                        Phone verified
+                        {t('phone_verified')}
                     </p>
                 </div>
             </div>

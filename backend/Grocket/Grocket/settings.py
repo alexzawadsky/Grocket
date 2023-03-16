@@ -1,7 +1,7 @@
 import os
 from datetime import timedelta
 from pathlib import Path
-# from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 load_dotenv('../../infra/.env')
@@ -18,12 +18,15 @@ ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
+    'modeltranslation',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'phonenumber_field',
     'djmoney',
     'django_countries',
@@ -33,6 +36,7 @@ INSTALLED_APPS = [
     'django_filters',
     'djoser',
     'rest_framework.authtoken',
+
     'users',
     'products',
     'comments',
@@ -41,12 +45,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'Grocket.urls'
@@ -93,13 +97,19 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = []  # В конце добавить валидаторы!!!
 
 
-# LANGUAGES = [
-#     ('se', _('Swedish')),
-#     ('en', _('English')),
-#     ('ru', _('Russian')),
-# ]
+# Локализация
+LANGUAGES = [
+    ('en', _('English')),
+    ('ru', _('Russian')),
+]
 
-LANGUAGE_CODE = 'en-us'
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 

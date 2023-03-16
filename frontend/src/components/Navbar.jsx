@@ -32,7 +32,7 @@ const Navbar = () => {
                         </>
 
                 }
-                <NavLink className='px-6 h-12 gap-2 bg-accent-orange rounded-xl hover:bg-accent-orange/[0.8] flex items-center text-white text-lg' to='/sell'>{isTablet ? t('sell_item') : t('sell')}<MdOutlineSell /></NavLink>
+                <NavLink className='px-6 h-12 gap-2 bg-accent-orange rounded-xl hover:bg-accent-orange/[0.8] flex items-center text-white text-lg font-bold' to='/sell'>{isTablet ? t('sell_item') : t('sell')}<MdOutlineSell /></NavLink>
             </div>
         </nav>
     )

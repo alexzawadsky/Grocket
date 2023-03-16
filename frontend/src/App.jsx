@@ -1,5 +1,5 @@
-import { Navbar, Footer, PrivateRoute } from './components'
-import { Outlet, Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Navbar, Footer, PrivateRoute, LanguageSelectionBanner } from './components'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { SearchHistoryProvider } from './contexts/HistoryContext';
 import { AuthProvider } from './contexts/AuthProvider';
 import {
@@ -34,6 +34,7 @@ function App() {
                     <div className='flex flex-col h-full'>
                         <Navbar />
                         <main className='mt-20 container mx-auto flex-grow px-5'>
+                            <LanguageSelectionBanner />
                             <Routes>
                                 <Route path='/' errorElement={<NotFound />}>
                                     <Route path='' element={<Landing />} />

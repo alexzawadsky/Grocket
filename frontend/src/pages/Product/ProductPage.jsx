@@ -3,13 +3,11 @@ import { NavLink, useParams } from 'react-router-dom'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import SearchHistoryContext from '../../contexts/HistoryContext';
-import { ReadMore, Spinner, Map, Title, Price } from '../../components';
+import { ReadMore, Spinner, Map, Title, Price, ImagesGallery } from '../../components';
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
-import { useMediaQuery } from 'react-responsive';
 import { useProduct } from '../../api/api';
 import SellerCard from './SellerCard';
-import ImagesGallery from './ImagesGallery';
 import Category from './Category';
 import { Helmet } from 'react-helmet-async';
 import AuthContext from '../../contexts/AuthProvider';

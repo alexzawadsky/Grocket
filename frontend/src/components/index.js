@@ -18,6 +18,8 @@ import Price from "./Price";
 import SearchItemCard from "./SearchItemCard";
 import PublishTime from "./PublishTime";
 import ImagesCarousel from "./ImagesCarousel";
+import ImagesGallery from "./ImagesGallery";
+import LanguageSelectionBanner from "./LanguageSelectionBanner";
 
 export {
     Avatar,
@@ -39,5 +41,7 @@ export {
     Price,
     SearchItemCard,
     PublishTime,
-    ImagesCarousel
+    ImagesCarousel,
+    ImagesGallery,
+    LanguageSelectionBanner
 }

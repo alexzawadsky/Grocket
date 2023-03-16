@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PublishTime, RatingStars } from '../../components'
+import { ImagesGallery, PublishTime, RatingStars } from '../../components'
 import AuthContext from '../../contexts/AuthProvider'
 
 const Comment = ({ comment }) => {
@@ -16,6 +16,7 @@ const Comment = ({ comment }) => {
             <p className='text-primary-300/[0.8] text-sm font-bold'>
                 {comment?.product?.name} - <PublishTime pubDate={comment?.pub_date} /></p>
             <p>{comment?.text}</p>
+            <ImagesGallery images={comment?.images} />
             <RatingStars rating={comment?.rating} />
         </div>
     )

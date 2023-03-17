@@ -22,7 +22,8 @@ import {
     UpdateProfile,
     DeleteProfile,
     EditProduct,
-    Promote
+    Promote,
+    AddComment
 } from './pages'
 
 function App() {
@@ -53,7 +54,9 @@ function App() {
                                         <Route path='favourites' element={<MyFavourites />} />
                                         <Route path='archive' element={<Archieved />} />
                                         <Route path='sold' element={<Sold />} />
-                                        <Route path='comments' element={<MyComments />} />
+                                        <Route path='comments' element={<MyComments />}>
+                                            <Route path='add' element={<AddComment />} />
+                                        </Route>
                                     </Route>
                                     <Route element={<PrivateRoute />}>
                                         <Route path='sell' element={<Sell />} />

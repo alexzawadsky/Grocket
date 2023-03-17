@@ -14,6 +14,7 @@ import Sold from "./User/SoldProducts";
 import ProfileSettings, { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProfile } from "./User/ProfileSettings";
 import EditProduct from "./Sell/EditProduct";
 import Promote from "./Product/Promote";
+import AddComment from "./User/AddComment";
 
 export {
     Landing,
@@ -35,5 +36,6 @@ export {
     UpdateProfile,
     DeleteProfile,
     EditProduct,
-    Promote
+    Promote,
+    AddComment
 }

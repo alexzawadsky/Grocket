@@ -198,20 +198,17 @@ const ProfileSettings = () => {
     const { t } = useTranslation()
     const outlet = useOutlet()
 
+    if (outlet) return <Outlet />
+
     return (
         <div className='grid gap-3 w-full'>
-            {outlet ?
-                <Outlet />
-                :
-                <>
-                    <BackToProfile />
-                    <Title text={t('profile_settings')} />
-                    <p className='font-bolditalic'>{t('select_option')}:</p>
-                    <NavLink to='password' className='flex items-center gap-2'><MdPassword />{t('change_pass')}</NavLink>
-                    <NavLink to='avatar' className='flex items-center gap-2'><BsPersonBoundingBox />{t('change_avatar')}</NavLink>
-                    <NavLink to='info' className='flex items-center gap-2'><BsPersonLinesFill />{t('change_profile_info')}</NavLink>
-                    <NavLink to='delete' className='flex items-center gap-2 text-accent-red font-bold'><BsFillPersonXFill />{t('delete_profile')}</NavLink>
-                </>}
+            <BackToProfile />
+            <Title text={t('profile_settings')} />
+            <p className='font-bolditalic'>{t('select_option')}:</p>
+            <NavLink to='password' className='flex items-center gap-2'><MdPassword />{t('change_pass')}</NavLink>
+            <NavLink to='avatar' className='flex items-center gap-2'><BsPersonBoundingBox />{t('change_avatar')}</NavLink>
+            <NavLink to='info' className='flex items-center gap-2'><BsPersonLinesFill />{t('change_profile_info')}</NavLink>
+            <NavLink to='delete' className='flex items-center gap-2 text-accent-red font-bold'><BsFillPersonXFill />{t('delete_profile')}</NavLink>
         </div>
     )
 }

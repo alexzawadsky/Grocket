@@ -3,11 +3,12 @@ from django.db import models
 from products.models import Product
 from users.models import User
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 
 def status_validate(value):
     if value not in settings.COMMENT_STATUSES:
-        raise ValueError('Нет такого статуса.')
+        raise ValueError(_('No such status.'))
 
 
 class CommentImage(models.Model):

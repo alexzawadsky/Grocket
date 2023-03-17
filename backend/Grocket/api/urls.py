@@ -22,7 +22,6 @@ router = DefaultRouter()
 router.register('products', ProductViewSet, basename='product')
 router.register('promotions', PromotionViewSet, basename='promotion')
 router.register('categories', CategoryViewSet, basename='category')
-# router.register('comments', CommentViewSet, basename='comment')
 
 
 urlpatterns = [

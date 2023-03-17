@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_mptt_admin.admin import DjangoMpttAdmin
-
+from modeltranslation.admin import TranslationAdmin
 from .models import Category, Favourite, Image, Product, Promotion
 
 
@@ -16,7 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class CategoryAdmin(DjangoMpttAdmin):
+class CategoryAdmin(TranslationAdmin, DjangoMpttAdmin):
     list_display = ('pk', 'title', 'parent',)
     search_fields = ('title',)
     empty_value_display = '-empty-'

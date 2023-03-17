@@ -2,6 +2,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
+from django.utils.translation import gettext_lazy as _
 
 from users.models import User
 
@@ -10,10 +11,10 @@ def lower_category_validate(value):
     category = Category.objects.filter(id=value)
 
     if not category.exists():
-        raise ValidationError('Нет такой категории.')
+        raise ValidationError(_('No such category.'))
     if not category[0].is_leaf_node():
         raise ValidationError(
-            'Можно добавить только в конечную категорию.'
+            _('Can only be added to the final category.')
         )
 
 

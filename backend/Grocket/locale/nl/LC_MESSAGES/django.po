@@ -16,94 +16,84 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\Grocket\settings.py:103
 msgid "English"
-msgstr "Английский"
+msgstr "Engels"
 
 #: .\Grocket\settings.py:104
 msgid "Russian"
-msgstr "Русский"
+msgstr "Russisch"
 
 #: .\Grocket\settings.py:105
 msgid "Dutch"
-msgstr "Голландский"
+msgstr "Nederlands"
 
 #: .\api\fields.py:39
 msgid "The image field can only be id or base64."
-msgstr "Поле изображения может быть только id или base64."
+msgstr "Het afbeeldingsveld kan alleen id of base64 zijn."
 
 #: .\api\permissions.py:8 .\api\permissions.py:22
 msgid "You are not the author."
-msgstr "Вы не автор."
+msgstr "Jij bent niet de auteur."
 
 #: .\api\permissions.py:34
 msgid "You do not have permission to perform this action."
-msgstr "У вас нет разрешения на выполнение этого действия."
+msgstr "U heeft geen toestemming om deze actie uit te voeren."
 
 #: .\api\serializers.py:91
 msgid "This recipe is already in my favorites."
-msgstr "Этот рецепт уже у меня в понравившихся."
+msgstr "Dit recept staat al bij mijn favorieten."
 
 #: .\api\serializers.py:258 .\products\models.py:17
 msgid "Can only be added to the final category."
-msgstr "Можно добавить только в конечную категорию."
+msgstr "Kan alleen worden toegevoegd aan de laatste categorie."
 
 #: .\api\serializers.py:301 .\api\serializers.py:372
 msgid "You cannot add more than one main photo."
-msgstr "Вы не можете добавить более одной главной фотографии."
+msgstr "U kunt niet meer dan één hoofdfoto toevoegen."
 
 #: .\api\serializers.py:307 .\api\serializers.py:368
 msgid "Add a main photo."
-msgstr "Добавьте основное фото."
+msgstr "Voeg een hoofdfoto toe."
 
 #: .\api\serializers.py:345
 msgid "Image not found."
-msgstr "Изображение не найдено."
+msgstr "Afbeelding niet gevonden."
 
 #: .\api\serializers.py:349
-#, fuzzy
-#| msgid "this picture is not from this product."
 msgid "This picture is not from this product."
-msgstr "Это изображение не из этого товара."
+msgstr "Deze foto is niet van dit product."
 
 #: .\api\serializers.py:511
 msgid "No such status."
-msgstr "Нет такого статуса."
+msgstr "Niet zo'n status."
 
 #: .\api\serializers.py:535
 msgid "There is no such product or it is archived."
-msgstr "Такого товара нет или он находится в архиве."
+msgstr "Er is geen dergelijk product of het is gearchiveerd."
 
 #: .\api\serializers.py:552
 msgid "You can not add a comment to your product."
-msgstr "Вы не можете добавить комментарий к собственному товару."
+msgstr "U kunt geen opmerking toevoegen aan uw product."
 
 #: .\api\serializers.py:563
 msgid "You can not add 2 comments to one product."
-msgstr "Нельзя добавлять 2 комментария к одному товару."
+msgstr "U kunt niet 2 opmerkingen toevoegen aan één product."
 
 #: .\products\models.py:14
 msgid "No such category."
-msgstr "Нет такой категории."
+msgstr "Niet zo'n categorie."
 
 #~ msgid "Bought"
-#~ msgstr "Куплено"
+#~ msgstr "Gekocht"
 
 #~ msgid "Did not agree"
-#~ msgstr "Не договорились"
+#~ msgstr "Was het niet eens"
 
 #~ msgid "Ignored"
-#~ msgstr "Не отвечает"
+#~ msgstr "Buiten beschouwing gelaten"
 
 #~ msgid "Other"
-#~ msgstr "Другое"
-
-#~ msgid "Можно добавить только в конечную категорию."
-#~ msgstr "рус Можно добавить только в конечную категорию."
-
-#~ msgid "Нет такого статуса."
-#~ msgstr "руc нет такого статуса"
+#~ msgstr "Ander"

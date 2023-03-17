@@ -1,6 +1,7 @@
 import os
 from datetime import timedelta
 from pathlib import Path
+
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_dump_load_utf8',
     'phonenumber_field',
     'djmoney',
     'django_countries',
@@ -101,6 +103,7 @@ AUTH_PASSWORD_VALIDATORS = []  # В конце добавить валидато
 LANGUAGES = [
     ('en', _('English')),
     ('ru', _('Russian')),
+    ('nl', _('Dutch')),
 ]
 
 LOCALE_PATHS = [
@@ -211,14 +214,13 @@ PRODUCT_IMAGE = {
     'WATERMARK_FILE_NAME': 'watermark.png',
 }
 
-# Список статусов комментариев
-COMMENT_STATUSES = [
-    _('Bought'),
-    _('Did not agree'),
-    _('Ignored'),
-    _('Other'),
-]
-
+# # Список статусов комментариев
+# COMMENT_STATUSES = [
+#     _('Bought'),
+#     _('Did not agree'),
+#     _('Ignored'),
+#     _('Other'),
+# ]
 
 # Брокер для Celery
 CELERY_BROKER_URL = 'redis://localhost:6379'

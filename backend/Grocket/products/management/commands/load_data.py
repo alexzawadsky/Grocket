@@ -10,6 +10,18 @@ from users.models import User
 url = settings.CSV_URL
 
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 class Command(BaseCommand):
     """Загрузка объектов из CSV в БД."""
 
@@ -308,33 +320,78 @@ class Command(BaseCommand):
         print(f'  Added: {added}')
 
     def handle(self, *args, **options):
-        categories = options['categories']
-        promotions = options['promotions']
-        users = options['users']
+        print(
+            bcolors.FAIL +
+            'Эта команда больше не поддерживается :('
+        )
+        print()
 
-        if categories:
-            message = self.load_categories()
-            if message is not None:
-                print(f'Error: {message}')
-            self.print_categories()
-        if promotions:
-            self.load_promotions()
-            self.print_promotions()
-        if users:
-            self.load_users()
-            self.print_users()
+        print(
+            bcolors.BOLD + bcolors.ENDC +
+            'Воспользуйтесь для добавления только статических моделей '
+            '(promotions, categories, statuses):'
+        )
+        print(
+            bcolors.OKGREEN + '~/Grocket/backend/Grocket  '
+            + bcolors.ENDC + '(venv)'
+        )
+        print(
+            bcolors.OKBLUE +
+            'python manage.py loaddatautf8 data/json/static_data.json'
+        )
+        print()
 
-        if not any([categories, promotions, users]):
-            message = self.load_categories()
-            if message is not None:
-                print(f'Error: {message}')
-            self.print_categories()
-            self.load_promotions()
-            self.print_promotions()
-            self.load_users()
-            self.print_users()
-            self.load_products()
-            self.print_products()
+        print(
+            bcolors.BOLD + bcolors.ENDC +
+            'Воспользуйтесь для добавления всех тестовых данных:'
+        )
+        print(
+            bcolors.OKGREEN + '~/Grocket/backend/Grocket  '
+            + bcolors.ENDC + '(venv)'
+        )
+        print(
+            bcolors.OKBLUE +
+            'python manage.py loaddatautf8 data/json/test_data.json'
+        )
+        print()
+
+        # print(bcolors.HEADER + 'HEADER')
+        # print(bcolors.OKBLUE + 'OKBLUE')
+        # print(bcolors.OKCYAN + 'OKCYAN')
+        # print(bcolors.OKGREEN + 'OKGREEN')
+        # print(bcolors.WARNING + 'WARNING')
+        # print(bcolors.FAIL + 'FAIL')
+        # print(bcolors.ENDC + 'ENDC')
+        # print(bcolors.BOLD + 'BOLD')
+        # print(bcolors.UNDERLINE + 'UNDERLINE')
+
+        # categories = options['categories']
+        # promotions = options['promotions']
+        # users = options['users']
+
+        # if categories:
+        #     message = self.load_categories()
+        #     if message is not None:
+        #         print(f'Error: {message}')
+        #     self.print_categories()
+        # if promotions:
+        #     self.load_promotions()
+        #     self.print_promotions()
+        # if users:
+        #     self.load_users()
+        #     self.print_users()
+
+        # if not any([categories, promotions, users]):
+        #     message = self.load_categories()
+        #     if message is not None:
+        #         print(f'Error: {message}')
+        #     self.print_categories()
+        #     self.load_promotions()
+        #     self.print_promotions()
+        #     self.load_users()
+        #     self.print_users()
+        #     self.load_products()
+        #     self.print_products()
 
     def add_arguments(self, parser):
         parser.add_argument(

@@ -1,8 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
-from django.utils.translation import gettext_lazy as _
 
 from users.models import User
 

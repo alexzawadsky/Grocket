@@ -1,23 +1,23 @@
-from django.shortcuts import get_object_or_404
 from django.conf import settings
+from django.shortcuts import get_object_or_404
 from django_filters import rest_framework as django_filters
 from djoser import views as djviews
 from rest_framework import filters, permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from products.models import Category, Favourite, Product, Promotion
 from comments.models import Comment, CommentReply
+from products.models import Category, Favourite, Product, Promotion
 from users.models import User
 
 from .filters import ProductFilter
 from .permissions import IsOwnerOrReadOnly
-from .serializers import (CategoryListSerializer, FavouriteSerializer,
+from .serializers import (CategoryListSerializer, CommentCreateSerializer,
+                          CommentReadOnlySerializer,
+                          CommentReplyCreateSerializer, FavouriteSerializer,
                           ProductCreateSerializer, ProductListSerializer,
                           ProductRetrieveSerializer, ProductUpdateSerializer,
-                          PromotionCreateUpdateSerializer, PromotionSerializer,
-                          CommentReadOnlySerializer, CommentCreateSerializer,
-                          CommentReplyCreateSerializer)
+                          PromotionCreateUpdateSerializer, PromotionSerializer)
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -103,14 +103,14 @@ class CommentViewSet(viewsets.ModelViewSet):
 
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-    @action(['get'], detail=False)
-    def statuses(self, request):
-        statuses = settings.COMMENT_STATUSES
-        data = {
-            'statuses': statuses
-        }
+    # @action(['get'], detail=False)
+    # def statuses(self, request):
+    #     statuses = settings.COMMENT_STATUSES
+    #     data = {
+    #         'statuses': statuses
+    #     }
 
-        return Response(data, status=status.HTTP_200_OK)
+    #     return Response(data, status=status.HTTP_200_OK)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

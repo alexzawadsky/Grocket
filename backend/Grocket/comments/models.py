@@ -1,15 +1,25 @@
+from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from products.models import Product
-from users.models import User
-from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from products.models import Product
+from users.models import User
 
-def status_validate(value):
-    if value not in settings.COMMENT_STATUSES:
-        raise ValueError(_('No such status.'))
 
+class CommentStatus(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='status name'
+    )
+
+    class Meta:
+        ordering = ('-id',)
+        verbose_name = 'Status'
+        verbose_name_plural = 'Statuses'
+
+    def __str__(self):
+        return self.name
 
 class CommentImage(models.Model):
     comment = models.ForeignKey(
@@ -45,14 +55,15 @@ class Comment(models.Model):
     product = models.ForeignKey(
         Product,
         related_name='comments',
-        on_delete=models.SET_NULL,  # Мб потом поменять!!!
+        on_delete=models.SET_NULL,
         null=True,
         verbose_name='commented product',
     )
-    status = models.CharField(
-        max_length=50,
+    status = models.ForeignKey(
+        'CommentStatus',
+        related_name='comments',
+        on_delete=models.PROTECT,
         verbose_name='status',
-        validators=[status_validate]
     )
     text = models.TextField(
         max_length=500,

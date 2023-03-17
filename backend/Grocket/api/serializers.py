@@ -1,11 +1,12 @@
+from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
-from django.conf import settings
-from django.utils.translation import gettext_lazy as _
+
 from api.fields import ProductImagesField
-from products.models import Category, Favourite, Image, Product, Promotion
 from comments.models import Comment, CommentImage, CommentReply
+from products.models import Category, Favourite, Image, Product, Promotion
 from products.services import ProductService
 from users.models import User
 from users.services import UserService

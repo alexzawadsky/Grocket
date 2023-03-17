@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django_mptt_admin.admin import DjangoMpttAdmin
 from modeltranslation.admin import TranslationAdmin
+
 from .models import Category, Favourite, Image, Product, Promotion
 
 

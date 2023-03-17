@@ -3,10 +3,9 @@ from django.urls import path
 from djoser.views import UserViewSet
 from rest_framework.routers import DefaultRouter
 
-from .views import (CategoryViewSet, CustomUserRegisterViewSet,
+from .views import (CategoryViewSet, CommentViewSet, CustomUserRegisterViewSet,
                     CustomUserRetrieveViewSet, FavouriteViewSet,
-                    ProductViewSet, PromotionViewSet,
-                    CommentViewSet)
+                    ProductViewSet, PromotionViewSet)
 
 app_name = 'api'
 

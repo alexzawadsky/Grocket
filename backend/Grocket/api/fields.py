@@ -1,5 +1,6 @@
 from rest_framework.fields import Field
 from rest_framework.serializers import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 
 class ProductImagesField(Field):
@@ -35,8 +36,7 @@ class ProductImagesField(Field):
                 new_images[image_data] = is_main
             else:
                 raise ValidationError(
-                    f'Поле image может быть только id или base64. '
-                    f'Дано: {image}.'
+                    _('The image field can only be id or base64.')
                 )
         return images_album, new_images
 

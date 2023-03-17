@@ -97,7 +97,7 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = []  # В конце добавить валидаторы!!!
 
 
-# Локализация
+# <--- Локализация --->
 LANGUAGES = [
     ('en', _('English')),
     ('ru', _('Russian')),
@@ -118,7 +118,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+# <--- Локализация --->
 
 # <--- Настройка путей --->
 DATA_URL = '/data/'
@@ -213,10 +213,10 @@ PRODUCT_IMAGE = {
 
 # Список статусов комментариев
 COMMENT_STATUSES = [
-    'Bought',
-    'Did not agree',
-    'Ignored',
-    'Other',
+    _('Bought'),
+    _('Did not agree'),
+    _('Ignored'),
+    _('Other'),
 ]
 
 

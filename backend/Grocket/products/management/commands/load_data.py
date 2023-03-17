@@ -21,7 +21,7 @@ class Command(BaseCommand):
     }
 
     def parsing_caregories(self, string):
-        title, parent, category_id = string
+        title_en, title_ru, parent, category_id = string
 
         if parent.isdigit():
             parent = int(parent)
@@ -37,9 +37,8 @@ class Command(BaseCommand):
             raise TypeError(
                 'category_id может быть только числом')
 
-        title = str(title)
 
-        return title, parent, category_id
+        return title_en, title_ru, parent, category_id
 
     def load_categories(self):
         with open(
@@ -50,23 +49,27 @@ class Command(BaseCommand):
 
             categories = {}
             for string in spamreader:
-                title, parent, category_id = self.parsing_caregories(string)
+                title_en, title_ru, parent, category_id = self.parsing_caregories(string)
 
                 if category_id not in categories.keys():
                     if parent is None:
-                        if not Category.objects.filter(title=title).exists():
-                            category = Category.objects.create(title=title)
+                        if not Category.objects.filter(title=title_en).exists():
+                            category = Category.objects.create(
+                                title_ru=title_ru,
+                                title_en=title_en
+                            )
                         else:
-                            return f'Категория с title={title} уже есть в бд.'
+                            return f'Категория с title={title_en} уже есть в бд.'
                     elif parent in categories.keys():
                         parent_category = categories[parent]
-                        if not Category.objects.filter(title=title).exists():
+                        if not Category.objects.filter(title=title_en).exists():
                             category = Category.objects.create(
-                                title=title,
+                                title_en=title_en,
+                                title_ru=title_ru,
                                 parent=parent_category
                             )
                         else:
-                            return f'Категория с title={title} уже есть в бд.'
+                            return f'Категория с title={title_en} уже есть в бд.'
                     else:
                         return (f'Нет категории с id={parent}'
                                 f' или она идет дальше в списке.')
@@ -76,14 +79,17 @@ class Command(BaseCommand):
                     return f'Категория с id={category_id} уже соществует'
 
     def parsing_promotions(self, string):
-        name, title, price, price_currency, description = string
+        (name, title_en, title_ru, price, price_currency,
+         description_en, description_ru) = string
 
         fields = {
             'name': name,
-            'title': title,
+            'title_en': title_en,
+            'title_ru': title_ru,
             'price': price,
             'price_currency': price_currency,
-            'description': description
+            'description_en': description_en,
+            'description_ru': description_ru,
         }
 
         return fields
@@ -101,10 +107,12 @@ class Command(BaseCommand):
                 if not Promotion.objects.filter(name=fields['name']).exists():
                     promotion = Promotion.objects.create(
                         name=fields['name'],
-                        title=fields['title'],
+                        title_en=fields['title_en'],
+                        title_ru=fields['title_ru'],
                         price=fields['price'],
                         price_currency=fields['price_currency'],
-                        description=fields['description'],
+                        description_en=fields['description_en'],
+                        description_ru=fields['description_ru'],
                     )
                     self.local_data['promotions']['added'].append(promotion)
                 else:

@@ -87,7 +87,7 @@ class FavouriteSerializer(serializers.ModelSerializer):
             product=value
         ).exists():
             raise serializers.ValidationError(
-                'Этот рецепт уже есть в избранном',
+                _('This recipe is already in my favorites.'),
             )
 
         return value
@@ -254,7 +254,7 @@ class ProductCreateUpdateSerializer(serializers.ModelSerializer):
     def validate_category(self, value):
         if not value.is_leaf_node():
             raise serializers.ValidationError(
-                _('Можно добавить только в конечную категорию.')
+                _('Can only be added to the final category.')
             )
 
         return value
@@ -297,13 +297,13 @@ class ProductCreateSerializer(ProductCreateUpdateSerializer):
             if is_main:
                 if main:
                     raise serializers.ValidationError(
-                        'Нельзя добавить больше одной главной фотографии.'
+                        _('You cannot add more than one main photo.')
                     )
                 main = True
 
         if not main:
             raise serializers.ValidationError(
-                'Нужно добавить главную фотографию.'
+                _('Add a main photo.')
             )
 
         return value
@@ -341,11 +341,11 @@ class ProductUpdateSerializer(ProductCreateUpdateSerializer):
             image_obj = Image.objects.filter(id=image)
             if not image_obj.exists():
                 raise serializers.ValidationError(
-                    f'Картинки с id={image} нет.'
+                    _('Image not found.')
                 )
             if not image_obj.filter(product=product).exists():
                 raise serializers.ValidationError(
-                    f'Картинка с id={image} не от этого товара.'
+                    _('This picture is not from this product.')
                 )
 
         product_images = list(
@@ -364,11 +364,11 @@ class ProductUpdateSerializer(ProductCreateUpdateSerializer):
 
         if True not in all_is_main:
             raise serializers.ValidationError(
-                'Надо добавить хотябы одну главную картинку.'
+                _('Add a main photo.')
             )
         if all_is_main.count(True) > 1:
             raise serializers.ValidationError(
-                'Может быть только одна главная картинка.'
+                _('You cannot add more than one main photo.')
             )
 
         return value
@@ -505,13 +505,9 @@ class CommentCreateSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ('user', 'product', 'images', 'rate', 'text', 'status',)
 
-
-
-
-
     def validate_status(self, value):
         if value not in settings.COMMENT_STATUSES:
-            raise serializers.ValidationError(_('Нет такого статуса.'))
+            raise serializers.ValidationError(_('No such status.'))
 
         return value
 
@@ -535,7 +531,7 @@ class CommentCreateSerializer(serializers.ModelSerializer):
     def validate_product(self, obj):
         if obj.is_archived:
             raise serializers.ValidationError(
-                'Нет такого товара или он находится в архиве.'
+                _('There is no such product or it is archived.')
             )
         return obj
 
@@ -552,7 +548,7 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 
         if seller == user:
             raise serializers.ValidationError(
-                'Нельзя добавить комментарий на свой товар.'
+                _('You can not add a comment to your product.')
             )
 
         if not comments_exists:
@@ -563,7 +559,7 @@ class CommentCreateSerializer(serializers.ModelSerializer):
             self.creating_images(images, comment)
         else:
             raise serializers.ValidationError(
-                'Нельзя добавить 2 комментария на один товар.'
+                _('You can not add 2 comments to one product.')
             )
 
         return comment

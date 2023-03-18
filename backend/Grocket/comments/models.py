@@ -1,7 +1,5 @@
-from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 
 from products.models import Product
 from users.models import User
@@ -24,6 +22,7 @@ class Status(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class CommentImage(models.Model):
     comment = models.ForeignKey(

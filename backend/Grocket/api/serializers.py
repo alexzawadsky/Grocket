@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
@@ -455,7 +454,7 @@ class CommentReplyCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CommentReply
-        fields = ('user', 'comment', 'text')
+        fields = ('user', 'comment', 'text',)
 
 
 class CommentReplyReadOnlySerializer(serializers.ModelSerializer):
@@ -463,7 +462,7 @@ class CommentReplyReadOnlySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CommentReply
-        fields = ('id', 'user', 'text')
+        fields = ('id', 'user', 'text' 'pub_date',)
 
 
 class CommentReadOnlySerializer(serializers.ModelSerializer):
@@ -476,7 +475,7 @@ class CommentReadOnlySerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('id', 'status', 'rate', 'text', 'images',
-                  'replies', 'user', 'product',)
+                  'replies', 'user', 'product', 'pub_date',)
 
     def get_replies(self, obj):
         replies = CommentReply.objects.filter(comment=obj)

@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django_filters import rest_framework as django_filters
 from djoser import views as djviews

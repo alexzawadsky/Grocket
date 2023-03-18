@@ -1,8 +1,8 @@
 from modeltranslation.translator import TranslationOptions, register
 
-from comments.models import CommentStatus
+from comments.models import Status
 
 
-@register(CommentStatus)
-class CommentStatusTranslationOptions(TranslationOptions):
-    fields = ('name',)
+@register(Status)
+class StatusTranslationOptions(TranslationOptions):
+    fields = ('title',)

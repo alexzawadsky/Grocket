@@ -7,10 +7,14 @@ from products.models import Product
 from users.models import User
 
 
-class CommentStatus(models.Model):
-    name = models.CharField(
+class Status(models.Model):
+    title = name = models.CharField(
         max_length=50,
-        verbose_name='status name'
+        verbose_name='title'
+    )
+    name = models.SlugField(
+        max_length=50,
+        verbose_name='code'
     )
 
     class Meta:
@@ -60,7 +64,7 @@ class Comment(models.Model):
         verbose_name='commented product',
     )
     status = models.ForeignKey(
-        'CommentStatus',
+        'Status',
         related_name='comments',
         on_delete=models.PROTECT,
         verbose_name='status',

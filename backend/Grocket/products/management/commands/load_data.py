@@ -320,6 +320,7 @@ class Command(BaseCommand):
         print(f'  Added: {added}')
 
     def handle(self, *args, **options):
+        print()
         print(
             bcolors.FAIL +
             'Эта команда больше не поддерживается :('
@@ -355,6 +356,12 @@ class Command(BaseCommand):
         )
         print()
 
+        print(
+            bcolors.WARNING +
+            'Или добавьте параметры: '+ bcolors.OKBLUE + '-с -p -u'
+        )
+        print()
+
         # print(bcolors.HEADER + 'HEADER')
         # print(bcolors.OKBLUE + 'OKBLUE')
         # print(bcolors.OKCYAN + 'OKCYAN')
@@ -365,21 +372,21 @@ class Command(BaseCommand):
         # print(bcolors.BOLD + 'BOLD')
         # print(bcolors.UNDERLINE + 'UNDERLINE')
 
-        # categories = options['categories']
-        # promotions = options['promotions']
-        # users = options['users']
+        categories = options['categories']
+        promotions = options['promotions']
+        users = options['users']
 
-        # if categories:
-        #     message = self.load_categories()
-        #     if message is not None:
-        #         print(f'Error: {message}')
-        #     self.print_categories()
-        # if promotions:
-        #     self.load_promotions()
-        #     self.print_promotions()
-        # if users:
-        #     self.load_users()
-        #     self.print_users()
+        if categories:
+            message = self.load_categories()
+            if message is not None:
+                print(f'Error: {message}')
+            self.print_categories()
+        if promotions:
+            self.load_promotions()
+            self.print_promotions()
+        if users:
+            self.load_users()
+            self.print_users()
 
         # if not any([categories, promotions, users]):
         #     message = self.load_categories()

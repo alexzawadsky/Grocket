@@ -5,7 +5,7 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.fields import ProductImagesField
-from comments.models import Comment, CommentImage, CommentReply
+from comments.models import Comment, CommentImage, CommentReply, Status
 from products.models import Category, Favourite, Image, Product, Promotion
 from products.services import ProductService
 from users.models import User
@@ -439,6 +439,12 @@ class CommentImageCreateSerializer(serializers.ModelSerializer):
         fields = ('image', 'comment',)
 
 
+class StatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Status
+        fields = ('id', 'title', 'name',)
+
+
 class CommentReplyCreateSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
@@ -465,6 +471,7 @@ class CommentReadOnlySerializer(serializers.ModelSerializer):
     product = ProductCommentSerializer(read_only=True)
     images = serializers.SerializerMethodField()
     replies = serializers.SerializerMethodField()
+    status = StatusSerializer(read_only=True)
 
     class Meta:
         model = Comment
@@ -500,17 +507,13 @@ class CommentCreateSerializer(serializers.ModelSerializer):
         queryset=Product.objects.all(),
     )
     images = serializers.ListField()
-    status = serializers.CharField()
+    status = serializers.PrimaryKeyRelatedField(
+        queryset=Status.objects.all()
+    )
 
     class Meta:
         model = Comment
         fields = ('user', 'product', 'images', 'rate', 'text', 'status',)
-
-    def validate_status(self, value):
-        if value not in settings.COMMENT_STATUSES:
-            raise serializers.ValidationError(_('No such status.'))
-
-        return value
 
     def to_representation(self, comment):
         serializer = CommentReadOnlySerializer(comment, context=self.context)

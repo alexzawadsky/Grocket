@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 12:42+0100\n"
+"POT-Creation-Date: 2023-03-18 14:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,15 +20,15 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\Grocket\settings.py:103
+#: .\Grocket\settings.py:104
 msgid "English"
 msgstr "Английский"
 
-#: .\Grocket\settings.py:104
+#: .\Grocket\settings.py:105
 msgid "Russian"
 msgstr "Русский"
 
-#: .\Grocket\settings.py:105
+#: .\Grocket\settings.py:106
 msgid "Dutch"
 msgstr "Голландский"
 
@@ -70,25 +70,24 @@ msgstr "Изображение не найдено."
 msgid "This picture is not from this product."
 msgstr "Это изображение не из этого товара."
 
-#: .\api\serializers.py:511
-msgid "No such status."
-msgstr "Нет такого статуса."
-
-#: .\api\serializers.py:535
+#: .\api\serializers.py:538
 msgid "There is no such product or it is archived."
 msgstr "Такого товара нет или он находится в архиве."
 
-#: .\api\serializers.py:552
+#: .\api\serializers.py:555
 msgid "You can not add a comment to your product."
 msgstr "Вы не можете добавить комментарий к собственному товару."
 
-#: .\api\serializers.py:563
+#: .\api\serializers.py:566
 msgid "You can not add 2 comments to one product."
 msgstr "Нельзя добавлять 2 комментария к одному товару."
 
 #: .\products\models.py:14
 msgid "No such category."
 msgstr "Нет такой категории."
+
+#~ msgid "No such status."
+#~ msgstr "Нет такого статуса."
 
 #~ msgid "Bought"
 #~ msgstr "Куплено"

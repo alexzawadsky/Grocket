@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 12:42+0100\n"
+"POT-Creation-Date: 2023-03-18 14:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\Grocket\settings.py:103
+#: .\Grocket\settings.py:104
 msgid "English"
 msgstr "Engels"
 
-#: .\Grocket\settings.py:104
+#: .\Grocket\settings.py:105
 msgid "Russian"
 msgstr "Russisch"
 
-#: .\Grocket\settings.py:105
+#: .\Grocket\settings.py:106
 msgid "Dutch"
 msgstr "Nederlands"
 
@@ -66,25 +66,24 @@ msgstr "Afbeelding niet gevonden."
 msgid "This picture is not from this product."
 msgstr "Deze foto is niet van dit product."
 
-#: .\api\serializers.py:511
-msgid "No such status."
-msgstr "Niet zo'n status."
-
-#: .\api\serializers.py:535
+#: .\api\serializers.py:538
 msgid "There is no such product or it is archived."
 msgstr "Er is geen dergelijk product of het is gearchiveerd."
 
-#: .\api\serializers.py:552
+#: .\api\serializers.py:555
 msgid "You can not add a comment to your product."
 msgstr "U kunt geen opmerking toevoegen aan uw product."
 
-#: .\api\serializers.py:563
+#: .\api\serializers.py:566
 msgid "You can not add 2 comments to one product."
 msgstr "U kunt niet 2 opmerkingen toevoegen aan één product."
 
 #: .\products\models.py:14
 msgid "No such category."
 msgstr "Niet zo'n categorie."
+
+#~ msgid "No such status."
+#~ msgstr "Niet zo'n status."
 
 #~ msgid "Bought"
 #~ msgstr "Gekocht"

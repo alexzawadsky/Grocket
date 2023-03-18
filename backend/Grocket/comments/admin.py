@@ -1,12 +1,12 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
-from comments.models import Comment, CommentImage, CommentReply, CommentStatus
+from comments.models import Comment, CommentImage, CommentReply, Status
 
 
-@admin.register(CommentStatus)
-class CommentStatusAdmin(TranslationAdmin):
-    list_display = ('pk', 'name',)
-    search_fields = ('name',)
+@admin.register(Status)
+class StatusAdmin(TranslationAdmin):
+    list_display = ('pk', 'title', 'name',)
+    search_fields = ('title', 'name',)
     empty_value_display = '-empty-'
 
 

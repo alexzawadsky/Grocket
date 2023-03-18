@@ -6,7 +6,7 @@ from rest_framework import filters, permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from comments.models import Comment, CommentReply
+from comments.models import Comment, CommentReply, Status
 from products.models import Category, Favourite, Product, Promotion
 from users.models import User
 
@@ -17,7 +17,8 @@ from .serializers import (CategoryListSerializer, CommentCreateSerializer,
                           CommentReplyCreateSerializer, FavouriteSerializer,
                           ProductCreateSerializer, ProductListSerializer,
                           ProductRetrieveSerializer, ProductUpdateSerializer,
-                          PromotionCreateUpdateSerializer, PromotionSerializer)
+                          PromotionCreateUpdateSerializer, PromotionSerializer,
+                          StatusSerializer)
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -50,6 +51,8 @@ class CommentViewSet(viewsets.ModelViewSet):
             return CommentCreateSerializer
         elif self.action in ('reply',):
             return CommentReplyCreateSerializer
+        elif self.action in ('statuses',):
+            return StatusSerializer
 
     def _user_comments_list(self, user, request):
         queryset = self.filter_queryset(
@@ -103,14 +106,17 @@ class CommentViewSet(viewsets.ModelViewSet):
 
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-    # @action(['get'], detail=False)
-    # def statuses(self, request):
-    #     statuses = settings.COMMENT_STATUSES
-    #     data = {
-    #         'statuses': statuses
-    #     }
+    @action(['get'], detail=False)
+    def statuses(self, request):
+        statuses = Status.objects.all()
 
-    #     return Response(data, status=status.HTTP_200_OK)
+        serializer = self.get_serializer_class()(
+            instance=statuses,
+            many=True,
+            read_only=True
+        )
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

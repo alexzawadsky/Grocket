@@ -327,144 +327,144 @@
         "model": "auth.permission",
         "pk": 37,
         "fields": {
-            "name": "Can add promotion",
+            "name": "Can add favourite",
             "content_type": 10,
-            "codename": "add_promotion"
+            "codename": "add_favourite"
         }
     },
     {
         "model": "auth.permission",
         "pk": 38,
         "fields": {
-            "name": "Can change promotion",
+            "name": "Can change favourite",
             "content_type": 10,
-            "codename": "change_promotion"
+            "codename": "change_favourite"
         }
     },
     {
         "model": "auth.permission",
         "pk": 39,
         "fields": {
-            "name": "Can delete promotion",
+            "name": "Can delete favourite",
             "content_type": 10,
-            "codename": "delete_promotion"
+            "codename": "delete_favourite"
         }
     },
     {
         "model": "auth.permission",
         "pk": 40,
         "fields": {
-            "name": "Can view promotion",
+            "name": "Can view favourite",
             "content_type": 10,
-            "codename": "view_promotion"
+            "codename": "view_favourite"
         }
     },
     {
         "model": "auth.permission",
         "pk": 41,
         "fields": {
-            "name": "Can add product",
+            "name": "Can add product image",
             "content_type": 11,
-            "codename": "add_product"
+            "codename": "add_image"
         }
     },
     {
         "model": "auth.permission",
         "pk": 42,
         "fields": {
-            "name": "Can change product",
+            "name": "Can change product image",
             "content_type": 11,
-            "codename": "change_product"
+            "codename": "change_image"
         }
     },
     {
         "model": "auth.permission",
         "pk": 43,
         "fields": {
-            "name": "Can delete product",
+            "name": "Can delete product image",
             "content_type": 11,
-            "codename": "delete_product"
+            "codename": "delete_image"
         }
     },
     {
         "model": "auth.permission",
         "pk": 44,
         "fields": {
-            "name": "Can view product",
+            "name": "Can view product image",
             "content_type": 11,
-            "codename": "view_product"
+            "codename": "view_image"
         }
     },
     {
         "model": "auth.permission",
         "pk": 45,
         "fields": {
-            "name": "Can add product image",
+            "name": "Can add promotion",
             "content_type": 12,
-            "codename": "add_image"
+            "codename": "add_promotion"
         }
     },
     {
         "model": "auth.permission",
         "pk": 46,
         "fields": {
-            "name": "Can change product image",
+            "name": "Can change promotion",
             "content_type": 12,
-            "codename": "change_image"
+            "codename": "change_promotion"
         }
     },
     {
         "model": "auth.permission",
         "pk": 47,
         "fields": {
-            "name": "Can delete product image",
+            "name": "Can delete promotion",
             "content_type": 12,
-            "codename": "delete_image"
+            "codename": "delete_promotion"
         }
     },
     {
         "model": "auth.permission",
         "pk": 48,
         "fields": {
-            "name": "Can view product image",
+            "name": "Can view promotion",
             "content_type": 12,
-            "codename": "view_image"
+            "codename": "view_promotion"
         }
     },
     {
         "model": "auth.permission",
         "pk": 49,
         "fields": {
-            "name": "Can add favourite",
+            "name": "Can add product",
             "content_type": 13,
-            "codename": "add_favourite"
+            "codename": "add_product"
         }
     },
     {
         "model": "auth.permission",
         "pk": 50,
         "fields": {
-            "name": "Can change favourite",
+            "name": "Can change product",
             "content_type": 13,
-            "codename": "change_favourite"
+            "codename": "change_product"
         }
     },
     {
         "model": "auth.permission",
         "pk": 51,
         "fields": {
-            "name": "Can delete favourite",
+            "name": "Can delete product",
             "content_type": 13,
-            "codename": "delete_favourite"
+            "codename": "delete_product"
         }
     },
     {
         "model": "auth.permission",
         "pk": 52,
         "fields": {
-            "name": "Can view favourite",
+            "name": "Can view product",
             "content_type": 13,
-            "codename": "view_favourite"
+            "codename": "view_product"
         }
     },
     {
@@ -507,108 +507,108 @@
         "model": "auth.permission",
         "pk": 57,
         "fields": {
-            "name": "Can add Status",
+            "name": "Can add comment image",
             "content_type": 15,
-            "codename": "add_commentstatus"
+            "codename": "add_commentimage"
         }
     },
     {
         "model": "auth.permission",
         "pk": 58,
         "fields": {
-            "name": "Can change Status",
+            "name": "Can change comment image",
             "content_type": 15,
-            "codename": "change_commentstatus"
+            "codename": "change_commentimage"
         }
     },
     {
         "model": "auth.permission",
         "pk": 59,
         "fields": {
-            "name": "Can delete Status",
+            "name": "Can delete comment image",
             "content_type": 15,
-            "codename": "delete_commentstatus"
+            "codename": "delete_commentimage"
         }
     },
     {
         "model": "auth.permission",
         "pk": 60,
         "fields": {
-            "name": "Can view Status",
+            "name": "Can view comment image",
             "content_type": 15,
-            "codename": "view_commentstatus"
+            "codename": "view_commentimage"
         }
     },
     {
         "model": "auth.permission",
         "pk": 61,
         "fields": {
-            "name": "Can add comment reply",
+            "name": "Can add Status",
             "content_type": 16,
-            "codename": "add_commentreply"
+            "codename": "add_status"
         }
     },
     {
         "model": "auth.permission",
         "pk": 62,
         "fields": {
-            "name": "Can change comment reply",
+            "name": "Can change Status",
             "content_type": 16,
-            "codename": "change_commentreply"
+            "codename": "change_status"
         }
     },
     {
         "model": "auth.permission",
         "pk": 63,
         "fields": {
-            "name": "Can delete comment reply",
+            "name": "Can delete Status",
             "content_type": 16,
-            "codename": "delete_commentreply"
+            "codename": "delete_status"
         }
     },
     {
         "model": "auth.permission",
         "pk": 64,
         "fields": {
-            "name": "Can view comment reply",
+            "name": "Can view Status",
             "content_type": 16,
-            "codename": "view_commentreply"
+            "codename": "view_status"
         }
     },
     {
         "model": "auth.permission",
         "pk": 65,
         "fields": {
-            "name": "Can add comment image",
+            "name": "Can add comment reply",
             "content_type": 17,
-            "codename": "add_commentimage"
+            "codename": "add_commentreply"
         }
     },
     {
         "model": "auth.permission",
         "pk": 66,
         "fields": {
-            "name": "Can change comment image",
+            "name": "Can change comment reply",
             "content_type": 17,
-            "codename": "change_commentimage"
+            "codename": "change_commentreply"
         }
     },
     {
         "model": "auth.permission",
         "pk": 67,
         "fields": {
-            "name": "Can delete comment image",
+            "name": "Can delete comment reply",
             "content_type": 17,
-            "codename": "delete_commentimage"
+            "codename": "delete_commentreply"
         }
     },
     {
         "model": "auth.permission",
         "pk": 68,
         "fields": {
-            "name": "Can view comment image",
+            "name": "Can view comment reply",
             "content_type": 17,
-            "codename": "view_commentimage"
+            "codename": "view_commentreply"
         }
     },
     {
@@ -688,7 +688,7 @@
         "pk": 10,
         "fields": {
             "app_label": "products",
-            "model": "promotion"
+            "model": "favourite"
         }
     },
     {
@@ -696,7 +696,7 @@
         "pk": 11,
         "fields": {
             "app_label": "products",
-            "model": "product"
+            "model": "image"
         }
     },
     {
@@ -704,7 +704,7 @@
         "pk": 12,
         "fields": {
             "app_label": "products",
-            "model": "image"
+            "model": "promotion"
         }
     },
     {
@@ -712,7 +712,7 @@
         "pk": 13,
         "fields": {
             "app_label": "products",
-            "model": "favourite"
+            "model": "product"
         }
     },
     {
@@ -728,7 +728,7 @@
         "pk": 15,
         "fields": {
             "app_label": "comments",
-            "model": "commentstatus"
+            "model": "commentimage"
         }
     },
     {
@@ -736,7 +736,7 @@
         "pk": 16,
         "fields": {
             "app_label": "comments",
-            "model": "commentreply"
+            "model": "status"
         }
     },
     {
@@ -744,15 +744,23 @@
         "pk": 17,
         "fields": {
             "app_label": "comments",
-            "model": "commentimage"
+            "model": "commentreply"
         }
     },
     {
         "model": "sessions.session",
-        "pk": "1uw21vcd956paj7pkkgrlo00fawkk7wr",
+        "pk": "ackajhjuutlc69u9oys3djbxqn5c18ti",
         "fields": {
-            "session_data": ".eJxVjDsOwjAQBe_iGlk4NruGkj5nsPbj4ABypDipEHeHSCmgfTPzXibRupS0tjynUc3FdObwuzHJI9cN6J3qbbIy1WUe2W6K3Wmz_aT5ed3dv4NCrXxryMgOvDABSXSIGCHIOYo6cRI8eoBjBI-dHxDyiYMKOhYQhxoHNu8P1jE3tQ:1pd9gQ:9ByRRzTjJfSxHYttDGHl12P5vpBjtqpsk-4qQMvaAOI",
-            "expire_date": "2023-03-31T12:59:46.484Z"
+            "session_data": ".eJxVjEEOwiAQRe_C2hAoU0CX7nsGMgODVA0kpV0Z765NutDtf-_9lwi4rSVsnZcwJ3ERWpx-N8L44LqDdMd6azK2ui4zyV2RB-1yaomf18P9OyjYy7cesjXWAxjlFORxdKQykGbyidjTYLVPMZNFRYDnaDlqZxggakBLDsX7A9fLOCU:1pdVGF:r8dbPDIlHA-yiP4udl___9oKow-gB6T5zlmSvCbXqgw",
+            "expire_date": "2023-04-01T12:02:11.085Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "helabq2btc52xvpf006t1cb0a174mvj5",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hAoU0CX7nsGMgODVA0kpV0Z765NutDtf-_9lwi4rSVsnZcwJ3ERWpx-N8L44LqDdMd6azK2ui4zyV2RB-1yaomf18P9OyjYy7cesjXWAxjlFORxdKQykGbyidjTYLVPMZNFRYDnaDlqZxggakBLDsX7A9fLOCU:1pdUrm:L5gNs8pNV3tQqIKqAVs7ht4DBJzqOPjCLOASu1noMUY",
+            "expire_date": "2023-04-01T11:36:54.416Z"
         }
     },
     {
@@ -954,74 +962,78 @@
         "model": "products.promotion",
         "pk": 1,
         "fields": {
-            "name": "xl",
             "title": "Bigger item card",
             "title_en": "Bigger item card",
             "title_ru": "Большая карточка",
             "title_nl": null,
+            "name": "xl",
             "price_currency": "RUB",
             "price": "200.00",
             "description": "This promotion makes your item stand out from the rest in search result. Add at least 3 photos for better result.",
             "description_en": "This promotion makes your item stand out from the rest in search result. Add at least 3 photos for better result.",
             "description_ru": "Выделяет ваш товар среди остальных в результатах поиска. Добавьте как минимум 3 фотографии для лучшего результата.",
-            "description_nl": "Deze actie zorgt ervoor dat uw artikel zich onderscheidt van de rest in de zoekresultaten. Voeg minimaal 3 foto's toe voor een beter resultaat."
+            "description_nl": null
         }
     },
     {
         "model": "products.promotion",
         "pk": 2,
         "fields": {
-            "name": "price",
             "title": "Price highlighting",
             "title_en": "Price highlighting",
             "title_ru": "Выделение цены",
             "title_nl": null,
+            "name": "price",
             "price_currency": "RUB",
             "price": "100.00",
             "description": "This promotions makes your item price more noticeable.",
             "description_en": "This promotions makes your item price more noticeable.",
             "description_ru": "Делает цену вашего товара более заметной.",
-            "description_nl": "Deze promoties maken uw artikelprijs meer merkbaar."
+            "description_nl": null
         }
     },
     {
-        "model": "comments.commentstatus",
+        "model": "comments.status",
         "pk": 1,
         "fields": {
-            "name": "Bought",
-            "name_en": "Bought",
-            "name_ru": "Куплено",
-            "name_nl": "Gekocht"
+            "title": "Other",
+            "title_en": "Other",
+            "title_ru": "Другое",
+            "title_nl": null,
+            "name": "other"
         }
     },
     {
-        "model": "comments.commentstatus",
+        "model": "comments.status",
         "pk": 2,
         "fields": {
-            "name": "Did not agree",
-            "name_en": "Did not agree",
-            "name_ru": "Не договорились",
-            "name_nl": "Niet mee eens"
+            "title": "Bought",
+            "title_en": "Bought",
+            "title_ru": "Куплено",
+            "title_nl": null,
+            "name": "bought"
         }
     },
     {
-        "model": "comments.commentstatus",
+        "model": "comments.status",
         "pk": 3,
         "fields": {
-            "name": "Ignored",
-            "name_en": "Ignored",
-            "name_ru": "Не ответил",
-            "name_nl": "Geen antwoord gegeven"
+            "title": "Did not agree",
+            "title_en": "Did not agree",
+            "title_ru": "Не договорились",
+            "title_nl": null,
+            "name": "did_not_agree"
         }
     },
     {
-        "model": "comments.commentstatus",
+        "model": "comments.status",
         "pk": 4,
         "fields": {
-            "name": "Other",
-            "name_en": "Other",
-            "name_ru": "Другое",
-            "name_nl": "Ander"
+            "title": "Ignored",
+            "title_en": "Ignored",
+            "title_ru": "Не ответил",
+            "title_nl": null,
+            "name": "ignored"
         }
     }
 ]

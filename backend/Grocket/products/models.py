@@ -66,14 +66,14 @@ class Category(MPTTModel):
 
 
 class Promotion(models.Model):
-    name = models.CharField(
-        max_length=50,
-        verbose_name='name',
-        unique=True,
-    )
     title = models.CharField(
         max_length=100,
         verbose_name='title',
+    )
+    name = models.SlugField(
+        max_length=50,
+        verbose_name='name',
+        unique=True,
     )
     price = MoneyField(
         max_digits=19,
@@ -133,6 +133,7 @@ class Product(models.Model):
         Promotion,
         related_name='products',
         verbose_name='product promotion types',
+        blank=True,
     )
     is_archived = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)

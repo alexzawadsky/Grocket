@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { NavLink, Outlet, useOutlet, useParams } from 'react-router-dom'
+import { Navigate, NavLink, Outlet, useOutlet, useParams } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
 import { ProfileCard, Spinner } from '../../components'
 import AuthContext from '../../contexts/AuthProvider'
@@ -52,6 +52,7 @@ const Profile = () => {
 
     if (isLoading) return <Spinner />
     if (error) return error.message
+    if (!outlet && isMinTablet) return <Navigate to='lots' />
 
     return (
         <div className='grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr] items-center md:items-start md:flex-row gap-5'>

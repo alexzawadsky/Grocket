@@ -1,7 +1,9 @@
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
-import { notification } from "../utils";
+import { notification, getLastRoute } from "../utils";
 
 const limit = 12;
 
@@ -29,10 +31,12 @@ export const useAddProduct = () => {
 export const useUpdateProduct = () => {
     const api = useAxios()
     const queryClient = useQueryClient()
+    const navigate = useNavigate()
     return useMutation((data) => api.patch(`/api/v1/products/${data.id}/`, data.body).then(res => res.data),
         {
             onSuccess: () => {
                 notification('Changes saved')
+                navigate(getLastRoute())
                 queryClient.invalidateQueries('product')
                 queryClient.invalidateQueries('products')
             }
@@ -145,6 +149,27 @@ export const useUserComments = (userId) => {
     const api = useAxios()
     return useQuery(['comments', userId],
         () => api.get(`/api/v1/users/${userId}/comments`).then(res => res.data))
+}
+
+export const useCommentStatuses = () => {
+    const api = useAxios()
+    return useQuery(['comment_statuses'],
+        () => api.get('/api/v1/comments/statuses').then(res => res.data))
+}
+
+export const useUploadComment = () => {
+    const api = useAxios()
+    const queryClient = useQueryClient()
+    const { t } = useTranslation()
+    const navigate = useNavigate()
+    return useMutation((data) => api.post('/api/v1/comments/', data),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries('comments')
+                notification(t('add_comment_success'))
+                navigate(getLastRoute())
+            }
+        })
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

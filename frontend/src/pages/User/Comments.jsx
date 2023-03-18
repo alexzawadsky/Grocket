@@ -13,9 +13,9 @@ const Comments = () => {
     const { profileId } = useParams()
     const { data, isLoading, error } = useUserComments(profileId)
 
+    if (outlet) return <Outlet />
     if (isLoading) return <Spinner />
     if (error) return error.message
-    if (outlet) return <Outlet />
 
     return (
         <div className='grid gap-4'>

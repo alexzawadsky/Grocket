@@ -5,13 +5,13 @@ const getAvg = (comments) => {
     if (comments.length === 0) return 0
     let total = 0
     for (const comment of comments) {
-        total += comment.rating
+        total += comment.rate
     }
     return total / comments.length;
 }
 
 const getRateCount = (comments, rate) => {
-    return comments.filter(comment => comment.rating === rate).length
+    return comments.filter(comment => comment.rate === rate).length
 }
 
 const StatRow = ({ rate, comments }) => {
@@ -43,14 +43,11 @@ const CommentsStats = ({ comments }) => {
                 <RatingStars rating={avg} />
             </div>
             <p>{t('based_on')} {comments.length} {t('based_comments')}</p>
-
             <div className='flex flex-col gap-1'>
                 {
                     Array(5).fill(0).map((i, key) => <StatRow key={key} rate={5 - key} comments={comments} />)
                 }
             </div>
-
-
         </div>
     )
 }

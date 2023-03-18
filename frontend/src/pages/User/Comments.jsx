@@ -22,7 +22,7 @@ const Comments = () => {
             <BackToProfile />
             <h1 className="text-3xl font-bold">{t('comments')}</h1>
             <div className='grid md:grid-cols-[3fr_2fr] lg:grid-cols-[2fr_1fr] gap-2 md:gap-3 lg:gap-5'>
-                <CommentsStats comments={data} />
+                <CommentsStats comments={data?.results} />
                 <div className='mt-auto'>
                     <p className='font-bold'>{t('how_rating_works')}</p>
                     <p className='text-sm'>{t('rating_is')}</p>
@@ -30,7 +30,7 @@ const Comments = () => {
                 </div>
             </div>
             <div className="grid lg:grid-cols-2 gap-5">
-                {data.map((el, key) => <Comment key={key} comment={el} />)}
+                {data?.results.map((el, key) => <Comment key={key} comment={el} />)}
             </div>
         </div>
     )

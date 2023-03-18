@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from comments.models import Comment, CommentReply, Status
 from products.models import Category, Favourite, Product, Promotion
 from users.models import User
-
+from comments.services import CommentService
 from .filters import ProductFilter
 from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer, CommentCreateSerializer,
@@ -18,6 +18,9 @@ from .serializers import (CategoryListSerializer, CommentCreateSerializer,
                           ProductRetrieveSerializer, ProductUpdateSerializer,
                           PromotionCreateUpdateSerializer, PromotionSerializer,
                           StatusSerializer)
+
+
+comments_services = CommentService()
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -33,8 +36,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsOwnerOrReadOnly,)
 
     def get_queryset(self):
-        comments = Comment.objects.all()
-        return comments
+        return comments_services.get_comments()
 
     def get_permissions(self):
         if self.action in ('user_comments',):

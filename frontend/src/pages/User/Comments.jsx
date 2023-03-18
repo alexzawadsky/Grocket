@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Outlet, useOutlet, useParams, NavLink } from 'react-router-dom'
 import { Spinner } from '../../components'
 import CommentsStats from './CommentStats'
 import Comment from './Comment'
@@ -8,10 +8,12 @@ import { useTranslation } from 'react-i18next'
 
 const Comments = () => {
 
+    const outlet = useOutlet()
     const { t } = useTranslation()
     const { profileId } = useParams()
     const { data, isLoading, error } = useUserComments(profileId)
 
+    if (outlet) return <Outlet />
     if (isLoading) return <Spinner />
     if (error) return error.message
 
@@ -24,7 +26,7 @@ const Comments = () => {
                 <div className='mt-auto'>
                     <p className='font-bold'>{t('how_rating_works')}</p>
                     <p className='text-sm'>{t('rating_is')}</p>
-                    <button className="button-fill-orange mt-3 md:mt-7 lg:mt-11">{t('add_comment')}</button>
+                    <NavLink className="button-fill-orange mt-3 md:mt-7 lg:mt-11" to='add'>{t('add_comment')}</NavLink>
                 </div>
             </div>
             <div className="grid lg:grid-cols-2 gap-5">

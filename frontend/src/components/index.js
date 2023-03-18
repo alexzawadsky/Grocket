@@ -18,7 +18,7 @@ import Price from "./Price";
 import SearchItemCard from "./SearchItemCard";
 import PublishTime from "./PublishTime";
 import ImagesCarousel from "./ImagesCarousel";
-import ImagesGallery from "./ImagesGallery";
+import ImageEditor from "./ImageEditor";
 import LanguageSelectionBanner from "./LanguageSelectionBanner";
 
 export {
@@ -42,6 +42,6 @@ export {
     SearchItemCard,
     PublishTime,
     ImagesCarousel,
-    ImagesGallery,
-    LanguageSelectionBanner
+    LanguageSelectionBanner,
+    ImageEditor
 }

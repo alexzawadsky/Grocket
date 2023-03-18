@@ -51,7 +51,12 @@ const LanguageSelectionBanner = () => {
                     >
                         Switch
                     </button>
-                    <button className="hover:text-accent-orange" onClick={() => setLanguageSelected(true)}>Cancel</button>
+                    <button
+                        className="hover:text-accent-orange"
+                        nClick={() => setLanguageSelected(true)}
+                    >
+                        Cancel
+                    </button>
                 </div>
             }
         </div> : null

@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { BsFillTrashFill } from 'react-icons/bs'
 
-const Input = ({ id, type, instance, className, title, autoRef, disabled, split, large, must }) => {
+const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled, split, large, must }) => {
 
     const { t } = useTranslation()
     const inputRef = useRef()
@@ -46,14 +46,14 @@ const Input = ({ id, type, instance, className, title, autoRef, disabled, split,
                     {(instance.isDirty && instance.intError) && <p className="text-accent-red font-bold">{t('not_int_err')}</p>}
                     {(instance.isDirty && instance.floatError) && <p className="text-accent-red font-bold">{t('not_float_err')}</p>}
                 </div>
-                <div
+                {deleteBtn && <div
                     role='button'
                     type="button"
                     className="h-10 w-fit text-accent-red px-5 flex items-center"
                     onClick={() => instance.clear()}
                 >
                     <BsFillTrashFill />
-                </div>
+                </div>}
             </>
         )
     }

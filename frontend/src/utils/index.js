@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 export const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -61,4 +62,36 @@ export const confirm = (text, onConfirm, onConfirmText, onDenyText) => {
             onConfirm()
         }
     })
+}
+
+export const saveImage = (editorRef, images, setImages, setCurrentImage, imageInputRef, setUploading) => {
+    try {
+        setUploading(true)
+        const img = new Image()
+        img.src = editorRef.current.getImage().toDataURL()
+        img.onload = () => {
+            const canvas = document.createElement("canvas")
+            canvas.width = 800
+            canvas.height = 600
+            const ctx = canvas.getContext("2d")
+            ctx.drawImage(img, 0, 0, 800, 600)
+            const newImage = {
+                is_main: images.length > 0 ? false : true,
+                image: canvas.toDataURL("image/png")
+            }
+            setImages(prevImages => [...prevImages, newImage])
+            imageInputRef.current.value = null
+            setCurrentImage(null)
+        }
+        setUploading(false)
+    } catch (e) {
+        setUploading(false)
+        alert(e)
+    }
+}
+
+export const getLastRoute = () => {
+    const currentPath = window.location.pathname
+    const lastRoute = currentPath.substring(0, currentPath.lastIndexOf('/'))
+    return lastRoute
 }

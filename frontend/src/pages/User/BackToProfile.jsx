@@ -5,10 +5,10 @@ import { BsArrowLeft } from "react-icons/bs"
 const BackToProfile = () => {
 
     const { profileId } = useParams()
-    const { isMaxPhone } = useScreen()
+    const { isMinTablet } = useScreen()
 
-    return isMaxPhone ?
-        <NavLink className='flex items-center gap-2' to={`/users/${profileId}`}><BsArrowLeft />Back to profile</NavLink>
+    return !isMinTablet ?
+        <NavLink className='flex items-center gap-2 hover:text-accent-orange' to={`/users/${profileId}`}><BsArrowLeft />Back to profile</NavLink>
         :
         null
 }

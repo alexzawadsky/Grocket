@@ -86,7 +86,7 @@ const SearchItemCard = ({ product }) => {
                     >
                         {product?.user?.first_name} {product?.user?.last_name} {product?.user?.id === user?.user_id && `(${t('me')})`}
                     </NavLink>
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center gap-1.5 flex-wrap'>
                         <RatingStars rating={5} />
                         <NavLink
                             to={product?.user?.id === user?.user_id ? '/users/me/comments' : `/users/${product?.user?.id}/comments`}

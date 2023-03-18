@@ -7,7 +7,7 @@ import { AiOutlineCheck, AiOutlineRotateRight, AiOutlineRotateLeft } from 'react
 import AuthContext from '../../contexts/AuthProvider'
 import CategoryList from './CategoryList'
 import { useAddProduct } from '../../api/api'
-import { deleteImage, saveImage } from './utils'
+import { deleteImage } from './utils'
 import AddressField from '../../components/AddressField'
 import ProductForm from './ProductForm'
 import { useTranslation } from 'react-i18next'

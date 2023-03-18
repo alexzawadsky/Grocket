@@ -27,7 +27,7 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
                 </div>
                 <p className={phone ? 'text-sm md:text-md flex items-center gap-2' : 'flex items-center gap-2 text-primary-100'}><BsFillTelephoneFill />{phone ? phone : '+XXXXXXXXXXX'}</p>
                 <p className={phone ? 'text-sm md:text-md flex items-center gap-2' : 'flex items-center gap-2 text-primary-100'}><HiOutlineMail width={1.5} />{email ? email : 'email@email.com'}</p>
-                <div className='grid md:flex gap-1 md:gap-3'>
+                <div className='flex flex-wrap gap-1 md:gap-3'>
                     <RatingStars rating={rating} />
                     {isMinTablet && <p>{rating ? rating.toFixed(2) : '0.00'}</p>}
                     {withComments ? <NavLink className='text-accent-orange underline' to='comments'>{t('comments')} (4)</NavLink> : null}

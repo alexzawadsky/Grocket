@@ -22,11 +22,9 @@ class ProductService:
     ) -> File:
         file_name = self.create_image_file_name(product_id)
 
-        image_settings = settings.PRODUCT_IMAGE
+        image_settings = settings.WATERMARK
 
         img = Image.open(image)
-        img.convert('RGB')
-        img.resize(image_settings['SIZE'])
 
         watermark = Image.open(
             f"{image_settings['WATERMARK_URL']}/"

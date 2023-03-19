@@ -58,8 +58,6 @@ const AddComment = () => {
             <div className="grid md:grid-cols-[1fr_2fr] gap-5">
                 <h2 className="font-bold text-xl">{t('select_product')}</h2>
                 <div className="grid gap-3">
-                    {products.isLoading && <Spinner />}
-                    {products.error && error.message}
                     {!selectedProduct &&
                         <>
                             <input
@@ -67,6 +65,8 @@ const AddComment = () => {
                                 placeholder={t('type_to_filter')}
                                 onChange={(e) => setFilterString(e.target.value)}
                             />
+                            {products.isLoading && <Spinner />}
+                            {products.error && error.message}
                             <div className="flex flex-wrap gap-3">
                                 {
                                     filteredProducts?.map((el, key) =>
@@ -99,7 +99,7 @@ const AddComment = () => {
                         <h2 className="font-bold text-xl">{t('status')}</h2>
                         <div className="grid gap-2">
                             {
-                                statuses.data && statuses.data?.statuses.map((el, key) =>
+                                statuses.data && statuses.data?.map((el, key) =>
                                     <div className="flex item-center gap-5">
                                         <input
                                             type='radio'

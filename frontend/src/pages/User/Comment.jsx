@@ -17,7 +17,7 @@ const Comment = ({ comment }) => {
             <p className='font-bold text-lg'>{comment?.user?.first_name} {comment?.user?.last_name}</p>
             <p className='text-sm text-primary-300'><PublishTime pubDate={comment?.pub_date} /></p>
 
-            <RatingStars rating={comment?.rating} />
+            <RatingStars rating={comment?.rate} />
             <div className="flex gap-1 items-center">
                 <p className='text-primary-300/[0.8] text-sm font-bold flex items-center gap-1.5'><CommentStatus title={comment?.status?.title} name={comment?.status?.name} /> - </p>
                 <NavLink

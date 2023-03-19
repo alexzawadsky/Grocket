@@ -1,12 +1,12 @@
-import { useTransition } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUserProducts } from '../../api/api'
 import { Spinner, Pagination, ItemCard } from '../../components'
+import { useTranslation } from 'react-i18next'
 
 const UserProductsList = ({ query }) => {
 
-    const { t } = useTransition()
+    const { t } = useTranslation()
     const [page, setPage] = useState(0)
     const { profileId } = useParams()
     const { isLoading, data, error } = useUserProducts(profileId, { ...query, page: page + 1 })

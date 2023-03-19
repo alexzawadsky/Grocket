@@ -34,7 +34,7 @@ const ItemCard = ({ product, managable }) => {
                             {product.name}
                         </NavLink>
                     </div>
-                    {user?.user_id !== product?.user &&
+                    {user?.user_id !== product?.user?.id &&
                         <button
                             onClick={handleFavourite}
                         >
@@ -63,7 +63,7 @@ const ItemCard = ({ product, managable }) => {
                         <PublishTime pubDate={product?.pub_date} />
                     </p>
                 </div>
-                {managable && (user?.user_id === product?.user) && <div className='grid gap-2'>
+                {managable && (user?.user_id === product?.user?.id) && <div className='grid gap-2'>
                     <ManageProductMenu product={product} dropdown />
                 </div>}
             </div>

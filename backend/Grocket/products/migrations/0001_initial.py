@@ -3,9 +3,8 @@
 import django.db.models.deletion
 import djmoney.models.fields
 import mptt.fields
-from django.db import migrations, models
-
 import products.models
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):

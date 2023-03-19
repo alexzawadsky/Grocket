@@ -1,14 +1,14 @@
+from comments.services import CommentService
 from django.shortcuts import get_object_or_404
 from django_filters import rest_framework as django_filters
 from djoser import views as djviews
+from products.models import Category, Favourite, Product, Promotion
 from rest_framework import filters, permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
-from comments.models import Comment, CommentReply, Status
-from products.models import Category, Favourite, Product, Promotion
 from users.models import User
-from comments.services import CommentService
+from users.services import UserService
+
 from .filters import ProductFilter
 from .permissions import IsOwnerOrReadOnly
 from .serializers import (CategoryListSerializer, CommentCreateSerializer,
@@ -19,8 +19,8 @@ from .serializers import (CategoryListSerializer, CommentCreateSerializer,
                           PromotionCreateUpdateSerializer, PromotionSerializer,
                           StatusSerializer)
 
-
 comments_services = CommentService()
+users_services = UserService()
 
 
 class CustomUserRetrieveViewSet(djviews.UserViewSet):
@@ -55,10 +55,27 @@ class CommentViewSet(viewsets.ModelViewSet):
         elif self.action in ('statuses',):
             return StatusSerializer
 
+    def destroy(self, request, pk):
+        comments_services.delete_comment(comment_id=pk)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def create(self, request):
+        request.data['user'] = self.request.user.id
+
+        serializer = self.get_serializer_class()(
+            data=request.data
+        )
+        serializer.is_valid(raise_exception=True)
+
+        comments_services.create_comment(
+            **serializer.data
+        )
+        return Response(status=status.HTTP_201_CREATED)
+
     def _user_comments_list(self, user, request):
         queryset = self.filter_queryset(
-            Comment.objects.filter(seller=user))
-
+            comments_services.get_comments(seller=user)
+        )
         page = self.paginate_queryset(queryset)
         serializer_class = self.get_serializer_class()
         serializer = serializer_class(
@@ -66,7 +83,6 @@ class CommentViewSet(viewsets.ModelViewSet):
             context={'request': request},
             many=True,
         )
-
         return self.get_paginated_response(serializer.data)
 
     @action(['get'], detail=False)
@@ -76,40 +92,34 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     @action(['get'], detail=False)
     def user_comments(self, request, pk):
-        user = get_object_or_404(User, id=pk)
+        user = users_services.get_user_or_404(id=pk)
         return self._user_comments_list(user, request)
 
     @action(['post', 'delete'], detail=True)
     def reply(self, request, pk):
         if request.method == 'POST':
-            comment = get_object_or_404(Comment, id=pk)
+            request.data['comment'] = pk
+            request.data['user'] = self.request.user.id
 
-            if CommentReply.objects.filter(
-                comment=comment
-            ).exists() or comment.user == self.request.user:
-                return Response(status=status.HTTP_400_BAD_REQUEST)
-
-            serializer_class = self.get_serializer_class()
-            data = request.data
-            data['comment'] = pk
-            serializer = serializer_class(
-                data=data,
-                context={'request': request}
+            serializer = self.get_serializer_class()(
+                data=request.data
             )
             serializer.is_valid(raise_exception=True)
-            serializer.save()
+
+            comments_services.reply_to_comment(
+                **serializer.data
+            )
+            return Response(status=status.HTTP_201_CREATED)
+
+        if request.method == 'DELETE':
+            comments_services.delete_reply(reply_id=pk)
             return Response(status=status.HTTP_204_NO_CONTENT)
 
-        elif request.method == 'DELETE':
-            reply = get_object_or_404(CommentReply, id=pk)
-            reply.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     @action(['get'], detail=False)
     def statuses(self, request):
-        statuses = Status.objects.all()
+        statuses = comments_services.get_statuses()
 
         serializer = self.get_serializer_class()(
             instance=statuses,

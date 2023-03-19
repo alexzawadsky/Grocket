@@ -35,15 +35,18 @@ djoser==2.1.0
 dnspython==2.3.0
 drf-extra-fields==3.4.1
 eventlet==0.33.3
+flake8==5.0.4
 greenlet==2.0.2
 gunicorn==20.1.0
 id==1.0.0
 idna==3.4
 importlib-metadata==6.0.0
+isort==5.12.0
 itypes==1.2.0
 Jinja2==3.1.2
 kombu==5.2.4
 MarkupSafe==2.1.2
+mccabe==0.7.0
 oauthlib==3.2.2
 phonenumbers==8.13.7
 Pillow==9.4.0
@@ -51,10 +54,13 @@ prompt-toolkit==3.0.38
 psycopg2-binary==2.9.5
 py-money==0.5.0
 py-moneyed==2.0
+pycodestyle==2.9.1
 pycparser==2.21
 pydantic==1.10.6
+pyflakes==2.5.0
 PyJWT==2.6.0
 python-dotenv==1.0.0
+python-json-logger==2.0.7
 python3-openid==3.2.0
 pytz==2022.7.1
 redis==4.5.1
@@ -64,6 +70,7 @@ six==1.16.0
 social-auth-app-django==4.0.0
 social-auth-core==4.4.0
 sqlparse==0.4.3
+tomli==2.0.1
 typing_extensions==4.5.0
 tzdata==2022.7
 uritemplate==4.1.1
@@ -71,4 +78,3 @@ urllib3==1.26.15
 vine==5.0.0
 wcwidth==0.2.6
 zipp==3.15.0
-isort==5.12.0

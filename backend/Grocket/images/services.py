@@ -5,6 +5,7 @@ from typing import Any, Optional
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.files import File
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -25,7 +26,7 @@ class ImageService:
         -Подставляется формат (по умолчанию png)
         -Подставляеются все строки из **kwargs
         """
-        date = datetime.date(datetime.now()) if date else ''
+        date = datetime.now() if date else ''
         names_in_file_name = [str(name) for name in names.values()]
         return f'{"_".join(names_in_file_name)}__{date}.{file_format}'
 
@@ -42,7 +43,7 @@ class ImageService:
 
     def prepair_img(
         self, image: SimpleUploadedFile, file_name: Optional[str] = None
-    ) -> SimpleUploadedFile:
+    ) -> File:
         """
         Подготавливает картинку для добавления в бд:
         -Изменяет размер
@@ -63,13 +64,13 @@ class ImageService:
 
         thumb_io = BytesIO()
         img.save(thumb_io, img_settings['FORMAT'])
-        image = SimpleUploadedFile(thumb_io, name=file_name)
+        image = File(thumb_io, name=file_name)
 
         return image
 
     def add_watermark(
         self, image: SimpleUploadedFile, file_name: Optional[str] = None
-    ) -> SimpleUploadedFile:
+    ) -> File:
         """
         <-Для нормальной работы все картинки должны быть одинкового размера->
         Добавляет вотермарку на картинку:
@@ -98,13 +99,13 @@ class ImageService:
 
         thumb_io = BytesIO()
         img.save(thumb_io, img_settings['FORMAT'])
-        image = SimpleUploadedFile(thumb_io, name=file_name)
+        image = File(thumb_io, name=file_name)
 
         return image
 
     def create_avatar_using_name(
         self, first_name: str = 'Anon', last_name: str = 'Anon'
-    ) -> SimpleUploadedFile:
+    ) -> File:
         """
         Создает с нуля картинку с аватаркой:
         -Создает фон, выбрав рандомный цвет из данных
@@ -139,6 +140,6 @@ class ImageService:
 
         thumb_io = BytesIO()
         img.save(thumb_io, 'PNG')
-        avatar = SimpleUploadedFile(thumb_io, name=file_name)
+        avatar = File(thumb_io, name=file_name)
 
         return avatar

@@ -138,6 +138,41 @@ CSV_URL = 'data/csv'
 # <--- Настройка путей --->
 
 
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'main': {
+#             'format': '{levelname} {asctime} {module} {message}',
+#             'style': '{',
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs.log'),
+#             'formatter': 'main'
+#         },
+#     },
+#     'loggers': {
+#         # 'django': {
+#         #     'handlers': ['file'],
+#         #     'propagate': True,
+#         # },
+#         'django.request': {
+#             'handlers': ['file'],
+#             'level': 'ERROR',
+#             'propagate': False,
+#         },
+#         'test': {
+#             'handlers': ['file'],
+#             'level': 'INFO',
+#         }
+#     }
+# }
+
+
 # Email бекенд
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_NAME = 'Grocket'
@@ -219,7 +254,7 @@ WATERMARK = {
 
 # Основная обработка картинок
 BASE_IMAGE_SETTINGS = {
-    'SIZE': (700, 700),
+    'SIZE': (300, 300),
     'FORMAT': 'PNG',  # Большими буквами
 }
 

@@ -5,7 +5,9 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from products.services import ProductService
 from users.services import UserService
+from images.services import ImageService
 
+images_services = ImageService()
 users_services = UserService()
 products_services = ProductService()
 
@@ -19,6 +21,9 @@ class CommentService:
         ),
         'comment_create_required_fields_not_in_input_data': (
             _('Unable to create comment: Invalid input data.')
+        ),
+        'comment_image_create_required_fields_not_in_input_data': (
+            _('Unable to create comment image: Invalid input data.')
         )
     }
 
@@ -43,7 +48,7 @@ class CommentService:
         """
         Создать комментарий нельзя если:
         -Комментируемый товар находится в архиве
-        -Комментарий на этот товар уже есть
+        -Вы пытаетесь добавить второй комментарий на тот же товар
         -Вы пытаетесь прокомментировать свой товар
         """
         try:
@@ -160,7 +165,24 @@ class CommentService:
         return self.get_comment_or_404(id=comment_id).comment_images
 
     def create_comment_image(self, **fields) -> CommentImage:
-        image = CommentImage(**fields)
+        try:
+            image = fields.pop('image')
+        except KeyError:
+            raise ValidationError(
+                self.error_messages[
+                    'comment_image_create_required_fields_not_in_input_data'
+                ]
+            )
+
+        prepared_image = images_services.prepair_img(image=image)
+        image_with_watermark = images_services.add_watermark(
+            image=prepared_image
+        )
+
+        image = CommentImage(
+            image=image_with_watermark,
+            **fields
+        )
         image.full_clean()
         image.save()
         return image

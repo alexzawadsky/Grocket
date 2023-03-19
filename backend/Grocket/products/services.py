@@ -5,14 +5,17 @@ from django.conf import settings
 from django.core.files import File
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db.models import Manager, Model
+from django.shortcuts import get_object_or_404
 from PIL import Image
-
 from products.models import Product
 
 
 class ProductService:
     objects: Manager = Product.objects
     model: Model = Product
+
+    def get_product_or_404(self, **kwargs) -> Product:
+        return get_object_or_404(Product, **kwargs)
 
     def prepair_image(
         self, product_id: int, image: SimpleUploadedFile

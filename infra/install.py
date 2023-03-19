@@ -1,7 +1,6 @@
-import subprocess
-import os
 import argparse
-
+import os
+import subprocess
 
 BACKEND_URL = '../backend'
 GROCKET_URL = '../backend/Grocket'

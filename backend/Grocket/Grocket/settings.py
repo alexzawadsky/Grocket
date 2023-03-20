@@ -135,6 +135,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CSV_URL = 'data/csv'
+JSON_URL = 'data/json'
 # <--- Настройка путей --->
 
 
@@ -254,7 +255,7 @@ WATERMARK = {
 
 # Основная обработка картинок
 BASE_IMAGE_SETTINGS = {
-    'SIZE': (300, 300),
+    'SIZE': (700, 700),
     'FORMAT': 'PNG',  # Большими буквами
 }
 

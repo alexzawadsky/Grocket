@@ -26,7 +26,6 @@ class Image(models.Model):
 class Category(MPTTModel):
     title = models.CharField(
         max_length=50,
-        unique=True,
         verbose_name='category title',
     )
     parent = TreeForeignKey(

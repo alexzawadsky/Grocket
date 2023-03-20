@@ -10,7 +10,7 @@ const Sold = () => {
         <div className='grid gap-5 w-full'>
             <BackToProfile />
             <h1 className='font-bold text-3xl'>{t('sold_items')}</h1>
-            <UserProductsList query={{ is_sold: 1, }} />
+            <UserProductsList query={{ is_sold: true }} />
         </div>
     )
 }

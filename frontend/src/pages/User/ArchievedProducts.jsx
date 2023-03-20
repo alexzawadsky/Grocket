@@ -10,7 +10,7 @@ const Archieved = () => {
         <div className='grid gap-5 w-full'>
             <BackToProfile />
             <h1 className='font-bold text-3xl'>{t('archived_items')}</h1>
-            <UserProductsList query={{ is_archived: 1 }} />
+            <UserProductsList query={{ is_archived: true }} />
         </div>
     )
 }

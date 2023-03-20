@@ -1,22 +1,35 @@
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { PublishTime, RatingStars, ReadMore } from '../../components'
 import AuthContext from '../../contexts/AuthProvider'
 import { SlideshowLightbox } from "lightbox.js-react"
 import 'lightbox.js-react/dist/index.css'
 import CommentStatus from './CommentStatus'
+import { BsTrash } from 'react-icons/bs'
+import CommentReply from './CommentReply'
+import { useDeleteComment } from '../../api/api'
 
 const Comment = ({ comment }) => {
 
     const { t } = useTranslation()
     const { user } = useContext(AuthContext)
+    const deleteProductMutation = useDeleteComment()
 
     return (
         <div className='border-2 border-black rounded-lg p-5 flex flex-col gap-1'>
-            <p className='font-bold text-lg'>{comment?.user?.first_name} {comment?.user?.last_name}</p>
-            <p className='text-sm text-primary-300'><PublishTime pubDate={comment?.pub_date} /></p>
+            <div className="flex items-center justify-between">
+                <p className='font-bold text-lg'>{comment?.user?.first_name} {comment?.user?.last_name}</p>
+                {comment?.user?.id === user?.user_id &&
+                    <button
+                        className='text-accent-red'
+                        onClick={() => deleteProductMutation.mutate(comment?.id)}
+                    >
+                        <BsTrash />
+                    </button>}
+            </div>
 
+            <p className='text-sm text-primary-300'><PublishTime pubDate={comment?.pub_date} /></p>
             <RatingStars rating={comment?.rate} />
             <div className="flex gap-1 items-center">
                 <p className='text-primary-300/[0.8] text-sm font-bold flex items-center gap-1.5'><CommentStatus title={comment?.status?.title} name={comment?.status?.name} /> - </p>
@@ -26,15 +39,18 @@ const Comment = ({ comment }) => {
                 >
                     {comment?.product?.name}
                 </NavLink>
-
-                {/* <p className='text-sm text-primary-300'><strong>{t('status')}:</strong> </p> */}
             </div>
-            <div className="grow">
+            <div className="">
                 <ReadMore text={comment?.text} limit={100} />
             </div>
-            <SlideshowLightbox theme='lightbox' className='grid mt-2 grid-cols-4 md:grid-cols-5 xl:grid-cols-6 items-center gap-2'>
+            <SlideshowLightbox theme='lightbox' className='grid mt-2 grid-cols-4 md:grid-cols-5 xl:grid-cols-6 items-start gap-2 grow'>
                 {comment?.images.map((el, key) => <img key={key} src={el.image} className='border-2 rounded-xl aspect-auto' />)}
             </SlideshowLightbox>
+            <CommentReply
+                commentId={comment?.id}
+                seller={comment?.seller}
+                reply={comment?.reply}
+            />
         </div>
     )
 }

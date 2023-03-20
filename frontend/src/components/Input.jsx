@@ -61,7 +61,7 @@ const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled,
     return (
         <div className='flex flex-col gap-0.5'>
             {title ? <label className={must ? 'after:content-["*"] after:text-accent-red after:pl-1' : ''} htmlFor={id}>{title}</label> : null}
-            <input
+            {large ? <textarea
                 id={id}
                 type={type}
                 ref={inputRef}
@@ -69,8 +69,17 @@ const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled,
                 onChange={instance.checkValue}
                 onBlur={instance.checkValue}
                 disabled={disabled}
-                className='grocket-input w-1/2'
-            />
+                className='grocket-input min-h-[100px]'
+            /> : <input
+                id={id}
+                type={type}
+                ref={inputRef}
+                value={instance.value}
+                onChange={instance.checkValue}
+                onBlur={instance.checkValue}
+                disabled={disabled}
+                className='grocket-input'
+            />}
             {(instance.isDirty && instance.emailError) && <p className="text-accent-red font-bold">{t('not_email_err')}</p>}
             {(instance.isDirty && instance.pwdError) && <p className="text-accent-red font-bold">{t('pass_err')}</p>}
             {(instance.isDirty && instance.isEmpty) && <p className="text-accent-red font-bold">{t('empty_field_err')}</p>}

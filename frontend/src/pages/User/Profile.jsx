@@ -65,13 +65,14 @@ const Profile = () => {
                 (
                     <div className='shrink-0 grid gap-5'>
                         <ProfileCard
-                            id={data.id}
-                            firstName={data.first_name}
-                            lastName={data.last_name}
-                            email={data.email}
-                            avatar={data.avatar}
-                            rating={5.00}
-                            phone={data.phone}
+                            id={data?.id}
+                            firstName={data?.first_name}
+                            lastName={data?.last_name}
+                            email={data?.email}
+                            avatar={data?.avatar}
+                            rating={data?.rating}
+                            commentsCount={data?.comments_count}
+                            phone={data?.phone}
                             withComments
                         />
                         {nav.map((n, key) =>

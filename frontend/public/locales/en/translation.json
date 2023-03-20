@@ -121,5 +121,9 @@
     "select_product": "Select product",
     "type_to_filter": "Type here to filter user products",
     "upload": "Upload",
-    "add_comment_success": "Comment was succesfully added!"
+    "add_comment_success": "Comment was succesfully added!",
+    "reply": "Reply",
+    "cancel": "Cancel",
+    "show_reply": "Show reply",
+    "hide_reply": "Hide reply"
 }

@@ -22,11 +22,14 @@ const Comments = () => {
             <BackToProfile />
             <h1 className="text-3xl font-bold">{t('comments')}</h1>
             <div className='grid md:grid-cols-[3fr_2fr] lg:grid-cols-[2fr_1fr] gap-2 md:gap-3 lg:gap-5'>
-                <CommentsStats comments={data?.results} />
+                <CommentsStats
+                    stats={data?.stats}
+                    count={data?.count}
+                />
                 <div className='mt-auto'>
                     <p className='font-bold'>{t('how_rating_works')}</p>
                     <p className='text-sm'>{t('rating_is')}</p>
-                    <NavLink className="button-fill-orange mt-3 md:mt-7 lg:mt-11" to='add'>{t('add_comment')}</NavLink>
+                    {profileId !== 'me' && <NavLink className="button-fill-orange mt-3 md:mt-7 lg:mt-11" to='add'>{t('add_comment')}</NavLink>}
                 </div>
             </div>
             <div className="grid lg:grid-cols-2 gap-5">

@@ -32,10 +32,11 @@ export const useUpdateProduct = () => {
     const api = useAxios()
     const queryClient = useQueryClient()
     const navigate = useNavigate()
+    const { t } = useTranslation()
     return useMutation((data) => api.patch(`/api/v1/products/${data.id}/`, data.body).then(res => res.data),
         {
             onSuccess: () => {
-                notification('Changes saved')
+                notification(t('saved'))
                 navigate(getLastRoute())
                 queryClient.invalidateQueries('product')
                 queryClient.invalidateQueries('products')
@@ -168,6 +169,45 @@ export const useUploadComment = () => {
                 queryClient.invalidateQueries('comments')
                 notification(t('add_comment_success'))
                 navigate(getLastRoute())
+            }
+        })
+}
+
+export const useAddReply = () => {
+    const api = useAxios()
+    const queryClient = useQueryClient()
+    const { t } = useTranslation()
+    return useMutation((data) => api.post(`/api/v1/comments/${data.commentId}/reply/`, { text: data?.text }),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries('comments')
+                notification(t('reply_added'))
+            }
+        })
+}
+
+export const useDeleteComment = () => {
+    const api = useAxios()
+    const queryClient = useQueryClient()
+    const { t } = useTranslation()
+    return useMutation((commentId) => api.delete(`/api/v1/comments/${commentId}/`),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries('comments')
+                notification(t('comment_deleted'))
+            }
+        })
+}
+
+export const useDeleteCommentReply = () => {
+    const api = useAxios()
+    const queryClient = useQueryClient()
+    const { t } = useTranslation()
+    return useMutation((replyId) => api.delete(`/api/v1/comments/replies/${replyId}/`),
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries('comments')
+                notification(t('reply_deleted'))
             }
         })
 }

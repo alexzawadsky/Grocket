@@ -51,7 +51,7 @@ const ItemCard = ({ product, managable }) => {
                 </p>
                 <div className='grid gap-y-1.5 xl:gap-y-1 grid-cols-[auto_1fr] gap-x-2 items-center'>
                     {isPC ? <><BiCategoryAlt /><p className='text-[0.6rem] xl:text-sm truncate'>{product.category.title}</p></> : null}
-                    {(!managable || (user?.user_id !== product?.user)) &&
+                    {(!managable || (user?.user_id !== product?.user?.id)) &&
                         <>
                             <FiMapPin />
                             <div className="overflow-hidden">

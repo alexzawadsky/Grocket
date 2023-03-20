@@ -18,11 +18,31 @@ class CustomUserSerializer(djserializers.UserSerializer):
     """Сериализатор модели User."""
 
     avatar = Base64ImageField(allow_null=True, required=False)
+    rating = serializers.SerializerMethodField()
+    comments_count = serializers.SerializerMethodField()
+    sold_count = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name',
-                  'avatar', 'phone', 'country', 'date_joined', 'last_login',)
+        fields = ('id', 'rating', 'comments_count', 'sold_count', 'username',
+                  'email', 'first_name', 'last_name', 'avatar', 'phone',
+                  'country', 'date_joined', 'last_login',)
+
+    def get_sold_count(self, obj):
+        sold_count = obj.products.select_related().filter(is_sold=True).count()
+        return sold_count
+
+    def get_comments_count(self, obj):
+        comment_count = obj.seller_comments.select_related().count()
+        return comment_count
+
+    def get_rating(self, obj):
+        comment_rates = list(
+            obj.seller_comments.select_related().values_list('rate')
+        )
+        rates = [rate[0] for rate in comment_rates]
+        rate_avg = round(0 if len(rates) == 0 else sum(rates) / len(rates), 2)
+        return rate_avg
 
     def update(self, instance, validated_data):
         avatar = validated_data.get('avatar')
@@ -172,8 +192,8 @@ class ProductImageCreateSerializer(serializers.ModelSerializer):
         image = validated_data.pop('image')
         product = validated_data.get('product')
 
-        prepared_image = products_services.prepair_image(product.id, image)
-        image = Image.objects.create(image=prepared_image, **validated_data)
+        # prepared_image = products_services.prepair_image(product.id, image)
+        image = Image.objects.create(image=image, **validated_data)
 
         return image
 

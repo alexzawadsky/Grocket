@@ -34,8 +34,10 @@ class CommentPageLimitPagination(PageLimitPagination):
         for comment in data:
             rates.append(comment['rate'])
 
+        avg = 0 if len(rates) == 0 else round((sum(rates) / len(rates)), 2)
+
         stats = {
-            'avg': round((sum(rates) / len(rates)), 2),
+            'avg': avg,
             '1': rates.count(1),
             '2': rates.count(2),
             '3': rates.count(3),

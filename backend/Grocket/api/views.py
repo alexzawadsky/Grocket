@@ -8,6 +8,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from users.models import User
 from users.services import UserService
+from api.paginators import CommentPageLimitPagination
 
 from .filters import ProductFilter
 from .permissions import IsOwnerOrReadOnly
@@ -34,9 +35,7 @@ class CustomUserRegisterViewSet(djviews.UserViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'delete']
     permission_classes = (IsOwnerOrReadOnly,)
-
-    def get_queryset(self):
-        return comments_services.get_comments()
+    pagination_class = CommentPageLimitPagination
 
     def get_permissions(self):
         if self.action in ('user_comments',):

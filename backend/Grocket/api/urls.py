@@ -9,14 +9,6 @@ from .views import (CategoryViewSet, CommentViewSet, CustomUserRegisterViewSet,
 
 app_name = 'api'
 
-
-ME_METHODS = {
-    'get': 'me',
-    'delete': 'me',
-    'patch': 'me',
-}
-
-
 router = DefaultRouter()
 router.register('products', ProductViewSet, basename='product')
 router.register('promotions', PromotionViewSet, basename='promotion')
@@ -25,6 +17,14 @@ router.register('categories', CategoryViewSet, basename='category')
 
 urlpatterns = [
     # <--------- Products --------->
+    path('v1/products/',
+         ProductViewSet.as_view({'post': 'create', 'get': 'list'}),
+         name='products'),
+    path('v1/products/<int:pk>',
+         ProductViewSet.as_view(
+            {'patch': 'partial_update', 'get': 'retrieve', 'delete': 'destroy'}
+         ),
+         name='products'),
     path('v1/products/<int:pk>/sell/',
          ProductViewSet.as_view({'post': 'sell', 'delete': 'sell'}),
          name='sell'),
@@ -68,7 +68,9 @@ urlpatterns = [
 
     # <--------- Users ------------>
     path('v1/users/me/',
-         UserViewSet.as_view(ME_METHODS),
+         UserViewSet.as_view(
+            {'get': 'me', 'delete': 'me', 'patch': 'me'}
+         ),
          name='me'),
     path('v1/users/<int:pk>/',
          CustomUserRetrieveViewSet.as_view({'get': 'retrieve'}),

@@ -225,7 +225,7 @@ class ProductListSerializer(ProductReadOnlySerializer):
         )
 
     def get_images(self, obj):
-        images = Image.objects.filter(product=obj, is_main=True)
+        images = Image.objects.filter(product=obj).order_by('-is_main')[:3]
         serializer = ProductImageSerializer(
             instance=images,
             read_only=True,
@@ -472,6 +472,7 @@ class CommentReadOnlySerializer(serializers.Serializer):
     rate = serializers.IntegerField(max_value=5, min_value=1)
     text = serializers.CharField()
     user = CommentUserSerializer(read_only=True)
+    seller = CommentUserSerializer(read_only=True)
     product = ProductCommentSerializer(read_only=True)
     status = StatusSerializer(read_only=True)
     images = serializers.SerializerMethodField()
@@ -479,7 +480,7 @@ class CommentReadOnlySerializer(serializers.Serializer):
 
     class Meta:
         fields = ('id', 'status', 'rate', 'text', 'images',
-                  'reply', 'user', 'product',)
+                  'reply', 'user', 'seller', 'product',)
 
     def get_reply(self, obj):
         reply = comments_services.get_replies_to_comment(comment_id=obj.id)

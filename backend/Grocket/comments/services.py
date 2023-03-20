@@ -44,12 +44,63 @@ class CommentService:
     def delete_comment(self, comment_id: int):
         self.get_comment_or_404(id=comment_id).delete()
 
-    def create_comment(self, **fields) -> Comment:
+    def add_images_to_comment(
+        self, comment_id: int, images: list
+    ) -> Comment:
         """
+        Добавляет картинкии путем создания объектов модели,
+        связывающей комментарий и картинки:
+        -При возникновении ошибки все созданные картинки удаляются
+        """
+        comment = self.get_comment_or_404(id=comment_id)
+
+        created_images = []
+        try:
+            for image in images:
+                created_image = self.create_comment_image(
+                    image=image,
+                    comment=comment
+                )
+                created_images.append(created_images)
+        except Exception as error:
+            for created_image in created_images:
+                created_image.delete()
+            raise error
+
+        return comment
+
+    def check_comment_creation_logic(
+        self, product_id: int, user_id: int
+    ) -> None:
+        """
+        Проверка логики создания комментария.
+        Если хотя бы одно из событий нарушено, то вызывается ошибка.
         Создать комментарий нельзя если:
         -Комментируемый товар находится в архиве
         -Вы пытаетесь добавить второй комментарий на тот же товар
         -Вы пытаетесь прокомментировать свой товар
+        """
+        user = users_services.get_user_or_404(id=user_id)
+        product = products_services.get_product_or_404(id=product_id)
+
+        logic_is_your_product: bool = product.user == user
+        logic_is_product_archived: bool = product.is_archived
+        logic_is_exists: bool = self.get_comments(
+            user=user, product=product
+        ).exists()
+
+        if any([
+            logic_is_your_product,
+            logic_is_product_archived,
+            logic_is_exists
+        ]):
+            raise PermissionDenied()
+
+    def create_comment(self, **fields) -> Comment:
+        """
+        Создание комментария:
+        -Проверяется логика создания
+        -При возникновении ошибки созданные картинки и комментарий удаляются
         """
         try:
             product_id = fields.pop('product')
@@ -63,23 +114,16 @@ class CommentService:
                 ]
             )
 
+        self.check_comment_creation_logic(
+            product_id=product_id,
+            user_id=user_id
+        )
+
         user = users_services.get_user_or_404(id=user_id)
         product = products_services.get_product_or_404(id=product_id)
         status = self.get_status_or_404(id=status_id)
 
-        # Логика создания комментария
-        is_your_product: bool = product.user == user
-        is_product_archived: bool = product.is_archived
-        is_exists: bool = self.get_comments(
-            user=user, product=product
-        ).exists()
-
-        if any([is_exists, is_product_archived, is_your_product]):
-            raise PermissionDenied()
-
-        # Создание комментария
         seller = product.user
-
         comment = Comment(
             seller=seller,
             user=user,
@@ -90,19 +134,10 @@ class CommentService:
         comment.full_clean()
         comment.save()
 
-        # Создание картинок
-        created_images = []
         try:
-            for image in images:
-                created_image = self.create_comment_image(
-                    image=image,
-                    comment=comment
-                )
-                created_images.append(created_images)
+            self.add_images_to_comment(comment_id=comment.id, images=images)
         except Exception as error:
             comment.delete()
-            for created_image in created_images:
-                created_image.delete()
             raise error
 
         return comment
@@ -165,6 +200,7 @@ class CommentService:
         return self.get_comment_or_404(id=comment_id).comment_images
 
     def create_comment_image(self, **fields) -> CommentImage:
+        """Создание картинки комментария."""
         try:
             image = fields.pop('image')
         except KeyError:

@@ -1,20 +1,7 @@
-from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
 from users.models import User
-
-
-def lower_category_validate(value):
-    category = Category.objects.filter(id=value)
-
-    if not category.exists():
-        raise ValidationError(_('No such category.'))
-    if not category[0].is_leaf_node():
-        raise ValidationError(
-            _('Can only be added to the final category.')
-        )
 
 
 class Image(models.Model):
@@ -110,7 +97,6 @@ class Product(models.Model):
         on_delete=models.PROTECT,
         related_name='posts',
         verbose_name='сategory',
-        validators=[lower_category_validate],
     )
     description = models.TextField(
         max_length=1000,

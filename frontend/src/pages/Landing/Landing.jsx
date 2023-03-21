@@ -1,6 +1,6 @@
 import { Title } from '../../components'
 import ProductsList from '../../components/ProductsList'
-import Search from './Search'
+import Search from './Search/Search'
 import HistoryList from './HistoryList'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'

@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { HelmetProvider } from 'react-helmet-async'
 import './i18n'
+import { CategoriesListStateProvider } from './contexts/CategoriesListStateContext'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,9 +16,11 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
-      <App />
-      {/* <ReactQueryDevtools /> */}
-    </QueryClientProvider>
+    <CategoriesListStateProvider>
+      <QueryClientProvider client={queryClient}>
+        <App />
+        {/* <ReactQueryDevtools /> */}
+      </QueryClientProvider>
+    </CategoriesListStateProvider>
   </HelmetProvider>
 )

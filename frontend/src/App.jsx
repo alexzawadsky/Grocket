@@ -25,14 +25,21 @@ import {
     Promote,
     AddComment
 } from './pages'
+import CategoriesListStateContext from './contexts/CategoriesListStateContext';
+import { useContext } from 'react';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 function App() {
+
+    const { open } = useContext(CategoriesListStateContext)
+
     return (
         <BrowserRouter>
             <AuthProvider>
                 <SearchHistoryProvider>
                     {/* <ReactQueryDevtools /> */}
-                    <div className='flex flex-col h-full'>
+                    <div className={`flex flex-col h-full ${open && 'overflow-hidden'}`}>
+                        {/* <div className={`flex flex-col h-full ${open && ''}`}> */}
                         <Navbar />
                         <main className='mt-20 container mx-auto flex-grow px-5'>
                             <LanguageSelectionBanner />

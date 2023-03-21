@@ -212,4 +212,10 @@ export const useDeleteCommentReply = () => {
         })
 }
 
+export const useAllCategories = () => {
+    const api = useAxios()
+    return useQuery(['categories', 'all'],
+        () => api.get('/api/v1/categories', { all: true }).then(res => res.data))
+}
+
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

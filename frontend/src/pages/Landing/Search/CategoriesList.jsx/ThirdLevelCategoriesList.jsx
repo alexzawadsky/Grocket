@@ -25,14 +25,14 @@ const ThirdLevelCategoriesList = ({ parentCategory, categoriesList, expandedCatI
                         {categoriesList.length > 5 && expandedCatId !== parentCategory?.id &&
                             <button
                                 onClick={() => setExpandedCatId(parentCategory?.id)}
-                                className='w-fit hover:text-accent-orange  flex items-center gap-2 text-sm mt-1'
+                                className='w-fit font-bolditalic hover:text-accent-orange  flex items-center gap-2 text-sm mt-1'
                             >
                                 {t('more')}<IoIosArrowDown />
                             </button>}
                         {expandedCatId === parentCategory?.id &&
                             <button
                                 onClick={() => setExpandedCatId(null)}
-                                className='w-fit hover:text-accent-orange flex items-center gap-2 text-sm mt-1'
+                                className='w-fit font-bolditalic hover:text-accent-orange flex items-center gap-2 text-sm mt-1'
                             >
                                 {t('less')}<IoIosArrowUp />
                             </button>}

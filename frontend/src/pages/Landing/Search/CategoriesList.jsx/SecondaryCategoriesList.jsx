@@ -10,7 +10,7 @@ const ChildCategoriesList = ({ data, parentCategory, childCategories, expandedCa
                     {parentCategory?.title}
                 </h2>
             </CategoryLink>
-            <div className="flex flex-wrap flex-col h-[67vh] max-h-[67vh] gap-3 max-w-full overflow-x-auto overflow-y-auto">
+            <div className="flex flex-wrap flex-col h-[67vh] max-h-[67vh] gap-y-3 gap-x-7 max-w-full overflow-x-auto overflow-y-auto">
                 {childCategories && childCategories.map((el, key) =>
                     <ThirdLevelCategoriesList
                         key={key}

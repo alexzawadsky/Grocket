@@ -125,5 +125,7 @@
     "reply": "Reply",
     "cancel": "Cancel",
     "show_reply": "Show reply",
-    "hide_reply": "Hide reply"
+    "hide_reply": "Hide reply",
+    "more": "More",
+    "less": "Less"
 }

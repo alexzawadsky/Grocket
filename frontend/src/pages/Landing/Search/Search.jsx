@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { HiMagnifyingGlass } from 'react-icons/hi2'
 import { BiCategoryAlt } from 'react-icons/bi'
 import { useTranslation } from 'react-i18next'
-import FullCategoriesList from './FullCategoriesList'
+import FullCategoriesList from './CategoriesList.jsx/AllCagetoriesMenu'
 import CategoriesListStateContext from '../../../contexts/CategoriesListStateContext'
 
 const Search = () => {

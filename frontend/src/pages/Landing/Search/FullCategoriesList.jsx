@@ -54,9 +54,9 @@ const FullCategoriesList = () => {
 
     return (
         <div
-            className="bg-white p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[3fr_10fr]  gap-7 h-[80vh]"
+            className="bg-white p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh]"
         >
-            <div className="overflow-y-auto">
+            <div className="overflow-y-auto max-h-[74vh]">
                 {data.filter(el => el.parent === null).map((el, key) =>
                     <div
                         key={key}
@@ -65,8 +65,14 @@ const FullCategoriesList = () => {
                             setParentCategory(el)
                             setExpandedCatId(null)
                         }}
+                        onClick={() => {
+                            setParentCategory(el)
+                            setExpandedCatId(null)
+                        }}
                     >
-                        {icons[el.id]}
+                        <div>
+                            {icons[el.id]}
+                        </div>
                         <p className="mr-auto">{el.title}</p>
                         <div>
                             <IoIosArrowForward />
@@ -79,7 +85,7 @@ const FullCategoriesList = () => {
                         {parentCategory?.title}
                     </h2>
                 </CategoryLink>
-                <div className="flex flex-wrap flex-col max-h-[68vh] gap-3">
+                <div className="flex flex-wrap flex-col max-h-[68vh] gap-3 max-w-full overflow-x-auto overflow-y-auto">
                     {secondaryList && secondaryList.map((el, key) =>
                         <div
                             key={key}

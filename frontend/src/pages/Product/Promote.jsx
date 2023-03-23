@@ -4,8 +4,9 @@ import { BsArrowLeft } from 'react-icons/bs'
 import { useParams } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import { useProduct, usePromotions } from '../../api/api'
-import { Price, Spinner, Title, SearchItemCard } from '../../components'
+import { Price, Spinner, Title, ItemCard } from '../../components'
 import useAxios from '../../hooks/useAxios'
+import useScreen from '../../hooks/useScreen'
 import { alertErr } from '../../utils'
 import SearchItemCardTemplate from './SearchItemCardTemplate'
 
@@ -13,6 +14,7 @@ const Promote = () => {
 
     const { t } = useTranslation()
     const { productId } = useParams()
+    const { isMinTablet } = useScreen()
     const promotions = usePromotions()
     const product = useProduct(productId)
     const [selected, setSelected] = useState([])
@@ -86,24 +88,26 @@ const Promote = () => {
                 </button>
             </div>
             <div className='relative overflow-hidden'>
-                <div style={{
+                {isMinTablet && <div style={{
                     WebkitMaskImage: '-webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
                 }}>
                     <div className='-mt-32'>
                         <SearchItemCardTemplate />
                     </div>
-                </div>
-                <SearchItemCard
+                </div>}
+                <ItemCard
+                    search
+                    horizontal
                     product={{
                         ...product.data,
                         promotions: [...selected.map(el => el.name), ...product.data?.promotions]
                     }}
                 />
-                <div style={{
+                {isMinTablet && <div style={{
                     WebkitMaskImage: '-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
                 }}>
                     <SearchItemCardTemplate />
-                </div>
+                </div>}
             </div>
         </div>
     )

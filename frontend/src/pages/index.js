@@ -15,6 +15,7 @@ import ProfileSettings, { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProf
 import EditProduct from "./Sell/EditProduct";
 import Promote from "./Product/Promote";
 import AddComment from "./User/AddComment";
+import Search from "./Search/Search";
 
 export {
     Landing,
@@ -37,5 +38,6 @@ export {
     DeleteProfile,
     EditProduct,
     Promote,
-    AddComment
+    AddComment,
+    Search
 }

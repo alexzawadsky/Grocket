@@ -3,7 +3,6 @@ import {
     IoCarOutline, IoShirtOutline, IoShirtSharp,
     IoCarSharp, IoConstructOutline, IoConstructSharp
 } from 'react-icons/io5'
-import { FaDog } from 'react-icons/fa'
 import {
     BsPhone, BsGear, BsBrush, BsHouse, BsHouseFill,
     BsBriefcase, BsBriefcaseFill, BsPhoneFill,
@@ -11,11 +10,13 @@ import {
 } from 'react-icons/bs'
 import { RiCustomerServiceLine, RiBuilding2Line, RiBuilding2Fill, RiCustomerServiceFill } from 'react-icons/ri'
 import { useState } from 'react'
+import PigFill from '../../../assets/icons/pig-icon-fill.png'
+import PigOutline from '../../../assets/icons/pig-icon-outline.png'
 
 const icons = {
     26098: {
-        notHover: <img width='17px' height='17px' src='/icons/pig-icon-outline.png' />,
-        hover: <img width='17px' height='17px' src='/icons/pig-icon-fill.png' />
+        notHover: <img width='17px' height='17px' src={PigOutline} />,
+        hover: <img width='17px' height='17px' src={PigFill} />
     },
     26382: {
         notHover: <BsBriefcase />,

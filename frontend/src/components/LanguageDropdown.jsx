@@ -41,7 +41,7 @@ const LanguageDropdown = () => {
                         {Object.keys(langs).map((l, key) =>
                             <div
                                 key={key}
-                                className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200'} hover:bg-slate-100 p-2 rounded-lg leading-none cursor-pointer`}
+                                className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200'} hover:bg-slate-100 p-2 rounded-md leading-none cursor-pointer`}
                                 onClick={() => {
                                     i18n.changeLanguage(langs[l]?.code)
                                     setOpen(false)

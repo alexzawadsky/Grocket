@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react"
-import { useAllCategories } from "../../../../api/api"
-import { Spinner } from "../../../../components"
-import CategoriesListStateContext from "../../../../contexts/CategoriesListStateContext"
-import { filterChildCategories } from "./utils"
+import { useAllCategories } from "../../../api/api"
+import CategoriesListStateContext from "../../../contexts/CategoriesListStateContext"
+import { filterChildCategories } from "../utils"
 import PrimaryCategory from "./PrimaryCategory"
 import SecondaryCategoriesList from './SecondaryCategoriesList'
 
@@ -17,7 +16,7 @@ const FullCategoriesList = () => {
         return () => setOpen(false)
     }, [])
 
-    if (isLoading) return <Spinner />
+    if (isLoading) return
     if (error) return error.message
 
     if (!open) return

@@ -1,6 +1,6 @@
 import CategoryLink from "./CategoryLink"
 import ThirdLevelCategoriesList from "./ThirdLevelCategoriesList"
-import { filterChildCategories } from "./utils"
+import { filterChildCategories } from "../utils"
 
 const ChildCategoriesList = ({ data, parentCategory, childCategories, expandedCatId, setExpandedCatId }) => {
     return (

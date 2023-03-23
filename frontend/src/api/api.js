@@ -218,4 +218,10 @@ export const useAllCategories = () => {
         () => api.get('/api/v1/categories', { all: true }).then(res => res.data))
 }
 
+export const useSearchProducts = (queryParams) => {
+    const api = useAxios()
+    return useQuery(['search', queryParams],
+        () => api.get('/api/v1/search', queryParams).then(res => res.data))
+}
+
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

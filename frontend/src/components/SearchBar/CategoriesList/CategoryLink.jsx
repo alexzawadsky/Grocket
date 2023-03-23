@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { NavLink } from "react-router-dom"
-import CategoriesListStateContext from "../../../../contexts/CategoriesListStateContext"
+import CategoriesListStateContext from "../../../contexts/CategoriesListStateContext"
 
 const CategoryLink = ({ id, children }) => {
 
@@ -9,7 +9,7 @@ const CategoryLink = ({ id, children }) => {
     return (
         <NavLink
             className='w-fit block'
-            to={`search?category=${id}`}
+            to={`/search?category=${id}`}
             onClick={() => setOpen(false)}
         >
             {children}

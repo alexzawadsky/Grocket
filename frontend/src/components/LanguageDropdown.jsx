@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import langs from '../assets/localization.json'
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
@@ -11,10 +11,23 @@ const LanguageDropdown = () => {
     const selectedLang = langs[i18n.resolvedLanguage.toUpperCase()]
     const { isMinTablet } = useScreen()
 
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (open && !e.target.closest('.lang-drop')) {
+                setOpen(false);
+            }
+        }
+        document.addEventListener('click', handleClickOutside)
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside)
+        }
+    }, [open])
+
     return (
         <>
             <div
-                className="bg-white rounded-md text-black py-1 px-2 font-bold mr-auto"
+                className="bg-white rounded-md text-black py-1 px-2 font-bold mr-auto lang-drop"
             >
                 <p
                     onClick={() => setOpen(prevState => !prevState)}

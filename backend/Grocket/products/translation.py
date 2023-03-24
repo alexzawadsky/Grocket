@@ -1,4 +1,5 @@
 from modeltranslation.translator import TranslationOptions, register
+
 from products.models import Category, Promotion
 
 

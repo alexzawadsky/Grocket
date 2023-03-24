@@ -1,11 +1,12 @@
-from comments.models import Comment, CommentImage, CommentReply, Status
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
+
+from comments.models import Comment, CommentImage, CommentReply, Status
+from images.services import ImageService
 from products.services import ProductService
 from users.services import UserService
-from images.services import ImageService
 
 images_services = ImageService()
 users_services = UserService()
@@ -28,7 +29,7 @@ class CommentService:
     }
 
     # STATUSES
-    def get_statuses(self, **kwargs):
+    def get_statuses(self, **kwargs) -> QuerySet[Status]:
         return Status.objects.filter(**kwargs)
 
     def get_status_or_404(self, **kwargs) -> Status:
@@ -41,8 +42,17 @@ class CommentService:
     def get_comments(self, **kwargs) -> QuerySet[Comment]:
         return Comment.objects.filter(**kwargs)
 
-    def delete_comment(self, comment_id: int):
-        self.get_comment_or_404(id=comment_id).delete()
+    def delete_comment(self, user_id: int, comment_id: int) -> None:
+        """
+        Удаление комментария.
+        Перед удалением проверяет,
+        принадлежит ли этот комментарий этому пользователю.
+        """
+        comment = self.get_comment_or_404(id=comment_id)
+        user = users_services.get_user_or_404(id=user_id)
+        if comment.user != user:
+            raise PermissionDenied()
+        comment.delete()
 
     def add_images_to_comment(
         self, comment_id: int, images: list
@@ -153,8 +163,17 @@ class CommentService:
     def get_reply_or_404(self, **kwargs) -> CommentReply:
         return get_object_or_404(CommentReply, **kwargs)
 
-    def delete_reply(self, reply_id: int) -> None:
-        self.get_reply_or_404(id=reply_id).delete()
+    def delete_reply(self, user_id: int, reply_id: int) -> None:
+        """
+        Удаление ответа на комментарий.
+        Перед удалением проверяет,
+        принадлежит ли этот ответ этому пользователю.
+        """
+        reply = self.get_reply_or_404(id=reply_id)
+        user = users_services.get_user_or_404(id=user_id)
+        if reply.user != user:
+            raise PermissionDenied()
+        reply.delete()
 
     def reply_to_comment(self, **fields) -> CommentReply:
         """

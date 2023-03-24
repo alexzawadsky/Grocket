@@ -1,61 +1,23 @@
-from comments.services import CommentService
-from django.shortcuts import get_object_or_404
-from django_filters import rest_framework as django_filters
 from djoser import views as djviews
-from products.models import Category, Favourite, Product, Promotion
-from rest_framework import filters, permissions, status, viewsets
+from rest_framework import permissions, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from users.models import User
-from users.services import UserService
-from api.paginators import CommentPageLimitPagination
 
-from .filters import ProductFilter
-from .permissions import IsOwnerOrReadOnly
-from .serializers import (CategoryListSerializer, CommentCreateSerializer,
-                          CommentReadOnlySerializer,
-                          CommentReplyCreateSerializer, FavouriteSerializer,
-                          ProductCreateSerializer, ProductListSerializer,
-                          ProductRetrieveSerializer, ProductUpdateSerializer,
-                          PromotionCreateUpdateSerializer, PromotionSerializer,
-                          StatusSerializer)
+from comments.services import CommentService
+from products.services import ProductService
+from users.services import UserService
+
+from .mixins import CategoryMixin, CommentMixin, ProductMixin, PromotionMixin
 
 comments_services = CommentService()
 users_services = UserService()
+products_services = ProductService()
 
 
-class CustomUserRetrieveViewSet(djviews.UserViewSet):
-    permission_classes = (permissions.AllowAny,)
-
-
-class CustomUserRegisterViewSet(djviews.UserViewSet):
-    pass
-
-
-class CommentViewSet(viewsets.ModelViewSet):
-    http_method_names = ['get', 'post', 'delete']
-    permission_classes = (IsOwnerOrReadOnly,)
-    pagination_class = CommentPageLimitPagination
-
-    def get_permissions(self):
-        if self.action in ('user_comments',):
-            self.permission_classes = (permissions.AllowAny,)
-        elif self.action in ('create', 'reply', 'me_comments',):
-            self.permission_classes = (permissions.IsAuthenticated,)
-        return super().get_permissions()
-
-    def get_serializer_class(self):
-        if self.action in ('user_comments', 'me_comments',):
-            return CommentReadOnlySerializer
-        elif self.action in ('create',):
-            return CommentCreateSerializer
-        elif self.action in ('reply',):
-            return CommentReplyCreateSerializer
-        elif self.action in ('statuses',):
-            return StatusSerializer
-
+class CommentViewSet(CommentMixin):
     def destroy(self, request, pk):
-        comments_services.delete_comment(comment_id=pk)
+        user_id = self.request.user.id
+        comments_services.delete_comment(user_id=user_id, comment_id=pk)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def create(self, request):
@@ -71,28 +33,21 @@ class CommentViewSet(viewsets.ModelViewSet):
         )
         return Response(status=status.HTTP_201_CREATED)
 
-    def _user_comments_list(self, user, request):
-        queryset = self.filter_queryset(
-            comments_services.get_comments(seller=user)
-        )
-        page = self.paginate_queryset(queryset)
-        serializer_class = self.get_serializer_class()
-        serializer = serializer_class(
-            instance=page,
-            context={'request': request},
-            many=True,
-        )
-        return self.get_paginated_response(serializer.data)
-
     @action(['get'], detail=False)
     def me_comments(self, request):
         user = self.request.user
-        return self._user_comments_list(user, request)
+        queryset = self.filter_queryset(
+            comments_services.get_comments(seller=user)
+        )
+        return super().list(request, queryset)
 
     @action(['get'], detail=False)
     def user_comments(self, request, pk):
         user = users_services.get_user_or_404(id=pk)
-        return self._user_comments_list(user, request)
+        queryset = self.filter_queryset(
+            comments_services.get_comments(seller=user)
+        )
+        return super().list(request, queryset)
 
     @action(['post', 'delete'], detail=True)
     def reply(self, request, pk):
@@ -111,7 +66,8 @@ class CommentViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_201_CREATED)
 
         if request.method == 'DELETE':
-            comments_services.delete_reply(reply_id=pk)
+            user_id = self.request.user.id
+            comments_services.delete_reply(user_id=user_id, reply_id=pk)
             return Response(status=status.HTTP_204_NO_CONTENT)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -129,190 +85,137 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny,)
-    http_method_names = ['get']
-    serializer_class = CategoryListSerializer
-    pagination_class = None
+class ProductViewSet(ProductMixin):
+    def destroy(self, request, pk):
+        user_id = self.request.user.id
+        products_services.delete_product(user_id=user_id, product_id=pk)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def get_queryset(self):
-        queryset = Category.objects.all()
-        parent_id = self.request.query_params.get('parent_id')
+    def list(self, request):
+        queryset = products_services.get_safe_products()
+        return super().list(request, queryset)
 
-        if parent_id is None:
-            return queryset.filter(parent=None)
-
-        return queryset.filter(parent=parent_id)
-
-
-class PromotionViewSet(viewsets.ModelViewSet):
-    queryset = Promotion.objects.all()
-    http_method_names = ['get']
-    permission_classes = (permissions.AllowAny,)
-    serializer_class = PromotionSerializer
-    pagination_class = None
-
-
-class FavouriteViewSet(viewsets.ModelViewSet):
-    queryset = Favourite.objects.all()
-    http_method_names = ['post', 'delete']
-    permission_classes = (permissions.IsAuthenticated,)
-    serializer_class = FavouriteSerializer
-
-    def post(self, request, pk):
-        user = request.user.id
-
-        if get_object_or_404(Product, id=pk).user.id == user:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        data = {
-            'user': user,
-            'product': pk
-        }
-        serializer = self.serializer_class(
-            data=data,
+    def retrieve(self, request, pk):
+        user_id = self.request.user.id
+        product = products_services.get_product_or_404(id=pk, user_id=user_id)
+        serializer = self.get_serializer_class()(
+            instance=product,
             context={'request': request}
         )
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-        return Response(
-            status=status.HTTP_201_CREATED)
+    def create(self, request):
+        pass
 
-    def delete(self, request, pk):
-        obj = self.queryset.filter(user=request.user, product__id=pk)
-
-        if obj.exists():
-            obj.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-
-
-class ProductViewSet(viewsets.ModelViewSet):
-    http_method_names = ['get', 'post', 'patch', 'delete']
-    permission_classes = (IsOwnerOrReadOnly,)
-    filter_backends = [
-        filters.OrderingFilter,
-        django_filters.DjangoFilterBackend,
-    ]
-    filterset_class = ProductFilter
-    ordering_fields = ['price', 'pub_date']
-
-    def get_queryset(self):
-        queryset = Product.objects.filter(
-            is_sold=False,
-            is_archived=False
-        )
-
-        return queryset
-
-    def get_permissions(self):
-        if self.action == 'me_products':
-            self.permission_classes = (permissions.IsAuthenticated,)
-        return super().get_permissions()
-
-    def get_serializer_class(self):
-        if self.action in ('retrieve',):
-            return ProductRetrieveSerializer
-        elif self.action in ('list', 'me_products', 'user_products',):
-            return ProductListSerializer
-        elif self.action in ('create',):
-            return ProductCreateSerializer
-        elif self.action in ('partial_update',):
-            return ProductUpdateSerializer
-        elif self.action in ('promote',):
-            return PromotionCreateUpdateSerializer
-
-    def _user_products_serialize(self, queryset, request):
-        page = self.paginate_queryset(queryset)
-        serializer_class = self.get_serializer_class()
-        serializer = serializer_class(
-            page,
-            context={'request': request},
-            many=True,
-        )
-
-        return self.get_paginated_response(serializer.data)
+    def partial_update(self, request):
+        pass
 
     @action(['get'], detail=False)
     def me_products(self, request):
         user = self.request.user
-        queryset = self.filter_queryset(Product.objects.filter(user=user))
 
-        if self.request.query_params.get('is_sold') == '1':
-            queryset = queryset.filter(is_sold=True)
-        elif self.request.query_params.get('is_archived') == '1':
-            queryset = queryset.filter(is_archived=True)
-        else:
-            queryset = queryset.filter(is_sold=False, is_archived=False)
+        is_sold = self.request.query_params.get('is_sold')
+        is_archived = self.request.query_params.get('is_archived')
 
-        return self._user_products_serialize(queryset, request)
+        if not any([is_sold, is_archived]):
+            queryset = products_services.get_safe_products()
+        elif is_sold:
+            queryset = products_services.get_sold_products(user_id=user.id)
+        elif is_archived:
+            queryset = products_services.get_archived_products(user_id=user.id)
+
+        return super().list(request, queryset)
 
     @action(['get'], detail=False)
     def user_products(self, request, pk):
-        user = get_object_or_404(User, id=pk)
-        queryset = self.filter_queryset(
-            Product.objects.filter(user=user, is_archived=False))
+        user = users_services.get_user_or_404(id=pk)
 
-        if self.request.query_params.get('is_sold') == '1':
-            queryset = queryset.filter(is_sold=True)
+        is_sold = self.request.query_params.get('is_sold')
+        if not any([is_sold]):
+            queryset = products_services.get_safe_products()
+        elif is_sold:
+            queryset = products_services.get_sold_products(user_id=user.id)
 
-        return self._user_products_serialize(queryset, request)
+        return super().list(request, queryset)
 
     @action(['post'], detail=False)
     def promote(self, request, pk):
-        product = get_object_or_404(Product, id=pk)
-
-        serializer = PromotionCreateUpdateSerializer(
+        serializer = self.get_serializer_class()(
             data=request.data
         )
         serializer.is_valid(raise_exception=True)
         promotions = serializer.validated_data.get('promotions')
-
-        if promotions is not None:
-            product.promotions.set(promotions)
-            product.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        user_id = self.request.user.id
+        products_services.promote_product(
+            user_id=user_id, product_id=pk, promotions_ids=promotions
+        )
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     @action(['post', 'delete'], detail=True)
     def sell(self, request, pk):
-        product = get_object_or_404(Product, id=pk)
-
-        if request.method == 'DELETE':
-            if product.is_sold:
-                product.is_sold = False
-                product.save()
-                return Response(status=status.HTTP_204_NO_CONTENT)
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        user_id = self.request.user.id
 
         if request.method == 'POST':
-            if not product.is_sold:
-                product.is_sold = True
-                product.save()
-                return Response(status=status.HTTP_204_NO_CONTENT)
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            products_services.sell_product(user_id=user_id, product_id=pk)
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        if request.method == 'DELETE':
+            products_services.unsell_product(user_id=user_id, product_id=pk)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     @action(['post', 'delete'], detail=True)
     def archive(self, request, pk):
-        product = get_object_or_404(Product, id=pk)
+        user_id = self.request.user.id
 
         if request.method == 'DELETE':
-            if product.is_archived:
-                product.is_archived = False
-                product.save()
-                return Response(status=status.HTTP_204_NO_CONTENT)
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            products_services.unarchive_product(user_id=user_id, product_id=pk)
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
         if request.method == 'POST':
-            if not product.is_archived:
-                product.is_archived = True
-                product.save()
-                return Response(status=status.HTTP_204_NO_CONTENT)
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            products_services.archive_product(user_id=user_id, product_id=pk)
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @action(['post', 'delete'], detail=True)
+    def favourite(self, request, pk):
+        user_id = self.request.user.id
+
+        if request.method == 'DELETE':
+            products_services.unfavourite_product(
+                user_id=user_id, product_id=pk
+            )
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        if request.method == 'POST':
+            products_services.favourite_product(user_id=user_id, product_id=pk)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+class CategoryViewSet(CategoryMixin):
+    def list(self, request):
+        parent_id = self.request.query_params.get('parent_id')
+        is_all = self.request.query_params.get('all')
+        if is_all:
+            queryset = products_services.get_categories()
+        else:
+            queryset = products_services.get_categories(parent__id=parent_id)
+        return super().list(request, queryset)
+
+
+class PromotionViewSet(PromotionMixin):
+    def list(self, request):
+        queryset = products_services.get_promotions()
+        return super().list(request, queryset)
+
+
+class CustomUserRetrieveViewSet(djviews.UserViewSet):
+    permission_classes = (permissions.AllowAny,)
+
+
+class CustomUserRegisterViewSet(djviews.UserViewSet):
+    pass

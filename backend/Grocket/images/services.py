@@ -4,8 +4,8 @@ from io import BytesIO
 from typing import Any, Optional
 
 from django.conf import settings
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.files import File
+from django.core.files.uploadedfile import SimpleUploadedFile
 from PIL import Image, ImageDraw, ImageFont
 
 

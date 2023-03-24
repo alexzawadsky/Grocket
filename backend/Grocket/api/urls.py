@@ -1,30 +1,32 @@
 from django.conf.urls import include
 from django.urls import path
 from djoser.views import UserViewSet
-from rest_framework.routers import DefaultRouter
 
 from .views import (CategoryViewSet, CommentViewSet, CustomUserRegisterViewSet,
-                    CustomUserRetrieveViewSet, FavouriteViewSet,
-                    ProductViewSet, PromotionViewSet)
+                    CustomUserRetrieveViewSet, ProductViewSet,
+                    PromotionViewSet)
 
 app_name = 'api'
 
-router = DefaultRouter()
-router.register('products', ProductViewSet, basename='product')
-router.register('promotions', PromotionViewSet, basename='promotion')
-router.register('categories', CategoryViewSet, basename='category')
-
-
 urlpatterns = [
     # <--------- Products --------->
-    path('v1/products/',
-         ProductViewSet.as_view({'post': 'create', 'get': 'list'}),
-         name='products'),
-    path('v1/products/<int:pk>',
+    path('v1/promotions/',
+         PromotionViewSet.as_view({'get': 'list'}),
+         name='promotions'),
+    path('v1/categories/',
+         CategoryViewSet.as_view({'get': 'list'}),
+         name='categories'),
+    path('v1/products/<int:pk>/',
          ProductViewSet.as_view(
             {'patch': 'partial_update', 'get': 'retrieve', 'delete': 'destroy'}
          ),
+         name='product'),
+    path('v1/products/',
+         ProductViewSet.as_view({'post': 'create', 'get': 'list'}),
          name='products'),
+    path('v1/products/<int:pk>/archive/',
+         ProductViewSet.as_view({'post': 'archive', 'delete': 'archive'}),
+         name='archive'),
     path('v1/products/<int:pk>/sell/',
          ProductViewSet.as_view({'post': 'sell', 'delete': 'sell'}),
          name='sell'),
@@ -32,7 +34,9 @@ urlpatterns = [
          ProductViewSet.as_view({'post': 'promote'}),
          name='promote'),
     path('v1/products/<int:pk>/favourite/',
-         FavouriteViewSet.as_view({'post': 'post', 'delete': 'delete'}),
+         ProductViewSet.as_view(
+            {'post': 'favourite', 'delete': 'favourite'}
+         ),
          name='favourite'),
     path('v1/users/<int:pk>/products/',
          ProductViewSet.as_view({'get': 'user_products'}),
@@ -86,6 +90,4 @@ urlpatterns = [
          name='register'),
     path('v1/auth/', include('djoser.urls.jwt')),
     # <--------- Users ------------>
-
-    path('v1/', include(router.urls)),
 ]

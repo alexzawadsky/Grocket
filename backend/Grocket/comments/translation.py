@@ -1,5 +1,6 @@
-from comments.models import Status
 from modeltranslation.translator import TranslationOptions, register
+
+from comments.models import Status
 
 
 @register(Status)

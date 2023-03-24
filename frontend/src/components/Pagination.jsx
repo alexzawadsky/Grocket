@@ -19,7 +19,7 @@ const Pagination = ({ page, pagesCount, setPage }) => {
             onPageChange={(page) => setPage(page.selected)}
             className='flex gap-1 p-1 w-fit items-center border-2 rounded-xl'
             pageLinkClassName='[&:not(.bg-slate-200)]:hover:bg-slate-100 rounded-lg w-10 h-10 flex items-center justify-center'
-            activeClassName='!bg-slate-200 font-bold rounded-lg'
+            activeClassName='!bg-slate-200 rounded-lg'
             previousClassName='font-bold rounded-lg bg-accent-orange flex items-center justify-center h-10 w-10'
             nextClassName='font-bold rounded-lg bg-accent-orange flex items-center justify-center h-10 w-10'
             previousLabel={<p className='flex items-center gap-2'><IoIosArrowBack /></p>}

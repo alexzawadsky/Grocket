@@ -3,13 +3,15 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
 
 const WindowScroll = () => {
 
-    const [scrollTop, setScrollTop] = useState(0)
+    const [isTop, setIsTop] = useState(true)
     const [isBottom, setIsBottom] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrollTop(window.scrollY)
-            setIsBottom(window.innerHeight + window.scrollY >= document.body.offsetHeight - 100)
+            const { scrollY, innerHeight } = window
+            const { scrollHeight } = document.documentElement
+            setIsTop(window.scrollY === 0)
+            setIsBottom(scrollY + innerHeight >= scrollHeight)
         }
         window.addEventListener('scroll', handleScroll)
 
@@ -18,7 +20,7 @@ const WindowScroll = () => {
 
     return (
         <div className='fixed z-50 right-2 bottom-2 flex flex-col border-2 rounded-xl bg-white gap-1 p-1'>
-            {scrollTop > 0 && <button
+            {!isTop && <button
                 className="w-10 h-10 hover:bg-slate-100 rounded-lg flex items-center justify-center"
                 onClick={() => window.scroll({
                     top: 0,
@@ -27,10 +29,10 @@ const WindowScroll = () => {
             >
                 <IoIosArrowUp />
             </button>}
-            {isBottom && <button
+            {!isBottom && <button
                 className="w-10 h-10 hover:bg-slate-100 rounded-lg flex items-center justify-center"
-                onClick={() => window.scroll({
-                    top: window.innerHeight,
+                onClick={() => window.scrollTo({
+                    top: document.documentElement.scrollHeight,
                     behavior: 'smooth'
                 })}
             >

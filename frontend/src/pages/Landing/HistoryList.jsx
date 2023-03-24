@@ -39,7 +39,7 @@ const HistoryList = () => {
                 {isMinTablet && lookHistory.slice(0, 4).map((el, key) =>
                     <HistoryItem key={key} content={el} />)}
                 <NavLink
-                    className='flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange mt-2 leading-none md:pl-3'
+                    className='flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange md:mt-2 leading-none md:pl-3'
                     to='/history'
                 >
                     {t('view_full_history')}<BsArrowRight />

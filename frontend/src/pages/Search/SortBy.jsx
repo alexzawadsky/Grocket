@@ -52,7 +52,7 @@ const SortBy = ({ sortBy, setSortBy }) => {
                         <p
                             key={key}
                             onClick={() => setSortBy(el?.code)}
-                            className={`whitespace-nowrap ${el?.code === selectedOption?.code && '!bg-slate-200'} cursor-pointer hover:bg-slate-100 py-2 px-3 rounded-lg font-bold leading-none`}
+                            className={`whitespace-nowrap ${el?.code === selectedOption?.code && '!bg-slate-200'} cursor-pointer hover:bg-slate-100 py-2 px-3 rounded-lg font-bold leading-none h-10 flex items-center`}
                         >
                             {el.title}
                         </p>)}

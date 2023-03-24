@@ -123,7 +123,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
     return (
         <NavLink
             to={`/products/${product?.id}`}
-            className='hover:bg-slate-50 rounded-2xl md:p-5 pb-5 flex flex-col gap-2 transition-all duration-150'
+            className={`hover:bg-slate-50 rounded-2xl md:p-5 ${search && 'pb-5'} flex flex-col gap-2 transition-all duration-150`}
         >
             <div className="rounded-lg overflow-hidden">
                 <ImagesCarousel images={product?.images} />
@@ -176,55 +176,6 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                 <ManageProductMenu product={product} dropdown />
             </div>}
         </NavLink>
-    )
-
-    return (
-        <div to={`/product/${product.id}`} className='border-black border-2 rounded-2xl overflow-hidden flex flex-col'>
-            <NavLink to={`/products/${product.id}`} className="w-full">
-                <ImagesCarousel images={product.images} />
-            </NavLink>
-            <div className='p-3 md:p-5 flex justify-around flex-col gap-2 grow'>
-                <div className="flex justify-between gap-2 grow items-center">
-                    <div className='overflow-hidden'>
-                        <NavLink
-                            to={`/products/${product.id}`}
-                            className='hover:text-accent-orange text-sm xl:text-lg'
-                        >
-                            {product.name}
-                        </NavLink>
-                    </div>
-                    {user?.user_id !== product?.user?.id &&
-                        <button
-                            onClick={handleFavourite}
-                        >
-                            {product.is_favourited ?
-                                <AiFillHeart color='#FF1500' />
-                                :
-                                <AiOutlineHeart color='#FF9001' />
-                            }
-                        </button>
-                    }
-                </div>
-                <p className='font-bolditalic text-md xl:text-xl leading-none'>
-                    <Price price={product?.price} currency={product?.price_currency} />
-                </p>
-                <div className='grid gap-y-1.5 xl:gap-y-1 grid-cols-[auto_1fr] gap-x-2 items-center'>
-                    {isPC ? <><BiCategoryAlt /><p className='text-[0.6rem] xl:text-sm truncate'>{product.category.title}</p></> : null}
-                    {(!managable || (user?.user_id !== product?.user?.id)) &&
-                        <>
-                            <FiMapPin />
-                            <div className="overflow-hidden">
-                                <p className='text-[0.6rem] xl:text-sm truncate'>{product.address}</p>
-                            </div>
-                        </>}
-                    <BiTimeFive />
-                    <p className='text-[0.6rem] xl:text-sm'>
-                        <PublishTime pubDate={product?.pub_date} />
-                    </p>
-                </div>
-
-            </div>
-        </div>
     )
 }
 

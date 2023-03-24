@@ -40,7 +40,7 @@ const Search = () => {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder='eg. Iphone 14 Pro Max 512Gb'
-                    className='flex-grow h-full rounded-xl border-slate-500 focus:border-slate-800 focus:shadow-md focus:outline-none border-2 px-4 w-full'
+                    className='flex-grow rounded-xl border-slate-500 focus:border-slate-800 focus:shadow-md focus:outline-none border-2 px-4 w-full h-10'
                     type="text"
                 />
                 <button

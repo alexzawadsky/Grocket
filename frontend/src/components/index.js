@@ -15,11 +15,12 @@ import Spinner from "./Spinner";
 import Map from "./Map";
 import ProductsList from "./ProductsList";
 import Price from "./Price";
-import SearchItemCard from "./SearchItemCard";
 import PublishTime from "./PublishTime";
 import ImagesCarousel from "./ImagesCarousel";
 import ImageEditor from "./ImageEditor";
 import LanguageSelectionBanner from "./LanguageSelectionBanner";
+import SearchBar from './SearchBar/SearchBar'
+import WindowScroll from "./WindowScroll";
 
 export {
     Avatar,
@@ -39,9 +40,10 @@ export {
     Spinner,
     ProductsList,
     Price,
-    SearchItemCard,
     PublishTime,
     ImagesCarousel,
     LanguageSelectionBanner,
-    ImageEditor
+    ImageEditor,
+    SearchBar,
+    WindowScroll
 }

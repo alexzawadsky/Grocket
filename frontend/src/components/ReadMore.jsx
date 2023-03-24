@@ -8,12 +8,15 @@ const ReadMore = ({ text, limit }) => {
     const long = text.length > limit
 
     return (
-        <p className="text">
-            {long && isReadMore ? text.slice(0, limit) : text}
+        <div className="">
+            {long && isReadMore ?
+                <p dangerouslySetInnerHTML={{ __html: text.slice(0, limit).replace(/\n/g, "<br>") }}></p>
+                :
+                <p dangerouslySetInnerHTML={{ __html: text.replace(/\n/g, "<br>") }}></p>}
             {long ? <span onClick={() => setIsReadMore(prevState => !prevState)} className="text-accent-orange cursor-pointer">
                 {isReadMore ? t('read_more') : t('read_less')}
             </span> : null}
-        </p>
+        </div>
     );
 };
 

@@ -19,18 +19,20 @@ const MenuInner = ({ product }) => {
             role="none"
         >
             {!product.is_sold &&
-                <button
+                <NavLink
                     className='text-sm'
+                    to=''
                     onClick={() => archiveProductMutation.mutate({ id: product.id, state: product.is_archived })}>
                     {product.is_archived ? t('remove_from_archive') : t('add_to_archive')}
-                </button>}
+                </NavLink>}
             {!product.is_archived &&
-                <button
+                <NavLink
+                    to=''
                     className='text-sm'
                     onClick={() => sellProductMutation.mutate({ id: product.id, state: product.is_sold })}
                 >
                     {product.is_sold ? t('publish_again') : t('mark_as_sold')}
-                </button>}
+                </NavLink>}
             {!product.is_sold &&
                 <>
                     <NavLink
@@ -47,7 +49,8 @@ const MenuInner = ({ product }) => {
                     </NavLink>
                 </>
             }
-            <button
+            <NavLink
+                to=''
                 onClick={() => confirm(
                     `Delete <b>${product.name}</b>`,
                     () => deleteProductMutation.mutate(product.id),
@@ -55,7 +58,7 @@ const MenuInner = ({ product }) => {
                     '')}
                 className='text-accent-red flex items-center gap-2 text-sm'>
                 <BsTrash />{t('delete')}
-            </button>
+            </NavLink>
         </div>
     )
 }
@@ -78,13 +81,14 @@ const ManageProductMenu = ({ product, dropdown }) => {
             >
                 <MenuInner product={product} />
             </div>
-            <button
+            <NavLink
+                to=''
                 type="button"
                 className="flex justify-center items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 min-w-32"
                 id="menu-button"
                 aria-expanded="false">
                 {t('manage')}<IoIosArrowUp />
-            </button>
+            </NavLink>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { Navbar, Footer, PrivateRoute, LanguageSelectionBanner } from './components'
+import { Navbar, Footer, PrivateRoute, LanguageSelectionBanner, WindowScroll } from './components'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { SearchHistoryProvider } from './contexts/HistoryContext';
 import { AuthProvider } from './contexts/AuthProvider';
@@ -23,22 +23,33 @@ import {
     DeleteProfile,
     EditProduct,
     Promote,
-    AddComment
+    AddComment,
+    Search
 } from './pages'
+import CategoriesListStateContext from './contexts/CategoriesListStateContext';
+import { useContext } from 'react';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 function App() {
+
+    const { open } = useContext(CategoriesListStateContext)
+
     return (
         <BrowserRouter>
             <AuthProvider>
                 <SearchHistoryProvider>
                     {/* <ReactQueryDevtools /> */}
-                    <div className='flex flex-col h-full'>
+                    <WindowScroll />
+                    <div className={`flex flex-col h-full ${open && 'overflow-hidden'}`}>
+                        {/* <div className={`flex flex-col h-full ${open && ''}`}> */}
                         <Navbar />
-                        <main className='mt-20 container mx-auto flex-grow px-5'>
+                        <main className='mt-20 container mx-auto flex-grow px-5 relative'>
                             <LanguageSelectionBanner />
+
                             <Routes>
                                 <Route path='/' errorElement={<NotFound />}>
                                     <Route path='' element={<Landing />} />
+                                    <Route path='search' element={<Search />} />
                                     <Route path='login' element={<Login />} />
                                     <Route path='register' element={<Register />} />
                                     <Route path='history' element={<SearchHistoryPage />} />

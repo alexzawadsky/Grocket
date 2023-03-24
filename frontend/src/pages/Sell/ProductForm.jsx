@@ -7,6 +7,7 @@ import { deleteImage } from './utils'
 import { BsTrashFill } from 'react-icons/bs'
 import { prepareImages } from './utils'
 import { useTranslation } from 'react-i18next'
+import useScreen from '../../hooks/useScreen'
 
 const ProductForm = ({ data, setData, setValid }) => {
 
@@ -14,7 +15,7 @@ const ProductForm = ({ data, setData, setValid }) => {
     const [images, setImages] = useState(data?.images || [])
     const [mainImageIndex, setMainImageIndex] = useState(0)
     const [allValid, setAllValid] = useState(false)
-
+    const { isMinPC, isMinTablet } = useScreen()
 
     const name = useInput(data?.name || '', { isEmpty: true })
     const description = useInput(data?.description || '', { isEmpty: true })
@@ -52,36 +53,41 @@ const ProductForm = ({ data, setData, setValid }) => {
     }, [allValid])
 
     return (
-        <form className='grid grid-cols-[1fr_2fr_1fr] gap-2'>
+        <form className='flex flex-col md:grid md:grid-cols-[2fr_3fr] lg:grid-cols-[1fr_2fr_1fr] gap-2'>
             <h2 className='col-span-full text-xl font-bold'>
                 {t('info')}
             </h2>
             <Input
                 title={t('product_name')}
                 instance={name}
-                split={true}
-                must={true}
+                split={isMinTablet}
+                must
+                deleteBtn={isMinPC}
             />
             <Input
                 title={t('description')}
                 instance={description}
-                split={true}
-                large={true}
-                must={true} />
+                split={isMinTablet}
+                large
+                must
+                deleteBtn={isMinPC}
+            />
             <h2 className="text-xl font-bold col-span-full pt-5">
                 {t('price')}
             </h2>
             <Input
                 title={t('price')}
                 instance={price}
-                split={true}
-                must={true}
+                split={isMinTablet}
+                must
+                deleteBtn={isMinPC}
             />
             <Input
                 title={t('currency')}
                 instance={currency}
-                split={true}
-                must={true}
+                split={isMinTablet}
+                must
+                deleteBtn={isMinPC}
             />
             <h2 className="text-xl font-bold col-span-full pt-5">
                 {t('location')}
@@ -89,24 +95,25 @@ const ProductForm = ({ data, setData, setValid }) => {
             <Input
                 title={t('address')}
                 instance={address}
-                split={true}
-                must={true}
+                split={isMinTablet}
+                must
+                deleteBtn={isMinPC}
             />
             {/* <AddressField
                         setAddress={setAddress}
                         split={true}
                     /> */}
-            <div className='mt-2 bg-zinc-100 h-44 col-start-2 col-end-3 flex items-center justify-center'>
+            <div className='mt-2 bg-zinc-100 h-44 col-start-2 md:col-end-2 lg:col-end-3 flex items-center justify-center'>
                 MAP
             </div>
-            <span></span>
+            {isMinPC && <span></span>}
             <div className="pt-5">
                 <ImageEditor
                     images={images}
                     setImages={setImages}
                 />
             </div>
-            <div className='grid gap-2 col-span-2 h-fit pt-5'>
+            <div className='grid gap-2 lg:col-span-2 h-fit pt-5'>
                 <h2 className='text-xl font-bold'>{t('list_of_images')}</h2>
                 <p className='col-span-2'>{t('you_can_choose_main_image')}</p>
                 {images.length > 0 ?

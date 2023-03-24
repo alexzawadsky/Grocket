@@ -16,10 +16,13 @@ const ProductsList = ({ query }) => {
 
     return (
         <>
-            <div className='grid gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+            <div className='grid grid-cols-2 gap-5 md:gap-0 lg:grid-cols-3 xl:grid-cols-4'>
                 {data.results.map((el, key) => <ItemCard key={key} product={el} managable={false} />)}
             </div>
-            <Pagination page={page} pagesCount={data.pages_count} setPage={setPage} />
+            <div className='mx-auto mt-5 '>
+                <Pagination page={page} pagesCount={data.pages_count} setPage={setPage} />
+            </div>
+
         </>
     )
 }

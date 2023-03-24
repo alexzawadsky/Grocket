@@ -91,7 +91,6 @@ const AddComment = () => {
                             </button>
                         </div>
                     }
-
                 </div>
                 {
                     selectedProduct &&
@@ -102,19 +101,20 @@ const AddComment = () => {
                                 statuses.data && statuses.data?.map((el, key) =>
                                     <div className="flex item-center gap-5">
                                         <input
+                                            checked={el?.id === statusId}
                                             type='radio'
                                             key={key}
                                             name="comment-status"
-                                            id={el.name}
-                                            onChange={() => setStatusId(el.id)}
+                                            id={el?.name}
+                                            onChange={() => setStatusId(el?.id)}
                                         />
                                         <label
-                                            htmlFor={el.name}
+                                            htmlFor={el?.name}
                                             className='flex items-center gap-1.5'
                                         >
                                             <CommentStatus
-                                                title={el.title}
-                                                name={el.name}
+                                                title={el?.title}
+                                                name={el?.name}
                                             />
                                         </label>
                                     </div>
@@ -124,7 +124,7 @@ const AddComment = () => {
                     </>
                 }
                 {
-                    statusId &&
+                    statusId && selectedProduct &&
                     <>
                         <h2 className="font-bold text-xl col-span-full">{t('info')}</h2>
                         <Input
@@ -146,7 +146,7 @@ const AddComment = () => {
                             <div className='col-span-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 h-fit'>
                                 {images.map((el, key) =>
                                     <div key={key} className='w-full p-2 rounded-lg border-2 grid gap-2'>
-                                        <img className='w-full' src={el.image} />
+                                        <img className='w-full' src={el?.image} />
                                         <button
                                             type='button'
                                             onClick={() => deleteImage(key, images, setMainIndex, setImages)}

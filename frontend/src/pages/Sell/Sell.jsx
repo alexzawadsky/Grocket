@@ -42,7 +42,7 @@ const Sell = () => {
     if (!user) return <Title text='You need to login to your account to be able to sell items' />
 
     return (
-        <div className='grid gap-5'>
+        <div className='flex flex-col    md:grid gap-5'>
             <Title
                 text={t('sell_your_item')}
                 className='col-span-full'

@@ -10,14 +10,14 @@ import { stateToQuery } from './utils'
 const Search = () => {
 
     const [searchParams, setSearchParams] = useSearchParams()
-    const [search, setSearch] = useState(searchParams.get('q') || '')
+    const [search, setSearch] = useState(searchParams.get('search') || '')
     const { t } = useTranslation()
     const { open, setOpen } = useContext(CategoriesListStateContext)
     const navigate = useNavigate()
 
     useEffect(() => {
-        setSearch(searchParams.get('q') || '')
-    }, [searchParams.get('q')])
+        setSearch(searchParams.get('search') || '')
+    }, [searchParams.get('search')])
 
     return (
         <div className='w-full'>
@@ -25,7 +25,7 @@ const Search = () => {
                 className='flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 bg-white w-full'
                 onSubmit={(e) => {
                     e.preventDefault()
-                    search && navigate(`/search?q=${stateToQuery(search)}`)
+                    search && navigate(`/search?search=${stateToQuery(search)}`)
                 }}
             >
                 <button

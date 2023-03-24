@@ -52,10 +52,11 @@ export const useUserProducts = (userId, queryParams) => {
         { keepPreviousData: true })
 }
 
-export const useCategories = (parentId) => {
+export const useCategories = (queryParams) => {
     const api = useAxios()
-    return useQuery(['categories', { parent_id: parentId }],
-        () => api.get(`/api/v1/categories`, { params: { parent_id: parentId } }).then(res => res.data))
+    return useQuery(['categories', queryParams],
+        () => api.get(`/api/v1/categories`, { params: { ...queryParams } })
+            .then(res => res.data))
 }
 
 export const useProfile = (userId) => {
@@ -210,18 +211,6 @@ export const useDeleteCommentReply = () => {
                 notification(t('reply_deleted'))
             }
         })
-}
-
-export const useAllCategories = () => {
-    const api = useAxios()
-    return useQuery(['categories', 'all'],
-        () => api.get('/api/v1/categories', { all: true }).then(res => res.data))
-}
-
-export const useSearchProducts = (queryParams) => {
-    const api = useAxios()
-    return useQuery(['search', queryParams],
-        () => api.get('/api/v1/search', queryParams).then(res => res.data))
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })

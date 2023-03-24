@@ -9,7 +9,7 @@ const CategoryList = ({ category, setCategory }) => {
 
     const [lastChild, setLastChild] = useState(null)
     const [parentId, setParentId] = useState(null)
-    const { data, isLoading, error } = useCategories(parentId)
+    const { data, isLoading, error } = useCategories({ parent_id: parentId })
     const { isMinTablet } = useScreen()
     const { t } = useTranslation()
 

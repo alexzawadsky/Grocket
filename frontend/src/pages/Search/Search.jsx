@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useSearchProducts } from '../../api/api'
+import { useProducts } from '../../api/api'
 import { ItemCard, SearchBar, Title } from '../../components'
 import CardModeToggle from './CardModeToggle'
 import SortBy from './SortBy'
@@ -14,13 +14,13 @@ const Search = () => {
     const [isList, setIsList] = useLocalStorage('cardViewList', true)
     const [filterQueryParams, setFilterQueryParams] = useState(searchParams)
     const { isMinTablet, isMinPC } = useScreen()
-    const { data, isLoading, error } = useSearchProducts(filterQueryParams)
+    const { data, isLoading, error } = useProducts(filterQueryParams)
 
     return (
         <div className='grid gap-5'>
             <SearchBar />
             <div className='pl-5 lg:pl-0'>
-                <Title text={`Products matching "${searchParams.get('q')}" (12)`} />
+                <Title text={`Products matching "${searchParams.get('search')}" (12)`} />
             </div>
             <div className='lg:grid lg:grid-cols-[1fr_3fr]'>
                 {isMinPC && <div>

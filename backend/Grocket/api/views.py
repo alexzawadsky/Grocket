@@ -105,7 +105,17 @@ class ProductViewSet(ProductMixin):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request):
-        pass
+        request.data['user'] = self.request.user.id
+
+        serializer = self.get_serializer_class()(
+            data=request.data
+        )
+        serializer.is_valid(raise_exception=True)
+
+        products_services.create_product(
+            **serializer.data
+        )
+        return Response(status=status.HTTP_201_CREATED)
 
     def partial_update(self, request):
         pass

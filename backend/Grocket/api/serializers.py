@@ -1,4 +1,5 @@
 from django.db.models import Avg
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from djmoney.contrib.django_rest_framework import MoneyField
 from djoser import serializers as djserializers
@@ -160,21 +161,21 @@ class ProductImageSerializer(serializers.Serializer):
         fields = ('id', 'image', 'is_main',)
 
 
-class ProductImageCreateSerializer(serializers.ModelSerializer):
+class ProductImageCreateSerializer(serializers.Serializer):
     image = Base64ImageField(allow_null=True, required=False)
+    is_main = serializers.BooleanField()
 
     class Meta:
-        model = Image
-        fields = ('image', 'is_main', 'product',)
+        fields = ('image', 'is_main',)
 
-    def create(self, validated_data):
-        image = validated_data.pop('image')
-        # product = validated_data.get('product')
+    # def create(self, validated_data):
+    #     image = validated_data.pop('image')
+    #     # product = validated_data.get('product')
 
-        # prepared_image = products_services.prepair_image(product.id, image)
-        image = Image.objects.create(image=image, **validated_data)
+    #     # prepared_image = products_services.prepair_image(product.id, image)
+    #     image = Image.objects.create(image=image, **validated_data)
 
-        return image
+    #     return image
 
 
 # ref
@@ -250,97 +251,39 @@ class ProductListSerializer(ProductReadOnlySerializer):
         return serializer.data
 
 
-class ProductCreateUpdateSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-    )
-    category = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all()
-    )
-    is_archived = serializers.HiddenField(default=False)
-    is_sold = serializers.HiddenField(default=False)
+class ProductCreateUpdateSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    user = serializers.IntegerField()
+    description = serializers.CharField()
+    price = MoneyField(max_digits=19, decimal_places=2)
+    price_currency = serializers.CharField()
+    address = serializers.CharField()
+    category = serializers.IntegerField()
 
     class Meta:
-        model = Product
         fields = (
-            'id', 'name', 'user',
-            'description', 'price', 'price_currency',
-            'address', 'is_archived', 'is_sold',
-            'category', 'images',
+            'name', 'user', 'price_currency', 'description',
+            'price', 'address', 'category', 'images',
         )
-
-    def validate_category(self, value):
-        if not value.is_leaf_node():
-            raise serializers.ValidationError(
-                _('Can only be added to the final category.')
-            )
-
-        return value
-
-    def validate_images(self, value):
-        pass
-
-    def to_representation(self, product):
-        serializer = ProductRetrieveSerializer(product, context=self.context)
-
-        return serializer.data
-
-    def creating_images(self, new_images, product):
-        '''Создает и обрабатывает картинки.'''
-        for image in new_images:
-            image_base64 = image[0]
-            is_main = image[1]
-
-            images_serializer = ProductImageCreateSerializer(
-                data={
-                    'image': image_base64,
-                    'is_main': is_main,
-                    'product': product.id
-                }
-            )
-            images_serializer.is_valid(raise_exception=True)
-            images_serializer.save()
 
 
 class ProductCreateSerializer(ProductCreateUpdateSerializer):
     images = serializers.ListField()
 
     def validate_images(self, value):
-        super().validate_images(value)
-
-        main = False
-        for image in value:
-            is_main = image['is_main']
-            image = image['image']
-            if is_main:
-                if main:
-                    raise serializers.ValidationError(
-                        _('You cannot add more than one main photo.')
-                    )
-                main = True
-
-        if not main:
-            raise serializers.ValidationError(
-                _('Add a main photo.')
+        try:
+            products_services.check_product_images_creation_logic(
+                images=value
             )
+        except ValidationError as error:
+            raise serializers.ValidationError(error.messages)
 
-        return value
-
-    def creating_images(self, images, product):
-        new_images = []
-        for new_image in images:
-            new_images.append(
-                (new_image['image'], new_image['is_main'])
-            )
-
-        super().creating_images(new_images, product)
-
-    def create(self, validated_data):
-        images = validated_data.pop('images')
-        product = Product.objects.create(**validated_data)
-        self.creating_images(images, product)
-
-        return product
+        serializer = ProductImageCreateSerializer(
+            data=value,
+            many=True
+        )
+        serializer.is_valid(raise_exception=True)
+        return serializer.validated_data
 
 
 class ProductUpdateSerializer(ProductCreateUpdateSerializer):
@@ -501,7 +444,7 @@ class CommentReadOnlySerializer(serializers.Serializer):
 
     class Meta:
         fields = ('id', 'status', 'rate', 'text', 'images',
-                  'reply', 'user', 'seller', 'product',)
+                  'reply', 'user', 'seller', 'product', 'pub_date',)
 
     def get_reply(self, obj):
         reply = comments_services.get_replies_to_comment(comment_id=obj.id)

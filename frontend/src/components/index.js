@@ -12,7 +12,7 @@ import Pagination from "./Pagination";
 import ReadMore from "./ReadMore";
 import Input from "./Input";
 import Spinner from "./Spinner";
-import Map from "./Map";
+import GMap from "./GMap";
 import ProductsList from "./ProductsList";
 import Price from "./Price";
 import PublishTime from "./PublishTime";
@@ -21,6 +21,7 @@ import ImageEditor from "./ImageEditor";
 import LanguageSelectionBanner from "./LanguageSelectionBanner";
 import SearchBar from './SearchBar/SearchBar'
 import WindowScroll from "./WindowScroll";
+import AddressField from "./AddressField";
 
 export {
     Avatar,
@@ -28,7 +29,7 @@ export {
     Filters,
     Footer,
     ItemCard,
-    Map,
+    GMap,
     Navbar,
     PrivateRoute,
     ProfileCard,
@@ -45,5 +46,6 @@ export {
     LanguageSelectionBanner,
     ImageEditor,
     SearchBar,
-    WindowScroll
+    WindowScroll,
+    AddressField
 }

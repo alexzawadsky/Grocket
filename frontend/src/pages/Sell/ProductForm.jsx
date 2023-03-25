@@ -1,8 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import useInput from '../../hooks/useInput'
-import { Input, ImageEditor } from '../../components'
-import AvatarEditor from 'react-avatar-editor'
-
+import { Input, ImageEditor, AddressField, GMap } from '../../components'
 import { deleteImage } from './utils'
 import { BsTrashFill } from 'react-icons/bs'
 import { prepareImages } from './utils'
@@ -21,8 +19,8 @@ const ProductForm = ({ data, setData, setValid }) => {
     const description = useInput(data?.description || '', { isEmpty: true })
     const price = useInput(data?.price || '', { isFloat: true })
     const currency = useInput(data?.price_currency || '', { isEmpty: true })
-    const address = useInput(data?.address || '', { isEmpty: true })
-    // const [address, setAddress] = useState('')
+    const [address, setAddress] = useState(data?.address || null)
+
     useEffect(() => {
         if (images && images.length > 0) {
             if (images.filter(el => el.is_main)[0]) {
@@ -33,7 +31,7 @@ const ProductForm = ({ data, setData, setValid }) => {
     }, [mainImageIndex])
 
     useEffect(() => {
-        if ([name, description, price, currency, address].every(el => el.allValid) && images.length > 0) {
+        if ([name, description, price, currency].every(el => el.allValid) && images.length > 0) {
             setAllValid(true)
         } else {
             setAllValid(false)
@@ -43,10 +41,10 @@ const ProductForm = ({ data, setData, setValid }) => {
             description: description.value,
             price: price.value,
             price_currency: currency.value,
-            address: address.value,
+            address: address,
             images: prepareImages(images)
         })
-    }, [name.value, description.value, price.value, currency.value, address.value, images])
+    }, [name.value, description.value, price.value, currency.value, address, JSON.stringify(images)])
 
     useEffect(() => {
         setValid(allValid)
@@ -92,19 +90,19 @@ const ProductForm = ({ data, setData, setValid }) => {
             <h2 className="text-xl font-bold col-span-full pt-5">
                 {t('location')}
             </h2>
-            <Input
+            {/* <Input
                 title={t('address')}
                 instance={address}
                 split={isMinTablet}
                 must
                 deleteBtn={isMinPC}
+            /> */}
+            <AddressField
+                setAddress={setAddress}
+                split={isMinTablet}
             />
-            {/* <AddressField
-                        setAddress={setAddress}
-                        split={true}
-                    /> */}
-            <div className='mt-2 bg-zinc-100 h-44 col-start-2 md:col-end-2 lg:col-end-3 flex items-center justify-center'>
-                MAP
+            <div className='col-start-2 md:col-end-2 lg:col-end-3 flex items-center justify-center'>
+                <GMap address={address} />
             </div>
             {isMinPC && <span></span>}
             <div className="pt-5">

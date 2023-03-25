@@ -18,7 +18,6 @@ const EditProduct = () => {
     const [valid, setValid] = useState(true)
     const [changes, setChanges] = useState({})
     const [category, setCategory] = useState([])
-
     const updateProductMutation = useUpdateProduct()
 
     useEffect(() => {
@@ -37,7 +36,6 @@ const EditProduct = () => {
         if (changedFields) setChanges({
             ...Object.fromEntries(changedFields),
         })
-
     }, [formData, category])
 
     useEffect(() => {

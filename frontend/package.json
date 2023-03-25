@@ -30,6 +30,7 @@
     "react-responsive": "^9.0.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.8.0",
+    "react-world-flags": "^1.5.1",
     "sweetalert2": "^11.7.3"
   },
   "devDependencies": {

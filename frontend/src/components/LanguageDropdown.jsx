@@ -5,6 +5,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
 import useScreen from "../hooks/useScreen"
 import Flag from './Flag'
 
+
 const LanguageDropdown = () => {
 
     const { i18n } = useTranslation()
@@ -56,6 +57,7 @@ const LanguageDropdown = () => {
                             >
                                 <div className="h-6 w-[24px] md:w-5 flex items-center">
                                     <Flag country={langs[l]?.icon} size={64} />
+
                                 </div>
                                 {isMinTablet && <p className="whitespace-nowrap">
                                     {isMinTablet && langs[l]?.name}

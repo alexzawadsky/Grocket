@@ -75,7 +75,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     </p>
                     <p className={`flex items-center gap-2 ${product?.promotions.includes('xl') ? 'text-sm lg:text-md' : 'text-[12px] lg:text-sm'}`}>
                         <FiMapPin />
-                        {product?.address}
+                        {product?.address?.full_address}
                     </p>
                     <p className={`flex items-center gap-2 ${product?.promotions.includes('xl') ? 'text-sm lg:text-md' : 'text-[12px] lg:text-sm'}`}>
                         <BiCategoryAlt />
@@ -147,7 +147,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                 {(!managable || (user?.user_id !== product?.user?.id)) &&
                     <p className='flex items-center gap-2 text-sm'>
                         <FiMapPin />
-                        {product?.address}
+                        {product?.address?.full_address}
                     </p>}
                 {(isMinTablet || search) && <p className='flex items-center gap-2 text-sm'>
                     <BiCategoryAlt />

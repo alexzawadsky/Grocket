@@ -2,11 +2,12 @@ import useLocalStorage from "../hooks/useLocalStorage"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import localization from '../assets/localization.json'
+import Flag from "react-world-flags"
 
 const LanguageSelectionBanner = () => {
 
     const [languageSelected, setLanguageSelected] = useLocalStorage('languageSelected', false)
-    const [text, setText] = useState(null)
+    const [resolvedLanguage, setResolvedLanguage] = useState(null)
     const [code, setCode] = useState(null)
     const { i18n } = useTranslation()
 
@@ -21,7 +22,7 @@ const LanguageSelectionBanner = () => {
                     .then(response => response.json())
                     .then(data => {
                         if (data?.countryCode in localization) {
-                            setText(`Do you speak ${localization[data?.countryCode].name}?`)
+                            setResolvedLanguage(localization[data?.countryCode]?.name)
                             setCode(data?.countryCode.toLowerCase())
                         } else {
                             setLanguageSelected(true)
@@ -34,11 +35,19 @@ const LanguageSelectionBanner = () => {
         }
     }, [])
 
-    if (!text) return
+    if (!resolvedLanguage) return
 
     return (!languageSelected && i18n.resolvedLanguage !== code) ?
         <div className="mb-4 flex gap-3 md:gap-6 items-center flex-wrap border-2 rounded-2xl p-3 w-full md:w-fit">
-            <p className="font-bold ">{text}</p>
+            <div className="flex items-center gap-1">
+                Do you speak
+                <span className="font-bold">{resolvedLanguage}</span>
+                <div className="w-5">
+                    <Flag code={code.toUpperCase()} />
+                </div>
+                ?
+            </div>
+
             {code &&
                 <div className="flex gap-2 ml-auto">
                     <button
@@ -46,8 +55,7 @@ const LanguageSelectionBanner = () => {
                         onClick={() => {
                             i18n.changeLanguage(code)
                             setLanguageSelected(true)
-                        }
-                        }
+                        }}
                     >
                         Switch
                     </button>

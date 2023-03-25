@@ -2,21 +2,25 @@
     "SE": {
         "icon": "🇸🇪",
         "name": "Sverige",
-        "code": "se"
+        "code": "se",
+        "flag": "SE"
     },
     "RU": {
         "icon": "🇷🇺",
         "name": "Русский",
-        "code": "ru"
+        "code": "ru",
+        "flag": "RU"
     },
     "NL": {
         "icon": "🇳🇱",
         "name": "Netherlands",
-        "code": "nl"
+        "code": "nl",
+        "flag": "NL"
     },
     "EN": {
         "icon": "🇬🇧",
         "name": "English",
-        "code": "en"
+        "code": "en",
+        "flag": "GB"
     }
 }

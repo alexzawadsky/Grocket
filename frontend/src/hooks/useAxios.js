@@ -8,7 +8,7 @@ const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
 
     const axiosInstance = axios.create({
-        baseURL: import.meta.env.VITE_API_URL || 'http://localhost',
+        baseURL: import.meta.env.VITE_API_URL || '',
         headers: {
             Authorization: authTokens ? `Bearer ${authTokens?.access}` : null,
             'Accept-Language': localStorage.getItem('i18nextLng') || 'en'

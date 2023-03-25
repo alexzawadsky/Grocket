@@ -33,10 +33,9 @@ const Login = () => {
         <div className='w-full h-full flex items-center justify-center'>
             <div className='lg:w-1/3'>
                 <h1 className='text-accent-orange text-7xl font-bolditalic pb-5'>Grocket</h1>
-                <form className='grid gap-5' onSubmit={handleSubmit}>
+                <form className='grid gap-1' onSubmit={handleSubmit}>
                     <div className='w-full grid gap-1'>
                         <label className='text-md' htmlFor="email">{t('email')}:</label>
-                        <br />
                         <input
                             onChange={(e) => setEmail(e.target.value)}
                             className='grocket-input'
@@ -46,7 +45,6 @@ const Login = () => {
                     </div>
                     <div className='w-full grid gap-1'>
                         <label className='text-md' htmlFor="email">{t('password')}:</label>
-                        <br />
                         <input
                             onChange={(e) => setPassword(e.target.value)}
                             className='grocket-input'
@@ -56,13 +54,13 @@ const Login = () => {
                     </div>
                     <button
                         disabled={email === '' || password === ''}
-                        className='button-fill-orange !w-full'
+                        className='button-fill-orange !w-full mt-5'
                     >
                         {!loading ? t('login') : `${t('loading')}...`}
                     </button>
                     {/* {error ? <p className='text-accent-red font-bold'>{error.status} {error.message}</p> : null} */}
                     {error && error.status === 401 ? <NavLink to='/password-reset' className='hover:text-accent-orange'>{t('reset_pass')}</NavLink> : null}
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 mt-2">
                         {t('dont_have_acc')}?
                         <NavLink className='underline text-accent-orange' to='/register'>{t('register')}</NavLink>
                     </div>

@@ -123,7 +123,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
     return (
         <NavLink
             to={`/products/${product?.id}`}
-            className={`hover:bg-slate-50 rounded-2xl md:p-5 ${search && 'pb-5'} flex flex-col gap-2 transition-all duration-150`}
+            className={`hover:md:bg-slate-50 rounded-2xl md:p-5 ${search && 'pb-5'} flex flex-col gap-2 transition-all duration-150`}
         >
             <div className="rounded-lg overflow-hidden">
                 <ImagesCarousel images={product?.images} />

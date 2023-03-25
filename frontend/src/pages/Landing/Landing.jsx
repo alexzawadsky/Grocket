@@ -14,7 +14,7 @@ const Landing = () => {
                 <title>Grocket</title>
             </Helmet>
             <SearchBar />
-            <div className='md:grid md:grid-cols-[2fr_1fr] lg:grid-cols-[3fr_1fr] flex flex-col-reverse gap-3 md:gap-7 w-full pr-5'>
+            <div className='md:grid md:grid-cols-[2fr_1fr] lg:grid-cols-[3fr_1fr] flex flex-col-reverse gap-3 md:gap-7 w-full md:pr-5'>
                 <div className='grid gap-x-5 w-full h-fit'>
                     <div className='md:pl-5 pb-5 md:pb-0'>
                         <Title text={t('goods_for_you')} />

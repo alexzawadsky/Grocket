@@ -2,7 +2,7 @@ import useLocalStorage from "../hooks/useLocalStorage"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import localization from '../assets/localization.json'
-import Flag from "react-world-flags"
+import Flag from "./Flag"
 
 const LanguageSelectionBanner = () => {
 
@@ -36,18 +36,16 @@ const LanguageSelectionBanner = () => {
     }, [])
 
     if (!resolvedLanguage) return
-
     return (!languageSelected && i18n.resolvedLanguage !== code) ?
         <div className="mb-4 flex gap-3 md:gap-6 items-center flex-wrap border-2 rounded-2xl p-3 w-full md:w-fit">
             <div className="flex items-center gap-1">
                 Do you speak
-                <span className="font-bold">{resolvedLanguage}</span>
-                <div className="w-5">
-                    <Flag code={code.toUpperCase()} />
+                <div className="w-5 ml-1">
+                    <Flag country={localization[code.toUpperCase()].icon} />
                 </div>
+                <span className="font-bold">{resolvedLanguage}</span>
                 ?
             </div>
-
             {code &&
                 <div className="flex gap-2 ml-auto">
                     <button

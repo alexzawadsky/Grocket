@@ -11,13 +11,13 @@ import { useTranslation } from 'react-i18next'
 const HistoryList = () => {
 
     const { t } = useTranslation()
-    const { isMinTablet } = useScreen()
+    const { isMinTablet, isLargePC } = useScreen()
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
     return (
-        <div className='grid gap-5 h-fit'>
+        <div className='grid gap-2 h-fit'>
             {isMinTablet ? (
                 <>
-                    <h2 to='/history' className='text-2xl font-bold flex items-center gap-3 text-truncate'>
+                    <h2 to='/history' className='text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>
                         <IoBookOutline />
                         {t('you_looked_earlier')}
                         {/* <button
@@ -27,23 +27,25 @@ const HistoryList = () => {
                             <BsFillTrashFill />
                         </button> */}
                     </h2>
-                    <button
+                    {lookHistory.length > 0 && <button
                         onClick={clearHistory}
-                        className='button-outline-red !w-full justify-center'
+                        className='flex items-center gap-2 text-accent-red ml-2 mt-3'
                     >
                         <BsFillTrashFill />{t('clear_history')}
-                    </button>
+                    </button>}
                 </>
             ) : null}
             <div>
+                {lookHistory.length === 0 &&
+                    <p className='pt-2 pl-2'>{t('nothing_yet')}</p>}
                 {isMinTablet && lookHistory.slice(0, 4).map((el, key) =>
                     <HistoryItem key={key} content={el} />)}
-                <NavLink
-                    className='flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange md:mt-2 leading-none md:pl-3'
+                {lookHistory.length > 0 && <NavLink
+                    className={`text-md ${(isMinTablet && !isLargePC) && '!text-sm'} flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange md:mt-2 leading-none md:pl-3`}
                     to='/history'
                 >
                     {t('view_full_history')}<BsArrowRight />
-                </NavLink>
+                </NavLink>}
             </div>
         </div>
     )

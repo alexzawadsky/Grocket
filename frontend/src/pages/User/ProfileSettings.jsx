@@ -79,7 +79,7 @@ export const ChangeAvatar = () => {
             <BackButton />
             <h2 className='text-2xl font-bold'>{t('choose_avatar_and_click')} <i>{t('save_adj')}</i></h2>
             <input type="file" onChange={(e) => setImageInInput(e.target.files[0])} />
-            <div className="w-fit">
+            <div className="mx-auto md:ml-0 w-fit">
                 <AvatarCrop
                     editorRef={editorRef}
                     image={imageInInput}

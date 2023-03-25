@@ -32,7 +32,7 @@ const Login = () => {
     return (
         <div className='w-full h-full flex items-center justify-center'>
             <div className='lg:w-1/3'>
-                <h1 className='text-accent-orange text-7xl font-bolditalic pb-5'>Grocket</h1>
+                <h1 className='text-accent-orange text-6xl font-bolditalic pb-1'>Grocket</h1>
                 <form className='grid gap-1' onSubmit={handleSubmit}>
                     <div className='w-full grid gap-1'>
                         <label className='text-md' htmlFor="email">{t('email')}:</label>
@@ -54,7 +54,7 @@ const Login = () => {
                     </div>
                     <button
                         disabled={email === '' || password === ''}
-                        className='button-fill-orange !w-full mt-5'
+                        className='button-fill-orange !h-10 mt-2'
                     >
                         {!loading ? t('login') : `${t('loading')}...`}
                     </button>

@@ -25,14 +25,14 @@ const Search = () => {
     return (
         <div className='w-full'>
             <form
-                className='flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 bg-white w-full'
+                className='flex flex-col-reverse md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 bg-white w-full'
                 onSubmit={(e) => {
                     e.preventDefault()
                     search && navigate(`/search?search=${stateToQuery(search)}`)
                 }}
             >
                 <button
-                    className='button-outline-orange h-10'
+                    className='button-outline-orange h-10 max-sm:!w-full'
                     type='button'
                     onClick={() => setOpen(!open)}
                 >

@@ -168,15 +168,6 @@ class ProductImageCreateSerializer(serializers.Serializer):
     class Meta:
         fields = ('image', 'is_main',)
 
-    # def create(self, validated_data):
-    #     image = validated_data.pop('image')
-    #     # product = validated_data.get('product')
-
-    #     # prepared_image = products_services.prepair_image(product.id, image)
-    #     image = Image.objects.create(image=image, **validated_data)
-
-    #     return image
-
 
 # ref
 class ProductReadOnlySerializer(serializers.Serializer):

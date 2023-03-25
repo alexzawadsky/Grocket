@@ -10,7 +10,7 @@
             "parent": null,
             "lft": 1,
             "rght": 88,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 0
         }
     },
@@ -25,7 +25,7 @@
             "parent": 25984,
             "lft": 2,
             "rght": 3,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 1
         }
     },
@@ -40,7 +40,7 @@
             "parent": 25984,
             "lft": 4,
             "rght": 17,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 1
         }
     },
@@ -55,7 +55,7 @@
             "parent": 25986,
             "lft": 5,
             "rght": 6,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -70,7 +70,7 @@
             "parent": 25986,
             "lft": 7,
             "rght": 8,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -85,7 +85,7 @@
             "parent": 25986,
             "lft": 13,
             "rght": 14,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -100,7 +100,7 @@
             "parent": 25986,
             "lft": 9,
             "rght": 10,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -115,7 +115,7 @@
             "parent": 25986,
             "lft": 11,
             "rght": 12,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -130,7 +130,7 @@
             "parent": 25986,
             "lft": 15,
             "rght": 16,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -145,7 +145,7 @@
             "parent": 25984,
             "lft": 18,
             "rght": 43,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 1
         }
     },
@@ -158,9 +158,9 @@
             "title_ru": "Запчасти",
             "title_nl": null,
             "parent": 25999,
-            "lft": 33,
-            "rght": 34,
-            "tree_id": 9,
+            "lft": 31,
+            "rght": 32,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -173,9 +173,9 @@
             "title_ru": "GPS-навигаторы",
             "title_nl": null,
             "parent": 25999,
-            "lft": 27,
-            "rght": 28,
-            "tree_id": 9,
+            "lft": 25,
+            "rght": 26,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -188,9 +188,9 @@
             "title_ru": "Шины, диски и колёса",
             "title_nl": null,
             "parent": 25999,
-            "lft": 35,
-            "rght": 36,
-            "tree_id": 9,
+            "lft": 33,
+            "rght": 34,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -205,7 +205,7 @@
             "parent": 25999,
             "lft": 19,
             "rght": 20,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -218,9 +218,9 @@
             "title_ru": "Масла и автохимия",
             "title_nl": null,
             "parent": 25999,
-            "lft": 31,
-            "rght": 32,
-            "tree_id": 9,
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -230,12 +230,12 @@
         "fields": {
             "title": "Audio and video equipment",
             "title_en": "Audio and video equipment",
-            "title_ru": "Аудио- и видеотехника",
+            "title_ru": "Аудио и видеотехника",
             "title_nl": null,
             "parent": 25999,
-            "lft": 23,
-            "rght": 24,
-            "tree_id": 9,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -248,9 +248,9 @@
             "title_ru": "Багажники и фаркопы",
             "title_nl": null,
             "parent": 25999,
-            "lft": 39,
-            "rght": 40,
-            "tree_id": 9,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -263,9 +263,9 @@
             "title_ru": "Инструменты",
             "title_nl": null,
             "parent": 25999,
-            "lft": 29,
-            "rght": 30,
-            "tree_id": 9,
+            "lft": 27,
+            "rght": 28,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -278,9 +278,9 @@
             "title_ru": "Прицепы",
             "title_nl": null,
             "parent": 25999,
-            "lft": 37,
-            "rght": 38,
-            "tree_id": 9,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -295,7 +295,7 @@
             "parent": 25999,
             "lft": 21,
             "rght": 22,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -308,9 +308,9 @@
             "title_ru": "Тюнинг",
             "title_nl": null,
             "parent": 25999,
-            "lft": 41,
-            "rght": 42,
-            "tree_id": 9,
+            "lft": 39,
+            "rght": 40,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -323,9 +323,9 @@
             "title_ru": "Экипировка",
             "title_nl": null,
             "parent": 25999,
-            "lft": 25,
-            "rght": 26,
-            "tree_id": 9,
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -340,7 +340,7 @@
             "parent": 25984,
             "lft": 44,
             "rght": 77,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 1
         }
     },
@@ -355,7 +355,7 @@
             "parent": 26025,
             "lft": 51,
             "rght": 52,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -370,7 +370,7 @@
             "parent": 26025,
             "lft": 65,
             "rght": 66,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -385,7 +385,7 @@
             "parent": 26025,
             "lft": 73,
             "rght": 74,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -400,7 +400,7 @@
             "parent": 26025,
             "lft": 49,
             "rght": 50,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -415,7 +415,7 @@
             "parent": 26025,
             "lft": 75,
             "rght": 76,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -430,7 +430,7 @@
             "parent": 26025,
             "lft": 67,
             "rght": 68,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -445,7 +445,7 @@
             "parent": 26025,
             "lft": 59,
             "rght": 60,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -460,7 +460,7 @@
             "parent": 26025,
             "lft": 61,
             "rght": 62,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -475,7 +475,7 @@
             "parent": 26025,
             "lft": 71,
             "rght": 72,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -490,7 +490,7 @@
             "parent": 26025,
             "lft": 45,
             "rght": 46,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -505,7 +505,7 @@
             "parent": 26025,
             "lft": 53,
             "rght": 54,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -520,7 +520,7 @@
             "parent": 26025,
             "lft": 57,
             "rght": 58,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -535,7 +535,7 @@
             "parent": 26025,
             "lft": 63,
             "rght": 64,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -550,7 +550,7 @@
             "parent": 26025,
             "lft": 55,
             "rght": 56,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -565,7 +565,7 @@
             "parent": 25984,
             "lft": 78,
             "rght": 87,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 1
         }
     },
@@ -580,7 +580,7 @@
             "parent": 26040,
             "lft": 85,
             "rght": 86,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -595,7 +595,7 @@
             "parent": 26040,
             "lft": 81,
             "rght": 82,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -610,7 +610,7 @@
             "parent": 26040,
             "lft": 79,
             "rght": 80,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -625,7 +625,7 @@
             "parent": 26040,
             "lft": 83,
             "rght": 84,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -640,7 +640,7 @@
             "parent": null,
             "lft": 1,
             "rght": 66,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 0
         }
     },
@@ -655,7 +655,7 @@
             "parent": 26047,
             "lft": 2,
             "rght": 13,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 1
         }
     },
@@ -670,7 +670,7 @@
             "parent": 26048,
             "lft": 5,
             "rght": 6,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -685,7 +685,7 @@
             "parent": 26048,
             "lft": 9,
             "rght": 10,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -700,7 +700,7 @@
             "parent": 26048,
             "lft": 11,
             "rght": 12,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -715,7 +715,7 @@
             "parent": 26048,
             "lft": 7,
             "rght": 8,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -730,7 +730,7 @@
             "parent": 26048,
             "lft": 3,
             "rght": 4,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -745,7 +745,7 @@
             "parent": 26047,
             "lft": 22,
             "rght": 43,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 1
         }
     },
@@ -760,7 +760,7 @@
             "parent": 26073,
             "lft": 27,
             "rght": 28,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -773,9 +773,9 @@
             "title_ru": "Столы и стулья",
             "title_nl": null,
             "parent": 26073,
-            "lft": 39,
-            "rght": 40,
-            "tree_id": 4,
+            "lft": 37,
+            "rght": 38,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -788,9 +788,9 @@
             "title_ru": "Текстиль и ковры",
             "title_nl": null,
             "parent": 26073,
-            "lft": 41,
-            "rght": 42,
-            "tree_id": 4,
+            "lft": 39,
+            "rght": 40,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -805,7 +805,7 @@
             "parent": 26073,
             "lft": 23,
             "rght": 24,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -820,7 +820,7 @@
             "parent": 26073,
             "lft": 31,
             "rght": 32,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -835,7 +835,7 @@
             "parent": 26073,
             "lft": 33,
             "rght": 34,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -848,9 +848,9 @@
             "title_ru": "Подставки и тумбы",
             "title_nl": null,
             "parent": 26073,
-            "lft": 37,
-            "rght": 38,
-            "tree_id": 4,
+            "lft": 35,
+            "rght": 36,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -865,7 +865,7 @@
             "parent": 26073,
             "lft": 29,
             "rght": 30,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -880,7 +880,7 @@
             "parent": 26073,
             "lft": 25,
             "rght": 26,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -890,12 +890,12 @@
         "fields": {
             "title": "Other",
             "title_en": "Other",
-            "title_ru": null,
+            "title_ru": "Другое",
             "title_nl": null,
             "parent": 26073,
-            "lft": 35,
-            "rght": 36,
-            "tree_id": 4,
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -910,7 +910,7 @@
             "parent": 26047,
             "lft": 14,
             "rght": 19,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 1
         }
     },
@@ -925,7 +925,7 @@
             "parent": 26084,
             "lft": 15,
             "rght": 16,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -940,7 +940,7 @@
             "parent": 26084,
             "lft": 17,
             "rght": 18,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -955,7 +955,7 @@
             "parent": 26047,
             "lft": 20,
             "rght": 21,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 1
         }
     },
@@ -970,7 +970,7 @@
             "parent": 26047,
             "lft": 46,
             "rght": 65,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 1
         }
     },
@@ -985,7 +985,7 @@
             "parent": 26088,
             "lft": 49,
             "rght": 50,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -1000,7 +1000,7 @@
             "parent": 26088,
             "lft": 53,
             "rght": 54,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -1015,7 +1015,7 @@
             "parent": 26088,
             "lft": 57,
             "rght": 58,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -1030,7 +1030,7 @@
             "parent": 26088,
             "lft": 63,
             "rght": 64,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -1045,7 +1045,7 @@
             "parent": 26088,
             "lft": 61,
             "rght": 62,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -1060,7 +1060,7 @@
             "parent": 26088,
             "lft": 55,
             "rght": 56,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -1075,7 +1075,7 @@
             "parent": 26088,
             "lft": 59,
             "rght": 60,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -1090,7 +1090,7 @@
             "parent": 26088,
             "lft": 47,
             "rght": 48,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -1105,7 +1105,7 @@
             "parent": 26047,
             "lft": 44,
             "rght": 45,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 1
         }
     },
@@ -1115,12 +1115,12 @@
         "fields": {
             "title": "Animals",
             "title_en": "Animals",
-            "title_ru": null,
+            "title_ru": "Животные",
             "title_nl": null,
             "parent": null,
             "lft": 1,
             "rght": 30,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 0
         }
     },
@@ -1135,7 +1135,7 @@
             "parent": 26098,
             "lft": 8,
             "rght": 9,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 1
         }
     },
@@ -1150,7 +1150,7 @@
             "parent": 26098,
             "lft": 6,
             "rght": 7,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 1
         }
     },
@@ -1165,7 +1165,7 @@
             "parent": 26098,
             "lft": 4,
             "rght": 5,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 1
         }
     },
@@ -1180,7 +1180,7 @@
             "parent": 26098,
             "lft": 2,
             "rght": 3,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 1
         }
     },
@@ -1195,7 +1195,7 @@
             "parent": 26098,
             "lft": 12,
             "rght": 29,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 1
         }
     },
@@ -1210,7 +1210,7 @@
             "parent": 26103,
             "lft": 15,
             "rght": 16,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 2
         }
     },
@@ -1225,7 +1225,7 @@
             "parent": 26103,
             "lft": 27,
             "rght": 28,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 2
         }
     },
@@ -1240,7 +1240,7 @@
             "parent": 26103,
             "lft": 23,
             "rght": 24,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 2
         }
     },
@@ -1255,7 +1255,7 @@
             "parent": 26103,
             "lft": 19,
             "rght": 20,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 2
         }
     },
@@ -1270,7 +1270,7 @@
             "parent": 26103,
             "lft": 25,
             "rght": 26,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 2
         }
     },
@@ -1285,7 +1285,7 @@
             "parent": 26103,
             "lft": 13,
             "rght": 14,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 2
         }
     },
@@ -1300,7 +1300,7 @@
             "parent": 26103,
             "lft": 17,
             "rght": 18,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 2
         }
     },
@@ -1315,7 +1315,7 @@
             "parent": 26103,
             "lft": 21,
             "rght": 22,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 2
         }
     },
@@ -1330,7 +1330,7 @@
             "parent": 26098,
             "lft": 10,
             "rght": 11,
-            "tree_id": 1,
+            "tree_id": 10,
             "level": 1
         }
     },
@@ -1345,7 +1345,7 @@
             "parent": null,
             "lft": 1,
             "rght": 44,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 0
         }
     },
@@ -1360,7 +1360,7 @@
             "parent": null,
             "lft": 1,
             "rght": 66,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 0
         }
     },
@@ -1375,7 +1375,7 @@
             "parent": 26127,
             "lft": 18,
             "rght": 31,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 1
         }
     },
@@ -1390,7 +1390,7 @@
             "parent": 26128,
             "lft": 27,
             "rght": 28,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1405,7 +1405,7 @@
             "parent": 26128,
             "lft": 29,
             "rght": 30,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1420,7 +1420,7 @@
             "parent": 26128,
             "lft": 23,
             "rght": 24,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1435,7 +1435,7 @@
             "parent": 26128,
             "lft": 25,
             "rght": 26,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1450,7 +1450,7 @@
             "parent": 26128,
             "lft": 19,
             "rght": 20,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1465,7 +1465,7 @@
             "parent": 26127,
             "lft": 52,
             "rght": 57,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 1
         }
     },
@@ -1480,7 +1480,7 @@
             "parent": 26153,
             "lft": 55,
             "rght": 56,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1495,7 +1495,7 @@
             "parent": 26153,
             "lft": 53,
             "rght": 54,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1510,7 +1510,7 @@
             "parent": 26127,
             "lft": 32,
             "rght": 51,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 1
         }
     },
@@ -1525,7 +1525,7 @@
             "parent": 26173,
             "lft": 39,
             "rght": 40,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1540,7 +1540,7 @@
             "parent": 26173,
             "lft": 33,
             "rght": 34,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1555,7 +1555,7 @@
             "parent": 26173,
             "lft": 35,
             "rght": 36,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1570,7 +1570,7 @@
             "parent": 26173,
             "lft": 37,
             "rght": 38,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1585,7 +1585,7 @@
             "parent": 26173,
             "lft": 47,
             "rght": 48,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1600,7 +1600,7 @@
             "parent": 26173,
             "lft": 49,
             "rght": 50,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1615,7 +1615,7 @@
             "parent": 26173,
             "lft": 41,
             "rght": 42,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1630,7 +1630,7 @@
             "parent": 26173,
             "lft": 45,
             "rght": 46,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1645,7 +1645,7 @@
             "parent": 26173,
             "lft": 43,
             "rght": 44,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1660,7 +1660,7 @@
             "parent": 26127,
             "lft": 58,
             "rght": 65,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 1
         }
     },
@@ -1675,7 +1675,7 @@
             "parent": 26183,
             "lft": 59,
             "rght": 60,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1690,7 +1690,7 @@
             "parent": 26183,
             "lft": 63,
             "rght": 64,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1705,7 +1705,7 @@
             "parent": 26183,
             "lft": 61,
             "rght": 62,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1720,7 +1720,7 @@
             "parent": 26127,
             "lft": 2,
             "rght": 17,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 1
         }
     },
@@ -1735,7 +1735,7 @@
             "parent": 26187,
             "lft": 3,
             "rght": 4,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1750,7 +1750,7 @@
             "parent": 26187,
             "lft": 13,
             "rght": 14,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1765,7 +1765,7 @@
             "parent": 26187,
             "lft": 15,
             "rght": 16,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1780,7 +1780,7 @@
             "parent": 26187,
             "lft": 9,
             "rght": 10,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1795,7 +1795,7 @@
             "parent": 26187,
             "lft": 7,
             "rght": 8,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1810,7 +1810,7 @@
             "parent": 26187,
             "lft": 5,
             "rght": 6,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1825,7 +1825,7 @@
             "parent": 26187,
             "lft": 11,
             "rght": 12,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -1840,7 +1840,7 @@
             "parent": null,
             "lft": 1,
             "rght": 116,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 0
         }
     },
@@ -1855,7 +1855,7 @@
             "parent": 26195,
             "lft": 2,
             "rght": 27,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 1
         }
     },
@@ -1870,7 +1870,7 @@
             "parent": 26196,
             "lft": 13,
             "rght": 14,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -1885,7 +1885,7 @@
             "parent": 26196,
             "lft": 23,
             "rght": 24,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -1900,7 +1900,7 @@
             "parent": 26196,
             "lft": 5,
             "rght": 6,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -1915,7 +1915,7 @@
             "parent": 26196,
             "lft": 25,
             "rght": 26,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -1930,7 +1930,7 @@
             "parent": 26196,
             "lft": 9,
             "rght": 10,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -1945,7 +1945,7 @@
             "parent": 26196,
             "lft": 15,
             "rght": 16,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -1960,7 +1960,7 @@
             "parent": 26196,
             "lft": 17,
             "rght": 18,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -1975,7 +1975,7 @@
             "parent": 26196,
             "lft": 19,
             "rght": 20,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -1990,7 +1990,7 @@
             "parent": 26196,
             "lft": 11,
             "rght": 12,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2005,7 +2005,7 @@
             "parent": 26196,
             "lft": 21,
             "rght": 22,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2020,7 +2020,7 @@
             "parent": 26196,
             "lft": 7,
             "rght": 8,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2035,7 +2035,7 @@
             "parent": 26196,
             "lft": 3,
             "rght": 4,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2048,9 +2048,9 @@
             "title_ru": "Фототехника",
             "title_nl": null,
             "parent": 26195,
-            "lft": 92,
-            "rght": 107,
-            "tree_id": 3,
+            "lft": 68,
+            "rght": 83,
+            "tree_id": 2,
             "level": 1
         }
     },
@@ -2063,9 +2063,9 @@
             "title_ru": "Компактные фотоаппараты",
             "title_nl": null,
             "parent": 26209,
-            "lft": 95,
-            "rght": 96,
-            "tree_id": 3,
+            "lft": 71,
+            "rght": 72,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2078,9 +2078,9 @@
             "title_ru": "Зеркальные фотоаппараты",
             "title_nl": null,
             "parent": 26209,
-            "lft": 105,
-            "rght": 106,
-            "tree_id": 3,
+            "lft": 81,
+            "rght": 82,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2093,9 +2093,9 @@
             "title_ru": "Плёночные фотоаппараты",
             "title_nl": null,
             "parent": 26209,
-            "lft": 99,
-            "rght": 100,
-            "tree_id": 3,
+            "lft": 75,
+            "rght": 76,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2108,9 +2108,9 @@
             "title_ru": "Бинокли и телескопы",
             "title_nl": null,
             "parent": 26209,
-            "lft": 93,
-            "rght": 94,
-            "tree_id": 3,
+            "lft": 69,
+            "rght": 70,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2123,9 +2123,9 @@
             "title_ru": "Объективы",
             "title_nl": null,
             "parent": 26209,
-            "lft": 101,
-            "rght": 102,
-            "tree_id": 3,
+            "lft": 77,
+            "rght": 78,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2138,9 +2138,9 @@
             "title_ru": "Оборудование и аксессуары",
             "title_nl": null,
             "parent": 26209,
-            "lft": 97,
-            "rght": 98,
-            "tree_id": 3,
+            "lft": 73,
+            "rght": 74,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2155,7 +2155,7 @@
             "parent": 26195,
             "lft": 30,
             "rght": 39,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 1
         }
     },
@@ -2170,7 +2170,7 @@
             "parent": 26216,
             "lft": 33,
             "rght": 34,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2185,7 +2185,7 @@
             "parent": 26216,
             "lft": 35,
             "rght": 36,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2200,7 +2200,7 @@
             "parent": 26216,
             "lft": 31,
             "rght": 32,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2215,7 +2215,7 @@
             "parent": 26216,
             "lft": 37,
             "rght": 38,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2230,7 +2230,7 @@
             "parent": 26195,
             "lft": 28,
             "rght": 29,
-            "tree_id": 3,
+            "tree_id": 2,
             "level": 1
         }
     },
@@ -2243,9 +2243,9 @@
             "title_ru": "Ноутбуки",
             "title_nl": null,
             "parent": 26195,
-            "lft": 64,
-            "rght": 65,
-            "tree_id": 3,
+            "lft": 40,
+            "rght": 41,
+            "tree_id": 2,
             "level": 1
         }
     },
@@ -2258,9 +2258,9 @@
             "title_ru": "Оргтехника и расходники",
             "title_nl": null,
             "parent": 26195,
-            "lft": 66,
-            "rght": 81,
-            "tree_id": 3,
+            "lft": 42,
+            "rght": 57,
+            "tree_id": 2,
             "level": 1
         }
     },
@@ -2273,9 +2273,9 @@
             "title_ru": "МФУ, копиры и сканеры",
             "title_nl": null,
             "parent": 26223,
-            "lft": 69,
-            "rght": 70,
-            "tree_id": 3,
+            "lft": 45,
+            "rght": 46,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2288,9 +2288,9 @@
             "title_ru": "Принтеры",
             "title_nl": null,
             "parent": 26223,
-            "lft": 75,
-            "rght": 76,
-            "tree_id": 3,
+            "lft": 51,
+            "rght": 52,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2303,9 +2303,9 @@
             "title_ru": "Телефония",
             "title_nl": null,
             "parent": 26223,
-            "lft": 77,
-            "rght": 78,
-            "tree_id": 3,
+            "lft": 53,
+            "rght": 54,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2318,9 +2318,9 @@
             "title_ru": "ИБП, сетевые фильтры",
             "title_nl": null,
             "parent": 26223,
-            "lft": 79,
-            "rght": 80,
-            "tree_id": 3,
+            "lft": 55,
+            "rght": 56,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2333,9 +2333,9 @@
             "title_ru": "Уничтожители бумаг",
             "title_nl": null,
             "parent": 26223,
-            "lft": 73,
-            "rght": 74,
-            "tree_id": 3,
+            "lft": 49,
+            "rght": 50,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2348,9 +2348,9 @@
             "title_ru": "Расходные материалы",
             "title_nl": null,
             "parent": 26223,
-            "lft": 67,
-            "rght": 68,
-            "tree_id": 3,
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2363,9 +2363,9 @@
             "title_ru": "Канцелярия",
             "title_nl": null,
             "parent": 26223,
-            "lft": 71,
-            "rght": 72,
-            "tree_id": 3,
+            "lft": 47,
+            "rght": 48,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2378,9 +2378,9 @@
             "title_ru": "Планшеты и электронные книги",
             "title_nl": null,
             "parent": 26195,
-            "lft": 108,
-            "rght": 115,
-            "tree_id": 3,
+            "lft": 84,
+            "rght": 91,
+            "tree_id": 2,
             "level": 1
         }
     },
@@ -2393,9 +2393,9 @@
             "title_ru": "Планшеты",
             "title_nl": null,
             "parent": 26236,
-            "lft": 113,
-            "rght": 114,
-            "tree_id": 3,
+            "lft": 89,
+            "rght": 90,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2408,9 +2408,9 @@
             "title_ru": "Электронные книги",
             "title_nl": null,
             "parent": 26236,
-            "lft": 111,
-            "rght": 112,
-            "tree_id": 3,
+            "lft": 87,
+            "rght": 88,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2423,9 +2423,9 @@
             "title_ru": "Аксессуары",
             "title_nl": null,
             "parent": 26236,
-            "lft": 109,
-            "rght": 110,
-            "tree_id": 3,
+            "lft": 85,
+            "rght": 86,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2438,9 +2438,9 @@
             "title_ru": "Телефоны",
             "title_nl": null,
             "parent": 26195,
-            "lft": 82,
-            "rght": 91,
-            "tree_id": 3,
+            "lft": 58,
+            "rght": 67,
+            "tree_id": 2,
             "level": 1
         }
     },
@@ -2453,9 +2453,9 @@
             "title_ru": "Рации",
             "title_nl": null,
             "parent": 26249,
-            "lft": 89,
-            "rght": 90,
-            "tree_id": 3,
+            "lft": 65,
+            "rght": 66,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2468,9 +2468,9 @@
             "title_ru": "Стационарные телефоны",
             "title_nl": null,
             "parent": 26249,
-            "lft": 85,
-            "rght": 86,
-            "tree_id": 3,
+            "lft": 61,
+            "rght": 62,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2483,9 +2483,9 @@
             "title_ru": "Аксессуары",
             "title_nl": null,
             "parent": 26249,
-            "lft": 83,
-            "rght": 84,
-            "tree_id": 3,
+            "lft": 59,
+            "rght": 60,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2495,12 +2495,12 @@
         "fields": {
             "title": "Goods for PC",
             "title_en": "Goods for PC",
-            "title_ru": null,
+            "title_ru": "Товары для ПК",
             "title_nl": null,
             "parent": 26195,
-            "lft": 40,
-            "rght": 63,
-            "tree_id": 3,
+            "lft": 92,
+            "rght": 115,
+            "tree_id": 2,
             "level": 1
         }
     },
@@ -2513,9 +2513,9 @@
             "title_ru": "Акустика",
             "title_nl": null,
             "parent": 26292,
-            "lft": 43,
-            "rght": 44,
-            "tree_id": 3,
+            "lft": 95,
+            "rght": 96,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2528,9 +2528,9 @@
             "title_ru": "Веб-камеры",
             "title_nl": null,
             "parent": 26292,
-            "lft": 61,
-            "rght": 62,
-            "tree_id": 3,
+            "lft": 113,
+            "rght": 114,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2543,9 +2543,9 @@
             "title_ru": "Джойстики и рули",
             "title_nl": null,
             "parent": 26292,
-            "lft": 47,
-            "rght": 48,
-            "tree_id": 3,
+            "lft": 99,
+            "rght": 100,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2558,9 +2558,9 @@
             "title_ru": "Клавиатуры и мыши",
             "title_nl": null,
             "parent": 26292,
-            "lft": 49,
-            "rght": 50,
-            "tree_id": 3,
+            "lft": 101,
+            "rght": 102,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2573,9 +2573,9 @@
             "title_ru": "Комплектующие",
             "title_nl": null,
             "parent": 26292,
-            "lft": 55,
-            "rght": 56,
-            "tree_id": 3,
+            "lft": 107,
+            "rght": 108,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2588,9 +2588,9 @@
             "title_ru": "Мониторы",
             "title_nl": null,
             "parent": 26292,
-            "lft": 51,
-            "rght": 52,
-            "tree_id": 3,
+            "lft": 103,
+            "rght": 104,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2603,9 +2603,9 @@
             "title_ru": "Переносные жёсткие диски",
             "title_nl": null,
             "parent": 26292,
-            "lft": 57,
-            "rght": 58,
-            "tree_id": 3,
+            "lft": 109,
+            "rght": 110,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2618,9 +2618,9 @@
             "title_ru": "Сетевое оборудование",
             "title_nl": null,
             "parent": 26292,
-            "lft": 53,
-            "rght": 54,
-            "tree_id": 3,
+            "lft": 105,
+            "rght": 106,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2633,9 +2633,9 @@
             "title_ru": "ТВ-тюнеры",
             "title_nl": null,
             "parent": 26292,
-            "lft": 59,
-            "rght": 60,
-            "tree_id": 3,
+            "lft": 111,
+            "rght": 112,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2648,9 +2648,9 @@
             "title_ru": "Флэшки и карты памяти",
             "title_nl": null,
             "parent": 26292,
-            "lft": 45,
-            "rght": 46,
-            "tree_id": 3,
+            "lft": 97,
+            "rght": 98,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -2663,9 +2663,9 @@
             "title_ru": "Аксессуары",
             "title_nl": null,
             "parent": 26292,
-            "lft": 41,
-            "rght": 42,
-            "tree_id": 3,
+            "lft": 93,
+            "rght": 94,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -3655,7 +3655,7 @@
             "parent": null,
             "lft": 1,
             "rght": 64,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 0
         }
     },
@@ -3670,7 +3670,7 @@
             "parent": 26382,
             "lft": 36,
             "rght": 63,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 1
         }
     },
@@ -3685,7 +3685,7 @@
             "parent": 26383,
             "lft": 45,
             "rght": 46,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3700,7 +3700,7 @@
             "parent": 26383,
             "lft": 51,
             "rght": 52,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3715,7 +3715,7 @@
             "parent": 26383,
             "lft": 43,
             "rght": 44,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3730,7 +3730,7 @@
             "parent": 26383,
             "lft": 55,
             "rght": 56,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3745,7 +3745,7 @@
             "parent": 26383,
             "lft": 49,
             "rght": 50,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3760,7 +3760,7 @@
             "parent": 26383,
             "lft": 37,
             "rght": 38,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3775,7 +3775,7 @@
             "parent": 26383,
             "lft": 57,
             "rght": 58,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3790,7 +3790,7 @@
             "parent": 26383,
             "lft": 59,
             "rght": 60,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3805,7 +3805,7 @@
             "parent": 26383,
             "lft": 53,
             "rght": 54,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3820,7 +3820,7 @@
             "parent": 26382,
             "lft": 2,
             "rght": 35,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 1
         }
     },
@@ -3835,7 +3835,7 @@
             "parent": 26393,
             "lft": 15,
             "rght": 16,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3850,7 +3850,7 @@
             "parent": 26393,
             "lft": 29,
             "rght": 30,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3865,7 +3865,7 @@
             "parent": 26393,
             "lft": 13,
             "rght": 14,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3880,7 +3880,7 @@
             "parent": 26393,
             "lft": 11,
             "rght": 12,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3895,7 +3895,7 @@
             "parent": 26393,
             "lft": 17,
             "rght": 18,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3910,7 +3910,7 @@
             "parent": 26393,
             "lft": 27,
             "rght": 28,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -3925,7 +3925,7 @@
             "parent": null,
             "lft": 1,
             "rght": 114,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 0
         }
     },
@@ -3940,7 +3940,7 @@
             "parent": 26400,
             "lft": 2,
             "rght": 57,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 1
         }
     },
@@ -3955,7 +3955,7 @@
             "parent": 26401,
             "lft": 29,
             "rght": 30,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -3970,7 +3970,7 @@
             "parent": 26401,
             "lft": 5,
             "rght": 6,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -3985,7 +3985,7 @@
             "parent": 26401,
             "lft": 27,
             "rght": 28,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4000,7 +4000,7 @@
             "parent": 26401,
             "lft": 21,
             "rght": 22,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4015,7 +4015,7 @@
             "parent": 26401,
             "lft": 13,
             "rght": 14,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4030,7 +4030,7 @@
             "parent": 26401,
             "lft": 9,
             "rght": 10,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4045,7 +4045,7 @@
             "parent": 26401,
             "lft": 39,
             "rght": 40,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4060,7 +4060,7 @@
             "parent": 26401,
             "lft": 3,
             "rght": 4,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4075,7 +4075,7 @@
             "parent": 26401,
             "lft": 51,
             "rght": 52,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4090,7 +4090,7 @@
             "parent": 26401,
             "lft": 15,
             "rght": 16,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4105,7 +4105,7 @@
             "parent": 26401,
             "lft": 25,
             "rght": 26,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4120,7 +4120,7 @@
             "parent": 26401,
             "lft": 7,
             "rght": 8,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4135,7 +4135,7 @@
             "parent": 26401,
             "lft": 17,
             "rght": 18,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4150,7 +4150,7 @@
             "parent": 26401,
             "lft": 35,
             "rght": 36,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4165,7 +4165,7 @@
             "parent": 26401,
             "lft": 37,
             "rght": 38,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4180,7 +4180,7 @@
             "parent": 26401,
             "lft": 47,
             "rght": 48,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4195,7 +4195,7 @@
             "parent": 26401,
             "lft": 45,
             "rght": 46,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4210,7 +4210,7 @@
             "parent": 26401,
             "lft": 43,
             "rght": 44,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4225,7 +4225,7 @@
             "parent": 26401,
             "lft": 31,
             "rght": 32,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4240,7 +4240,7 @@
             "parent": 26401,
             "lft": 11,
             "rght": 12,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4255,7 +4255,7 @@
             "parent": 26401,
             "lft": 55,
             "rght": 56,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4270,7 +4270,7 @@
             "parent": 26401,
             "lft": 53,
             "rght": 54,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4285,7 +4285,7 @@
             "parent": 26401,
             "lft": 41,
             "rght": 42,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4300,7 +4300,7 @@
             "parent": 26401,
             "lft": 23,
             "rght": 24,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4315,7 +4315,7 @@
             "parent": 26401,
             "lft": 33,
             "rght": 34,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4330,7 +4330,7 @@
             "parent": 26400,
             "lft": 58,
             "rght": 113,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 1
         }
     },
@@ -4345,7 +4345,7 @@
             "parent": 26427,
             "lft": 85,
             "rght": 86,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4360,7 +4360,7 @@
             "parent": 26427,
             "lft": 61,
             "rght": 62,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4375,7 +4375,7 @@
             "parent": 26427,
             "lft": 83,
             "rght": 84,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4390,7 +4390,7 @@
             "parent": 26427,
             "lft": 69,
             "rght": 70,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4405,7 +4405,7 @@
             "parent": 26427,
             "lft": 65,
             "rght": 66,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4420,7 +4420,7 @@
             "parent": 26427,
             "lft": 95,
             "rght": 96,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4435,7 +4435,7 @@
             "parent": 26427,
             "lft": 59,
             "rght": 60,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4450,7 +4450,7 @@
             "parent": 26427,
             "lft": 107,
             "rght": 108,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4465,7 +4465,7 @@
             "parent": 26427,
             "lft": 71,
             "rght": 72,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4480,7 +4480,7 @@
             "parent": 26427,
             "lft": 81,
             "rght": 82,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4495,7 +4495,7 @@
             "parent": 26427,
             "lft": 63,
             "rght": 64,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4510,7 +4510,7 @@
             "parent": 26427,
             "lft": 73,
             "rght": 74,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4525,7 +4525,7 @@
             "parent": 26427,
             "lft": 91,
             "rght": 92,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4540,7 +4540,7 @@
             "parent": 26427,
             "lft": 93,
             "rght": 94,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4555,7 +4555,7 @@
             "parent": 26427,
             "lft": 77,
             "rght": 78,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4570,7 +4570,7 @@
             "parent": 26427,
             "lft": 103,
             "rght": 104,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4585,7 +4585,7 @@
             "parent": 26427,
             "lft": 101,
             "rght": 102,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4600,7 +4600,7 @@
             "parent": 26427,
             "lft": 99,
             "rght": 100,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4615,7 +4615,7 @@
             "parent": 26427,
             "lft": 87,
             "rght": 88,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4630,7 +4630,7 @@
             "parent": 26427,
             "lft": 67,
             "rght": 68,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4645,7 +4645,7 @@
             "parent": 26427,
             "lft": 111,
             "rght": 112,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4660,7 +4660,7 @@
             "parent": 26427,
             "lft": 109,
             "rght": 110,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4675,7 +4675,7 @@
             "parent": 26427,
             "lft": 97,
             "rght": 98,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4690,7 +4690,7 @@
             "parent": 26427,
             "lft": 79,
             "rght": 80,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4705,7 +4705,7 @@
             "parent": 26427,
             "lft": 89,
             "rght": 90,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -4720,7 +4720,7 @@
             "parent": null,
             "lft": 1,
             "rght": 250,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 0
         }
     },
@@ -4735,7 +4735,7 @@
             "parent": 26486,
             "lft": 154,
             "rght": 163,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -4750,7 +4750,7 @@
             "parent": 26487,
             "lft": 155,
             "rght": 156,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4765,7 +4765,7 @@
             "parent": 26487,
             "lft": 159,
             "rght": 160,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4780,7 +4780,7 @@
             "parent": 26487,
             "lft": 157,
             "rght": 158,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4795,7 +4795,7 @@
             "parent": 26487,
             "lft": 161,
             "rght": 162,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4810,7 +4810,7 @@
             "parent": 26486,
             "lft": 122,
             "rght": 123,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -4825,7 +4825,7 @@
             "parent": 26486,
             "lft": 90,
             "rght": 101,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -4840,7 +4840,7 @@
             "parent": 26493,
             "lft": 95,
             "rght": 96,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4855,7 +4855,7 @@
             "parent": 26493,
             "lft": 99,
             "rght": 100,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4870,7 +4870,7 @@
             "parent": 26493,
             "lft": 97,
             "rght": 98,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4885,7 +4885,7 @@
             "parent": 26493,
             "lft": 91,
             "rght": 92,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4900,7 +4900,7 @@
             "parent": 26493,
             "lft": 93,
             "rght": 94,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4915,7 +4915,7 @@
             "parent": 26486,
             "lft": 22,
             "rght": 35,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -4930,7 +4930,7 @@
             "parent": 26499,
             "lft": 23,
             "rght": 24,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4945,7 +4945,7 @@
             "parent": 26499,
             "lft": 33,
             "rght": 34,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4960,7 +4960,7 @@
             "parent": 26499,
             "lft": 25,
             "rght": 26,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4975,7 +4975,7 @@
             "parent": 26499,
             "lft": 31,
             "rght": 32,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -4990,7 +4990,7 @@
             "parent": 26499,
             "lft": 29,
             "rght": 30,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5005,7 +5005,7 @@
             "parent": 26486,
             "lft": 2,
             "rght": 3,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5020,7 +5020,7 @@
             "parent": 26486,
             "lft": 6,
             "rght": 21,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5035,7 +5035,7 @@
             "parent": 26506,
             "lft": 7,
             "rght": 8,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5050,7 +5050,7 @@
             "parent": 26506,
             "lft": 13,
             "rght": 14,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5065,7 +5065,7 @@
             "parent": 26506,
             "lft": 11,
             "rght": 12,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5080,7 +5080,7 @@
             "parent": 26506,
             "lft": 9,
             "rght": 10,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5095,7 +5095,7 @@
             "parent": 26506,
             "lft": 17,
             "rght": 18,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5110,7 +5110,7 @@
             "parent": 26506,
             "lft": 19,
             "rght": 20,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5125,7 +5125,7 @@
             "parent": 26506,
             "lft": 15,
             "rght": 16,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5140,7 +5140,7 @@
             "parent": 26486,
             "lft": 88,
             "rght": 89,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5155,7 +5155,7 @@
             "parent": 26486,
             "lft": 164,
             "rght": 165,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5170,7 +5170,7 @@
             "parent": 26486,
             "lft": 4,
             "rght": 5,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5185,7 +5185,7 @@
             "parent": 26486,
             "lft": 124,
             "rght": 131,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5200,7 +5200,7 @@
             "parent": 26517,
             "lft": 125,
             "rght": 126,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5215,7 +5215,7 @@
             "parent": 26517,
             "lft": 127,
             "rght": 128,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5230,7 +5230,7 @@
             "parent": 26517,
             "lft": 129,
             "rght": 130,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5245,7 +5245,7 @@
             "parent": 26486,
             "lft": 102,
             "rght": 121,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5260,7 +5260,7 @@
             "parent": 26521,
             "lft": 117,
             "rght": 118,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5275,7 +5275,7 @@
             "parent": 26521,
             "lft": 111,
             "rght": 112,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5290,7 +5290,7 @@
             "parent": 26521,
             "lft": 113,
             "rght": 114,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5305,7 +5305,7 @@
             "parent": 26521,
             "lft": 109,
             "rght": 110,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5320,7 +5320,7 @@
             "parent": 26521,
             "lft": 107,
             "rght": 108,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5335,7 +5335,7 @@
             "parent": 26521,
             "lft": 119,
             "rght": 120,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5350,7 +5350,7 @@
             "parent": 26521,
             "lft": 105,
             "rght": 106,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5365,7 +5365,7 @@
             "parent": 26521,
             "lft": 115,
             "rght": 116,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5380,7 +5380,7 @@
             "parent": 26521,
             "lft": 103,
             "rght": 104,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5393,9 +5393,9 @@
             "title_ru": "Охрана, безопасность",
             "title_nl": null,
             "parent": 26486,
-            "lft": 234,
-            "rght": 235,
-            "tree_id": 7,
+            "lft": 232,
+            "rght": 233,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5410,7 +5410,7 @@
             "parent": 26486,
             "lft": 132,
             "rght": 133,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5425,7 +5425,7 @@
             "parent": 26486,
             "lft": 152,
             "rght": 153,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5438,9 +5438,9 @@
             "title_ru": "Реклама, полиграфия",
             "title_nl": null,
             "parent": 26486,
-            "lft": 172,
-            "rght": 177,
-            "tree_id": 7,
+            "lft": 170,
+            "rght": 175,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5453,9 +5453,9 @@
             "title_ru": "Маркетинг, реклама, PR",
             "title_nl": null,
             "parent": 26534,
-            "lft": 173,
-            "rght": 174,
-            "tree_id": 7,
+            "lft": 171,
+            "rght": 172,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5468,9 +5468,9 @@
             "title_ru": "Полиграфия, дизайн",
             "title_nl": null,
             "parent": 26534,
-            "lft": 175,
-            "rght": 176,
-            "tree_id": 7,
+            "lft": 173,
+            "rght": 174,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5483,9 +5483,9 @@
             "title_ru": "Ремонт и обслуживание техники",
             "title_nl": null,
             "parent": 26486,
-            "lft": 218,
-            "rght": 233,
-            "tree_id": 7,
+            "lft": 216,
+            "rght": 231,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5498,9 +5498,9 @@
             "title_ru": "Телевизоры",
             "title_nl": null,
             "parent": 26537,
-            "lft": 231,
-            "rght": 232,
-            "tree_id": 7,
+            "lft": 229,
+            "rght": 230,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5513,9 +5513,9 @@
             "title_ru": "Компьютерная техника",
             "title_nl": null,
             "parent": 26537,
-            "lft": 219,
-            "rght": 220,
-            "tree_id": 7,
+            "lft": 217,
+            "rght": 218,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5528,9 +5528,9 @@
             "title_ru": "Игровые приставки",
             "title_nl": null,
             "parent": 26537,
-            "lft": 221,
-            "rght": 222,
-            "tree_id": 7,
+            "lft": 219,
+            "rght": 220,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5543,9 +5543,9 @@
             "title_ru": "Мобильные устройства",
             "title_nl": null,
             "parent": 26537,
-            "lft": 225,
-            "rght": 226,
-            "tree_id": 7,
+            "lft": 223,
+            "rght": 224,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5558,9 +5558,9 @@
             "title_ru": "Мелкая бытовая техника",
             "title_nl": null,
             "parent": 26537,
-            "lft": 229,
-            "rght": 230,
-            "tree_id": 7,
+            "lft": 227,
+            "rght": 228,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5573,9 +5573,9 @@
             "title_ru": "Фото-, аудио-, видеотехника",
             "title_nl": null,
             "parent": 26537,
-            "lft": 227,
-            "rght": 228,
-            "tree_id": 7,
+            "lft": 225,
+            "rght": 226,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5588,9 +5588,9 @@
             "title_ru": "Крупная бытовая техника",
             "title_nl": null,
             "parent": 26537,
-            "lft": 223,
-            "rght": 224,
-            "tree_id": 7,
+            "lft": 221,
+            "rght": 222,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5603,9 +5603,9 @@
             "title_ru": "Ремонт и отделка",
             "title_nl": null,
             "parent": 26486,
-            "lft": 178,
-            "rght": 217,
-            "tree_id": 7,
+            "lft": 176,
+            "rght": 215,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5618,9 +5618,9 @@
             "title_ru": "Сборка и ремонт мебели",
             "title_nl": null,
             "parent": 26545,
-            "lft": 179,
-            "rght": 180,
-            "tree_id": 7,
+            "lft": 177,
+            "rght": 178,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5633,9 +5633,9 @@
             "title_ru": "Остекление балконов",
             "title_nl": null,
             "parent": 26545,
-            "lft": 181,
-            "rght": 182,
-            "tree_id": 7,
+            "lft": 179,
+            "rght": 180,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5648,9 +5648,9 @@
             "title_ru": "Электрика",
             "title_nl": null,
             "parent": 26545,
-            "lft": 185,
-            "rght": 186,
-            "tree_id": 7,
+            "lft": 183,
+            "rght": 184,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5663,9 +5663,9 @@
             "title_ru": "Сантехника",
             "title_nl": null,
             "parent": 26545,
-            "lft": 205,
-            "rght": 206,
-            "tree_id": 7,
+            "lft": 203,
+            "rght": 204,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5678,9 +5678,9 @@
             "title_ru": "Ремонт офиса",
             "title_nl": null,
             "parent": 26545,
-            "lft": 197,
-            "rght": 198,
-            "tree_id": 7,
+            "lft": 195,
+            "rght": 196,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5693,9 +5693,9 @@
             "title_ru": "Ремонт квартир и домов под ключ",
             "title_nl": null,
             "parent": 26545,
-            "lft": 207,
-            "rght": 208,
-            "tree_id": 7,
+            "lft": 205,
+            "rght": 206,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5710,7 +5710,7 @@
             "parent": 26486,
             "lft": 134,
             "rght": 151,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5723,9 +5723,9 @@
             "title_ru": "Транспорт, перевозки",
             "title_nl": null,
             "parent": 26486,
-            "lft": 236,
-            "rght": 249,
-            "tree_id": 7,
+            "lft": 234,
+            "rght": 247,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5738,9 +5738,9 @@
             "title_ru": "Автосервис",
             "title_nl": null,
             "parent": 26558,
-            "lft": 237,
-            "rght": 238,
-            "tree_id": 7,
+            "lft": 235,
+            "rght": 236,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5753,9 +5753,9 @@
             "title_ru": "Аренда авто",
             "title_nl": null,
             "parent": 26558,
-            "lft": 239,
-            "rght": 240,
-            "tree_id": 7,
+            "lft": 237,
+            "rght": 238,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5768,9 +5768,9 @@
             "title_ru": "Коммерческие перевозки",
             "title_nl": null,
             "parent": 26558,
-            "lft": 241,
-            "rght": 242,
-            "tree_id": 7,
+            "lft": 239,
+            "rght": 240,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5783,9 +5783,9 @@
             "title_ru": "Грузчики",
             "title_nl": null,
             "parent": 26558,
-            "lft": 243,
-            "rght": 244,
-            "tree_id": 7,
+            "lft": 241,
+            "rght": 242,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5798,9 +5798,9 @@
             "title_ru": "Переезды",
             "title_nl": null,
             "parent": 26558,
-            "lft": 245,
-            "rght": 246,
-            "tree_id": 7,
+            "lft": 243,
+            "rght": 244,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5813,9 +5813,9 @@
             "title_ru": "Спецтехника",
             "title_nl": null,
             "parent": 26558,
-            "lft": 247,
-            "rght": 248,
-            "tree_id": 7,
+            "lft": 245,
+            "rght": 246,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5830,7 +5830,7 @@
             "parent": 26486,
             "lft": 36,
             "rght": 53,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5845,7 +5845,7 @@
             "parent": 26565,
             "lft": 43,
             "rght": 44,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5860,7 +5860,7 @@
             "parent": 26565,
             "lft": 47,
             "rght": 48,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5875,7 +5875,7 @@
             "parent": 26565,
             "lft": 45,
             "rght": 46,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5890,7 +5890,7 @@
             "parent": 26565,
             "lft": 51,
             "rght": 52,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5905,7 +5905,7 @@
             "parent": 26565,
             "lft": 37,
             "rght": 38,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5920,7 +5920,7 @@
             "parent": 26565,
             "lft": 41,
             "rght": 42,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5935,7 +5935,7 @@
             "parent": 26565,
             "lft": 39,
             "rght": 40,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5950,7 +5950,7 @@
             "parent": 26565,
             "lft": 49,
             "rght": 50,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -5965,7 +5965,7 @@
             "parent": 26486,
             "lft": 168,
             "rght": 169,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5975,12 +5975,12 @@
         "fields": {
             "title": "Photo and video capture",
             "title_en": "Photo and video capture",
-            "title_ru": "Фото- и видеосъёмка",
+            "title_ru": "Фото и видеосъёмка",
             "title_nl": null,
             "parent": 26486,
-            "lft": 170,
-            "rght": 171,
-            "tree_id": 7,
+            "lft": 248,
+            "rght": 249,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -5995,7 +5995,7 @@
             "parent": 26486,
             "lft": 166,
             "rght": 167,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -6008,9 +6008,9 @@
             "title_ru": "Мобильные телефоны",
             "title_nl": null,
             "parent": 26249,
-            "lft": 87,
-            "rght": 88,
-            "tree_id": 3,
+            "lft": 63,
+            "rght": 64,
+            "tree_id": 2,
             "level": 2
         }
     },
@@ -6025,7 +6025,7 @@
             "parent": 26025,
             "lft": 47,
             "rght": 48,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -6040,7 +6040,7 @@
             "parent": 26088,
             "lft": 51,
             "rght": 52,
-            "tree_id": 4,
+            "tree_id": 3,
             "level": 2
         }
     },
@@ -6055,7 +6055,7 @@
             "parent": null,
             "lft": 1,
             "rght": 36,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 0
         }
     },
@@ -6070,7 +6070,7 @@
             "parent": 30757,
             "lft": 12,
             "rght": 21,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 1
         }
     },
@@ -6085,7 +6085,7 @@
             "parent": 30757,
             "lft": 22,
             "rght": 35,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 1
         }
     },
@@ -6100,7 +6100,7 @@
             "parent": 30757,
             "lft": 2,
             "rght": 11,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 1
         }
     },
@@ -6115,7 +6115,7 @@
             "parent": 26427,
             "lft": 105,
             "rght": 106,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -6130,7 +6130,7 @@
             "parent": 26427,
             "lft": 75,
             "rght": 76,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -6145,7 +6145,7 @@
             "parent": 26401,
             "lft": 49,
             "rght": 50,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -6160,7 +6160,7 @@
             "parent": 26401,
             "lft": 19,
             "rght": 20,
-            "tree_id": 10,
+            "tree_id": 9,
             "level": 2
         }
     },
@@ -6175,7 +6175,7 @@
             "parent": 26383,
             "lft": 61,
             "rght": 62,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6190,7 +6190,7 @@
             "parent": 26383,
             "lft": 47,
             "rght": 48,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6205,7 +6205,7 @@
             "parent": 26383,
             "lft": 39,
             "rght": 40,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6220,7 +6220,7 @@
             "parent": 26383,
             "lft": 41,
             "rght": 42,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6233,9 +6233,9 @@
             "title_ru": "Вентиляция",
             "title_nl": null,
             "parent": 26545,
-            "lft": 213,
-            "rght": 214,
-            "tree_id": 7,
+            "lft": 211,
+            "rght": 212,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6248,9 +6248,9 @@
             "title_ru": "Высотные работы",
             "title_nl": null,
             "parent": 26545,
-            "lft": 189,
-            "rght": 190,
-            "tree_id": 7,
+            "lft": 187,
+            "rght": 188,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6263,9 +6263,9 @@
             "title_ru": "Гипсокартонные работы",
             "title_nl": null,
             "parent": 26545,
-            "lft": 203,
-            "rght": 204,
-            "tree_id": 7,
+            "lft": 201,
+            "rght": 202,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6278,9 +6278,9 @@
             "title_ru": "Двери",
             "title_nl": null,
             "parent": 26545,
-            "lft": 183,
-            "rght": 184,
-            "tree_id": 7,
+            "lft": 181,
+            "rght": 182,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6293,9 +6293,9 @@
             "title_ru": "Изоляция",
             "title_nl": null,
             "parent": 26545,
-            "lft": 191,
-            "rght": 192,
-            "tree_id": 7,
+            "lft": 189,
+            "rght": 190,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6308,9 +6308,9 @@
             "title_ru": "Металлоконструкции и кованые изделия",
             "title_nl": null,
             "parent": 26545,
-            "lft": 195,
-            "rght": 196,
-            "tree_id": 7,
+            "lft": 193,
+            "rght": 194,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6323,9 +6323,9 @@
             "title_ru": "Плиточные работы",
             "title_nl": null,
             "parent": 26545,
-            "lft": 211,
-            "rght": 212,
-            "tree_id": 7,
+            "lft": 209,
+            "rght": 210,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6338,9 +6338,9 @@
             "title_ru": "Поклейка обоев и малярные работы",
             "title_nl": null,
             "parent": 26545,
-            "lft": 215,
-            "rght": 216,
-            "tree_id": 7,
+            "lft": 213,
+            "rght": 214,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6353,9 +6353,9 @@
             "title_ru": "Полы и напольные покрытия",
             "title_nl": null,
             "parent": 26545,
-            "lft": 187,
-            "rght": 188,
-            "tree_id": 7,
+            "lft": 185,
+            "rght": 186,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6368,9 +6368,9 @@
             "title_ru": "Потолки",
             "title_nl": null,
             "parent": 26545,
-            "lft": 209,
-            "rght": 210,
-            "tree_id": 7,
+            "lft": 207,
+            "rght": 208,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6383,9 +6383,9 @@
             "title_ru": "Другое",
             "title_nl": null,
             "parent": 26545,
-            "lft": 199,
-            "rght": 200,
-            "tree_id": 7,
+            "lft": 197,
+            "rght": 198,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6398,9 +6398,9 @@
             "title_ru": "Столярные и плотницкие работы",
             "title_nl": null,
             "parent": 26545,
-            "lft": 193,
-            "rght": 194,
-            "tree_id": 7,
+            "lft": 191,
+            "rght": 192,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6413,9 +6413,9 @@
             "title_ru": "Штукатурные работы",
             "title_nl": null,
             "parent": 26545,
-            "lft": 201,
-            "rght": 202,
-            "tree_id": 7,
+            "lft": 199,
+            "rght": 200,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6430,7 +6430,7 @@
             "parent": 26393,
             "lft": 5,
             "rght": 6,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6445,7 +6445,7 @@
             "parent": 26393,
             "lft": 31,
             "rght": 32,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6460,7 +6460,7 @@
             "parent": 26393,
             "lft": 19,
             "rght": 20,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6475,7 +6475,7 @@
             "parent": 26393,
             "lft": 21,
             "rght": 22,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6490,7 +6490,7 @@
             "parent": 26393,
             "lft": 25,
             "rght": 26,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6505,7 +6505,7 @@
             "parent": 26393,
             "lft": 33,
             "rght": 34,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -6520,7 +6520,7 @@
             "parent": 26499,
             "lft": 27,
             "rght": 28,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6535,7 +6535,7 @@
             "parent": 26486,
             "lft": 54,
             "rght": 87,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 1
         }
     },
@@ -6550,7 +6550,7 @@
             "parent": 34721,
             "lft": 57,
             "rght": 58,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6565,7 +6565,7 @@
             "parent": 34721,
             "lft": 69,
             "rght": 70,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6580,7 +6580,7 @@
             "parent": 26025,
             "lft": 69,
             "rght": 70,
-            "tree_id": 9,
+            "tree_id": 8,
             "level": 2
         }
     },
@@ -6595,7 +6595,7 @@
             "parent": 26113,
             "lft": 2,
             "rght": 13,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 1
         }
     },
@@ -6610,7 +6610,7 @@
             "parent": 26113,
             "lft": 28,
             "rght": 35,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 1
         }
     },
@@ -6625,7 +6625,7 @@
             "parent": 26113,
             "lft": 36,
             "rght": 43,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 1
         }
     },
@@ -6640,7 +6640,7 @@
             "parent": 26113,
             "lft": 14,
             "rght": 19,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 1
         }
     },
@@ -6655,7 +6655,7 @@
             "parent": 26113,
             "lft": 20,
             "rght": 27,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 1
         }
     },
@@ -6670,7 +6670,7 @@
             "parent": 35451,
             "lft": 3,
             "rght": 4,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6685,7 +6685,7 @@
             "parent": 35451,
             "lft": 9,
             "rght": 10,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6700,7 +6700,7 @@
             "parent": 35451,
             "lft": 7,
             "rght": 8,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6715,7 +6715,7 @@
             "parent": 35451,
             "lft": 5,
             "rght": 6,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6730,7 +6730,7 @@
             "parent": 35451,
             "lft": 11,
             "rght": 12,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6745,7 +6745,7 @@
             "parent": 35452,
             "lft": 29,
             "rght": 30,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6760,7 +6760,7 @@
             "parent": 35452,
             "lft": 31,
             "rght": 32,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6775,7 +6775,7 @@
             "parent": 35452,
             "lft": 33,
             "rght": 34,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6790,7 +6790,7 @@
             "parent": 35453,
             "lft": 37,
             "rght": 38,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6805,7 +6805,7 @@
             "parent": 35453,
             "lft": 39,
             "rght": 40,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6820,7 +6820,7 @@
             "parent": 35453,
             "lft": 41,
             "rght": 42,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6835,7 +6835,7 @@
             "parent": 35454,
             "lft": 15,
             "rght": 16,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6850,7 +6850,7 @@
             "parent": 35454,
             "lft": 17,
             "rght": 18,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6865,7 +6865,7 @@
             "parent": 35455,
             "lft": 23,
             "rght": 24,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6880,7 +6880,7 @@
             "parent": 35455,
             "lft": 21,
             "rght": 22,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6895,7 +6895,7 @@
             "parent": 35455,
             "lft": 25,
             "rght": 26,
-            "tree_id": 6,
+            "tree_id": 5,
             "level": 2
         }
     },
@@ -6910,7 +6910,7 @@
             "parent": 26557,
             "lft": 149,
             "rght": 150,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6925,7 +6925,7 @@
             "parent": 26557,
             "lft": 143,
             "rght": 144,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6940,7 +6940,7 @@
             "parent": 26557,
             "lft": 145,
             "rght": 146,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6955,7 +6955,7 @@
             "parent": 26557,
             "lft": 137,
             "rght": 138,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6970,7 +6970,7 @@
             "parent": 26557,
             "lft": 135,
             "rght": 136,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -6985,7 +6985,7 @@
             "parent": 26557,
             "lft": 139,
             "rght": 140,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7000,7 +7000,7 @@
             "parent": 26557,
             "lft": 147,
             "rght": 148,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7015,7 +7015,7 @@
             "parent": 26557,
             "lft": 141,
             "rght": 142,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7030,7 +7030,7 @@
             "parent": 26128,
             "lft": 21,
             "rght": 22,
-            "tree_id": 5,
+            "tree_id": 4,
             "level": 2
         }
     },
@@ -7045,7 +7045,7 @@
             "parent": 30773,
             "lft": 13,
             "rght": 14,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7060,7 +7060,7 @@
             "parent": 30773,
             "lft": 15,
             "rght": 16,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7075,7 +7075,7 @@
             "parent": 30773,
             "lft": 17,
             "rght": 18,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7090,7 +7090,7 @@
             "parent": 30773,
             "lft": 19,
             "rght": 20,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7105,7 +7105,7 @@
             "parent": 30774,
             "lft": 25,
             "rght": 26,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7120,7 +7120,7 @@
             "parent": 30774,
             "lft": 31,
             "rght": 32,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7135,7 +7135,7 @@
             "parent": 30774,
             "lft": 29,
             "rght": 30,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7150,7 +7150,7 @@
             "parent": 30774,
             "lft": 27,
             "rght": 28,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7165,7 +7165,7 @@
             "parent": 30774,
             "lft": 23,
             "rght": 24,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7180,7 +7180,7 @@
             "parent": 30774,
             "lft": 33,
             "rght": 34,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7195,7 +7195,7 @@
             "parent": 30783,
             "lft": 3,
             "rght": 4,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7210,7 +7210,7 @@
             "parent": 30783,
             "lft": 5,
             "rght": 6,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7225,7 +7225,7 @@
             "parent": 30783,
             "lft": 7,
             "rght": 8,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7240,7 +7240,7 @@
             "parent": 30783,
             "lft": 9,
             "rght": 10,
-            "tree_id": 8,
+            "tree_id": 7,
             "level": 2
         }
     },
@@ -7255,7 +7255,7 @@
             "parent": 34721,
             "lft": 83,
             "rght": 84,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7270,7 +7270,7 @@
             "parent": 34721,
             "lft": 77,
             "rght": 78,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7285,7 +7285,7 @@
             "parent": 34721,
             "lft": 65,
             "rght": 66,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7300,7 +7300,7 @@
             "parent": 34721,
             "lft": 55,
             "rght": 56,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7315,7 +7315,7 @@
             "parent": 34721,
             "lft": 73,
             "rght": 74,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7330,7 +7330,7 @@
             "parent": 34721,
             "lft": 81,
             "rght": 82,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7345,7 +7345,7 @@
             "parent": 34721,
             "lft": 75,
             "rght": 76,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7360,7 +7360,7 @@
             "parent": 34721,
             "lft": 63,
             "rght": 64,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7375,7 +7375,7 @@
             "parent": 34721,
             "lft": 85,
             "rght": 86,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7390,7 +7390,7 @@
             "parent": 34721,
             "lft": 61,
             "rght": 62,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7405,7 +7405,7 @@
             "parent": 34721,
             "lft": 59,
             "rght": 60,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7420,7 +7420,7 @@
             "parent": 34721,
             "lft": 67,
             "rght": 68,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7435,7 +7435,7 @@
             "parent": 34721,
             "lft": 71,
             "rght": 72,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7450,7 +7450,7 @@
             "parent": 34721,
             "lft": 79,
             "rght": 80,
-            "tree_id": 7,
+            "tree_id": 6,
             "level": 2
         }
     },
@@ -7465,7 +7465,7 @@
             "parent": 26393,
             "lft": 23,
             "rght": 24,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -7480,7 +7480,7 @@
             "parent": 26393,
             "lft": 9,
             "rght": 10,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -7495,7 +7495,7 @@
             "parent": 26393,
             "lft": 3,
             "rght": 4,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -7510,7 +7510,7 @@
             "parent": 26393,
             "lft": 7,
             "rght": 8,
-            "tree_id": 2,
+            "tree_id": 1,
             "level": 2
         }
     },
@@ -7523,9 +7523,9 @@
             "title_ru": "Беззеркальные фотоаппараты",
             "title_nl": null,
             "parent": 26209,
-            "lft": 103,
-            "rght": 104,
-            "tree_id": 3,
+            "lft": 79,
+            "rght": 80,
+            "tree_id": 2,
             "level": 2
         }
     },

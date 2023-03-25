@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next"
 import langs from '../assets/localization.json'
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
 import useScreen from "../hooks/useScreen"
-import Flag from 'react-world-flags'
+import Flag from './Flag'
+
 
 const LanguageDropdown = () => {
 
@@ -35,7 +36,7 @@ const LanguageDropdown = () => {
                     className='flex items-center gap-2 cursor-pointer'
                 >
                     <div className="h-10 w-5 flex items-center">
-                        <Flag code={selectedLang?.flag} height='16px' />
+                        <Flag country={selectedLang?.icon} size={64} />
                     </div>
                     <p>
                         {isMinTablet && selectedLang?.name}
@@ -55,7 +56,8 @@ const LanguageDropdown = () => {
                                 }}
                             >
                                 <div className="h-6 w-[24px] md:w-5 flex items-center">
-                                    <Flag code={langs[l]?.flag} height='16px' />
+                                    <Flag country={langs[l]?.icon} size={64} />
+
                                 </div>
                                 {isMinTablet && <p className="whitespace-nowrap">
                                     {isMinTablet && langs[l]?.name}

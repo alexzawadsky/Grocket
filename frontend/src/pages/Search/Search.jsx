@@ -19,7 +19,7 @@ const Search = () => {
     return (
         <div className='grid gap-5'>
             <SearchBar />
-            <div className='pl-5 lg:pl-0'>
+            <div className='pl-0 md:pl-5 lg:pl-0'>
                 <Title text={`Products matching "${searchParams.get('search')}" (12)`} />
             </div>
             <div className='lg:grid lg:grid-cols-[1fr_3fr]'>

@@ -22,6 +22,7 @@ import LanguageSelectionBanner from "./LanguageSelectionBanner";
 import SearchBar from './SearchBar/SearchBar'
 import WindowScroll from "./WindowScroll";
 import AddressField from "./AddressField";
+import Flag from './Flag'
 
 export {
     Avatar,
@@ -47,5 +48,6 @@ export {
     ImageEditor,
     SearchBar,
     WindowScroll,
-    AddressField
+    AddressField,
+    Flag
 }

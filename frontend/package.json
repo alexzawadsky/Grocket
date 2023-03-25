@@ -31,7 +31,8 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.8.0",
     "react-world-flags": "^1.5.1",
-    "sweetalert2": "^11.7.3"
+    "sweetalert2": "^11.7.3",
+    "twemoji-parser": "^14.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

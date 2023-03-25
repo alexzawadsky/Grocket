@@ -1,25 +1,42 @@
+from django.db.models import Avg
 from django.utils.translation import gettext_lazy as _
+from djmoney.contrib.django_rest_framework import MoneyField
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.fields import ProductImagesField
-from comments.models import Comment, CommentImage, CommentReply, Status
-from products.models import Category, Favourite, Image, Product, Promotion
+from comments.services import CommentService
+from products.models import Category, Image, Product
 from products.services import ProductService
 from users.models import User
 from users.services import UserService
 
+products_services = ProductService()
+users_services = UserService()
+comments_services = CommentService()
+
 
 class CustomUserSerializer(djserializers.UserSerializer):
-    """Сериализатор модели User."""
-
     avatar = Base64ImageField(allow_null=True, required=False)
+    rating = serializers.SerializerMethodField()
+    comments_count = serializers.SerializerMethodField()
+    sold_count = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name',
-                  'avatar', 'phone', 'country', 'date_joined', 'last_login',)
+        fields = ('id', 'rating', 'comments_count', 'sold_count', 'username',
+                  'email', 'first_name', 'last_name', 'avatar', 'phone',
+                  'country', 'date_joined', 'last_login',)
+
+    def get_sold_count(self, obj):
+        return obj.products.filter(is_sold=True).count()
+
+    def get_comments_count(self, obj):
+        return obj.seller_comments.count()
+
+    def get_rating(self, obj):
+        return obj.seller_comments.aggregate(Avg('rate'))['rate__avg']
 
     def update(self, instance, validated_data):
         avatar = validated_data.get('avatar')
@@ -27,7 +44,7 @@ class CustomUserSerializer(djserializers.UserSerializer):
             first_name = instance.first_name
             last_name = instance.last_name
             username = instance.username
-            avatar = UserService().create_avatar(
+            avatar = users_services.create_avatar(
                 avatar=avatar,
                 first_name=first_name,
                 last_name=last_name,
@@ -39,8 +56,6 @@ class CustomUserSerializer(djserializers.UserSerializer):
 
 
 class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
-    """Кастомный сериализатор создания модели User."""
-
     avatar = Base64ImageField(allow_null=True, required=False)
 
     class Meta:
@@ -56,7 +71,7 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
         last_name = validated_data.get('last_name')
         username = validated_data.get('username')
 
-        avatar = UserService().create_avatar(
+        avatar = users_services.create_avatar(
             avatar=avatar,
             first_name=first_name,
             last_name=last_name,
@@ -67,73 +82,57 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
         return super().create(validated_data)
 
 
-class FavouriteSerializer(serializers.ModelSerializer):
-    """Сериализатор для избранного."""
-
-    user = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-    )
-    product = serializers.PrimaryKeyRelatedField(
-        queryset=Product.objects.all()
-    )
-
-    class Meta:
-        model = Favourite
-        fields = ('id', 'user', 'product',)
-
-    def validate_product(self, value):
-        if Favourite.objects.filter(
-            user=self.context['request'].user,
-            product=value
-        ).exists():
-            raise serializers.ValidationError(
-                _('This recipe is already in my favorites.'),
-            )
-
-        return value
-
-
-class PromotionSerializer(serializers.ModelSerializer):
+# ref
+class PromotionSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.SlugField()
+    title = serializers.CharField()
+    price = MoneyField(max_digits=19, decimal_places=2)
+    price_currency = serializers.CharField()
+    description = serializers.CharField()
 
     class Meta:
-        model = Promotion
         fields = ('id', 'name', 'title', 'price',
                   'price_currency', 'description',)
 
 
-class PromotionCreateUpdateSerializer(serializers.ModelSerializer):
-    promotions = serializers.PrimaryKeyRelatedField(
-        queryset=Promotion.objects.all(),
-        many=True
-    )
+# ref
+class PromotionCreateUpdateSerializer(serializers.Serializer):
+    promotions = serializers.ListField()
 
     class Meta:
-        model = Promotion
         fields = ('promotions',)
 
+    def validate_promotions(self, value):
+        for promotion in value:
+            if not isinstance(promotion, int):
+                raise serializers.ValidationError()
+        return value
 
-class CategorySerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = Category
-        fields = ('id', 'title',)
-
-
-class CategoryListSerializer(serializers.ModelSerializer):
+# ref
+class CategoryListSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField()
+    parent = serializers.SerializerMethodField()
     is_lower = serializers.SerializerMethodField()
 
     class Meta:
-        model = Category
-        fields = (
-            'id', 'title', 'tree_id', 'level', 'parent',
-            'is_lower',
-        )
+        fields = ('id', 'title', 'parent', 'is_lower',)
+
+    def get_parent(self, obj):
+        if obj.parent is not None:
+            return obj.parent.id
+        return None
 
     def get_is_lower(self, obj):
         return obj.is_leaf_node()
 
 
-class ProductCategorySerializer(serializers.ModelSerializer):
+# ref
+class ProductCategorySerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField()
     parents = serializers.SerializerMethodField()
 
     class Meta:
@@ -141,20 +140,23 @@ class ProductCategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'parents',)
 
     def get_parents(self, obj):
-        parents = obj.get_ancestors(ascending=False, include_self=False)
-        serializer = CategorySerializer(
+        parents = products_services.get_ancestors_by_category(
+            category_id=obj.id, ascending=False, include_self=False
+        )
+        serializer = CategoryListSerializer(
             instance=parents,
             many=True
         )
-
         return serializer.data
 
 
-class ProductImageSerializer(serializers.ModelSerializer):
+# ref
+class ProductImageSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     image = Base64ImageField(allow_null=True, required=False)
+    is_main = serializers.BooleanField()
 
     class Meta:
-        model = Image
         fields = ('id', 'image', 'is_main',)
 
 
@@ -167,39 +169,50 @@ class ProductImageCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         image = validated_data.pop('image')
-        product = validated_data.get('product')
+        # product = validated_data.get('product')
 
-        prepared_image = ProductService().prepair_image(product.id, image)
-        image = Image.objects.create(image=prepared_image, **validated_data)
+        # prepared_image = products_services.prepair_image(product.id, image)
+        image = Image.objects.create(image=image, **validated_data)
 
         return image
 
 
-class ProductReadOnlySerializer(serializers.ModelSerializer):
+# ref
+class ProductReadOnlySerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    price = MoneyField(max_digits=19, decimal_places=2)
+    price_currency = serializers.CharField()
+    address = serializers.CharField()
+    is_archived = serializers.BooleanField()
+    is_sold = serializers.BooleanField()
+    pub_date = serializers.DateTimeField()
     is_favourited = serializers.SerializerMethodField()
     promotions = serializers.SerializerMethodField()
     user = CustomUserSerializer(read_only=True)
 
     def get_is_favourited(self, obj):
         user = self.context['request'].user
-
         if user.is_authenticated:
-            return Favourite.objects.filter(user=user, product=obj).exists()
-
+            return products_services.get_is_favourited(
+                user_id=user.id, product_id=obj.id
+            )
         return False
 
     def get_promotions(self, obj):
-        promotions = obj.promotions.values_list('name', flat=True)
-
+        promotions = products_services.get_product_promotions(
+            product_id=obj.id
+        ).values_list('name', flat=True)
         return list(promotions)
 
 
+# ref
 class ProductRetrieveSerializer(ProductReadOnlySerializer):
+    description = serializers.CharField()
     category = ProductCategorySerializer(read_only=True)
     images = ProductImageSerializer(read_only=True, many=True)
 
     class Meta:
-        model = Product
         fields = (
             'id', 'name', 'user',
             'description', 'price', 'price_currency',
@@ -208,27 +221,32 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
         )
 
 
+# ref
 class ProductListSerializer(ProductReadOnlySerializer):
-    category = CategorySerializer(read_only=True)
+    description = serializers.SerializerMethodField()
     images = serializers.SerializerMethodField()
+    category = CategoryListSerializer(read_only=True)
 
     class Meta:
-        model = Product
         fields = (
-            'id', 'name', 'user',
+            'id', 'name', 'user', 'description',
             'price', 'price_currency', 'address',
             'is_archived', 'is_sold', 'is_favourited',
             'category', 'images', 'pub_date', 'promotions',
         )
 
+    def get_description(self, obj):
+        return obj.description[:200]
+
     def get_images(self, obj):
-        images = Image.objects.filter(product=obj, is_main=True)
+        images = products_services.get_product_images(
+            product_id=obj.id
+        ).order_by('-is_main')[:3]
         serializer = ProductImageSerializer(
             instance=images,
             read_only=True,
             many=True
         )
-
         return serializer.data
 
 
@@ -409,8 +427,8 @@ class ProductUpdateSerializer(ProductCreateUpdateSerializer):
         return super().update(instance, validated_data)
 
 
+# ref
 class ProductCommentSerializer(ProductReadOnlySerializer):
-
     class Meta:
         model = Product
         fields = ('id', 'name',)
@@ -422,73 +440,81 @@ class CommentUserSerializer(CustomUserSerializer):
         fields = ('id', 'first_name', 'last_name',)
 
 
-class CommentImageSerializer(serializers.ModelSerializer):
+# ref
+class CommentImageSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     image = Base64ImageField(read_only=True)
 
     class Meta:
-        model = CommentImage
-        fields = ('id', 'image', )
+        fields = ('id', 'image',)
 
 
-class CommentImageCreateSerializer(serializers.ModelSerializer):
+# ref
+class CommentImageCreateSerializer(serializers.Serializer):
     image = Base64ImageField()
 
     class Meta:
-        model = CommentImage
-        fields = ('image', 'comment',)
+        fields = ('image',)
 
 
-class StatusSerializer(serializers.ModelSerializer):
+# ref
+class StatusSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.SlugField()
+    title = serializers.CharField()
+
     class Meta:
-        model = Status
         fields = ('id', 'title', 'name',)
 
 
-class CommentReplyCreateSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-    )
-    comment = serializers.PrimaryKeyRelatedField(
-        queryset=Comment.objects.all()
-    )
+# ref
+class CommentReplyCreateSerializer(serializers.Serializer):
+    user = serializers.IntegerField()
+    comment = serializers.IntegerField()
+    text = serializers.CharField()
 
     class Meta:
-        model = CommentReply
         fields = ('user', 'comment', 'text',)
 
 
-class CommentReplyReadOnlySerializer(serializers.ModelSerializer):
+# ref
+class CommentReplyReadOnlySerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    text = serializers.CharField()
     user = CommentUserSerializer(read_only=True)
 
     class Meta:
-        model = CommentReply
-        fields = ('id', 'user', 'text' 'pub_date',)
+        fields = ('id', 'user', 'text',)
 
 
-class CommentReadOnlySerializer(serializers.ModelSerializer):
+# ref
+class CommentReadOnlySerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    rate = serializers.IntegerField(max_value=5, min_value=1)
+    text = serializers.CharField()
     user = CommentUserSerializer(read_only=True)
+    seller = CommentUserSerializer(read_only=True)
     product = ProductCommentSerializer(read_only=True)
-    images = serializers.SerializerMethodField()
-    replies = serializers.SerializerMethodField()
     status = StatusSerializer(read_only=True)
+    images = serializers.SerializerMethodField()
+    reply = serializers.SerializerMethodField()
 
     class Meta:
-        model = Comment
         fields = ('id', 'status', 'rate', 'text', 'images',
-                  'replies', 'user', 'product', 'pub_date',)
+                  'reply', 'user', 'seller', 'product',)
 
-    def get_replies(self, obj):
-        replies = CommentReply.objects.filter(comment=obj)
-        serializer = CommentReplyReadOnlySerializer(
-            instance=replies,
-            many=True,
-            read_only=True
-        )
-
-        return serializer.data
+    def get_reply(self, obj):
+        reply = comments_services.get_replies_to_comment(comment_id=obj.id)
+        if reply.exists():
+            serializer = CommentReplyReadOnlySerializer(
+                instance=reply.first(),
+                read_only=True
+            )
+            return serializer.data
+        return None
 
     def get_images(self, obj):
-        images = CommentImage.objects.filter(comment=obj)
+        images = comments_services.get_comment_images(comment_id=obj.id)
         serializer = CommentImageSerializer(
             instance=images,
             many=True,
@@ -498,71 +524,24 @@ class CommentReadOnlySerializer(serializers.ModelSerializer):
         return serializer.data
 
 
-class CommentCreateSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-    )
-    product = serializers.PrimaryKeyRelatedField(
-        queryset=Product.objects.all(),
-    )
+# ref
+class CommentCreateSerializer(serializers.Serializer):
+    user = serializers.IntegerField()
+    product = serializers.IntegerField()
     images = serializers.ListField()
-    status = serializers.PrimaryKeyRelatedField(
-        queryset=Status.objects.all()
-    )
+    rate = serializers.IntegerField(max_value=5, min_value=1)
+    text = serializers.CharField()
+    status = serializers.IntegerField()
+    status = serializers.IntegerField()
 
     class Meta:
-        model = Comment
         fields = ('user', 'product', 'images', 'rate', 'text', 'status',)
 
-    def to_representation(self, comment):
-        serializer = CommentReadOnlySerializer(comment, context=self.context)
-
-        return serializer.data
-
-    def creating_images(self, images, comment):
-        '''Создает и обрабатывает картинки.'''
-        for image in images:
-            images_serializer = CommentImageCreateSerializer(
-                data={
-                    'image': image['image'],
-                    'comment': comment.id
-                }
-            )
-            images_serializer.is_valid(raise_exception=True)
-            images_serializer.save()
-
-    def validate_product(self, obj):
-        if obj.is_archived:
-            raise serializers.ValidationError(
-                _('There is no such product or it is archived.')
-            )
-        return obj
-
-    def create(self, validated_data):
-        product = validated_data.get('product')
-        user = validated_data.get('user')
-        images = validated_data.pop('images')
-        seller = product.user
-
-        comments_exists = Comment.objects.filter(
-            user=user,
-            product=product
-        ).exists()
-
-        if seller == user:
-            raise serializers.ValidationError(
-                _('You can not add a comment to your product.')
-            )
-
-        if not comments_exists:
-            comment = Comment.objects.create(
-                seller=seller,
-                **validated_data
-            )
-            self.creating_images(images, comment)
-        else:
-            raise serializers.ValidationError(
-                _('You can not add 2 comments to one product.')
-            )
-
-        return comment
+    def validate_images(self, value):
+        serializer = CommentImageCreateSerializer(
+            data=value,
+            many=True
+        )
+        serializer.is_valid(raise_exception=True)
+        images = [image['image'] for image in serializer.validated_data]
+        return images

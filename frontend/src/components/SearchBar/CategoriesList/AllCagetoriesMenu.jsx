@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { useAllCategories } from "../../../api/api"
+import { useCategories } from "../../../api/api"
 import CategoriesListStateContext from "../../../contexts/CategoriesListStateContext"
 import { filterChildCategories } from "../utils"
 import PrimaryCategory from "./PrimaryCategory"
@@ -8,7 +8,7 @@ import SecondaryCategoriesList from './SecondaryCategoriesList'
 const FullCategoriesList = () => {
 
     const { open, setOpen } = useContext(CategoriesListStateContext)
-    const { data, error, isLoading } = useAllCategories()
+    const { data, error, isLoading } = useCategories({ all: true })
     const [parentCategory, setParentCategory] = useState()
     const [expandedCatId, setExpandedCatId] = useState(null)
 

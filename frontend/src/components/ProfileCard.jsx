@@ -8,11 +8,10 @@ import { Avatar, RatingStars } from './'
 import useScreen from '../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
 
-const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, withComments }) => {
+const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, withComments, commentsCount }) => {
 
     const { t } = useTranslation()
     const { user } = useContext(AuthContext)
-    const { isMinTablet } = useScreen()
 
     return (
         <div className='flex md:flex-col md:items-start items-center gap-4 border-2 border-black p-5 rounded-xl shrink-0 h-fit'>
@@ -29,8 +28,7 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
                 <p className={phone ? 'text-sm md:text-md flex items-center gap-2' : 'flex items-center gap-2 text-primary-100'}><HiOutlineMail width={1.5} />{email ? email : 'email@email.com'}</p>
                 <div className='flex flex-wrap gap-1 md:gap-3'>
                     <RatingStars rating={rating} />
-                    {isMinTablet && <p>{rating ? rating.toFixed(2) : '0.00'}</p>}
-                    {withComments ? <NavLink className='text-accent-orange underline' to='comments'>{t('comments')} (4)</NavLink> : null}
+                    {withComments ? <NavLink className='text-accent-orange underline' to='comments'>{t('comments')} ({commentsCount})</NavLink> : null}
                 </div>
             </div>
         </div>

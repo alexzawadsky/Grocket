@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'products',
     'comments',
+    'images',
 ]
 
 MIDDLEWARE = [
@@ -107,7 +108,7 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = [
-    BASE_DIR / 'locale',
+    BASE_DIR / 'data/locale/',
 ]
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
@@ -134,7 +135,43 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CSV_URL = 'data/csv'
+JSON_URL = 'data/json'
 # <--- Настройка путей --->
+
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'main': {
+#             'format': '{levelname} {asctime} {module} {message}',
+#             'style': '{',
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs.log'),
+#             'formatter': 'main'
+#         },
+#     },
+#     'loggers': {
+#         # 'django': {
+#         #     'handlers': ['file'],
+#         #     'propagate': True,
+#         # },
+#         'django.request': {
+#             'handlers': ['file'],
+#             'level': 'ERROR',
+#             'propagate': False,
+#         },
+#         'test': {
+#             'handlers': ['file'],
+#             'level': 'INFO',
+#         }
+#     }
+# }
 
 
 # Email бекенд
@@ -144,7 +181,7 @@ SITE_NAME = 'Grocket'
 # API
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -164,7 +201,7 @@ REST_FRAMEWORK = {
 
 # JWT токены
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=500),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10000),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
     'UPDATE_LAST_LOGIN': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
@@ -192,11 +229,13 @@ DJOSER = {
 }
 
 
+# <--- Работа с каринками --->
+
 # Обработка изображения аватарки
 AVATAR = {
     'COLORS': [
-        'fbf8cc', 'fde4cf', 'ffcfd2', 'f1c0e8', 'cfbaf0',
-        '90dbf4', '8eecf5', '98f5e1', 'b9fbc0', 'a3c4f3',
+        '#fbf8cc', '#fde4cf', '#ffcfd2', '#f1c0e8', '#cfbaf0',
+        '#90dbf4', '#8eecf5', '#98f5e1', '#b9fbc0', '#a3c4f3',
     ],
     'SIZE': (500, 500),
     'FONT_URL': os.path.join(DATA_ROOT, 'fonts'),
@@ -206,21 +245,22 @@ AVATAR = {
     'FONT_FILL': '#1C0606',
 }
 
-# Обработка изображения товара и добавления вотермарки
-PRODUCT_IMAGE = {
-    'SIZE': (400, 400),
+# Добавления вотермарки
+WATERMARK = {
     'WATERMARK_INDENTS': (100, 100),
     'WATERMARK_URL': os.path.join(DATA_ROOT, 'img_templates'),
     'WATERMARK_FILE_NAME': 'watermark.png',
+    'FORMAT': 'PNG',  # Большими буквами; ФОРМАТ КАРТИНКИ, А НЕ ВОТЕРМАРКИ
 }
 
-# # Список статусов комментариев
-# COMMENT_STATUSES = [
-#     _('Bought'),
-#     _('Did not agree'),
-#     _('Ignored'),
-#     _('Other'),
-# ]
+# Основная обработка картинок
+BASE_IMAGE_SETTINGS = {
+    'SIZE': (700, 700),
+    'FORMAT': 'PNG',  # Большими буквами
+}
+
+# <--- Работа с каринками --->
+
 
 # Брокер для Celery
 CELERY_BROKER_URL = 'redis://localhost:6379'

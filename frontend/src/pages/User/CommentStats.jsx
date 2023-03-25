@@ -22,7 +22,7 @@ const CommentsStats = ({ count, stats }) => {
     return (
         <div className='w-full grid gap-1 md:gap-2 lg:gap-3'>
             <div className='flex gap-5 items-center'>
-                <p className='font-bold text-xl'>{stats?.avg.toFixed(2)}</p>
+                <p className='font-bold text-xl'>{stats?.avg}</p>
                 <RatingStars rating={stats?.avg} />
             </div>
             <p>{t('based_on')} {count} {t('based_comments')}</p>

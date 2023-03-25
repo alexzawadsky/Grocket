@@ -9,7 +9,7 @@ const CategoryLink = ({ id, children }) => {
     return (
         <NavLink
             className='w-fit block'
-            to={`/search?category=${id}`}
+            to={`/search?category_id=${id}`}
             onClick={() => setOpen(false)}
         >
             {children}

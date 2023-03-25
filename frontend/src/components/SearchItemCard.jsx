@@ -145,15 +145,15 @@ const SearchItemCard = ({ product, isCard }) => {
                         {product?.user?.first_name} {product?.user?.last_name} {product?.user?.id === user?.user_id && `(${t('me')})`}
                     </NavLink>
                     <div className='flex items-center gap-1.5 flex-wrap'>
-                        <RatingStars rating={5} />
+                        <RatingStars rating={product?.user?.rating} />
                         <NavLink
                             to={product?.user?.id === user?.user_id ? '/users/me/comments' : `/users/${product?.user?.id}/comments`}
                             className='text-sm hover:text-accent-orange'
                         >
-                            {t('comments')} (23)
+                            {t('comments')} ({product?.user?.comments_count})
                         </NavLink>
                     </div>
-                    <p>12 {t('items_sold')}</p>
+                    <p>{product?.user?.sold_count} {t('items_sold')}</p>
                     {product?.user?.id !== user?.user_id && <NavLink
                         className='text-accent-orange flex items-center gap-2 h-fit'
                         to={`/users/${product?.user?.id}`}

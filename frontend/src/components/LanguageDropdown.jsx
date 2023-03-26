@@ -33,7 +33,7 @@ const LanguageDropdown = () => {
             >
                 <button
                     onClick={() => setOpen(prevState => !prevState)}
-                    className='flex items-center md:gap-2 cursor-pointer'
+                    className='flex items-center gap-0.5 md:gap-2 cursor-pointer'
                 >
                     <div className="h-10 w-5 flex items-center">
                         <Flag country={selectedLang?.icon} size={64} />

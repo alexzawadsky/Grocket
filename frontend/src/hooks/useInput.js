@@ -4,7 +4,7 @@ const useInput = (initialValue, validations) => {
     const [value, setValue] = useState(initialValue)
     const [isDirty, setIsDirty] = useState(false)
     const valid = useValidation(value, validations)
-    const allValid = !Object.values(valid).some(item => item) && value.length > 0
+    const allValid = Object.values(valid).every(item => !item)
 
     const checkValue = (e) => {
         setValue(e.target.value)

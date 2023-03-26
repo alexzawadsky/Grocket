@@ -2,7 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
 import api from "../api/api";
-import { alertErr, getCookie } from "../utils";
+import { alertErr, getCookie, notification } from "../utils";
 import { useQueryClient } from "react-query";
 import SearchHistoryContext from "./HistoryContext";
 
@@ -65,7 +65,10 @@ export const AuthProvider = ({ children }) => {
                     'X-CSRFToken': getCookie('csrftoken')
                 }
             }
-        ).then(_ => alert('Acc created, activate to login')).catch(err => alert(err))
+        ).then(_ => {
+            notification('Acc created')
+            navigate('/login')
+        }).catch(err => alert(err))
     };
 
     const logoutUser = () => {

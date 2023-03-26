@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import useInput from '../../hooks/useInput'
-import { Input, ImageEditor, AddressField, GMap } from '../../components'
-import { deleteImage } from './utils'
+import useInput from '../hooks/useInput'
+import { Input, ImageEditor, AddressField, GMap } from '../components'
+import { deleteImage } from '../pages/Sell/utils'
 import { BsTrashFill } from 'react-icons/bs'
-import { prepareImages } from './utils'
+import { prepareImages } from '../pages/Sell/utils'
 import { useTranslation } from 'react-i18next'
-import useScreen from '../../hooks/useScreen'
+import useScreen from '../hooks/useScreen'
 
 const ProductForm = ({ data, setData, setValid }) => {
 

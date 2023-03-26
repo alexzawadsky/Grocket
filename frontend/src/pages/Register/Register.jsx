@@ -30,7 +30,7 @@ const Register = () => {
 
     return (
         <div className='flex h-full md:items-center'>
-            <div className="grid w-full md:w-fit md:grid-cols-[300px_400px] lg:grid-cols-[300px_500px] xl:grid-cols-[300px_550px] gap-10 mx-auto">
+            <div className="grid w-full md:w-fit md:grid-cols-[300px_400px] lg:grid-cols-[300px_450px] xl:grid-cols-[300px_500px] gap-10 mx-auto">
                 {isMinTablet && <div className='ml-auto w-fit'><ProfileCard
                     id={0}
                     firstName={formData?.first_name}
@@ -46,18 +46,19 @@ const Register = () => {
                     <div className="ml-5">
                         <Title text={t('create_acc')} />
                     </div>
-                    <div className='p-5 rounded-xl shadow-md'>
+                    <div className='p-5 rounded-xl shadow-md border'>
                         <CreateUserForm
                             setFormData={setFormData}
                             setValid={setValid}
                         />
+                        <button
+                            className='button-fill-orange !w-fit !h-10 mt-5'
+                            disabled={!valid}
+                        >
+                            {t('register')}
+                        </button>
                     </div>
-                    <button
-                        className='button-fill-orange !w-fit !h-10 ml-5'
-                        disabled={!valid}
-                    >
-                        {t('register')}
-                    </button>
+
                     <div className='flex gap-2 ml-5'>
                         <p>{t('already_have_acc')}?</p>
                         <NavLink to='/login' className='underline text-accent-orange'>{t('login')}</NavLink>

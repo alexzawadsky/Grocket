@@ -14,14 +14,14 @@ const AddComment = () => {
 
     const { t } = useTranslation()
     const { profileId } = useParams()
-    const products = useUserProducts(profileId, {})
+    const products = useUserProducts(profileId, { for_comments: true })
     const statuses = useCommentStatuses()
     const [filteredProducts, setFilteredProducts] = useState(products?.data?.results)
     const [selectedProduct, setSelectedProduct] = useState(null)
     const [filterString, setFilterString] = useState('')
     const [statusId, setStatusId] = useState(null)
     const [images, setImages] = useState([])
-    const text = useInput('', { isEmpty: true })
+    const text = useInput('', {})
     const [rating, setRating] = useState(1)
     const addCommentMutation = useUploadComment()
 
@@ -96,27 +96,18 @@ const AddComment = () => {
                     selectedProduct &&
                     <>
                         <h2 className="font-bold text-xl">{t('status')}</h2>
-                        <div className="grid gap-2">
+                        <div className="grid gap-1 p-1 rounded-xl border shadow-sm   grid-cols-[1fr_1fr] w-fit">
                             {
                                 statuses.data && statuses.data?.map((el, key) =>
-                                    <div className="flex item-center gap-5">
-                                        <input
-                                            checked={el?.id === statusId}
-                                            type='radio'
-                                            key={key}
-                                            name="comment-status"
-                                            id={el?.name}
-                                            onChange={() => setStatusId(el?.id)}
+                                    <div
+                                        className={`h-10 rounded-lg hover:bg-slate-100 px-2 flex items-center font-bold cursor-pointer gap-2 ${el?.id === statusId && '!bg-slate-200'}`}
+                                        key={key}
+                                        onClick={() => setStatusId(el?.id)}
+                                    >
+                                        <CommentStatus
+                                            title={el?.title}
+                                            name={el?.name}
                                         />
-                                        <label
-                                            htmlFor={el?.name}
-                                            className='flex items-center gap-1.5'
-                                        >
-                                            <CommentStatus
-                                                title={el?.title}
-                                                name={el?.name}
-                                            />
-                                        </label>
                                     </div>
                                 )
                             }

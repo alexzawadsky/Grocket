@@ -87,7 +87,7 @@ const ProductPage = () => {
                         <SellerCard profile={data.user} />
                         {data.user.id === user?.user_id && (
                             <div className='pb-3 grid gap-3'>
-                                <h2 className='text-xl font-bold'>{t('manage_your_product')}</h2>
+                                <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
                                 <ManageProductMenu product={data} />
                             </div>
                         )}
@@ -99,7 +99,7 @@ const ProductPage = () => {
                         <SellerCard profile={data.user} />
                         {data.user.id === user?.user_id && (
                             <div className='pb-3 grid gap-3'>
-                                <h2 className='text-xl font-bold'>{t('manage_your_product')}</h2>
+                                <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
                                 <ManageProductMenu product={data} />
                             </div>
                         )}

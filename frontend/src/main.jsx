@@ -10,7 +10,10 @@ import { CategoriesListStateProvider } from './contexts/CategoriesListStateConte
 
 const queryClient = new QueryClient({
   defaultOptions: {
-
+    queries: {
+      retryDelay: 0,
+      retry: 1
+    }
   }
 })
 

@@ -14,7 +14,7 @@ const ReadMore = ({ text, limit }) => {
                 :
                 <p dangerouslySetInnerHTML={{ __html: text.replace(/\n/g, "<br>") }}></p>}
             {long ? <span onClick={() => setIsReadMore(prevState => !prevState)} className="text-accent-orange cursor-pointer">
-                {isReadMore ? t('read_more') : t('read_less')}
+                {isReadMore ? `${t('read_more')}...` : t('read_less')}
             </span> : null}
         </div>
     );

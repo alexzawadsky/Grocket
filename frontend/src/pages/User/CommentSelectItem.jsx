@@ -3,7 +3,7 @@ import { Price } from "../../components"
 const CommentSelectItem = ({ item, onClick, selectable }) => {
     return (
         <div
-            className={`rounded-2xl p-3 border-2 ${selectable && 'cursor-pointer hover:bg-slate-100'} flex items-center gap-4`}
+            className={`rounded-2xl p-3 border shadow-sm ${selectable && 'cursor-pointer hover:bg-slate-100'} flex items-center gap-4`}
             onClick={onClick}
         >
             <img

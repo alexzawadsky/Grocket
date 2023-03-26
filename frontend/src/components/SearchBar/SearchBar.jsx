@@ -56,9 +56,9 @@ const Search = () => {
                     </button>
                 </div>
             </form>
-            <div className={open && 'mt-3'}>
+            {open && <div className='mt-3'>
                 <FullCategoriesList />
-            </div>
+            </div>}
         </div>
     )
 }

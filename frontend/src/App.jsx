@@ -6,12 +6,12 @@ import {
     Landing,
     Login,
     Sell,
-    MyProfile,
-    MyComments,
+    UserProfile,
+    UserComments,
     NotFound,
-    MyLots,
+    UserProductsPage,
     ProductPage,
-    MyFavourites,
+    Favourites,
     Register,
     PasswordReset,
     SearchHistoryPage,
@@ -50,16 +50,15 @@ function App() {
                                     <Route path='register' element={<Register />} />
                                     <Route path='history' element={<SearchHistoryPage />} />
                                     <Route path='products/:productId' element={<ProductPage />} />
-                                    <Route path='users/:profileId' element={<MyProfile />}>
+                                    <Route path='users/:profileId' element={<UserProfile />}>
                                         <Route path='settings' element={<ProfileSettings />}>
                                             <Route path='password' element={<PasswordReset />} />
                                             <Route path='avatar' element={<ChangeAvatar />} />
                                             <Route path='info' element={<UpdateProfile />} />
                                             <Route path='delete' element={<DeleteProfile />} />
                                         </Route>
-                                        <Route path='lots' element={<MyLots />} />
-                                        <Route path='favourites' element={<MyFavourites />} />
-                                        <Route path='comments' element={<MyComments />}>
+                                        <Route path='items' element={<UserProductsPage />} />
+                                        <Route path='comments' element={<UserComments />}>
                                             <Route path='add' element={<AddComment />} />
                                         </Route>
                                     </Route>

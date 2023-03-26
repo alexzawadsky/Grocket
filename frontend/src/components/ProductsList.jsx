@@ -10,9 +10,9 @@ const ProductsList = ({ query }) => {
 
     const { isLoading, data, error } = useProducts({ ...query, page: page + 1 })
 
-    if (isLoading) return <Spinner />
-    if (error) return error.message
-    if (data?.results?.length === 0) return t('no_results_found')
+    if (isLoading) return <Spinner gap />
+    if (error) return <p className='md:pl-5 md:pt-5'>{error.message}</p>
+    if (data?.results?.length === 0) return <p className='md:pl-5 md:pt-5'>{t('no_results_found')}</p>
 
     return (
         <>

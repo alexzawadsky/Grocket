@@ -4,6 +4,7 @@ import CategoriesListStateContext from "../../../contexts/CategoriesListStateCon
 import { filterChildCategories } from "../utils"
 import PrimaryCategory from "./PrimaryCategory"
 import SecondaryCategoriesList from './SecondaryCategoriesList'
+import Spinner from '../../Spinner'
 
 const FullCategoriesList = () => {
 
@@ -16,9 +17,8 @@ const FullCategoriesList = () => {
         return () => setOpen(false)
     }, [])
 
-    if (isLoading) return
-    if (error) return error.message
-
+    if (isLoading) return <div className="bg-white p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh"><Spinner /></div>
+    if (error) return
     if (!open) return
 
     return (

@@ -15,7 +15,7 @@
     "back_to_mainpage": "Back to main page",
     "description": "Description",
     "address": "Address",
-    "read_more": "...read more",
+    "read_more": "read more",
     "manage_your_product": "Manage your product",
     "add_to_archive": "Add to archive",
     "mark_as_sold": "Mark as sold",
@@ -127,5 +127,9 @@
     "show_reply": "Show reply",
     "hide_reply": "Hide reply",
     "more": "More",
-    "less": "Less"
+    "less": "Less",
+    "items": "Items",
+    "sold": "Sold",
+    "archived": "Archived",
+    "browse": "Browse files"
 }

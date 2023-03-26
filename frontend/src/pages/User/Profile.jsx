@@ -3,9 +3,7 @@ import { Navigate, NavLink, Outlet, useOutlet, useParams } from 'react-router-do
 import { FiLogOut } from 'react-icons/fi'
 import { ProfileCard, Spinner } from '../../components'
 import AuthContext from '../../contexts/AuthProvider'
-import { useMediaQuery } from 'react-responsive'
-import { AiFillHeart, AiOutlineSetting } from 'react-icons/ai'
-import { BsCartCheck, BsCartDash, BsCart } from 'react-icons/bs'
+import { BsBoxSeam } from 'react-icons/bs'
 import { useProfile } from '../../api/api'
 import { Helmet } from 'react-helmet-async'
 import useScreen from '../../hooks/useScreen'
@@ -22,27 +20,10 @@ const Profile = () => {
 
     const { data, isLoading, error } = useProfile(profileId)
 
-    const nav = [
-        {
-            title: <><BsCart />{t('items')}</>,
-            me: false,
-            link: 'lots'
-        },
-        {
-            title: <><AiFillHeart color={'red'} />{t('favourites')}</>,
-            me: true,
-            link: 'favourites'
-        },
-        {
-            title: <><AiOutlineSetting />{t('settings')}</>,
-            me: true,
-            link: 'settings'
-        },
-    ]
 
     if (isLoading) return <Spinner />
     if (error) return error.message
-    if (!outlet && isMinTablet) return <Navigate to='lots' />
+    if (isMinTablet && !outlet) return <Navigate to='items' />
 
     return (
         <div className='grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr] items-center md:items-start md:flex-row gap-5'>
@@ -65,17 +46,13 @@ const Profile = () => {
                             phone={data?.phone}
                             withComments
                         />
-                        {nav.map((n, key) =>
-                            !n.me || profileId === 'me' ?
-                                <NavLink
-                                    key={key}
-                                    to={n.link}
-                                    className='font-bold text-xl flex items-center gap-2 w-fit'
-                                >
-                                    {n.title}
-                                </NavLink> : null
-                        )}
-                        {profileId === 'me' && <button onClick={logoutUser} className='text-accent-red font-bold flex items-center gap-2 hover:gap-3 transition-all duration-150 w-fit'>{t('logout_from_acc')}<FiLogOut /></button>}
+                        {!isMinTablet && <NavLink
+                            to='items'
+                            className='font-bold text-xl flex items-center gap-2 w-fit ml-5'
+                        >
+                            <BsBoxSeam />{t('items')}
+                        </NavLink>}
+                        {profileId === 'me' && <button onClick={logoutUser} className='text-accent-red font-bold flex items-center gap-2 hover:gap-3 transition-all duration-150 w-fit ml-5'>{t('logout_from_acc')}<FiLogOut /></button>}
                     </div>
                 )
             }

@@ -15,8 +15,6 @@ import {
     Register,
     PasswordReset,
     SearchHistoryPage,
-    Sold,
-    Archieved,
     ProfileSettings,
     ChangeAvatar,
     UpdateProfile,
@@ -41,11 +39,9 @@ function App() {
                     {/* <ReactQueryDevtools /> */}
                     <WindowScroll />
                     <div className={`flex flex-col h-full ${open && 'overflow-hidden'}`}>
-                        {/* <div className={`flex flex-col h-full ${open && ''}`}> */}
                         <Navbar />
                         <main className='mt-20 container mx-auto flex-grow px-5 relative'>
                             <LanguageSelectionBanner />
-
                             <Routes>
                                 <Route path='/' errorElement={<NotFound />}>
                                     <Route path='' element={<Landing />} />
@@ -63,8 +59,6 @@ function App() {
                                         </Route>
                                         <Route path='lots' element={<MyLots />} />
                                         <Route path='favourites' element={<MyFavourites />} />
-                                        <Route path='archive' element={<Archieved />} />
-                                        <Route path='sold' element={<Sold />} />
                                         <Route path='comments' element={<MyComments />}>
                                             <Route path='add' element={<AddComment />} />
                                         </Route>

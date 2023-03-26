@@ -24,19 +24,9 @@ const Profile = () => {
 
     const nav = [
         {
-            title: <><BsCart />{t('active_items')}</>,
+            title: <><BsCart />{t('items')}</>,
             me: false,
             link: 'lots'
-        },
-        {
-            title: <><BsCartDash />{t('archived_items')}</>,
-            me: true,
-            link: 'archive'
-        },
-        {
-            title: <><BsCartCheck />{t('sold_items')}</>,
-            me: false,
-            link: 'sold'
         },
         {
             title: <><AiFillHeart color={'red'} />{t('favourites')}</>,

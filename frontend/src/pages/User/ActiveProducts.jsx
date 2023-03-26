@@ -1,15 +1,20 @@
 import UserProductsList from './UserProductsList'
 import BackToProfile from './BackToProfile'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router'
+import { Title } from '../../components'
 
 const MyLots = () => {
 
     const { t } = useTranslation()
+    const { profileId } = useParams()
 
     return (
-        <div className='grid gap-5 md:gap-0 w-full'>
+        <div className='grid gap-5 md:gap-3 w-full'>
             <BackToProfile />
-            <h1 className='font-bold text-3xl md:pl-5'>{t('active_items')}</h1>
+            <div className='ml-5'>
+                <Title text={profileId === 'me' ? t('items') : t('sellers_items')} />
+            </div>
             <UserProductsList />
         </div>
     )

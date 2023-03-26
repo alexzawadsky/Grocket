@@ -8,7 +8,7 @@ import { Avatar, RatingStars } from './'
 import useScreen from '../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
 
-const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, withComments, withPhone = true, commentsCount }) => {
+const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, withComments, commentsCount }) => {
 
     const { t } = useTranslation()
     const { user } = useContext(AuthContext)
@@ -24,7 +24,7 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
                     {firstName ? <p className='lg:text-xl'>{firstName}</p> : <p className='text-primary-100 text-xl'>{t('first_name')}</p>}
                     {lastName ? <p className='lg:text-xl'>{lastName}</p> : <p className='text-primary-100 text-xl'>{t('last_name')}</p>}
                 </div>
-                {withPhone && <p className={phone ? 'text-sm md:text-md flex items-center gap-2' : 'flex items-center gap-2 text-primary-100'}><BsFillTelephoneFill />{phone ? phone : '+XXXXXXXXXXX'}</p>}
+                {phone && <p className='text-sm md:text-md flex items-center gap-2'><BsFillTelephoneFill />{phone}</p>}
                 <p className={email ? 'text-sm md:text-md flex items-center gap-2' : 'flex items-center gap-2 text-primary-100'}><HiOutlineMail width={1.5} />{email ? email : 'email@email.com'}</p>
                 <div className='flex flex-wrap gap-1 md:gap-3'>
                     <RatingStars rating={rating} />

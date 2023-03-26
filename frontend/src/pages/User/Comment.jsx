@@ -17,7 +17,7 @@ const Comment = ({ comment }) => {
     const deleteProductMutation = useDeleteComment()
 
     return (
-        <div className='border-2 border-black rounded-lg p-5 flex flex-col gap-1'>
+        <div className='shadow rounded-lg p-5 flex flex-col gap-1'>
             <div className="flex items-center justify-between">
                 <p className='font-bold text-lg'>{comment?.user?.first_name} {comment?.user?.last_name}</p>
                 {comment?.user?.id === user?.user_id &&

@@ -7,7 +7,7 @@ const BackToProfile = () => {
     const { profileId } = useParams()
     const { isMinTablet } = useScreen()
 
-    return <NavLink className='flex items-center gap-2 hover:text-accent-orange' to={isMinTablet ? `/users/${profileId}/items` : `/users/${profileId}`}><BsArrowLeft />Back to profile</NavLink>
+    return profileId === 'me' && <NavLink className='flex items-center gap-2 hover:text-accent-orange' to={isMinTablet ? `/users/${profileId}/items` : `/users/${profileId}`}><BsArrowLeft />Back to profile</NavLink>
 
 }
 

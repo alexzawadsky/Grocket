@@ -46,7 +46,7 @@ const UserProductsList = () => {
     return (
         <div>
             <div className="flex items-center p-1 gap-1 rounded-xl shadow-sm border w-fit mb-5 md:mb-0 md:ml-5">
-                {filterOptions.map((el, key) =>
+                {filterOptions.filter(el => !el.private || profileId === 'me').map((el, key) =>
                     <div
                         key={key}
                         className={`text-sm md:text-md rounded-lg cursor-pointer h-10 font-bold p-2 flex items-center justify-center hover:bg-slate-100 ${JSON.stringify(el.query) === JSON.stringify(query) && '!bg-slate-200'} gap-2`}

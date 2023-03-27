@@ -14,7 +14,7 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
     const { user } = useContext(AuthContext)
 
     return (
-        <div className='flex md:flex-col md:items-start items-center gap-4 shadow-md p-5 rounded-xl shrink-0 h-fit border'>
+        <div className='grid-cols-[1fr_1fr] md:grid-cols-1 grid md:items-start items-center gap-5 shadow-md p-5 rounded-xl shrink-0 h-fit border'>
             <div className="w-full aspect-square relative">
                 <Avatar avatar={avatar} />
                 {user?.user_id === id ? <NavLink to='settings' className='absolute right-1 bottom-1 text-xl border-2  p-2 rounded-full bg-white'><BiPencil /></NavLink> : null}

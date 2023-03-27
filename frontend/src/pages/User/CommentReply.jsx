@@ -11,13 +11,13 @@ const CommentReply = ({ commentId, seller, reply }) => {
     const { t } = useTranslation()
     const [formExpanded, setFormExpanded] = useState(false)
     const [expanded, setExpanded] = useState(false)
-    const text = useInput('', { isEmpty: true })
+    const text = useInput('', {})
     const { user } = useContext(AuthContext)
     const addReplyMutation = useAddReply()
     const deleteReplyMutation = useDeleteCommentReply()
 
     if (!reply && seller?.id === user?.user_id) return formExpanded ?
-        <div className="grid gap-2 border-2 p-4 rounded-xl mt-4">
+        <div className="grid gap-2 shadow p-4 rounded-xl mt-4 border">
             <Input
                 instance={text}
                 autoRef
@@ -32,12 +32,12 @@ const CommentReply = ({ commentId, seller, reply }) => {
                         commentId,
                         text: text.value
                     })}
-                    className='button-fill-orange'
+                    className='button-fill-orange !h-10'
                 >
                     {t('upload')}
                 </button>
                 <button
-                    className="button-outline-orange"
+                    className="button-outline-orange !h-10"
                     onClick={() => {
                         setFormExpanded(false)
                         text.setValue('')

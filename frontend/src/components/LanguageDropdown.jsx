@@ -31,9 +31,9 @@ const LanguageDropdown = () => {
             <div
                 className="bg-white rounded-md text-black py-1 px-2 font-bold mr-auto lang-drop"
             >
-                <div
+                <button
                     onClick={() => setOpen(prevState => !prevState)}
-                    className='flex items-center gap-2 cursor-pointer'
+                    className='flex items-center gap-0.5 md:gap-2 cursor-pointer'
                 >
                     <div className="h-10 w-5 flex items-center">
                         <Flag country={selectedLang?.icon} size={64} />
@@ -41,9 +41,8 @@ const LanguageDropdown = () => {
                     <p>
                         {isMinTablet && selectedLang?.name}
                     </p>
-                    {open ?
-                        <IoIosArrowUp /> : <IoIosArrowDown />}
-                </div>
+                    {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                </button>
                 <div className="relative">
                     {open && <div className="absolute -left-3 top-2 text-black font-bold bg-white border-2 rounded-lg  p-1 grid grid-cols-2 md:grid-cols-1 gap-1 w-20 md:w-40">
                         {Object.keys(langs).map((l, key) =>

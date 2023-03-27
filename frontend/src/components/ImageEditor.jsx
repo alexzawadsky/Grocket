@@ -11,7 +11,7 @@ const ImageEditor = ({ images, setImages }) => {
     const editorRef = useRef()
     const imageInputRef = useRef()
     const { minTabletW } = useScreen()
-    let referenceWidth = 360
+    let referenceWidth = 330
     if (window.innerWidth < minTabletW) {
         referenceWidth = 1400
     }
@@ -25,25 +25,39 @@ const ImageEditor = ({ images, setImages }) => {
     return (
         <div className='flex flex-col gap-2 h-fit'>
             <h2 className="text-xl font-bold">{t('photos')}</h2>
-            <input ref={imageInputRef} type="file" onChange={(e) => setCurrentImage(e.target.files[0])} />
-            <div className='h-fit'>
-                <div className='flex flex-col items-center w-full mx-auto'>
-                    <AvatarEditor
-                        ref={editorRef}
-                        image={currentImage}
-                        width={editorWidth}
-                        height={Math.ceil(editorWidth / 4 * 3)}
-                        border={20}
-                        className='border-2'
-                        color={[255, 255, 255, 0.6]}
-                        scale={imageSize}
-                        rotate={imageRotation}
-                    />
-                    <div className="flex gap-2 w-full px-2 pt-2">
+            <div className='rounded-xl border shadow-sm p-5'>
+
+
+                <div className='flex flex-col w-full mx-auto gap-2'>
+
+                    <button
+                        type='button'
+                        onClick={() => imageInputRef.current && imageInputRef.current.click()}
+                        className='h-10 hover:bg-slate-200 px-3 font-bold border border-slate-500 rounded-lg w-fit'
+                    >
+                        {t('browse')}
+                    </button>
+
+                    <input className='hidden' ref={imageInputRef} type="file" onChange={(e) => setCurrentImage(e.target.files[0])} />
+                    <div className='mx-auto my-3'>
+                        <AvatarEditor
+                            ref={editorRef}
+                            image={currentImage}
+                            width={editorWidth}
+                            height={Math.ceil(editorWidth / 4 * 3)}
+                            border={20}
+                            className='border-2'
+                            color={[255, 255, 255, 0.6]}
+                            scale={imageSize}
+                            rotate={imageRotation}
+                        />
+                    </div>
+
+                    <div className="flex gap-1 w-full p-1 border shadow-sm rounded-lg items-center">
                         <button
                             onClick={() => setImageRotation(prevRotation => prevRotation - 90)}
                             type='button'
-                            className='p-2 text-xl text-accent-orange'
+                            className='p-2 text-xl hover:bg-slate-100  rounded-md'
                         >
                             <AiOutlineRotateLeft />
                         </button>
@@ -53,28 +67,29 @@ const ImageEditor = ({ images, setImages }) => {
                             step={0.01}
                             value={imageSize}
                             onChange={(e) => setImageSize(e.target.value)}
-                            className='grow'
+                            className='grow appearance-none w-full h-1 rounded-md bg-gray-300 focus:outline-none focus:ring-0 focus:ring-blue-500'
                             type="range"
                         />
                         <button
                             onClick={() => setImageRotation(prevRotation => prevRotation + 90)}
                             type='button'
-                            className='p-2 text-xl text-accent-orange'
+                            className='p-2 text-xl hover:bg-slate-100 rounded-md'
                         >
                             <AiOutlineRotateRight />
                         </button>
                     </div>
-                </div>
-                <div className="flex items-center gap-5 mt-3">
-                    <button
-                        onClick={() => { saveImage(editorRef, images, setImages, setCurrentImage, imageInputRef, setImageUploading) }}
-                        className='button-outline-orange'
-                        type='button'
-                        disabled={imageUploading || !currentImage}
-                    >
-                        {t('save_image')}
-                    </button>
-                    {imageUploading && `${t('loading')}...`}
+
+                    <div className="flex items-center gap-5 mt-3">
+                        <button
+                            onClick={() => { saveImage(editorRef, images, setImages, setCurrentImage, imageInputRef, setImageUploading) }}
+                            className='button-outline-orange !h-10'
+                            type='button'
+                            disabled={imageUploading || !currentImage}
+                        >
+                            {t('save_image')}
+                        </button>
+                        {imageUploading && `${t('loading')}...`}
+                    </div>
                 </div>
             </div>
         </div>

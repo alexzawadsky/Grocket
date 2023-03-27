@@ -9,7 +9,7 @@ import CategoryList from './CategoryList'
 import { useAddProduct } from '../../api/api'
 import { deleteImage } from './utils'
 import AddressField from '../../components/AddressField'
-import ProductForm from './ProductForm'
+import ProductForm from '../../forms/ProductForm'
 import { useTranslation } from 'react-i18next'
 
 const Sell = () => {

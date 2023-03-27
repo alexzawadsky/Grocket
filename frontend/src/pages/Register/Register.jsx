@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { BsFillTrashFill } from 'react-icons/bs'
 import AuthContext from '../../contexts/AuthProvider'
@@ -7,26 +7,15 @@ import { AvatarCrop, ProfileCard, Title } from '../../components'
 import { useMediaQuery } from 'react-responsive';
 import useScreen from '../../hooks/useScreen';
 import { useTranslation } from 'react-i18next';
+import CreateUserForm from '../../forms/CreateUserForm';
 
 const Register = () => {
 
     const { t } = useTranslation()
     const { registerUser } = useContext(AuthContext)
 
-    const [name, setName] = useState()
-    const [lastName, setLastName] = useState()
-    const [email, setEmail] = useState()
-    const [pwd, setPwd] = useState()
-    const [rePwd, setRePwd] = useState()
-    const [phone, setPhone] = useState()
-    const [avatar, setAvatar] = useState(null)
-    const [username, setUsername] = useState()
-    const [country, setCountry] = useState()
-    const [imageInInput, setImageInInput] = useState()
-    const [adjSaved, setAjdSaved] = useState(false)
-
-    const editorRef = useRef()
-    const fileInputRef = useRef()
+    const [formData, setFormData] = useState()
+    const [valid, setValid] = useState(null)
 
     const { isMinPC, isMinTablet, isLargePC } = useScreen()
 
@@ -34,122 +23,51 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let avatar64
-        if (imageInInput && !adjSaved && !avatar) {
-            alert('Please adjust your avatar before submitting')
-            return
-        }
-        if (avatar) {
-            const dataUrl = editorRef.current.getImage().toDataURL()
-            const result = await fetch(dataUrl)
-            const blob = await result.blob()
-            avatar64 = await toBase64(blob)
-        }
         setLoading(true)
-        const data = {
-            first_name: name,
-            last_name: lastName,
-            phone: phone,
-            email: email,
-            username: username,
-            country: country,
-            password: pwd,
-            re_password: rePwd,
-            avatar: avatar64
-        }
-        registerUser(data)
+        registerUser(formData)
         setLoading(false)
     }
 
-    const handleAdjSave = async () => {
-        if (editorRef) {
-            const dataUrl = editorRef.current.getImage().toDataURL()
-            const result = await fetch(dataUrl)
-            const blob = await result.blob()
-            setAvatar(window.URL.createObjectURL(blob))
-        }
-        setAjdSaved(true)
-    }
-
-    const removePhoto = () => {
-        fileInputRef.current.value = null
-        setImageInInput(false)
-        setAvatar(null)
-    }
-
     return (
-        <div className='grid gap-5'>
-            <Title text={t('create_acc')} />
-            <div className="grid md:grid-cols-[2fr_1fr] xl:grid-cols-[1fr_2fr_1fr] gap-5">
-                {isLargePC ? <ProfileCard
+        <div className='flex h-full md:items-center'>
+            <div className="grid w-full md:w-fit md:grid-cols-[300px_400px] lg:grid-cols-[300px_450px] xl:grid-cols-[300px_500px] gap-10 mx-auto">
+                {isMinTablet && <div className='ml-auto w-fit'><ProfileCard
                     id={0}
-                    firstName={name}
-                    lastName={lastName}
-                    email={email}
-                    phone={phone}
+                    firstName={formData?.first_name}
+                    lastName={formData?.last_name}
+                    email={formData?.email}
+                    phone={formData?.phone}
                     rating={5.00}
-                    avatar={avatar}
+                    avatar={formData?.avatar}
                     withComments={false}
-                /> : null}
-                <form onSubmit={handleSubmit} className='grid w-full lg:w-2/3 mx-auto md:grid-cols-2 gap-2 lg:gap-5 h-fit'>
-                    <div>
-                        <label htmlFor="name">{t('first_name')}:</label>
-                        <input className='grocket-input w-full' onChange={e => setName(e.target.value)} type="text" />
+                    withPhone={false}
+                /></div>}
+                <form onSubmit={handleSubmit} className='w-full max-w-[400px] lg:max-w-[550px] mx-auto mt-8 h-fit md:my-auto md:mr-auto grid gap-3'>
+                    <div className="ml-5">
+                        <Title text={t('create_acc')} />
                     </div>
-                    <div>
-                        <label htmlFor="lastname">{t('last_name')}:</label>
-                        <input className='grocket-input w-full' onChange={e => setLastName(e.target.value)} type="text" />
+                    <div className='p-5 rounded-xl shadow-md border'>
+                        <CreateUserForm
+                            setFormData={setFormData}
+                            setValid={setValid}
+                        />
+                        <button
+                            className='button-fill-orange !w-fit !h-10 mt-5'
+                            disabled={!valid}
+                        >
+                            {t('register')}
+                        </button>
                     </div>
-                    <div className='grid col-span-full'>
-                        <label htmlFor="name">{t('username')}:</label>
-                        <input className='grocket-input' onChange={e => setUsername(e.target.value)} type="text" />
+
+                    <div className='flex gap-2 ml-5'>
+                        <p>{t('already_have_acc')}?</p>
+                        <NavLink to='/login' className='underline text-accent-orange'>{t('login')}</NavLink>
                     </div>
-                    <div>
-                        <label htmlFor="name">{t('phone')}:</label>
-                        <input className='grocket-input w-full' onChange={e => setPhone(e.target.value)} type="text" />
-                    </div>
-                    <div>
-                        <label htmlFor="lastname">{t('country')}:</label>
-                        <input className='grocket-input w-full' onChange={e => setCountry(e.target.value)} type="text" />
-                    </div>
-                    <div className="grid col-span-full">
-                        <label htmlFor="email">{t('email')}:</label>
-                        <input className='grocket-input' onChange={e => setEmail(e.target.value)} type="text" />
-                    </div>
-                    <div>
-                        <label htmlFor="">{t('password')}:</label>
-                        <input className='grocket-input w-full' onChange={e => setPwd(e.target.value)} type="password" />
-                    </div>
-                    <div>
-                        <label htmlFor="">{t('repeat_pass')}:</label>
-                        <input className='grocket-input w-full' onChange={e => setRePwd(e.target.value)} type="password" />
-                    </div>
-                    <div className="flex items-center gap-3 justify-between col-span-full">
-                        <input ref={fileInputRef} onChange={e => setImageInInput(e.target.files[0])} type="file" />
-                        {imageInInput ? <button onClick={removePhoto} type='button' className='border-2 border-accent-red hover:bg-accent-red/[0.1] text-accent-red h-full px-2 font-bold rounded-full flex items-center gap-2'><BsFillTrashFill />delete</button> : null}
-                    </div>
-                    {!isMinTablet && !adjSaved ? <AvatarCrop
-                        editorRef={editorRef}
-                        image={imageInInput}
-                        setState={setAjdSaved}
-                        adjSaved={adjSaved}
-                        onSave={handleAdjSave}
-                    /> : adjSaved && !adjSaved ? <p className='text-green-600 font-bold'>{t('saved')}</p> : null}
-                    <button className='button-fill-orange col-span-full !w-full mt-3'><p>{!loading ? t('register') : `${t('loading')}...`}</p></button>
                 </form>
-                {isMinTablet ? <AvatarCrop
-                    editorRef={editorRef}
-                    image={imageInInput}
-                    setState={setAjdSaved}
-                    adjSaved={adjSaved}
-                    onSave={handleAdjSave}
-                /> : null}
             </div>
-            <div className='flex gap-2'>
-                <p>{t('already_have_acc')}?</p>
-                <NavLink to='/login' className='underline text-accent-orange hover:text-blue-900'>{t('login')}</NavLink>
-            </div>
-        </div>)
+
+        </div >
+    )
 }
 
 export default Register

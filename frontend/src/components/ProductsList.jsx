@@ -10,19 +10,18 @@ const ProductsList = ({ query }) => {
 
     const { isLoading, data, error } = useProducts({ ...query, page: page + 1 })
 
-    if (isLoading) return <Spinner />
-    if (error) return error.message
-    if (data?.results?.length === 0) return t('no_results_found')
+    if (isLoading) return <Spinner gap />
+    if (error) return <p className='md:pl-5 md:pt-5'>{error.message}</p>
+    if (data?.results?.length === 0) return <p className='md:pl-5 md:pt-5'>{t('no_results_found')}</p>
 
     return (
         <>
             <div className='grid grid-cols-2 gap-5 md:gap-0 lg:grid-cols-3 xl:grid-cols-4'>
                 {data.results.map((el, key) => <ItemCard key={key} product={el} managable={false} />)}
             </div>
-            <div className='mx-auto mt-5 '>
+            {data.pages_count > 1 && <div className='mx-auto mt-5 '>
                 <Pagination page={page} pagesCount={data.pages_count} setPage={setPage} />
-            </div>
-
+            </div>}
         </>
     )
 }

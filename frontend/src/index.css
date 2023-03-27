@@ -52,3 +52,12 @@
 .button-disabled {
   @apply button-base text-slate-600 border-slate-600 border-2
 }
+
+input[type="range"]::-webkit-progress-value {
+  @apply bg-accent-orange
+}
+
+/* For Firefox */
+input[type="range"]::-moz-progress-bar {
+  @apply bg-accent-orange
+}

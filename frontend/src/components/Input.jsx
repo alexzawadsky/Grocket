@@ -27,7 +27,7 @@ const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled,
                         onChange={instance.checkValue}
                         onBlur={instance.checkValue}
                         disabled={disabled}
-                        className='grocket-input min-h-[100px]'
+                        className='grocket-input min-h-[100px] py-2'
                     /> : <input
                         id={id}
                         type={type}
@@ -69,7 +69,7 @@ const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled,
                 onChange={instance.checkValue}
                 onBlur={instance.checkValue}
                 disabled={disabled}
-                className='grocket-input min-h-[100px]'
+                className='grocket-input min-h-[100px] py-2'
             /> : <input
                 id={id}
                 type={type}

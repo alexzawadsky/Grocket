@@ -43,12 +43,15 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                 }
             </NavLink>
             <div className={`flex items-start h-full flex-col justify-center ${product?.promotions.includes('xl') ? 'gap-2 lg:gap-3' : 'gap-1 lg:gap-2'} p-4`}>
-                <NavLink
-                    className={`font-bold hover:text-accent-orange ${product?.promotions.includes('xl') ? 'text-md xl:text-2xl' : 'text-md xl:text-xl'}`}
-                    to={`/products/${product.id}`}
-                >
-                    {product?.name}
-                </NavLink>
+                <div className="flex items-center justify-between w-full">
+                    <NavLink
+                        className={`font-bold hover:text-accent-orange flex items-center justify-between ${product?.promotions.includes('xl') ? 'text-md xl:text-2xl' : 'text-md xl:text-xl'}`}
+                        to={`/products/${product.id}`}
+                    >
+                        {product?.name}
+                    </NavLink>
+                    {product?.is_favourited && <AiFillHeart color='red' />}
+                </div>
                 <p
                     className={`text-ellipsis overflow-hidden ${product?.promotions.includes('xl') ? 'text-sm lg:text-md' : 'text-sm'}`}
                     style={{
@@ -123,12 +126,15 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
     return (
         <NavLink
             to={`/products/${product?.id}`}
-            className={`hover:bg-slate-50 rounded-2xl md:p-5 ${search && 'pb-5'} flex flex-col gap-2 transition-all duration-150`}
+            className={`hover:md:bg-slate-50 rounded-2xl md:p-5 ${search && 'pb-5'} flex flex-col gap-2 transition-all duration-150`}
         >
             <div className="rounded-lg overflow-hidden">
                 <ImagesCarousel images={product?.images} />
             </div>
-            <p className={`${search ? 'font-bold text-xl' : 'text-lg my-auto'} hover:text-accent-orange w-fit`}>{product?.name}</p>
+            <div className="flex items-center justify-between">
+                <p className={`${search ? 'font-bold text-xl' : 'text-lg my-auto'} hover:text-accent-orange w-fit flex items-center justify-between`}>{product?.name}</p>
+                {product?.is_favourited && <AiFillHeart color='red' />}
+            </div>
             <p
                 className={
                     search && product?.promotions.includes('price') ?

@@ -13,8 +13,9 @@ const HistoryList = () => {
     const { t } = useTranslation()
     const { isMinTablet, isLargePC } = useScreen()
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
+
     return (
-        <div className='grid gap-2 h-fit'>
+        <div className='grid gap-2 h-fit min-h-[20px]'>
             {isMinTablet ? (
                 <>
                     <h2 to='/history' className='text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>

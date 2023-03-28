@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useNavigate, NavLink, Outlet, useOutlet, useParams } from 'react-router-dom'
+import { useNavigate, NavLink, Outlet, useOutlet, useParams, useLocation } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
 import { ProfileCard, Spinner } from '../../components'
 import AuthContext from '../../contexts/AuthProvider'
@@ -18,6 +18,7 @@ const Profile = () => {
     const outlet = useOutlet()
     const { profileId } = useParams()
     const navigate = useNavigate()
+    const location = useLocation()
     const { data, isLoading, error } = useProfile(profileId)
 
 
@@ -30,7 +31,7 @@ const Profile = () => {
             <Helmet>
                 <title>{data.first_name} {data.last_name} - Grocket</title>
             </Helmet>
-            {(profileId !== 'me' || (!outlet || isMinTablet)) && <div className='shrink-0 grid gap-5'>
+            {((profileId !== 'me' && location.pathname === `/users/${profileId}/items`) || (!outlet || isMinTablet)) && <div className='shrink-0 grid gap-5'>
                 <ProfileCard
                     id={data?.id}
                     firstName={data?.first_name}

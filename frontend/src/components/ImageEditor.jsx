@@ -4,6 +4,7 @@ import AvatarEditor from 'react-avatar-editor'
 import { saveImage } from '../utils'
 import { AiOutlineRotateLeft, AiOutlineRotateRight } from 'react-icons/ai'
 import useScreen from '../hooks/useScreen'
+import { BsFolder } from 'react-icons/bs'
 
 const ImageEditor = ({ images, setImages }) => {
 
@@ -33,11 +34,10 @@ const ImageEditor = ({ images, setImages }) => {
                     <button
                         type='button'
                         onClick={() => imageInputRef.current && imageInputRef.current.click()}
-                        className='h-10 hover:bg-slate-200 px-3 font-bold border border-slate-500 rounded-lg w-fit'
+                        className='h-10 hover:bg-slate-200 px-5 flex items-center gap-2 font-bold border border-slate-500 rounded-xl w-fit'
                     >
-                        {t('browse')}
+                        <BsFolder />{t('browse')}
                     </button>
-
                     <input className='hidden' ref={imageInputRef} type="file" onChange={(e) => setCurrentImage(e.target.files[0])} />
                     <div className='mx-auto my-3'>
                         <AvatarEditor
@@ -52,7 +52,6 @@ const ImageEditor = ({ images, setImages }) => {
                             rotate={imageRotation}
                         />
                     </div>
-
                     <div className="flex gap-1 w-full p-1 border shadow-sm rounded-lg items-center">
                         <button
                             onClick={() => setImageRotation(prevRotation => prevRotation - 90)}
@@ -78,7 +77,6 @@ const ImageEditor = ({ images, setImages }) => {
                             <AiOutlineRotateRight />
                         </button>
                     </div>
-
                     <div className="flex items-center gap-5 mt-3">
                         <button
                             onClick={() => { saveImage(editorRef, images, setImages, setCurrentImage, imageInputRef, setImageUploading) }}

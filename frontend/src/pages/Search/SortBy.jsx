@@ -41,7 +41,7 @@ const SortBy = ({ sortBy, setSortBy }) => {
     return (
         <div>
             <p
-                className="flex items-center gap-2 sortby-drop font-bold border-2 rounded-xl py-2 px-3 cursor-pointer"
+                className="flex items-center gap-2 sortby-drop font-bold border-2 h-10 rounded-xl py-2 px-3 cursor-pointer"
                 onClick={() => setOpen(prevState => !prevState)}
             >
                 {selectedOption?.title} {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -52,7 +52,7 @@ const SortBy = ({ sortBy, setSortBy }) => {
                         <p
                             key={key}
                             onClick={() => setSortBy(el?.code)}
-                            className={`whitespace-nowrap ${el?.code === selectedOption?.code && '!bg-slate-200'} cursor-pointer hover:bg-slate-100 py-2 px-3 rounded-lg font-bold leading-none h-10 flex items-center`}
+                            className={`whitespace-nowrap ${el?.code === selectedOption?.code && '!bg-slate-200'} cursor-pointer hover:bg-slate-100 px-3 rounded-lg font-bold leading-none h-10 flex items-center`}
                         >
                             {el.title}
                         </p>)}

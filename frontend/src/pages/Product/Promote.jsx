@@ -9,6 +9,7 @@ import useAxios from '../../hooks/useAxios'
 import useScreen from '../../hooks/useScreen'
 import { alertErr } from '../../utils'
 import SearchItemCardTemplate from './SearchItemCardTemplate'
+import CardModeToggle from '../Search/CardModeToggle'
 
 const Promote = () => {
 
@@ -19,6 +20,7 @@ const Promote = () => {
     const product = useProduct(productId)
     const [selected, setSelected] = useState([])
     const api = useAxios()
+    const [isList, setIsList] = useState(true)
 
     const updateSelected = (promo) => {
         if (selected.filter(el => el.id === promo.id).length > 0) {
@@ -87,29 +89,36 @@ const Promote = () => {
                     {t('proceed_to_checkout')}
                 </button>
             </div>
-            <div className='relative overflow-hidden'>
-                {isMinTablet && <div style={{
-                    WebkitMaskImage: '-webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
-                }}>
-                    <div className='-mt-32'>
-                        <SearchItemCardTemplate />
-                    </div>
+            <div>
+                {isMinTablet && <div className='mb-5 md:mb-0 md:ml-5'>
+                    <CardModeToggle state={isList} setState={setIsList} />
                 </div>}
-                <ItemCard
-                    search
-                    horizontal
-                    product={{
-                        ...product.data,
-                        promotions: [...selected.map(el => el.name), ...product.data?.promotions]
-                    }}
-                />
-                {isMinTablet && <div style={{
-                    WebkitMaskImage: '-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
-                }}>
-                    <SearchItemCardTemplate />
-                </div>}
+
+                <div className={`${!isList && 'grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4'} relative overflow-hidden`}>
+                    {isMinTablet && <div style={{
+                        WebkitMaskImage: isList && '-webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
+                    }}>
+                        <div className={isList && '-mt-32'}>
+                            <SearchItemCardTemplate horizontal={isList} />
+                        </div>
+                    </div>}
+
+                    <ItemCard
+                        search
+                        horizontal={isList}
+                        product={{
+                            ...product.data,
+                            promotions: [...selected.map(el => el.name), ...product.data?.promotions]
+                        }}
+                    />
+                    {isMinTablet && <div style={{
+                        WebkitMaskImage: isList && '-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
+                    }}>
+                        <SearchItemCardTemplate horizontal={isList} />
+                    </div>}
+                </div>
             </div>
-        </div>
+        </div >
     )
 }
 

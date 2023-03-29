@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2'
+import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 export const toBase64 = file => new Promise((resolve, reject) => {
@@ -9,15 +9,15 @@ export const toBase64 = file => new Promise((resolve, reject) => {
 });
 
 export const alertErr = (err) => {
-    Swal.fire({
-        title: `Error ${err.status}`,
-        text: err.response.message,
-        icon: 'error',
-        timer: 1500,
-        showConfirmButton: false,
-        position: 'top',
-        backdrop: false
-    })
+    // Swal.fire({
+    //     title: `Error ${err.status}`,
+    //     text: err.response.message,
+    //     icon: 'error',
+    //     timer: 1500,
+    //     showConfirmButton: false,
+    //     position: 'top',
+    //     backdrop: false
+    // })
 }
 
 export const getCookie = (name) => {
@@ -27,41 +27,28 @@ export const getCookie = (name) => {
 }
 
 export const notification = (text) => {
-    Swal.fire({
-        title: text,
-        icon: 'success',
-        timer: 1500,
-        showConfirmButton: false,
-        position: 'top',
-        backdrop: false
-    })
+
+    toast.success(text, { duration: 1500 })
 }
 
 export const info = (text) => {
-    Swal.fire({
-        title: text,
-        icon: 'info',
-        timer: 1500,
-        showConfirmButton: false,
-        position: 'top',
-        backdrop: false
-    })
+    toast(text, { duration: 2000 })
 }
 
 export const confirm = (text, onConfirm, onConfirmText, onDenyText) => {
-    Swal.fire({
-        title: text,
-        icon: 'warning',
-        position: 'top',
-        backdrop: null,
-        confirmButtonColor: '#dc2626',
-        showCancelButton: true,
-        confirmButtonText: 'Delete',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            onConfirm()
-        }
-    })
+    // Swal.fire({
+    //     title: text,
+    //     icon: 'warning',
+    //     position: 'top',
+    //     backdrop: null,
+    //     confirmButtonColor: '#dc2626',
+    //     showCancelButton: true,
+    //     confirmButtonText: 'Delete',
+    // }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         onConfirm()
+    //     }
+    // })
 }
 
 export const saveImage = (editorRef, images, setImages, setCurrentImage, imageInputRef, setUploading) => {

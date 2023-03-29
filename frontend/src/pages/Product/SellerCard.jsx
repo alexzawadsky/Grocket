@@ -13,7 +13,7 @@ const SellerCard = ({ profile }) => {
     )
 
     return (
-        <div className='border-2 border-black p-5 rounded-xl grid gap-3 w-full'>
+        <div className='border shadow-md p-5 rounded-xl grid gap-3 w-full'>
             <div className='flex items-center gap-5'>
                 <div className='w-10 h-10'>
                     <Avatar avatar={profile.avatar} />

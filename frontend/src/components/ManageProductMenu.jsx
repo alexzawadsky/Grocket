@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useArchiveProduct, useSellProduct, useDeleteProduct } from '../api/api'
 import { NavLink } from 'react-router-dom'
 import { IoIosArrowUp, IoMdClose, IoIosArrowDown } from 'react-icons/io'
@@ -17,7 +17,7 @@ const MenuInner = ({ product }) => {
 
     return (
         <div
-            className="border-2 rounded-xl p-1 gap-1 flex flex-col items-start"
+            className="border shadow-md rounded-xl p-1 gap-1 flex flex-col items-start"
             role="none"
         >
             {!product.is_sold &&
@@ -73,6 +73,19 @@ const ManageProductMenu = ({ product, dropdown }) => {
     const { t } = useTranslation()
     const [open, setOpen] = useState(false)
 
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (open && !e.target.closest('.manage-menu-drop')) {
+                setOpen(false);
+            }
+        }
+        document.addEventListener('click', handleClickOutside)
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside)
+        }
+    }, [open])
+
     if (!dropdown) return <MenuInner product={product} />
 
     return (
@@ -91,7 +104,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
             <NavLink
                 to=''
                 type="button"
-                className="flex justify-center items-center gap-2 rounded-xl bg-white px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 min-w-32"
+                className="flex justify-center items-center gap-2 rounded-xl bg-white px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 min-w-32 manage-menu-drop"
                 id="menu-button"
                 aria-expanded="false"
                 onClick={() => setOpen(prevState => !prevState)}

@@ -49,7 +49,7 @@ const UserProductsList = () => {
                 {filterOptions.filter(el => !el.private || profileId === 'me').map((el, key) =>
                     <div
                         key={key}
-                        className={`text-sm md:text-md rounded-lg cursor-pointer h-10 font-bold p-2 flex items-center justify-center hover:bg-slate-100 ${JSON.stringify(el.query) === JSON.stringify(query) && '!bg-slate-200'} gap-2`}
+                        className={`text-sm md:text-md rounded-lg cursor-pointer h-8 transition-all font-bold p-2 flex items-center justify-center hover:bg-slate-100 ${JSON.stringify(el.query) === JSON.stringify(query) && '!bg-slate-200'} gap-2`}
                         onClick={() => setQuery(el.query)}
                     >
                         {el.title}

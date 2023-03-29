@@ -72,8 +72,8 @@ export const useSellProduct = () => {
         url: `/api/v1/products/${data.id}/sell/`,
         method: data.state ? 'delete' : 'post'
     }), {
-        onSuccess: () => {
-            notification()
+        onSuccess: (res) => {
+            notification(res.data?.message)
             queryClient.invalidateQueries('products')
             queryClient.invalidateQueries('product')
         }
@@ -87,8 +87,8 @@ export const useArchiveProduct = () => {
         url: `/api/v1/products/${data.id}/archive/`,
         method: data.state ? 'delete' : 'post'
     }), {
-        onSuccess: () => {
-            notification()
+        onSuccess: (res) => {
+            notification(res.data?.message)
             queryClient.invalidateQueries('products')
             queryClient.invalidateQueries('product')
         }

@@ -27,6 +27,7 @@ import {
 import CategoriesListStateContext from './contexts/CategoriesListStateContext';
 import { useContext } from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toaster } from 'react-hot-toast'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
             <AuthProvider>
                 <SearchHistoryProvider>
                     {/* <ReactQueryDevtools /> */}
+                    <Toaster />
                     <WindowScroll />
                     <div className={`flex flex-col h-full ${open && 'overflow-hidden'}`}>
                         <Navbar />

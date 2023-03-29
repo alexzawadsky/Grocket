@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react"
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 const convertToCurrency = (value, targetCurrency) => {
     if (parseFloat(value) % 1 === 0) return parseInt(value)
@@ -15,7 +16,7 @@ const Price = ({ price, currency }) => {
 
     return (
         <>
-            {value} {targetCurrency}
+            {value} {getSymbolFromCurrency(targetCurrency)}
         </>
     )
 }

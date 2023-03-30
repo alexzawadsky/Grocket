@@ -20,14 +20,20 @@ const SellerCard = ({ profile }) => {
                 </div>
                 <div>
                     <NavLink
-                        to={!user || user.user_id !== profile.id ? `/users/${profile.id}` : '/users/me'}
+                        to={user?.user_id !== profile.id ? `/users/${profile.id}` : '/users/me'}
                         className='hover:text-accent-orange'
                     >{profile.last_name} {profile.first_name} {user && user.user_id === profile.id ? `(${t('me')})` : null}</NavLink>
                     <RatingStars rating={profile.rate} />
                 </div>
             </div>
             <p className='text-sm text-primary-300'>{`${t('on_grocket_since')} ${date}`}</p>
-            {!user || user.user_id !== profile.id ? <NavLink className='button-fill-orange justify-center !w-full' to={`/users/${profile.id}/chat`}>Send message</NavLink> : null}
+            {user?.user_id !== profile.id &&
+                <NavLink
+                    className='button-fill-orange justify-center !w-full'
+                    to={`/users/${profile.id}/chat`}
+                >
+                    Send message
+                </NavLink>}
         </div>
     )
 }

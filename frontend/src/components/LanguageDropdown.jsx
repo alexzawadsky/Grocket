@@ -27,46 +27,39 @@ const LanguageDropdown = () => {
     }, [open])
 
     return (
-        <>
-            <div
-                className="bg-white rounded-md text-black py-1 px-2 font-bold mr-auto lang-drop"
+        <div className="bg-white rounded-md text-black py-1 px-2 font-bold mr-auto lang-drop">
+            <button
+                onClick={() => setOpen(prevState => !prevState)}
+                className='flex items-center gap-0.5 md:gap-2 cursor-pointer'
             >
-                <button
-                    onClick={() => setOpen(prevState => !prevState)}
-                    className='flex items-center gap-0.5 md:gap-2 cursor-pointer'
-                >
-                    <div className="h-10 w-5 flex items-center">
-                        <Flag country={selectedLang?.icon} size={64} />
-                    </div>
-                    <p>
-                        {isMinTablet && selectedLang?.name}
-                    </p>
-                    {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
-                </button>
-                <div className="relative">
-                    {open && <div className="absolute -left-3 top-2 text-black font-bold bg-white border-2 rounded-lg  p-1 grid grid-cols-2 md:grid-cols-1 gap-1 w-20 md:w-40">
-                        {Object.keys(langs).map((l, key) =>
-                            <div
-                                key={key}
-                                className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200'} hover:bg-slate-100 px-2 py-1 md:py-2 rounded-md leading-none cursor-pointer flex items-center gap-2`}
-                                onClick={() => {
-                                    i18n.changeLanguage(langs[l]?.code)
-                                    setOpen(false)
-                                }}
-                            >
-                                <div className="h-6 w-[24px] md:w-5 flex items-center">
-                                    <Flag country={langs[l]?.icon} size={64} />
-
-                                </div>
-                                {isMinTablet && <p className="whitespace-nowrap">
-                                    {isMinTablet && langs[l]?.name}
-                                </p>}
-                            </div>
-                        )}
-                    </div>}
+                <div className="h-10 w-5 flex items-center">
+                    <Flag country={selectedLang?.icon} size={64} />
                 </div>
+                <p>{isMinTablet && selectedLang?.name}</p>
+                {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            </button>
+            <div className="relative">
+                {open && <div className="absolute -left-3 top-2 text-black font-bold bg-white border-2 rounded-lg  p-1 grid grid-cols-2 md:grid-cols-1 gap-1 w-20 md:w-40">
+                    {Object.keys(langs).map((l, key) =>
+                        <div
+                            key={key}
+                            className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200'} hover:bg-slate-100 px-2 py-1 md:py-2 rounded-md leading-none cursor-pointer flex items-center gap-2`}
+                            onClick={() => {
+                                i18n.changeLanguage(langs[l]?.code)
+                                setOpen(false)
+                            }}
+                        >
+                            <div className="h-6 w-[24px] md:w-5 flex items-center">
+                                <Flag country={langs[l]?.icon} size={64} />
+                            </div>
+                            {isMinTablet &&
+                                <p className="whitespace-nowrap">{isMinTablet && langs[l]?.name}</p>}
+                        </div>
+                    )}
+                </div>}
             </div>
-        </>
+        </div>
+
     )
 }
 

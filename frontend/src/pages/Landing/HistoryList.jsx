@@ -16,17 +16,11 @@ const HistoryList = () => {
 
     return (
         <div className='grid gap-2 h-fit min-h-[20px]'>
-            {isMinTablet ? (
+            {isMinTablet &&
                 <>
                     <h2 to='/history' className='text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>
                         <IoBookOutline />
                         {t('you_looked_earlier')}
-                        {/* <button
-                            onClick={clearHistory}
-                            className='text-accent-red ml-auto'
-                        >
-                            <BsFillTrashFill />
-                        </button> */}
                     </h2>
                     {lookHistory.length > 0 && <button
                         onClick={clearHistory}
@@ -34,20 +28,24 @@ const HistoryList = () => {
                     >
                         <BsFillTrashFill />{t('clear_history')}
                     </button>}
-                </>
-            ) : null}
-            <div>
-                {isMinTablet && lookHistory.length === 0 &&
-                    <p className='pt-2 pl-2'>{t('nothing_yet')}</p>}
-                {isMinTablet && lookHistory.slice(0, 4).map((el, key) =>
-                    <HistoryItem key={key} content={el} />)}
-                {lookHistory.length > 0 && <NavLink
-                    className={`text-md ${(isMinTablet && !isLargePC) && '!text-sm'} flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange my-5 md:mt-2 leading-none md:pl-3`}
-                    to='/history'
-                >
-                    {t('view_full_history')}<BsArrowRight />
-                </NavLink>}
-            </div>
+                </>}
+            {isMinTablet && <div>
+                {lookHistory.length === 0 ?
+                    <p className='pt-2 pl-2'>{t('nothing_yet')}</p>
+                    :
+                    lookHistory.slice(0, 4).map((el, key) =>
+                        <HistoryItem
+                            key={key}
+                            product={el}
+                        />)
+                }
+            </div>}
+            {lookHistory.length > 0 && <NavLink
+                className={`text-md ${(isMinTablet && !isLargePC) && '!text-sm'} flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange my-5 md:mt-2 leading-none md:pl-3`}
+                to='/history'
+            >
+                {t('view_full_history')}<BsArrowRight />
+            </NavLink>}
         </div>
     )
 }

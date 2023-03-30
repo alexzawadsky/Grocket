@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { BsArchive, BsPatchCheck } from 'react-icons/bs'
 import { MdOutlineSell } from 'react-icons/md'
 
-const MenuInner = ({ product }) => {
+const MenuInner = ({ product, fullW }) => {
 
     const { t } = useTranslation()
     const archiveProductMutation = useArchiveProduct()
@@ -17,7 +17,7 @@ const MenuInner = ({ product }) => {
 
     return (
         <div
-            className="border shadow-md rounded-xl p-1 gap-1 flex flex-col items-start"
+            className={`border shadow-md rounded-xl p-1 gap-1 flex flex-col items-start ${!fullW && 'w-fit'} bg-white`}
             role="none"
         >
             {!product.is_sold &&
@@ -51,7 +51,7 @@ const MenuInner = ({ product }) => {
                         className='flex items-center gap-2 text-sm hover:bg-slate-100 h-8 rounded-lg w-full px-2'
                     >
                         <BsMegaphone />{t('promote')}
-                    </NavLink>
+                    </NavLink >
                 </>
             }
             <NavLink
@@ -64,7 +64,7 @@ const MenuInner = ({ product }) => {
                 className='text-accent-red flex items-center gap-2 text-sm hover:bg-slate-100 h-8 rounded-lg w-full px-2'>
                 <BsTrash />{t('delete')}
             </NavLink>
-        </div>
+        </div >
     )
 }
 
@@ -86,14 +86,14 @@ const ManageProductMenu = ({ product, dropdown }) => {
         }
     }, [open])
 
-    if (!dropdown) return <MenuInner product={product} />
+    if (!dropdown) return <MenuInner product={product} fullW />
 
     return (
         <div
             className="relative w-fit flex items-end justify-end border-2 rounded-xl text-left group/dropdown"
         >
             {open && <div
-                className="w-44 absolute bottom-10 -left-1 z-10 rounded-xl origin-top-right bg-white"
+                className="w-44 absolute bottom-10 -left-1 z-10 origin-top-right "
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="menu-button"

@@ -7,7 +7,6 @@ const AddressField = ({ setAddress, split }) => {
 
     useEffect(() => {
         const autocompleteObject = new google.maps.places.Autocomplete(document.getElementById('address'))
-        // autocomleteObject
         const handleAddress = () => {
             const place = autocompleteObject.getPlace()
             setAddress({

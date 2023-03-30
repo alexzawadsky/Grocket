@@ -13,7 +13,7 @@ import ProfileSettings, { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProf
 import EditProduct from "./Sell/EditProduct";
 import Promote from "./Product/Promote";
 import AddComment from "./User/AddComment";
-import Search from "./Search/Search";
+import Search from "./Search/SearchPage";
 
 export {
     Landing,

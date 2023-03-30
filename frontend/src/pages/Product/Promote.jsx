@@ -93,7 +93,6 @@ const Promote = () => {
                 {isMinTablet && <div className='mb-5 md:mb-0 md:ml-5'>
                     <CardModeToggle state={isList} setState={setIsList} />
                 </div>}
-
                 <div className={`${!isList && 'grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4'} relative overflow-hidden`}>
                     {isMinTablet && <div style={{
                         WebkitMaskImage: isList && '-webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'

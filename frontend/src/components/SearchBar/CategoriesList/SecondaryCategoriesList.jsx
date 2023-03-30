@@ -1,5 +1,5 @@
 import CategoryLink from "./CategoryLink"
-import ThirdLevelCategoriesList from "./ThirdLevelCategoriesList"
+import ThirdLevelCategoriesList from "./ThirdCategoriesList"
 import { filterChildCategories } from "../utils"
 
 const ChildCategoriesList = ({ data, parentCategory, childCategories, expandedCatId, setExpandedCatId }) => {
@@ -11,6 +11,14 @@ const ChildCategoriesList = ({ data, parentCategory, childCategories, expandedCa
                 </h2>
             </CategoryLink>
             <div className="flex flex-wrap flex-col h-[67vh] max-h-[67vh] gap-y-3 gap-x-7 max-w-full overflow-x-auto overflow-y-auto">
+                {expandedCatId &&
+                    <ThirdLevelCategoriesList
+                        parentCategory={data.find(el => el.id === expandedCatId)}
+                        categoriesList={filterChildCategories(data, data.find(el => el.id === expandedCatId).id)}
+                        expandedCatId={expandedCatId}
+                        setExpandedCatId={setExpandedCatId}
+                        first
+                    />}
                 {childCategories && childCategories.map((el, key) =>
                     <ThirdLevelCategoriesList
                         key={key}

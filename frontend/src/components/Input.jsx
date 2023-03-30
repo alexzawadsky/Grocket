@@ -1,11 +1,26 @@
-import React from "react";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { BsFillTrashFill } from 'react-icons/bs'
 
-const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled, split, large, must }) => {
+const Errors = ({ instance }) => {
 
     const { t } = useTranslation()
+
+    return (
+        <>
+            {(instance.isDirty && instance.emailError) && <p className="text-accent-red font-bold">{t('not_email_err')}</p>}
+            {(instance.isDirty && instance.pwdError) && <p className="text-accent-red font-bold">{t('pass_err')}</p>}
+            {(instance.isDirty && instance.isEmpty) && <p className="text-accent-red font-bold">{t('empty_field_err')}</p>}
+            {(instance.isDirty && instance.matchError) && <p className="text-accent-red font-bold">{t('pass_miss_error')}</p>}
+            {(instance.isDirty && instance.minLengthError) && <p className="text-accent-red font-bold">Value is too short</p>}
+            {(instance.isDirty && instance.intError) && <p className="text-accent-red font-bold">{t('not_int_err')}</p>}
+            {(instance.isDirty && instance.floatError) && <p className="text-accent-red font-bold">{t('not_float_err')}</p>}
+        </>
+    )
+}
+
+const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled, split, large, must }) => {
+
     const inputRef = useRef()
 
     useEffect(() => {
@@ -38,13 +53,7 @@ const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled,
                         disabled={disabled}
                         className='grocket-input'
                     />}
-                    {(instance.isDirty && instance.emailError) && <p className="text-accent-red font-bold">{t('not_email_err')}</p>}
-                    {(instance.isDirty && instance.pwdError) && <p className="text-accent-red font-bold">{t('pass_err')}</p>}
-                    {(instance.isDirty && instance.isEmpty) && <p className="text-accent-red font-bold">{t('empty_field_err')}</p>}
-                    {(instance.isDirty && instance.matchError) && <p className="text-accent-red font-bold">{t('pass_miss_error')}</p>}
-                    {(instance.isDirty && instance.minLengthError) && <p className="text-accent-red font-bold">Value is too short</p>}
-                    {(instance.isDirty && instance.intError) && <p className="text-accent-red font-bold">{t('not_int_err')}</p>}
-                    {(instance.isDirty && instance.floatError) && <p className="text-accent-red font-bold">{t('not_float_err')}</p>}
+                    <Errors instance={instance} />
                 </div>
                 {deleteBtn && <div
                     role='button'
@@ -80,13 +89,7 @@ const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled,
                 disabled={disabled}
                 className='grocket-input'
             />}
-            {(instance.isDirty && instance.emailError) && <p className="text-accent-red font-bold">{t('not_email_err')}</p>}
-            {(instance.isDirty && instance.pwdError) && <p className="text-accent-red font-bold">{t('pass_err')}</p>}
-            {(instance.isDirty && instance.isEmpty) && <p className="text-accent-red font-bold">{t('empty_field_err')}</p>}
-            {(instance.isDirty && instance.matchError) && <p className="text-accent-red font-bold">{t('pass_miss_error')}</p>}
-            {(instance.isDirty && instance.minLengthError) && <p className="text-accent-red font-bold">Value is too short</p>}
-            {(instance.isDirty && instance.intError) && <p className="text-accent-red font-bold">{t('not_int_err')}</p>}
-            {(instance.isDirty && instance.floatError) && <p className="text-accent-red font-bold">{t('not_float_err')}</p>}
+            <Errors instance={instance} />
         </div>
     )
 }

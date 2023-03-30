@@ -5,7 +5,6 @@ import { HiOutlineMail } from 'react-icons/hi'
 import { NavLink } from 'react-router-dom'
 import AuthContext from '../contexts/AuthProvider'
 import { Avatar, RatingStars } from './'
-import useScreen from '../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
 
 const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, withComments, commentsCount }) => {

@@ -90,13 +90,6 @@ const ProductForm = ({ data, setData, setValid }) => {
             <h2 className="text-xl font-bold col-span-full pt-5">
                 {t('location')}
             </h2>
-            {/* <Input
-                title={t('address')}
-                instance={address}
-                split={isMinTablet}
-                must
-                deleteBtn={isMinPC}
-            /> */}
             <AddressField
                 setAddress={setAddress}
                 split={isMinTablet}

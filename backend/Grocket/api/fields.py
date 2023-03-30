@@ -3,7 +3,7 @@ from rest_framework.fields import Field
 from rest_framework.serializers import ValidationError
 
 
-class ProductImagesField(Field):
+class ProductImagesUpdateField(Field):
     '''
     Получает:   [{
                     "image": "data:image/png;base64...",

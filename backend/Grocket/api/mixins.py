@@ -4,7 +4,7 @@ from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-
+from django.utils.translation import gettext_lazy as _
 from .filters import ProductFilter
 from .paginators import CommentPageLimitPagination
 from .serializers import (CategoryListSerializer, CommentCreateSerializer,
@@ -16,7 +16,38 @@ from .serializers import (CategoryListSerializer, CommentCreateSerializer,
                           StatusSerializer)
 
 
+RESPONSE_MESSAGES = {
+    'products': {
+        'create': _('Created'),
+        'destroy': _('Deleted'),
+        'promote': _('Successfully promoted'),
+        'sell': {
+            'POST': _('Marked as sold'),
+            'DELETE': _('Removed from sold')
+        },
+        'archive': {
+            'POST': _('Moved to archive'),
+            'DELETE': _('Removed from the archive')
+        },
+        'favourite': {
+            'POST': _('Marked as favourite'),
+            'DELETE': _('Removed from favourites'),
+        },
+        # 'updated': _('Updated'),
+    }
+}
+
+
 class BaseMixin(GenericViewSet):
+    def get_response_message(self, app, method=None):
+        try:
+            message = RESPONSE_MESSAGES[app][self.action]
+            if method is not None:
+                message = message[method]
+            return {"message": message}
+        except KeyError:
+            return None
+
     def list(self, request, queryset, *args, **kwargs):
         queryset = self.filter_queryset(queryset)
 
@@ -88,6 +119,9 @@ class ProductMixin(
     ]
     filterset_class = ProductFilter
     ordering_fields = ['price', 'pub_date']
+
+    def get_response_message(self, method=None):
+        return super().get_response_message(app='products', method=method)
 
     def get_permissions(self):
         if self.action in ('list', 'retrieve', 'user_products',):

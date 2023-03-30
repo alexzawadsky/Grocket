@@ -85,7 +85,7 @@ class ProductService:
         product.is_sold = True
         product.full_clean()
         product.save()
-        return Product
+        return product
 
     def unsell_product(self, user_id: int,  product_id: int) -> Product:
         """
@@ -100,7 +100,7 @@ class ProductService:
         product.is_sold = False
         product.full_clean()
         product.save()
-        return Product
+        return product
 
     def archive_product(self, user_id: int,  product_id: int) -> Product:
         """
@@ -115,7 +115,7 @@ class ProductService:
         product.is_archived = True
         product.full_clean()
         product.save()
-        return Product
+        return product
 
     def unarchive_product(self, user_id: int,  product_id: int) -> Product:
         """
@@ -130,9 +130,9 @@ class ProductService:
         product.is_archived = False
         product.full_clean()
         product.save()
-        return Product
+        return product
 
-    def favourite_product(self, user_id: int,  product_id: int) -> Product:
+    def favourite_product(self, user_id: int,  product_id: int):
         """
         Добавить товар в избраанное. Нельзя выполнить действие если:
         -Товар находится в архиве или он продан.

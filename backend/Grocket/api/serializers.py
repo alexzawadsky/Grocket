@@ -1,14 +1,13 @@
-from django.db.models import Avg
 from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
+from django.db.models import Avg
 from djmoney.contrib.django_rest_framework import MoneyField
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
-from api.fields import ProductImagesField
+from api.fields import ProductImagesUpdateField
 from comments.services import CommentService
-from products.models import Category, Image, Product
+from products.models import Category, Product
 from products.services import ProductService
 from users.models import User
 from users.services import UserService
@@ -242,7 +241,9 @@ class ProductListSerializer(ProductReadOnlySerializer):
         return serializer.data
 
 
-class ProductCreateUpdateSerializer(serializers.Serializer):
+# ref
+class ProductCreateSerializer(serializers.Serializer):
+    images = serializers.ListField()
     name = serializers.CharField()
     user = serializers.IntegerField()
     description = serializers.CharField()
@@ -257,18 +258,7 @@ class ProductCreateUpdateSerializer(serializers.Serializer):
             'price', 'address', 'category', 'images',
         )
 
-
-class ProductCreateSerializer(ProductCreateUpdateSerializer):
-    images = serializers.ListField()
-
     def validate_images(self, value):
-        try:
-            products_services.check_product_images_creation_logic(
-                images=value
-            )
-        except ValidationError as error:
-            raise serializers.ValidationError(error.messages)
-
         serializer = ProductImageCreateSerializer(
             data=value,
             many=True
@@ -277,88 +267,78 @@ class ProductCreateSerializer(ProductCreateUpdateSerializer):
         return serializer.validated_data
 
 
-class ProductUpdateSerializer(ProductCreateUpdateSerializer):
-    images = ProductImagesField()
+class ProductUpdateSerializer(serializers.Serializer):
+    images = ProductImagesUpdateField(required=False)
+    name = serializers.CharField(required=False)
+    description = serializers.CharField(required=False)
+    price = MoneyField(max_digits=19, decimal_places=2, required=False)
+    price_currency = serializers.CharField(required=False)
+    address = serializers.CharField(required=False)
+    category = serializers.IntegerField(required=False)
 
-    def validate_images(self, value):
-        super().validate_images(value)
-
-        product = self.instance
-        images_album, new_images = value
-        images_album_keys = list(images_album.keys())
-        images_album_values = list(images_album.values())
-        new_images_values = list(new_images.values())
-
-        for image in images_album_keys:
-            image_obj = Image.objects.filter(id=image)
-            if not image_obj.exists():
-                raise serializers.ValidationError(
-                    _('Image not found.')
-                )
-            if not image_obj.filter(product=product).exists():
-                raise serializers.ValidationError(
-                    _('This picture is not from this product.')
-                )
-
-        product_images = list(
-            product.images.select_related().exclude(
-                id__in=images_album_keys
-            ).filter(
-                id__in=images_album_keys
-            ).values_list(
-                'is_main', flat=True
-            )
+    class Meta:
+        fields = (
+            'name', 'price_currency', 'description',
+            'price', 'address', 'category', 'images',
         )
 
-        all_is_main = (images_album_values +
-                       new_images_values +
-                       product_images)
-
-        if True not in all_is_main:
-            raise serializers.ValidationError(
-                _('Add a main photo.')
+    # Не работает
+    def validate_images(self, value):
+        product_id = self.context['product_id']
+        try:
+            products_services.check_product_images_update_logic(
+                images=value,
+                product_id=product_id
             )
-        if all_is_main.count(True) > 1:
-            raise serializers.ValidationError(
-                _('You cannot add more than one main photo.')
-            )
+        except ValidationError as error:
+            raise serializers.ValidationError(error.messages)
 
-        return value
+        images_album, new_images = value
+        images = []
+        for image in new_images:
+            images.append({'image': image, 'is_main': new_images[image]})
 
-    def creating_images(self, new_images, product):
-        super().creating_images(new_images.items(), product)
+        serializer = ProductImageCreateSerializer(
+            data=images,
+            many=True
+        )
+        serializer.is_valid(raise_exception=True)
+        return serializer.validated_data
 
-    def _images_updating(self, images, instance):
-        '''Запускает все манипудяции с обновлением картинок.'''
-        # (images_album - старые, new_images - которые надо создать)
-        images_album, new_images = images
-        # Удаляем картинки, которые юзер удалил
-        Image.objects.filter(
-            product=instance).exclude(id__in=images_album.keys()).delete()
-        # Берем все картинки после удаления
-        images_after_deleting = Image.objects.filter(
-            product=instance).only('id', 'is_main')
-        # Меняем все is_main
-        for image_after_deleting in images_after_deleting:
-            if image_after_deleting.id in images_album.keys():
-                image_after_deleting.is_main = images_album[
-                    image_after_deleting.id]
-                image_after_deleting.save()
-        # Создаем новые картинки
-        self.creating_images(new_images, instance)
+    # def creating_images(self, new_images, product):
+    #     super().creating_images(new_images.items(), product)
 
-    def update(self, instance, validated_data):
-        images = validated_data.get('images')
+    # def _images_updating(self, images, instance):
+    #     '''Запускает все манипудяции с обновлением картинок.'''
+    #     # (images_album - старые, new_images - которые надо создать)
+    #     images_album, new_images = images
+    #     # Удаляем картинки, которые юзер удалил
+    #     Image.objects.filter(
+    #         product=instance).exclude(id__in=images_album.keys()).delete()
+    #     # Берем все картинки после удаления
+    #     images_after_deleting = Image.objects.filter(
+    #         product=instance).only('id', 'is_main')
+    #     # Меняем все is_main
+    #     for image_after_deleting in images_after_deleting:
+    #         if image_after_deleting.id in images_album.keys():
+    #             image_after_deleting.is_main = images_album[
+    #                 image_after_deleting.id]
+    #             image_after_deleting.save()
+    #     # Создаем новые картинки
+    #     self.creating_images(new_images, instance)
 
-        if images is not None:
-            images = validated_data.pop('images')
+    # def update(self, instance, validated_data):
+    #     images = validated_data.get('images')
 
-            instance = super().update(instance, validated_data)
-            self._images_updating(images, instance)
+    #     if images is not None:
+    #         images = validated_data.pop('images')
 
-            return instance
+    #         instance = super().update(instance, validated_data)
+    #         self._images_updating(images, instance)
 
-        return super().update(instance, validated_data)
+    #         return instance
+
+    #     return super().update(instance, validated_data)
 
 
 # ref

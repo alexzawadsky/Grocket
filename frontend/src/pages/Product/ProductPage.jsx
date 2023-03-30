@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import SearchHistoryContext from '../../contexts/HistoryContext';
 import { ReadMore, Spinner, GMap, Title, Price } from '../../components';

@@ -31,14 +31,19 @@ const ImageEditor = ({ images, setImages }) => {
 
                 <div className='flex flex-col w-full mx-auto gap-2'>
 
-                    <button
+                    {/* <button
                         type='button'
                         onClick={() => imageInputRef.current && imageInputRef.current.click()}
                         className='h-10 hover:bg-slate-200 px-5 flex items-center gap-2 font-bold border border-slate-500 rounded-xl w-fit'
                     >
                         <BsFolder />{t('browse')}
-                    </button>
-                    <input className='hidden' ref={imageInputRef} type="file" onChange={(e) => setCurrentImage(e.target.files[0])} />
+                    </button> */}
+                    <input
+                        className='text-sm file:bg-slate-100 hover:file:bg-slate-200 file:rounded-lg file:outline-none file:px-3 file:h-10 file:mr-3 file:border-none file:font-bold'
+                        ref={imageInputRef}
+                        type="file"
+                        onChange={(e) => setCurrentImage(e.target.files[0])}
+                    />
                     <div className='mx-auto my-3'>
                         <AvatarEditor
                             ref={editorRef}

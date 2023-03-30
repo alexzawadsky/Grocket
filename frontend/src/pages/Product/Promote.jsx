@@ -64,16 +64,17 @@ const Promote = () => {
                             </p>
                             <div className="flex items-center gap-2">
                                 <input
+                                    className='rounded-md checked:bg-accent-orange'
                                     type='checkbox'
                                     id={`select-${promo?.name}`}
                                     onChange={(e) => updateSelected(promo)}
-                                    checked={selected.filter(el => el.id === promo.id).length > 0 || product.data?.promotions.includes(promo?.name)}
+                                    checked={selected.find(el => el.id === promo.id) || product.data?.promotions.includes(promo?.name)}
                                     disabled={product.data?.promotions.includes(promo?.name)}
                                 />
                                 <label htmlFor={`select-${promo?.name}`}>
                                     {
                                         product.data?.promotions.includes(promo?.name) ? t('active') :
-                                            selected.filter(el => el.id === promo.id).length > 0 ?
+                                            selected.find(el => el.id === promo.id) ?
                                                 t('selected') : t('select')
                                     }
                                 </label>

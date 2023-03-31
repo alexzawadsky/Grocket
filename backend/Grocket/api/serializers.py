@@ -25,7 +25,7 @@ class CustomUserSerializer(djserializers.UserSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'rating', 'comments_count', 'sold_count', 'username',
+        fields = ('id', 'rating', 'comments_count', 'sold_count',
                   'email', 'first_name', 'last_name', 'avatar', 'phone',
                   'country', 'date_joined', 'last_login',)
 
@@ -58,7 +58,7 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'username',
+        fields = ('id', 'email', 'first_name', 'last_name',
                   'password', 'avatar', 'phone', 'country', 'date_joined',
                   'last_login',)
         read_only_fields = ('id',)

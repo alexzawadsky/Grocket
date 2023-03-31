@@ -90,7 +90,7 @@ class Comment(models.Model):
                        name='unique сomment')]
 
     def __str__(self):
-        return f'{self.user.username}, {self.product.name}, {self.rate}'
+        return f'{self.user.id}, {self.product.name}, {self.rate}'
 
 
 class CommentReply(models.Model):
@@ -124,4 +124,4 @@ class CommentReply(models.Model):
                        name='unique сomment reply')]
 
     def __str__(self):
-        return f'{self.user.username}, init comment: {self.comment.id}'
+        return f'{self.user.id}, init comment: {self.comment.id}'

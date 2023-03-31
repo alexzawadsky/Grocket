@@ -6,12 +6,12 @@ from .models import User
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = (
-        'pk', 'is_staff', 'username', 'email',
+        'pk', 'is_staff', 'email',
         'first_name', 'last_name', 'phone', 'country',
     )
-    list_filter = ('username', 'email',)
+    list_filter = ('email',)
     search_fields = (
-        'pk', 'username', 'email',
+        'pk', 'email',
         'first_name', 'last_name',
         'phone', 'country',
     )

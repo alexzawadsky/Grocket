@@ -134,7 +134,7 @@ class Command(BaseCommand):
 
     def parsing_users(self, string):
         (first_name, last_name, email, phone,
-         country, username, password, is_staff) = string
+         country, password, is_staff) = string
 
         if is_staff == '1':
             is_staff = True
@@ -150,7 +150,6 @@ class Command(BaseCommand):
             'email': email,
             'phone': phone,
             'country': country,
-            'username': username,
             'password': password,
             'is_staff': is_staff,
         }
@@ -168,7 +167,7 @@ class Command(BaseCommand):
                 fields = self.parsing_users(string)
 
                 if not User.objects.filter(
-                    username=fields['username']
+                    email=fields['email']
                 ).exists():
                     user = User.objects.create_superuser(
                         first_name=fields['first_name'],
@@ -176,14 +175,13 @@ class Command(BaseCommand):
                         email=fields['email'],
                         phone=fields['phone'],
                         country=fields['country'],
-                        username=fields['username'],
                         password=fields['password'],
                         is_staff=fields['is_staff'],
                     )
                     self.local_data['users']['added'].append(user)
                 else:
                     self.local_data['users']['missed'].append(
-                        fields['username']
+                        fields['email']
                     )
 
     def parsing_products(self, string):
@@ -301,7 +299,7 @@ class Command(BaseCommand):
 
     def print_users(self):
         added = ', '.join(list(map(
-            lambda user: user.username,
+            lambda user: user.email,
             self.local_data["users"]["added"])
         ))
         missed = ", ".join(self.local_data["users"]["missed"])

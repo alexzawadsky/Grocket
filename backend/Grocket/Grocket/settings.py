@@ -32,12 +32,15 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'djmoney',
     'django_countries',
+    'address',
     'mptt',
     'django_mptt_admin',
     'rest_framework',
     'django_filters',
     'djoser',
     'rest_framework.authtoken',
+    'ckeditor',
+    'django_bleach',
 
     'users',
     'products',
@@ -139,41 +142,6 @@ JSON_URL = 'data/json'
 # <--- Настройка путей --->
 
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'main': {
-#             'format': '{levelname} {asctime} {module} {message}',
-#             'style': '{',
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': os.path.join(BASE_DIR, 'logs.log'),
-#             'formatter': 'main'
-#         },
-#     },
-#     'loggers': {
-#         # 'django': {
-#         #     'handlers': ['file'],
-#         #     'propagate': True,
-#         # },
-#         'django.request': {
-#             'handlers': ['file'],
-#             'level': 'ERROR',
-#             'propagate': False,
-#         },
-#         'test': {
-#             'handlers': ['file'],
-#             'level': 'INFO',
-#         }
-#     }
-# }
-
-
 # Email бекенд
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_NAME = 'Grocket'
@@ -211,7 +179,7 @@ SIMPLE_JWT = {
 DJOSER = {
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': False,  # Это менять чтоб письмо отправлялось
-    'SET_PASSWORD_RETYPE': True,
+    'SET_PASSWORD_RETYPE': False,
     'USER_CREATE_PASSWORD_RETYPE': True,
     'HIDE_USERS': False,
     'USER_ID_FIELD': 'pk',
@@ -265,3 +233,42 @@ BASE_IMAGE_SETTINGS = {
 # Брокер для Celery
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+
+# HTML поле для товаров и валидация
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_YourCustomToolbarConfig': [
+            {'name': 'document', 'items': ['Source', 'Preview']},
+            {'name': 'clipboard', 'items': ['Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'Replace']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            '/',
+            {'name': 'basicstyles', 'items': [
+                'Bold', 'Italic', 'Underline', 'Strike'
+            ]},
+        ],
+        'toolbar': 'YourCustomToolbarConfig',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+    }
+}
+BLEACH_DEFAULT_WIDGET = 'wysiwyg.widgets.WysiwygWidget'
+
+
+GOOGLE_API_KEY = 'AIzaSyAoJlz6CeqKJ7gD6jksHtdciTUhlleKVQM'

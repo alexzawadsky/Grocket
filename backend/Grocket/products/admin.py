@@ -1,3 +1,5 @@
+from ckeditor.widgets import CKEditorWidget
+from django import forms
 from django.contrib import admin
 from django_mptt_admin.admin import DjangoMpttAdmin
 from modeltranslation.admin import TranslationAdmin
@@ -5,8 +7,17 @@ from modeltranslation.admin import TranslationAdmin
 from .models import Category, Favourite, Image, Product, Promotion
 
 
+class PostAdminForm(forms.ModelForm):
+    description = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    form = PostAdminForm
     list_display = (
         'pk', 'name', 'user', 'price', 'pub_date',
         'is_archived', 'is_sold',

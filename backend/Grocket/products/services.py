@@ -85,7 +85,7 @@ class ProductService:
         product.is_sold = True
         product.full_clean()
         product.save()
-        return Product
+        return product
 
     def unsell_product(self, user_id: int,  product_id: int) -> Product:
         """
@@ -100,7 +100,7 @@ class ProductService:
         product.is_sold = False
         product.full_clean()
         product.save()
-        return Product
+        return product
 
     def archive_product(self, user_id: int,  product_id: int) -> Product:
         """
@@ -115,7 +115,7 @@ class ProductService:
         product.is_archived = True
         product.full_clean()
         product.save()
-        return Product
+        return product
 
     def unarchive_product(self, user_id: int,  product_id: int) -> Product:
         """
@@ -130,9 +130,9 @@ class ProductService:
         product.is_archived = False
         product.full_clean()
         product.save()
-        return Product
+        return product
 
-    def favourite_product(self, user_id: int,  product_id: int) -> Product:
+    def favourite_product(self, user_id: int,  product_id: int):
         """
         Добавить товар в избраанное. Нельзя выполнить действие если:
         -Товар находится в архиве или он продан.
@@ -353,6 +353,21 @@ class ProductService:
         """Возвращает картинки товара."""
         product = self.get_in_all_product_or_404(id=product_id)
         return product.images.filter(**kwargs)
+
+    def check_product_images_creation_logic(self, images: List[dict]):
+        main = False
+        for image in images:
+            is_main = image['is_main']
+            if is_main:
+                if main:
+                    raise ValidationError(
+                        _('You cannot add more than one main photo.')
+                    )
+                main = True
+        if not main:
+            raise ValidationError(
+                _('Add a main photo.')
+            )
 
     def create_product_image(self, **fields) -> Image:
         """Создание картинки товара."""

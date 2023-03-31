@@ -1,13 +1,13 @@
+from django.core.exceptions import ValidationError
 from django.db.models import Avg
-from django.utils.translation import gettext_lazy as _
 from djmoney.contrib.django_rest_framework import MoneyField
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
-from api.fields import ProductImagesField
+from api.fields import ProductImagesUpdateField
 from comments.services import CommentService
-from products.models import Category, Image, Product
+from products.models import Category, Product
 from products.services import ProductService
 from users.models import User
 from users.services import UserService
@@ -25,7 +25,7 @@ class CustomUserSerializer(djserializers.UserSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'rating', 'comments_count', 'sold_count', 'username',
+        fields = ('id', 'rating', 'comments_count', 'sold_count',
                   'email', 'first_name', 'last_name', 'avatar', 'phone',
                   'country', 'date_joined', 'last_login',)
 
@@ -43,12 +43,10 @@ class CustomUserSerializer(djserializers.UserSerializer):
         if not instance.avatar or avatar is not None:
             first_name = instance.first_name
             last_name = instance.last_name
-            username = instance.username
             avatar = users_services.create_avatar(
                 avatar=avatar,
                 first_name=first_name,
                 last_name=last_name,
-                username=username,
             )
             validated_data['avatar'] = avatar
 
@@ -60,7 +58,7 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name',
+        fields = ('id', 'email', 'first_name', 'last_name',
                   'password', 'avatar', 'phone', 'country', 'date_joined',
                   'last_login',)
         read_only_fields = ('id',)
@@ -69,13 +67,11 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
         avatar = validated_data.get('avatar')
         first_name = validated_data.get('first_name')
         last_name = validated_data.get('last_name')
-        username = validated_data.get('username')
 
         avatar = users_services.create_avatar(
             avatar=avatar,
             first_name=first_name,
             last_name=last_name,
-            username=username,
         )
         validated_data['avatar'] = avatar
 
@@ -160,21 +156,12 @@ class ProductImageSerializer(serializers.Serializer):
         fields = ('id', 'image', 'is_main',)
 
 
-class ProductImageCreateSerializer(serializers.ModelSerializer):
+class ProductImageCreateSerializer(serializers.Serializer):
     image = Base64ImageField(allow_null=True, required=False)
+    is_main = serializers.BooleanField()
 
     class Meta:
-        model = Image
-        fields = ('image', 'is_main', 'product',)
-
-    def create(self, validated_data):
-        image = validated_data.pop('image')
-        # product = validated_data.get('product')
-
-        # prepared_image = products_services.prepair_image(product.id, image)
-        image = Image.objects.create(image=image, **validated_data)
-
-        return image
+        fields = ('image', 'is_main',)
 
 
 # ref
@@ -210,7 +197,7 @@ class ProductReadOnlySerializer(serializers.Serializer):
 class ProductRetrieveSerializer(ProductReadOnlySerializer):
     description = serializers.CharField()
     category = ProductCategorySerializer(read_only=True)
-    images = ProductImageSerializer(read_only=True, many=True)
+    images = serializers.SerializerMethodField()
 
     class Meta:
         fields = (
@@ -219,6 +206,17 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
             'address', 'is_archived', 'is_sold', 'is_favourited',
             'category', 'images', 'pub_date', 'promotions',
         )
+
+    def get_images(self, obj):
+        images = products_services.get_product_images(
+            product_id=obj.id
+        ).order_by('-is_main')
+        serializer = ProductImageSerializer(
+            instance=images,
+            read_only=True,
+            many=True
+        )
+        return serializer.data
 
 
 # ref
@@ -250,181 +248,104 @@ class ProductListSerializer(ProductReadOnlySerializer):
         return serializer.data
 
 
-class ProductCreateUpdateSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-    )
-    category = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all()
-    )
-    is_archived = serializers.HiddenField(default=False)
-    is_sold = serializers.HiddenField(default=False)
+# ref
+class ProductCreateSerializer(serializers.Serializer):
+    images = serializers.ListField()
+    name = serializers.CharField()
+    user = serializers.IntegerField()
+    description = serializers.CharField()
+    price = MoneyField(max_digits=19, decimal_places=2)
+    price_currency = serializers.CharField()
+    address = serializers.CharField()
+    category = serializers.IntegerField()
 
     class Meta:
-        model = Product
         fields = (
-            'id', 'name', 'user',
-            'description', 'price', 'price_currency',
-            'address', 'is_archived', 'is_sold',
-            'category', 'images',
+            'name', 'user', 'price_currency', 'description',
+            'price', 'address', 'category', 'images',
         )
 
-    def validate_category(self, value):
-        if not value.is_leaf_node():
-            raise serializers.ValidationError(
-                _('Can only be added to the final category.')
-            )
-
-        return value
-
     def validate_images(self, value):
-        pass
-
-    def to_representation(self, product):
-        serializer = ProductRetrieveSerializer(product, context=self.context)
-
-        return serializer.data
-
-    def creating_images(self, new_images, product):
-        '''Создает и обрабатывает картинки.'''
-        for image in new_images:
-            image_base64 = image[0]
-            is_main = image[1]
-
-            images_serializer = ProductImageCreateSerializer(
-                data={
-                    'image': image_base64,
-                    'is_main': is_main,
-                    'product': product.id
-                }
-            )
-            images_serializer.is_valid(raise_exception=True)
-            images_serializer.save()
+        serializer = ProductImageCreateSerializer(
+            data=value,
+            many=True
+        )
+        serializer.is_valid(raise_exception=True)
+        return serializer.validated_data
 
 
-class ProductCreateSerializer(ProductCreateUpdateSerializer):
-    images = serializers.ListField()
+class ProductUpdateSerializer(serializers.Serializer):
+    images = ProductImagesUpdateField(required=False)
+    name = serializers.CharField(required=False)
+    description = serializers.CharField(required=False)
+    price = MoneyField(max_digits=19, decimal_places=2, required=False)
+    price_currency = serializers.CharField(required=False)
+    address = serializers.CharField(required=False)
+    category = serializers.IntegerField(required=False)
 
+    class Meta:
+        fields = (
+            'name', 'price_currency', 'description',
+            'price', 'address', 'category', 'images',
+        )
+
+    # Не работает
     def validate_images(self, value):
-        super().validate_images(value)
-
-        main = False
-        for image in value:
-            is_main = image['is_main']
-            image = image['image']
-            if is_main:
-                if main:
-                    raise serializers.ValidationError(
-                        _('You cannot add more than one main photo.')
-                    )
-                main = True
-
-        if not main:
-            raise serializers.ValidationError(
-                _('Add a main photo.')
+        product_id = self.context['product_id']
+        try:
+            products_services.check_product_images_update_logic(
+                images=value,
+                product_id=product_id
             )
+        except ValidationError as error:
+            raise serializers.ValidationError(error.messages)
 
-        return value
-
-    def creating_images(self, images, product):
-        new_images = []
-        for new_image in images:
-            new_images.append(
-                (new_image['image'], new_image['is_main'])
-            )
-
-        super().creating_images(new_images, product)
-
-    def create(self, validated_data):
-        images = validated_data.pop('images')
-        product = Product.objects.create(**validated_data)
-        self.creating_images(images, product)
-
-        return product
-
-
-class ProductUpdateSerializer(ProductCreateUpdateSerializer):
-    images = ProductImagesField()
-
-    def validate_images(self, value):
-        super().validate_images(value)
-
-        product = self.instance
         images_album, new_images = value
-        images_album_keys = list(images_album.keys())
-        images_album_values = list(images_album.values())
-        new_images_values = list(new_images.values())
+        images = []
+        for image in new_images:
+            images.append({'image': image, 'is_main': new_images[image]})
 
-        for image in images_album_keys:
-            image_obj = Image.objects.filter(id=image)
-            if not image_obj.exists():
-                raise serializers.ValidationError(
-                    _('Image not found.')
-                )
-            if not image_obj.filter(product=product).exists():
-                raise serializers.ValidationError(
-                    _('This picture is not from this product.')
-                )
-
-        product_images = list(
-            product.images.select_related().exclude(
-                id__in=images_album_keys
-            ).filter(
-                id__in=images_album_keys
-            ).values_list(
-                'is_main', flat=True
-            )
+        serializer = ProductImageCreateSerializer(
+            data=images,
+            many=True
         )
+        serializer.is_valid(raise_exception=True)
+        return serializer.validated_data
 
-        all_is_main = (images_album_values +
-                       new_images_values +
-                       product_images)
+    # def creating_images(self, new_images, product):
+    #     super().creating_images(new_images.items(), product)
 
-        if True not in all_is_main:
-            raise serializers.ValidationError(
-                _('Add a main photo.')
-            )
-        if all_is_main.count(True) > 1:
-            raise serializers.ValidationError(
-                _('You cannot add more than one main photo.')
-            )
+    # def _images_updating(self, images, instance):
+    #     '''Запускает все манипудяции с обновлением картинок.'''
+    #     # (images_album - старые, new_images - которые надо создать)
+    #     images_album, new_images = images
+    #     # Удаляем картинки, которые юзер удалил
+    #     Image.objects.filter(
+    #         product=instance).exclude(id__in=images_album.keys()).delete()
+    #     # Берем все картинки после удаления
+    #     images_after_deleting = Image.objects.filter(
+    #         product=instance).only('id', 'is_main')
+    #     # Меняем все is_main
+    #     for image_after_deleting in images_after_deleting:
+    #         if image_after_deleting.id in images_album.keys():
+    #             image_after_deleting.is_main = images_album[
+    #                 image_after_deleting.id]
+    #             image_after_deleting.save()
+    #     # Создаем новые картинки
+    #     self.creating_images(new_images, instance)
 
-        return value
+    # def update(self, instance, validated_data):
+    #     images = validated_data.get('images')
 
-    def creating_images(self, new_images, product):
-        super().creating_images(new_images.items(), product)
+    #     if images is not None:
+    #         images = validated_data.pop('images')
 
-    def _images_updating(self, images, instance):
-        '''Запускает все манипудяции с обновлением картинок.'''
-        # (images_album - старые, new_images - которые надо создать)
-        images_album, new_images = images
-        # Удаляем картинки, которые юзер удалил
-        Image.objects.filter(
-            product=instance).exclude(id__in=images_album.keys()).delete()
-        # Берем все картинки после удаления
-        images_after_deleting = Image.objects.filter(
-            product=instance).only('id', 'is_main')
-        # Меняем все is_main
-        for image_after_deleting in images_after_deleting:
-            if image_after_deleting.id in images_album.keys():
-                image_after_deleting.is_main = images_album[
-                    image_after_deleting.id]
-                image_after_deleting.save()
-        # Создаем новые картинки
-        self.creating_images(new_images, instance)
+    #         instance = super().update(instance, validated_data)
+    #         self._images_updating(images, instance)
 
-    def update(self, instance, validated_data):
-        images = validated_data.get('images')
+    #         return instance
 
-        if images is not None:
-            images = validated_data.pop('images')
-
-            instance = super().update(instance, validated_data)
-            self._images_updating(images, instance)
-
-            return instance
-
-        return super().update(instance, validated_data)
+    #     return super().update(instance, validated_data)
 
 
 # ref
@@ -501,7 +422,7 @@ class CommentReadOnlySerializer(serializers.Serializer):
 
     class Meta:
         fields = ('id', 'status', 'rate', 'text', 'images',
-                  'reply', 'user', 'seller', 'product',)
+                  'reply', 'user', 'seller', 'product', 'pub_date',)
 
     def get_reply(self, obj):
         reply = comments_services.get_replies_to_comment(comment_id=obj.id)

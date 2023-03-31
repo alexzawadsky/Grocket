@@ -4,6 +4,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 from users.models import User
 
+from .fields import RichTextBleachField
+
 
 class Image(models.Model):
     product = models.ForeignKey(
@@ -98,7 +100,7 @@ class Product(models.Model):
         related_name='posts',
         verbose_name='сategory',
     )
-    description = models.TextField(
+    description = RichTextBleachField(
         max_length=1000,
         verbose_name='product description',
     )
@@ -134,19 +136,19 @@ class Product(models.Model):
         verbose_name_plural = 'products'
 
     def __str__(self):
-        return f'{self.id}, {self.name}, {self.user.username}'
+        return f'{self.id}, {self.name}'
 
 
 class Favourite(models.Model):
     user = models.ForeignKey(
         User,
-        related_name='favorites',
+        related_name='favourites',
         on_delete=models.CASCADE,
         verbose_name='user',
     )
     product = models.ForeignKey(
-        'Product',
-        related_name='favorites',
+        Product,
+        related_name='favourites',
         on_delete=models.CASCADE,
         verbose_name='favorite product',
     )
@@ -159,4 +161,4 @@ class Favourite(models.Model):
                        name='unique favorite')]
 
     def __str__(self):
-        return f'{self.user.username}, {self.product.name}'
+        return f'{self.user.id}, {self.product.name}'

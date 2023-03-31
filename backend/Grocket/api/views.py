@@ -5,6 +5,10 @@ from rest_framework.response import Response
 
 from comments.services import CommentService
 from products.services import ProductService
+from products.servicess.actions import (archive_product, create_product,
+                                        delete_product, favourite_product,
+                                        get_product_or_404, get_products,
+                                        promote_product, sell_product)
 from users.services import UserService
 
 from .mixins import CategoryMixin, CommentMixin, ProductMixin, PromotionMixin
@@ -88,16 +92,16 @@ class CommentViewSet(CommentMixin):
 class ProductViewSet(ProductMixin):
     def destroy(self, request, pk):
         user_id = self.request.user.id
-        products_services.delete_product(user_id=user_id, product_id=pk)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        delete_product(user_id=user_id, product_id=pk)
+        data = self.get_response_message()
+        return Response(data, status=status.HTTP_204_NO_CONTENT)
 
     def list(self, request):
-        queryset = products_services.get_safe_products()
-        return super().list(request, queryset)
+        return super().list(request, queryset=get_products(safe=True))
 
     def retrieve(self, request, pk):
         user_id = self.request.user.id
-        product = products_services.get_product_or_404(id=pk, user_id=user_id)
+        product = get_product_or_404(user_id=user_id, id=pk)
         serializer = self.get_serializer_class()(
             instance=product,
             context={'request': request}
@@ -105,10 +109,29 @@ class ProductViewSet(ProductMixin):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request):
-        pass
+        request.data['user'] = self.request.user.id
+        serializer = self.get_serializer_class()(
+            data=request.data
+        )
+        serializer.is_valid(raise_exception=True)
+        create_product(**serializer.validated_data)
+        data = self.get_response_message()
+        return Response(data, status=status.HTTP_201_CREATED)
 
-    def partial_update(self, request):
-        pass
+    def partial_update(self, request, pk):
+        # serializer = self.get_serializer_class()(
+        #     context={'product_id': pk},
+        #     data=request.data
+        # )
+        # serializer.is_valid(raise_exception=True)
+
+        # user_id = self.request.user.id
+        # products_services.update_product(
+        #     product_id=pk, user_id=user_id,
+        #     **serializer.validated_data
+        # )
+
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     @action(['get'], detail=False)
     def me_products(self, request):
@@ -116,25 +139,33 @@ class ProductViewSet(ProductMixin):
 
         is_sold = self.request.query_params.get('is_sold')
         is_archived = self.request.query_params.get('is_archived')
+        is_favourited = self.request.query_params.get('is_favourited')
 
-        if not any([is_sold, is_archived]):
-            queryset = products_services.get_safe_products()
+        if not any([is_sold, is_archived, is_favourited]):
+            queryset = get_products(safe=True)
         elif is_sold:
-            queryset = products_services.get_sold_products(user_id=user.id)
+            queryset = get_products(is_sold=True)
+        elif is_favourited:
+            queryset = get_products(is_favourited=True, user_id=user.id)
         elif is_archived:
-            queryset = products_services.get_archived_products(user_id=user.id)
+            queryset = get_products(user_id=user.id, is_archived=True)
 
         return super().list(request, queryset)
 
     @action(['get'], detail=False)
     def user_products(self, request, pk):
-        user = users_services.get_user_or_404(id=pk)
+        user_id = self.request.user.id
 
         is_sold = self.request.query_params.get('is_sold')
-        if not any([is_sold]):
-            queryset = products_services.get_safe_products()
-        elif is_sold:
-            queryset = products_services.get_sold_products(user_id=user.id)
+        for_comments = self.request.query_params.get('for_comments')
+
+        if not any([is_sold, for_comments]):
+            queryset = get_products(safe=True, user__id=pk)
+        if for_comments:
+            queryset = get_products(
+                for_comments=True, seller_id=pk, user_id=user_id)
+        if is_sold:
+            queryset = get_products(user__id=pk, is_sold=True)
 
         return super().list(request, queryset)
 
@@ -146,22 +177,25 @@ class ProductViewSet(ProductMixin):
         serializer.is_valid(raise_exception=True)
         promotions = serializer.validated_data.get('promotions')
         user_id = self.request.user.id
-        products_services.promote_product(
+        promote_product(
             user_id=user_id, product_id=pk, promotions_ids=promotions
         )
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        data = self.get_response_message()
+        return Response(data, status=status.HTTP_204_NO_CONTENT)
 
     @action(['post', 'delete'], detail=True)
     def sell(self, request, pk):
         user_id = self.request.user.id
 
         if request.method == 'POST':
-            products_services.sell_product(user_id=user_id, product_id=pk)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            sell_product(user_id=user_id, product_id=pk, is_sold=True)
+            data = self.get_response_message(method='POST')
+            return Response(data, status=status.HTTP_204_NO_CONTENT)
 
         if request.method == 'DELETE':
-            products_services.unsell_product(user_id=user_id, product_id=pk)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            sell_product(user_id=user_id, product_id=pk, is_sold=False)
+            data = self.get_response_message(method='DELETE')
+            return Response(data, status=status.HTTP_204_NO_CONTENT)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
@@ -169,13 +203,15 @@ class ProductViewSet(ProductMixin):
     def archive(self, request, pk):
         user_id = self.request.user.id
 
-        if request.method == 'DELETE':
-            products_services.unarchive_product(user_id=user_id, product_id=pk)
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
         if request.method == 'POST':
-            products_services.archive_product(user_id=user_id, product_id=pk)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            archive_product(user_id=user_id, product_id=pk, is_archived=True)
+            data = self.get_response_message(method='POST')
+            return Response(data, status=status.HTTP_204_NO_CONTENT)
+
+        if request.method == 'DELETE':
+            archive_product(user_id=user_id, product_id=pk, is_archived=False)
+            data = self.get_response_message(method='DELETE')
+            return Response(data, status=status.HTTP_204_NO_CONTENT)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
@@ -183,15 +219,17 @@ class ProductViewSet(ProductMixin):
     def favourite(self, request, pk):
         user_id = self.request.user.id
 
-        if request.method == 'DELETE':
-            products_services.unfavourite_product(
-                user_id=user_id, product_id=pk
-            )
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
         if request.method == 'POST':
-            products_services.favourite_product(user_id=user_id, product_id=pk)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            favourite_product(
+                user_id=user_id, product_id=pk, is_favourited=True)
+            data = self.get_response_message(method='POST')
+            return Response(data, status=status.HTTP_204_NO_CONTENT)
+
+        if request.method == 'DELETE':
+            favourite_product(
+                user_id=user_id, product_id=pk, is_favourited=False)
+            data = self.get_response_message(method='DELETE')
+            return Response(data, status=status.HTTP_204_NO_CONTENT)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 

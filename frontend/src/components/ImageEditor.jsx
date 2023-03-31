@@ -12,11 +12,10 @@ const ImageEditor = ({ images, setImages }) => {
     const editorRef = useRef()
     const imageInputRef = useRef()
     const { minTabletW } = useScreen()
-    let referenceWidth = 330
-    if (window.innerWidth < minTabletW) {
-        referenceWidth = 1400
+    let referenceWidth = 1250
+    if (window.innerWidth > minTabletW) {
+        referenceWidth = 320
     }
-
     const editorWidth = referenceWidth * (window.innerWidth / 1920)
     const [currentImage, setCurrentImage] = useState()
     const [imageSize, setImageSize] = useState(1)
@@ -27,17 +26,7 @@ const ImageEditor = ({ images, setImages }) => {
         <div className='flex flex-col gap-2 h-fit'>
             <h2 className="text-xl font-bold">{t('photos')}</h2>
             <div className='rounded-xl border shadow-sm p-5'>
-
-
                 <div className='flex flex-col w-full mx-auto gap-2'>
-
-                    {/* <button
-                        type='button'
-                        onClick={() => imageInputRef.current && imageInputRef.current.click()}
-                        className='h-10 hover:bg-slate-200 px-5 flex items-center gap-2 font-bold border border-slate-500 rounded-xl w-fit'
-                    >
-                        <BsFolder />{t('browse')}
-                    </button> */}
                     <input
                         className='text-sm file:bg-slate-100 hover:file:bg-slate-200 file:rounded-lg file:outline-none file:px-3 file:h-10 file:mr-3 file:border-none file:font-bold'
                         ref={imageInputRef}

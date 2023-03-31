@@ -58,7 +58,7 @@ const Input = ({ id, type, instance, deleteBtn = true, title, autoRef, disabled,
                 {deleteBtn && <div
                     role='button'
                     type="button"
-                    className="h-10 w-fit text-accent-red px-5 flex items-center"
+                    className="h-10 w-fit text-accent-red px-2 flex items-center"
                     onClick={() => instance.clear()}
                 >
                     <BsFillTrashFill />

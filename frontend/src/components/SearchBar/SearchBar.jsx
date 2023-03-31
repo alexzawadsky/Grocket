@@ -32,7 +32,7 @@ const Search = () => {
                 }}
             >
                 <button
-                    className='button-outline-orange h-10 max-sm:!w-full'
+                    className='button-outline-orange h-10 max-sm:!w-full whitespace-nowrap'
                     type='button'
                     onClick={() => setOpen(!open)}
                 >
@@ -48,7 +48,7 @@ const Search = () => {
                         type="text"
                     />
                     <button
-                        className='button-fill-orange h-10 max-sm:!w-11 max-sm:!p-1 max-sm:!px-2'
+                        className='button-fill-orange h-10 max-sm:!w-11 max-sm:!p-1 max-sm:!px-2 whitespace-nowrap'
                         type='submit'
                     >
                         <HiMagnifyingGlass />

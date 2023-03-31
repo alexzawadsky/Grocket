@@ -23,7 +23,7 @@ const Landing = () => {
                         text={
                             <>
                                 {t('goods_for_you')}
-                                <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-accent-orange relative inline-block ml-2 before:rounded-sm">
+                                <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-accent-orange relative inline-block ml-3 before:rounded-sm">
                                     <span class="relative text-white">{t('you')}</span>
                                 </span>
                             </>}

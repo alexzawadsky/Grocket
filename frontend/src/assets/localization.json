@@ -26,5 +26,19 @@
         "code": "en",
         "flag": "GB",
         "codeForTimeStamp": "en"
+    },
+    "UA": {
+        "icon": "🇺🇦",
+        "name": "Українська",
+        "code": "ua",
+        "flag": "UA",
+        "codeForTimeStamp": "uk"
+    },
+    "CN": {
+        "icon": "🇨🇳",
+        "name": "中国人",
+        "code": "cn",
+        "flag": "CN",
+        "codeForTimeStamp": "zh"
     }
 }

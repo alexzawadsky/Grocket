@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import useInput from '../hooks/useInput'
-import { Input, ImageEditor, AddressField, GMap } from '../components'
+import { Input, ImageEditor, AddressField, GMap, TextEditor } from '../components'
 import { deleteImage } from '../pages/Sell/utils'
 import { BsTrashFill } from 'react-icons/bs'
 import { prepareImages } from '../pages/Sell/utils'
@@ -16,7 +16,7 @@ const ProductForm = ({ data, setData, setValid }) => {
     const { isMinPC, isMinTablet } = useScreen()
 
     const name = useInput(data?.name || '', { isEmpty: true })
-    const description = useInput(data?.description || '', { isEmpty: true })
+    const [description, setDescription] = useState(data?.description || '')
     const price = useInput(data?.price || '', { isFloat: true })
     const currency = useInput(data?.price_currency || '', { isEmpty: true })
     const [address, setAddress] = useState(data?.address || null)
@@ -31,27 +31,27 @@ const ProductForm = ({ data, setData, setValid }) => {
     }, [mainImageIndex])
 
     useEffect(() => {
-        if ([name, description, price, currency].every(el => el.allValid) && images.length > 0) {
+        if ([name, price, currency].every(el => el.allValid) && images.length > 0 && description.length > 0) {
             setAllValid(true)
         } else {
             setAllValid(false)
         }
         setData({
             name: name.value,
-            description: description.value,
+            description: description,
             price: price.value,
             price_currency: currency.value,
             address: address,
             images: prepareImages(images)
         })
-    }, [name.value, description.value, price.value, currency.value, address, JSON.stringify(images)])
+    }, [name.value, description, price.value, currency.value, address, JSON.stringify(images)])
 
     useEffect(() => {
         setValid(allValid)
     }, [allValid])
 
     return (
-        <form className='flex flex-col md:grid md:grid-cols-[2fr_3fr] lg:grid-cols-[1fr_2fr_1fr] gap-2'>
+        <form className='flex flex-col md:grid md:grid-cols-[2fr_3fr] lg:grid-cols-[1fr_2fr_1fr] gap-y-2 gap-x-5'>
             <h2 className='col-span-full text-xl font-bold'>
                 {t('info')}
             </h2>
@@ -62,14 +62,14 @@ const ProductForm = ({ data, setData, setValid }) => {
                 must
                 deleteBtn={isMinPC}
             />
-            <Input
-                title={t('description')}
-                instance={description}
-                split={isMinTablet}
-                large
-                must
-                deleteBtn={isMinPC}
-            />
+
+            <label className='after:content-["*"] after:text-accent-red after:pl-1'>{t('description')}</label>
+            <div className='col-start-2 md:col-end-2 lg:col-end-3'>
+                <TextEditor
+                    text={description}
+                    setText={setDescription}
+                />
+            </div>
             <h2 className="text-xl font-bold col-span-full pt-5">
                 {t('price')}
             </h2>

@@ -8,31 +8,40 @@ import { useTranslation } from 'react-i18next'
 import useScreen from '../hooks/useScreen'
 import LanguageDropdown from './LanguageDropdown'
 import logo from '../assets/logo.png'
+import heart from '../assets/icons/ukraine.svg'
+import Avatar from './Avatar'
 
 const Navbar = () => {
 
 
-    const { t, i18n } = useTranslation()
+    const { t } = useTranslation()
     const { user } = useContext(AuthContext)
     const { isMinTablet } = useScreen()
-
-    const changeLang = (e) => {
-        i18n.changeLanguage(e.target.value)
-    }
 
     return (
         <nav className='w-full fixed z-50 left-0 top-0 bg-white shadow-lg'>
             <div className='flex container px-5 mx-auto gap-2 md:gap-10 h-16 items-center'>
-                <NavLink className='text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
-                    {isMinTablet ? 'Grocket' : <img className='h-10' src={logo} />}
-                </NavLink>
+                <div className="flex items-center gap-1">
+                    <NavLink className='text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
+                        {isMinTablet ? 'Grocket' : <img className='h-10' src={logo} />}
+                    </NavLink>
+                    <a href='https://www.standwithukraine.how/' target='_blank' className='mb-auto'>
+                        <img src={heart} className='w-4 md:w-5 aspect-square mb-auto' />
+                    </a>
+                </div>
                 <LanguageDropdown />
                 {user ?
                     <NavLink
-                        className='flex items-center gap-2 h-10'
+                        className='flex items-center gap-2 h-10 font-bold'
                         to='/users/me'
                     >
-                        <BsPersonFill />{isMinTablet && t('profile')}
+                        <div className="h-10 aspect-square">
+                            <Avatar avatar={user?.avatar} />
+                        </div>
+
+                        {isMinTablet && 'Timur'}
+                        {/* {isMinTablet && user?.name} */}
+
                     </NavLink>
                     :
                     <div className='flex items-center gap-2'>

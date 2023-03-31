@@ -4,7 +4,8 @@
     "profile": "Profile",
     "sell_item": "Sell item",
     "sell": "Sell",
-    "goods_for_you": "Goods especially for you",
+    "goods_for_you": "Goods especially for",
+    "you": "you",
     "you_looked_earlier": "You looked earlier",
     "clear_history": "Clear history",
     "view_full_history": "View full browsing history",
@@ -131,5 +132,6 @@
     "items": "Items",
     "sold": "Sold",
     "archived": "Archived",
-    "browse": "Browse files"
+    "browse": "Browse files",
+    "back_to_profile": "Back to profile"
 }

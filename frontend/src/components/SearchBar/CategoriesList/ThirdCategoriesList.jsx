@@ -2,9 +2,11 @@ import { useTranslation } from "react-i18next"
 import CategoryLink from "./CategoryLink"
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 
-const ThirdLevelCategoriesList = ({ parentCategory, categoriesList, expandedCatId, setExpandedCatId }) => {
+const ThirdLevelCategoriesList = ({ first, parentCategory, categoriesList, expandedCatId, setExpandedCatId }) => {
 
     const { t } = useTranslation()
+
+    if (!first && expandedCatId === parentCategory.id) return
 
     return (
         <div className='max-w-[35%] lg:max-w-[30%] xl:max-w-[20%]'>

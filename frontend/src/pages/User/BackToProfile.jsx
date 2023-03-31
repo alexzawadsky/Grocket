@@ -1,13 +1,19 @@
 import { NavLink, useParams } from "react-router-dom"
 import useScreen from "../../hooks/useScreen"
 import { BsArrowLeft } from "react-icons/bs"
+import { useTranslation } from "react-i18next"
 
 const BackToProfile = () => {
 
     const { profileId } = useParams()
-    const { isMinTablet } = useScreen()
+    const { t } = useTranslation()
 
-    return <NavLink className='flex items-center gap-2 hover:text-accent-orange' to={isMinTablet ? `/users/${profileId}/items` : `/users/${profileId}`}><BsArrowLeft />Back to profile</NavLink>
+    return <NavLink
+        className='flex items-center gap-2 hover:text-accent-orange'
+        to={`/users/${profileId}`}
+    >
+        <BsArrowLeft />{t('back_to_profile')}
+    </ NavLink>
 
 }
 

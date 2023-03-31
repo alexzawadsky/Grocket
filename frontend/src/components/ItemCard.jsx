@@ -28,10 +28,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
 
     if (horizontal && isMinTablet) return (
         <NavLink className='grid grid-cols-[1fr_2fr] xl:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 transition-all duration-150' to={`/products/${product?.id}`}>
-            <NavLink
-                to={`/products/${product?.id}`}
-                className='grid grid-cols-2 gap-1'
-            >
+            <div className='grid grid-cols-2 gap-1'>
                 <div className="col-span-full rounded-lg overflow-hidden">
                     <ImagesCarousel images={product?.images} />
                 </div>
@@ -41,15 +38,12 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                         <img className='rounded-lg' src={product?.images[2]?.image} />
                     </>
                 }
-            </NavLink>
+            </div>
             <div className={`flex items-start h-full flex-col justify-center ${product?.promotions.includes('xl') ? 'gap-2 lg:gap-3' : 'gap-1 lg:gap-2'} p-4`}>
                 <div className="flex items-center justify-between w-full">
-                    <NavLink
-                        className={`font-bold hover:text-accent-orange flex items-center justify-between ${product?.promotions.includes('xl') ? 'text-md xl:text-2xl' : 'text-md xl:text-xl'}`}
-                        to={`/products/${product.id}`}
-                    >
+                    <p className={`font-bold hover:text-accent-orange flex items-center justify-between ${product?.promotions.includes('xl') ? 'text-md xl:text-2xl' : 'text-md xl:text-xl'}`} >
                         {product?.name}
-                    </NavLink>
+                    </p>
                     {product?.is_favourited && <AiFillHeart color='red' />}
                 </div>
                 <p
@@ -132,7 +126,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                 <ImagesCarousel images={product?.images} />
             </div>
             <div className="flex items-center justify-between">
-                <p className={`${search ? 'font-bold text-xl' : 'text-lg my-auto'} hover:text-accent-orange w-fit flex items-center justify-between`}>{product?.name}</p>
+                <p className={`${search ? 'font-bold text-xl' : 'text-lg my-auto line-clamp-2'} hover:text-accent-orange w-fit justify-between`}>{product?.name}</p>
                 {product?.is_favourited && <AiFillHeart color='red' />}
             </div>
             <p
@@ -145,20 +139,19 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
             >
                 <Price price={product?.price} currency={product?.price_currency} />
             </p>
-            <div>
-                <p className='flex items-center gap-2 text-sm'>
-                    <BiTimeFive />
-                    <PublishTime pubDate={product?.pub_date} />
-                </p>
+            <div className='grid grid-cols-[auto_1fr] gap-y-0.5 gap-x-1.5 items-center'>
+                <BiTimeFive />
+                <p className='text-sm line-clamp-1'><PublishTime pubDate={product?.pub_date} /></p>
                 {(!managable || (user?.user_id !== product?.user?.id)) &&
-                    <p className='flex items-center gap-2 text-sm'>
+                    <>
                         <FiMapPin />
-                        {product?.address?.full_address}
-                    </p>}
-                {(isMinTablet || search) && <p className='flex items-center gap-2 text-sm'>
-                    <BiCategoryAlt />
-                    {product?.category?.title}
-                </p>}
+                        <p className='text-sm line-clamp-1'>{product?.address?.full_address}</p>
+                    </>}
+                {(isMinTablet || search) &&
+                    <>
+                        <BiCategoryAlt />
+                        <p className='text-sm line-clamp-1'>{product?.category?.title}</p>
+                    </>}
             </div>
             {search && product?.promotions.includes('xl') && <div className='flex flex-col gap-0.5'>
                 <NavLink

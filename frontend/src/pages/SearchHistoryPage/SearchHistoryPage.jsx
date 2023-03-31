@@ -22,7 +22,7 @@ const SearchHistoryPage = () => {
                 </button>
             </div>
             {lookHistory.length === 0 && <p className='font-bold pt-5'>{t('nothing_yet')}</p>}
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5'>
+            <div className='grid gap-5 md:gap-0 pt-5 md:pt-0 grid-cols-2 md:grid-cols-3 lg:grid-cols-5'>
                 {lookHistory.map((el, key) => <ItemCard key={key} product={el} />)}
             </div>
         </div>

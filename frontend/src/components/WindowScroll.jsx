@@ -3,8 +3,8 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
 
 const WindowScroll = () => {
 
-    const [isTop, setIsTop] = useState(true)
-    const [isBottom, setIsBottom] = useState(false)
+    const [isTop, setIsTop] = useState(false)
+    const [isBottom, setIsBottom] = useState(true)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -16,7 +16,7 @@ const WindowScroll = () => {
         window.addEventListener('scroll', handleScroll)
 
         return () => window.removeEventListener('scroll', handleScroll)
-    })
+    }, [])
 
     return (
         <div className='fixed z-50 right-2 bottom-2 flex flex-col border-2 rounded-xl bg-white gap-1 p-1'>

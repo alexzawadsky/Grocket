@@ -17,7 +17,7 @@ const GMap = ({ address }) => {
     }
 
     useEffect(() => {
-        function initMap() {
+        const initMap = () => {
             const coords = { lat: address?.lat || 0, lng: address?.lng || 0 }
             const map = new google.maps.Map(document.getElementById("g-map"), {
                 zoom: address ? 16 : 1,
@@ -31,7 +31,7 @@ const GMap = ({ address }) => {
 
             })
             if (address) {
-                const marker = new google.maps.Marker({
+                new google.maps.Marker({
                     position: coords,
                     map: map,
                 })

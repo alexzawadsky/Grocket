@@ -4,6 +4,7 @@ import AvatarEditor from 'react-avatar-editor'
 import { saveImage } from '../utils'
 import { AiOutlineRotateLeft, AiOutlineRotateRight } from 'react-icons/ai'
 import useScreen from '../hooks/useScreen'
+import { BsFolder } from 'react-icons/bs'
 
 const ImageEditor = ({ images, setImages }) => {
 
@@ -11,11 +12,10 @@ const ImageEditor = ({ images, setImages }) => {
     const editorRef = useRef()
     const imageInputRef = useRef()
     const { minTabletW } = useScreen()
-    let referenceWidth = 330
-    if (window.innerWidth < minTabletW) {
-        referenceWidth = 1400
+    let referenceWidth = 1250
+    if (window.innerWidth > minTabletW) {
+        referenceWidth = 320
     }
-
     const editorWidth = referenceWidth * (window.innerWidth / 1920)
     const [currentImage, setCurrentImage] = useState()
     const [imageSize, setImageSize] = useState(1)
@@ -26,19 +26,13 @@ const ImageEditor = ({ images, setImages }) => {
         <div className='flex flex-col gap-2 h-fit'>
             <h2 className="text-xl font-bold">{t('photos')}</h2>
             <div className='rounded-xl border shadow-sm p-5'>
-
-
                 <div className='flex flex-col w-full mx-auto gap-2'>
-
-                    <button
-                        type='button'
-                        onClick={() => imageInputRef.current && imageInputRef.current.click()}
-                        className='h-10 hover:bg-slate-200 px-3 font-bold border border-slate-500 rounded-lg w-fit'
-                    >
-                        {t('browse')}
-                    </button>
-
-                    <input className='hidden' ref={imageInputRef} type="file" onChange={(e) => setCurrentImage(e.target.files[0])} />
+                    <input
+                        className='text-sm file:bg-slate-100 hover:file:bg-slate-200 file:rounded-lg file:outline-none file:px-3 file:h-10 file:mr-3 file:border-none file:font-bold'
+                        ref={imageInputRef}
+                        type="file"
+                        onChange={(e) => setCurrentImage(e.target.files[0])}
+                    />
                     <div className='mx-auto my-3'>
                         <AvatarEditor
                             ref={editorRef}
@@ -52,7 +46,6 @@ const ImageEditor = ({ images, setImages }) => {
                             rotate={imageRotation}
                         />
                     </div>
-
                     <div className="flex gap-1 w-full p-1 border shadow-sm rounded-lg items-center">
                         <button
                             onClick={() => setImageRotation(prevRotation => prevRotation - 90)}
@@ -78,7 +71,6 @@ const ImageEditor = ({ images, setImages }) => {
                             <AiOutlineRotateRight />
                         </button>
                     </div>
-
                     <div className="flex items-center gap-5 mt-3">
                         <button
                             onClick={() => { saveImage(editorRef, images, setImages, setCurrentImage, imageInputRef, setImageUploading) }}

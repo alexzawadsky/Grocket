@@ -6,16 +6,20 @@ const ReadMore = ({ text, limit }) => {
     const { t } = useTranslation()
     const [isReadMore, setIsReadMore] = useState(true);
     const long = text.length > limit
+    const res = text
+        .slice(0, long && isReadMore ? limit : text.length)
+        .replace(/\n/g, "<br>")
 
     return (
         <div className="">
-            {long && isReadMore ?
-                <p dangerouslySetInnerHTML={{ __html: text.slice(0, limit).replace(/\n/g, "<br>") }}></p>
-                :
-                <p dangerouslySetInnerHTML={{ __html: text.replace(/\n/g, "<br>") }}></p>}
-            {long ? <span onClick={() => setIsReadMore(prevState => !prevState)} className="text-accent-orange cursor-pointer">
-                {isReadMore ? `${t('read_more')}...` : t('read_less')}
-            </span> : null}
+            <p dangerouslySetInnerHTML={{ __html: res }}></p>
+            {long &&
+                <span
+                    onClick={() => setIsReadMore(prevState => !prevState)}
+                    className="text-accent-orange cursor-pointer"
+                >
+                    {isReadMore ? `${t('read_more')}...` : t('read_less')}
+                </span>}
         </div>
     );
 };

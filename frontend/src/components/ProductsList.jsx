@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useProducts } from '../api/api'
 import { Spinner, ItemCard, Pagination } from '.'
 import { useTranslation } from 'react-i18next'

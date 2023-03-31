@@ -23,6 +23,7 @@ import SearchBar from './SearchBar/SearchBar'
 import WindowScroll from "./WindowScroll";
 import AddressField from "./AddressField";
 import Flag from './Flag'
+import TextEditor from "./TextEditor";
 
 export {
     Avatar,
@@ -49,5 +50,6 @@ export {
     SearchBar,
     WindowScroll,
     AddressField,
-    Flag
+    Flag,
+    TextEditor
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useArchiveProduct, useSellProduct, useDeleteProduct } from '../api/api'
 import { NavLink } from 'react-router-dom'
 import { IoIosArrowUp, IoMdClose, IoIosArrowDown } from 'react-icons/io'
@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { BsArchive, BsPatchCheck } from 'react-icons/bs'
 import { MdOutlineSell } from 'react-icons/md'
 
-const MenuInner = ({ product }) => {
+const MenuInner = ({ product, fullW }) => {
 
     const { t } = useTranslation()
     const archiveProductMutation = useArchiveProduct()
@@ -17,7 +17,7 @@ const MenuInner = ({ product }) => {
 
     return (
         <div
-            className="border-2 rounded-xl p-1 gap-1 flex flex-col items-start"
+            className={`border shadow-md rounded-xl p-1 gap-1 flex flex-col items-start ${!fullW && 'w-fit'} bg-white`}
             role="none"
         >
             {!product.is_sold &&
@@ -51,7 +51,7 @@ const MenuInner = ({ product }) => {
                         className='flex items-center gap-2 text-sm hover:bg-slate-100 h-8 rounded-lg w-full px-2'
                     >
                         <BsMegaphone />{t('promote')}
-                    </NavLink>
+                    </NavLink >
                 </>
             }
             <NavLink
@@ -64,7 +64,7 @@ const MenuInner = ({ product }) => {
                 className='text-accent-red flex items-center gap-2 text-sm hover:bg-slate-100 h-8 rounded-lg w-full px-2'>
                 <BsTrash />{t('delete')}
             </NavLink>
-        </div>
+        </div >
     )
 }
 
@@ -73,14 +73,27 @@ const ManageProductMenu = ({ product, dropdown }) => {
     const { t } = useTranslation()
     const [open, setOpen] = useState(false)
 
-    if (!dropdown) return <MenuInner product={product} />
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (open && !e.target.closest('.manage-menu-drop')) {
+                setOpen(false);
+            }
+        }
+        document.addEventListener('click', handleClickOutside)
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside)
+        }
+    }, [open])
+
+    if (!dropdown) return <MenuInner product={product} fullW />
 
     return (
         <div
             className="relative w-fit flex items-end justify-end border-2 rounded-xl text-left group/dropdown"
         >
             {open && <div
-                className="w-44 absolute bottom-10 -left-1 z-10 rounded-xl origin-top-right bg-white"
+                className="w-44 absolute bottom-10 -left-1 z-10 origin-top-right "
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="menu-button"
@@ -91,7 +104,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
             <NavLink
                 to=''
                 type="button"
-                className="flex justify-center items-center gap-2 rounded-xl bg-white px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 min-w-32"
+                className="flex justify-center items-center gap-2 rounded-xl bg-white px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 min-w-32 manage-menu-drop"
                 id="menu-button"
                 aria-expanded="false"
                 onClick={() => setOpen(prevState => !prevState)}

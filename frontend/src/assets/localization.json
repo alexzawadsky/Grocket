@@ -3,24 +3,42 @@
         "icon": "🇸🇪",
         "name": "Sverige",
         "code": "se",
-        "flag": "SE"
+        "flag": "SE",
+        "codeForTimeStamp": "sv"
     },
     "RU": {
         "icon": "🇷🇺",
         "name": "Русский",
         "code": "ru",
-        "flag": "RU"
+        "flag": "RU",
+        "codeForTimeStamp": "ru"
     },
     "NL": {
         "icon": "🇳🇱",
         "name": "Netherlands",
         "code": "nl",
-        "flag": "NL"
+        "flag": "NL",
+        "codeForTimeStamp": "nl"
     },
     "EN": {
         "icon": "🇬🇧",
         "name": "English",
         "code": "en",
-        "flag": "GB"
+        "flag": "GB",
+        "codeForTimeStamp": "en"
+    },
+    "UA": {
+        "icon": "🇺🇦",
+        "name": "Українська",
+        "code": "ua",
+        "flag": "UA",
+        "codeForTimeStamp": "uk"
+    },
+    "CN": {
+        "icon": "🇨🇳",
+        "name": "中国人",
+        "code": "cn",
+        "flag": "CN",
+        "codeForTimeStamp": "zh"
     }
 }

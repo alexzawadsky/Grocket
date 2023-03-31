@@ -31,7 +31,9 @@ def favourite_product(
 
 
 def get_products(
-    for_comments: bool = False, safe: bool = False,
+    is_favourited: bool = False,
+    for_comments: bool = False,
+    safe: bool = False,
     user_id: Optional[int] = None,
     seller_id: Optional[int] = None,
     **fields
@@ -43,10 +45,14 @@ def get_products(
 
     for_comments=True требует и user_id и seller_id.
     Отдаст товары, которые можно прокоментировать.
+
+    is_favourited=True вернет все понравовившиеся юзеру товары.
+    Передать user_id.
     """
     return get_products_service.get_products(
         safe=safe, user_id=user_id, seller_id=seller_id,
-        for_comments=for_comments, **fields)
+        for_comments=for_comments, is_favourited=is_favourited, **fields
+    )
 
 
 def get_product_or_404(user_id: Optional[int] = None, **fields) -> Product:

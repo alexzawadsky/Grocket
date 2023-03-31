@@ -5,7 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.db.models.query import QuerySet
 from django.shortcuts import get_object_or_404
 
-from products.models import Product
+from products.models import Product, Favourite
 
 User = get_user_model()
 
@@ -70,8 +70,25 @@ def _get_products_for_comments(
     return products
 
 
+def _get_favourited_products(
+    user_id: Optional[int] = None, **fields
+) -> QuerySet:
+    """
+    Вернет только понравовившиеся товары юзера с данным id.
+    Не вернет в архиве.
+    """
+    user = get_object_or_404(User, id=user_id)
+
+    fields['is_archived'] = False
+
+    product_ids = user.favourites.values_list('product', flat=True)
+    products = Product.objects.filter(id__in=list(product_ids), **fields)
+
+    return products
+
+
 def get_products(
-    for_comments: bool, safe: bool,
+    for_comments: bool, safe: bool, is_favourited: bool,
     user_id: Optional[int], seller_id: Optional[int], **fields
 ) -> QuerySet:
     if safe:
@@ -80,4 +97,6 @@ def get_products(
         return _get_products_for_comments(
             user_id=user_id, seller_id=seller_id, **fields
         )
+    if is_favourited:
+        return _get_favourited_products(user_id=user_id, **fields)
     return _get_all_products(user_id=user_id, **fields)

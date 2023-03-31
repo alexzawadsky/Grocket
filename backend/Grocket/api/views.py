@@ -139,11 +139,14 @@ class ProductViewSet(ProductMixin):
 
         is_sold = self.request.query_params.get('is_sold')
         is_archived = self.request.query_params.get('is_archived')
+        is_favourited = self.request.query_params.get('is_favourited')
 
-        if not any([is_sold, is_archived]):
+        if not any([is_sold, is_archived, is_favourited]):
             queryset = get_products(safe=True)
         elif is_sold:
             queryset = get_products(is_sold=True)
+        elif is_favourited:
+            queryset = get_products(is_favourited=True, user_id=user.id)
         elif is_archived:
             queryset = get_products(user_id=user.id, is_archived=True)
 

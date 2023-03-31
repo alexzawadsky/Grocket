@@ -136,19 +136,19 @@ class Product(models.Model):
         verbose_name_plural = 'products'
 
     def __str__(self):
-        return f'{self.id}, {self.name}, {self.user.id}'
+        return f'{self.id}, {self.name}'
 
 
 class Favourite(models.Model):
     user = models.ForeignKey(
         User,
-        related_name='favorites',
+        related_name='favourites',
         on_delete=models.CASCADE,
         verbose_name='user',
     )
     product = models.ForeignKey(
-        'Product',
-        related_name='favorites',
+        Product,
+        related_name='favourites',
         on_delete=models.CASCADE,
         verbose_name='favorite product',
     )

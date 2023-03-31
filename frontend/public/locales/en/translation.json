@@ -133,5 +133,9 @@
     "sold": "Sold",
     "archived": "Archived",
     "browse": "Browse files",
-    "back_to_profile": "Back to profile"
+    "back_to_profile": "Back to profile",
+    "about_team": "About team",
+    "about_project": "About project",
+    "learn_more": "Learn more",
+    "about_site": "About site"
 }

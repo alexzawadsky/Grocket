@@ -15,7 +15,7 @@ const TextEditor = ({ text, setText }) => {
                     "bold italic underline strikethrough",
                 image_advtab: true
             }}
-            onChange={(e) => console.log(e.target.getContent())}
+            onChange={(e) => setText(e.target.getContent())}
         />
     )
 }

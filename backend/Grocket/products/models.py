@@ -1,6 +1,7 @@
 from django.db import models
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
+from .fields import RichTextBleachField
 
 from users.models import User
 
@@ -98,7 +99,7 @@ class Product(models.Model):
         related_name='posts',
         verbose_name='сategory',
     )
-    description = models.TextField(
+    description = RichTextBleachField(
         max_length=1000,
         verbose_name='product description',
     )
@@ -134,7 +135,7 @@ class Product(models.Model):
         verbose_name_plural = 'products'
 
     def __str__(self):
-        return f'{self.id}, {self.name}, {self.user.username}'
+        return f'{self.id}, {self.name}, {self.user.id}'
 
 
 class Favourite(models.Model):
@@ -159,4 +160,4 @@ class Favourite(models.Model):
                        name='unique favorite')]
 
     def __str__(self):
-        return f'{self.user.username}, {self.product.name}'
+        return f'{self.user.id}, {self.product.name}'

@@ -43,12 +43,10 @@ class CustomUserSerializer(djserializers.UserSerializer):
         if not instance.avatar or avatar is not None:
             first_name = instance.first_name
             last_name = instance.last_name
-            username = instance.username
             avatar = users_services.create_avatar(
                 avatar=avatar,
                 first_name=first_name,
                 last_name=last_name,
-                username=username,
             )
             validated_data['avatar'] = avatar
 
@@ -60,7 +58,7 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name',
+        fields = ('id', 'email', 'first_name', 'last_name', 'username',
                   'password', 'avatar', 'phone', 'country', 'date_joined',
                   'last_login',)
         read_only_fields = ('id',)
@@ -69,13 +67,11 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
         avatar = validated_data.get('avatar')
         first_name = validated_data.get('first_name')
         last_name = validated_data.get('last_name')
-        username = validated_data.get('username')
 
         avatar = users_services.create_avatar(
             avatar=avatar,
             first_name=first_name,
             last_name=last_name,
-            username=username,
         )
         validated_data['avatar'] = avatar
 
@@ -201,7 +197,7 @@ class ProductReadOnlySerializer(serializers.Serializer):
 class ProductRetrieveSerializer(ProductReadOnlySerializer):
     description = serializers.CharField()
     category = ProductCategorySerializer(read_only=True)
-    images = ProductImageSerializer(read_only=True, many=True)
+    images = serializers.SerializerMethodField()
 
     class Meta:
         fields = (
@@ -210,6 +206,17 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
             'address', 'is_archived', 'is_sold', 'is_favourited',
             'category', 'images', 'pub_date', 'promotions',
         )
+
+    def get_images(self, obj):
+        images = products_services.get_product_images(
+            product_id=obj.id
+        ).order_by('-is_main')
+        serializer = ProductImageSerializer(
+            instance=images,
+            read_only=True,
+            many=True
+        )
+        return serializer.data
 
 
 # ref

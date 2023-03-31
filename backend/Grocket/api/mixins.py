@@ -1,10 +1,11 @@
+from django.utils.translation import gettext_lazy as _
 from django_filters import rest_framework as django_filters
 from rest_framework import filters, permissions, status
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from django.utils.translation import gettext_lazy as _
+
 from .filters import ProductFilter
 from .paginators import CommentPageLimitPagination
 from .serializers import (CategoryListSerializer, CommentCreateSerializer,
@@ -14,7 +15,6 @@ from .serializers import (CategoryListSerializer, CommentCreateSerializer,
                           ProductRetrieveSerializer, ProductUpdateSerializer,
                           PromotionCreateUpdateSerializer, PromotionSerializer,
                           StatusSerializer)
-
 
 RESPONSE_MESSAGES = {
     'products': {

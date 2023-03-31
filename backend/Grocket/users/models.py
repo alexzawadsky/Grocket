@@ -1,11 +1,10 @@
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import PermissionsMixin, UserManager
 from django.db import models
+from django.utils import timezone
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.base_user import AbstractBaseUser
-from django.utils import timezone
-
-from django.contrib.auth.hashers import make_password
 
 
 class CustomUserManager(UserManager):
@@ -90,7 +89,3 @@ class User(AbstractBaseUser, PermissionsMixin):
         """
         full_name = "%s %s" % (self.first_name, self.last_name)
         return full_name.strip()
-
-    def get_short_name(self):
-        """Return the short name for the user."""
-        return self.first_name

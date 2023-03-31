@@ -5,10 +5,10 @@ from rest_framework.response import Response
 
 from comments.services import CommentService
 from products.services import ProductService
-from products.servicess.actions import (
-    create_product, delete_product, get_product_or_404, get_products,
-    promote_product, sell_product, archive_product, favourite_product
-)
+from products.servicess.actions import (archive_product, create_product,
+                                        delete_product, favourite_product,
+                                        get_product_or_404, get_products,
+                                        promote_product, sell_product)
 from users.services import UserService
 
 from .mixins import CategoryMixin, CommentMixin, ProductMixin, PromotionMixin

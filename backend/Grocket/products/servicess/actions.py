@@ -1,10 +1,13 @@
-from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
-from django.core.exceptions import PermissionDenied
-from products.models import Product, Promotion
-from . import (create_product_service, get_products_service,
-               favourite_product_service)
 from typing import List, Optional
+
+from django.contrib.auth import get_user_model
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404
+
+from products.models import Product, Promotion
+
+from . import (create_product_service, favourite_product_service,
+               get_products_service)
 
 User = get_user_model()
 

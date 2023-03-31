@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
 from django.core.exceptions import PermissionDenied
-from products.models import Product, Favourite
+from django.shortcuts import get_object_or_404
+
+from products.models import Favourite, Product
 
 User = get_user_model()
 

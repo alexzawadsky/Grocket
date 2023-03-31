@@ -1,9 +1,10 @@
 from django.db import models
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
-from .fields import RichTextBleachField
 
 from users.models import User
+
+from .fields import RichTextBleachField
 
 
 class Image(models.Model):

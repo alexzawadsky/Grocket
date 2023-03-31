@@ -1,7 +1,6 @@
 import bleach
 from ckeditor.fields import RichTextField
 
-
 ALLOWED_TAGS = set(bleach.ALLOWED_TAGS + ['s', 'em', 'strong', 'u'])
 ALLOWED_ATTRIBUTES = {}
 ALLOWED_ATTRIBUTES.update(bleach.ALLOWED_ATTRIBUTES)

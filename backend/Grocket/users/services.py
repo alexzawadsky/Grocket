@@ -1,13 +1,13 @@
-from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
 import random
 from datetime import datetime
 from io import BytesIO
 from typing import Optional
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.core.files import File
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.shortcuts import get_object_or_404
 from PIL import Image, ImageDraw, ImageFont
 
 User = get_user_model()

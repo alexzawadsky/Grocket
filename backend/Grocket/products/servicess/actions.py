@@ -1,5 +1,5 @@
 from typing import List, Optional
-
+from django.db.models.query import QuerySet
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
@@ -30,14 +30,23 @@ def favourite_product(
     )
 
 
-def get_products(safe: bool = False, user_id: Optional[int] = None, **fields):
+def get_products(
+    for_comments: bool = False, safe: bool = False,
+    user_id: Optional[int] = None,
+    seller_id: Optional[int] = None,
+    **fields
+) -> QuerySet:
     """
     При safe=True отдаст товары без меток is_sold и is_archived.
     При safe=False может отдасть проданные товары и товары в архиве.
     Для получения товара в архиве передайте id запрашивающего юзера.
+
+    for_comments=True требует и user_id и seller_id.
+    Отдаст товары, которые можно прокоментировать.
     """
     return get_products_service.get_products(
-        safe=safe, user_id=user_id, **fields)
+        safe=safe, user_id=user_id, seller_id=seller_id,
+        for_comments=for_comments, **fields)
 
 
 def get_product_or_404(user_id: Optional[int] = None, **fields) -> Product:

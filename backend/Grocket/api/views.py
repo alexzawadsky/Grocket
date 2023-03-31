@@ -151,10 +151,19 @@ class ProductViewSet(ProductMixin):
 
     @action(['get'], detail=False)
     def user_products(self, request, pk):
+        user_id = self.request.user.id
+
         is_sold = self.request.query_params.get('is_sold')
+        for_comments = self.request.query_params.get('for_comments')
+
+        if not any([is_sold, for_comments]):
+            queryset = get_products(safe=True, user__id=pk)
+        if for_comments:
+            queryset = get_products(
+                for_comments=True, seller_id=pk, user_id=user_id)
         if is_sold:
             queryset = get_products(user__id=pk, is_sold=True)
-        queryset = get_products(safe=True, user__id=pk)
+
         return super().list(request, queryset)
 
     @action(['post'], detail=False)

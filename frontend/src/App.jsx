@@ -11,7 +11,6 @@ import {
     NotFound,
     UserProductsPage,
     ProductPage,
-    Favourites,
     Register,
     PasswordReset,
     SearchHistoryPage,
@@ -38,12 +37,12 @@ function App() {
             <AuthProvider>
                 <SearchHistoryProvider>
                     {/* <ReactQueryDevtools /> */}
-                    <Toaster />
-                    <WindowScroll />
                     <div className={`flex flex-col h-full ${open && 'overflow-hidden'}`}>
                         <Navbar />
+                        <Toaster />
                         <main className='mt-20 container mx-auto flex-grow px-5 relative'>
                             <LanguageSelectionBanner />
+
                             <Routes>
                                 <Route path='/' errorElement={<NotFound />}>
                                     <Route path='' element={<Landing />} />
@@ -73,6 +72,7 @@ function App() {
                                 </Route>
                             </Routes>
                         </main>
+                        <WindowScroll />
                         <Footer />
                     </div>
                 </SearchHistoryProvider>

@@ -27,7 +27,7 @@ const LanguageDropdown = () => {
     }, [open])
 
     return (
-        <div className="bg-white rounded-md text-black py-1 px-2 font-bold mr-auto lang-drop">
+        <div className="bg-white rounded-md text-black py-1 px-2 font-bold lang-drop">
             <button
                 onClick={() => setOpen(prevState => !prevState)}
                 className='flex items-center gap-0.5 md:gap-2 cursor-pointer'

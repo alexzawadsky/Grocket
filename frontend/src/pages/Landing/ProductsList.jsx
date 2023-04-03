@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useProducts } from '../api/api'
-import { Spinner, ItemCard, Pagination } from '.'
+import { useProducts } from '../../api/api'
+import { Spinner, ItemCard, Pagination } from '../../components'
 import { useTranslation } from 'react-i18next'
 
 const ProductsList = ({ query }) => {
@@ -16,11 +16,21 @@ const ProductsList = ({ query }) => {
 
     return (
         <>
-            <div className='grid grid-cols-2 gap-5 md:gap-0 lg:grid-cols-3 xl:grid-cols-4'>
-                {data.results.map((el, key) => <ItemCard key={key} product={el} managable={false} />)}
-            </div>
+            <ul className='grid grid-cols-2 gap-5 md:gap-0 lg:grid-cols-3 xl:grid-cols-4'>
+                {data.results.map((el, key) => <li>
+                    <ItemCard
+                        key={key}
+                        product={el}
+                        managable={false}
+                    />
+                </li>)}
+            </ul>
             {data.pages_count > 1 && <div className='mx-auto mt-5 '>
-                <Pagination page={page} pagesCount={data.pages_count} setPage={setPage} />
+                <Pagination
+                    page={page}
+                    pagesCount={data.pages_count}
+                    setPage={setPage}
+                />
             </div>}
         </>
     )

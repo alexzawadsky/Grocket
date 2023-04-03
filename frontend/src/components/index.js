@@ -13,7 +13,6 @@ import ReadMore from "./ReadMore";
 import Input from "./Input";
 import Spinner from "./Spinner";
 import GMap from "./GMap";
-import ProductsList from "./ProductsList";
 import Price from "./Price";
 import PublishTime from "./PublishTime";
 import ImagesCarousel from "./ImagesCarousel";
@@ -41,7 +40,6 @@ export {
     ReadMore,
     Input,
     Spinner,
-    ProductsList,
     Price,
     PublishTime,
     ImagesCarousel,

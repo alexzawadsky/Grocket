@@ -6,7 +6,7 @@ const ImagesCarousel = ({ images }) => {
     if (images.length === 0) return
 
     return (
-        <div className='relative'>
+        <div className='relative rounded-lg overflow-hidden'>
             <img src={images[currentIndex]?.image} />
             <div className='absolute w-full h-full left-0 top-0 flex' onMouseLeave={() => setCurrentIndex(0)}>
                 {images.length > 1 && Array(images.length).fill(0).map((_, key) =>

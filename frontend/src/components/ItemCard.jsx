@@ -120,15 +120,13 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
     return (
         <NavLink
             to={`/products/${product?.id}`}
-            className={`hover:md:bg-slate-50 rounded-2xl md:p-5 ${search && 'pb-5'} flex flex-col gap-2 transition-all duration-150`}
+            className={`hover:md:bg-slate-50 rounded-2xl md:p-5 ${search && 'pb-5'} flex flex-col gap-2 transition-all duration-150 h-full`}
         >
-            <div className="rounded-lg overflow-hidden">
-                <ImagesCarousel images={product?.images} />
-            </div>
-            <div className="flex items-center justify-between">
+            <ImagesCarousel images={product?.images} />
+            <h3 className="flex items-center justify-between">
                 <p className={`${search ? 'font-bold text-xl' : 'text-lg my-auto line-clamp-2'} hover:text-accent-orange w-fit justify-between`}>{product?.name}</p>
                 {product?.is_favourited && <AiFillHeart color='red' />}
-            </div>
+            </h3>
             <p
                 className={
                     search && product?.promotions.includes('price') ?
@@ -141,7 +139,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
             </p>
             <div className='grid grid-cols-[auto_1fr] gap-y-0.5 gap-x-1.5 items-center'>
                 <BiTimeFive />
-                <p className='text-sm line-clamp-1'><PublishTime pubDate={product?.pub_date} /></p>
+                <time className='text-sm line-clamp-1'><PublishTime pubDate={product?.pub_date} /></time>
                 {(!managable || (user?.user_id !== product?.user?.id)) &&
                     <>
                         <FiMapPin />

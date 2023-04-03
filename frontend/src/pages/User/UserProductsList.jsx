@@ -41,11 +41,11 @@ const UserProductsList = () => {
 
     return (
         <div>
-            <div className="flex items-center p-1 gap-1 rounded-xl shadow-sm border w-fit mb-5 md:mb-0 md:ml-5">
+            <div className="flex flex-wrap items-center p-1 gap-1 rounded-xl shadow-sm border w-fit mb-5 md:mb-0 md:ml-5">
                 {filterOptions.filter(el => !el.private || profileId === 'me').map((el, key) =>
                     <div
                         key={key}
-                        className={`text-sm md:text-md rounded-lg cursor-pointer h-8 transition-all font-bold p-2 flex items-center justify-center hover:bg-slate-100 ${JSON.stringify(el.query) === JSON.stringify(query) && '!bg-slate-200'} gap-2`}
+                        className={`text-sm md:text-md rounded-lg cursor-pointer h-8 transition-all font-bold p-0.5 md:p-2 flex items-center justify-center hover:bg-slate-100 ${JSON.stringify(el.query) === JSON.stringify(query) && '!bg-slate-200'} gap-2`}
                         onClick={() => setQuery(el.query)}
                     >
                         {el.title}
@@ -54,7 +54,7 @@ const UserProductsList = () => {
             <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-0'>
                 {isLoading && <Spinner gap />}
                 {error && error.message}
-                {data?.results?.length === 0 && t('no_results_found')}
+                {data?.results?.length === 0 && <p className='md:pl-5 md:pt-3'>{t('no_results_found')}</p>}
                 {(!isLoading && !error) && data?.results.map((el, key) =>
                     <ItemCard
                         key={key}

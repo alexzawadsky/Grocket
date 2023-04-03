@@ -15,7 +15,7 @@ const HistoryList = () => {
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
-        <div className='grid gap-2 h-fit min-h-[20px]'>
+        <aside className='grid gap-2 h-fit min-h-[20px]'>
             {isMinTablet &&
                 <>
                     <h2 to='/history' className='text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>
@@ -29,7 +29,7 @@ const HistoryList = () => {
                         <BsFillTrashFill />{t('clear_history')}
                     </button>}
                 </>}
-            {isMinTablet && <div>
+            {isMinTablet && <ul>
                 {lookHistory.length === 0 ?
                     <p className='pt-2 pl-2'>{t('nothing_yet')}</p>
                     :
@@ -39,14 +39,14 @@ const HistoryList = () => {
                             product={el}
                         />)
                 }
-            </div>}
+            </ul>}
             {lookHistory.length > 0 && <NavLink
                 className={`text-md ${(isMinTablet && !isLargePC) && '!text-sm'} flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange my-5 md:mt-2 leading-none md:pl-3`}
                 to='/history'
             >
                 {t('view_full_history')}<BsArrowRight />
             </NavLink>}
-        </div>
+        </aside>
     )
 }
 

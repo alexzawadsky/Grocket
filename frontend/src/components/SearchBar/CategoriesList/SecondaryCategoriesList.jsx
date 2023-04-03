@@ -10,24 +10,25 @@ const ChildCategoriesList = ({ data, parentCategory, childCategories, expandedCa
                     {parentCategory?.title}
                 </h2>
             </CategoryLink>
-            <div className="flex flex-wrap flex-col h-[67vh] max-h-[67vh] gap-y-3 gap-x-7 max-w-full overflow-x-auto overflow-y-auto">
+            <ul className="flex flex-wrap flex-col h-[67vh] max-h-[67vh] gap-y-3 gap-x-7 max-w-full overflow-x-auto overflow-y-auto">
                 {expandedCatId &&
-                    <ThirdLevelCategoriesList
+                    <li><ThirdLevelCategoriesList
                         parentCategory={data.find(el => el.id === expandedCatId)}
                         categoriesList={filterChildCategories(data, data.find(el => el.id === expandedCatId).id)}
                         expandedCatId={expandedCatId}
                         setExpandedCatId={setExpandedCatId}
                         first
-                    />}
-                {childCategories && childCategories.map((el, key) =>
+                    /></li>}
+                {childCategories && childCategories.map((el, key) => <li className="max-w-[35%] lg:max-w-[30%] xl:max-w-[20%]">
                     <ThirdLevelCategoriesList
                         key={key}
                         parentCategory={el}
                         categoriesList={filterChildCategories(data, el?.id)}
                         expandedCatId={expandedCatId}
                         setExpandedCatId={setExpandedCatId}
-                    />)}
-            </div>
+                    />
+                </li>)}
+            </ul>
         </div>
     )
 }

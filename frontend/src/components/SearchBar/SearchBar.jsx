@@ -23,7 +23,7 @@ const Search = () => {
     }, [searchParams.get('search')])
 
     return (
-        <div className='w-full'>
+        <>
             <form
                 className='flex flex-col-reverse md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 bg-white w-full'
                 onSubmit={(e) => {
@@ -47,19 +47,14 @@ const Search = () => {
                         className='flex-grow rounded-xl border-slate-500 focus:border-slate-800 focus:shadow-md focus:outline-none border-2 px-4 w-full h-10'
                         type="text"
                     />
-                    <button
-                        className='button-fill-orange h-10 max-sm:!w-11 max-sm:!p-1 max-sm:!px-2 whitespace-nowrap'
-                        type='submit'
-                    >
+                    <button className='button-fill-orange h-10 max-sm:!w-11 max-sm:!p-1 max-sm:!px-2 whitespace-nowrap' type='submit'>
                         <HiMagnifyingGlass />
                         {isMinTablet && t('search')}
                     </button>
                 </div>
             </form>
-            {open && <div className='mt-3'>
-                <FullCategoriesList />
-            </div>}
-        </div>
+            {open && <FullCategoriesList />}
+        </>
     )
 }
 

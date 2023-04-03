@@ -22,9 +22,9 @@ const FullCategoriesList = () => {
     if (!open) return
 
     return (
-        <div className="bg-white p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh]">
-            <div className="overflow-y-auto max-h-[74vh]">
-                {data.filter(el => el.parent === null).map((el, key) =>
+        <section className="bg-white p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh]">
+            <ul className="overflow-y-auto max-h-[74vh]">
+                {data.filter(el => el.parent === null).map((el, key) => <li>
                     <PrimaryCategory
                         key={key}
                         onChange={() => {
@@ -32,8 +32,9 @@ const FullCategoriesList = () => {
                             setExpandedCatId(null)
                         }}
                         category={el}
-                    />)}
-            </div>
+                    />
+                </li>)}
+            </ul>
             <SecondaryCategoriesList
                 expandedCatId={expandedCatId}
                 setExpandedCatId={setExpandedCatId}
@@ -41,7 +42,7 @@ const FullCategoriesList = () => {
                 parentCategory={parentCategory}
                 childCategories={filterChildCategories(data, parentCategory?.id)}
             />
-        </div>
+        </section>
     )
 }
 

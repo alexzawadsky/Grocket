@@ -1,7 +1,6 @@
 import Landing from "./Landing/Landing";
 import Login from "./Login/Login";
 import UserComments from "./User/Comments";
-import Favourites from "./User/Favourites";
 import UserProductsPage from "./User/UserProductsPage";
 import UserProfile from "./User/Profile";
 import NotFound from "./NotFound/NotFound";
@@ -19,7 +18,6 @@ export {
     Landing,
     Login,
     UserComments,
-    Favourites,
     UserProductsPage,
     UserProfile,
     NotFound,

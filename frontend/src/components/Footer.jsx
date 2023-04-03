@@ -58,23 +58,27 @@ const Footer = () => {
 
     return (
         <footer className='w-full bg-accent-orange mt-5'>
-            <div className="container mx-auto p-5 text-white grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {footerData.map((el, key) =>
-                    <div className="grid h-fit gap-0.5" key={key}>
+            <div className="container mx-auto p-5 text-white">
+                <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    {footerData.map((el, key) => <li key={key}>
                         <h3 className="font-bold text-lg mb-1">{el?.title}</h3>
-                        {el?.links.map((link, key) =>
-                            <NavLink
-                                key={key}
-                                to={link?.url}
-                                target={link?.blank && '_blank'}
-                                className='flex items-center gap-2 text-sm md:text-md hover:text-white/[.8] w-fit'
-                            >
-                                {link?.icon}
-                                {link?.name}
-                            </NavLink>
-                        )}
-                    </div>)}
-                <p className="my-auto font-bold col-span-full border-t border-t-white pt-2 mt-5">© Grocket, {new Date().getFullYear()} <span className="pl-2">v1.0.0</span></p>
+                        <ul>
+                            {el?.links.map((link, key) => <li>
+                                <NavLink
+                                    key={key}
+                                    to={link?.url}
+                                    target={link?.blank && '_blank'}
+                                    className='flex items-center gap-2 text-sm md:text-md hover:text-white/[.8] w-fit'
+                                >
+                                    {link?.icon}
+                                    {link?.name}
+                                </NavLink>
+                            </li>
+                            )}
+                        </ul>
+                    </li>)}
+                </ul>
+                <p className="my-auto font-bold border-t border-t-white pt-2 mt-5">© Grocket, {new Date().getFullYear()} <span className="pl-2">v1.0.0</span></p>
             </div>
         </footer>
     )

@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 const Avatar = ({ avatar, height, width, alt }) => {
     return <img
-        className={cn('object-cover rounded-full', !width && 'w-full')}
+        className={cn('object-cover rounded-full aspect-square', !width && 'w-full')}
         src={avatar ? avatar : defaultAvatar}
         alt={alt}
         width={width && `${width}px`}

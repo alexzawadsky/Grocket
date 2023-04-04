@@ -41,7 +41,7 @@ function App() {
                     <div className={`flex flex-col h-full ${open && 'overflow-hidden'}`}>
                         <Navbar />
                         <Toaster />
-                        <main className='mt-20 container mx-auto flex-grow px-5 relative'>
+                        <main className='mt-20 container mx-auto flex-grow px-5 relative flex flex-col gap-5'>
                             <LanguageSelectionBanner />
                             <Routes>
                                 <Route path='/' errorElement={<NotFound />}>

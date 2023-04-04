@@ -12,7 +12,8 @@ const Landing = () => {
     const { isMinTablet } = useScreen()
 
     return (
-        <div className='flex flex-col md:gap-5 items-center md:items-start'>
+        // < className='flex flex-col md:gap-5 items-center md:items-start'>
+        <>
             <Helmet>
                 <title>Grocket</title>
             </Helmet>
@@ -33,7 +34,7 @@ const Landing = () => {
                 </section>
                 <HistoryList />
             </div>
-        </div>
+        </>
     )
 }
 

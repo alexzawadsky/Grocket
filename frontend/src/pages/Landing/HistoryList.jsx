@@ -41,7 +41,7 @@ const HistoryList = () => {
                 }
             </ul>}
             {lookHistory.length > 0 && <NavLink
-                className={`text-md ${(isMinTablet && !isLargePC) && '!text-sm'} flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange my-5 md:mt-2 leading-none md:pl-3`}
+                className={`text-md ${(isMinTablet && !isLargePC) && '!text-sm'} flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange mb-5 leading-none md:pl-3`}
                 to='/history'
             >
                 {t('view_full_history')}<BsArrowRight />

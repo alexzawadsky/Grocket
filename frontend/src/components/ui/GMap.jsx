@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import Flag from "./Flag"
 
 const GMap = ({ address }) => {
 
@@ -29,7 +30,7 @@ const GMap = ({ address }) => {
 
     return (
         <div className="w-full">
-            <p className="pb-2">{address?.full_address}</p>
+            <p className="pb-2 flex items-center gap-2">{address?.full_address} {address?.country && <Flag size={5} country={address?.country} />}</p>
             <div id="g-map" className="w-full h-64 md:h-72 xl:h-96 overflow-hidden rounded-xl"></div >
         </div>
     )

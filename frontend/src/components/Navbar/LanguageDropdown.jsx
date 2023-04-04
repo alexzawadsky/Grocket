@@ -33,15 +33,15 @@ const LanguageDropdown = () => {
                 className='flex items-center gap-0.5 md:gap-2 cursor-pointer'
             >
                 <div className="h-10 w-5 flex items-center">
-                    <Flag country={selectedLang?.icon} size={64} />
+                    <Flag country={selectedLang?.flag} size={64} />
                 </div>
                 <p>{isMinTablet && selectedLang?.name}</p>
                 {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </button>
             <div className="relative">
-                {open && <div className="absolute -left-3 top-2 text-black font-bold bg-white border-2 rounded-lg  p-1 grid grid-cols-2 md:grid-cols-1 gap-1 w-20 md:w-40">
+                {open && <ul className="absolute -left-3 top-2 text-black font-bold bg-white border-2 rounded-lg  p-1 grid grid-cols-2  gap-1 w-20 md:w-80">
                     {Object.keys(langs).map((l, key) =>
-                        <div
+                        <li
                             key={key}
                             className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200'} hover:bg-slate-100 px-2 py-1 md:py-2 rounded-md leading-none cursor-pointer flex items-center gap-2`}
                             onClick={() => {
@@ -50,13 +50,13 @@ const LanguageDropdown = () => {
                             }}
                         >
                             <div className="h-6 w-[24px] md:w-5 flex items-center">
-                                <Flag country={langs[l]?.icon} size={64} />
+                                <Flag country={langs[l]?.flag} size={64} />
                             </div>
                             {isMinTablet &&
                                 <p className="whitespace-nowrap">{isMinTablet && langs[l]?.name}</p>}
-                        </div>
+                        </li>
                     )}
-                </div>}
+                </ul>}
             </div>
         </div>
 

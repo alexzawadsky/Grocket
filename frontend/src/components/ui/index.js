@@ -2,6 +2,7 @@ import AddressField from "./AddressField";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import Form from "./Form";
+import Flag from './Flag'
 import GMap from "./GMap";
 import ImageEditor from "./ImageEditor";
 import Input from "./Input";
@@ -19,6 +20,7 @@ export {
     Avatar,
     Button,
     Form,
+    Flag,
     GMap,
     ImageEditor,
     Input,

@@ -1,21 +1,17 @@
 import { NavLink } from 'react-router-dom'
 import { BiCategoryAlt, BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
-import { useMediaQuery } from 'react-responsive'
+import { AiFillHeart } from 'react-icons/ai'
 import { useFavouriteProduct } from '../../api/api'
-import Price from '../ui/Price'
 import { useContext } from 'react'
 import AuthContext from '../../contexts/AuthProvider'
-import PublishTime from '../ui/PublishTime'
 import ImagesCarousel from '../ImagesCarousel/ImagesCarousel'
 import ManageProductMenu from '../ManageProductMenu/ManageProductMenu'
 import useScreen from '../../hooks/useScreen'
-import Avatar from '../ui/Avatar'
-import RatingStars from '../ui/RatingStars'
 import { FiMail } from 'react-icons/fi'
 import { TbPhoneCheck } from 'react-icons/tb'
 import { useTranslation } from 'react-i18next'
+import { Flag, RatingStars, Avatar, Price, PublishTime } from '../ui'
 
 const ItemCard = ({ product, managable = false, search = false, horizontal }) => {
 
@@ -40,11 +36,14 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                 }
             </div>
             <div className={`flex items-start h-full flex-col justify-center ${product?.promotions.includes('xl') ? 'gap-2 lg:gap-3' : 'gap-1 lg:gap-2'} p-4`}>
-                <div className="flex items-center justify-between w-full">
+                <div className="flex items-center w-full gap-2">
+                    <Flag size={5} country={product?.address?.country} className='mb-auto h-fit mt-[3px]' />
                     <p className={`font-bold hover:text-accent-orange flex items-center justify-between ${product?.promotions.includes('xl') ? 'text-md xl:text-2xl' : 'text-md xl:text-xl'}`} >
                         {product?.name}
                     </p>
-                    {product?.is_favourited && <AiFillHeart color='red' />}
+                    <span className='ml-auto'>
+                        {product?.is_favourited && <AiFillHeart color='red' />}
+                    </span>
                 </div>
                 <p
                     className={`text-ellipsis overflow-hidden ${product?.promotions.includes('xl') ? 'text-sm lg:text-md' : 'text-sm'}`}
@@ -123,9 +122,12 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
             className={`hover:md:bg-slate-50 rounded-2xl md:p-5 ${search && 'pb-5'} flex flex-col gap-2 transition-all duration-150 h-full`}
         >
             <ImagesCarousel images={product?.images} />
-            <h3 className="flex items-center justify-between">
+            <h3 className="flex items-center gap-2">
+                {product?.address?.country && <Flag size={5} country={product?.address?.country} className='mb-auto h-fit mt-[3px]' />}
                 <p className={`${search ? 'font-bold text-xl' : 'text-lg my-auto line-clamp-2'} hover:text-accent-orange w-fit justify-between`}>{product?.name}</p>
-                {product?.is_favourited && <AiFillHeart color='red' />}
+                <span className='ml-auto'>
+                    {product?.is_favourited && <AiFillHeart color='red' />}
+                </span>
             </h3>
             <p
                 className={

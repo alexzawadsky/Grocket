@@ -42,6 +42,7 @@ const Profile = () => {
                     commentsCount={data?.comments_count}
                     phone={data?.phone}
                     withComments
+                    country={data?.country}
                 />
                 {!isMinTablet && profileId === 'me' && <NavLink
                     to='items'

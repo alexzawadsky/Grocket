@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import api, { useCategories } from '../../api/api'
 import { BsArrowRight, BsTrashFill } from 'react-icons/bs'
-import Spinner from '../../components/Spinner'
+import Spinner from '../../components/ui/Spinner'
 import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
 

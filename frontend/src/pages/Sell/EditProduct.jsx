@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { useProduct, useUpdateProduct } from '../../api/api'
-import { Spinner, Title } from '../../components'
-import { BiPencil } from 'react-icons/bi'
+import { Spinner, Button } from '../../components/ui'
 import ProductForm from '../../forms/ProductForm'
 import { BsArrowLeft } from 'react-icons/bs'
 import CategoryList from './CategoryList'
@@ -67,13 +66,17 @@ const EditProduct = () => {
                 setData={setFormData}
                 setValid={setValid}
             />
-            <button
+            <Button
                 onClick={() => updateProductMutation.mutate({ id: productId, body: changes })}
-                className='button-fill-orange'
+                color='accent-orange'
+                style='fill'
+                width='fit'
+                height={12}
+                px={5}
                 disabled={!valid || Object.keys(changes).length === 0}
             >
                 {updateProductMutation.isLoading ? t('loading') : t('update')}
-            </button>
+            </Button>
             {updateProductMutation.error && updateProductMutation.error.message}
         </div>
     )

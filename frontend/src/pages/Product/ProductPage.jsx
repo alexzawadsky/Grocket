@@ -2,7 +2,8 @@ import { useContext } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import SearchHistoryContext from '../../contexts/HistoryContext';
-import { ReadMore, Spinner, GMap, Title, Price } from '../../components';
+import { Spinner, GMap, Title, Price } from '../../components/ui';
+import { ReadMore } from '../../components'
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 import { useProduct } from '../../api/api';
@@ -10,7 +11,7 @@ import SellerCard from './SellerCard';
 import Category from './Category';
 import { Helmet } from 'react-helmet-async';
 import AuthContext from '../../contexts/AuthProvider';
-import ManageProductMenu from '../../components/ManageProductMenu';
+import ManageProductMenu from '../../components/ManageProductMenu/ManageProductMenu';
 import useScreen from '../../hooks/useScreen';
 import { useTranslation } from 'react-i18next';
 import ImagesGallery from './ImagesGallery';
@@ -30,7 +31,6 @@ const ProductPage = () => {
         <div className='grid gap-3'>
             <Title text='Product not found' />
             <p>This can happen if product has been archived or deleted</p>
-            {user && <p>If it is your product you can find it in your <NavLink to='/profile' className='text-accent-orange'>profile</NavLink></p>}
         </div>
     )
     if (error) return error.message

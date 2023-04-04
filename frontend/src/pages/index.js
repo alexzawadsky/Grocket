@@ -1,6 +1,6 @@
 import Landing from "./Landing/Landing";
 import Login from "./Login/Login";
-import UserComments from "./User/Comments";
+import UserComments from "./User/Comments/Comments";
 import UserProductsPage from "./User/UserProductsPage";
 import UserProfile from "./User/Profile";
 import NotFound from "./NotFound/NotFound";
@@ -11,7 +11,7 @@ import Sell from "./Sell/Sell";
 import ProfileSettings, { PasswordReset, ChangeAvatar, UpdateProfile, DeleteProfile } from "./User/ProfileSettings";
 import EditProduct from "./Sell/EditProduct";
 import Promote from "./Product/Promote";
-import AddComment from "./User/AddComment";
+import AddComment from "./User/Comments/AddComment";
 import Search from "./Search/SearchPage";
 
 export {

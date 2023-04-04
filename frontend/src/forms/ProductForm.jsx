@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import useInput from '../hooks/useInput'
-import { Input, ImageEditor, AddressField, GMap, TextEditor } from '../components'
+import { Input, ImageEditor, AddressField, GMap, TextEditor } from '../components/ui'
 import { deleteImage } from '../pages/Sell/utils'
 import { BsTrashFill } from 'react-icons/bs'
 import { prepareImages } from '../pages/Sell/utils'

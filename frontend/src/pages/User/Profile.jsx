@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 import { useNavigate, NavLink, Outlet, useOutlet, useParams, useLocation } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
-import { ProfileCard, Spinner } from '../../components'
+import { ProfileCard } from '../../components'
+import { Spinner } from '../../components/ui'
 import AuthContext from '../../contexts/AuthProvider'
 import { BsBoxSeam } from 'react-icons/bs'
 import { useProfile } from '../../api/api'
 import { Helmet } from 'react-helmet-async'
 import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
-// import Flag from 'react-flags'
 
 const Profile = () => {
 

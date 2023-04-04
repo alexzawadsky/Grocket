@@ -30,7 +30,7 @@
 }
 
 .button-base {
-  @apply transition-all duration-100 font-bold w-fit px-5 py-3 flex items-center gap-2 rounded-xl justify-center disabled:!text-slate-600 disabled:!border-2 disabled:!border-slate-600 disabled:!cursor-not-allowed disabled:!bg-transparent
+  @apply transition-all duration-100 font-bold flex items-center gap-2 rounded-xl justify-center disabled:!text-slate-600 disabled:!border-2 disabled:!border-slate-600 disabled:!cursor-not-allowed disabled:!bg-transparent
 }
 
 .button-fill-orange {

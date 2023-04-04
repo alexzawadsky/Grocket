@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { NavLink, Outlet, useOutlet } from 'react-router-dom'
-import { AvatarCrop, Input, Spinner, Title } from '../../components'
+import { Input, Spinner, Title, Button, Form } from '../../components/ui'
+import { AvatarCrop } from '../../components'
 import { MdPassword } from 'react-icons/md'
 import { BsPersonBoundingBox, BsPersonLinesFill, BsArrowLeft, BsFillPersonXFill } from 'react-icons/bs'
 import useAxios from '../../hooks/useAxios'
@@ -41,16 +42,23 @@ export const PasswordReset = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className='grid gap-3 w-full md:w-2/3 lg:w-1/2'>
+        <Form onSubmit={handleSubmit} className='grid gap-3 w-full md:w-2/3 lg:w-1/2'>
             <BackButton />
             <h2 className='font-bold text-2xl'>{t('change_pass')}</h2>
             <Input title={t('old_pass')} type='password' instance={oldPwd} must={true} />
             <Input title={t('new_pass')} type='password' instance={newPwd} must={true} />
             <Input title={t('re_new_pass')} type='password' instance={repeatNewPwd} must={true} />
-            <button className='button-fill-orange' disabled={!oldPwd.allValid || !newPwd.allValid || !repeatNewPwd.allValid}>
+            <Button
+                disabled={!oldPwd.allValid || !newPwd.allValid || !repeatNewPwd.allValid}
+                style='fill'
+                width='fit'
+                color='accent-orange'
+                height={10}
+                px={5}
+            >
                 {updatePasswordMutation.isLoading ? <Spinner /> : t('change_pass')}
-            </button>
-        </form>
+            </Button>
+        </Form>
     )
 }
 
@@ -96,16 +104,15 @@ export const ChangeAvatar = () => {
 export const UpdateProfile = () => {
 
     const { t } = useTranslation()
-    const name = useInput('', { isEmpty: true })
-    const lastName = useInput('', { isEmpty: true })
-    const username = useInput('', { isEmpty: true })
-    const email = useInput('', { isEmpty: true })
-    const phone = useInput('', { isEmpty: true })
-    const country = useInput('', { isEmpty: true })
-    const [user, setUser] = useState(null)
+    const { data } = useProfile('me')
+    const name = useInput(data?.first_name, { isEmpty: true })
+    const lastName = useInput(data?.last_name, { isEmpty: true })
+    const username = useInput(data?.username, { isEmpty: true })
+    const email = useInput(data?.email, { isEmpty: true })
+    const phone = useInput(data?.phone, { isEmpty: true })
+    const country = useInput(data?.country, { isEmpty: true })
 
     const updateProfileMutation = useUpdateProfile()
-    const { data } = useProfile()
 
     const formData = {
         first_name: name.value,
@@ -116,26 +123,9 @@ export const UpdateProfile = () => {
         country: country.value
     }
 
-    useEffect(() => {
-        if (data) {
-            setUser(data)
-            name.setValue(data.first_name)
-            lastName.setValue(data.last_name)
-            username.setValue(data.username)
-            email.setValue(data.email)
-            phone.setValue(data.phone)
-            country.setValue(data.country)
-        }
-    }, [data])
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = () => {
         const changedFields = Object.entries(formData).filter(([key, value]) => value !== user[key])
         const data = Object.fromEntries(changedFields)
-        if (Object.keys(data).length === 0) {
-            info('No changes found')
-            return
-        }
         updateProfileMutation.mutate(data)
     }
 
@@ -143,19 +133,25 @@ export const UpdateProfile = () => {
         <div className='grid gap-3 w-full md:w-2/3 lg:w-1/2'>
             <BackButton />
             <h2 className="text-2xl font-bold">{t('change_profile_info')}</h2>
-            <form className="grid md:grid-cols-2 gap-3" onSubmit={handleSubmit}>
+            <Form className="grid md:grid-cols-2 gap-3" onSubmit={handleSubmit}>
                 <Input title={t('first_name')} instance={name} />
                 <Input title={t('last_name')} instance={lastName} />
-                <div className="col-span-full">
-                    <Input title={t('username')} instance={username} />
-                </div>
+                <Input className='col-span-full' title={t('username')} instance={username} />
                 <Input title={t('phone')} instance={phone} />
                 <Input title={t('country')} instance={country} />
-                <div className="col-span-full">
-                    <Input title={t('email')} instance={email} />
-                </div>
-                <button className="button-fill-orange">{updateProfileMutation.isLoading ? <Spinner /> : t('update')}</button>
-            </form>
+                <Input className='col-span-full' title={t('email')} instance={email} />
+                <Button
+                    type='submit'
+                    style='fill'
+                    color='accent-orange'
+                    height={10}
+                    width='fit'
+                    px={5}
+                    disabled={Object.entries(formData).filter(([key, value]) => value !== data[key]).length === 0}
+                >
+                    {updateProfileMutation.isLoading ? <Spinner /> : t('update')}
+                </Button>
+            </Form>
         </div>
     )
 }

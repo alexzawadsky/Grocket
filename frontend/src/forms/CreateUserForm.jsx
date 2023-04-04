@@ -1,5 +1,5 @@
 import useInput from "../hooks/useInput"
-import { Input } from "../components"
+import { Input } from "../components/ui"
 import { useTranslation } from "react-i18next"
 import { useEffect } from "react"
 

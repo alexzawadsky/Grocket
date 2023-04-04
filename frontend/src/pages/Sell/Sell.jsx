@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Title, Input, Spinner } from '../../components'
-import useInput from '../../hooks/useInput'
-import { BsCheckCircleFill, BsTrashFill } from 'react-icons/bs'
-import { AiOutlineCheck, AiOutlineRotateRight, AiOutlineRotateLeft } from 'react-icons/ai'
+import { Title, Spinner, Button } from '../../components/ui'
+import { BsCheckCircleFill } from 'react-icons/bs'
+import { AiOutlineCheck } from 'react-icons/ai'
 import AuthContext from '../../contexts/AuthProvider'
 import CategoryList from './CategoryList'
 import { useAddProduct } from '../../api/api'
-import { deleteImage } from './utils'
-import AddressField from '../../components/AddressField'
 import ProductForm from '../../forms/ProductForm'
 import { useTranslation } from 'react-i18next'
 
@@ -22,8 +19,7 @@ const Sell = () => {
     const [formValid, setFormValid] = useState(false)
     const addProductMutation = useAddProduct()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = () => {
         addProductMutation.mutate({
             ...formData,
             category: category[category.length - 1].id
@@ -58,19 +54,22 @@ const Sell = () => {
                     />
                 </>}
             {stage === 2 && !addProductMutation.data &&
-                <div>
+                <>
                     <ProductForm setData={setFormData} setValid={setFormValid} />
-                    <button
+                    <Button
                         disabled={!formValid}
-                        className="button-fill-orange mt-5 disabled:border-2 disabled:bg-white disabled:cursor-not-allowed disabled:border-slate-600 disabled:text-slate-600"
+                        width='fit'
+                        style='fill'
+                        color='accent-orange'
+                        height={12}
+                        px={5}
                         onClick={handleSubmit}
                     >
                         <AiOutlineCheck />{addProductMutation.isLoading ? <Spinner /> : t('place_item')}
-                    </button>
+                    </Button>
                     {addProductMutation.isError && addProductMutation.error.message}
-                </div>
-            }
-            {addProductMutation.data ?
+                </>}
+            {addProductMutation.data &&
                 <div className='grid gap-5'>
                     <h2 className='text text-xl text-green-600 flex items-center gap-3'><BsCheckCircleFill />{t('sell_success')}</h2>
                     <span className='flex gap-1'>
@@ -86,8 +85,7 @@ const Sell = () => {
                             className='text-accent-orange hover:underline'
                             to='/profile/lots'>{t('all_your_items')}</NavLink>
                     </span>
-                </div> : null
-            }
+                </div>}
         </div >
     )
 }

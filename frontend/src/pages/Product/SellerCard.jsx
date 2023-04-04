@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { NavLink } from "react-router-dom"
 import AuthContext from "../../contexts/AuthProvider"
-import { Avatar, RatingStars } from "../../components"
+import { Avatar, RatingStars } from "../../components/ui"
 import { useTranslation } from "react-i18next"
 
 const SellerCard = ({ profile }) => {

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { Price } from "../../components"
+import { Price } from "../../components/ui"
 
 const HistoryItem = ({ product }) => {
     return (

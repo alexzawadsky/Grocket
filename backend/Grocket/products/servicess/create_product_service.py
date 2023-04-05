@@ -91,6 +91,7 @@ def _create_product_obj(
         category=category,
         is_archived=False,
         is_sold=False,
+        address='Schoolpad 4, 1111 CS Diemen, Netherlands',
         **validated_fields
     )
     product.full_clean()

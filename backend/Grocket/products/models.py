@@ -1,7 +1,7 @@
 from django.db import models
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
-
+from address.models import AddressField
 from users.models import User
 
 from .fields import RichTextBleachField
@@ -110,11 +110,10 @@ class Product(models.Model):
         default_currency='USD',
         verbose_name='product price',
     )
-    # Потом сделать нормальное поле!!!!!!!!!
-    address = models.CharField(
-        max_length=150,
-        verbose_name='product address',
-        default='no address',
+    address = AddressField(
+        related_name='products',
+        verbose_name='address',
+        on_delete=models.PROTECT
     )
     promotions = models.ManyToManyField(
         Promotion,

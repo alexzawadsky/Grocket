@@ -3,7 +3,7 @@ from django.db.models.query import QuerySet
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
-
+from address.models import Address
 from products.models import Product, Promotion
 
 from . import (create_product_service, favourite_product_service,
@@ -53,6 +53,11 @@ def get_products(
         safe=safe, user_id=user_id, seller_id=seller_id,
         for_comments=for_comments, is_favourited=is_favourited, **fields
     )
+
+
+def get_product_address_or_404(product_id: int) -> Address:
+    product = get_object_or_404(Product, id=product_id)
+    return product.address
 
 
 def get_product_or_404(user_id: Optional[int] = None, **fields) -> Product:

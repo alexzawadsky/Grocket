@@ -4,7 +4,7 @@ from djmoney.contrib.django_rest_framework import MoneyField
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
-
+from products.servicess.actions import get_product_address_or_404
 from api.fields import ProductImagesUpdateField
 from comments.services import CommentService
 from products.models import Category, Product
@@ -164,19 +164,50 @@ class ProductImageCreateSerializer(serializers.Serializer):
         fields = ('image', 'is_main',)
 
 
+class ProductAddressSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
+    country = serializers.SerializerMethodField()
+    country_code = serializers.SerializerMethodField()
+    state = serializers.SerializerMethodField()
+    postal_code = serializers.SerializerMethodField()
+    city = serializers.SerializerMethodField()
+    route = serializers.CharField()
+    street_number = serializers.CharField()
+
+    class Meta:
+        fields = ('id', 'latitude', 'longitude', 'country',
+                  'country_code', 'state', 'postal_code', 'city',
+                  'route', 'street_number',)
+
+    def get_state(self, obj):
+        return obj.locality.state.name
+
+    def get_country(self, obj):
+        return obj.locality.state.country.name
+
+    def get_postal_code(self, obj):
+        return obj.locality.postal_code
+
+    def get_city(self, obj):
+        return obj.locality.name
+
+    def get_country_code(self, obj):
+        return obj.locality.state.country.code
+
+
 # ref
 class ProductReadOnlySerializer(serializers.Serializer):
     id = serializers.IntegerField()
     name = serializers.CharField()
     price = MoneyField(max_digits=19, decimal_places=2)
     price_currency = serializers.CharField()
-    address = serializers.CharField()
     is_archived = serializers.BooleanField()
     is_sold = serializers.BooleanField()
     pub_date = serializers.DateTimeField()
     is_favourited = serializers.SerializerMethodField()
     promotions = serializers.SerializerMethodField()
-    user = CustomUserSerializer(read_only=True)
 
     def get_is_favourited(self, obj):
         user = self.context['request'].user
@@ -198,12 +229,14 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
     description = serializers.CharField()
     category = ProductCategorySerializer(read_only=True)
     images = serializers.SerializerMethodField()
+    user = CustomUserSerializer(read_only=True)
+    address = ProductAddressSerializer(read_only=True)
 
     class Meta:
         fields = (
-            'id', 'name', 'user',
+            'id', 'name', 'user', 'address',
             'description', 'price', 'price_currency',
-            'address', 'is_archived', 'is_sold', 'is_favourited',
+            'is_archived', 'is_sold', 'is_favourited',
             'category', 'images', 'pub_date', 'promotions',
         )
 
@@ -223,7 +256,9 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
 class ProductListSerializer(ProductReadOnlySerializer):
     description = serializers.SerializerMethodField()
     images = serializers.SerializerMethodField()
-    category = CategoryListSerializer(read_only=True)
+    category = serializers.SerializerMethodField()
+    user = serializers.SerializerMethodField()
+    address = serializers.SerializerMethodField()
 
     class Meta:
         fields = (
@@ -232,6 +267,30 @@ class ProductListSerializer(ProductReadOnlySerializer):
             'is_archived', 'is_sold', 'is_favourited',
             'category', 'images', 'pub_date', 'promotions',
         )
+
+    def get_address(self, obj):
+        address = get_product_address_or_404(product_id=obj.id)
+        serializer = ProductAddressSerializer(
+            instance=address,
+            read_only=True
+        )
+        return serializer.data
+
+    def get_category(self, obj):
+        category = products_services.get_category_or_404(id=obj.category_id)
+        serializer = CategoryListSerializer(
+            instance=category,
+            read_only=True
+        )
+        return serializer.data
+
+    def get_user(self, obj):
+        user = users_services.get_user_or_404(id=obj.user_id)
+        serializer = CustomUserSerializer(
+            instance=user,
+            read_only=True
+        )
+        return serializer.data
 
     def get_description(self, obj):
         return obj.description[:200]

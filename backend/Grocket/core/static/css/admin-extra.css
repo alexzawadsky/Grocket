@@ -1,3 +1,164 @@
+:root {
+    --orange: #ff9001;
+    --body-fg: white;
+    --body-bg: rgb(33, 33, 33);
+    --primary-fg: rgb(53, 53, 53);
+    --darkened-bg: rgb(53, 53, 53);
+    --primary: var(--orange);
+    --link-hover-color: rgb(159, 159, 159);
+    --link-fg: white;
+    --body-quiet-color: rgb(223, 223, 223);
+    --link-selected-fg: var(--orange);
+    --selected-row: gray;
+    --hairline-color: var(--body-bg);
+    --border-color: var(--body-bg);
+    --header-color: black;
+    --object-tools-bg: var(--orange);
+    --selected-bg: gray;
+    --accent: var(--orange);
+}
+
+@font-face {
+    font-family: nunito-sans;
+    src: url(../fonts/NunitoSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: nunito-sans-bold;
+    src: url(../fonts/NunitoSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: nunito-sans-bold-italic;
+    src: url(../fonts/NunitoSans-ExtraBoldItalic.ttf);
+}
+
+body {
+    font-family: nunito-sans;
+}
+
+body>* {
+    border: none !important;
+    outline: none !important;
+}
+
+#branding,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+caption {
+    font-family: nunito-sans-bold;
+}
+
+#site-name>a {
+    color: var(--orange) !important;
+    font-family: nunito-sans-bold-italic;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
 #header {
-    background: #FF9001;
+    --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    background-color: var(--darkened-bg);
+}
+
+#header>* {
+    color: white;
+}
+
+#user-tools>a {
+    color: var(--orange) !important;
+}
+
+#logout-form>button {
+    color: red;
+}
+
+tr:nth-child(2n) {
+    border-bottom: 2px solid var(--darkened-bg);
+}
+
+tr:nth-child(2n + 1) {
+    border-bottom: 2px solid var(--body-bg);
+}
+
+input:focus {
+    outline: none !important;
+}
+
+input:not([type="submit"]),
+select,
+textarea {
+    background-color: rgb(72, 72, 72) !important;
+    color: white !important;
+}
+
+#toolbar form input[type="submit"] {
+    color: white !important;
+}
+
+li>.addlink {
+    font-family: nunito-sans-bold !important;
+    font-size: 13px !important;
+}
+
+.breadcrumbs {
+    color: white !important;
+    font-family: nunito-sans-bold-italic;
+}
+
+.breadcrumbs>* {
+    font-family: nunito-sans-bold-italic;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    background-color: #6c6c6c !important;
+}
+
+input[type="checkbox"]:checked {
+    border: 4px solid var(--orange);
+}
+
+#tree.block-style ul.jqtree-tree .jqtree-element {
+    background-color: var(--primary-fg) !important;
+}
+
+ul.jqtree-tree .jqtree-title {
+    color: var(--orange) !important;
+}
+
+input.default {
+    background-color: var(--orange) !important;
+}
+
+.submit-row>input[type="submit"]:not(.default) {
+    background-color: gray;
+}
+
+.success {
+    color: green !important;
+}
+
+.success>a {
+    font-family: nunito-sans-bold !important;
+    color: green !important;
+}
+
+.calendar-cancel {
+    background-color: var(--primary-fg) !important;
+}
+
+.calendar-cancel>a {
+    color: white !important;
 }

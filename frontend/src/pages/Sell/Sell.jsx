@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Title, Spinner, Button } from '../../components/ui'
+import { Title, Spinner, Button, Form } from '../../components/ui'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { AiOutlineCheck } from 'react-icons/ai'
 import AuthContext from '../../contexts/AuthProvider'
@@ -38,7 +38,7 @@ const Sell = () => {
     if (!user) return <Title text='You need to login to your account to be able to sell items' />
 
     return (
-        <div className='flex flex-col    md:grid gap-5'>
+        <div className='flex flex-col md:grid gap-5 w-full xl:w-8/12 mx-auto'>
             <Title
                 text={t('sell_your_item')}
                 className='col-span-full'
@@ -54,9 +54,10 @@ const Sell = () => {
                     />
                 </>}
             {stage === 2 && !addProductMutation.data &&
-                <>
+                <Form onSubmit={handleSubmit}>
                     <ProductForm setData={setFormData} setValid={setFormValid} />
                     <Button
+                        type='submit'
                         disabled={!formValid}
                         width='fit'
                         style='fill'
@@ -64,11 +65,12 @@ const Sell = () => {
                         height={12}
                         px={5}
                         onClick={handleSubmit}
+                        className='mt-5'
                     >
                         <AiOutlineCheck />{addProductMutation.isLoading ? <Spinner /> : t('place_item')}
                     </Button>
                     {addProductMutation.isError && addProductMutation.error.message}
-                </>}
+                </Form>}
             {addProductMutation.data &&
                 <div className='grid gap-5'>
                     <h2 className='text text-xl text-green-600 flex items-center gap-3'><BsCheckCircleFill />{t('sell_success')}</h2>

@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { BsFillTrashFill } from 'react-icons/bs'
+import { BsTrashFill } from 'react-icons/bs'
 import cn from 'classnames'
+import Button from "./Button";
 
 const Errors = ({ instance }) => {
 
@@ -45,7 +46,7 @@ const Input = ({
     }, [])
 
     const inputInner = <>
-        {title ? <label className={must ? 'after:content-["*"] after:text-accent-red after:pl-1' : ''} htmlFor={id}>{title}</label> : null}
+        {title && <label className={must ? 'after:content-["*"] after:text-accent-red after:pl-1' : ''} htmlFor={id}>{title}</label>}
         <div>
             {large ? <textarea
                 id={id}
@@ -71,7 +72,16 @@ const Input = ({
             />}
             <Errors instance={instance} />
         </div>
-        {deleteBtn && <span></span>}
+        {deleteBtn && <Button
+            type='button'
+            onClick={() => instance.setValue('')}
+            textColor='accent-red'
+            border={false}
+            px={2}
+            width='fit'
+        >
+            <BsTrashFill />
+        </Button>}
     </>
 
     return split ? inputInner : <div className={cn('flex flex-col gap-0.5', containerClassName)}>{inputInner}</div>

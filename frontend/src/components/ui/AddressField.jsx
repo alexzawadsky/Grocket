@@ -6,14 +6,20 @@ const AddressField = ({ setAddress, split }) => {
     const { t } = useTranslation()
 
     useEffect(() => {
-        const autocompleteObject = new google.maps.places.Autocomplete(document.getElementById('address'))
+        const autocompleteObject = new google.maps.places.Autocomplete(document.getElementById('address'), { language: 'en' })
         const handleAddress = () => {
             const place = autocompleteObject.getPlace()
-            setAddress({
-                lat: place?.geometry?.location.lat(),
-                lng: place?.geometry?.location.lng(),
-                fullAddress: place?.formatted_address
-            })
+            console.log(place)
+            const data = {
+                latitude: place?.geometry?.location.lat(),
+                longitude: place?.geometry?.location.lng(),
+                country_code: place?.address_components?.find(el => el?.types.includes('country'))?.short_name,
+                city: place?.address_components?.find(el => el?.types.includes('locality'))?.long_name,
+                full: place?.formatted_address,
+                short: place?.name
+            }
+            console.log(data)
+            setAddress(data)
         }
         autocompleteObject.addListener('place_changed', handleAddress)
     }, [])

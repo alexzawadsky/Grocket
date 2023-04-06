@@ -28,7 +28,7 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
                         <span className={!firstName && 'text-primary-100'}>
                             {firstName ? firstName : t('first_name')}
                         </span>
-                        <span className={!lastName && 'text-accent-100'}>
+                        <span className={!lastName && 'text-primary-100'}>
                             {lastName ? lastName : t('last_name')}
                         </span>
                     </p>

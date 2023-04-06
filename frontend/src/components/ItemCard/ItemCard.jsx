@@ -37,7 +37,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
             </div>
             <div className={`flex items-start h-full flex-col justify-center ${product?.promotions.includes('xl') ? 'gap-2 lg:gap-3' : 'gap-1 lg:gap-2'} p-4`}>
                 <div className="flex items-center w-full gap-2">
-                    <Flag size={5} country={product?.address?.country} className='mb-auto h-fit mt-[3px]' />
+                    <Flag size={5} country={product?.address?.country_code} className='mb-auto h-fit mt-[3px]' />
                     <p className={`font-bold hover:text-accent-orange flex items-center justify-between ${product?.promotions.includes('xl') ? 'text-md xl:text-2xl' : 'text-md xl:text-xl'}`} >
                         {product?.name}
                     </p>
@@ -71,7 +71,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     </p>
                     <p className={`flex items-center gap-2 ${product?.promotions.includes('xl') ? 'text-sm lg:text-md' : 'text-[12px] lg:text-sm'}`}>
                         <FiMapPin />
-                        {product?.address?.full_address}
+                        {product?.address?.short} {product?.addess?.city}
                     </p>
                     <p className={`flex items-center gap-2 ${product?.promotions.includes('xl') ? 'text-sm lg:text-md' : 'text-[12px] lg:text-sm'}`}>
                         <BiCategoryAlt />
@@ -123,7 +123,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
         >
             <ImagesCarousel images={product?.images} />
             <h3 className="flex items-center gap-2">
-                {product?.address?.country && <Flag size={5} country={product?.address?.country} className='mb-auto h-fit mt-[3px]' />}
+                <Flag size={5} country={product?.address?.country_code} className='mb-auto h-fit mt-[3px]' />
                 <p className={`${search ? 'font-bold text-xl' : 'text-lg my-auto line-clamp-2'} hover:text-accent-orange w-fit justify-between`}>{product?.name}</p>
                 <span className='ml-auto'>
                     {product?.is_favourited && <AiFillHeart color='red' />}
@@ -145,7 +145,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                 {(!managable || (user?.user_id !== product?.user?.id)) &&
                     <>
                         <FiMapPin />
-                        <p className='text-sm line-clamp-1'>{product?.address?.full_address}</p>
+                        <p className='text-sm line-clamp-1'>{product?.address?.short} {product?.address?.city}</p>
                     </>}
                 {(isMinTablet || search) &&
                     <>

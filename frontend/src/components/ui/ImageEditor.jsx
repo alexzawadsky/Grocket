@@ -24,17 +24,30 @@ const ImageEditor = ({ images, setImages }) => {
     const [imageUploading, setImageUploading] = useState(false)
 
     return (
-        <div className='flex flex-col gap-2 h-fit'>
+        <div className='flex flex-col gap-2 h-fit max-w-full'>
             <h2 className="text-xl font-bold">{t('photos')}</h2>
             <div className='rounded-xl border shadow-sm p-5'>
-                <div className='flex flex-col w-full mx-auto gap-2'>
+                <div className='flex flex-col w-fit mx-auto gap-3'>
                     <input
-                        className='text-sm file:bg-slate-100 hover:file:bg-slate-200 file:rounded-lg file:outline-none file:px-3 file:h-10 file:mr-3 file:border-none file:font-bold'
+                        className='text-sm hidden file:bg-slate-100 hover:file:bg-slate-200 file:rounded-lg file:outline-none file:px-3 file:h-10 file:mr-3 file:border-none file:font-bold w-fit'
                         ref={imageInputRef}
                         type="file"
                         onChange={(e) => setCurrentImage(e.target.files[0])}
                     />
-                    <div className='mx-auto my-3'>
+                    <Button
+                        type='button'
+                        onClick={() => imageInputRef && imageInputRef.current.click()}
+                        color='slate-100'
+                        onHoverColor='slate-200'
+                        border={false}
+                        width='fit'
+                        height={8}
+                        px={5}
+                        className='whitespace-nowrap !rounded-full'
+                    >
+                        {t('browse')}
+                    </Button>
+                    <div className='mx-auto'>
                         <AvatarEditor
                             ref={editorRef}
                             image={currentImage}
@@ -47,7 +60,7 @@ const ImageEditor = ({ images, setImages }) => {
                             rotate={imageRotation}
                         />
                     </div>
-                    <div className="flex gap-1 w-full p-1 border shadow-sm rounded-lg items-center">
+                    <div className="flex gap-1 w-fit p-1 border shadow-sm rounded-lg items-center">
                         <Button
                             onClick={() => setImageRotation(prevRotation => prevRotation - 90)}
                             type='button'
@@ -77,20 +90,18 @@ const ImageEditor = ({ images, setImages }) => {
                             <AiOutlineRotateRight />
                         </Button>
                     </div>
-                    <div className="flex items-center gap-5 mt-3">
-                        <Button
-                            onClick={() => { saveImage(editorRef, images, setImages, setCurrentImage, imageInputRef, setImageUploading) }}
-                            height={10}
-                            px={5}
-                            style='outline'
-                            color='accent-orange'
-                            type='button'
-                            disabled={imageUploading || !currentImage}
-                        >
-                            {t('save_image')}
-                        </Button>
-                        {imageUploading && `${t('loading')}...`}
-                    </div>
+                    <Button
+                        onClick={() => { saveImage(editorRef, images, setImages, setCurrentImage, imageInputRef, setImageUploading) }}
+                        height={10}
+                        px={5}
+                        style='outline'
+                        color='accent-orange'
+                        type='button'
+                        disabled={imageUploading || !currentImage}
+                    >
+                        {t('save_image')}
+                    </Button>
+                    {imageUploading && `${t('loading')}...`}
                 </div>
             </div>
         </div>

@@ -102,6 +102,7 @@ def _create_product_obj(
 
 
 def _add_address_to_product(product_id: int, fields: dict) -> None:
+    """Создаст объект адреса с продуктом по id."""
     product = get_object_or_404(Product, id=product_id)
     address = ProductAddress(product=product, **fields)
     address.full_clean()

@@ -1,10 +1,50 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
 
-from users.models import User
-
 from .fields import RichTextBleachField
+
+User = get_user_model()
+
+
+class ProductAddress(models.Model):
+    product = models.ForeignKey(
+        'Product',
+        on_delete=models.CASCADE,
+        verbose_name='product',
+        related_name='product_addresses'
+    )
+    full = models.CharField(
+        max_length=150,
+        verbose_name='full address'
+    )
+    short = models.CharField(
+        max_length=150,
+        verbose_name='short address'
+    )
+    city = models.CharField(
+        max_length=150,
+        verbose_name='city'
+    )
+    country_code = models.CharField(
+        max_length=2,
+        verbose_name='country code'
+    )
+    latitude = models.FloatField(
+        verbose_name='latitude'
+    )
+    longitude = models.FloatField(
+        verbose_name='longitude'
+    )
+
+    class Meta:
+        ordering = ('-id',)
+        verbose_name = 'product address'
+        verbose_name_plural = 'product addresses'
+
+    def __str__(self):
+        return f'{self.id} prod:{self.product.id} {self.short}'
 
 
 class Image(models.Model):
@@ -23,7 +63,7 @@ class Image(models.Model):
         verbose_name_plural = 'product images'
 
     def __str__(self):
-        return f'product: {self.product.id}, {self.is_main}'
+        return f'{self.id} prod:{self.product.id} main:{self.is_main}'
 
 
 class Category(MPTTModel):
@@ -50,7 +90,12 @@ class Category(MPTTModel):
         verbose_name_plural = 'Categories'
 
     def __str__(self):
-        return self.title
+        parent_obj = self.parent
+        if parent_obj is None:
+            parent = None
+        else:
+            parent = parent_obj.id
+        return f'{self.id} parent:{parent}'
 
 
 class Promotion(models.Model):
@@ -80,7 +125,7 @@ class Promotion(models.Model):
         verbose_name_plural = 'promotions'
 
     def __str__(self):
-        return self.name
+        return f'{self.id} {self.name}'
 
 
 class Product(models.Model):
@@ -110,14 +155,8 @@ class Product(models.Model):
         default_currency='USD',
         verbose_name='product price',
     )
-    # Потом сделать нормальное поле!!!!!!!!!
-    address = models.CharField(
-        max_length=150,
-        verbose_name='product address',
-        default='no address',
-    )
     promotions = models.ManyToManyField(
-        Promotion,
+        'Promotion',
         related_name='products',
         verbose_name='product promotion types',
         blank=True,
@@ -136,7 +175,10 @@ class Product(models.Model):
         verbose_name_plural = 'products'
 
     def __str__(self):
-        return f'{self.id}, {self.name}'
+        return (
+            f'{self.id} user:{self.user.id} cat:{self.category.id} '
+            f'arch:{self.is_archived} sold:{self.is_archived}'
+        )
 
 
 class Favourite(models.Model):
@@ -161,4 +203,4 @@ class Favourite(models.Model):
                        name='unique favorite')]
 
     def __str__(self):
-        return f'{self.user.id}, {self.product.name}'
+        return f'{self.id} user:{self.user.id} prod:{self.product.id}'

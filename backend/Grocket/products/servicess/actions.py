@@ -1,10 +1,11 @@
 from typing import List, Optional
-from django.db.models.query import QuerySet
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
+from django.db.models.query import QuerySet
 from django.shortcuts import get_object_or_404
 
-from products.models import Product, Promotion
+from products.models import Product, ProductAddress, Promotion
 
 from . import (create_product_service, favourite_product_service,
                get_products_service)
@@ -53,6 +54,11 @@ def get_products(
         safe=safe, user_id=user_id, seller_id=seller_id,
         for_comments=for_comments, is_favourited=is_favourited, **fields
     )
+
+
+def get_product_address(product_id: int) -> ProductAddress:
+    product = get_product_or_404(Product, id=product_id)
+    return get_object_or_404(ProductAddress, product=product)
 
 
 def get_product_or_404(user_id: Optional[int] = None, **fields) -> Product:

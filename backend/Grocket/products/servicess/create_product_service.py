@@ -3,7 +3,7 @@ from django.core.exceptions import PermissionDenied, ValidationError
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 
-from products.models import Category, Product
+from products.models import Category, Product, ProductAddress
 
 from .add_images_to_product_service import add_images_to_product
 
@@ -59,6 +59,7 @@ def _parse_fields(fields: dict) -> set:
         user_id = fields.pop('user')
         category_id = fields.pop('category')
         images = fields.pop('images')
+        address = fields.pop('address')
     except KeyError:
         raise ValidationError(
             error_messages[
@@ -69,7 +70,8 @@ def _parse_fields(fields: dict) -> set:
     removed_fields = {
         'user_id': user_id,
         'category_id': category_id,
-        'images': images
+        'images': images,
+        'address': address
     }
 
     return removed_fields, fields
@@ -99,6 +101,13 @@ def _create_product_obj(
     return product.id
 
 
+def _add_address_to_product(product_id: int, fields: dict) -> None:
+    product = get_object_or_404(Product, id=product_id)
+    address = ProductAddress(product=product, **fields)
+    address.full_clean()
+    address.save()
+
+
 def create_product(**fields) -> None:
     """
     Проверяется логика создания товара.
@@ -122,6 +131,10 @@ def create_product(**fields) -> None:
         add_images_to_product(
             product_id=product_id,
             images=removed_fields['images']
+        )
+        _add_address_to_product(
+            product_id=product_id,
+            fields=removed_fields['address']
         )
     except Exception as error:
         Product.objects.get(id=product_id).delete()

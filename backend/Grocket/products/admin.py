@@ -37,6 +37,7 @@ class ProductAddressAdmin(admin.ModelAdmin):
     search_fields = ('full', 'city', 'country_code',)
     list_filter = ('product', 'country_code', 'city',)
     empty_value_display = '-empty-'
+    save_on_top = True
 
 
 @admin.register(Category)

@@ -21,6 +21,8 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'modeltranslation',
 
+    'core',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,7 +65,7 @@ ROOT_URLCONF = 'Grocket.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,6 +142,8 @@ CSV_URL = 'data/csv'
 JSON_URL = 'data/json'
 # <--- Настройка путей --->
 
+
+STATICFILES_DIRS = []
 
 # Email бекенд
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

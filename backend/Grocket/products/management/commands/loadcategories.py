@@ -8,7 +8,20 @@ from products.models import Category
 url = settings.JSON_URL
 
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 class Command(BaseCommand):
+    """Парсит json файл с категориями и записывает их в БД."""
     def handle(self, *args, **options):
         with open(f'{url}/categories.json', 'r', encoding="utf-8") as file:
             data = json.load(file)
@@ -38,5 +51,5 @@ class Command(BaseCommand):
             else:
                 missed += 1
 
-        print(f'Добавлено: {added}')
-        print(f'Пропущено: {missed}')
+        print(f'{bcolors.OKGREEN}Добавлено: {added}')
+        print(f'{bcolors.FAIL}Пропущено: {missed}')

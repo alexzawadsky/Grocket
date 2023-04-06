@@ -11,9 +11,9 @@ const SearchHistoryPage = () => {
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
-        <div>
+        <>
             <h1 className='font-bold text-3xl'>{t('you_checked_earlier')}</h1>
-            <div className="flex items-center justify-between md:justify-start md:gap-10 md:pl-5 pt-5">
+            <div className="flex items-center justify-between md:justify-start md:gap-10 md:pl-5">
                 <NavLink className='flex items-center gap-3' to='/'><BsArrowLeft />{t('back_to_mainpage')}</NavLink>
                 <button
                     onClick={clearHistory}
@@ -22,10 +22,12 @@ const SearchHistoryPage = () => {
                 </button>
             </div>
             {lookHistory.length === 0 && <p className='font-bold pt-5'>{t('nothing_yet')}</p>}
-            <div className='grid gap-5 md:gap-0 pt-5 md:pt-0 grid-cols-2 md:grid-cols-3 lg:grid-cols-5'>
-                {lookHistory.map((el, key) => <ItemCard key={key} product={el} />)}
-            </div>
-        </div>
+            <ul className='grid gap-5 md:gap-0 md:pt-0 grid-cols-2 md:grid-cols-3 lg:grid-cols-5'>
+                {lookHistory.map((el, key) => <li>
+                    <ItemCard key={key} product={el} />
+                </li>)}
+            </ul>
+        </>
     )
 }
 

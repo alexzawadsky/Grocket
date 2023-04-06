@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { useProduct, useUpdateProduct } from '../../api/api'
-import { Spinner, Title } from '../../components'
-import { BiPencil } from 'react-icons/bi'
+import { Spinner, Button, Form } from '../../components/ui'
 import ProductForm from '../../forms/ProductForm'
 import { BsArrowLeft } from 'react-icons/bs'
 import CategoryList from './CategoryList'
@@ -52,29 +51,37 @@ const EditProduct = () => {
 
     return (
         <div className='grid gap-4'>
-            <NavLink to={`/products/${productId}`} className='flex items-center gap-2 hover:text-accent-orange font-bold'><BsArrowLeft />{t('product_page')}</NavLink>
-            {/* <div className="flex items-center gap-2">
-                <p className="text-3xl"><BiPencil /></p>
-                <Title text='Edit product' />
-            </div> */}
-            <h2 className='font-bold text-xl'>{t('change_category')}</h2>
-            <CategoryList
-                category={category}
-                setCategory={setCategory}
-            />
-            <ProductForm
-                data={data}
-                setData={setFormData}
-                setValid={setValid}
-            />
-            <button
-                onClick={() => updateProductMutation.mutate({ id: productId, body: changes })}
-                className='button-fill-orange'
-                disabled={!valid || Object.keys(changes).length === 0}
+            <Form
+                className='lg:w-10/12 xl:w-8/12 mx-auto grid gap-2'
+                onSubmit={() => updateProductMutation.mutate({ id: productId, body: changes })}
             >
-                {updateProductMutation.isLoading ? t('loading') : t('update')}
-            </button>
-            {updateProductMutation.error && updateProductMutation.error.message}
+                <NavLink to={`/products/${productId}`} className='flex items-center gap-2 hover:text-accent-orange font-bold'>
+                    <BsArrowLeft />{t('product_page')}
+                </NavLink>
+                <h2 className='font-bold text-xl'>{t('change_category')}</h2>
+                <CategoryList
+                    category={category}
+                    setCategory={setCategory}
+                />
+                <ProductForm
+                    data={data}
+                    setData={setFormData}
+                    setValid={setValid}
+                />
+                <Button
+                    type='submit'
+                    color='accent-orange'
+                    style='fill'
+                    width='fit'
+                    height={12}
+                    px={5}
+                    disabled={!valid || Object.keys(changes).length === 0}
+                    className='mt-3'
+                >
+                    {updateProductMutation.isLoading ? t('loading') : t('update')}
+                </Button>
+                {updateProductMutation.error && updateProductMutation.error.message}
+            </Form>
         </div>
     )
 }

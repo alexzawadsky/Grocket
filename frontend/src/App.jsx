@@ -1,4 +1,5 @@
-import { Navbar, Footer, PrivateRoute, LanguageSelectionBanner, WindowScroll } from './components'
+import { Navbar, Footer, PrivateRoute, LanguageSelectionBanner } from './components'
+import { WindowScroll } from './components/ui';
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { SearchHistoryProvider } from './contexts/HistoryContext';
 import { AuthProvider } from './contexts/AuthProvider';
@@ -11,7 +12,6 @@ import {
     NotFound,
     UserProductsPage,
     ProductPage,
-    Favourites,
     Register,
     PasswordReset,
     SearchHistoryPage,
@@ -38,11 +38,10 @@ function App() {
             <AuthProvider>
                 <SearchHistoryProvider>
                     {/* <ReactQueryDevtools /> */}
-                    <Toaster />
-                    <WindowScroll />
                     <div className={`flex flex-col h-full ${open && 'overflow-hidden'}`}>
                         <Navbar />
-                        <main className='mt-20 container mx-auto flex-grow px-5 relative'>
+                        <Toaster />
+                        <main className='mt-20 container mx-auto flex-grow px-5 relative flex flex-col gap-5'>
                             <LanguageSelectionBanner />
                             <Routes>
                                 <Route path='/' errorElement={<NotFound />}>
@@ -73,6 +72,7 @@ function App() {
                                 </Route>
                             </Routes>
                         </main>
+                        <WindowScroll />
                         <Footer />
                     </div>
                 </SearchHistoryProvider>

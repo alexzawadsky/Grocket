@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'djmoney',
     'django_countries',
-    'address',
     'mptt',
     'django_mptt_admin',
     'rest_framework',
@@ -269,6 +268,3 @@ CKEDITOR_CONFIGS = {
     }
 }
 BLEACH_DEFAULT_WIDGET = 'wysiwyg.widgets.WysiwygWidget'
-
-
-GOOGLE_API_KEY = 'AIzaSyAoJlz6CeqKJ7gD6jksHtdciTUhlleKVQM'

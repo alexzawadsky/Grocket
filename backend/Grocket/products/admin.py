@@ -4,7 +4,8 @@ from django.contrib import admin
 from django_mptt_admin.admin import DjangoMpttAdmin
 from modeltranslation.admin import TranslationAdmin
 
-from .models import Category, Favourite, Image, Product, Promotion
+from .models import (Category, Favourite, Image, Product, ProductAddress,
+                     Promotion)
 
 
 class PostAdminForm(forms.ModelForm):
@@ -24,6 +25,17 @@ class ProductAdmin(admin.ModelAdmin):
     )
     search_fields = ('name', 'user', 'price',)
     list_filter = ('user', 'price', 'pub_date',)
+    empty_value_display = '-empty-'
+
+
+@admin.register(ProductAddress)
+class ProductAddressAdmin(admin.ModelAdmin):
+    list_display = (
+        'pk', 'product', 'full', 'city', 'country_code',
+        'latitude', 'longitude'
+    )
+    search_fields = ('full', 'city', 'country_code',)
+    list_filter = ('product', 'country_code', 'city',)
     empty_value_display = '-empty-'
 
 

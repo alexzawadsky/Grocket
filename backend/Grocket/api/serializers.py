@@ -4,11 +4,12 @@ from djmoney.contrib.django_rest_framework import MoneyField
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
-from products.servicess.actions import get_product_address_or_404
+
 from api.fields import ProductImagesUpdateField
 from comments.services import CommentService
 from products.models import Category, Product
 from products.services import ProductService
+from products.servicess.actions import get_product_address
 from users.models import User
 from users.services import UserService
 
@@ -164,37 +165,47 @@ class ProductImageCreateSerializer(serializers.Serializer):
         fields = ('image', 'is_main',)
 
 
-class ProductAddressSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
+# ref
+class ProductAddressCreateUpdateSerializer(serializers.Serializer):
+    full = serializers.CharField()
+    short = serializers.CharField()
+    city = serializers.CharField()
+    country_code = serializers.CharField()
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()
-    country = serializers.SerializerMethodField()
-    country_code = serializers.SerializerMethodField()
-    state = serializers.SerializerMethodField()
-    postal_code = serializers.SerializerMethodField()
-    city = serializers.SerializerMethodField()
-    route = serializers.CharField()
-    street_number = serializers.CharField()
 
     class Meta:
-        fields = ('id', 'latitude', 'longitude', 'country',
-                  'country_code', 'state', 'postal_code', 'city',
-                  'route', 'street_number',)
+        fields = (
+            'full', 'city', 'country_code'
+            'latitude', 'longitude',
+        )
 
-    def get_state(self, obj):
-        return obj.locality.state.name
 
-    def get_country(self, obj):
-        return obj.locality.state.country.name
+# ref
+class ProductAddressRetrieveSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    full = serializers.CharField()
+    city = serializers.CharField()
+    country_code = serializers.CharField()
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
 
-    def get_postal_code(self, obj):
-        return obj.locality.postal_code
+    class Meta:
+        fields = (
+            'id', 'full', 'city', 'country_code'
+            'latitude', 'longitude',
+        )
 
-    def get_city(self, obj):
-        return obj.locality.name
 
-    def get_country_code(self, obj):
-        return obj.locality.state.country.code
+# ref
+class ProductAddressListSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    short = serializers.CharField()
+    country_code = serializers.CharField()
+    city = serializers.CharField()
+
+    class Meta:
+        fields = ('id', 'short', 'city', 'country_code',)
 
 
 # ref
@@ -230,7 +241,7 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
     category = ProductCategorySerializer(read_only=True)
     images = serializers.SerializerMethodField()
     user = CustomUserSerializer(read_only=True)
-    address = ProductAddressSerializer(read_only=True)
+    address = serializers.SerializerMethodField()
 
     class Meta:
         fields = (
@@ -239,6 +250,14 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
             'is_archived', 'is_sold', 'is_favourited',
             'category', 'images', 'pub_date', 'promotions',
         )
+
+    def get_address(self, obj):
+        address = get_product_address(product_id=obj.id)
+        serializer = ProductAddressRetrieveSerializer(
+            instance=address,
+            read_only=True
+        )
+        return serializer.data
 
     def get_images(self, obj):
         images = products_services.get_product_images(
@@ -269,8 +288,8 @@ class ProductListSerializer(ProductReadOnlySerializer):
         )
 
     def get_address(self, obj):
-        address = get_product_address_or_404(product_id=obj.id)
-        serializer = ProductAddressSerializer(
+        address = get_product_address(product_id=obj.id)
+        serializer = ProductAddressListSerializer(
             instance=address,
             read_only=True
         )
@@ -315,13 +334,13 @@ class ProductCreateSerializer(serializers.Serializer):
     description = serializers.CharField()
     price = MoneyField(max_digits=19, decimal_places=2)
     price_currency = serializers.CharField()
-    address = serializers.CharField()
     category = serializers.IntegerField()
+    address = ProductAddressCreateUpdateSerializer()
 
     class Meta:
         fields = (
             'name', 'user', 'price_currency', 'description',
-            'price', 'address', 'category', 'images',
+            'price', 'category', 'images',
         )
 
     def validate_images(self, value):

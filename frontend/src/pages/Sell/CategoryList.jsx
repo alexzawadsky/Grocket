@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import api, { useCategories } from '../../api/api'
 import { BsArrowRight, BsTrashFill } from 'react-icons/bs'
-import Spinner from '../../components/Spinner'
+import Spinner from '../../components/ui/Spinner'
 import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
 
@@ -26,12 +26,12 @@ const CategoryList = ({ category, setCategory }) => {
     }
 
     return (
-        <div className="flex flex-col md:flex-row gap-5">
-            {category.length > 0 && <div className="flex gap-3 md:gap-5 flex-wrap items-center h-fit">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-5">
+            {category.length > 0 && <div className="flex gap-2 md:gap-5 flex-wrap items-center h-fit">
                 {category.map((el, key) => (
                     <div
                         key={key}
-                        className='flex gap-5 items-center'
+                        className='flex gap-2 md:gap-5 items-center'
                     >
                         <p className={`${el.is_lower ? 'font-bold' : null}`}>{el.title}</p>
                         {el.is_lower ? null : <BsArrowRight />}

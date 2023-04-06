@@ -1,10 +1,10 @@
 {
-    "SE": {
-        "icon": "🇸🇪",
-        "name": "Sverige",
-        "code": "se",
-        "flag": "SE",
-        "codeForTimeStamp": "sv"
+    "EN": {
+        "icon": "🇬🇧",
+        "name": "English",
+        "code": "en",
+        "flag": "GB",
+        "codeForTimeStamp": "en"
     },
     "RU": {
         "icon": "🇷🇺",
@@ -13,20 +13,6 @@
         "flag": "RU",
         "codeForTimeStamp": "ru"
     },
-    "NL": {
-        "icon": "🇳🇱",
-        "name": "Netherlands",
-        "code": "nl",
-        "flag": "NL",
-        "codeForTimeStamp": "nl"
-    },
-    "EN": {
-        "icon": "🇬🇧",
-        "name": "English",
-        "code": "en",
-        "flag": "GB",
-        "codeForTimeStamp": "en"
-    },
     "UA": {
         "icon": "🇺🇦",
         "name": "Українська",
@@ -34,11 +20,50 @@
         "flag": "UA",
         "codeForTimeStamp": "uk"
     },
+    "KZ": {
+        "name": "Қазақ",
+        "code": "kz",
+        "flag": "KZ",
+        "codeForTimeStamp": "kz"
+    },
+    "SE": {
+        "icon": "🇸🇪",
+        "name": "Sverige",
+        "code": "se",
+        "flag": "SE",
+        "codeForTimeStamp": "sv"
+    },
+    "NL": {
+        "icon": "🇳🇱",
+        "name": "Netherlands",
+        "code": "nl",
+        "flag": "NL",
+        "codeForTimeStamp": "nl"
+    },
+    "FR": {
+        "icon": "🇫🇷",
+        "name": "Français",
+        "code": "fr",
+        "flag": "FR",
+        "codeForTimeStamp": "fr"
+    },
+    "DE": {
+        "name": "Deutsch",
+        "code": "de",
+        "flag": "DE",
+        "codeForTimeStamp": "de"
+    },
     "CN": {
         "icon": "🇨🇳",
         "name": "中国人",
         "code": "cn",
         "flag": "CN",
         "codeForTimeStamp": "zh"
+    },
+    "GE": {
+        "name": "ქართული",
+        "code": "ge",
+        "flag": "GE",
+        "codeForTimeStamp": "ka"
     }
 }

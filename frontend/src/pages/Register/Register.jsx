@@ -1,13 +1,11 @@
-import React, { useState, useRef, useContext, useEffect } from 'react'
+import { useState, useRef, useContext, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { BsFillTrashFill } from 'react-icons/bs'
 import AuthContext from '../../contexts/AuthProvider'
-import { toBase64 } from "../../utils";
-import { AvatarCrop, ProfileCard, Title } from '../../components'
-import { useMediaQuery } from 'react-responsive';
+import { ProfileCard } from '../../components'
 import useScreen from '../../hooks/useScreen';
 import { useTranslation } from 'react-i18next';
 import CreateUserForm from '../../forms/CreateUserForm';
+import { Title, Button, Form } from '../../components/ui'
 
 const Register = () => {
 
@@ -21,8 +19,7 @@ const Register = () => {
 
     const [loading, setLoading] = useState(false)
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const handleSubmit = async () => {
         setLoading(true)
         registerUser(formData)
         setLoading(false)
@@ -42,7 +39,7 @@ const Register = () => {
                     withComments={false}
                     withPhone={false}
                 /></div>}
-                <form onSubmit={handleSubmit} className='w-full max-w-[400px] lg:max-w-[550px] mx-auto mt-8 h-fit md:my-auto md:mr-auto grid gap-3'>
+                <Form onSubmit={handleSubmit} className='w-full max-w-[400px] lg:max-w-[550px] mx-auto mt-8 h-fit md:my-auto md:mr-auto grid gap-3'>
                     <div className="ml-5">
                         <Title text={t('create_acc')} />
                     </div>
@@ -51,21 +48,24 @@ const Register = () => {
                             setFormData={setFormData}
                             setValid={setValid}
                         />
-                        <button
-                            className='button-fill-orange !w-fit !h-10 mt-5'
+                        <Button
+                            className='mt-5'
+                            height={10}
+                            px={5}
+                            color='accent-orange'
+                            style='fill'
+                            width='fit'
                             disabled={!valid}
                         >
                             {t('register')}
-                        </button>
+                        </Button>
                     </div>
-
-                    <div className='flex gap-2 ml-5'>
-                        <p>{t('already_have_acc')}?</p>
+                    <p className='flex gap-2 ml-5'>
+                        {t('already_have_acc')}?
                         <NavLink to='/login' className='underline text-accent-orange'>{t('login')}</NavLink>
-                    </div>
-                </form>
+                    </p>
+                </Form>
             </div>
-
         </div >
     )
 }

@@ -40,7 +40,7 @@ const Login = () => {
                     text='Grocket'
                     italic
                 />
-                <Form className='grid gap-1 md:gap-2 shadow-md rounded-xl p-5 border' onSubmit={handleSubmit}>
+                <Form className='grid gap-1 md:gap-2 shadow-md rounded-xl p-5 border dark:border-2 dark:border-zinc-600' onSubmit={handleSubmit}>
                     <Input
                         title={t('email')}
                         type='text'

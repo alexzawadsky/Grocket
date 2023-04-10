@@ -29,7 +29,6 @@ const Comment = ({ comment }) => {
                         <BsTrash />
                     </button>}
             </div>
-
             <p className='text-sm text-primary-300'><PublishTime pubDate={comment?.pub_date} /></p>
             <RatingStars rating={comment?.rate} />
             <div className="flex gap-1 items-center">
@@ -45,7 +44,7 @@ const Comment = ({ comment }) => {
                 <ReadMore text={comment?.text} limit={100} />
             </div>
             <SlideshowLightbox theme='lightbox' className='grid mt-2 grid-cols-4 md:grid-cols-5 xl:grid-cols-6 items-start gap-2 grow'>
-                {comment?.images.map((el, key) => <img key={key} src={el.image} className='border-2 rounded-xl aspect-auto' />)}
+                {comment?.images.map((el, key) => <img key={key} src={el.image} className='border-2 rounded-lg aspect-auto' />)}
             </SlideshowLightbox>
             <CommentReply
                 commentId={comment?.id}

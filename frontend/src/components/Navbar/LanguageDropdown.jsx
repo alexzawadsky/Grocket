@@ -27,7 +27,7 @@ const LanguageDropdown = () => {
     }, [open])
 
     return (
-        <div className="bg-white rounded-md text-black py-1 px-2 font-bold lang-drop">
+        <div className="rounded-md text-black dark:text-slate-50 py-1 px-2 font-bold lang-drop">
             <button
                 onClick={() => setOpen(prevState => !prevState)}
                 className='flex items-center gap-0.5 md:gap-2 cursor-pointer'
@@ -39,11 +39,11 @@ const LanguageDropdown = () => {
                 {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </button>
             <div className="relative">
-                {open && <ul className="absolute -left-3 top-2 text-black font-bold bg-white border-2 rounded-lg  p-1 grid grid-cols-2  gap-1 w-20 md:w-80">
+                {open && <ul className="absolute -left-3 top-2 text-black dark:text-slate-50 font-bold bg-white dark:bg-zinc-800 border-2 dark:border-zinc-600 rounded-lg  p-1 grid grid-cols-2  gap-1 w-20 md:w-80">
                     {Object.keys(langs).map((l, key) =>
                         <li
                             key={key}
-                            className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200'} hover:bg-slate-100 px-2 py-1 md:py-2 rounded-md leading-none cursor-pointer flex items-center gap-2`}
+                            className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200 dark:!bg-zinc-600'} hover:bg-slate-100 hover:dark:bg-zinc-700 px-2 py-1 md:py-2 rounded-md leading-none cursor-pointer flex items-center gap-2`}
                             onClick={() => {
                                 i18n.changeLanguage(langs[l]?.code)
                                 setOpen(false)

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
+import cn from 'classnames'
 
 const SortBy = ({ sortBy, setSortBy }) => {
 
@@ -41,22 +42,26 @@ const SortBy = ({ sortBy, setSortBy }) => {
     return (
         <div>
             <p
-                className="flex items-center gap-2 sortby-drop font-bold border-2 h-10 rounded-xl py-2 px-3 cursor-pointer"
+                className="flex items-center gap-2 sortby-drop font-bold border-2 h-10 rounded-xl py-2 px-3 cursor-pointer hover:dark:bg-zinc-700"
                 onClick={() => setOpen(prevState => !prevState)}
             >
                 {selectedOption?.title} {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </p>
             {open && <div className="relative">
-                <div className="absolute z-50 bg-white rounded-xl border-2 p-1 top-2 grid gap-1">
+                <ul className="absolute z-50 bg-white dark:bg-zinc-800 rounded-xl border-2 p-1 top-2 grid gap-1">
                     {options.map((el, key) =>
-                        <p
+                        <li
                             key={key}
                             onClick={() => setSortBy(el?.code)}
-                            className={`whitespace-nowrap ${el?.code === selectedOption?.code && '!bg-slate-200'} cursor-pointer hover:bg-slate-100 px-3 rounded-lg font-bold leading-none h-10 flex items-center`}
+                            className={cn(
+                                `whitespace-nowrap`,
+                                el?.code === selectedOption?.code && '!bg-slate-200 dark:!bg-zinc-600',
+                                `cursor-pointer hover:bg-slate-100 hover:dark:bg-zinc-700 px-3 rounded-lg font-bold leading-none h-8 flex items-center`
+                            )}
                         >
                             {el.title}
-                        </p>)}
-                </div>
+                        </li>)}
+                </ul>
             </div>}
         </div>
     )

@@ -13,7 +13,7 @@ const ProductsList = ({ query }) => {
 
     if (isLoading) return <Spinner gap />
     if (error) return <p className='md:pl-5 md:pt-5'>{error.message}</p>
-    if (data?.results?.length === 0) return <p className='md:pl-5 md:pt-5'>{t('no_results_found')}</p>
+    if (data?.count === 0) return <p className='md:pl-5 md:pt-5'>{t('no_results_found')}</p>
 
     return (
         <>
@@ -25,13 +25,12 @@ const ProductsList = ({ query }) => {
                     />
                 </li>)}
             </ul>
-            {data.pages_count > 1 && <div className='mx-auto mt-5 '>
-                <Pagination
-                    page={page}
-                    pagesCount={data.pages_count}
-                    setPage={setPage}
-                />
-            </div>}
+            {data.pages_count > 1 && <Pagination
+                className='mt-5 mx-auto md:mx-0 md:mt-2 ml-0 md:ml-5'
+                page={page}
+                pagesCount={data.pages_count}
+                setPage={setPage}
+            />}
         </>
     )
 }

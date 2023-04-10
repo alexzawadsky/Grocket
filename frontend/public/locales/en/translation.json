@@ -137,5 +137,8 @@
     "about_team": "About team",
     "about_project": "About project",
     "learn_more": "Learn more",
-    "about_site": "About site"
+    "about_site": "About site",
+    "light": "Light",
+    "dark": "Dark",
+    "auto": "Auto"
 }

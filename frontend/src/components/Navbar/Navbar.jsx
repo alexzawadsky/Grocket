@@ -9,6 +9,7 @@ import LanguageDropdown from './LanguageDropdown'
 import logo from '../../assets/logo.png'
 import heart from '../../assets/icons/ukraine.svg'
 import Avatar from '../ui/Avatar'
+import ThemeToggle from './ThemeToggle'
 
 const Navbar = () => {
 
@@ -17,8 +18,8 @@ const Navbar = () => {
     const { isMinTablet } = useScreen()
 
     return (
-        <nav className='w-full fixed z-50 left-0 top-0 bg-white shadow-lg'>
-            <ul className='flex container px-5 mx-auto gap-2 md:gap-5 h-16 items-center'>
+        <nav className='w-full fixed z-50 left-0 top-0 shadow-lg bg-white dark:bg-zinc-800'>
+            <ul className='flex container px-5 mx-auto gap-2 md:gap-6 h-16 items-center'>
                 <li className="flex items-center gap-1">
                     <NavLink className='text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
                         {isMinTablet ? 'Grocket' : <img className='h-10' src={logo} alt='grocket logo' />}
@@ -38,12 +39,15 @@ const Navbar = () => {
                 <li className='mr-auto'>
                     <LanguageDropdown />
                 </li>
+                <li>
+                    <ThemeToggle />
+                </li>
                 {user ?
                     <li>
                         <NavLink className='flex items-center gap-2 h-10 font-bold' to='/users/me'>
                             <Avatar
                                 avatar={user?.avatar}
-                                alt={`${user?.name}`}
+                                alt={`${user?.name} avatar`}
                                 width={40}
                                 height={40}
                             />
@@ -54,12 +58,12 @@ const Navbar = () => {
                     :
                     <>
                         {isMinTablet && <li>
-                            <NavLink to='/register' className='flex items-center gap-2 hover:md:bg-slate-100 h-12 px-3 rounded-lg'>
+                            <NavLink to='/register' className='flex items-center gap-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700 h-12 px-3 rounded-lg'>
                                 <FiUserPlus />{t('register')}
                             </NavLink>
                         </li>}
                         <li>
-                            <NavLink to='/login' className='flex items-center gap-2 hover:md:bg-slate-100 h-12 px-3 rounded-lg'>
+                            <NavLink to='/login' className='flex items-center gap-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700 h-12 px-3 rounded-lg'>
                                 <FiLogIn />{t('login')}
                             </NavLink>
                         </li>

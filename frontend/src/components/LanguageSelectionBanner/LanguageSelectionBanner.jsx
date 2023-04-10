@@ -37,7 +37,7 @@ const LanguageSelectionBanner = () => {
 
     if (!resolvedLanguage) return
     return (!languageSelected && i18n.resolvedLanguage !== code) ?
-        <div className="flex gap-3 md:gap-6 items-center flex-wrap border-2 rounded-2xl p-3 w-full md:w-fit">
+        <div className="flex gap-3 md:gap-6 items-center flex-wrap border-2 dark:border-zinc-600 rounded-2xl p-3 w-full md:w-fit">
             <div className="flex items-center gap-1">
                 Do you speak
                 <div className="w-5 ml-1">

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import SearchHistoryContext from '../../contexts/HistoryContext';
-import { Spinner, GMap, Title, Price } from '../../components/ui';
+import { Spinner, GMap, Title, Price, PublishTime } from '../../components/ui';
 import { ReadMore } from '../../components'
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
@@ -60,14 +60,12 @@ const ProductPage = () => {
                 <div className='grid gap-3'>
                     <h1 className="text-3xl font-bold flex items-center justify-between">
                         {data.name}
-                        <button className='text-accent-red' >{data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}</button>
+                        <button className='text-accent-red dark:text-red-600' >{data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}</button>
                     </h1>
                     <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">
                         <span className='text-primary-300 flex items-center gap-2'>
                             <BiTimeFive />
-                            {new Date(data.pub_date).toLocaleDateString(undefined,
-                                { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }
-                            )}
+                            <PublishTime pubDate={data?.pub_date} />
                         </span>
                         <Category category={data.category} />
                     </div>
@@ -91,15 +89,18 @@ const ProductPage = () => {
                         )}
                     </>}
                 </div>
-                {!isMaxTablet && <aside className='w-fit grid gap-5 h-fit'>
-                    <h2 className='font-bold text-3xl'><Price price={data?.price} currency={data?.price_currency} /></h2>
-                    <SellerCard profile={data.user} />
-                    {data.user.id === user?.user_id && (
-                        <div className='pb-3 grid gap-3'>
-                            <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
-                            <ManageProductMenu product={data} />
-                        </div>
-                    )}
+                {!isMaxTablet && <aside >
+                    <div className='w-fit grid gap-5 h-fit fixed'>
+                        <h2 className='font-bold text-3xl'><Price price={data?.price} currency={data?.price_currency} /></h2>
+                        <SellerCard profile={data.user} />
+                        {data.user.id === user?.user_id && (
+                            <div className='pb-3 grid gap-3'>
+                                <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
+                                <ManageProductMenu product={data} />
+                            </div>
+                        )}
+                    </div>
+
                 </aside>}
             </div>
         </>

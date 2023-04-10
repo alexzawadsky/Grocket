@@ -15,7 +15,7 @@ const HistoryList = () => {
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
-        <aside className='grid gap-2 h-fit min-h-[20px]'>
+        <aside className='grid gap-2 h-fit'>
             {isMinTablet &&
                 <>
                     <h2 to='/history' className='text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>

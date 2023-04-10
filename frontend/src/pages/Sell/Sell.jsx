@@ -58,13 +58,12 @@ const Sell = () => {
                     <ProductForm setData={setFormData} setValid={setFormValid} />
                     <Button
                         type='submit'
-                        disabled={!formValid}
+                        disabled={!formValid || addProductMutation.isLoading}
                         width='fit'
                         style='fill'
                         color='accent-orange'
                         height={12}
                         px={5}
-                        onClick={handleSubmit}
                         className='mt-5'
                     >
                         <AiOutlineCheck />{addProductMutation.isLoading ? <Spinner /> : t('place_item')}

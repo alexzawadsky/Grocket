@@ -3,7 +3,7 @@ from django import forms
 from django.contrib import admin
 from django_mptt_admin.admin import DjangoMpttAdmin
 from modeltranslation.admin import TranslationAdmin
-
+from django.contrib import messages
 from .models import (Category, Favourite, Image, Product, ProductAddress,
                      Promotion)
 
@@ -18,14 +18,59 @@ class PostAdminForm(forms.ModelForm):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    form = PostAdminForm
     list_display = (
-        'pk', 'name', 'user', 'price', 'pub_date',
-        'is_archived', 'is_sold',
+        'pk', 'short_name', 'user', 'category', 'price', 'price_currency',
+        'pub_date', 'is_archived', 'is_sold',
     )
-    search_fields = ('name', 'user', 'price',)
-    list_filter = ('user', 'price', 'pub_date',)
+    search_fields = ('name', 'description',)
+    list_filter = (
+        'user', 'pub_date', 'is_archived',
+        'is_sold', 'promotions',
+        )
+    date_hierarchy = 'pub_date'
     empty_value_display = '-empty-'
+    form = PostAdminForm
+    save_on_top = True
+    actions = [
+        'sell_products', 'unsell_products',
+        'archive_products', 'unarchive_products'
+    ]
+
+    @admin.display(description='name')
+    def short_name(self, obj):
+        name = obj.name
+        max_letters = 20
+        return name[:max_letters] + ('...' if len(name) > max_letters else '')
+
+    def _action(self, request, queryset, message, **fields):
+        queryset.update(**fields)
+        count = queryset.count()
+        product_word = 'products were' if count > 1 else 'product was'
+        self.message_user(
+            request,
+            f'{count} {product_word} {message}.',
+            messages.SUCCESS
+        )
+
+    @admin.action(description='Mark as sold')
+    def sell_products(self, request, queryset):
+        message = 'successfully marked as sold'
+        self._action(request, queryset, message, is_sold=True)
+
+    @admin.action(description='Remove from sold')
+    def unsell_products(self, request, queryset):
+        message = 'successfully removed from sold'
+        self._action(request, queryset, message, is_sold=False)
+
+    @admin.action(description='Archive')
+    def archive_products(self, request, queryset):
+        message = 'successfully added to archive'
+        self._action(request, queryset, message, is_archived=True)
+
+    @admin.action(description='Remove from archive')
+    def unarchive_products(self, request, queryset):
+        message = 'successfully removed from archive'
+        self._action(request, queryset, message, is_archived=False)
 
 
 @admin.register(ProductAddress)
@@ -37,7 +82,6 @@ class ProductAddressAdmin(admin.ModelAdmin):
     search_fields = ('full', 'city', 'country_code',)
     list_filter = ('product', 'country_code', 'city',)
     empty_value_display = '-empty-'
-    save_on_top = True
 
 
 @admin.register(Category)

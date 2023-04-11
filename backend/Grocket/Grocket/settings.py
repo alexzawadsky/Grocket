@@ -19,9 +19,9 @@ ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
-    'modeltranslation',
-
     'core',
+
+    'modeltranslation',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -62,10 +62,31 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Grocket.urls'
 
+
+# <--- Настройка путей --->
+DATA_URL = '/data/'
+DATA_ROOT = os.path.join(BASE_DIR, 'data')
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'core', 'static'),
+]
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'core', 'templates')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CSV_URL = 'data/csv'
+JSON_URL = 'data/json'
+# <--- Настройка путей --->
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,22 +149,6 @@ USE_L10N = True
 USE_TZ = True
 # <--- Локализация --->
 
-# <--- Настройка путей --->
-DATA_URL = '/data/'
-DATA_ROOT = os.path.join(BASE_DIR, 'data')
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-CSV_URL = 'data/csv'
-JSON_URL = 'data/json'
-# <--- Настройка путей --->
-
-
-STATICFILES_DIRS = []
 
 # Email бекенд
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -239,6 +244,7 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 
 # HTML поле для товаров и валидация
+BLEACH_DEFAULT_WIDGET = 'wysiwyg.widgets.WysiwygWidget'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar_Basic': [
@@ -271,4 +277,3 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
-BLEACH_DEFAULT_WIDGET = 'wysiwyg.widgets.WysiwygWidget'

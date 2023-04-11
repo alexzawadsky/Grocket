@@ -25,7 +25,8 @@ class ProductAddress(models.Model):
     )
     city = models.CharField(
         max_length=150,
-        verbose_name='city'
+        verbose_name='city',
+        blank=True
     )
     country_code = models.CharField(
         max_length=2,
@@ -40,8 +41,8 @@ class ProductAddress(models.Model):
 
     class Meta:
         ordering = ('-id',)
-        verbose_name = 'product address'
-        verbose_name_plural = 'product addresses'
+        verbose_name = 'address'
+        verbose_name_plural = 'addresses'
 
     def __str__(self):
         return f'{self.id} prod:{self.product.id} {self.short}'
@@ -54,13 +55,19 @@ class Image(models.Model):
         on_delete=models.CASCADE,
         verbose_name='product',
     )
-    image = models.ImageField(upload_to='images/')
-    is_main = models.BooleanField(default=False)
+    image = models.ImageField(
+        verbose_name='image',
+        upload_to='images/'
+    )
+    is_main = models.BooleanField(
+        verbose_name='is main',
+        default=False
+    )
 
     class Meta:
         ordering = ('-id',)
-        verbose_name = 'product image'
-        verbose_name_plural = 'product images'
+        verbose_name = 'image'
+        verbose_name_plural = 'images'
 
     def __str__(self):
         return f'{self.id} prod:{self.product.id} main:{self.is_main}'
@@ -69,7 +76,7 @@ class Image(models.Model):
 class Category(MPTTModel):
     title = models.CharField(
         max_length=50,
-        verbose_name='category title',
+        verbose_name='title',
     )
     parent = TreeForeignKey(
         'self',
@@ -77,7 +84,6 @@ class Category(MPTTModel):
         null=True,
         blank=True,
         related_name='children',
-        db_index=True,
         verbose_name='parent category'
     )
 
@@ -90,12 +96,7 @@ class Category(MPTTModel):
         verbose_name_plural = 'Categories'
 
     def __str__(self):
-        parent_obj = self.parent
-        if parent_obj is None:
-            parent = None
-        else:
-            parent = parent_obj.id
-        return f'{self.id} parent:{parent}'
+        return f'{self.title}'
 
 
 class Promotion(models.Model):
@@ -131,7 +132,7 @@ class Promotion(models.Model):
 class Product(models.Model):
     name = models.CharField(
         max_length=200,
-        verbose_name='product name',
+        verbose_name='name',
     )
     user = models.ForeignKey(
         User,
@@ -147,24 +148,24 @@ class Product(models.Model):
     )
     description = RichTextBleachField(
         max_length=1000,
-        verbose_name='product description',
+        verbose_name='description',
     )
     price = MoneyField(
         max_digits=19,
         decimal_places=2,
         default_currency='USD',
-        verbose_name='product price',
+        verbose_name='price',
     )
     promotions = models.ManyToManyField(
         'Promotion',
         related_name='products',
-        verbose_name='product promotion types',
+        verbose_name='promotion types',
         blank=True,
     )
     is_archived = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
     pub_date = models.DateTimeField(
-        'Pub date',
+        verbose_name='pub date',
         auto_now_add=True,
         db_index=True,
     )
@@ -176,7 +177,7 @@ class Product(models.Model):
 
     def __str__(self):
         return (
-            f'{self.id} user:{self.user.id} cat:{self.category.id} '
+            f'{self.id} {self.name[:10]} user:{self.user.id} '
             f'arch:{self.is_archived} sold:{self.is_archived}'
         )
 
@@ -192,7 +193,7 @@ class Favourite(models.Model):
         Product,
         related_name='favourites',
         on_delete=models.CASCADE,
-        verbose_name='favorite product',
+        verbose_name='product',
     )
 
     class Meta:

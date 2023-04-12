@@ -57,9 +57,9 @@ const Promote = () => {
                         {promotions.data?.map((promo, key) =>
                             <li
                                 className={cn(
-                                    'grid gap-2 border-2 shadow-sm rounded-xl p-5',
+                                    'grid gap-2 border-2 dark:border-zinc-600 shadow-sm rounded-xl p-5',
                                     (selected.find(el => el.id === promo.id) || product.data?.promotions.includes(promo?.name)) &&
-                                    'border-accent-orange bg-accent-orange/[0.05] border-2'
+                                    '!border-accent-orange bg-accent-orange/[0.05] border-2'
                                 )}
                                 key={key}
                             >

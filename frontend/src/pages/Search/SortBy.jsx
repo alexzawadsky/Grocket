@@ -42,13 +42,13 @@ const SortBy = ({ sortBy, setSortBy }) => {
     return (
         <div>
             <p
-                className="flex items-center gap-2 sortby-drop font-bold border-2 h-10 rounded-xl py-2 px-3 cursor-pointer hover:dark:bg-zinc-700"
+                className="flex items-center gap-2 sortby-drop font-bold border-2 h-10 rounded-xl py-2 px-3 cursor-pointer hover:dark:bg-zinc-700 dark:border-zinc-600"
                 onClick={() => setOpen(prevState => !prevState)}
             >
                 {selectedOption?.title} {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </p>
             {open && <div className="relative">
-                <ul className="absolute z-50 bg-white dark:bg-zinc-800 rounded-xl border-2 p-1 top-2 grid gap-1">
+                <ul className="absolute z-50 bg-white dark:bg-zinc-800 rounded-xl border-2 p-1 top-2 grid gap-1 dark:border-zinc-600">
                     {options.map((el, key) =>
                         <li
                             key={key}

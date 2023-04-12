@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 const CardModeToggle = ({ state, setState }) => {
     return (
-        <div className='grid grid-cols-[1fr_1fr] rounded-xl border-2 p-1 gap-1 h-10 w-[76px]'>
+        <div className='grid grid-cols-[1fr_1fr] rounded-xl border-2 p-1 gap-1 h-10 w-[76px] dark:border-zinc-600'>
             <div
                 className={cn(
                     state && '!bg-slate-200 dark:!bg-zinc-600',

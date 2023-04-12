@@ -26,7 +26,7 @@ const ProductsList = ({ query }) => {
                 </li>)}
             </ul>
             {data.pages_count > 1 && <Pagination
-                className='mt-5 mx-auto md:mx-0 md:mt-2 ml-0 md:ml-5'
+                className='mt-5 mx-auto md:mx-0 md:mt-2 md:ml-5'
                 page={page}
                 pagesCount={data.pages_count}
                 setPage={setPage}

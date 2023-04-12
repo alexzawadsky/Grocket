@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom'
 import { BiCategoryAlt, BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 import { AiFillHeart } from 'react-icons/ai'
-import { useFavouriteProduct } from '../../api/api'
 import { useContext } from 'react'
 import AuthContext from '../../contexts/AuthProvider'
 import ImagesCarousel from '../ImagesCarousel/ImagesCarousel'
@@ -17,11 +16,10 @@ import cn from 'classnames'
 const ItemCard = ({ product, managable = false, search = false, horizontal }) => {
 
     const { isLargePC, isMinTablet } = useScreen()
-    const favouriteProductMutation = useFavouriteProduct()
     const { user } = useContext(AuthContext)
     const { t } = useTranslation()
 
-    const handleFavourite = () => favouriteProductMutation.mutate({ id: product.id, state: product.is_favourited })
+
 
     if (horizontal && isMinTablet) return (
         <NavLink className='grid grid-cols-[1fr_2fr] xl:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 hover:dark:bg-zinc-700 transition-all duration-150' to={`/products/${product?.id}`}>
@@ -124,6 +122,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
         <NavLink
             to={`/products/${product?.id}`}
             className={cn(
+                // product.promotions.includes('xl') && 'col-span-2',
                 `hover:md:bg-slate-50 hover:md:dark:bg-zinc-700 rounded-2xl md:p-5`,
                 search && 'pb-5',
                 `flex flex-col gap-2 transition-all duration-150 h-full`

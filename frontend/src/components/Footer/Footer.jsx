@@ -43,11 +43,6 @@ const Footer = () => {
                     blank: true
                 },
                 {
-                    icon: <CgMoreO />,
-                    name: t('learn_more'),
-                    url: '/about-team'
-                },
-                {
                     icon: <RiHandHeartLine />,
                     name: 'Special thanks',
                     url: '/special-thanks'

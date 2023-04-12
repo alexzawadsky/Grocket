@@ -29,7 +29,7 @@ const SearchForm = () => {
                 }}
             >
                 <Button
-                    className='max-sm:!w-full whitespace-nowrap'
+                    className='max-md:!w-full whitespace-nowrap'
                     type='button'
                     onClick={() => setOpen(!open)}
                     style='outline'
@@ -48,7 +48,7 @@ const SearchForm = () => {
                         type="text"
                     />
                     <Button
-                        className='max-sm:!w-11 max-sm:!p-1 max-sm:!px-2 whitespace-nowrap'
+                        className='max-md:!w-11 max-md:!p-1 max-md:!px-2 whitespace-nowrap'
                         type='submit'
                         color='accent-orange'
                         style='fill'

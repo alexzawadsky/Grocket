@@ -14,7 +14,6 @@ import Promote from "./Product/Promote";
 import AddComment from "./User/Comments/AddComment";
 import Search from "./Search/SearchPage";
 import AboutSite from "./AboutSite/AboutSite";
-import AboutTeam from "./AboutTeam/AboutTeam";
 import SpecialThanks from "./SpecialThanks/SpecialThanks";
 
 export {
@@ -38,6 +37,5 @@ export {
     AddComment,
     Search,
     AboutSite,
-    AboutTeam,
     SpecialThanks
 }

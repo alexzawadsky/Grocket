@@ -18,7 +18,7 @@ const HistoryList = () => {
         <aside className='grid gap-2 h-fit'>
             {isMinTablet &&
                 <>
-                    <h2 to='/history' className='text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>
+                    <h2 to='/history' className='text-lg lg:text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>
                         <IoBookOutline />
                         {t('you_looked_earlier')}
                     </h2>

@@ -43,7 +43,7 @@ const Register = () => {
                     <div className="ml-5">
                         <Title text={t('create_acc')} />
                     </div>
-                    <div className='p-5 rounded-xl shadow-md border'>
+                    <div className='p-5 rounded-xl shadow-md border dark:border-2 dark:border-zinc-600'>
                         <CreateUserForm
                             setFormData={setFormData}
                             setValid={setValid}

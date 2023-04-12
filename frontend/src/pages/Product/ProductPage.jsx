@@ -2,11 +2,11 @@ import { useContext } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import SearchHistoryContext from '../../contexts/HistoryContext';
-import { Spinner, GMap, Title, Price } from '../../components/ui';
+import { Spinner, GMap, Title, Price, PublishTime, Button } from '../../components/ui';
 import { ReadMore } from '../../components'
 import { BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
-import { useProduct } from '../../api/api';
+import { useProduct, useFavouriteProduct } from '../../api/api';
 import SellerCard from './SellerCard';
 import Category from './Category';
 import { Helmet } from 'react-helmet-async';
@@ -23,8 +23,10 @@ const ProductPage = () => {
     const { user } = useContext(AuthContext)
     const { productId } = useParams()
     const { isMaxTablet } = useScreen()
+    const favouriteProductMutation = useFavouriteProduct()
 
     const { data, error, isLoading } = useProduct(productId)
+    const handleFavourite = () => favouriteProductMutation.mutate({ id: productId, state: data?.is_favourited })
 
     if (data) updateHistory(data)
     if (error?.response?.status === 404) return (
@@ -57,31 +59,40 @@ const ProductPage = () => {
                 />
             </Helmet>
             <div className='grid lg:grid-cols-[2fr_1fr] gap-10'>
-                <div className='grid gap-3'>
-                    <h1 className="text-3xl font-bold flex items-center justify-between">
-                        {data.name}
-                        <button className='text-accent-red' >{data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}</button>
-                    </h1>
-                    <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">
-                        <span className='text-primary-300 flex items-center gap-2'>
-                            <BiTimeFive />
-                            {new Date(data.pub_date).toLocaleDateString(undefined,
-                                { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }
-                            )}
-                        </span>
-                        <Category category={data.category} />
+                <div className='grid gap-4 md:gap-7'>
+                    <div className='grid gap-3'>
+                        <h1 className="text-3xl font-bold flex items-center justify-between">
+                            {data.name}
+                            <Button
+                                className='text-accent-red dark:text-red-600'
+                                onClick={handleFavourite}
+                                border={false}
+                            >
+                                {data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}
+                            </Button>
+                        </h1>
+                        <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">
+                            <span className='text-primary-300 dark:text-zinc-400 flex items-center gap-2'>
+                                <BiTimeFive />
+                                <PublishTime pubDate={data?.pub_date} />
+                            </span>
+                            <Category category={data.category} />
+                        </div>
                     </div>
                     {isMaxTablet &&
                         <h2 className='font-bold text-3xl'>
                             {parseFloat(data.price).toFixed(0)} {data.price_currency}
                         </h2>}
                     <ImagesGallery images={data.images} />
-                    <h2 className='font-bold text-2xl flex items-center gap-5'>{t('description')}</h2>
-                    <ReadMore text={data.description} limit={150} />
-                    <h2 className='font-bold text-2xl flex items-center gap-2'><FiMapPin />{t('address')}</h2>
-                    <GMap address={data.address} />
+                    <div className='grid gap-3'>
+                        <h2 className='font-bold text-2xl flex items-center gap-5'>{t('description')}</h2>
+                        <ReadMore text={data.description} limit={450} />
+                    </div>
+                    <div className='grid gap-3'>
+                        <h2 className='font-bold text-2xl flex items-center gap-2'><FiMapPin />{t('address')}</h2>
+                        <GMap address={data.address} />
+                    </div>
                     {isMaxTablet && <>
-                        <p className='font-bold text-2xl'>Seller</p>
                         <SellerCard profile={data.user} />
                         {data.user.id === user?.user_id && (
                             <div className='pb-3 grid gap-3'>
@@ -91,15 +102,22 @@ const ProductPage = () => {
                         )}
                     </>}
                 </div>
-                {!isMaxTablet && <aside className='w-fit grid gap-5 h-fit'>
-                    <h2 className='font-bold text-3xl'><Price price={data?.price} currency={data?.price_currency} /></h2>
-                    <SellerCard profile={data.user} />
-                    {data.user.id === user?.user_id && (
-                        <div className='pb-3 grid gap-3'>
-                            <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
-                            <ManageProductMenu product={data} />
-                        </div>
-                    )}
+                {!isMaxTablet && <aside >
+                    <div className='w-fit grid gap-7 h-fit fixed'>
+                        <Price
+                            className='font-bold text-3xl'
+                            price={data?.price}
+                            currency={data?.price_currency}
+                        />
+                        <SellerCard profile={data.user} />
+                        {data.user.id === user?.user_id && (
+                            <div className='pb-3 grid gap-3'>
+                                <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
+                                <ManageProductMenu product={data} />
+                            </div>
+                        )}
+                    </div>
+
                 </aside>}
             </div>
         </>

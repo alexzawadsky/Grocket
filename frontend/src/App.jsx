@@ -22,7 +22,9 @@ import {
     EditProduct,
     Promote,
     AddComment,
-    Search
+    Search,
+    AboutSite,
+    SpecialThanks
 } from './pages'
 import CategoriesListStateContext from './contexts/CategoriesListStateContext';
 import { useContext } from 'react';
@@ -63,6 +65,8 @@ function App() {
                                             <Route path='add' element={<AddComment />} />
                                         </Route>
                                     </Route>
+                                    <Route path='about-site' element={<AboutSite />} />
+                                    <Route path='special-thanks' element={<SpecialThanks />} />
                                     <Route element={<PrivateRoute />}>
                                         <Route path='sell' element={<Sell />} />
                                         <Route path='products/:productId/edit' element={<EditProduct />} />

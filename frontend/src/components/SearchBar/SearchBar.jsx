@@ -20,20 +20,16 @@ const SearchForm = () => {
     const navigate = useNavigate()
     const { isMinTablet } = useScreen()
 
-    // useEffect(() => {
-    //     search.setValue(searchParams.get('search') || '')
-    // }, [searchParams.get('search')])
-
     return (
         <>
             <Form
-                className='flex flex-col-reverse md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 bg-white w-full'
+                className='flex flex-col-reverse md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 w-full'
                 onSubmit={(e) => {
                     search.value && navigate(`/search?search=${stateToQuery(search.value)}`)
                 }}
             >
                 <Button
-                    className='max-sm:!w-full whitespace-nowrap'
+                    className='max-md:!w-full whitespace-nowrap'
                     type='button'
                     onClick={() => setOpen(!open)}
                     style='outline'
@@ -52,7 +48,7 @@ const SearchForm = () => {
                         type="text"
                     />
                     <Button
-                        className='max-sm:!w-11 max-sm:!p-1 max-sm:!px-2 whitespace-nowrap'
+                        className='max-md:!w-11 max-md:!p-1 max-md:!px-2 whitespace-nowrap'
                         type='submit'
                         color='accent-orange'
                         style='fill'

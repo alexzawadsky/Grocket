@@ -51,7 +51,7 @@ const CommentReply = ({ commentId, seller, reply }) => {
         </div >
         :
         <button
-            className="text-blue-500 flex items-center gap-2 hover:text-accent-orange w-fit mt-2"
+            className="text-blue-500 dark:text-blue-300 flex items-center gap-2 hover:text-accent-orange w-fit mt-2"
             onClick={() => setFormExpanded(true)}
         >
             <BsReply /> {t('reply')}
@@ -60,7 +60,7 @@ const CommentReply = ({ commentId, seller, reply }) => {
     return reply &&
         <>
             <button
-                className="text-blue-500 hover:text-accent-orange w-fit"
+                className="text-blue-500 dark:text-blue-300 hover:text-accent-orange w-fit"
                 onClick={() => setExpanded(prevState => !prevState)}
             >
                 {expanded ? t('hide_reply') : t('show_reply')}
@@ -70,14 +70,14 @@ const CommentReply = ({ commentId, seller, reply }) => {
                     <p className='font-bold text-lg'>{reply?.user?.first_name} {reply?.user?.last_name}</p>
                     {reply?.user?.id === user?.user_id &&
                         <button
-                            className="text-accent-red"
+                            className="text-accent-red dark:text-red-600"
                             onClick={() => deleteReplyMutation.mutate(reply?.id)}
                         >
                             <BsTrash />
                         </button>}
                 </div>
 
-                <p className='text-sm text-primary-300'><PublishTime pubDate={reply?.pub_date} /></p>
+                <p className='text-sm text-primary-300 dark:text-slate-400'><PublishTime pubDate={reply?.pub_date} /></p>
                 <ReadMore text={reply?.text} limit={100} />
             </div>
             }

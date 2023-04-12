@@ -29,13 +29,12 @@ const Comment = ({ comment }) => {
                         <BsTrash />
                     </button>}
             </div>
-
-            <p className='text-sm text-primary-300'><PublishTime pubDate={comment?.pub_date} /></p>
+            <p className='text-sm text-primary-300 dark:text-slate-400'><PublishTime pubDate={comment?.pub_date} /></p>
             <RatingStars rating={comment?.rate} />
             <div className="flex gap-1 items-center">
-                <p className='text-primary-300/[0.8] text-sm font-bold flex items-center gap-1.5'><CommentStatus title={comment?.status?.title} name={comment?.status?.name} /> - </p>
+                <p className='text-primary-300/[0.8] dark:text-slate-400 text-sm font-bold flex items-center gap-1.5'><CommentStatus title={comment?.status?.title} name={comment?.status?.name} /> - </p>
                 <NavLink
-                    className='text-primary-300/[0.8] text-sm font-bold hover:text-accent-orange'
+                    className='text-primary-300/[0.8] dark:text-slate-400 text-sm font-bold hover:text-accent-orange'
                     to={`/products/${comment?.product?.id}`}
                 >
                     {comment?.product?.name}
@@ -45,7 +44,7 @@ const Comment = ({ comment }) => {
                 <ReadMore text={comment?.text} limit={100} />
             </div>
             <SlideshowLightbox theme='lightbox' className='grid mt-2 grid-cols-4 md:grid-cols-5 xl:grid-cols-6 items-start gap-2 grow'>
-                {comment?.images.map((el, key) => <img key={key} src={el.image} className='border-2 rounded-xl aspect-auto' />)}
+                {comment?.images.map((el, key) => <img key={key} src={el.image} className='border-2 rounded-lg aspect-auto dark:border-zinc-600' />)}
             </SlideshowLightbox>
             <CommentReply
                 commentId={comment?.id}

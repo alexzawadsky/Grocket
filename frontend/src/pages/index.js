@@ -13,6 +13,8 @@ import EditProduct from "./Sell/EditProduct";
 import Promote from "./Product/Promote";
 import AddComment from "./User/Comments/AddComment";
 import Search from "./Search/SearchPage";
+import AboutSite from "./AboutSite/AboutSite";
+import SpecialThanks from "./SpecialThanks/SpecialThanks";
 
 export {
     Landing,
@@ -33,5 +35,7 @@ export {
     EditProduct,
     Promote,
     AddComment,
-    Search
+    Search,
+    AboutSite,
+    SpecialThanks
 }

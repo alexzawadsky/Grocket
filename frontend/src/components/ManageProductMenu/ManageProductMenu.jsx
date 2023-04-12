@@ -17,12 +17,12 @@ const MenuInner = ({ product, fullW }) => {
 
     return (
         <div
-            className={`border shadow-md rounded-xl p-1 gap-1 flex flex-col items-start ${!fullW && 'w-fit'} bg-white`}
+            className={`border dark:border-2 dark:border-zinc-600 shadow-md rounded-xl p-1 gap-1 flex flex-col items-start ${!fullW && 'w-fit'} bg-white dark:bg-zinc-800`}
             role="none"
         >
             {!product.is_sold &&
                 <NavLink
-                    className='text-sm hover:bg-slate-100 h-8 rounded-lg w-full px-2 flex items-center gap-2'
+                    className='text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2 flex items-center gap-2'
                     to=''
                     onClick={() => archiveProductMutation.mutate({ id: product.id, state: product.is_archived })}
                 >
@@ -32,7 +32,7 @@ const MenuInner = ({ product, fullW }) => {
             {!product.is_archived &&
                 <NavLink
                     to=''
-                    className='text-sm hover:bg-slate-100 h-8 rounded-lg w-full px-2 flex items-center gap-2'
+                    className='text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2 flex items-center gap-2'
                     onClick={() => sellProductMutation.mutate({ id: product.id, state: product.is_sold })}
                 >
                     {product.is_sold ? <MdOutlineSell /> : <BsPatchCheck />}
@@ -42,13 +42,13 @@ const MenuInner = ({ product, fullW }) => {
                 <>
                     <NavLink
                         to={`/products/${product.id}/edit`}
-                        className='flex items-center gap-2 text-sm hover:bg-slate-100 h-8 rounded-lg w-full px-2'
+                        className='flex items-center gap-2 text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2'
                     >
                         <BsPen />{t('edit')}
                     </NavLink>
                     <NavLink
                         to={`/products/${product.id}/promote`}
-                        className='flex items-center gap-2 text-sm hover:bg-slate-100 h-8 rounded-lg w-full px-2'
+                        className='flex items-center gap-2 text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2'
                     >
                         <BsMegaphone />{t('promote')}
                     </NavLink >
@@ -61,7 +61,7 @@ const MenuInner = ({ product, fullW }) => {
                     () => deleteProductMutation.mutate(product.id),
                     `${product.name} has been deleted`,
                     '')}
-                className='text-accent-red flex items-center gap-2 text-sm hover:bg-slate-100 h-8 rounded-lg w-full px-2'>
+                className='text-accent-red dark:text-red-600 flex items-center gap-2 text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2'>
                 <BsTrash />{t('delete')}
             </NavLink>
         </div >
@@ -90,7 +90,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
 
     return (
         <div
-            className="relative w-fit flex items-end justify-end border-2 rounded-xl text-left group/dropdown"
+            className="relative w-fit flex items-end justify-end border-2 dark:border-zinc-600   rounded-xl text-left group/dropdown"
         >
             {open && <div
                 className="w-44 absolute bottom-10 -left-1 z-10 origin-top-right "
@@ -104,7 +104,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
             <NavLink
                 to=''
                 type="button"
-                className="flex justify-center items-center gap-2 rounded-xl bg-white px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 min-w-32 manage-menu-drop"
+                className="flex justify-center items-center gap-2 rounded-xl bg-white dark:bg-zinc-800 dark:text-zinc-50 hover:dark:bg-zinc-600 px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 dark:focus:ring-offset-zinc-600 min-w-32 manage-menu-drop"
                 id="menu-button"
                 aria-expanded="false"
                 onClick={() => setOpen(prevState => !prevState)}

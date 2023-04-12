@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom'
 import { BiCategoryAlt, BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 import { AiFillHeart } from 'react-icons/ai'
-import { useFavouriteProduct } from '../../api/api'
 import { useContext } from 'react'
 import AuthContext from '../../contexts/AuthProvider'
 import ImagesCarousel from '../ImagesCarousel/ImagesCarousel'
@@ -12,18 +11,18 @@ import { FiMail } from 'react-icons/fi'
 import { TbPhoneCheck } from 'react-icons/tb'
 import { useTranslation } from 'react-i18next'
 import { Flag, RatingStars, Avatar, Price, PublishTime } from '../ui'
+import cn from 'classnames'
 
 const ItemCard = ({ product, managable = false, search = false, horizontal }) => {
 
     const { isLargePC, isMinTablet } = useScreen()
-    const favouriteProductMutation = useFavouriteProduct()
     const { user } = useContext(AuthContext)
     const { t } = useTranslation()
 
-    const handleFavourite = () => favouriteProductMutation.mutate({ id: product.id, state: product.is_favourited })
+
 
     if (horizontal && isMinTablet) return (
-        <NavLink className='grid grid-cols-[1fr_2fr] xl:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 transition-all duration-150' to={`/products/${product?.id}`}>
+        <NavLink className='grid grid-cols-[1fr_2fr] xl:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 hover:dark:bg-zinc-700 transition-all duration-150' to={`/products/${product?.id}`}>
             <div className='grid grid-cols-2 gap-1'>
                 <div className="col-span-full rounded-lg overflow-hidden">
                     <ImagesCarousel images={product?.images} />
@@ -35,7 +34,10 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     </>
                 }
             </div>
-            <div className={`flex items-start h-full flex-col justify-center ${product?.promotions.includes('xl') ? 'gap-2 lg:gap-3' : 'gap-1 lg:gap-2'} p-4`}>
+            <div className={cn(
+                'flex items-start h-full flex-col justify-center p-4',
+                product?.promotions.includes('xl') ? 'gap-2 lg:gap-3' : 'gap-1 lg:gap-2',
+            )}>
                 <div className="flex items-center w-full gap-2">
                     <Flag size={5} country={product?.address?.country_code} className='mb-auto h-fit mt-[3px]' />
                     <p className={`font-bold hover:text-accent-orange flex items-center justify-between ${product?.promotions.includes('xl') ? 'text-md xl:text-2xl' : 'text-md xl:text-xl'}`} >
@@ -107,7 +109,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                         <FiMail />
                         {t('send_message')}
                     </NavLink>}
-                    <p className='flex items-center gap-2 text-green-600 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mt-auto'>
+                    <p className='flex items-center gap-2 text-green-600 dark:text-green-300 dark:bg-green-800 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mt-auto'>
                         <TbPhoneCheck />
                         {t('phone_verified')}
                     </p>
@@ -119,12 +121,17 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
     return (
         <NavLink
             to={`/products/${product?.id}`}
-            className={`hover:md:bg-slate-50 rounded-2xl md:p-5 ${search && 'pb-5'} flex flex-col gap-2 transition-all duration-150 h-full`}
+            className={cn(
+                // product.promotions.includes('xl') && 'col-span-2',
+                `hover:md:bg-slate-50 hover:md:dark:bg-zinc-700 rounded-2xl md:p-5`,
+                search && 'pb-5',
+                `flex flex-col gap-2 transition-all duration-150 h-full`
+            )}
         >
             <ImagesCarousel images={product?.images} />
             <h3 className="flex items-center gap-2">
-                <Flag size={5} country={product?.address?.country_code} className='mb-auto h-fit mt-[3px]' />
-                <p className={`${search ? 'font-bold text-xl' : 'text-lg my-auto line-clamp-2'} hover:text-accent-orange w-fit justify-between`}>{product?.name}</p>
+                {product?.address?.country_code && <Flag size={5} country={product?.address?.country_code} className='mb-auto h-fit mt-[3px]' />}
+                <p className={`${search ? 'font-bold text-xl' : 'text-lg my-auto'} line-clamp-2 hover:text-accent-orange w-fit justify-between`}>{product?.name}</p>
                 <span className='ml-auto'>
                     {product?.is_favourited && <AiFillHeart color='red' />}
                 </span>
@@ -158,7 +165,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     to={product?.user?.id === user?.user_id ? '/users/me' : `/users/${product?.user?.id}`}
                     className='font-bold hover:text-accent-orange flex items-center gap-1'
                 >
-                    <p className='flex items-center gap-2 text-green-600 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mr-1.5'>
+                    <p className='flex items-center gap-2 text-green-600 dark:text-green-300 dark:bg-green-800 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mr-1.5'>
                         <TbPhoneCheck />
                     </p>
                     <div className='flex flex-wrap gap-1 text-[12px] 2xl:text-sm'>

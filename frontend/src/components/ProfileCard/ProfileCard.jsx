@@ -14,10 +14,10 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
     const { user } = useContext(AuthContext)
 
     return (
-        <div className='grid-cols-2 md:grid-cols-1 grid md:items-start items-center gap-5 shadow-md p-5 rounded-xl shrink-0 h-fit border'>
+        <div className='grid-cols-2 md:grid-cols-1 grid md:items-start items-center gap-5 shadow-md p-5 rounded-xl shrink-0 h-fit border dark:border-2 dark:border-zinc-600'>
             <div className="w-full aspect-square relative">
                 <Avatar avatar={avatar} />
-                {user?.user_id === id ? <NavLink to='settings' className='absolute right-1 bottom-1 text-xl border-2  p-2 rounded-full bg-white'><BiPencil /></NavLink> : null}
+                {user?.user_id === id && <NavLink to='settings' className='absolute right-1 bottom-1 text-xl border-2 dark:border-zinc-600 p-2 rounded-full bg-white dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:bg-slate-100'><BiPencil /></NavLink>}
             </div>
             <div className="grid gap-2 md:gap-4">
                 <div className="flex items-center gap-2 flex-wrap">
@@ -25,10 +25,10 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
                         {country && <span className='h-fit w-5 pb-0.5'>
                             <Flag country={country} />
                         </span>}
-                        <span className={!firstName && 'text-primary-100'}>
+                        <span className={!firstName && 'text-zinc-600'}>
                             {firstName ? firstName : t('first_name')}
                         </span>
-                        <span className={!lastName && 'text-primary-100'}>
+                        <span className={!lastName && 'text-zinc-600'}>
                             {lastName ? lastName : t('last_name')}
                         </span>
                     </p>
@@ -36,7 +36,7 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
                     {lastName ? <p className='lg:text-xl font-bold'>{lastName}</p> : <p className='text-primary-100 text-xl'>{t('last_name')}</p>} */}
                 </div>
                 {phone && <p className='text-sm md:text-md flex items-center gap-2'><BsFillTelephoneFill />{phone}</p>}
-                <p className={email ? 'text-sm md:text-md flex items-center gap-2' : 'text-sm md:text-md flex items-center gap-2 text-primary-100'}><HiOutlineMail width={1.5} />{email ? email : 'email@email.com'}</p>
+                <p className={email ? 'text-sm md:text-md flex items-center gap-2' : 'text-sm md:text-md flex items-center gap-2 text-zinc-600'}><HiOutlineMail width={1.5} />{email ? email : 'email@email.com'}</p>
                 <div className='flex flex-wrap gap-1 md:gap-3 items-center'>
                     <RatingStars rating={rating} />
                     {withComments ? <NavLink className='hover:text-accent-orange text-sm' to='comments'>{t('comments')} ({commentsCount})</NavLink> : null}

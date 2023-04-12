@@ -21,7 +21,7 @@ const Landing = () => {
             <div className='md:grid md:grid-cols-[2fr_1fr] lg:grid-cols-[3fr_1fr] flex flex-col-reverse md:gap-7 w-full md:pr-5'>
                 <section>
                     {isMinTablet && <Title
-                        className='md:pl-5 pb-5 md:pb-0'
+                        className='md:pl-5 pb-5 md:pb-0 !text-2xl lg:!text-3xl'
                         text={
                             <>
                                 {t('goods_for_you')}

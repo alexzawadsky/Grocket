@@ -65,7 +65,7 @@ const Input = ({
                 onBlur={instance.checkValue}
                 disabled={disabled}
                 className={cn(
-                    'grocket-input',
+                    'rounded-xl border-slate-500 dark:border-zinc-500 dark:bg-zinc-700 focus:border-slate-800 focus:dark:border-zinc-400 focus:shadow-md focus:outline-none border-2 px-3 w-full h-10',
                     className
                 )}
                 placeholder={placeholder}

@@ -108,7 +108,7 @@ const ProductForm = ({ data, setData, setValid }) => {
                 {images.length > 0 ?
                     <ul className='col-span-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-3 md:gap-5 h-fit'>
                         {images.map((el, key) =>
-                            <li key={key} className='w-full p-2 rounded-lg border-2 grid gap-2'>
+                            <li key={key} className='w-full p-2 rounded-lg border-2 grid gap-2 dark:border-zinc-600'>
                                 <img className='w-full' src={el.image} />
                                 <div className="flex gap-2 w-full items-center justify-between">
                                     <button

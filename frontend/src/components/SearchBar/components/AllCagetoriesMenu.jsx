@@ -17,23 +17,22 @@ const FullCategoriesList = () => {
         return () => setOpen(false)
     }, [])
 
-    if (isLoading) return <div className="bg-white p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh"><Spinner /></div>
+    if (isLoading) return <div className="bg-white dark:bg-zinc-800 p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh"><Spinner /></div>
     if (error) return
     if (!open) return
 
     return (
-        <section className="bg-white p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh]">
+        <section className="bg-white dark:bg-zinc-800 p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh]">
             <ul className="overflow-y-auto max-h-[74vh]">
-                {data.filter(el => el.parent === null).map((el, key) => <li>
-                    <PrimaryCategory
-                        key={key}
-                        onChange={() => {
-                            setParentCategory(el)
-                            setExpandedCatId(null)
-                        }}
-                        category={el}
-                    />
-                </li>)}
+                {data.filter(el => el.parent === null).map((el, key) => <PrimaryCategory
+                    key={key}
+                    onChange={() => {
+                        setParentCategory(el)
+                        setExpandedCatId(null)
+                    }}
+                    category={el}
+                />
+                )}
             </ul>
             <SecondaryCategoriesList
                 expandedCatId={expandedCatId}

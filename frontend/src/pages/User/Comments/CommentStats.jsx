@@ -9,7 +9,7 @@ const StatRow = ({ rate, count, total }) => {
                 <div style={{ width: count > 0 ? `${count / total * 100}%` : '0px' }} className={`bg-accent-orange h-full rounded-full`}>
                 </div>
             </div>
-            <p className='text-sm text-primary-300'>{count}</p>
+            <p className='text-sm text-primary-300 dark:text-slate-400'>{count}</p>
         </div>
 
     )

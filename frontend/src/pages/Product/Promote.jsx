@@ -11,6 +11,7 @@ import useScreen from '../../hooks/useScreen'
 import { alertErr } from '../../utils'
 import SearchItemCardTemplate from './SearchItemCardTemplate'
 import CardModeToggle from '../Search/CardModeToggle'
+import cn from 'classnames'
 
 const Promote = () => {
 
@@ -51,40 +52,44 @@ const Promote = () => {
             <Title text={t('buy_promotions_head')} />
             <div className='grid lg:grid-cols-[1fr_3fr] gap-5'>
                 <div>
-                    <ul className='grid h-fit gap-4'>
+                    <ul className='grid h-fit gap-5'>
                         {promotions.isLoading && <Spinner />}
-                        {
-                            promotions.data?.map((promo, key) =>
-                                <div className='grid gap-2' key={key}>
-                                    <h3 className='font-bold text-lg'>
-                                        {promo?.title}
-                                    </h3>
-                                    <p>{promo?.description} </p>
-                                    <Price
-                                        className='font-bold'
-                                        price={promo?.price}
-                                        currency={promo?.price_currency}
+                        {promotions.data?.map((promo, key) =>
+                            <li
+                                className={cn(
+                                    'grid gap-2 border-2 shadow-sm rounded-xl p-5',
+                                    (selected.find(el => el.id === promo.id) || product.data?.promotions.includes(promo?.name)) &&
+                                    'border-accent-orange bg-accent-orange/[0.05] border-2'
+                                )}
+                                key={key}
+                            >
+                                <h3 className='font-bold text-lg'>
+                                    {promo?.title}
+                                </h3>
+                                <p>{promo?.description}</p>
+                                <Price
+                                    className='font-bold'
+                                    price={promo?.price}
+                                    currency={promo?.price_currency}
+                                />
+                                <div className="flex items-center gap-2">
+                                    <input
+                                        className='rounded-md accent-accent-orange/[0.5] h-4 w-4'
+                                        type='checkbox'
+                                        id={`select-${promo?.name}`}
+                                        onChange={(e) => updateSelected(promo)}
+                                        checked={selected.find(el => el.id === promo.id) || product.data?.promotions.includes(promo?.name)}
+                                        disabled={product.data?.promotions.includes(promo?.name)}
                                     />
-                                    <div className="flex items-center gap-2">
-                                        <input
-                                            className='rounded-md accent-accent-orange/[0.5] h-4 w-4'
-                                            type='checkbox'
-                                            id={`select-${promo?.name}`}
-                                            onChange={(e) => updateSelected(promo)}
-                                            checked={selected.find(el => el.id === promo.id) || product.data?.promotions.includes(promo?.name)}
-                                            disabled={product.data?.promotions.includes(promo?.name)}
-                                        />
-                                        <label htmlFor={`select-${promo?.name}`}>
-                                            {
-                                                product.data?.promotions.includes(promo?.name) ? t('active') :
-                                                    selected.find(el => el.id === promo.id) ?
-                                                        t('selected') : t('select')
-                                            }
-                                        </label>
-                                    </div>
+                                    <label htmlFor={`select-${promo?.name}`}>
+                                        {
+                                            product.data?.promotions.includes(promo?.name) ? t('active') :
+                                                selected.find(el => el.id === promo.id) ?
+                                                    t('selected') : t('select')
+                                        }
+                                    </label>
                                 </div>
-                            )
-                        }
+                            </li>)}
                     </ul>
                     <Button
                         disabled={selected.length === 0}
@@ -94,7 +99,7 @@ const Promote = () => {
                         onClick={handleSubmit}
                         height={12}
                         px={5}
-                        className='mt-3'
+                        className='mt-5'
                     >
                         {t('proceed_to_checkout')}
                     </Button>

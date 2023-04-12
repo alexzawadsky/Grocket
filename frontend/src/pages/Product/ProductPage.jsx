@@ -63,7 +63,7 @@ const ProductPage = () => {
                         <button className='text-accent-red dark:text-red-600' >{data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}</button>
                     </h1>
                     <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">
-                        <span className='text-primary-300 flex items-center gap-2'>
+                        <span className='text-primary-300 dark:text-zinc-400 flex items-center gap-2'>
                             <BiTimeFive />
                             <PublishTime pubDate={data?.pub_date} />
                         </span>

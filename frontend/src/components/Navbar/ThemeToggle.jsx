@@ -21,11 +21,11 @@ const ThemeToggle = () => {
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (open && !e.target.closest('.theme-drop')) {
+                console.log('here')
                 setOpen(false);
             }
         }
         document.addEventListener('click', handleClickOutside)
-
         return () => {
             document.removeEventListener('click', handleClickOutside)
         }

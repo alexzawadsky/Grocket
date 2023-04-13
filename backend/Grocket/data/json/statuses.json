@@ -1,0 +1,46 @@
+[
+    {
+        "model": "comments.status",
+        "pk": 1,
+        "fields": {
+            "title": "Other",
+            "title_en": "Other",
+            "title_ru": "Другое",
+            "title_nl": null,
+            "name": "other"
+        }
+    },
+    {
+        "model": "comments.status",
+        "pk": 2,
+        "fields": {
+            "title": "Bought",
+            "title_en": "Bought",
+            "title_ru": "Куплено",
+            "title_nl": null,
+            "name": "bought"
+        }
+    },
+    {
+        "model": "comments.status",
+        "pk": 3,
+        "fields": {
+            "title": "Did not agree",
+            "title_en": "Did not agree",
+            "title_ru": "Не договорились",
+            "title_nl": null,
+            "name": "did_not_agree"
+        }
+    },
+    {
+        "model": "comments.status",
+        "pk": 4,
+        "fields": {
+            "title": "Ignored",
+            "title_en": "Ignored",
+            "title_ru": "Не ответил",
+            "title_nl": null,
+            "name": "ignored"
+        }
+    }
+]

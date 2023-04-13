@@ -1,12 +1,18 @@
-from django.core.exceptions import ValidationError
+import re
+
+from django.utils.translation import gettext_lazy as _
 from djmoney.contrib.django_rest_framework import MoneyField
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
-from api.products.fields import ProductImagesUpdateField
 from api.users.serializers import CustomUserSerializer
 from products.models import Category
-from products.selectors import get_product_address
+from products.selectors import (get_ancestors_by_category, get_is_favourited,
+                                get_product_address, get_product_category,
+                                get_product_images, get_product_promotions)
+from users.services import UserService
+
+users_services = UserService()
 
 
 # ref
@@ -82,9 +88,7 @@ class ProductCategorySerializer(serializers.Serializer):
         )
 
     def get_parents(self, obj):
-        parents = products_services.get_ancestors_by_category(
-            category_id=obj.id, ascending=False, include_self=False
-        )
+        parents = get_ancestors_by_category(category_id=obj.id)
         serializer = CategoryListSerializer(instance=parents, many=True)
         return serializer.data
 
@@ -182,15 +186,13 @@ class ProductReadOnlySerializer(serializers.Serializer):
     def get_is_favourited(self, obj):
         user = self.context["request"].user
         if user.is_authenticated:
-            return products_services.get_is_favourited(
-                user_id=user.id, product_id=obj.id
-            )
+            return get_is_favourited(user_id=user.id, product_id=obj.id)
         return False
 
     def get_promotions(self, obj):
-        promotions = products_services.get_product_promotions(
-            product_id=obj.id
-        ).values_list("name", flat=True)
+        promotions = get_product_promotions(product_id=obj.id).values_list(
+            "name", flat=True
+        )
         return list(promotions)
 
 
@@ -226,9 +228,7 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
         return serializer.data
 
     def get_images(self, obj):
-        images = products_services.get_product_images(product_id=obj.id).order_by(
-            "-is_main"
-        )
+        images = get_product_images(product_id=obj.id).order_by("-is_main")
         serializer = ProductImageSerializer(instance=images, read_only=True, many=True)
         return serializer.data
 
@@ -265,7 +265,7 @@ class ProductListSerializer(ProductReadOnlySerializer):
         return serializer.data
 
     def get_category(self, obj):
-        category = products_services.get_category_or_404(id=obj.category_id)
+        category = get_product_category(product_id=obj.id)
         serializer = CategoryListSerializer(instance=category, read_only=True)
         return serializer.data
 
@@ -278,9 +278,7 @@ class ProductListSerializer(ProductReadOnlySerializer):
         return obj.description[:200]
 
     def get_images(self, obj):
-        images = products_services.get_product_images(product_id=obj.id).order_by(
-            "-is_main"
-        )[:3]
+        images = get_product_images(product_id=obj.id).order_by("-is_main")[:3]
         serializer = ProductImageSerializer(instance=images, read_only=True, many=True)
         return serializer.data
 
@@ -295,6 +293,13 @@ class ProductCreateSerializer(serializers.Serializer):
     price_currency = serializers.CharField()
     category = serializers.IntegerField()
     address = ProductAddressCreateUpdateSerializer()
+
+    def validate_name(self, value):
+        if not re.match('^[a-zA-Z0-9_!"#$%&()*+,-./:;<=>?@[\]^_`{|}~]+$', value):
+            raise serializers.ValidationError(
+                _("Only latin letters, numbers and punctuation marks can be used")
+            )
+        return value
 
     class Meta:
         fields = (
@@ -314,71 +319,73 @@ class ProductCreateSerializer(serializers.Serializer):
 
 
 class ProductUpdateSerializer(serializers.Serializer):
-    images = ProductImagesUpdateField(required=False)
-    name = serializers.CharField(required=False)
-    description = serializers.CharField(required=False)
-    price = MoneyField(max_digits=19, decimal_places=2, required=False)
-    price_currency = serializers.CharField(required=False)
-    address = serializers.CharField(required=False)
-    category = serializers.IntegerField(required=False)
+    pass
+    # images = ProductImagesUpdateField(required=False)
+    # name = serializers.CharField(required=False)
+    # description = serializers.CharField(required=False)
+    # price = MoneyField(max_digits=19, decimal_places=2, required=False)
+    # price_currency = serializers.CharField(required=False)
+    # address = serializers.CharField(required=False)
+    # category = serializers.IntegerField(required=False)
 
-    class Meta:
-        fields = (
-            "name",
-            "price_currency",
-            "description",
-            "price",
-            "address",
-            "category",
-            "images",
-        )
+    # class Meta:
+    #     fields = (
+    #         "name",
+    #         "price_currency",
+    #         "description",
+    #         "price",
+    #         "address",
+    #         "category",
+    #         "images",
+    #     )
 
-    # Не работает
-    def validate_images(self, value):
-        product_id = self.context["product_id"]
-        try:
-            products_services.check_product_images_update_logic(
-                images=value, product_id=product_id
-            )
-        except ValidationError as error:
-            raise serializers.ValidationError(error.messages)
+    # # Не работает
+    # def validate_images(self, value):
+    #     product_id = self.context["product_id"]
+    #     try:
+    #         products_services.check_product_images_update_logic(
+    #             images=value, product_id=product_id
+    #         )
+    #     except ValidationError as error:
+    #         raise serializers.ValidationError(error.messages)
 
-        images_album, new_images = value
-        images = []
-        for image in new_images:
-            images.append({"image": image, "is_main": new_images[image]})
+    #     images_album, new_images = value
+    #     images = []
+    #     for image in new_images:
+    #         images.append({"image": image, "is_main": new_images[image]})
 
-        serializer = ProductImageCreateSerializer(data=images, many=True)
-        serializer.is_valid(raise_exception=True)
-        return serializer.validated_data
+    #     serializer = ProductImageCreateSerializer(data=images, many=True)
+    #     serializer.is_valid(raise_exception=True)
+    #     return serializer.validated_data
 
     # def creating_images(self, new_images, product):
     #     super().creating_images(new_images.items(), product)
 
     # def _images_updating(self, images, instance):
-    #     '''Запускает все манипудяции с обновлением картинок.'''
+    #     """Запускает все манипудяции с обновлением картинок."""
     #     # (images_album - старые, new_images - которые надо создать)
     #     images_album, new_images = images
     #     # Удаляем картинки, которые юзер удалил
-    #     Image.objects.filter(
-    #         product=instance).exclude(id__in=images_album.keys()).delete()
+    #     Image.objects.filter(product=instance).exclude(
+    #         id__in=images_album.keys()
+    #     ).delete()
     #     # Берем все картинки после удаления
-    #     images_after_deleting = Image.objects.filter(
-    #         product=instance).only('id', 'is_main')
+    #     images_after_deleting = Image.objects.filter(product=instance).only(
+    #         "id", "is_main"
+    #     )
     #     # Меняем все is_main
     #     for image_after_deleting in images_after_deleting:
     #         if image_after_deleting.id in images_album.keys():
-    #             image_after_deleting.is_main = images_album[
-    #                 image_after_deleting.id]
+    #             image_after_deleting.is_main = images_album[image_after_deleting.id]
     #             image_after_deleting.save()
     #     # Создаем новые картинки
     #     self.creating_images(new_images, instance)
 
     # def update(self, instance, validated_data):
-    #     images = validated_data.get('images')
+    #     images = validated_data.get("images")
 
     #     if images is not None:
-    #         images = validated_data.pop('images')
+    #         images = validated_data.pop("images")
 
     #         instance = super().update(instance, validated_data)
     #         self._images_updating(images, instance)

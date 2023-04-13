@@ -1,0 +1,42 @@
+[
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$KYonb0WbDfjJ3umyYVJvu7$0XbIdaF51dTjlX8lVgDLnFbhs6nVnlLakGWEV5ln85g=",
+            "last_login": null,
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-03-18T12:10:40.620Z",
+            "avatar": "",
+            "first_name": "Timur",
+            "last_name": "Ramazanov",
+            "email": "timur@mail.ru",
+            "phone": "+79637263080",
+            "country": "SE",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$yVHk5wZ3jmXtD3wm6Z8K2h$PFIdH0R6gHm9mSyCuyU8+iT043hIvdJiwZklIerhPUk=",
+            "last_login": "2023-03-18T12:11:02.065Z",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-03-18T12:10:40.807Z",
+            "avatar": "",
+            "first_name": "Alex",
+            "last_name": "Zawadsky",
+            "email": "a@a.ru",
+            "phone": "+78005543535",
+            "country": "RU",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

@@ -2,14 +2,9 @@ from django.conf.urls import include
 from django.urls import path
 from djoser.views import UserViewSet
 
-
-from .products.views import (
-    CategoryViewSet,
-    ProductViewSet,
-    PromotionViewSet,
-)
 from .comments.views import CommentViewSet
-from .users.views import CustomUserRetrieveViewSet, CustomUserRegisterViewSet
+from .products.views import CategoryViewSet, ProductViewSet, PromotionViewSet
+from .users.views import CustomUserRegisterViewSet, CustomUserRetrieveViewSet
 
 app_name = "api"
 

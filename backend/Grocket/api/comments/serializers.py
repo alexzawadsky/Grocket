@@ -1,13 +1,14 @@
-from products.models import Product
 from django.contrib.auth import get_user_model
-from rest_framework import serializers
 from drf_extra_fields.fields import Base64ImageField
+from rest_framework import serializers
+
+from products.models import Product
 
 User = get_user_model()
 
 
 # ref
-class ProductCommentSerializer(ProductReadOnlySerializer):
+class ProductCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
@@ -16,7 +17,7 @@ class ProductCommentSerializer(ProductReadOnlySerializer):
         )
 
 
-class CommentUserSerializer(CustomUserSerializer):
+class CommentUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (

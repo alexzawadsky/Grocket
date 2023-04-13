@@ -14,7 +14,7 @@ User = get_user_model()
 
 
 class ProductService(BaseProductService):
-    def delete_product(self, user_id: int) -> None:
+    def delete(self, user_id: int) -> None:
         """
         Перед удалением проверяет,
         принадлежит ли этот товар этому пользователю.
@@ -25,7 +25,7 @@ class ProductService(BaseProductService):
             raise PermissionDenied()
         product.delete()
 
-    def promote_product(self, user_id: int, promotions_ids: List[int]) -> None:
+    def promote(self, user_id: int, promotions_ids: List[int]) -> None:
         """
         Продвигает товар по заданным планам продвижения.
         -Нельзя продвинуть проданные или находящиеся в архиве товары.
@@ -39,7 +39,7 @@ class ProductService(BaseProductService):
         product.full_clean()
         product.save()
 
-    def sell_product(self, user_id: int, is_sold: bool) -> None:
+    def sell(self, user_id: int, is_sold: bool) -> None:
         """
         Передать is_sold=True для того чтобы продать
         и False чтоб отменить продажу.
@@ -55,7 +55,7 @@ class ProductService(BaseProductService):
         product.full_clean()
         product.save()
 
-    def archive_product(self, user_id: int, is_archived: bool) -> None:
+    def archive(self, user_id: int, is_archived: bool) -> None:
         """
         Передать is_archived=True для того чтобы добавить в архив
         и False чтобы убрать из архива.
@@ -71,7 +71,7 @@ class ProductService(BaseProductService):
         product.full_clean()
         product.save()
 
-    def favourite_product(self, user_id: int, is_favourited: bool) -> None:
+    def favourite(self, user_id: int, is_favourited: bool) -> None:
         """
         Добавляет или убирает товар из избранного.
         is_favourited=True - добавить
@@ -190,7 +190,7 @@ class CreateProductService:
 
         try:
             service = ProductImageCreateService(product_id=product_id)
-            service._add_images_to_product(images=removed_fields["images"])
+            service.add_images_to_product(images=removed_fields["images"])
             self._add_address_to_product(
                 product_id=product_id, fields=removed_fields["address"]
             )

@@ -1,0 +1,36 @@
+[
+    {
+        "model": "products.promotion",
+        "pk": 1,
+        "fields": {
+            "title": "Bigger item card",
+            "title_en": "Bigger item card",
+            "title_ru": "Большая карточка",
+            "title_nl": null,
+            "name": "xl",
+            "price_currency": "RUB",
+            "price": "200.00",
+            "description": "This promotion makes your item stand out from the rest in search result. Add at least 3 photos for better result.",
+            "description_en": "This promotion makes your item stand out from the rest in search result. Add at least 3 photos for better result.",
+            "description_ru": "Выделяет ваш товар среди остальных в результатах поиска. Добавьте как минимум 3 фотографии для лучшего результата.",
+            "description_nl": null
+        }
+    },
+    {
+        "model": "products.promotion",
+        "pk": 2,
+        "fields": {
+            "title": "Price highlighting",
+            "title_en": "Price highlighting",
+            "title_ru": "Выделение цены",
+            "title_nl": null,
+            "name": "price",
+            "price_currency": "RUB",
+            "price": "100.00",
+            "description": "This promotions makes your item price more noticeable.",
+            "description_en": "This promotions makes your item price more noticeable.",
+            "description_ru": "Делает цену вашего товара более заметной.",
+            "description_nl": null
+        }
+    }
+]

@@ -1,33 +1,27 @@
 from django_filters import rest_framework as django_filters
-from .filters import ProductFilter
 from rest_framework import filters, permissions
-from rest_framework.mixins import (
-    CreateModelMixin,
-    DestroyModelMixin,
-    UpdateModelMixin,
-    RetrieveModelMixin,
-)
+from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
+                                   RetrieveModelMixin, UpdateModelMixin)
+
 from ..mixins import BaseMixin
-from .serializers import (
-    ProductRetrieveSerializer,
-    ProductListSerializer,
-    ProductCreateSerializer,
-    ProductUpdateSerializer,
-    PromotionCreateUpdateSerializer,
-    CategoryListSerializer,
-    PromotionSerializer,
-)
+from .filters import ProductFilter
+from .serializers import (CategoryListSerializer, ProductCreateSerializer,
+                          ProductListSerializer, ProductRetrieveSerializer,
+                          ProductUpdateSerializer,
+                          PromotionCreateUpdateSerializer, PromotionSerializer)
 
 
 class ProductMixin(
     CreateModelMixin, DestroyModelMixin, UpdateModelMixin, RetrieveModelMixin, BaseMixin
 ):
     filter_backends = [
-        filters.OrderingFilter,
+        filters.SearchFilter,
         django_filters.DjangoFilterBackend,
+        filters.OrderingFilter,
     ]
     filterset_class = ProductFilter
     ordering_fields = ["price", "pub_date"]
+    search_fields = ["name", "description"]
 
     def get_response_message(self, method=None):
         return super().get_response_message(app="products", method=method)

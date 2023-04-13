@@ -1,9 +1,13 @@
-from rest_framework import serializers
-from drf_extra_fields.fields import Base64ImageField
 from django.contrib.auth import get_user_model
+from django.db.models import Avg
 from djoser import serializers as djserializers
+from drf_extra_fields.fields import Base64ImageField
+from rest_framework import serializers
+
+from users.services import UserService
 
 User = get_user_model()
+users_services = UserService()
 
 
 class CustomUserSerializer(djserializers.UserSerializer):

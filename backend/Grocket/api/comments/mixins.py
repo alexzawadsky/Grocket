@@ -1,3 +1,12 @@
+from rest_framework import permissions
+from rest_framework.mixins import CreateModelMixin, DestroyModelMixin
+
+from ..mixins import BaseMixin
+from .paginators import CommentPageLimitPagination
+from .serializers import (CommentCreateSerializer, CommentReadOnlySerializer,
+                          CommentReplyCreateSerializer, StatusSerializer)
+
+
 class CommentMixin(CreateModelMixin, DestroyModelMixin, BaseMixin):
     pagination_class = CommentPageLimitPagination
 

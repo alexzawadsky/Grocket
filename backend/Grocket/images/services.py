@@ -13,20 +13,29 @@ class ImageService:
     """Сервисы для работы с изображениями."""
 
     FORMATS = (
-        'jpeg', 'png', 'ico', 'gif', 'tiff', 'webp',
-        'eps', 'svg', 'psd', 'indd', 'cdr', 'ai', 'raw'
+        "jpeg",
+        "png",
+        "ico",
+        "gif",
+        "tiff",
+        "webp",
+        "eps",
+        "svg",
+        "psd",
+        "indd",
+        "cdr",
+        "ai",
+        "raw",
     )
 
-    def create_file_name(
-        self, date=True, file_format: str = 'png', **names
-    ) -> str:
+    def create_file_name(self, date=True, file_format: str = "png", **names) -> str:
         """
         Создает название файла:
         -Если date=True, то подставляется дата в формате YYYY-MM-DD
         -Подставляется формат (по умолчанию png)
         -Подставляеются все строки из **kwargs
         """
-        date = datetime.now() if date else ''
+        date = datetime.now() if date else ""
         names_in_file_name = [str(name) for name in names.values()]
         return f'{"_".join(names_in_file_name)}__{date}.{file_format}'
 
@@ -37,7 +46,7 @@ class ImageService:
         -Допустимый формат файла
         """
         if isinstance(file_name, str):
-            if file_name.split('.')[-1] in self.FORMATS:
+            if file_name.split(".")[-1] in self.FORMATS:
                 return True
         return False
 
@@ -54,16 +63,15 @@ class ImageService:
 
         if not self.chek_file_name(file_name=file_name):
             file_name = self.create_file_name(
-                date=True,
-                file_format=img_settings['FORMAT'].lower()
+                date=True, file_format=img_settings["FORMAT"].lower()
             )
 
         img = Image.open(image)
 
-        img.thumbnail(img_settings['SIZE'])
+        img.thumbnail(img_settings["SIZE"])
 
         thumb_io = BytesIO()
-        img.save(thumb_io, img_settings['FORMAT'])
+        img.save(thumb_io, img_settings["FORMAT"])
         image = File(thumb_io, name=file_name)
 
         return image
@@ -82,29 +90,24 @@ class ImageService:
 
         if not self.chek_file_name(file_name=file_name):
             file_name = self.create_file_name(
-                date=True,
-                file_format=img_settings['FORMAT'].lower()
+                date=True, file_format=img_settings["FORMAT"].lower()
             )
 
         img = Image.open(image)
 
         watermark = Image.open(
-            f"{img_settings['WATERMARK_URL']}/"
-            f"{img_settings['WATERMARK_FILE_NAME']}"
+            f"{img_settings['WATERMARK_URL']}/" f"{img_settings['WATERMARK_FILE_NAME']}"
         )
-        img.paste(
-            watermark,
-            img_settings['WATERMARK_INDENTS']
-        )
+        img.paste(watermark, img_settings["WATERMARK_INDENTS"])
 
         thumb_io = BytesIO()
-        img.save(thumb_io, img_settings['FORMAT'])
+        img.save(thumb_io, img_settings["FORMAT"])
         image = File(thumb_io, name=file_name)
 
         return image
 
     def create_avatar_using_name(
-        self, first_name: str = 'Anon', last_name: str = 'Anon'
+        self, first_name: str = "Anon", last_name: str = "Anon"
     ) -> File:
         """
         Создает с нуля картинку с аватаркой:
@@ -112,34 +115,34 @@ class ImageService:
         -Вставляет 2 буквы: первая буква имени и фамилии пользователя
         """
         if len(first_name) == 0:
-            first_name = 'Anon'
+            first_name = "Anon"
         if len(last_name) == 0:
-            last_name = 'Anon'
+            last_name = "Anon"
 
         avatar_settings = settings.AVATAR
 
         first_name_letter = first_name.strip()[0].upper()
         last_name_letter = last_name.strip()[0].upper()
-        file_name = self.create_file_name(date=True, file_format='png')
+        file_name = self.create_file_name(date=True, file_format="png")
         text = first_name_letter + last_name_letter
-        color = random.choice(avatar_settings['COLORS']).upper()
+        color = random.choice(avatar_settings["COLORS"]).upper()
 
-        img = Image.new('RGB', avatar_settings['SIZE'], color=(color))
+        img = Image.new("RGB", avatar_settings["SIZE"], color=(color))
         font = ImageFont.truetype(
-            f"{avatar_settings['FONT_URL']}/"
-            f"{avatar_settings['FONT_FILE_NAME']}",
-            size=avatar_settings['FONT_SIZE'])
+            f"{avatar_settings['FONT_URL']}/" f"{avatar_settings['FONT_FILE_NAME']}",
+            size=avatar_settings["FONT_SIZE"],
+        )
         draw_text = ImageDraw.Draw(img)
 
         draw_text.text(
-            avatar_settings['FONT_INDENTS'],
+            avatar_settings["FONT_INDENTS"],
             text,
             font=font,
-            fill=avatar_settings['FONT_FILL']
+            fill=avatar_settings["FONT_FILL"],
         )
 
         thumb_io = BytesIO()
-        img.save(thumb_io, 'PNG')
+        img.save(thumb_io, "PNG")
         avatar = File(thumb_io, name=file_name)
 
         return avatar

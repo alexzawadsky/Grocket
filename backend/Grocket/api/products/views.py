@@ -2,10 +2,15 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from products.selectors import (get_all_products, get_categories,
-                                get_favourited_products, get_product_or_404,
-                                get_products_for_comments, get_promotions,
-                                get_safe_products)
+from products.selectors import (
+    get_all_products,
+    get_categories,
+    get_favourited_products,
+    get_product_or_404,
+    get_products_for_comments,
+    get_promotions,
+    get_safe_products,
+)
 from products.services.services import CreateProductService, ProductService
 
 from .mixins import CategoryMixin, ProductMixin, PromotionMixin
@@ -63,7 +68,7 @@ class ProductViewSet(ProductMixin):
         is_favourited = self.request.query_params.get("is_favourited")
 
         if not any([is_sold, is_archived, is_favourited]):
-            queryset = get_safe_products()
+            queryset = get_safe_products(user__id=user.id)
         elif is_sold:
             queryset = get_all_products(user_id=user.id, is_sold=True)
         elif is_archived:

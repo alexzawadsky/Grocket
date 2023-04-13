@@ -7,9 +7,14 @@ from rest_framework import serializers
 
 from api.users.serializers import CustomUserSerializer
 from products.models import Category
-from products.selectors import (get_ancestors_by_category, get_is_favourited,
-                                get_product_address, get_product_category,
-                                get_product_images, get_product_promotions)
+from products.selectors import (
+    get_ancestors_by_category,
+    get_is_favourited,
+    get_product_address,
+    get_product_category,
+    get_product_images,
+    get_product_promotions,
+)
 from users.services import UserService
 
 users_services = UserService()
@@ -122,7 +127,7 @@ class ProductImageCreateSerializer(serializers.Serializer):
 class ProductAddressCreateUpdateSerializer(serializers.Serializer):
     full = serializers.CharField()
     short = serializers.CharField()
-    city = serializers.CharField()
+    city = serializers.CharField(required=False)
     country_code = serializers.CharField()
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()

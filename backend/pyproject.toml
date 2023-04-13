@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "grocket"
+version = "0.1.0"
+description = ""
+authors = ["Alex <alesha.zawadsky@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2"
+celery = "^5.2.7"
+django-ckeditor = "^6.5.1"
+django-countries = "^7.5.1"
+django-dump-load-utf8 = "^0.0.4"
+django-filter = "^23.1"
+django-modeltranslation = "^0.18.9"
+django-money = "^3.0.0"
+django-mptt = "^0.14.0"
+django-mptt-admin = "^2.5.0"
+django-phonenumber-field = "^7.0.2"
+djangorestframework = "^3.14.0"
+djangorestframework-simplejwt = "4.8.0"
+djoser = "2.1.0"
+drf-extra-fields = "^3.4.1"
+gunicorn = "^20.1.0"
+phonenumbers = "^8.13.9"
+pillow = "^9.5.0"
+psycopg2-binary = "^2.9.6"
+python-dotenv = "^1.0.0"
+redis = "^4.5.4"
+django-bleach = "^3.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.12.0"
+mypy = "^1.2.0"
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -5,27 +5,25 @@ from django.utils.translation import gettext_lazy as _
 
 from comments.models import Comment, CommentImage, CommentReply, Status
 from images.services import ImageService
-from products.services import ProductService
 from users.services import UserService
 
 images_services = ImageService()
 users_services = UserService()
-products_services = ProductService()
 
 
 class CommentService:
     """Сервисы для работы с комментариями."""
 
     error_messages = {
-        'reply_create_required_fields_not_in_input_data': (
-            _('Unable to reply to comment: Invalid input data.')
+        "reply_create_required_fields_not_in_input_data": (
+            _("Unable to reply to comment: Invalid input data.")
         ),
-        'comment_create_required_fields_not_in_input_data': (
-            _('Unable to create comment: Invalid input data.')
+        "comment_create_required_fields_not_in_input_data": (
+            _("Unable to create comment: Invalid input data.")
         ),
-        'comment_image_create_required_fields_not_in_input_data': (
-            _('Unable to create comment image: Invalid input data.')
-        )
+        "comment_image_create_required_fields_not_in_input_data": (
+            _("Unable to create comment image: Invalid input data.")
+        ),
     }
 
     # STATUSES
@@ -54,9 +52,7 @@ class CommentService:
             raise PermissionDenied()
         comment.delete()
 
-    def add_images_to_comment(
-        self, comment_id: int, images: list
-    ) -> Comment:
+    def add_images_to_comment(self, comment_id: int, images: list) -> Comment:
         """
         Добавляет картинкии путем создания объектов модели,
         связывающей комментарий и картинки:
@@ -67,10 +63,7 @@ class CommentService:
         created_images = []
         try:
             for image in images:
-                created_image = self.create_comment_image(
-                    image=image,
-                    comment=comment
-                )
+                created_image = self.create_comment_image(image=image, comment=comment)
                 created_images.append(created_images)
         except Exception as error:
             for created_image in created_images:
@@ -79,9 +72,7 @@ class CommentService:
 
         return comment
 
-    def check_comment_creation_logic(
-        self, product_id: int, user_id: int
-    ) -> None:
+    def check_comment_creation_logic(self, product_id: int, user_id: int) -> None:
         """
         Проверка логики создания комментария.
         Если хотя бы одно из событий нарушено, то вызывается ошибка.
@@ -95,15 +86,9 @@ class CommentService:
 
         logic_is_your_product: bool = product.user == user
         logic_is_product_archived: bool = product.is_archived
-        logic_is_exists: bool = self.get_comments(
-            user=user, product=product
-        ).exists()
+        logic_is_exists: bool = self.get_comments(user=user, product=product).exists()
 
-        if any([
-            logic_is_your_product,
-            logic_is_product_archived,
-            logic_is_exists
-        ]):
+        if any([logic_is_your_product, logic_is_product_archived, logic_is_exists]):
             raise PermissionDenied()
 
     def create_comment(self, **fields) -> Comment:
@@ -113,21 +98,16 @@ class CommentService:
         -При возникновении ошибки созданные картинки и комментарий удаляются
         """
         try:
-            product_id = fields.pop('product')
-            user_id = fields.pop('user')
-            status_id = fields.pop('status')
-            images = fields.pop('images')
+            product_id = fields.pop("product")
+            user_id = fields.pop("user")
+            status_id = fields.pop("status")
+            images = fields.pop("images")
         except KeyError:
             raise ValidationError(
-                self.error_messages[
-                    'comment_create_required_fields_not_in_input_data'
-                ]
+                self.error_messages["comment_create_required_fields_not_in_input_data"]
             )
 
-        self.check_comment_creation_logic(
-            product_id=product_id,
-            user_id=user_id
-        )
+        self.check_comment_creation_logic(product_id=product_id, user_id=user_id)
 
         user = users_services.get_user_or_404(id=user_id)
         product = products_services.get_product_or_404(id=product_id)
@@ -135,11 +115,7 @@ class CommentService:
 
         seller = product.user
         comment = Comment(
-            seller=seller,
-            user=user,
-            product=product,
-            status=status,
-            **fields
+            seller=seller, user=user, product=product, status=status, **fields
         )
         comment.full_clean()
         comment.save()
@@ -153,9 +129,7 @@ class CommentService:
         return comment
 
     # REPLIES
-    def get_replies_to_comment(
-        self, comment_id: int
-    ) -> QuerySet[CommentReply]:
+    def get_replies_to_comment(self, comment_id: int) -> QuerySet[CommentReply]:
         """Отдает все ответы на комментарий по id."""
 
         return self.get_comment_or_404(id=comment_id).comment_replies
@@ -183,13 +157,11 @@ class CommentService:
         -Уже есть ответ на этот комментарий
         """
         try:
-            comment_id = fields.pop('comment')
-            user_id = fields.pop('user')
+            comment_id = fields.pop("comment")
+            user_id = fields.pop("user")
         except KeyError:
             raise ValidationError(
-                self.error_messages[
-                    'reply_create_required_fields_not_in_input_data'
-                ]
+                self.error_messages["reply_create_required_fields_not_in_input_data"]
             )
 
         comment = self.get_comment_or_404(id=comment_id)
@@ -204,11 +176,7 @@ class CommentService:
             raise PermissionDenied()
 
         # Создание ответа на комментарий
-        reply = CommentReply(
-            user=user,
-            comment=comment,
-            **fields
-        )
+        reply = CommentReply(user=user, comment=comment, **fields)
         reply.full_clean()
         reply.save()
 
@@ -221,23 +189,18 @@ class CommentService:
     def create_comment_image(self, **fields) -> CommentImage:
         """Создание картинки комментария."""
         try:
-            image = fields.pop('image')
+            image = fields.pop("image")
         except KeyError:
             raise ValidationError(
                 self.error_messages[
-                    'comment_image_create_required_fields_not_in_input_data'
+                    "comment_image_create_required_fields_not_in_input_data"
                 ]
             )
 
         prepared_image = images_services.prepair_img(image=image)
-        image_with_watermark = images_services.add_watermark(
-            image=prepared_image
-        )
+        image_with_watermark = images_services.add_watermark(image=prepared_image)
 
-        image = CommentImage(
-            image=image_with_watermark,
-            **fields
-        )
+        image = CommentImage(image=image_with_watermark, **fields)
         image.full_clean()
         image.save()
         return image

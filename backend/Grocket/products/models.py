@@ -10,197 +10,176 @@ User = get_user_model()
 
 class ProductAddress(models.Model):
     product = models.ForeignKey(
-        'Product',
+        "Product",
         on_delete=models.CASCADE,
-        verbose_name='product',
-        related_name='product_addresses'
+        verbose_name="product",
+        related_name="product_addresses",
     )
-    full = models.CharField(
-        max_length=150,
-        verbose_name='full address'
-    )
-    short = models.CharField(
-        max_length=150,
-        verbose_name='short address'
-    )
-    city = models.CharField(
-        max_length=150,
-        verbose_name='city'
-    )
-    country_code = models.CharField(
-        max_length=2,
-        verbose_name='country code'
-    )
-    latitude = models.FloatField(
-        verbose_name='latitude'
-    )
-    longitude = models.FloatField(
-        verbose_name='longitude'
-    )
+    full = models.CharField(max_length=150, verbose_name="full address")
+    short = models.CharField(max_length=150, verbose_name="short address")
+    city = models.CharField(max_length=150, verbose_name="city", blank=True)
+    country_code = models.CharField(max_length=2, verbose_name="country code")
+    latitude = models.FloatField(verbose_name="latitude")
+    longitude = models.FloatField(verbose_name="longitude")
 
     class Meta:
-        ordering = ('-id',)
-        verbose_name = 'product address'
-        verbose_name_plural = 'product addresses'
+        ordering = ("-id",)
+        verbose_name = "address"
+        verbose_name_plural = "addresses"
 
     def __str__(self):
-        return f'{self.id} prod:{self.product.id} {self.short}'
+        return f"{self.id} prod:{self.product.id} {self.short}"
 
 
 class Image(models.Model):
     product = models.ForeignKey(
-        'Product',
-        related_name='images',
+        "Product",
+        related_name="images",
         on_delete=models.CASCADE,
-        verbose_name='product',
+        verbose_name="product",
     )
-    image = models.ImageField(upload_to='images/')
-    is_main = models.BooleanField(default=False)
+    image = models.ImageField(verbose_name="image", upload_to="images/")
+    is_main = models.BooleanField(verbose_name="is main", default=False)
 
     class Meta:
-        ordering = ('-id',)
-        verbose_name = 'product image'
-        verbose_name_plural = 'product images'
+        ordering = ("-id",)
+        verbose_name = "image"
+        verbose_name_plural = "images"
 
     def __str__(self):
-        return f'{self.id} prod:{self.product.id} main:{self.is_main}'
+        return f"{self.id} prod:{self.product.id} main:{self.is_main}"
 
 
 class Category(MPTTModel):
     title = models.CharField(
         max_length=50,
-        verbose_name='category title',
+        verbose_name="title",
     )
     parent = TreeForeignKey(
-        'self',
+        "self",
         on_delete=models.PROTECT,
         null=True,
         blank=True,
-        related_name='children',
-        db_index=True,
-        verbose_name='parent category'
+        related_name="children",
+        verbose_name="parent category",
     )
 
     class MPTTMeta:
-        order_insertion_by = ['title']
+        order_insertion_by = ["title"]
 
     class Meta:
-        unique_together = [['parent', 'title']]
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        unique_together = [["parent", "title"]]
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
     def __str__(self):
-        parent_obj = self.parent
-        if parent_obj is None:
-            parent = None
-        else:
-            parent = parent_obj.id
-        return f'{self.id} parent:{parent}'
+        return f"{self.title}"
 
 
 class Promotion(models.Model):
     title = models.CharField(
         max_length=100,
-        verbose_name='title',
+        verbose_name="title",
     )
     name = models.SlugField(
         max_length=50,
-        verbose_name='name',
+        verbose_name="name",
         unique=True,
     )
     price = MoneyField(
         max_digits=19,
         decimal_places=2,
-        default_currency='USD',
-        verbose_name='price',
+        default_currency="USD",
+        verbose_name="price",
     )
     description = models.TextField(
         max_length=500,
-        verbose_name='description',
+        verbose_name="description",
     )
 
     class Meta:
-        ordering = ('-id',)
-        verbose_name = 'promotion'
-        verbose_name_plural = 'promotions'
+        ordering = ("-id",)
+        verbose_name = "promotion"
+        verbose_name_plural = "promotions"
 
     def __str__(self):
-        return f'{self.id} {self.name}'
+        return f"{self.id} {self.name}"
 
 
 class Product(models.Model):
     name = models.CharField(
         max_length=200,
-        verbose_name='product name',
+        verbose_name="name",
     )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='products',
-        verbose_name='seller',
+        related_name="products",
+        verbose_name="seller",
     )
     category = TreeForeignKey(
-        'Category',
+        "Category",
         on_delete=models.PROTECT,
-        related_name='posts',
-        verbose_name='сategory',
+        related_name="posts",
+        verbose_name="сategory",
     )
     description = RichTextBleachField(
         max_length=1000,
-        verbose_name='product description',
+        verbose_name="description",
     )
     price = MoneyField(
         max_digits=19,
         decimal_places=2,
-        default_currency='USD',
-        verbose_name='product price',
+        default_currency="USD",
+        verbose_name="price",
     )
     promotions = models.ManyToManyField(
-        'Promotion',
-        related_name='products',
-        verbose_name='product promotion types',
+        "Promotion",
+        related_name="products",
+        verbose_name="promotion types",
         blank=True,
     )
     is_archived = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
     pub_date = models.DateTimeField(
-        'Pub date',
+        verbose_name="pub date",
         auto_now_add=True,
         db_index=True,
     )
 
     class Meta:
-        ordering = ('-pub_date',)
-        verbose_name = 'product'
-        verbose_name_plural = 'products'
+        ordering = ("-pub_date",)
+        verbose_name = "product"
+        verbose_name_plural = "products"
 
     def __str__(self):
         return (
-            f'{self.id} user:{self.user.id} cat:{self.category.id} '
-            f'arch:{self.is_archived} sold:{self.is_archived}'
+            f"{self.id} {self.name[:10]} user:{self.user.id} "
+            f"arch:{self.is_archived} sold:{self.is_archived}"
         )
 
 
 class Favourite(models.Model):
     user = models.ForeignKey(
         User,
-        related_name='favourites',
+        related_name="favourites",
         on_delete=models.CASCADE,
-        verbose_name='user',
+        verbose_name="user",
     )
     product = models.ForeignKey(
         Product,
-        related_name='favourites',
+        related_name="favourites",
         on_delete=models.CASCADE,
-        verbose_name='favorite product',
+        verbose_name="product",
     )
 
     class Meta:
-        ordering = ('-id',)
-        verbose_name = 'favourite'
-        verbose_name_plural = 'favourites'
-        constraints = [models.UniqueConstraint(fields=['user', 'product'],
-                       name='unique favorite')]
+        ordering = ("-id",)
+        verbose_name = "favourite"
+        verbose_name_plural = "favourites"
+        constraints = [
+            models.UniqueConstraint(fields=["user", "product"], name="unique favorite")
+        ]
 
     def __str__(self):
-        return f'{self.id} user:{self.user.id} prod:{self.product.id}'
+        return f"{self.id} user:{self.user.id} prod:{self.product.id}"

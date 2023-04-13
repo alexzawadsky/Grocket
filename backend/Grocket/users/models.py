@@ -16,68 +16,61 @@ class CustomUserManager(UserManager):
         return user
 
     def create_user(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', False)
-        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault("is_staff", False)
+        extra_fields.setdefault("is_superuser", False)
         return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
 
-        assert extra_fields['is_staff']
-        assert extra_fields['is_superuser']
+        assert extra_fields["is_staff"]
+        assert extra_fields["is_superuser"]
         return self._create_user(email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     avatar = models.ImageField(
-        upload_to='avatars/',
+        upload_to="avatars/",
         blank=True,
     )
     first_name = models.CharField(
-        verbose_name='name',
+        verbose_name="name",
         max_length=150,
     )
     last_name = models.CharField(
-        verbose_name='last name',
+        verbose_name="last name",
         max_length=150,
     )
     email = models.EmailField(
-        verbose_name='email',
+        verbose_name="email",
         max_length=254,
         unique=True,
     )
     phone = PhoneNumberField(
-        verbose_name='phone',
+        verbose_name="phone",
         blank=True,
         unique=True,
     )
-    country = CountryField(
-        default='US'
-    )
-    is_staff = models.BooleanField(
-        verbose_name='staff status',
-        default=False
-    )
-    is_active = models.BooleanField(
-        verbose_name='active',
-        default=True
-    )
-    date_joined = models.DateTimeField(
-        verbose_name='date joined',
-        default=timezone.now
-    )
+    country = CountryField(default="US")
+    is_staff = models.BooleanField(verbose_name="staff status", default=False)
+    is_active = models.BooleanField(verbose_name="active", default=True)
+    date_joined = models.DateTimeField(verbose_name="date joined", default=timezone.now)
 
     objects = CustomUserManager()
 
-    EMAIL_FIELD = 'email'
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ('first_name', 'last_name', 'phone',)
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = (
+        "first_name",
+        "last_name",
+        "phone",
+    )
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
-        ordering = ['-id']
+        verbose_name = "User"
+        verbose_name_plural = "Users"
+        ordering = ["-id"]
 
     def clean(self):
         super().clean()

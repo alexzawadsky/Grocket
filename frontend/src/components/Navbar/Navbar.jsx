@@ -22,17 +22,22 @@ const Navbar = () => {
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
+        const handleScroll = (e) => setOpen(false)
         const handleClickOutside = (e) => {
             if (!e.target.closest('.nav-toggle')) setOpen(false)
         }
         document.addEventListener('click', handleClickOutside)
+        document.addEventListener('scroll', handleScroll)
 
-        return () => document.removeEventListener('click', handleClickOutside)
+        return () => {
+            document.removeEventListener('click', handleClickOutside)
+            document.removeEventListener('click', handleScroll)
+        }
     }, [])
 
     return (
-        <nav className='w-full fixed z-50 left-0 top-0 shadow-lg bg-white dark:bg-zinc-800'>
-            <ul className='flex container pl-5 md:px-5 mx-auto md:gap-4 lg:gap-6 h-16 items-center'>
+        <nav className='w-full fixed z-50 left-0 top-0 shadow-lg bg-white dark:bg-zinc-800' aria-label='website navigation bar'>
+            <ul className='flex container pl-5 md:px-5 mx-auto md:gap-4 lg:gap-6 h-16 items-center' aria-label='navigation bar items list'>
                 <li className="flex items-center gap-1 max-md:mr-auto">
                     <NavLink className='text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
                         {isMinTablet ? 'Grocket' : <img className='h-10' src={logo} alt='grocket logo' />}

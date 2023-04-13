@@ -60,17 +60,20 @@ const ProductPage = () => {
             </Helmet>
             <div className='grid lg:grid-cols-[2fr_1fr] gap-10'>
                 <div className='grid gap-4 md:gap-7'>
-                    <div className='grid gap-3'>
-                        <h1 className="text-3xl font-bold flex items-center justify-between">
-                            {data.name}
+                    <div className='grid gap-1.5'>
+                        <div className='flex items-center justify-between'>
+                            <h1 className="text-3xl font-bold">
+                                {data.name}
+                            </h1>
                             <Button
-                                className='text-accent-red dark:text-red-600'
+                                ariaLabel='add to favourites button'
+                                className='text-accent-red dark:text-red-600 text-3xl'
                                 onClick={handleFavourite}
                                 border={false}
                             >
                                 {data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}
                             </Button>
-                        </h1>
+                        </div>
                         <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">
                             <span className='text-primary-300 dark:text-zinc-400 flex items-center gap-2'>
                                 <BiTimeFive />
@@ -101,9 +104,12 @@ const ProductPage = () => {
                             </div>
                         )}
                     </>}
+                    <p className='text-sm text-zinc-400' aria-label='product id and publish time'>
+                        #{data?.id} · <PublishTime full pubDate={data?.pub_date} />
+                    </p>
                 </div>
-                {!isMaxTablet && <aside >
-                    <div className='w-fit grid gap-7 h-fit fixed'>
+                {!isMaxTablet && <aside aria-label='product page sidebar'>
+                    <div className='w-fit grid gap-7 h-fit fixed' aria-label='sidebar'>
                         <Price
                             className='font-bold text-3xl'
                             price={data?.price}
@@ -117,7 +123,6 @@ const ProductPage = () => {
                             </div>
                         )}
                     </div>
-
                 </aside>}
             </div>
         </>

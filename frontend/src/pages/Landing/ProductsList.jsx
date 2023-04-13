@@ -17,7 +17,7 @@ const ProductsList = ({ query }) => {
 
     return (
         <>
-            <ul className='grid grid-cols-2 gap-5 md:gap-0 lg:grid-cols-3 xl:grid-cols-4'>
+            <ul className='grid grid-cols-2 gap-5 md:gap-0 lg:grid-cols-3 xl:grid-cols-4' aria-label='list of recently uploaded items'>
                 {data.results.map((el, key) => <li key={key}>
                     <ItemCard
                         product={el}

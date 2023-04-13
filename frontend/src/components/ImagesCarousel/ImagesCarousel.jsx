@@ -7,12 +7,13 @@ const ImagesCarousel = ({ images }) => {
 
     return (
         <div className='relative rounded-lg overflow-hidden'>
-            <img src={images[currentIndex]?.image} />
+            <img aria-label='item card photo' src={images[currentIndex]?.image} />
             <div className='absolute w-full h-full left-0 top-0 flex' onMouseLeave={() => setCurrentIndex(0)}>
-                {images.length > 1 && Array(images.length).fill(0).map((_, key) =>
+                {images.length > 1 && Array(images.length < 5 ? images.length : 5).fill(0).map((_, key) =>
                     <span
-                        className='h-full hover:border-b-4 hover:border-b-accent-orange transition-all'
-                        style={{ width: `${100 / images.length}%` }}
+                        aria-hidden='true'
+                        className='h-full hover:border-b-4 border-b-accent-orange transition-all'
+                        style={{ width: `${100 / (images.length < 5 ? images.length : 5)}%` }}
                         key={key}
                         onMouseEnter={() => setCurrentIndex(key)}
                     >

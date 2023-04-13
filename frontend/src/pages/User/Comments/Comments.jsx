@@ -26,15 +26,17 @@ const Comments = () => {
                     stats={data?.stats}
                     count={data?.count}
                 />
-                <div className='mt-auto'>
+                <div className='mt-auto' aria-label='how rating works'>
                     <p className='font-bold'>{t('how_rating_works')}</p>
                     <p className='text-sm'>{t('rating_is')}</p>
                     {profileId !== 'me' && <NavLink className="button-fill-orange mt-3 md:mt-7 lg:mt-11 !h-10" to='add'>{t('add_comment')}</NavLink>}
                 </div>
             </div>
-            <div className="grid lg:grid-cols-2 gap-5">
-                {data?.results.map((el, key) => <Comment key={key} comment={el} />)}
-            </div>
+            <ul className="grid lg:grid-cols-2 gap-5" aria-label='list of comments'>
+                {data?.results.map((el, key) => <li aria-label='comment'>
+                    <Comment key={key} comment={el} />
+                </li>)}
+            </ul>
         </div>
     )
 }

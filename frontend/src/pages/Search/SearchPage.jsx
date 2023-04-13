@@ -7,6 +7,7 @@ import CardModeToggle from './CardModeToggle'
 import SortBy from './SortBy'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import useScreen from '../../hooks/useScreen'
+import cn from 'classnames'
 
 const Search = () => {
 
@@ -38,7 +39,10 @@ const Search = () => {
                             setSortBy={setSortBy}
                         />
                     </div>
-                    <div className={!isList && 'grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4'}>
+                    <div className={cn(
+                        'bg-red',
+                        !isList && 'max-md:gap-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'
+                    )}>
                         {data && data?.results.map((product, key) =>
                             <ItemCard
                                 search

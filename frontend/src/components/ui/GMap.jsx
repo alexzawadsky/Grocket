@@ -15,7 +15,88 @@ const GMap = ({ address }) => {
                 scaleControl: true,
                 streetViewControl: false,
                 rotateControl: true,
-                fullscreenControl: false
+                fullscreenControl: false,
+                styles: document.querySelector('html').classList.contains('dark') && [
+                    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                    {
+                        featureType: "administrative.locality",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                    },
+                    {
+                        featureType: "poi",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                    },
+                    {
+                        featureType: "poi.park",
+                        elementType: "geometry",
+                        stylers: [{ color: "#263c3f" }],
+                    },
+                    {
+                        featureType: "poi.park",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#6b9a76" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "geometry",
+                        stylers: [{ color: "#38414e" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "geometry.stroke",
+                        stylers: [{ color: "#212a37" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#9ca5b3" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "geometry",
+                        stylers: [{ color: "#746855" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "geometry.stroke",
+                        stylers: [{ color: "#1f2835" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#f3d19c" }],
+                    },
+                    {
+                        featureType: "transit",
+                        elementType: "geometry",
+                        stylers: [{ color: "#2f3948" }],
+                    },
+                    {
+                        featureType: "transit.station",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "geometry",
+                        stylers: [{ color: "#17263c" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#515c6d" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "labels.text.stroke",
+                        stylers: [{ color: "#17263c" }],
+                    },
+                ],
+
 
             })
             if (address) {
@@ -30,12 +111,12 @@ const GMap = ({ address }) => {
     }, [address])
 
     return (
-        <div className="w-full">
+        <div className="w-full" aria-label='product address and map'>
             <p className="pb-2 flex items-center gap-2">
                 {address?.full}
                 {address?.country_code && <Flag size={5} country={address?.country_code} />}
             </p>
-            <div id="g-map" className="w-full h-64 md:h-72 xl:h-96 overflow-hidden rounded-xl"></div >
+            <div id="g-map" className="w-full h-64 md:h-72 xl:h-96 overflow-hidden rounded-xl" aria-label='google map'></div>
         </div>
     )
 }

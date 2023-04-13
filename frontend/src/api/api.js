@@ -9,10 +9,9 @@ const limit = 12;
 
 export const useProducts = (queryParams) => {
     const api = useAxios()
-    return useQuery(['products', queryParams],
-        () => api.get(`/api/v1/products`,
-            { params: { ...queryParams, limit: limit } }).then(res => res.data),
-        { keepPreviousData: true })
+    return useQuery(['products', queryParams], () => api.get(`/api/v1/products`, {
+        params: Object.assign({}, Object.fromEntries(queryParams), { limit })
+    }).then(res => res.data), { keepPreviousData: true })
 }
 
 export const useProduct = (productId) => {

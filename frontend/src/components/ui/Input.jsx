@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { BsTrashFill } from 'react-icons/bs'
 import cn from 'classnames'
 import Button from "./Button";
+import { BiError } from 'react-icons/bi'
 
 const Errors = ({ instance }) => {
 
@@ -34,7 +35,8 @@ const Input = ({
     split,
     large,
     must,
-    containerClassName
+    containerClassName,
+    ariaLabel
 }) => {
 
     const inputRef = useRef()
@@ -45,18 +47,27 @@ const Input = ({
         }
     }, [])
 
+    const inputStyle = 'rounded-lg transition-colors duration-[25] border-slate-500 dark:border-zinc-500 dark:bg-zinc-700 focus:border-slate-800 focus:dark:border-zinc-400 focus:shadow-md focus:outline-none border dark:border-2 px-3 w-full h-10'
+    const errorStyle = (instance.isDirty && !instance.allValid) && '!outline-2 !text-accent-red !bg-accent-red/[0.05] !border-accent-red !outline-offset-1'
     const inputInner = <>
         {title && <label className={must ? 'after:content-["*"] after:text-accent-red after:pl-1' : ''} htmlFor={id}>{title}</label>}
-        <div>
+        <div className="relative">
             {large ? <textarea
+                aria-label={ariaLabel}
                 id={id}
                 ref={inputRef}
                 value={instance.value}
                 onChange={instance.checkValue}
                 onBlur={instance.checkValue}
                 disabled={disabled}
-                className='grocket-input min-h-[100px] py-2'
+                className={cn(
+                    inputStyle,
+                    errorStyle,
+                    'min-h-[100px] py-2',
+                    className
+                )}
             /> : <input
+                aria-label={ariaLabel}
                 id={id}
                 type={type}
                 ref={inputRef}
@@ -65,12 +76,16 @@ const Input = ({
                 onBlur={instance.checkValue}
                 disabled={disabled}
                 className={cn(
-                    'grocket-input',
+                    inputStyle,
+                    errorStyle,
                     className
                 )}
                 placeholder={placeholder}
             />}
-            <Errors instance={instance} />
+            {(instance.isDirty && !instance.allValid) && <span className="absolute right-3 top-3 text-accent-red">
+                <BiError />
+            </span>}
+            {/* <Errors instance={instance} /> */}
         </div>
         {deleteBtn && <Button
             type='button'

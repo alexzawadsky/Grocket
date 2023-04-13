@@ -5,6 +5,7 @@ import { NavLink, useSearchParams } from 'react-router-dom'
 import { Input, Form, Title, Button } from '../../components/ui'
 import AuthContext from '../../contexts/AuthProvider'
 import useInput from '../../hooks/useInput'
+import logo from '../../assets/logo.png'
 
 const Login = () => {
 
@@ -20,6 +21,7 @@ const Login = () => {
     const [error, setError] = useState()
 
     const handleSubmit = () => {
+        if (email.value === '' || password.value === '') return
         setLoading(true)
         const data = {
             email: email.value,
@@ -33,15 +35,14 @@ const Login = () => {
     return (
         <div className='w-full h-full flex pt-8 md:pt-0 md:items-center justify-center'>
             <div className='max-sm:max-w-[400px] w-full md:w-1/2 lg:w-1/3 xl:w-1/4'>
+                <img className='mx-auto mb-7' width={35} height={35} src={logo} />
                 <Title
-                    className='ml-5 mb-3'
-                    size='4xl'
-                    color='accent-orange'
-                    text='Grocket'
-                    italic
+                    className=' mb-5 mx-auto !w-fit'
+                    text={t('login_to_acc')}
                 />
-                <Form className='grid gap-1 md:gap-2 shadow-md rounded-xl p-5 border' onSubmit={handleSubmit}>
+                <Form className='grid gap-1 md:gap-2 shadow-md rounded-xl p-5 border dark:border-2 dark:border-zinc-600' onSubmit={handleSubmit}>
                     <Input
+                        autoRef
                         title={t('email')}
                         type='text'
                         instance={email}
@@ -51,13 +52,23 @@ const Login = () => {
                         type='password'
                         instance={password}
                     />
+                    <div className="flex mt-2 items-center">
+                        <input
+                            id='remember-me'
+                            type='checkbox'
+                            className='w-4 h-4 checked:!bg-accent-orange'
+                        />
+                        <label htmlFor="remember-me" className='pl-2'>{t('remember_me')}</label>
+                        <NavLink to='' className='ml-auto text-accent-orange'>
+                            {t('forgot_password')}?
+                        </NavLink>
+                    </div>
                     <Button
                         type='submit'
-                        disabled={email.value === '' || password.value === ''}
                         className='mt-2'
                         color='accent-orange'
                         style='fill'
-                        width='fit'
+                        width='full'
                         height={10}
                         px={5}
                     >

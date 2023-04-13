@@ -20,20 +20,17 @@ const SearchForm = () => {
     const navigate = useNavigate()
     const { isMinTablet } = useScreen()
 
-    // useEffect(() => {
-    //     search.setValue(searchParams.get('search') || '')
-    // }, [searchParams.get('search')])
-
     return (
         <>
             <Form
-                className='flex flex-col-reverse md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 bg-white w-full'
+                ariaLabel='search form'
+                className='flex flex-col-reverse md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 w-full'
                 onSubmit={(e) => {
                     search.value && navigate(`/search?search=${stateToQuery(search.value)}`)
                 }}
             >
                 <Button
-                    className='max-sm:!w-full whitespace-nowrap'
+                    className='max-md:!w-full whitespace-nowrap'
                     type='button'
                     onClick={() => setOpen(!open)}
                     style='outline'
@@ -44,15 +41,17 @@ const SearchForm = () => {
                     {open ? <IoClose /> : <BiCategoryAlt />}
                     {t('categories')}
                 </Button>
-                <div className="flex items-center h-10 gap-3 md:gap-8 w-full">
+                <div className="flex items-center h-10 gap-3 md:gap-8 w-full" aria-label='input and submit button part'>
                     <Input
+                        ariaLabel='search input for items search'
                         instance={search}
+                        className='!border-2 !rounded-xl'
                         placeholder='eg. Iphone 14 Pro Max 512Gb'
                         containerClassName='grow'
                         type="text"
                     />
                     <Button
-                        className='max-sm:!w-11 max-sm:!p-1 max-sm:!px-2 whitespace-nowrap'
+                        className='max-md:!w-11 max-md:!p-1 max-md:!px-2 whitespace-nowrap'
                         type='submit'
                         color='accent-orange'
                         style='fill'

@@ -15,8 +15,8 @@ import PigOutline from '../../../assets/icons/pig-icon-outline.png'
 
 const icons = {
     26098: {
-        notHover: <img width='17px' height='17px' src={PigOutline} />,
-        hover: <img width='17px' height='17px' src={PigFill} />
+        notHover: <img width='17px' height='17px' className='dark:invert' src={PigOutline} />,
+        hover: <img width='17px' height='17px' className='dark:invert' src={PigFill} />
     },
     26382: {
         notHover: <BsBriefcase />,
@@ -65,8 +65,8 @@ const PrimaryCategory = ({ category, onChange }) => {
     const [hover, setHover] = useState(false)
 
     return (
-        <div
-            className='hover:bg-slate-100 gap-2 rounded-lg p-3 pr-5 hover:pr-3 flex items-center justify-between transition-all font-bold'
+        <li
+            className='hover:bg-slate-100 hover:dark:bg-zinc-700 gap-2 rounded-lg p-3 pr-5 hover:pr-3 flex items-center justify-between transition-all font-bold'
             onMouseEnter={() => {
                 onChange()
                 setHover(true)
@@ -76,14 +76,10 @@ const PrimaryCategory = ({ category, onChange }) => {
             }}
             onClick={onChange}
         >
-            <div>
-                {hover ? icons[category.id].hover : icons[category.id].notHover}
-            </div>
-            <p className="mr-auto">{category.title}</p>
-            <div>
-                <IoIosArrowForward />
-            </div>
-        </div>
+            {hover ? icons[category.id].hover : icons[category.id].notHover}
+            <p className="mr-auto" aria-label='primary category name'>{category.title}</p>
+            <IoIosArrowForward />
+        </li>
     )
 }
 

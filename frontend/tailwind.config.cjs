@@ -4,6 +4,7 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -21,7 +22,8 @@ module.exports = {
         },
         accent: {
           red: '#FF1500',
-          orange: '#FF9001'
+          orange: '#FF9001',
+          darkorange: '#c4750e'
           // orange: '#000000'
         }
       }

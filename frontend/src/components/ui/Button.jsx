@@ -14,7 +14,10 @@ const Button = ({
     borderColor,
     onHoverColor,
     style,
-    border = true
+    border = true,
+    darkColor,
+    onHoverDarkColor,
+    ariaLabel
 }) => {
 
     let buttonStyle
@@ -22,17 +25,17 @@ const Button = ({
     switch (style) {
         case 'outline':
             buttonStyle = cn(
-                `bg-white`,
-                `text-${color}`,
-                `border-${color}`,
+                `bg-none`,
+                `text-${color} dark:text-${darkColor}`,
+                `border-${color} dark:border-${darkColor}`,
                 `hover:bg-${color}/[0.2]`
             )
             break;
         case 'fill':
             buttonStyle = cn(
-                `bg-${color}`,
+                `bg-${color} dark:bg-${darkColor}`,
                 `text-white`,
-                `border-${color}`,
+                `border-${color} dark:border-${darkColor}`,
                 `hover:bg-${color}/[0.8]`
             )
         default:
@@ -41,17 +44,19 @@ const Button = ({
 
     return (
         <button
+            aria-label={ariaLabel}
             onClick={() => onClick && onClick()}
             className={cn(
                 className,
                 buttonStyle,
                 textColor && `text-${textColor}`,
-                `bg-${color}`,
+                !style && `bg-${color} dark:bg-${darkColor}`,
                 `w-${width}`,
                 `h-${height}`,
                 `px-${px}`,
                 borderColor && `border-${borderColor}`,
-                `hover:bg-${onHoverColor}`,
+                onHoverColor && `hover:bg-${onHoverColor}`,
+                onHoverDarkColor && `dark:hover:bg-${onHoverDarkColor}`,
                 border && 'border-2',
                 'transition-all duration-100  font-bold flex items-center justify-center gap-2 rounded-xl',
                 'disabled:!text-slate-600 disabled:!border-2 disabled:!border-slate-600 disabled:!cursor-not-allowed disabled:!bg-transparent'

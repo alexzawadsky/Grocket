@@ -25,10 +25,6 @@
   @apply box-border
 }
 
-.grocket-input {
-  @apply rounded-xl border-slate-500 focus:border-slate-800 focus:shadow-md focus:outline-none border-2 px-3 w-full h-10
-}
-
 .button-base {
   @apply transition-all duration-100 font-bold flex items-center gap-2 rounded-xl justify-center disabled:!text-slate-600 disabled:!border-2 disabled:!border-slate-600 disabled:!cursor-not-allowed disabled:!bg-transparent
 }

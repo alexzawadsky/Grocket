@@ -111,12 +111,12 @@ const GMap = ({ address }) => {
     }, [address])
 
     return (
-        <div className="w-full">
+        <div className="w-full" aria-label='product address and map'>
             <p className="pb-2 flex items-center gap-2">
                 {address?.full}
                 {address?.country_code && <Flag size={5} country={address?.country_code} />}
             </p>
-            <div id="g-map" className="w-full h-64 md:h-72 xl:h-96 overflow-hidden rounded-xl"></div >
+            <div id="g-map" className="w-full h-64 md:h-72 xl:h-96 overflow-hidden rounded-xl" aria-label='google map'></div>
         </div>
     )
 }

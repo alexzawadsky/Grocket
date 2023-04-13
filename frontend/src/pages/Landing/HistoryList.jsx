@@ -15,7 +15,7 @@ const HistoryList = () => {
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
-        <aside className='grid gap-2 h-fit'>
+        <aside className='grid gap-2 h-fit' aria-label='list of items you opened recently'>
             {isMinTablet &&
                 <>
                     <h2 to='/history' className='text-lg lg:text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>
@@ -29,7 +29,7 @@ const HistoryList = () => {
                         <BsFillTrashFill />{t('clear_history')}
                     </button>}
                 </>}
-            {isMinTablet && <ul>
+            {isMinTablet && <ul aria-label='items history list'>
                 {lookHistory.length === 0 ?
                     <p className='pt-2 pl-2'>{t('nothing_yet')}</p>
                     :

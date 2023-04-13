@@ -5,12 +5,13 @@ const RatingStars = ({ rating, setRating }) => {
     const [localRating, setLocalRating] = useState(rating)
 
     return (
-        <div
+        <ul
             className='flex gap-1 w-fit'
             onMouseLeave={() => setLocalRating(rating)}
+            aria-label={`rating stars ${rating} out of 5`}
         >
             {Array(5).fill(0).map((_, i) => (
-                <div
+                <li
                     key={i}
                     style={{
                         color: i + 1 <= localRating + 0.3 ?
@@ -20,11 +21,12 @@ const RatingStars = ({ rating, setRating }) => {
                     className={setRating && 'cursor-pointer text-3xl'}
                     onMouseEnter={() => setRating ? setLocalRating(i + 1) : null}
                     onClick={() => setRating(i + 1)}
+                    aria-hidden='true'
                 >
                     &#9733;
-                </div>
+                </li>
             ))}
-        </div>
+        </ul>
     )
 }
 

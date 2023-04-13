@@ -11,10 +11,11 @@ const ReadMore = ({ text, limit }) => {
         .replace(/\n/g, "<br>")
 
     return (
-        <div className="">
-            <p dangerouslySetInnerHTML={{ __html: res }}></p>
+        <div aria-label='read more container'>
+            <p dangerouslySetInnerHTML={{ __html: res }} aria-label='text'></p>
             {long &&
                 <span
+                    aria-label='read more toggle'
                     onClick={() => setIsReadMore(prevState => !prevState)}
                     className="text-accent-orange cursor-pointer"
                 >

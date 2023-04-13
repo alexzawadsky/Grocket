@@ -34,22 +34,21 @@ const LanguageDropdown = () => {
                 className='flex items-center gap-2 cursor-pointer'
                 border={false}
             >
-
                 <Flag
                     className='h-10 w-5'
                     country={selectedLang?.flag}
                     size={64}
                 />
-
                 <p>{selectedLang?.name}</p>
-                {/* {open ? <IoIosArrowUp /> : <IoIosArrowDown />} */}
             </Button>
             <div className="relative">
                 {open && <ul className="absolute -left-3 top-1 text-black dark:text-slate-50 font-bold bg-white dark:bg-zinc-800 border-2 dark:border-zinc-600 rounded-lg  p-1 grid grid-cols-2  gap-1 w-20 md:w-80">
-                    {Object.keys(langs).map((l, key) =>
-                        <li
-                            key={key}
-                            className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200 dark:!bg-zinc-600'} hover:bg-slate-100 hover:dark:bg-zinc-700 px-2 py-1 md:py-2 rounded-md leading-none cursor-pointer flex items-center gap-2`}
+                    {Object.keys(langs).map((l, key) => <li key={key}>
+                        <Button
+                            border={false}
+                            px={2}
+                            width='full'
+                            className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200 dark:!bg-zinc-600'} hover:bg-slate-100 hover:dark:bg-zinc-700 py-1 md:py-2 !rounded-md leading-none cursor-pointer flex items-center gap-2 !justify-start`}
                             onClick={() => {
                                 i18n.changeLanguage(langs[l]?.code)
                                 setOpen(false)
@@ -60,7 +59,8 @@ const LanguageDropdown = () => {
                             </div>
                             {isMinTablet &&
                                 <p className="whitespace-nowrap">{isMinTablet && langs[l]?.name}</p>}
-                        </li>
+                        </Button>
+                    </li>
                     )}
                 </ul>}
             </div>

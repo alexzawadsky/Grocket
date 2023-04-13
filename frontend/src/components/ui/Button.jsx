@@ -16,7 +16,8 @@ const Button = ({
     style,
     border = true,
     darkColor,
-    onHoverDarkColor
+    onHoverDarkColor,
+    ariaLabel
 }) => {
 
     let buttonStyle
@@ -43,6 +44,7 @@ const Button = ({
 
     return (
         <button
+            aria-label={ariaLabel}
             onClick={() => onClick && onClick()}
             className={cn(
                 className,

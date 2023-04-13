@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Form = ({ onSubmit, className, children }) => {
+const Form = ({ onSubmit, className, children, ariaLabel }) => {
     return (
         <form
+            aria-label={ariaLabel}
             onSubmit={(e) => {
                 e.preventDefault()
                 onSubmit && onSubmit()

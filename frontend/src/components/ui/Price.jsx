@@ -15,7 +15,7 @@ const Price = ({ className, price, currency }) => {
     ))
 
     return (
-        <p className={className}>
+        <p className={className} aria-label='item price'>
             {value} {getSymbolFromCurrency(targetCurrency)}
         </p>
     )

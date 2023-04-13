@@ -136,16 +136,16 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     {product?.is_favourited && <AiFillHeart color='red' />}
                 </span>
             </h3>
-            <p
+            <Price
                 className={
                     search && product?.promotions.includes('price') ?
                         'font-bolditalic rounded-lg text-2xl bg-accent-orange text-white w-fit py-1 px-2 leading-none'
                         :
                         'font-bolditalic leading-none text-xl'
                 }
-            >
-                <Price price={product?.price} currency={product?.price_currency} />
-            </p>
+                price={product?.price}
+                currency={product?.price_currency}
+            />
             <div className='grid grid-cols-[auto_1fr] gap-y-0.5 gap-x-1.5 items-center'>
                 <BiTimeFive />
                 <time className='text-sm line-clamp-1'><PublishTime pubDate={product?.pub_date} /></time>

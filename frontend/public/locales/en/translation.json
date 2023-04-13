@@ -87,13 +87,13 @@
     "selected": "Selected",
     "select_option": "Select option",
     "register": "Register",
-    "login": "Login",
+    "login": "Sign in",
     "send_message": "Send message",
     "dont_have_acc": "Don't have an account",
     "create_acc": "Create account",
     "repeat_pass": "Repeat pwd",
     "already_have_acc": "Already have the account",
-    "login_to_see": "This page exists, but you need to log in to your account to see it",
+    "login_to_see": "This page exists, but you need to sign in to your account to see it",
     "items_sold": "items sold",
     "phone_verified": "Verified",
     "no_results_found": "No results found",
@@ -141,5 +141,9 @@
     "light": "Light",
     "dark": "Dark",
     "auto": "Auto",
-    "say_hello_to": "Say hello to Grocket team"
+    "say_hello_to": "Say hello to Grocket team",
+    "login_to_acc": "Sign in to account",
+    "remember_me": "Remember me",
+    "forgot_password": "Forgot password",
+    "bought": "bought"
 }

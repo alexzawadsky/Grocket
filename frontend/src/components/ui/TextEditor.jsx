@@ -9,8 +9,7 @@ const TextEditor = ({ text, setText }) => {
     } : {}
 
     return (
-        <div className='border-2 border-slate-500 dark:border-zinc-600 rounded-xl'>
-
+        <div className='border dark:border-2 border-slate-500 dark:border-zinc-600 rounded-lg'>
             <Editor
                 apiKey={import.meta.env.VITE_TEXT_API_KEY}
                 initialValue={text}

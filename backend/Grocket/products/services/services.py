@@ -169,7 +169,7 @@ class CreateProductService:
         address.full_clean()
         address.save()
 
-    def create(self, **fields) -> None:
+    def create(self, **fields) -> int:
         """
         Проверяется логика создания товара.
         При возникновении ошибки при создании картинок товар удаляется.
@@ -197,3 +197,5 @@ class CreateProductService:
         except Exception:
             Product.objects.get(id=product_id).delete()
             raise
+
+        return product_id

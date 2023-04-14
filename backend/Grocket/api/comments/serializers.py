@@ -81,12 +81,14 @@ class CommentReplyReadOnlySerializer(serializers.Serializer):
     id = serializers.IntegerField()
     text = serializers.CharField()
     user = CommentUserSerializer(read_only=True)
+    pub_date = serializers.DateTimeField()
 
     class Meta:
         fields = (
             "id",
             "user",
             "text",
+            "pub_date",
         )
 
 
@@ -101,6 +103,7 @@ class CommentReadOnlySerializer(serializers.Serializer):
     status = StatusSerializer(read_only=True)
     images = serializers.SerializerMethodField()
     reply = serializers.SerializerMethodField()
+    pub_date = serializers.DateTimeField()
 
     class Meta:
         fields = (

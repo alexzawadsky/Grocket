@@ -2,10 +2,15 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from products.selectors import (get_all_products, get_categories,
-                                get_favourited_products, get_product_or_404,
-                                get_products_for_comments, get_promotions,
-                                get_safe_products)
+from products.selectors import (
+    get_all_products,
+    get_categories,
+    get_favourited_products,
+    get_product_or_404,
+    get_products_for_comments,
+    get_promotions,
+    get_safe_products,
+)
 from products.services.services import CreateProductService, ProductService
 
 from .mixins import CategoryMixin, ProductMixin, PromotionMixin
@@ -17,7 +22,7 @@ class ProductViewSet(ProductMixin):
         service = ProductService(product_id=pk)
         service.delete(user_id=user_id)
         data = self.get_response_message()
-        return Response(data, status=status.HTTP_204_NO_CONTENT)
+        return Response(data, status=status.HTTP_200_OK)
 
     def list(self, request):
         return super().list(request, queryset=get_safe_products())
@@ -35,8 +40,9 @@ class ProductViewSet(ProductMixin):
         serializer = self.get_serializer_class()(data=request.data)
         serializer.is_valid(raise_exception=True)
         service = CreateProductService()
-        service.create(**serializer.validated_data)
+        product_id = service.create(**serializer.validated_data)
         data = self.get_response_message()
+        data["id"] = product_id
         return Response(data, status=status.HTTP_201_CREATED)
 
     def partial_update(self, request, pk):
@@ -98,7 +104,7 @@ class ProductViewSet(ProductMixin):
         service = ProductService(product_id=pk)
         service.promote(user_id=user.id, promotions_ids=promotions)
         data = self.get_response_message()
-        return Response(data, status=status.HTTP_204_NO_CONTENT)
+        return Response(data, status=status.HTTP_200_OK)
 
     @action(["post", "delete"], detail=True)
     def sell(self, request, pk):
@@ -108,13 +114,13 @@ class ProductViewSet(ProductMixin):
             service = ProductService(product_id=pk)
             service.sell(user_id=user.id, is_sold=True)
             data = self.get_response_message(method="POST")
-            return Response(data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data, status=status.HTTP_200_OK)
 
         if request.method == "DELETE":
             service = ProductService(product_id=pk)
             service.sell(user_id=user.id, is_sold=False)
             data = self.get_response_message(method="DELETE")
-            return Response(data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
@@ -126,13 +132,13 @@ class ProductViewSet(ProductMixin):
             service = ProductService(product_id=pk)
             service.archive(user_id=user.id, is_archived=True)
             data = self.get_response_message(method="POST")
-            return Response(data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data, status=status.HTTP_200_OK)
 
         if request.method == "DELETE":
             service = ProductService(product_id=pk)
             service.archive(user_id=user.id, is_archived=False)
             data = self.get_response_message(method="DELETE")
-            return Response(data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
@@ -144,13 +150,13 @@ class ProductViewSet(ProductMixin):
             service = ProductService(product_id=pk)
             service.favourite(user_id=user.id, is_favourited=True)
             data = self.get_response_message(method="POST")
-            return Response(data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data, status=status.HTTP_200_OK)
 
         if request.method == "DELETE":
             service = ProductService(product_id=pk)
             service.favourite(user_id=user.id, is_favourited=False)
             data = self.get_response_message(method="DELETE")
-            return Response(data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 

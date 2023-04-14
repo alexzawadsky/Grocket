@@ -3,9 +3,12 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from comments.selectors import get_comments, get_statuses
-from comments.services.services import (CommentReplyService, CommentService,
-                                        CreateCommentReplyService,
-                                        CreateCommentService)
+from comments.services.services import (
+    CommentReplyService,
+    CommentService,
+    CreateCommentReplyService,
+    CreateCommentService,
+)
 
 from .mixins import CommentMixin
 
@@ -16,7 +19,7 @@ class CommentViewSet(CommentMixin):
         service = CommentService(comment_id=pk)
         service.delete(user_id=user_id)
         data = self.get_response_message()
-        return Response(data, status=status.HTTP_204_NO_CONTENT)
+        return Response(data, status=status.HTTP_200_OK)
 
     def create(self, request):
         request.data["user"] = self.request.user.id
@@ -55,7 +58,7 @@ class CommentViewSet(CommentMixin):
             service = CommentReplyService(reply_id=pk)
             service.delete(user_id=user.id)
             data = self.get_response_message(method="DELETE")
-            return Response(data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 

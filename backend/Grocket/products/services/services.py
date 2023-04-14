@@ -194,6 +194,6 @@ class CreateProductService:
             self._add_address_to_product(
                 product_id=product_id, fields=removed_fields["address"]
             )
-        except Exception as error:
+        except Exception:
             Product.objects.get(id=product_id).delete()
-            raise error
+            raise

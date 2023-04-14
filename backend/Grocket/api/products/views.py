@@ -2,15 +2,10 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from products.selectors import (
-    get_all_products,
-    get_categories,
-    get_favourited_products,
-    get_product_or_404,
-    get_products_for_comments,
-    get_promotions,
-    get_safe_products,
-)
+from products.selectors import (get_all_products, get_categories,
+                                get_favourited_products, get_product_or_404,
+                                get_products_for_comments, get_promotions,
+                                get_safe_products)
 from products.services.services import CreateProductService, ProductService
 
 from .mixins import CategoryMixin, ProductMixin, PromotionMixin

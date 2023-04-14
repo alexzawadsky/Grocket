@@ -37,7 +37,7 @@ class ImageService:
         """
         date = datetime.now() if date else ""
         names_in_file_name = [str(name) for name in names.values()]
-        return f'{"_".join(names_in_file_name)}__{date}.{file_format}'
+        return f'{"_".join(names_in_file_name)}{date}.{file_format}'
 
     def chek_file_name(self, file_name: Any) -> bool:
         """

@@ -300,7 +300,7 @@ class ProductCreateSerializer(serializers.Serializer):
     address = ProductAddressCreateUpdateSerializer()
 
     def validate_name(self, value):
-        if not re.match('^[a-zA-Z0-9_!"#$%&()*+,-./:;<=>?@[\]^_`{|}~]+$', value):
+        if not re.match('^[a-zA-Z0-9_ !"#$%&()*+,-./:;<=>?@[\]^_`{|}~]+$', value):
             raise serializers.ValidationError(
                 _("Only latin letters, numbers and punctuation marks can be used")
             )

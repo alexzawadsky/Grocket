@@ -18,7 +18,12 @@ RESPONSE_MESSAGES = {
             "DELETE": _("Removed from favourites"),
         },
         # 'updated': _('Updated'),
-    }
+    },
+    "comments": {
+        "create": _("Created"),
+        "destroy": _("Deleted"),
+        "reply": {"POST": _("Peply created"), "DELETE": _("Reply deleted")},
+    },
 }
 
 

@@ -30,3 +30,6 @@ class CommentMixin(CreateModelMixin, DestroyModelMixin, BaseMixin):
             return CommentReplyCreateSerializer
         elif self.action in ("statuses",):
             return StatusSerializer
+
+    def get_response_message(self, method=None):
+        return super().get_response_message(app="comments", method=method)

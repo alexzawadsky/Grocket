@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
+from comments.selectors import get_comment_images, get_reply_to_comment
 from products.models import Product
 
 User = get_user_model()
@@ -116,18 +117,15 @@ class CommentReadOnlySerializer(serializers.Serializer):
         )
 
     def get_reply(self, obj):
-        reply = comments_services.get_replies_to_comment(comment_id=obj.id)
-        if reply.exists():
-            serializer = CommentReplyReadOnlySerializer(
-                instance=reply.first(), read_only=True
-            )
-            return serializer.data
-        return None
+        reply = get_reply_to_comment(comment_id=obj.id)
+        if reply is None:
+            return None
+        serializer = CommentReplyReadOnlySerializer(instance=reply, read_only=True)
+        return serializer.data
 
     def get_images(self, obj):
-        images = comments_services.get_comment_images(comment_id=obj.id)
+        images = get_comment_images(comment_id=obj.id)
         serializer = CommentImageSerializer(instance=images, many=True, read_only=True)
-
         return serializer.data
 
 
@@ -135,10 +133,9 @@ class CommentReadOnlySerializer(serializers.Serializer):
 class CommentCreateSerializer(serializers.Serializer):
     user = serializers.IntegerField()
     product = serializers.IntegerField()
-    images = serializers.ListField()
+    images = serializers.ListField(required=False)
     rate = serializers.IntegerField(max_value=5, min_value=1)
-    text = serializers.CharField()
-    status = serializers.IntegerField()
+    text = serializers.CharField(required=False)
     status = serializers.IntegerField()
 
     class Meta:

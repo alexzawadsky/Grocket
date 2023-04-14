@@ -30,10 +30,10 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
                 <div className="flex items-center gap-2 flex-wrap">
                     <p className='lg:text-xl font-bold flex items-center flex-wrap gap-2'>
                         <Flag country={country} className='h-fit w-5 pb-0.5' />
-                        <span className={!firstName && 'text-zinc-600'} aria-label='first name'>
+                        <span className={!firstName && 'text-zinc-400'} aria-label='first name'>
                             {firstName ? firstName : t('first_name')}
                         </span>
-                        <span className={!lastName && 'text-zinc-600'} aria-label='last name'>
+                        <span className={!lastName && 'text-zinc-400'} aria-label='last name'>
                             {lastName ? lastName : t('last_name')}
                         </span>
                     </p>
@@ -43,7 +43,7 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
                 {phone && <p className='text-sm md:text-md flex items-center gap-2' aria-label='phone number'>
                     <BsFillTelephoneFill />{phone}
                 </p>}
-                <p className={email ? 'text-sm md:text-md flex items-center gap-2' : 'text-sm md:text-md flex items-center gap-2 text-zinc-600'} aria-label='email'>
+                <p className={email ? 'text-sm md:text-md flex items-center gap-2' : 'text-sm md:text-md flex items-center gap-2 text-zinc-400'} aria-label='email'>
                     <HiOutlineMail width={1.5} />{email ? email : 'email@email.com'}
                 </p>
                 <div className='flex flex-wrap gap-1 md:gap-3 items-center'>

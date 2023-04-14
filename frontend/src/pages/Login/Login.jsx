@@ -52,7 +52,7 @@ const Login = () => {
                         type='password'
                         instance={password}
                     />
-                    <div className="flex mt-2 items-center">
+                    {/* <div className="flex mt-2 items-center">
                         <input
                             id='remember-me'
                             type='checkbox'
@@ -62,7 +62,7 @@ const Login = () => {
                         <NavLink to='' className='ml-auto text-accent-orange'>
                             {t('forgot_password')}?
                         </NavLink>
-                    </div>
+                    </div> */}
                     <Button
                         type='submit'
                         className='mt-2'

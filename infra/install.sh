@@ -17,23 +17,23 @@ echo -e "${green}${uline}${bold}STARTING DOCKER...${reset}"
 docker-compose up -d --build
 echo -e "\n"
 
-echo -e "${green}${uline}${bold}Deleting old database...${reset}"
+echo -e "${green}${uline}${bold}DELETING OLD DATABASE...${reset}"
 docker-compose exec web rm db.sqlite3
 echo -e "\n"
 
-echo -e "${green}${uline}${bold}Making migrations...${reset}"
+echo -e "${green}${uline}${bold}MAKING MIGRATIONS...${reset}"
 docker-compose exec web python manage.py makemigrations users products comments
 echo -e "\n"
 
-echo -e "${green}${uline}${bold}Migrating...${reset}"
+echo -e "${green}${uline}${bold}MIGRATING...${reset}"
 docker-compose exec web python manage.py migrate
 echo -e "\n"
 
-echo -e "${green}${uline}${bold}Collecting ctatic files...${reset}"
+echo -e "${green}${uline}${bold}COLLECTING STATIC FILES...${reset}"
 docker-compose exec web python manage.py collectstatic
 echo -e "\n"
 
-echo -e "${green}${uline}${bold}Adding data to database...${reset}"
+echo -e "${green}${uline}${bold}ADDING DATA TO DATABASE...${reset}"
 echo -e "${blue}--Categories${reset}"
 docker-compose exec web python manage.py loaddatautf8 data/json/categories.json
 echo -e "${blue}--Promotions${reset}"

@@ -2673,9 +2673,9 @@
         "model": "products.category",
         "pk": 26315,
         "fields": {
-            "title": "Хобби и отдых",
-            "title_en": "Хобби и отдых",
-            "title_ru": null,
+            "title": "Hobby and leisure",
+            "title_en": "Hobby and leisure",
+            "title_ru": "Хобби и отдых",
             "title_nl": null,
             "parent": null,
             "lft": 1,

@@ -9,7 +9,7 @@ services:
       - ./.env
 
   web:
-    build: ../backend/Grocket/
+    build: ../backend/grocket/
     restart: always
     volumes:
       - data_value:/app/data/

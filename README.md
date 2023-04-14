@@ -33,7 +33,7 @@ https://github.com/staylor/react-helmet-async
 
 ```
 
-~/Grocket/infra/.env
+~/grocket/infra/.env
 
 ```env
 DB_ENGINE=django.db.backends.postgresql

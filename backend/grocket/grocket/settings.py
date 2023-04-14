@@ -54,7 +54,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "Grocket.urls"
+ROOT_URLCONF = "grocket.urls"
 
 
 # <--- Настройка путей --->
@@ -93,7 +93,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "Grocket.wsgi.application"
+WSGI_APPLICATION = "grocket.wsgi.application"
 
 
 AUTH_USER_MODEL = "users.User"

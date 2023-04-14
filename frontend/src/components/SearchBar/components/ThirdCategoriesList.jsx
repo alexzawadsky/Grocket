@@ -13,7 +13,7 @@ const ThirdLevelCategoriesList = ({ first, parentCategory, categoriesList, expan
             <CategoryLink id={parentCategory?.id}>
                 <h3 className="font-bold gap-1 hover:gap-2 transition-all text-lg items-center pb-2 w-fit hover:text-accent-orange">{parentCategory?.title}</h3>
             </CategoryLink>
-            <ul className="grid gap-1">
+            <ul className="grid gap-1" aria-label="third level categories list">
                 {(!expandedCatId || expandedCatId === parentCategory?.id) &&
                     <>
                         {categoriesList.slice(0, expandedCatId === parentCategory?.id ?

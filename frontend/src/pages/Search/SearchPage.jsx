@@ -14,9 +14,8 @@ const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [sortBy, setSortBy] = useState(searchParams.get('sortby') || 'price')
     const [isList, setIsList] = useLocalStorage('cardViewList', true)
-    const [filterQueryParams, setFilterQueryParams] = useState(searchParams)
     const { isMinTablet, isMinPC } = useScreen()
-    const { data, isLoading, error } = useProducts(filterQueryParams)
+    const { data, isLoading, error } = useProducts(searchParams)
 
     return (
         <div className='grid gap-5'>

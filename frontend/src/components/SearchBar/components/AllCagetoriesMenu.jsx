@@ -22,8 +22,8 @@ const FullCategoriesList = () => {
     if (!open) return
 
     return (
-        <section className="bg-white dark:bg-zinc-800 p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh]">
-            <ul className="overflow-y-auto max-h-[74vh]">
+        <section className="bg-white dark:bg-zinc-800 p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh]" aria-label="menu with all categories to search">
+            <ul className="overflow-y-auto max-h-[74vh]" aria-label="list of primary categories">
                 {data.filter(el => el.parent === null).map((el, key) => <PrimaryCategory
                     key={key}
                     onChange={() => {
@@ -34,13 +34,13 @@ const FullCategoriesList = () => {
                 />
                 )}
             </ul>
-            <SecondaryCategoriesList
+            {parentCategory && <SecondaryCategoriesList
                 expandedCatId={expandedCatId}
                 setExpandedCatId={setExpandedCatId}
                 data={data}
                 parentCategory={parentCategory}
                 childCategories={filterChildCategories(data, parentCategory?.id)}
-            />
+            />}
         </section>
     )
 }

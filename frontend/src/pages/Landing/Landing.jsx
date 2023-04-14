@@ -19,7 +19,7 @@ const Landing = () => {
             </Helmet>
             <SearchBar />
             <div className='md:grid md:grid-cols-[2fr_1fr] lg:grid-cols-[3fr_1fr] flex flex-col-reverse md:gap-7 w-full md:pr-5'>
-                <section>
+                <section aria-label='main section of index page'>
                     {isMinTablet && <Title
                         className='md:pl-5 pb-5 md:pb-0 !text-2xl lg:!text-3xl'
                         text={

@@ -52,12 +52,14 @@ const Footer = () => {
     ]
 
     return (
-        <footer className='w-full bg-accent-orange mt-5'>
+        <footer className='w-full bg-accent-orange mt-5' aria-label='website footer'>
             <div className="container mx-auto p-5 text-white dark:text-zinc-800">
-                <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4" aria-label='footer links'>
                     {footerData.map((el, key) => <FooterCol col={el} key={key} />)}
                 </ul>
-                <p className="my-auto font-bold border-t border-t-white dark:border-t-zinc-800 pt-2 mt-5">© Grocket, {new Date().getFullYear()} <span className="pl-2">v1.0.0</span></p>
+                <p className="my-auto font-bold border-t border-t-white dark:border-t-zinc-800 pt-2 mt-5" aria-label='website version and name'>
+                    © Grocket, {new Date().getFullYear()} <span className="pl-2">v1.0.0</span>
+                </p>
             </div>
         </footer>
     )

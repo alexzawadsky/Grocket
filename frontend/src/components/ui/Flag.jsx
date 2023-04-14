@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 const Flag = ({ country, size, className }) => {
 
-    if (country === null) return
+    if (country === null || country === undefined) return
     const emoji = countryCodeEmoji(country)
     const iconLink = parse(emoji)[0]?.url
 

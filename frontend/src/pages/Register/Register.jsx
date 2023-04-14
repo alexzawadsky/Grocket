@@ -40,9 +40,7 @@ const Register = () => {
                     withPhone={false}
                 /></div>}
                 <Form onSubmit={handleSubmit} className='w-full max-w-[400px] lg:max-w-[550px] mx-auto mt-8 h-fit md:my-auto md:mr-auto grid gap-3'>
-                    <div className="ml-5">
-                        <Title text={t('create_acc')} />
-                    </div>
+                    <Title className='px-5' text={t('create_acc')} />
                     <div className='p-5 rounded-xl shadow-md border dark:border-2 dark:border-zinc-600'>
                         <CreateUserForm
                             setFormData={setFormData}

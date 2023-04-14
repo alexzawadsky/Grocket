@@ -10,7 +10,7 @@ const ChildCategoriesList = ({ data, parentCategory, childCategories, expandedCa
                     {parentCategory?.title}
                 </h2>
             </CategoryLink>
-            <ul className="flex flex-wrap flex-col h-[67vh] max-h-[67vh] gap-y-3 gap-x-7 max-w-full overflow-x-auto overflow-y-auto">
+            <ul className="flex flex-wrap flex-col h-[67vh] max-h-[67vh] gap-y-3 gap-x-7 max-w-full overflow-x-auto overflow-y-auto" aria-label='second level categories list'>
                 {expandedCatId &&
                     <li><ThirdLevelCategoriesList
                         parentCategory={data.find(el => el.id === expandedCatId)}

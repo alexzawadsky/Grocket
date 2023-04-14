@@ -166,9 +166,9 @@ export const useUploadComment = () => {
     const navigate = useNavigate()
     return useMutation((data) => api.post('/api/v1/comments/', data),
         {
-            onSuccess: () => {
+            onSuccess: (res) => {
                 queryClient.invalidateQueries('comments')
-                notification(t('add_comment_success'))
+                notification(res.data?.message)
                 navigate(getLastRoute())
             }
         })
@@ -180,9 +180,9 @@ export const useAddReply = () => {
     const { t } = useTranslation()
     return useMutation((data) => api.post(`/api/v1/comments/${data.commentId}/reply/`, { text: data?.text }),
         {
-            onSuccess: () => {
+            onSuccess: (res) => {
                 queryClient.invalidateQueries('comments')
-                notification(t('reply_added'))
+                notification(res.data?.message)
             }
         })
 }
@@ -193,9 +193,9 @@ export const useDeleteComment = () => {
     const { t } = useTranslation()
     return useMutation((commentId) => api.delete(`/api/v1/comments/${commentId}/`),
         {
-            onSuccess: () => {
+            onSuccess: (res) => {
                 queryClient.invalidateQueries('comments')
-                notification(t('comment_deleted'))
+                notification(res.data?.message)
             }
         })
 }
@@ -206,9 +206,9 @@ export const useDeleteCommentReply = () => {
     const { t } = useTranslation()
     return useMutation((replyId) => api.delete(`/api/v1/comments/replies/${replyId}/`),
         {
-            onSuccess: () => {
+            onSuccess: (res) => {
                 queryClient.invalidateQueries('comments')
-                notification(t('reply_deleted'))
+                notification(res.data?.message)
             }
         })
 }

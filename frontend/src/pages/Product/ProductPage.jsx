@@ -65,14 +65,14 @@ const ProductPage = () => {
                             <h1 className="text-3xl font-bold">
                                 {data.name}
                             </h1>
-                            <Button
+                            {user?.user_id !== data?.user?.id && <Button
                                 ariaLabel='add to favourites button'
                                 className='text-accent-red dark:text-red-600 text-3xl'
                                 onClick={handleFavourite}
                                 border={false}
                             >
                                 {data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}
-                            </Button>
+                            </Button>}
                         </div>
                         <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">
                             <span className='text-primary-300 dark:text-zinc-400 flex items-center gap-2'>

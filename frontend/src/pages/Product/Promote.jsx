@@ -62,7 +62,7 @@ const Promote = () => {
                                     'grid gap-2 border-2 dark:border-zinc-600 transition-all shadow-sm rounded-xl p-5 cursor-pointer hover:border-accent-orange/[.5] dark:hover:border-accent-orange/[.5]',
                                     (selected.find(el => el.id === promo.id) || product.data?.promotions.includes(promo?.name)) &&
                                     '!border-accent-orange bg-accent-orange/[0.05] border-2',
-                                    product.data?.promotions.includes(promo?.name) && 'cursor-default'
+                                    product.data?.promotions.includes(promo?.name) && '!cursor-default'
                                 )}
                                 key={key}
                                 aria-label={`${promo.title} promotion`}

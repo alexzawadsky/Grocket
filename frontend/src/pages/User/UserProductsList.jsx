@@ -58,10 +58,10 @@ const UserProductsList = () => {
                 </ul>
             </nav>
             <ul className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-0' aria-label='list of user products'>
-                {isLoading && <Spinner gap />}
+                {isLoading && <Spinner count={8} type='vcard' />}
                 {error && error.message}
                 {data?.count === 0 && <p className='md:pl-5 md:pt-3'>{t('no_results_found')}</p>}
-                {(!isLoading && !error) && data?.results.map((el, key) => <li>
+                {data && data?.results.map((el, key) => <li>
                     <ItemCard
                         key={key}
                         product={el}

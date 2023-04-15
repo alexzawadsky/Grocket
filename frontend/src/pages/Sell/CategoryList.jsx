@@ -4,6 +4,7 @@ import { BsArrowRight, BsTrashFill } from 'react-icons/bs'
 import Spinner from '../../components/ui/Spinner'
 import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
+import { Button } from '../../components/ui'
 
 const CategoryList = ({ category, setCategory }) => {
 
@@ -27,17 +28,18 @@ const CategoryList = ({ category, setCategory }) => {
 
     return (
         <div className="flex flex-col md:flex-row gap-2 md:gap-5">
-            {category.length > 0 && <div className="flex gap-2 md:gap-5 flex-wrap items-center h-fit">
+            {category.length > 0 && <ul className="flex gap-2 md:gap-5 flex-wrap items-center h-fit">
                 {category.map((el, key) => (
-                    <div
+                    <li
+
                         key={key}
                         className='flex gap-2 md:gap-5 items-center'
                     >
                         <p className={`${el.is_lower ? 'font-bold' : null}`}>{el.title}</p>
                         {el.is_lower ? null : <BsArrowRight />}
-                    </div>
+                    </li>
                 ))}
-            </div>}
+            </ul>}
             {!lastChild?.is_lower ?
                 <div className='grid gap-2 px-5 h-fit'>
                     {isLoading ? <Spinner /> :
@@ -51,12 +53,14 @@ const CategoryList = ({ category, setCategory }) => {
                             </div>)}
                 </div> : null}
             {lastChild?.is_lower &&
-                <button
+                <Button
+                    border={false}
+                    type='button'
                     className='text-accent-red flex items-center gap-2'
                     onClick={() => setCategory([])}
                 >
                     <BsTrashFill />{!isMinTablet && t('change_category')}
-                </button>}
+                </Button>}
         </div>
     )
 }

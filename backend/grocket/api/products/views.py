@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from django.db import transaction
 from products.selectors import (
     get_all_products,
     get_categories,
@@ -35,6 +35,7 @@ class ProductViewSet(ProductMixin):
         )
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @transaction.atomic()
     def create(self, request):
         request.data["user"] = self.request.user.id
         serializer = self.get_serializer_class()(data=request.data)

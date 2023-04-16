@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from django.db import transaction
 from comments.selectors import get_comments, get_statuses
 from comments.services.services import (
     CommentReplyService,
@@ -21,6 +21,7 @@ class CommentViewSet(CommentMixin):
         data = self.get_response_message()
         return Response(data, status=status.HTTP_200_OK)
 
+    @transaction.atomic()
     def create(self, request):
         request.data["user"] = self.request.user.id
         serializer = self.get_serializer_class()(data=request.data)

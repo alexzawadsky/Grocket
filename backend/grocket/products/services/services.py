@@ -172,7 +172,7 @@ class CreateProductService:
     def create(self, **fields) -> int:
         """
         Проверяется логика создания товара.
-        При возникновении ошибки при создании картинок товар удаляется.
+        Добавляется адрес и картинки.
         """
         removed_fields, validated_fields = self._parse_fields(fields)
 
@@ -188,14 +188,10 @@ class CreateProductService:
             validated_fields=validated_fields,
         )
 
-        try:
-            service = ProductImageCreateService(product_id=product_id)
-            service.add_images_to_product(images=removed_fields["images"])
-            self._add_address_to_product(
-                product_id=product_id, fields=removed_fields["address"]
-            )
-        except Exception:
-            Product.objects.get(id=product_id).delete()
-            raise
+        service = ProductImageCreateService(product_id=product_id)
+        service.add_images_to_product(images=removed_fields["images"])
+        self._add_address_to_product(
+            product_id=product_id, fields=removed_fields["address"]
+        )
 
         return product_id

@@ -90,17 +90,9 @@ class ProductImageCreateService(BaseProductService):
         """
         Принимает id товара и список словарей с полями картинок.
         Проверяет логику создания картинок.
-        По очереди создает картинки.
-        При возникновении ошибки все созданные картинки удаляются.
+        Поочереди создает картинки.
         """
         self._check_product_images_creation_logic(images=images)
 
-        created_images = []
-        try:
-            for image in images:
-                created_image = self._create_product_image(**image)
-                created_images.append(created_image)
-        except Exception as error:
-            for created_image in created_images:
-                created_image.delete()
-            raise error
+        for image in images:
+            self._create_product_image(**image)

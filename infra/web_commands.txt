@@ -1,8 +1,0 @@
-docker-compose exec web rm db.sqlite3
-docker-compose exec web python manage.py makemigrations users products comments
-docker-compose exec web python manage.py migrate
-docker-compose exec web python manage.py collectstatic
-docker-compose exec web python manage.py loaddatautf8 data/json/categories.json
-docker-compose exec web python manage.py loaddatautf8 data/json/promotions.json
-docker-compose exec web python manage.py loaddatautf8 data/json/statuses.json
-docker-compose exec web python manage.py loaddatautf8 data/json/users.json

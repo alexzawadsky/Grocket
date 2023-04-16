@@ -16,10 +16,13 @@ urlpatterns = [
     path("v1/categories/", CategoryViewSet.as_view({"get": "list"}), name="categories"),
     path(
         "v1/products/<int:pk>/",
-        ProductViewSet.as_view(
-            {"patch": "partial_update", "get": "retrieve", "delete": "destroy"}
-        ),
-        name="product",
+        ProductViewSet.as_view({"patch": "partial_update", "delete": "destroy"}),
+        name="product_action",
+    ),
+    path(
+        "v1/products/<str:slug>/",
+        ProductViewSet.as_view({"get": "retrieve"}),
+        name="product_retrieve",
     ),
     path(
         "v1/products/",

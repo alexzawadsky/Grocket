@@ -6,14 +6,20 @@ from django.db.models.query import QuerySet
 from django.shortcuts import get_object_or_404
 
 from core.utils import http_404_logger
-from products.models import (Category, Favourite, Image, Product,
-                             ProductAddress, Promotion)
+from products.models import (
+    Category,
+    Favourite,
+    Image,
+    Product,
+    ProductAddress,
+    Promotion,
+)
 
 User = get_user_model()
 
 
 def get_categories(**fields) -> QuerySet[Category]:
-    return Category.objects.filter(**fields)
+    return Category.objects.filter(**fields).order_by("title")
 
 
 def get_promotions(**fields) -> QuerySet[Promotion]:

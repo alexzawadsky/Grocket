@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from django.db import transaction
 from products.selectors import (
     get_all_products,
     get_categories,
@@ -27,22 +27,23 @@ class ProductViewSet(ProductMixin):
     def list(self, request):
         return super().list(request, queryset=get_safe_products())
 
-    def retrieve(self, request, pk):
-        user_id = self.request.user.id
-        product = get_product_or_404(user_id=user_id, id=pk)
+    def retrieve(self, request, slug):
+        user = self.request.user
+        product = get_product_or_404(user_id=user.id, slug=slug)
         serializer = self.get_serializer_class()(
             instance=product, context={"request": request}
         )
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @transaction.atomic()
     def create(self, request):
         request.data["user"] = self.request.user.id
         serializer = self.get_serializer_class()(data=request.data)
         serializer.is_valid(raise_exception=True)
         service = CreateProductService()
-        product_id = service.create(**serializer.validated_data)
-        data = self.get_response_message()
-        data["id"] = product_id
+        product_slug = service.create(**serializer.validated_data)
+        data = {"slug": product_slug}
+        data.update((self.get_response_message()))
         return Response(data, status=status.HTTP_201_CREATED)
 
     def partial_update(self, request, pk):

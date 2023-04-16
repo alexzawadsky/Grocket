@@ -96,21 +96,11 @@ class CreateCommentService:
     def _add_images_to_comment(self, comment_id: int, images: list) -> Comment:
         """
         Добавляет картинкии путем создания объектов модели,
-        связывающей комментарий и картинки:
-        -При возникновении ошибки все созданные картинки удаляются
+        связывающей комментарий и картинки
         """
         comment = get_object_or_404(Comment, id=comment_id)
-
-        created_images = []
-        try:
-            for image in images:
-                created_image = self._create_comment_image(image=image, comment=comment)
-                created_images.append(created_images)
-        except Exception:
-            for created_image in created_images:
-                created_image.delete()
-            raise
-
+        for image in images:
+            self._create_comment_image(image=image, comment=comment)
         return comment
 
     def _check_comment_creation_logic(self, product_id: int, user_id: int) -> None:
@@ -185,7 +175,7 @@ class CreateCommentService:
         """
         Создание комментария:
         -Проверяется логика создания
-        -При возникновении ошибки созданные картинки и комментарий удаляются
+        -Создаются картинки, если их добавили.
         """
         removed_fields, validated_fields = self._parse_fields(fields)
 
@@ -201,10 +191,6 @@ class CreateCommentService:
         )
 
         if removed_fields.get("images") is not None:
-            try:
-                self._add_images_to_comment(
-                    comment_id=comment_id, images=removed_fields["images"]
-                )
-            except Exception:
-                Comment.objects.get(id=comment_id).delete()
-                raise
+            self._add_images_to_comment(
+                comment_id=comment_id, images=removed_fields["images"]
+            )

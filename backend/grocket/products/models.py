@@ -111,6 +111,7 @@ class Product(models.Model):
         max_length=200,
         verbose_name="name",
     )
+    slug = models.SlugField(verbose_name="slug", max_length=100, unique=True)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

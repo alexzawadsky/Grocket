@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import { notification, getLastRoute } from "../utils";
@@ -23,9 +23,16 @@ export const useProduct = (productId) => {
 
 export const useAddProduct = () => {
     const queryClient = useQueryClient()
+    const navigate = useNavigate()
     const api = useAxios()
     return useMutation((product) => api.post('/api/v1/products/', product).then(res => res.data),
-        { onSuccess: () => queryClient.invalidateQueries('products') })
+        {
+            onSuccess: (res) => {
+                navigate(`/products/${res.slug}/promote?redirect=true`)
+                notification(res?.message, 5000)
+                queryClient.invalidateQueries('products')
+            }
+        })
 }
 
 export const useUpdateProduct = () => {

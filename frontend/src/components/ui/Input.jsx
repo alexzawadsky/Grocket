@@ -94,6 +94,7 @@ const Input = ({
             border={false}
             px={2}
             width='fit'
+            tabindex={-1}
         >
             <BsTrashFill />
         </Button>}

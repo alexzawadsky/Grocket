@@ -102,11 +102,11 @@ const ProductForm = ({ data, setData, setValid }) => {
                     setImages={setImages}
                 />
             </div>
-            <div className='grid gap-2 lg:col-span-2 h-fit pt-5'>
+            <div className='grid gap-2 xll-span-2 h-fit pt-5'>
                 <h2 className='text-xl font-bold'>{t('list_of_images')}</h2>
-                <p className='col-span-2'>{t('you_can_choose_main_image')}</p>
+                <p>{t('you_can_choose_main_image')}</p>
                 {images.length > 0 ?
-                    <ul className='col-span-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-3 md:gap-5 h-fit'>
+                    <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-3 md:gap-5 h-fit'>
                         {images.map((el, key) =>
                             <li key={key} className='w-full p-2 rounded-lg border-2 grid gap-2 dark:border-zinc-600'>
                                 <img className='w-full' src={el.image} />

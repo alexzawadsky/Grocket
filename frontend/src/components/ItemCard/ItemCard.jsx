@@ -20,9 +20,8 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
     const { t } = useTranslation()
 
 
-
     if (horizontal && isMinTablet) return (
-        <NavLink className='grid grid-cols-[1fr_2fr] xl:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 hover:dark:bg-zinc-700 transition-all duration-150' to={`/products/${product?.id}`}>
+        <NavLink className='grid grid-cols-[1fr_2fr] xl:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 hover:dark:bg-zinc-700 transition-all duration-150' to={`/products/${product?.slug}`}>
             <div className='grid grid-cols-2 gap-1'>
                 <div className="col-span-full rounded-lg overflow-hidden">
                     <ImagesCarousel images={product?.images} />
@@ -93,12 +92,12 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                         {product?.user?.first_name} {product?.user?.last_name} {product?.user?.id === user?.user_id && `(${t('me')})`}
                     </NavLink>
                     <div className='flex items-center gap-1.5 flex-wrap'>
-                        <RatingStars rating={5} />
+                        <RatingStars rating={product?.user?.rating} />
                         <NavLink
                             to={product?.user?.id === user?.user_id ? '/users/me/comments' : `/users/${product?.user?.id}/comments`}
                             className='text-sm hover:text-accent-orange'
                         >
-                            {t('comments')} (23)
+                            {t('comments')} ({product?.user?.comments_count})
                         </NavLink>
                     </div>
                     <p>12 {t('items_sold')}</p>
@@ -120,7 +119,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
 
     return (
         <NavLink
-            to={`/products/${product?.id}`}
+            to={`/products/${product?.slug}`}
             className={cn(
                 // product.promotions.includes('xl') && 'col-span-2',
                 `hover:md:bg-slate-50 hover:md:dark:bg-zinc-700 rounded-2xl md:p-5`,
@@ -175,7 +174,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     </div>
                 </NavLink>
                 <div className='flex items-center gap-1.5 flex-wrap justify-between '>
-                    <RatingStars rating={5} />
+                    <RatingStars rating={product?.user?.rating} />
                 </div>
             </div>}
             {managable && (user?.user_id === product?.user?.id) && <div className='grid gap-2'>

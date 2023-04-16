@@ -3,7 +3,7 @@ import { redirect, useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
 import api from "../api/api";
 import { alertErr, getCookie, notification } from "../utils";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import SearchHistoryContext from "./HistoryContext";
 
 const AuthContext = createContext();

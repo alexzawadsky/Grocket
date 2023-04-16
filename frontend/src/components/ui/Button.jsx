@@ -17,7 +17,8 @@ const Button = ({
     border = true,
     darkColor,
     onHoverDarkColor,
-    ariaLabel
+    ariaLabel,
+    tabIndex = 1
 }) => {
 
     let buttonStyle
@@ -63,6 +64,7 @@ const Button = ({
             )}
             disabled={disabled}
             type={type}
+            tabIndex={tabIndex}
         >
             {children}
         </button>

@@ -22,7 +22,7 @@ const ProductPage = () => {
     const { updateHistory } = useContext(SearchHistoryContext)
     const { user } = useContext(AuthContext)
     const { productId } = useParams()
-    const { isMaxTablet } = useScreen()
+    const { isMaxTablet, isMinTablet } = useScreen()
     const favouriteProductMutation = useFavouriteProduct()
 
     const { data, error, isLoading } = useProduct(productId)
@@ -36,7 +36,7 @@ const ProductPage = () => {
         </div>
     )
     if (error) return error.message
-    if (isLoading) return <Spinner />
+    if (isLoading) return <Spinner type='productPage' />
 
     return (
         <>
@@ -58,7 +58,7 @@ const ProductPage = () => {
                     content={`Buy ${data?.name} on Grocket for just ${data?.price}${data?.price_currency}`}
                 />
             </Helmet>
-            <div className='grid lg:grid-cols-[2fr_1fr] gap-10'>
+            <div className='grid md:grid-cols-[2fr_1fr] gap-5 md:gap-x-7 lg:gap-x-10'>
                 <div className='grid gap-4 md:gap-7'>
                     <div className='grid gap-1.5'>
                         <div className='flex items-center justify-between'>
@@ -82,10 +82,11 @@ const ProductPage = () => {
                             <Category category={data.category} />
                         </div>
                     </div>
-                    {isMaxTablet &&
-                        <h2 className='font-bold text-3xl'>
-                            {parseFloat(data.price).toFixed(0)} {data.price_currency}
-                        </h2>}
+                    {!isMinTablet && <Price
+                        className='font-bold text-3xl'
+                        price={data?.price}
+                        currency={data?.price_currency}
+                    />}
                     <ImagesGallery images={data.images} />
                     <div className='grid gap-3'>
                         <h2 className='font-bold text-2xl flex items-center gap-5'>{t('description')}</h2>
@@ -95,26 +96,14 @@ const ProductPage = () => {
                         <h2 className='font-bold text-2xl flex items-center gap-2'><FiMapPin />{t('address')}</h2>
                         <GMap address={data.address} />
                     </div>
-                    {isMaxTablet && <>
-                        <SellerCard profile={data.user} />
-                        {data.user.id === user?.user_id && (
-                            <div className='pb-3 grid gap-3'>
-                                <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
-                                <ManageProductMenu product={data} />
-                            </div>
-                        )}
-                    </>}
-                    <p className='text-sm text-zinc-400' aria-label='product id and publish time'>
-                        #{data?.id} · <PublishTime full pubDate={data?.pub_date} />
-                    </p>
                 </div>
-                {!isMaxTablet && <aside aria-label='product page sidebar'>
-                    <div className='w-fit grid gap-7 h-fit fixed' aria-label='sidebar'>
-                        <Price
+                <aside aria-label='product page sidebar'>
+                    <div className='w-full md:w-fit grid gap-4 md:gap-7 h-fit md:fixed md:pr-7' aria-label='sidebar'>
+                        {isMinTablet && <Price
                             className='font-bold text-3xl'
                             price={data?.price}
                             currency={data?.price_currency}
-                        />
+                        />}
                         <SellerCard profile={data.user} />
                         {data.user.id === user?.user_id && (
                             <div className='pb-3 grid gap-3'>
@@ -123,7 +112,10 @@ const ProductPage = () => {
                             </div>
                         )}
                     </div>
-                </aside>}
+                </aside>
+                <p className='text-sm text-zinc-400' aria-label='product id and publish time'>
+                    #{data?.id} · <PublishTime full pubDate={data?.pub_date} />
+                </p>
             </div>
         </>
     )

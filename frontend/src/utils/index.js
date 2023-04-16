@@ -26,9 +26,8 @@ export const getCookie = (name) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-export const notification = (text) => {
-
-    toast.success(text, { duration: 1500 })
+export const notification = (text, duration) => {
+    toast.success(text, { duration: duration ? duration : 2000 })
 }
 
 export const info = (text) => {

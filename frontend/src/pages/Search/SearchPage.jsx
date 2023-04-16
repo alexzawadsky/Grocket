@@ -8,6 +8,7 @@ import SortBy from './SortBy'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import useScreen from '../../hooks/useScreen'
 import cn from 'classnames'
+import { Spinner } from '../../components/ui'
 
 const Search = () => {
 
@@ -20,9 +21,9 @@ const Search = () => {
     return (
         <div className='grid gap-5'>
             <SearchBar />
-            <div className='pl-0 md:pl-5 lg:pl-0'>
-                <Title text={`Products matching "${searchParams.get('search')}" (12)`} />
-            </div>
+            <Title className='pl-0 md:pl-5 lg:pl-0'>
+                Products matching "{searchParams.get('search')}" ({data?.count || 0})
+            </Title>
             <div className='lg:grid lg:grid-cols-[1fr_3fr]'>
                 {isMinPC && <div>
                     filters
@@ -42,6 +43,7 @@ const Search = () => {
                         'bg-red',
                         !isList && 'max-md:gap-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'
                     )}>
+                        {isLoading && <Spinner type={isList ? 'hcard' : 'vcard'} count={4} />}
                         {data && data?.results.map((product, key) =>
                             <ItemCard
                                 search

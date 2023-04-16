@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-const Title = ({ text, className, color, size, italic }) => {
+const Title = ({ text, className, color, size, italic, children }) => {
     return (
         <h1
             className={cn(
@@ -11,7 +11,8 @@ const Title = ({ text, className, color, size, italic }) => {
                 italic && 'font-bolditalic'
             )}
         >
-            {text}
+            {text ? text : null}
+            {children ? children : null}
         </h1>
     )
 }

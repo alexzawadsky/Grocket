@@ -41,15 +41,15 @@ const Promote = () => {
     return (
         <>
             <NavLink
-                to={`/products/${product.data?.id}`}
+                to={`/products/${product.data?.slug}`}
                 className='col-span-full flex items-center gap-2 font-bold hover:text-accent-orange w-fit'
             >
                 <BsArrowLeft />
                 {params.get('redirect') ? t('open_product_page') : t('product_page')}
             </NavLink>
-            {params.get('redirect') && <p className='text-green-500 font-bold border-2 border-green-500 bg-green-200 py-3 px-5 rounded-lg w-fit text-lg'>
+            {/* {params.get('redirect') && <p className='font-bold border-2 text-green-600 border-green-600 dark:border-green-300 dark:text-green-300 dark:bg-green-800 bg-green-100 py-3 px-5 rounded-lg w-fit text-lg'>
                 {t('sell_success')}
-            </p>}
+            </p>} */}
             <Title text={t('buy_promotions_head')} />
             <div className='grid lg:grid-cols-[1fr_3fr] gap-5'>
                 <div>

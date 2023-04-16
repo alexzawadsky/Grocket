@@ -28,7 +28,8 @@ export const useAddProduct = () => {
     return useMutation((product) => api.post('/api/v1/products/', product).then(res => res.data),
         {
             onSuccess: (res) => {
-                navigate(`/products/${res.id}/promote?redirect=true`)
+                navigate(`/products/${res.slug}/promote?redirect=true`)
+                notification(res?.message, 5000)
                 queryClient.invalidateQueries('products')
             }
         })

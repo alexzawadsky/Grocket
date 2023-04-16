@@ -21,9 +21,9 @@ const Search = () => {
     return (
         <div className='grid gap-5'>
             <SearchBar />
-            <div className='pl-0 md:pl-5 lg:pl-0'>
-                <Title text={`Products matching "${searchParams.get('search')}" (12)`} />
-            </div>
+            <Title className='pl-0 md:pl-5 lg:pl-0'>
+                Products matching "{searchParams.get('search')}" ({data?.count || 0})
+            </Title>
             <div className='lg:grid lg:grid-cols-[1fr_3fr]'>
                 {isMinPC && <div>
                     filters

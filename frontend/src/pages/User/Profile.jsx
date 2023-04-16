@@ -21,18 +21,17 @@ const Profile = () => {
     const location = useLocation()
     const { data, isLoading, error } = useProfile(profileId)
 
-
-    if (isLoading) return <Spinner />
     if (error) return error.message
     if (!outlet && ((profileId === 'me' && isMinTablet) || profileId !== 'me')) return navigate('items', { replace: true })
 
     return (
         <div className='grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr] items-center md:items-start md:flex-row gap-5'>
             <Helmet>
-                <title>{data.first_name} {data.last_name} - Grocket</title>
+                <title>{`${isLoading ? t('profile') : ''}${data?.first_name || ''} ${data?.last_name || ''} - Grocket`}</title>
             </Helmet>
             {((profileId !== 'me' && location.pathname === `/users/${profileId}/items`) || (!outlet || isMinTablet)) && <div className='shrink-0 grid gap-5'>
-                <ProfileCard
+                {isLoading && <Spinner type='profile' />}
+                {data && <ProfileCard
                     id={data?.id}
                     firstName={data?.first_name}
                     lastName={data?.last_name}
@@ -43,7 +42,7 @@ const Profile = () => {
                     phone={data?.phone}
                     withComments
                     country={data?.country}
-                />
+                />}
                 {!isMinTablet && profileId === 'me' && <NavLink
                     to='items'
                     className='font-bold text-xl flex items-center gap-2 w-fit ml-5'

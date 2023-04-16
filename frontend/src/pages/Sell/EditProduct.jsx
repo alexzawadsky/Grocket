@@ -53,7 +53,7 @@ const EditProduct = () => {
         <div className='grid gap-4'>
             <Form
                 className='lg:w-10/12 xl:w-8/12 mx-auto grid gap-2'
-                onSubmit={() => updateProductMutation.mutate({ id: productId, body: changes })}
+                onSubmit={() => updateProductMutation.mutate({ id: data?.id, body: changes })}
             >
                 <NavLink to={`/products/${productId}`} className='flex items-center gap-2 hover:text-accent-orange font-bold'>
                     <BsArrowLeft />{t('product_page')}

@@ -41,13 +41,13 @@ const MenuInner = ({ product, fullW }) => {
             {!product.is_sold && !product.is_archived &&
                 <>
                     <NavLink
-                        to={`/products/${product.id}/edit`}
+                        to={`/products/${product?.slug}/edit`}
                         className='flex items-center gap-2 text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2'
                     >
                         <BsPen />{t('edit')}
                     </NavLink>
                     <NavLink
-                        to={`/products/${product.id}/promote`}
+                        to={`/products/${product?.slug}/promote`}
                         className='flex items-center gap-2 text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2'
                     >
                         <BsMegaphone />{t('promote')}

@@ -6,7 +6,7 @@ const AboutSite = () => {
                     <p className="font-bold text-zinc-600 pl-2">INTRODUCING</p>
                     <h1 className="text-accent-orange text-8xl font-bolditalic">Grocket</h1>
                     <p className="font-bold">
-                        Free online marketplace for you. Build as side project by two juniors developers.
+                        Grocket is an international online marketplace that specializes in secondhand items. It provides a platform for users to buy and sell a variety of used goods from all over the world, including clothing, electronics, furniture, and more.
                     </p>
                 </div>
 

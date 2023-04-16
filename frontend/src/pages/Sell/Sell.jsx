@@ -43,7 +43,7 @@ const Sell = () => {
                 text={t('sell_your_item')}
                 className='col-span-full'
             />
-            {stage >= 1 && !addProductMutation.data &&
+            {stage >= 1 &&
                 <>
                     <h2 className='col-span-full text-xl font-bold' >
                         {t('category')}
@@ -53,7 +53,7 @@ const Sell = () => {
                         setCategory={setCategory}
                     />
                 </>}
-            {stage === 2 && !addProductMutation.data &&
+            {stage === 2 &&
                 <Form onSubmit={handleSubmit}>
                     <ProductForm setData={setFormData} setValid={setFormValid} />
                     <Button
@@ -70,24 +70,7 @@ const Sell = () => {
                     </Button>
                     {addProductMutation.isError && addProductMutation.error.message}
                 </Form>}
-            {addProductMutation.data &&
-                <div className='grid gap-5'>
-                    <h2 className='text text-xl text-green-600 flex items-center gap-3'><BsCheckCircleFill />{t('sell_success')}</h2>
-                    <span className='flex gap-1'>
-                        <p>{t('you_can_check')}</p>
-                        <NavLink
-                            className='text-accent-orange hover:underline'
-                            to={`/products/${addProductMutation.data.id}`}
-                        >
-                            {t('its_page')}
-                        </NavLink>
-                        <p>{t('list_of')}</p>
-                        <NavLink
-                            className='text-accent-orange hover:underline'
-                            to='/profile/lots'>{t('all_your_items')}</NavLink>
-                    </span>
-                </div>}
-        </div >
+        </div>
     )
 }
 

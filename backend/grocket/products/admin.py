@@ -4,8 +4,7 @@ from django.contrib import admin, messages
 from django_mptt_admin.admin import DjangoMpttAdmin
 from modeltranslation.admin import TranslationAdmin
 
-from .models import (Category, Favourite, Image, Product, ProductAddress,
-                     Promotion)
+from .models import Category, Favourite, Image, Product, ProductAddress, Promotion
 
 
 class PostAdminForm(forms.ModelForm):
@@ -40,6 +39,7 @@ class ProductAdmin(admin.ModelAdmin):
         "is_sold",
         "promotions",
     )
+    prepopulated_fields = {"slug": ("name",)}
     date_hierarchy = "pub_date"
     empty_value_display = "-empty-"
     form = PostAdminForm

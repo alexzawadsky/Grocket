@@ -180,6 +180,7 @@ class ProductAddressListSerializer(serializers.Serializer):
 class ProductReadOnlySerializer(serializers.Serializer):
     id = serializers.IntegerField()
     name = serializers.CharField()
+    slug = serializers.SlugField()
     price = MoneyField(max_digits=19, decimal_places=2)
     price_currency = serializers.CharField()
     is_archived = serializers.BooleanField()
@@ -213,6 +214,7 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
         fields = (
             "id",
             "name",
+            "slug",
             "user",
             "address",
             "description",
@@ -250,6 +252,7 @@ class ProductListSerializer(ProductReadOnlySerializer):
         fields = (
             "id",
             "name",
+            "slug",
             "user",
             "description",
             "price",

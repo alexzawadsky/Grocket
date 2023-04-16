@@ -1,10 +1,11 @@
+import string
 from typing import List
-
+from django.template.defaultfilters import slugify
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
-
+from django.utils.crypto import get_random_string
 from ..models import Category, Product, ProductAddress, Promotion
 from ._add_images_service import ProductImageCreateService
 from ._favourite_service import ProductFavouriteService
@@ -125,6 +126,7 @@ class CreateProductService:
             category_id = fields.pop("category")
             images = fields.pop("images")
             address = fields.pop("address")
+            fields["name"]
         except KeyError:
             raise ValidationError(
                 self.error_messages["required_fields_not_in_input_data"]
@@ -139,9 +141,26 @@ class CreateProductService:
 
         return removed_fields, fields
 
+    def _generate_slug(self, name: str) -> str:
+        """
+        Генерирует слаг по полю name товара. Если такой slug уже есть в бд,
+        то в конец через `-` вставляются рандомный латинские буквы.
+        """
+        EXTRA_STRING_LENTH = 6
+        MAX_SLUG_LENTH = 30
+
+        short_name = name[:MAX_SLUG_LENTH] if len(name) > MAX_SLUG_LENTH else name
+        only_name_slug = slug = slugify(short_name)
+        while Product.objects.filter(slug=slug).exists():
+            slug = (
+                f"{only_name_slug}-"
+                f"{get_random_string(length=EXTRA_STRING_LENTH, allowed_chars=string.ascii_letters)}"
+            )
+        return slug
+
     def _create_product_obj(
         self, user_id: int, category_id: int, validated_fields: dict
-    ) -> int:
+    ) -> set:
         """
         Поля is_sold и is_archived по умолчанию устанавливаются False.
         Принимает id объектов связанных моделей и
@@ -149,18 +168,20 @@ class CreateProductService:
         """
         category = get_object_or_404(Category, id=category_id)
         user = get_object_or_404(User, id=user_id)
+        slug = self._generate_slug(name=validated_fields.get("name"))
 
         product = Product(
             user=user,
             category=category,
             is_archived=False,
             is_sold=False,
-            **validated_fields
+            slug=slug,
+            **validated_fields,
         )
         product.full_clean()
         product.save()
 
-        return product.id
+        return product.id, product.slug
 
     def _add_address_to_product(self, product_id: int, fields: dict) -> None:
         """Создаст объект адреса с продуктом по id."""
@@ -169,10 +190,10 @@ class CreateProductService:
         address.full_clean()
         address.save()
 
-    def create(self, **fields) -> int:
+    def create(self, **fields) -> str:
         """
         Проверяется логика создания товара.
-        Добавляется адрес и картинки.
+        Добавляется адрес и картинки. Отдает slug товара.
         """
         removed_fields, validated_fields = self._parse_fields(fields)
 
@@ -182,7 +203,7 @@ class CreateProductService:
             fields=validated_fields,
         )
 
-        product_id = self._create_product_obj(
+        product_id, product_slug = self._create_product_obj(
             category_id=removed_fields["category_id"],
             user_id=removed_fields["user_id"],
             validated_fields=validated_fields,
@@ -194,4 +215,4 @@ class CreateProductService:
             product_id=product_id, fields=removed_fields["address"]
         )
 
-        return product_id
+        return product_slug

@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from djmoney.models.fields import MoneyField
+from django.core.validators import MaxValueValidator, MinValueValidator
 from mptt.models import MPTTModel, TreeForeignKey
 
 from .fields import RichTextBleachField
@@ -15,12 +16,18 @@ class ProductAddress(models.Model):
         verbose_name="product",
         related_name="product_addresses",
     )
-    full = models.CharField(max_length=150, verbose_name="full address")
-    short = models.CharField(max_length=150, verbose_name="short address")
-    city = models.CharField(max_length=150, verbose_name="city", blank=True)
+    full = models.CharField(max_length=200, verbose_name="full address")
+    short = models.CharField(max_length=200, verbose_name="short address")
+    city = models.CharField(max_length=100, verbose_name="city", blank=True)
     country_code = models.CharField(max_length=2, verbose_name="country code")
-    latitude = models.FloatField(verbose_name="latitude")
-    longitude = models.FloatField(verbose_name="longitude")
+    latitude = models.FloatField(
+        verbose_name="latitude",
+        validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)],
+    )
+    longitude = models.FloatField(
+        verbose_name="longitude",
+        validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)],
+    )
 
     class Meta:
         ordering = ("-id",)
@@ -111,7 +118,7 @@ class Product(models.Model):
         max_length=200,
         verbose_name="name",
     )
-    slug = models.SlugField(verbose_name="slug", max_length=100, unique=True)
+    slug = models.SlugField(verbose_name="slug", max_length=200, unique=True)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -125,7 +132,7 @@ class Product(models.Model):
         verbose_name="сategory",
     )
     description = RichTextBleachField(
-        max_length=1000,
+        max_length=10000,
         verbose_name="description",
     )
     price = MoneyField(
@@ -155,8 +162,8 @@ class Product(models.Model):
 
     def __str__(self):
         return (
-            f"{self.id} {self.name[:10]} user:{self.user.id} "
-            f"arch:{self.is_archived} sold:{self.is_archived}"
+            f"{self.id} {self.name[:10] if len(self.name) > 10 else self.name} "
+            f"user:{self.user.id} arch:{self.is_archived} sold:{self.is_archived}"
         )
 
 

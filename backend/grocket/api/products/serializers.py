@@ -50,7 +50,7 @@ class PromotionCreateUpdateSerializer(serializers.Serializer):
     def validate_promotions(self, value):
         for promotion in value:
             if not isinstance(promotion, int):
-                raise serializers.ValidationError()
+                raise serializers.ValidationError(_(f"`{promotion}` is not integer"))
         return value
 
 
@@ -113,7 +113,7 @@ class ProductImageSerializer(serializers.Serializer):
 
 
 class ProductImageCreateSerializer(serializers.Serializer):
-    image = Base64ImageField(allow_null=True, required=False)
+    image = Base64ImageField()
     is_main = serializers.BooleanField()
 
     class Meta:
@@ -125,18 +125,19 @@ class ProductImageCreateSerializer(serializers.Serializer):
 
 # ref
 class ProductAddressCreateUpdateSerializer(serializers.Serializer):
-    full = serializers.CharField()
-    short = serializers.CharField()
-    city = serializers.CharField(required=False)
-    country_code = serializers.CharField()
-    latitude = serializers.FloatField()
-    longitude = serializers.FloatField()
+    full = serializers.CharField(max_length=100)
+    short = serializers.CharField(max_length=70)
+    city = serializers.CharField(required=False, max_length=30)
+    country_code = serializers.CharField(max_length=2)
+    latitude = serializers.FloatField(max_value=90.0, min_value=-90.0)
+    longitude = serializers.FloatField(max_value=180.0, min_value=-180.0)
 
     class Meta:
         fields = (
             "full",
             "city",
-            "country_code" "latitude",
+            "country_code",
+            "latitude",
             "longitude",
         )
 
@@ -293,21 +294,14 @@ class ProductListSerializer(ProductReadOnlySerializer):
 
 # ref
 class ProductCreateSerializer(serializers.Serializer):
-    images = serializers.ListField()
-    name = serializers.CharField()
+    images = serializers.ListField(max_length=8)
+    name = serializers.CharField(max_length=100)
     user = serializers.IntegerField()
-    description = serializers.CharField()
+    description = serializers.CharField(max_length=5000)
     price = MoneyField(max_digits=19, decimal_places=2)
-    price_currency = serializers.CharField()
+    price_currency = serializers.CharField(max_length=3)
     category = serializers.IntegerField()
     address = ProductAddressCreateUpdateSerializer()
-
-    def validate_name(self, value):
-        if not re.match('^[a-zA-Z0-9_ !"#$%&()*+,-./:;<=>?@[\]^_`{|}~]+$', value):
-            raise serializers.ValidationError(
-                _("Only latin letters, numbers and punctuation marks can be used")
-            )
-        return value
 
     class Meta:
         fields = (
@@ -319,6 +313,13 @@ class ProductCreateSerializer(serializers.Serializer):
             "category",
             "images",
         )
+
+    def validate_name(self, value):
+        if not re.match('^[a-zA-Z0-9_ !"#$%&()*+,-./:;<=>?@[\]^_`{|}~]+$', value):
+            raise serializers.ValidationError(
+                _("Only latin letters, numbers and punctuation marks can be used")
+            )
+        return value
 
     def validate_images(self, value):
         serializer = ProductImageCreateSerializer(data=value, many=True)

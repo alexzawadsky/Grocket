@@ -1,11 +1,13 @@
 import string
 from typing import List
-from django.template.defaultfilters import slugify
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied, ValidationError
 from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext_lazy as _
+from django.template.defaultfilters import slugify
 from django.utils.crypto import get_random_string
+from django.utils.translation import gettext_lazy as _
+
 from ..models import Category, Product, ProductAddress, Promotion
 from ._add_images_service import ProductImageCreateService
 from ._favourite_service import ProductFavouriteService

@@ -66,7 +66,7 @@ class StatusSerializer(serializers.Serializer):
 class CommentReplyCreateSerializer(serializers.Serializer):
     user = serializers.IntegerField()
     comment = serializers.IntegerField()
-    text = serializers.CharField()
+    text = serializers.CharField(max_length=350)
 
     class Meta:
         fields = (
@@ -136,9 +136,9 @@ class CommentReadOnlySerializer(serializers.Serializer):
 class CommentCreateSerializer(serializers.Serializer):
     user = serializers.IntegerField()
     product = serializers.IntegerField()
-    images = serializers.ListField(required=False)
+    images = serializers.ListField(required=False, max_length=8)
     rate = serializers.IntegerField(max_value=5, min_value=1)
-    text = serializers.CharField(required=False)
+    text = serializers.CharField(required=False, max_length=350)
     status = serializers.IntegerField()
 
     class Meta:

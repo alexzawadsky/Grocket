@@ -22,9 +22,7 @@ module.exports = {
         },
         accent: {
           red: '#FF1500',
-          orange: '#FF9001',
-          darkorange: '#c4750e'
-          // orange: '#000000'
+          orange: '#FF9001'
         }
       }
     },

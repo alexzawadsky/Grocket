@@ -60,19 +60,28 @@
 <!-- TechStack -->
 ### :space_invader: Tech Stack
 
-
-  <summary>Client</summary>
+<ul>
+<li>
+<summary>Client</summary>
   <a href="https://reactjs.org/">React.js</a>
     <a href="https://tailwindcss.com/">TailwindCSS</a>
-  <summary>Server</summary>
+    </li>
+<li>
+<summary>Server</summary>
     <a href="https://reactjs.org/">React.js</a>
     <a href="https://tailwindcss.com/">TailwindCSS</a>
-  <summary>Database</summary>
+    </li>
+<li>
+<summary>Database</summary>
   <a href="https://reactjs.org/">React.js</a>
     <a href="https://tailwindcss.com/">TailwindCSS</a>
-  <summary>Dev-Ops</summary>
+    </li>
+<li>
+<summary>Dev-Ops</summary>
   <a href="https://reactjs.org/">React.js</a>
     <a href="https://tailwindcss.com/">TailwindCSS</a>
+    </li>
+</ul>
 
 <!-- Features -->
 ### :dart: Features

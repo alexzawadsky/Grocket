@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { NavLink } from 'react-router-dom';
 
 const Button = ({
     type,
@@ -18,7 +19,9 @@ const Button = ({
     darkColor,
     onHoverDarkColor,
     ariaLabel,
-    tabIndex = 1
+    tabIndex = 1,
+    to,
+    bold = true
 }) => {
 
     let buttonStyle
@@ -43,6 +46,26 @@ const Button = ({
             break;
     }
 
+    if (to) return (
+        <NavLink
+            onClick={() => onClick && onClick()}
+            to={to}
+            aria-label={ariaLabel}
+            className={cn(
+                className,
+                buttonStyle,
+                bold && 'font-bold',
+                `w-${width}`,
+                `h-${height}`,
+                `px-${px}`,
+                border && 'border-2',
+                'transition-all duration-100 flex items-center justify-center gap-2 rounded-xl'
+            )}
+        >
+            {children}
+        </NavLink>
+    )
+
     return (
         <button
             aria-label={ariaLabel}
@@ -52,6 +75,7 @@ const Button = ({
                 buttonStyle,
                 textColor && `text-${textColor}`,
                 !style && `bg-${color} dark:bg-${darkColor}`,
+                bold && 'font-bold',
                 `w-${width}`,
                 `h-${height}`,
                 `px-${px}`,
@@ -59,7 +83,7 @@ const Button = ({
                 onHoverColor && `hover:bg-${onHoverColor}`,
                 onHoverDarkColor && `dark:hover:bg-${onHoverDarkColor}`,
                 border && 'border-2',
-                'transition-all duration-100  font-bold flex items-center justify-center gap-2 rounded-xl',
+                'transition-all duration-100 flex items-center justify-center gap-2 rounded-xl',
                 'disabled:!text-slate-600 disabled:!border-2 disabled:!border-slate-600 disabled:!cursor-not-allowed disabled:!bg-transparent'
             )}
             disabled={disabled}

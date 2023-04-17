@@ -10,7 +10,7 @@ const ThirdLevelCategoriesList = ({ first, parentCategory, categoriesList, expan
 
     return (
         <>
-            <CategoryLink id={parentCategory?.id}>
+            <CategoryLink category={parentCategory}>
                 <h3 className="font-bold gap-1 hover:gap-2 transition-all text-lg items-center pb-2 w-fit hover:text-accent-orange">{parentCategory?.title}</h3>
             </CategoryLink>
             <ul className="grid gap-1" aria-label="third level categories list">
@@ -20,7 +20,7 @@ const ThirdLevelCategoriesList = ({ first, parentCategory, categoriesList, expan
                             categoriesList.length : 5).map((c, key) => <li>
                                 <CategoryLink
                                     key={key}
-                                    id={c?.id}
+                                    category={c}
                                 >
                                     <p className='hover:text-accent-orange w-fit'>{c?.title}</p>
                                 </CategoryLink>

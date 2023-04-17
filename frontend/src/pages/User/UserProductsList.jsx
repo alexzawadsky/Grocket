@@ -61,9 +61,8 @@ const UserProductsList = () => {
                 {isLoading && <Spinner count={8} type='vcard' />}
                 {error && error.message}
                 {data?.count === 0 && <p className='md:pl-5 md:pt-3'>{t('no_results_found')}</p>}
-                {data && data?.results.map((el, key) => <li>
+                {data && data?.results.map((el, key) => <li key={key}>
                     <ItemCard
-                        key={key}
                         product={el}
                         managable={el?.user?.id === user?.user_id}
                     />

@@ -5,11 +5,22 @@ import { filterChildCategories } from "../utils"
 import PrimaryCategory from "./PrimaryCategory"
 import SecondaryCategoriesList from './SecondaryCategoriesList'
 import Spinner from '../../ui/Spinner'
+import useScreen from "../../../hooks/useScreen"
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
+import { Button } from "../../ui"
+import { useTranslation } from "react-i18next"
+import cn from 'classnames'
+import CategoryLink from "./CategoryLink"
 
 const FullCategoriesList = () => {
 
+    const { t } = useTranslation()
     const { open, setOpen } = useContext(CategoriesListStateContext)
-    const { data, error, isLoading } = useCategories({ all: true })
+    const { isMinTablet } = useScreen()
+    const [categoryPath, setCategoryPath] = useState([])
+    const { data, error, isLoading } = useCategories(isMinTablet ?
+        { all: true } : { parent_id: categoryPath.slice(-1)[0]?.id }
+    )
     const [parentCategory, setParentCategory] = useState()
     const [expandedCatId, setExpandedCatId] = useState(null)
 
@@ -17,30 +28,68 @@ const FullCategoriesList = () => {
         return () => setOpen(false)
     }, [])
 
-    if (isLoading) return <div className="bg-white dark:bg-zinc-800 p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh"><Spinner /></div>
     if (error) return
     if (!open) return
 
     return (
-        <section className="bg-white dark:bg-zinc-800 p-5 w-full border-2 border-accent-orange rounded-xl grid grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr]  gap-7 h-[80vh]" aria-label="menu with all categories to search">
-            <ul className="overflow-y-auto max-h-[74vh]" aria-label="list of primary categories">
-                {data.filter(el => el.parent === null).map((el, key) => <PrimaryCategory
-                    key={key}
-                    onChange={() => {
-                        setParentCategory(el)
-                        setExpandedCatId(null)
-                    }}
-                    category={el}
-                />
-                )}
-            </ul>
-            {parentCategory && <SecondaryCategoriesList
-                expandedCatId={expandedCatId}
-                setExpandedCatId={setExpandedCatId}
-                data={data}
-                parentCategory={parentCategory}
-                childCategories={filterChildCategories(data, parentCategory?.id)}
-            />}
+        <section className="bg-white dark:bg-zinc-800 pb-5 pt-2 px-5 md:p-5 md:pr-7 w-full border-2 border-accent-orange rounded-xl grid md:grid-cols-[5fr_13fr] xl:grid-cols-[3fr_10fr] gap-3 md:gap-7 min-h-[calc(100vh-212px)] max-h-[calc(100vh-212px)] md:min-h-[calc(100vh-80px-40px-40px)] md:max-h-[calc(100vh-80px-40px-40px)] mb-5" aria-label="menu with all categories to search">
+            {isMinTablet ? <>
+                {isLoading && <Spinner type='fullcatlist' />}
+                <ul className="overflow-y-auto max-h-full" aria-label="list of primary categories">
+                    {data && data.filter(el => el.parent === null).map((el, key) => <PrimaryCategory
+                        key={key}
+                        onChange={() => {
+                            setParentCategory(el)
+                            setExpandedCatId(null)
+                        }}
+                        category={el}
+                    />)}
+                </ul>
+                {parentCategory && data && <SecondaryCategoriesList
+                    expandedCatId={expandedCatId}
+                    setExpandedCatId={setExpandedCatId}
+                    data={data}
+                    parentCategory={parentCategory}
+                    childCategories={filterChildCategories(data, parentCategory?.id)}
+                />}
+            </> : <div className="max-h-full overflow-y-auto">
+                <div className={cn(
+                    categoryPath.length > 0 && 'grid-cols-[1fr_auto_1fr]',
+                    "grid w-full gap-5",
+                )}>
+                    {categoryPath.length > 0 && <Button
+                        border={false}
+                        className='text-lg'
+                        width='fit'
+                        onClick={() =>
+                            setCategoryPath(prevState => prevState.slice(0, prevState.length - 1))
+                        }
+                    >
+                        <IoIosArrowBack />
+                    </Button>}
+                    <p className="mx-auto font-bold text-lg line-clamp-1">
+                        {categoryPath.slice(-1)[0]?.title || t('category')}
+                    </p>
+                </div>
+                <ul className="grid gap-3 overflow-y-auto max-h-[calc(100%-40px)] mt-2">
+                    {isLoading && <Spinner type='category' count={7} />}
+                    {(data && !isLoading) && data.map((el, key) => <li key={key} >
+                        {!el?.is_lower ? <Button
+                            border={false}
+                            bold={false}
+                            width='full'
+                            to={el?.is_lower && `/search?category_id=${el?.id}`}
+                            onClick={() => setCategoryPath(prevState => [...prevState, el])}
+                        >
+                            <p className="mr-auto">{el?.title}</p>
+                            {!el?.is_lower && <IoIosArrowForward />}
+                        </Button> :
+                            <CategoryLink category={el}>
+                                {el?.title}
+                            </CategoryLink>}
+                    </li>)}
+                </ul>
+            </div>}
         </section>
     )
 }

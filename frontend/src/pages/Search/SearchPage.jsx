@@ -43,7 +43,10 @@ const Search = () => {
                         'bg-red',
                         !isList && 'max-md:gap-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'
                     )}>
-                        {isLoading && <Spinner type={isList ? 'hcard' : 'vcard'} count={4} />}
+                        {isLoading && <Spinner
+                            type={isMinTablet ? isList ? 'hcard' : 'vcard' : 'vcard'}
+                            count={isMinTablet ? 4 : 1}
+                        />}
                         {data && data?.results.map((product, key) =>
                             <ItemCard
                                 search

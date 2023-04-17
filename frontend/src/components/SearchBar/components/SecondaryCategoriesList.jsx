@@ -4,13 +4,13 @@ import { filterChildCategories } from "../utils"
 
 const ChildCategoriesList = ({ data, parentCategory, childCategories, expandedCatId, setExpandedCatId }) => {
     return (
-        <div className="h-[80vh] max-h-[80vh]">
-            <CategoryLink id={parentCategory?.id}>
+        <div className="h-full overflow-y-auto">
+            <CategoryLink category={parentCategory}>
                 <h2 className="font-bold text-3xl pb-5 items-center gap-2 hover:gap-3 transition-all hover w-fit hover:text-accent-orange block">
                     {parentCategory?.title}
                 </h2>
             </CategoryLink>
-            <ul className="flex flex-wrap flex-col h-[67vh] max-h-[67vh] gap-y-3 gap-x-7 max-w-full overflow-x-auto overflow-y-auto" aria-label='second level categories list'>
+            <ul className="flex flex-wrap flex-col max-h-[calc(100%-36px)] h-[calc(100%-56px)] gap-y-3 gap-x-7 max-w-full overflow-x-auto" aria-label='second level categories list'>
                 {expandedCatId &&
                     <li><ThirdLevelCategoriesList
                         parentCategory={data.find(el => el.id === expandedCatId)}

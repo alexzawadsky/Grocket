@@ -102,8 +102,8 @@ const ProductForm = ({ data, setData, setValid }) => {
                     setImages={setImages}
                 />
             </div>
-            <div className='grid gap-2 xll-span-2 h-fit pt-5'>
-                <h2 className='text-xl font-bold'>{t('list_of_images')}</h2>
+            <div className='flex flex-col gap-2 xl:col-span-2 h-fit pt-5'>
+                <h2 className='text-xl font-bold w-full'>{t('list_of_images')}</h2>
                 <p>{t('you_can_choose_main_image')}</p>
                 {images.length > 0 ?
                     <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-3 md:gap-5 h-fit'>

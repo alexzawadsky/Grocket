@@ -67,6 +67,7 @@ export const useCategories = (queryParams) => {
 }
 
 export const useProfile = (userId) => {
+    if (!userId) return {}
     const api = useAxios()
     return useQuery(['users', userId],
         () => api.get(`/api/v1/users/${userId}`).then(res => res.data))

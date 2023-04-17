@@ -1,9 +1,13 @@
 import defaultAvatar from '../../assets/images/default-avatar.png'
 import cn from 'classnames'
 
-const Avatar = ({ avatar, height, width, alt }) => {
+const Avatar = ({ avatar, height, width, alt, className }) => {
     return <img
-        className={cn('object-cover rounded-full aspect-square', !width && 'w-full')}
+        className={cn(
+            'object-cover rounded-full aspect-square',
+            !width && 'w-full',
+            className
+        )}
         src={avatar ? avatar : defaultAvatar}
         alt={alt}
         width={width && `${width}px`}

@@ -8,11 +8,10 @@ import useScreen from '../../hooks/useScreen'
 import LanguageDropdown from './LanguageDropdown'
 import logo from '../../assets/logo.png'
 import heart from '../../assets/icons/ukraine.svg'
-import Avatar from '../ui/Avatar'
 import ThemeToggle from './ThemeToggle'
 import { Button } from '../ui'
 import { GoKebabVertical } from 'react-icons/go'
-import cn from 'classnames'
+import ProfileButton from './ProfileButton'
 
 const Navbar = () => {
 
@@ -26,12 +25,13 @@ const Navbar = () => {
         const handleClickOutside = (e) => {
             if (!e.target.closest('.nav-toggle')) setOpen(false)
         }
+
         document.addEventListener('click', handleClickOutside)
         document.addEventListener('scroll', handleScroll)
 
         return () => {
             document.removeEventListener('click', handleClickOutside)
-            document.removeEventListener('click', handleScroll)
+            document.removeEventListener('scroll', handleScroll)
         }
     }, [])
 
@@ -64,16 +64,7 @@ const Navbar = () => {
                 </>}
                 {user ?
                     <li>
-                        <NavLink className='flex items-center gap-2 h-10 font-bold max-md:mr-4' to='/users/me'>
-                            <Avatar
-                                avatar={user?.avatar}
-                                alt={`${user?.name} avatar`}
-                                width={40}
-                                height={40}
-                            />
-                            {isMinTablet && 'Timur'}
-                            {/* {isMinTablet && user?.name} */}
-                        </NavLink>
+                        <ProfileButton />
                     </li>
                     :
                     <>
@@ -104,10 +95,7 @@ const Navbar = () => {
                     <GoKebabVertical />
                 </Button>}
             </ul>
-            {(!isMinTablet && open) && <ul className={cn(
-                'flex container items-center px-5 gap-3 mx-auto nav-toggle',
-                (!isMinTablet && open) && ''
-            )}>
+            {(!isMinTablet && open) && <ul className='flex container items-center px-5 gap-3 mx-auto nav-toggle'>
                 <li>
                     <LanguageDropdown />
                 </li>

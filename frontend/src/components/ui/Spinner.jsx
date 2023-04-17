@@ -70,6 +70,12 @@ const Spinner = ({ gap, type, count = 1 }) => {
         </div>
     )
 
+    if (type === 'fullcatlist') spinner = 'fullcatlist spinner'
+
+    if (type === 'category') spinner = (
+        <div className="w-full h-10 rounded-lg animate-pulse duration-75 bg-slate-100 dark:bg-zinc-700"></div>
+    )
+
     if (type === undefined) spinner = (
         <span className={`flex items-center font-bold ${gap && 'pt-5 md:pl-5'}`}>
             <svg aria-hidden="true" role="status" className="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

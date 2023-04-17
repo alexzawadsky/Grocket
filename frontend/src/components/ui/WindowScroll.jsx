@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
+import CategoriesListStateContext from "../../contexts/CategoriesListStateContext"
 
 const WindowScroll = () => {
 
     const [isTop, setIsTop] = useState(false)
     const [isBottom, setIsBottom] = useState(true)
+    const { open } = useContext(CategoriesListStateContext)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -17,6 +19,8 @@ const WindowScroll = () => {
 
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    if (open) return
 
     return (
         <div className='fixed z-50 right-2 bottom-2 flex flex-col border-2 dark:border-zinc-600 rounded-xl bg-white dark:bg-zinc-800 gap-1 p-1' aria-label="page scroll controls">

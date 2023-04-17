@@ -77,7 +77,7 @@ const PrimaryCategory = ({ category, onChange }) => {
             onClick={onChange}
         >
             {hover ? icons[category.id].hover : icons[category.id].notHover}
-            <p className="mr-auto" aria-label='primary category name'>{category.title}</p>
+            <p className="mr-auto line-clamp-2" aria-label='primary category name'>{category.title}</p>
             <IoIosArrowForward />
         </li>
     )

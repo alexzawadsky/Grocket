@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useNavigate, NavLink, Outlet, useOutlet, useParams, useLocation } from 'react-router-dom'
+import { useNavigate, NavLink, Outlet, useOutlet, useParams, useLocation, Navigate } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
 import { ProfileCard } from '../../components'
 import { Spinner } from '../../components/ui'
@@ -22,7 +22,7 @@ const Profile = () => {
     const { data, isLoading, error } = useProfile(profileId)
 
     if (error) return error.message
-    if (!outlet && ((profileId === 'me' && isMinTablet) || profileId !== 'me')) return navigate('items', { replace: true })
+    if (!outlet && ((profileId === 'me' && isMinTablet) || profileId !== 'me')) return <Navigate to='items' replace />
 
     return (
         <div className='grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr] items-center md:items-start md:flex-row gap-5'>

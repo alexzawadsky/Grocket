@@ -7,7 +7,7 @@ const SearchItemCardTemplate = ({ horizontal, onFail, loader }) => {
 
     if (!horizontal) return (
         <div className={cn(
-            "p-5 h-full",
+            "md:p-5 h-full",
             loader && 'animate-pulse duration-75'
         )}
             aria-hidden='true'

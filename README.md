@@ -100,11 +100,29 @@
 <!-- Env Variables -->
 ### :key: Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, you will need to add the following environment variables to your .env file.
 
-`API_KEY`
+#### Backend
+infra/.env
+```
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=<your password>
+DB_HOST=db
+DB_PORT=5432
+```
 
-`ANOTHER_API_KEY`
+#### Frontend
+frontend/.../.env.deploy
+```
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=<your password>
+DB_HOST=db
+DB_PORT=5432
+```
 
 <!-- Getting Started -->
 ## :toolbox: Getting Started
@@ -112,10 +130,17 @@ To run this project, you will need to add the following environment variables to
 <!-- Prerequisites -->
 ### :bangbang: Prerequisites
 
-This project uses Poetry as backend package manager
+This project uses <a href='https://python-poetry.org/docs/'>Poetry</a> as backend package manager
 
+#### Instalation
+Linux, macOS, Windows (WSL)
 ```bash
- kak postavit poetry
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+Windows (Powershell)
+```bash
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 ```
 
 <!-- Run Locally -->
@@ -124,7 +149,7 @@ This project uses Poetry as backend package manager
 Clone the project
 
 ```bash
-  git clone https://github.com/alexzawadsky/Grocket.git
+git clone https://github.com/alexzawadsky/Grocket.git
 ```
 
 #### Frontend
@@ -132,46 +157,66 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd frontend
+cd frontend
 ```
 
 Install dependencies
 
 ```bash
-  npm install
+npm install
 ```
 
 Start the server
 
 ```bash
-  npm run dev
+npm run dev
 ```
 
 #### Backend
 
-Go to the project directory
+Go to the backend directory
 
 ```bash
-  cd backend
+cd backend/
 ```
 
 Install dependencies
 
 ```bash
-  npm install
+poetry shell
+poetry install
 ```
 
-Make and apply DB migrations
+Go to the project directory
 
 ```bash
-  python manage.py makemigrations
-  python manage.py migrate
+cd grocket/
+```
+
+Apply migrations
+
+```bash
+python manage.py migrate
+```
+
+Add dump data to the database
+
+```bash
+sh data/json/add.sh
+```
+
+OR
+
+```bash
+python3 manage.py loaddatautf8 data/json/categories.json
+python3 manage.py loaddatautf8 data/json/promotions.json
+python3 manage.py loaddatautf8 data/json/statuses.json
 ```
 
 Start the server
 
 ```bash
-  python manage.py runserver
+python manage.py runserver
 ```
 
 <!-- Deployment -->
@@ -180,13 +225,23 @@ Start the server
 Go to the docker-compose directory
 
 ```bash
-  cd infra
+cd infra
 ```
 
 Start docker with bash script
 
 ```bash
-  sh install.sh
+sh install.sh
+```
+
+Start docker manually
+```bash
+docker-compose up -d --build
+docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py collectstatic
+docker-compose exec web python manage.py loaddatautf8 data/json/categories.json
+docker-compose exec web python manage.py loaddatautf8 data/json/promotions.json
+docker-compose exec web python manage.py loaddatautf8 data/json/statuses.json
 ```
 
 <!-- Contact -->

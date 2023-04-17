@@ -17,7 +17,7 @@ echo -e "${green}${uline}${bold}STARTING DOCKER...${reset}"
 docker-compose up -d --build
 echo -e "\n"
 
-echo -e "${green}${uline}${bold}DELETING OLD DATABASE...${reset}"
+echo -e "${green}${uline}${bold}DELETING OLD SQLITE DATABASE...${reset}"
 docker-compose exec web rm db.sqlite3
 echo -e "\n"
 

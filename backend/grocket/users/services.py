@@ -56,8 +56,17 @@ class UserService:
         )
         draw_text = ImageDraw.Draw(img)
 
+        text_width, text_height = draw_text.textsize(text, font=font)
+
+        center_x = img.width / 2
+        center_y = img.height / 2
+
+        # Calculate the position of the text
+        text_x = center_x - text_width / 2
+        text_y = center_y - text_height / 2
+
         draw_text.text(
-            avatar_settings["FONT_INDENTS"],
+            (text_x, 100),
             text,
             font=font,
             fill=avatar_settings["FONT_FILL"],

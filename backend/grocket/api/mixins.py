@@ -5,24 +5,24 @@ from rest_framework.viewsets import GenericViewSet
 
 RESPONSE_MESSAGES = {
     "products": {
-        "create": _("Created"),
-        "destroy": _("Deleted"),
+        "create": _("Product has been successfully placed"),
+        "destroy": _("Product has been deleted"),
         "promote": _("Successfully promoted"),
-        "sell": {"POST": _("Marked as sold"), "DELETE": _("Removed from sold")},
+        "sell": {"POST": _("Marked as sold"), "DELETE": _("Placed again")},
         "archive": {
-            "POST": _("Moved to archive"),
+            "POST": _("Moved to the archive"),
             "DELETE": _("Removed from the archive"),
         },
         "favourite": {
-            "POST": _("Marked as favourite"),
+            "POST": _("Added to favourites"),
             "DELETE": _("Removed from favourites"),
         },
-        # 'updated': _('Updated'),
+        # 'updated': _('Product has been updated'),
     },
     "comments": {
-        "create": _("Created"),
-        "destroy": _("Deleted"),
-        "reply": {"POST": _("Peply created"), "DELETE": _("Reply deleted")},
+        "create": _("Comment added"),
+        "destroy": _("Comment deleted"),
+        "reply": {"POST": _("Peply added"), "DELETE": _("Reply deleted")},
     },
 }
 

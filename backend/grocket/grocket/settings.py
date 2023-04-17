@@ -216,7 +216,7 @@ AVATAR = {
     "FONT_URL": os.path.join(DATA_ROOT, "fonts"),
     "FONT_FILE_NAME": "arial_black.ttf",
     "FONT_SIZE": 200,
-    "FONT_INDENTS": (100, 100),
+    # "FONT_INDENTS": (100, 100),
     "FONT_FILL": "#1C0606",
 }
 

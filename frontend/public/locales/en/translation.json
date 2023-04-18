@@ -145,5 +145,11 @@
     "bought": "bought",
     "open_product_page": "Open product page",
     "promotions_fetch_error": "Failed to get available promotions, please try again later",
-    "product_fetch_fail": "Data for item card failed to fetch"
+    "product_fetch_fail": "Data for item card failed to fetch",
+    "delete_toggled": "Click again to delete",
+    "from_price": "From",
+    "to_price": "To",
+    "apply": "Apply",
+    "free": "Free",
+    "filters": "Filters"
 }

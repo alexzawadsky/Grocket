@@ -3,6 +3,9 @@ import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import localization from '../../assets/localization.json'
 import Flag from "../ui/Flag"
+import useScreen from "../../hooks/useScreen"
+import { BsCheck } from 'react-icons/bs'
+import { IoClose } from 'react-icons/io5'
 
 const LanguageSelectionBanner = () => {
 
@@ -10,6 +13,7 @@ const LanguageSelectionBanner = () => {
     const [resolvedLanguage, setResolvedLanguage] = useState(null)
     const [code, setCode] = useState(null)
     const { i18n } = useTranslation()
+    const { isMinTablet } = useScreen()
 
     useEffect(() => {
         if (languageSelected) return
@@ -37,13 +41,13 @@ const LanguageSelectionBanner = () => {
 
     if (!resolvedLanguage) return
     return (!languageSelected && i18n.resolvedLanguage !== code) ?
-        <div className="flex gap-3 md:gap-6 items-center flex-wrap border-2 dark:border-zinc-600 rounded-2xl p-3 w-full md:w-fit">
-            <div className="flex items-center gap-1">
+        <div className="flex gap-3 md:gap-6 items-center flex-wrap h-[51px] border-2 dark:border-zinc-600 rounded-2xl px-3 w-fit fixed left-2 bottom-2 md:right-20 z-50 bg-white dark:bg-zinc-700">
+            <div className="flex items-center gap-1 my-1">
                 Do you speak
                 <div className="w-5 ml-1">
                     <Flag country={localization[code.toUpperCase()].flag} />
                 </div>
-                <span className="font-bold">{resolvedLanguage}</span>
+                {isMinTablet && <span className="font-bold">{resolvedLanguage}</span>}
                 ?
             </div>
             {code &&
@@ -55,13 +59,13 @@ const LanguageSelectionBanner = () => {
                             setLanguageSelected(true)
                         }}
                     >
-                        Switch
+                        {isMinTablet ? 'Switch' : <BsCheck />}
                     </button>
                     <button
                         className="hover:text-accent-orange"
                         onClick={() => setLanguageSelected(true)}
                     >
-                        Cancel
+                        {isMinTablet ? 'Cancel' : <IoClose />}
                     </button>
                 </div>
             }

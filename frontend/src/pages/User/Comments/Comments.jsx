@@ -17,7 +17,6 @@ const Comments = () => {
     const { user } = useContext(AuthContext)
 
     if (outlet) return <Outlet />
-    if (isLoading) return <Spinner />
     if (error) return error.message
 
     return (
@@ -48,7 +47,8 @@ const Comments = () => {
                 </div>
             </div>
             <ul className="grid lg:grid-cols-2 gap-5" aria-label='list of comments'>
-                {data?.results.map((el, key) => <li aria-label='comment'>
+                {isLoading && <Spinner type='comment' count={2} />}
+                {!isLoading && data?.results.map((el, key) => <li aria-label='comment'>
                     <Comment key={key} comment={el} />
                 </li>)}
             </ul>

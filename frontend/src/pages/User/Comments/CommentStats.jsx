@@ -24,12 +24,12 @@ const CommentsStats = ({ count, stats }) => {
                 {stats?.avg}
                 <RatingStars rating={stats?.avg} />
             </span>
-            <p aria-label={`based on ${count} comments`}>{t('based_on')} {count} {t('based_comments')}</p>
+            <p aria-label={`based on ${count} comments`}>{t('based_on')} {count || 0} {t('based_comments')}</p>
             <ul className='flex flex-col gap-1' aria-label='comments count per rating'>
                 {Array(5).fill(0).map((i, key) =>
                     <StatRow key={key}
                         rate={5 - key}
-                        count={stats[5 - key]}
+                        count={Object.keys(stats || {})?.length > 0 ? stats[5 - key] : 0}
                         total={count}
                     />)}
             </ul>

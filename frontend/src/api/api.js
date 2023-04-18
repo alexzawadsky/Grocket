@@ -12,7 +12,7 @@ export const useProducts = (queryParams) => {
     const queryParamsObject = Object.fromEntries(queryParams)
     return useQuery(['products', queryParamsObject], () => api.get(`/api/v1/products`, {
         params: Object.assign({}, queryParamsObject, { limit })
-    }).then(res => res.data), { keepPreviousData: true })
+    }).then(res => res.data), { keepPreviousData: false })
 }
 
 export const useProduct = (productId) => {
@@ -25,11 +25,11 @@ export const useAddProduct = () => {
     const queryClient = useQueryClient()
     const navigate = useNavigate()
     const api = useAxios()
-    return useMutation((product) => api.post('/api/v1/products/', product).then(res => res.data),
+    return useMutation((product) => api.post('/api/v1/products/', product),
         {
             onSuccess: (res) => {
-                navigate(`/products/${res.slug}/promote?redirect=true`)
-                notification(res?.message, 5000)
+                navigate(`/products/${res?.data?.slug}/promote?redirect=true`)
+                notification(res?.data?.message, 5000)
                 queryClient.invalidateQueries('products')
             }
         })
@@ -40,10 +40,10 @@ export const useUpdateProduct = () => {
     const queryClient = useQueryClient()
     const navigate = useNavigate()
     const { t } = useTranslation()
-    return useMutation((data) => api.patch(`/api/v1/products/${data.id}/`, data.body).then(res => res.data),
+    return useMutation((data) => api.patch(`/api/v1/products/${data.id}/`, data.body),
         {
-            onSuccess: () => {
-                notification(t('saved'))
+            onSuccess: (res) => {
+                notification(res?.data?.message)
                 navigate(getLastRoute())
                 queryClient.invalidateQueries('product')
                 queryClient.invalidateQueries('products')
@@ -55,8 +55,7 @@ export const useUserProducts = (userId, queryParams) => {
     const api = useAxios()
     return useQuery(['products', userId, queryParams],
         () => api.get(`/api/v1/users/${userId}/products`,
-            { params: { ...queryParams, limit: limit } }).then(res => res.data),
-        { keepPreviousData: true })
+            { params: { ...queryParams, limit: limit } }).then(res => res.data))
 }
 
 export const useCategories = (queryParams) => {
@@ -108,8 +107,9 @@ export const useDeleteProduct = () => {
     const queryClient = useQueryClient()
     return useMutation((productId) => api.delete(`/api/v1/products/${productId}/`),
         {
-            onSuccess: () => {
-                notification()
+            onSuccess: (res) => {
+                console.log(res)
+                notification(res?.data?.message)
                 queryClient.invalidateQueries('products')
                 queryClient.invalidateQueries('product')
             }
@@ -121,9 +121,9 @@ export const useUpdateProfile = () => {
     const queryClient = useQueryClient()
     return useMutation((data) => api.patch('/api/v1/users/me/', data),
         {
-            onSuccess: () => {
+            onSuccess: (res) => {
                 queryClient.invalidateQueries(['users', 'me'])
-                notification('Your profile has been updated')
+                notification(res?.data?.message)
             }
         })
 }

@@ -73,15 +73,8 @@ const ProductForm = ({ data, setData, setValid }) => {
                 {t('price')}
             </h2>
             <Input
-                title={t('price')}
+                title={`${t('price')} $`}
                 instance={price}
-                split={isMinTablet}
-                must
-                deleteBtn={isLargePC}
-            />
-            <Input
-                title={t('currency')}
-                instance={currency}
                 split={isMinTablet}
                 must
                 deleteBtn={isLargePC}

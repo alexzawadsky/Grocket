@@ -36,7 +36,9 @@ const Input = ({
     large,
     must,
     containerClassName,
-    ariaLabel
+    ariaLabel,
+    boldTitle,
+    titleSize
 }) => {
 
     const inputRef = useRef()
@@ -50,7 +52,16 @@ const Input = ({
     const inputStyle = 'rounded-lg transition-colors duration-[25] border-slate-500 dark:border-zinc-500 dark:bg-zinc-700 focus:border-slate-800 focus:dark:border-zinc-400 focus:shadow-md focus:outline-none border dark:border-2 px-3 w-full h-10'
     const errorStyle = (instance.isDirty && !instance.allValid) && '!outline-2 !text-accent-red !bg-accent-red/[0.05] !border-accent-red !outline-offset-1'
     const inputInner = <>
-        {title && <label className={must ? 'after:content-["*"] after:text-accent-red after:pl-1' : ''} htmlFor={id}>{title}</label>}
+        {title && <label
+            className={cn(
+                must && 'after:content-["*"] after:text-accent-red after:pl-1',
+                boldTitle && 'font-bold',
+                titleSize && `text-${titleSize}`
+            )}
+            htmlFor={id}
+        >
+            {title}
+        </label>}
         <div className="relative">
             {large ? <textarea
                 aria-label={ariaLabel}

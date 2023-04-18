@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import { useArchiveProduct, useSellProduct, useDeleteProduct } from '../../api/api'
 import { NavLink } from 'react-router-dom'
 import { IoIosArrowUp, IoMdClose, IoIosArrowDown } from 'react-icons/io'
-import { BsMegaphone, BsPen, BsTrash } from 'react-icons/bs'
-import { confirm } from '../../utils'
+import { BsMegaphone, BsPen } from 'react-icons/bs'
 import { useTranslation } from 'react-i18next'
 import { BsArchive, BsPatchCheck } from 'react-icons/bs'
 import { MdOutlineSell } from 'react-icons/md'
+import DeleteButton from './DeleteButton'
 
 const MenuInner = ({ product, fullW }) => {
 
@@ -54,16 +54,7 @@ const MenuInner = ({ product, fullW }) => {
                     </NavLink >
                 </>
             }
-            <NavLink
-                to=''
-                onClick={() => confirm(
-                    `Delete <b>${product.name}</b>`,
-                    () => deleteProductMutation.mutate(product.id),
-                    `${product.name} has been deleted`,
-                    '')}
-                className='text-accent-red dark:text-red-600 flex items-center gap-2 text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2'>
-                <BsTrash />{t('delete')}
-            </NavLink>
+            <DeleteButton product={product} />
         </div >
     )
 }
@@ -90,7 +81,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
 
     return (
         <div
-            className="relative w-fit flex items-end justify-end border-2 dark:border-zinc-600   rounded-xl text-left group/dropdown"
+            className="relative w-fit flex items-end justify-end border-2 dark:border-zinc-600   rounded-xl text-left group/dropdown manage-menu-drop"
         >
             {open && <div
                 className="w-44 absolute bottom-10 -left-1 z-10 origin-top-right "
@@ -104,7 +95,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
             <NavLink
                 to=''
                 type="button"
-                className="flex justify-center items-center gap-2 rounded-xl bg-white dark:bg-zinc-800 dark:text-zinc-50 hover:dark:bg-zinc-600 px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 dark:focus:ring-offset-zinc-600 min-w-32 manage-menu-drop"
+                className="flex justify-center items-center gap-2 rounded-xl bg-white dark:bg-zinc-800 dark:text-zinc-50 hover:dark:bg-zinc-600 px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 dark:focus:ring-offset-zinc-600 min-w-32"
                 id="menu-button"
                 aria-expanded="false"
                 onClick={() => setOpen(prevState => !prevState)}

@@ -37,7 +37,6 @@ const LanguageDropdown = () => {
                 <Flag
                     className='h-10 w-5'
                     country={selectedLang?.flag}
-                    size={64}
                 />
                 <p>{selectedLang?.name}</p>
             </Button>

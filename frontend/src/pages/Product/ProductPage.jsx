@@ -26,7 +26,7 @@ const ProductPage = () => {
     const favouriteProductMutation = useFavouriteProduct()
 
     const { data, error, isLoading } = useProduct(productId)
-    const handleFavourite = () => favouriteProductMutation.mutate({ id: productId, state: data?.is_favourited })
+    const handleFavourite = () => favouriteProductMutation.mutate({ id: data?.id, state: data?.is_favourited })
 
     if (data) updateHistory(data)
     if (error?.response?.status === 404) return (

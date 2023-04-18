@@ -22,12 +22,12 @@ const SortBy = () => {
         },
         {
             title: 'Time New-Old',
-            code: 'pub_date',
+            code: '-pub_date',
             icon: <BsArrowDownRight />
         },
         {
             title: 'Time Old-New',
-            code: '-pub_date',
+            code: 'pub_date',
             icon: <BsArrowUpRight />
         },
     ]

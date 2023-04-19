@@ -1,6 +1,6 @@
 import random
 import time
-from typing import Optional
+from typing import Optional, Dict
 
 from django.conf import settings
 from django.http.response import Http404
@@ -21,7 +21,7 @@ class ExchangeRateService:
             raise Http404()
         return key
 
-    def _get_redis_currency(self) -> Optional[set[float, int]]:
+    def _get_redis_currency(self) -> Optional[Dict[float, int]]:
         """
         Достанет из redis значения по ключу:
         {

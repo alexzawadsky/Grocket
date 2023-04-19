@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from djmoney.models.fields import MoneyField
 from mptt.models import MPTTModel, TreeForeignKey
 
 from .fields import RichTextBleachField
@@ -93,12 +92,7 @@ class Promotion(models.Model):
         verbose_name="name",
         unique=True,
     )
-    price = MoneyField(
-        max_digits=19,
-        decimal_places=2,
-        default_currency="USD",
-        verbose_name="price",
-    )
+    price = models.PositiveIntegerField(verbose_name="price($)")
     description = models.TextField(
         max_length=500,
         verbose_name="description",
@@ -135,12 +129,7 @@ class Product(models.Model):
         max_length=10000,
         verbose_name="description",
     )
-    price = MoneyField(
-        max_digits=19,
-        decimal_places=2,
-        default_currency="USD",
-        verbose_name="price",
-    )
+    price = models.PositiveIntegerField(verbose_name="price($)")
     promotions = models.ManyToManyField(
         "Promotion",
         related_name="products",

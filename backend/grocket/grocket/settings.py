@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_dump_load_utf8",
     "phonenumber_field",
-    "djmoney",
     "django_countries",
     "mptt",
     "django_mptt_admin",
@@ -117,7 +116,7 @@ DATABASES = {
 }
 
 
-AUTH_PASSWORD_VALIDATORS = []  # В конце добавить валидаторы!!!
+AUTH_PASSWORD_VALIDATORS: list = []  # В конце добавить валидаторы!!!
 
 
 # <--- Локализация --->

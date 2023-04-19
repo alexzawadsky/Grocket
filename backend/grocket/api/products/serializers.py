@@ -1,15 +1,19 @@
 import re
 
 from django.utils.translation import gettext_lazy as _
-from djmoney.contrib.django_rest_framework import MoneyField
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.users.serializers import CustomUserSerializer
 from products.models import Category
-from products.selectors import (get_ancestors_by_category, get_is_favourited,
-                                get_product_address, get_product_category,
-                                get_product_images, get_product_promotions)
+from products.selectors import (
+    get_ancestors_by_category,
+    get_is_favourited,
+    get_product_address,
+    get_product_category,
+    get_product_images,
+    get_product_promotions,
+)
 from users.services import UserService
 
 users_services = UserService()
@@ -20,8 +24,7 @@ class PromotionSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     name = serializers.SlugField()
     title = serializers.CharField()
-    price = MoneyField(max_digits=19, decimal_places=2)
-    price_currency = serializers.CharField()
+    price = serializers.IntegerField(min_value=0)
     description = serializers.CharField()
 
     class Meta:
@@ -30,7 +33,6 @@ class PromotionSerializer(serializers.Serializer):
             "name",
             "title",
             "price",
-            "price_currency",
             "description",
         )
 
@@ -177,8 +179,7 @@ class ProductReadOnlySerializer(serializers.Serializer):
     id = serializers.IntegerField()
     name = serializers.CharField()
     slug = serializers.SlugField()
-    price = MoneyField(max_digits=19, decimal_places=2)
-    price_currency = serializers.CharField()
+    price = serializers.IntegerField(min_value=0)
     is_archived = serializers.BooleanField()
     is_sold = serializers.BooleanField()
     pub_date = serializers.DateTimeField()
@@ -215,7 +216,6 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
             "address",
             "description",
             "price",
-            "price_currency",
             "is_archived",
             "is_sold",
             "is_favourited",
@@ -252,7 +252,6 @@ class ProductListSerializer(ProductReadOnlySerializer):
             "user",
             "description",
             "price",
-            "price_currency",
             "address",
             "is_archived",
             "is_sold",
@@ -293,8 +292,7 @@ class ProductCreateSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
     user = serializers.IntegerField()
     description = serializers.CharField(max_length=5000)
-    price = MoneyField(max_digits=19, decimal_places=2)
-    price_currency = serializers.CharField(max_length=3)
+    price = serializers.IntegerField(min_value=0)
     category = serializers.IntegerField()
     address = ProductAddressCreateUpdateSerializer()
 
@@ -302,7 +300,6 @@ class ProductCreateSerializer(serializers.Serializer):
         fields = (
             "name",
             "user",
-            "price_currency",
             "description",
             "price",
             "category",
@@ -327,15 +324,13 @@ class ProductUpdateSerializer(serializers.Serializer):
     # images = ProductImagesUpdateField(required=False)
     # name = serializers.CharField(required=False)
     # description = serializers.CharField(required=False)
-    # price = MoneyField(max_digits=19, decimal_places=2, required=False)
-    # price_currency = serializers.CharField(required=False)
+    # price = serializers.IntegerField(min_value=0)
     # address = serializers.CharField(required=False)
     # category = serializers.IntegerField(required=False)
 
     # class Meta:
     #     fields = (
     #         "name",
-    #         "price_currency",
     #         "description",
     #         "price",
     #         "address",

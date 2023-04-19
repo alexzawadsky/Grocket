@@ -111,6 +111,9 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=<your password>
 DB_HOST=db
 DB_PORT=5432
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_DB=0
 ```
 
 #### Frontend

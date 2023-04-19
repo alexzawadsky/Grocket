@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "products",
     "comments",
     "images",
+    "exchange",
 ]
 
 MIDDLEWARE = [
@@ -293,4 +294,15 @@ LOGGING = {
         },
     },
     "loggers": {"": {"level": "DEBUG", "handlers": ["file"]}},
+}
+
+
+EXCHANGE = {
+    "REDIS": {
+        "host": os.getenv("REDIS_HOST", "localhost"),
+        "port": os.getenv("REDIS_PORT", 6379),
+        "db": os.getenv("REDIS_DB", 0),
+    },
+    "EXPIRE_TIME": 10,  # в секундах
+    "CURRENCIES": ("rub", "eur", "bmd"),
 }

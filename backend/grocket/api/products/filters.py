@@ -1,5 +1,6 @@
-from django_filters import rest_framework as django_filters
 from django.db.models import Avg
+from django_filters import rest_framework as django_filters
+
 from products.models import Category, Product
 
 

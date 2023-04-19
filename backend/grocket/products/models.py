@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from djmoney.models.fields import MoneyField
-from django.core.validators import MaxValueValidator, MinValueValidator
 from mptt.models import MPTTModel, TreeForeignKey
 
 from .fields import RichTextBleachField

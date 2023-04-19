@@ -3,12 +3,14 @@ from django.urls import path
 from djoser.views import UserViewSet
 
 from .comments.views import CommentViewSet
-from .products.views import CategoryViewSet, ProductViewSet, PromotionViewSet
+from .products.views import (CategoryViewSet, ProductViewSet, PromotionViewSet,
+                             exchange)
 from .users.views import CustomUserRegisterViewSet, CustomUserRetrieveViewSet
 
 app_name = "api"
 
 urlpatterns = [
+    path("v1/exchange/<str:code>/", exchange, name="exchange"),
     # <--------- Products --------->
     path(
         "v1/promotions/", PromotionViewSet.as_view({"get": "list"}), name="promotions"

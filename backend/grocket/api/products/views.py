@@ -1,21 +1,24 @@
 from django.db import transaction
-from rest_framework import status
-from rest_framework.decorators import action
+from rest_framework import permissions, status
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
-from django.core.exceptions import BadRequest
 
-from products.selectors import (
-    get_all_products,
-    get_categories,
-    get_favourited_products,
-    get_product_or_404,
-    get_products_for_comments,
-    get_promotions,
-    get_safe_products,
-)
+from exchange.services import ExchangeRateService
+from products.selectors import (get_all_products, get_categories,
+                                get_favourited_products, get_product_or_404,
+                                get_products_for_comments, get_promotions,
+                                get_safe_products)
 from products.services.services import CreateProductService, ProductService
 
 from .mixins import CategoryMixin, ProductMixin, PromotionMixin
+
+
+@api_view(["GET"])
+@permission_classes([permissions.AllowAny])
+def exchange(request, code):
+    service = ExchangeRateService(key=code)
+    data = {"rate": service.get_exchange_rate()}
+    return Response(data, status=status.HTTP_200_OK)
 
 
 class ProductViewSet(ProductMixin):

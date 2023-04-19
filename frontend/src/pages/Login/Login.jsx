@@ -35,7 +35,7 @@ const Login = () => {
     return (
         <div className='w-full h-full flex pt-8 md:pt-0 md:items-center justify-center'>
             <div className='max-sm:max-w-[400px] w-full md:w-1/2 lg:w-1/3 xl:w-1/4'>
-                <img className='mx-auto mb-7' width={35} height={35} src={logo} />
+                <img className='mx-auto mb-7 mt-3' width={35} height={35} src={logo} />
                 <Title
                     className=' mb-5 mx-auto !w-fit'
                     text={t('login_to_acc')}

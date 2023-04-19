@@ -29,10 +29,10 @@ const Search = () => {
                 <Title className='pl-0 md:pl-5 lg:pl-0'>
                     Products matching "{searchParams.get('search')}" ({data?.count || 0})
                 </Title>
-                <div className='lg:grid lg:grid-cols-[1fr_3fr] gap-5'>
+                <div className='lg:grid lg:grid-cols-[1fr_3fr] gap-5 mt-5'>
                     {isMinPC && <Filters mnP={data?.min_price} mxP={data?.max_price} />}
                     <div>
-                        <div className="py-5 justify-between md:justify-start flex gap-3 items-center md:pl-5 sticky top-16 z-40 bg-white dark:bg-zinc-800">
+                        <div className="justify-between md:justify-start flex gap-3 items-center md:pl-5 bg-white dark:bg-zinc-800">
                             {isMinTablet && <CardModeToggle
                                 state={isList}
                                 setState={setIsList}
@@ -47,8 +47,8 @@ const Search = () => {
                                 <BiFilterAlt />{t('filters')}
                             </Button>}
                         </div>
-                        <div className={cn(
-                            'bg-red relative max-w-full overflow-hidden',
+                        <ul className={cn(
+                            'bg-red relative max-w-full overflow-hidden mt-5',
                             !isList && 'max-md:gap-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'
                         )}>
                             {!isMinPC && <Filters
@@ -60,15 +60,15 @@ const Search = () => {
                                 type={isMinTablet ? isList ? 'hcard' : 'vcard' : 'vcard'}
                                 count={isMinTablet ? 4 : 1}
                             />}
-                            {data && data?.results.map((product, key) =>
+                            {data && data?.results.map((product, key) => <li key={key}>
                                 <ItemCard
                                     search
-                                    key={key}
                                     product={product}
                                     horizontal={isList}
                                 />
+                            </li>
                             )}
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>

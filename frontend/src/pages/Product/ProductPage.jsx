@@ -97,21 +97,19 @@ const ProductPage = () => {
                         <GMap address={data.address} />
                     </div>
                 </div>
-                <aside aria-label='product page sidebar'>
-                    <div className='w-full md:w-fit grid gap-4 md:gap-7 h-fit md:fixed md:pr-7' aria-label='sidebar'>
-                        {isMinTablet && <Price
-                            className='font-bold text-3xl'
-                            price={data?.price}
-                            currency={data?.price_currency}
-                        />}
-                        <SellerCard profile={data.user} />
-                        {data.user.id === user?.user_id && (
-                            <div className='pb-3 grid gap-3'>
-                                <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
-                                <ManageProductMenu product={data} />
-                            </div>
-                        )}
-                    </div>
+                <aside aria-label='product page sidebar' className='w-full md:w-fit grid gap-4 md:gap-7 h-fit md:sticky md:top-[85px] md:pr-7' >
+                    {isMinTablet && <Price
+                        className='font-bold text-3xl'
+                        price={data?.price}
+                        currency={data?.price_currency}
+                    />}
+                    <SellerCard profile={data.user} />
+                    {data.user.id === user?.user_id && (
+                        <div className='pb-3 grid gap-3'>
+                            <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
+                            <ManageProductMenu product={data} />
+                        </div>
+                    )}
                 </aside>
                 <p className='text-sm text-zinc-400' aria-label='product id and publish time'>
                     #{data?.id} · <PublishTime full pubDate={data?.pub_date} />

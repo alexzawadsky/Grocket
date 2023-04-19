@@ -24,7 +24,7 @@ const Filters = ({ mnP, mxP, open }) => {
     return (
         <aside className={cn(
             open && '!right-0 max-md:!pl-0',
-            'mt-5 max-lg:absolute z-40 -right-[110%] max-md:pl-5 transition-all duration-200 top-0 grid gap-1 pb-5 md:p-5 lg:p-0 md:w-80 lg:w-full md:border dark:md:border-2 dark:md:border-zinc-600 lg:border-none md:rounded-lg lg:rounded-lg h-fit w-full bg-white dark:bg-zinc-800'
+            'max-lg:absolute z-40 -right-[110%] max-md:pl-5 transition-all duration-200 top-0 grid gap-1 pb-5 md:p-5 lg:p-0 md:w-80 lg:w-full md:border dark:md:border-2 dark:md:border-zinc-600 lg:border-none md:rounded-lg lg:rounded-lg h-fit w-full bg-white dark:bg-zinc-800'
         )}>
             <p className='font-bold text-lg'>{t('price')}</p>
             <div className="flex gap-1 items-center">

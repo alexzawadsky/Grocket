@@ -25,51 +25,54 @@ const Search = () => {
     return (
         <div className='grid gap-5'>
             <SearchBar />
-            <Title className='pl-0 md:pl-5 lg:pl-0'>
-                Products matching "{searchParams.get('search')}" ({data?.count || 0})
-            </Title>
-            <div className='lg:grid lg:grid-cols-[1fr_3fr] gap-5'>
-                {isMinPC && <Filters mnP={data?.min_price} mxP={data?.max_price} />}
-                <div>
-                    <div className="mb-3 justify-between md:justify-start flex gap-3 items-center md:pl-5">
-                        {isMinTablet && <CardModeToggle
-                            state={isList}
-                            setState={setIsList}
-                        />}
-                        <SortBy />
-                        {!isMinPC && <Button
-                            height={10}
-                            px={2}
-                            className='ml-auto dark:border-zinc-600 hover:dark:bg-zinc-700 !border-2'
-                            onClick={() => setFiltersOpen(prevState => !prevState)}
-                        >
-                            <BiFilterAlt />{t('filters')}
-                        </Button>}
-                    </div>
-                    <div className={cn(
-                        'bg-red relative max-w-full overflow-hidden',
-                        !isList && 'max-md:gap-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'
-                    )}>
-                        {isLoading && <Spinner
-                            type={isMinTablet ? isList ? 'hcard' : 'vcard' : 'vcard'}
-                            count={isMinTablet ? 4 : 1}
-                        />}
-                        {!isMinPC && <Filters
-                            open={filtersOpen}
-                            mnP={data?.min_price}
-                            mxP={data?.max_price}
-                        />}
-                        {data && data?.results.map((product, key) =>
-                            <ItemCard
-                                search
-                                key={key}
-                                product={product}
-                                horizontal={isList}
-                            />
-                        )}
+            <div>
+                <Title className='pl-0 md:pl-5 lg:pl-0'>
+                    Products matching "{searchParams.get('search')}" ({data?.count || 0})
+                </Title>
+                <div className='lg:grid lg:grid-cols-[1fr_3fr] gap-5'>
+                    {isMinPC && <Filters mnP={data?.min_price} mxP={data?.max_price} />}
+                    <div>
+                        <div className="py-5 justify-between md:justify-start flex gap-3 items-center md:pl-5 sticky top-16 z-40 bg-white dark:bg-zinc-800">
+                            {isMinTablet && <CardModeToggle
+                                state={isList}
+                                setState={setIsList}
+                            />}
+                            <SortBy />
+                            {!isMinPC && <Button
+                                height={10}
+                                px={2}
+                                className='ml-auto dark:border-zinc-600 hover:dark:bg-zinc-700 !border-2'
+                                onClick={() => setFiltersOpen(prevState => !prevState)}
+                            >
+                                <BiFilterAlt />{t('filters')}
+                            </Button>}
+                        </div>
+                        <div className={cn(
+                            'bg-red relative max-w-full overflow-hidden',
+                            !isList && 'max-md:gap-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'
+                        )}>
+                            {!isMinPC && <Filters
+                                open={filtersOpen}
+                                mnP={data?.min_price}
+                                mxP={data?.max_price}
+                            />}
+                            {isLoading && <Spinner
+                                type={isMinTablet ? isList ? 'hcard' : 'vcard' : 'vcard'}
+                                count={isMinTablet ? 4 : 1}
+                            />}
+                            {data && data?.results.map((product, key) =>
+                                <ItemCard
+                                    search
+                                    key={key}
+                                    product={product}
+                                    horizontal={isList}
+                                />
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { IoBookOutline } from 'react-icons/io5'
@@ -15,7 +16,7 @@ const HistoryList = () => {
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
-        <aside className='grid gap-2 h-fit' aria-label='list of items you opened recently'>
+        <aside className='grid gap-2 h-fit md:sticky top-20 z-40' aria-label='list of items you opened recently'>
             {isMinTablet &&
                 <>
                     <h2 to='/history' className='text-lg lg:text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>

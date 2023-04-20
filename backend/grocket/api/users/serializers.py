@@ -3,7 +3,6 @@ from django.db.models import Avg
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
-
 from users.services import UserService
 
 User = get_user_model()

@@ -4,7 +4,8 @@ from django.contrib import admin, messages
 from django_mptt_admin.admin import DjangoMpttAdmin
 from modeltranslation.admin import TranslationAdmin
 
-from .models import Category, Favourite, Image, Product, ProductAddress, Promotion
+from .models import (Category, Favourite, Image, Product, ProductAddress,
+                     Promotion)
 
 
 class PostAdminForm(forms.ModelForm):

@@ -1,5 +1,4 @@
 from django.http.response import JsonResponse
-
 from exchange.services import ExchangeRateService
 
 

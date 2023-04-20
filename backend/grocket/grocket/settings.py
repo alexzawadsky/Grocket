@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "products",
     "comments",
     "images",
-    "exchange",
 ]
 
 MIDDLEWARE = [

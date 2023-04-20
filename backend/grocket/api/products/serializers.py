@@ -1,19 +1,13 @@
 import re
 
+from api.users.serializers import CustomUserSerializer
 from django.utils.translation import gettext_lazy as _
 from drf_extra_fields.fields import Base64ImageField
-from rest_framework import serializers
-
-from api.users.serializers import CustomUserSerializer
 from products.models import Category
-from products.selectors import (
-    get_ancestors_by_category,
-    get_is_favourited,
-    get_product_address,
-    get_product_category,
-    get_product_images,
-    get_product_promotions,
-)
+from products.selectors import (get_ancestors_by_category, get_is_favourited,
+                                get_product_address, get_product_category,
+                                get_product_images, get_product_promotions)
+from rest_framework import serializers
 from users.services import UserService
 
 users_services = UserService()

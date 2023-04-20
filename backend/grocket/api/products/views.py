@@ -1,14 +1,13 @@
+from core.exchange import ExchangeRateService
 from django.db import transaction
-from rest_framework import permissions, status
-from rest_framework.decorators import action, api_view, permission_classes
-from rest_framework.response import Response
-
-from exchange.services import ExchangeRateService
 from products.selectors import (get_all_products, get_categories,
                                 get_favourited_products, get_product_or_404,
                                 get_products_for_comments, get_promotions,
                                 get_safe_products)
 from products.services.services import CreateProductService, ProductService
+from rest_framework import permissions, status
+from rest_framework.decorators import action, api_view, permission_classes
+from rest_framework.response import Response
 
 from .mixins import CategoryMixin, ProductMixin, PromotionMixin
 

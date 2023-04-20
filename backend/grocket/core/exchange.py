@@ -1,6 +1,6 @@
 import random
 import time
-from typing import Optional, Dict
+from typing import Dict, Optional
 
 from django.conf import settings
 from django.http.response import Http404

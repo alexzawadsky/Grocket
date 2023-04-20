@@ -3,7 +3,6 @@ from typing import List
 from django.core.exceptions import ValidationError
 from django.core.files import File
 from django.utils.translation import gettext_lazy as _
-
 from images.services import ImageService
 from products.models import Image
 

@@ -18,7 +18,6 @@ const ProductForm = ({ data, setData, setValid }) => {
     const name = useInput(data?.name || '', { isEmpty: true })
     const [description, setDescription] = useState(data?.description || '')
     const price = useInput(data?.price || '', { isFloat: true })
-    const currency = useInput(data?.price_currency || '', { isEmpty: true })
     const [address, setAddress] = useState(data?.address || null)
 
     useEffect(() => {
@@ -31,7 +30,7 @@ const ProductForm = ({ data, setData, setValid }) => {
     }, [mainImageIndex])
 
     useEffect(() => {
-        if ([name, price, currency].every(el => el.allValid) && images.length > 0 && description.length > 0) {
+        if ([name, price].every(el => el.allValid) && images.length > 0 && description.length > 0) {
             setAllValid(true)
         } else {
             setAllValid(false)
@@ -40,11 +39,10 @@ const ProductForm = ({ data, setData, setValid }) => {
             name: name.value,
             description: description,
             price: price.value,
-            price_currency: currency.value,
             address: address,
             images: prepareImages(images)
         })
-    }, [name.value, description, price.value, currency.value, address, JSON.stringify(images)])
+    }, [name.value, description, price.value, address, JSON.stringify(images)])
 
     useEffect(() => {
         setValid(allValid)

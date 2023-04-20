@@ -84,7 +84,7 @@ const Button = ({
                 onHoverDarkColor && `dark:hover:bg-${onHoverDarkColor}`,
                 border && 'border-2',
                 'transition-all duration-100 flex items-center justify-center gap-2 rounded-xl',
-                'disabled:!text-slate-600 disabled:!border-2 disabled:!border-slate-600 disabled:!cursor-not-allowed disabled:!bg-transparent'
+                'disabled:text-slate-600 disabled:border-2 disabled:border-slate-600 disabled:cursor-not-allowed disabled:bg-transparent'
             )}
             disabled={disabled}
             type={type}

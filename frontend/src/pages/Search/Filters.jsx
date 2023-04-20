@@ -7,8 +7,8 @@ import cn from 'classnames'
 const Filters = ({ mnP, mxP, open }) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
-    const minPrice = useInput(searchParams.get('min_price'), { isInt: true })
-    const maxPrice = useInput(searchParams.get('max_price'), { isInt: true })
+    const minPrice = useInput(searchParams.get('min_price') || '', { isInt: true })
+    const maxPrice = useInput(searchParams.get('max_price') || '', { isInt: true })
     const country = useInput(searchParams.get('country'))
     const { t } = useTranslation()
 

@@ -108,7 +108,6 @@ export const useDeleteProduct = () => {
     return useMutation((productId) => api.delete(`/api/v1/products/${productId}/`),
         {
             onSuccess: (res) => {
-                console.log(res)
                 notification(res?.data?.message)
                 queryClient.invalidateQueries('products')
                 queryClient.invalidateQueries('product')

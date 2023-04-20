@@ -18,14 +18,15 @@ import ImagesGallery from './ImagesGallery';
 
 const ProductPage = () => {
 
+    const { productId } = useParams()
+    const { data, error, isLoading } = useProduct(productId)
     const { t } = useTranslation()
     const { updateHistory } = useContext(SearchHistoryContext)
     const { user } = useContext(AuthContext)
-    const { productId } = useParams()
     const { isMaxTablet, isMinTablet } = useScreen()
     const favouriteProductMutation = useFavouriteProduct()
+    const userIsSeller = user?.user_id === data?.user?.id
 
-    const { data, error, isLoading } = useProduct(productId)
     const handleFavourite = () => favouriteProductMutation.mutate({ id: data?.id, state: data?.is_favourited })
 
     if (data) updateHistory(data)
@@ -65,14 +66,16 @@ const ProductPage = () => {
                             <h1 className="text-3xl font-bold">
                                 {data.name}
                             </h1>
-                            {user?.user_id !== data?.user?.id && <Button
+                            <Button
                                 ariaLabel='add to favourites button'
-                                className='text-accent-red dark:text-red-600 text-3xl'
+                                className='!text-accent-red dark:!text-red-600 !border-none text-3xl'
                                 onClick={handleFavourite}
                                 border={false}
+                                disabled={userIsSeller}
                             >
-                                {data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}
-                            </Button>}
+                                {userIsSeller && data?.favourites_count}
+                                {userIsSeller || data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}
+                            </Button>
                         </div>
                         <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">
                             <span className='text-primary-300 dark:text-zinc-400 flex items-center gap-2'>
@@ -104,12 +107,10 @@ const ProductPage = () => {
                         currency={data?.price_currency}
                     />}
                     <SellerCard profile={data.user} />
-                    {data.user.id === user?.user_id && (
-                        <div className='pb-3 grid gap-3'>
-                            <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
-                            <ManageProductMenu product={data} />
-                        </div>
-                    )}
+                    {userIsSeller && <div className='pb-3 grid gap-3'>
+                        <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
+                        <ManageProductMenu product={data} />
+                    </div>}
                 </aside>
                 <p className='text-sm text-zinc-400' aria-label='product id and publish time'>
                     #{data?.id} · <PublishTime full pubDate={data?.pub_date} />

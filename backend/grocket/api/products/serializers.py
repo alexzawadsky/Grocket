@@ -4,9 +4,15 @@ from api.users.serializers import CustomUserSerializer
 from django.utils.translation import gettext_lazy as _
 from drf_extra_fields.fields import Base64ImageField
 from products.models import Category
-from products.selectors import (get_ancestors_by_category, get_is_favourited,
-                                get_product_address, get_product_category,
-                                get_product_images, get_product_promotions)
+from products.selectors import (
+    get_ancestors_by_category,
+    get_is_favourited,
+    get_product_address,
+    get_product_category,
+    get_product_images,
+    get_product_promotions,
+    get_favourites_count,
+)
 from rest_framework import serializers
 from users.services import UserService
 
@@ -200,6 +206,7 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
     images = serializers.SerializerMethodField()
     user = CustomUserSerializer(read_only=True)
     address = serializers.SerializerMethodField()
+    favourites_count = serializers.SerializerMethodField()
 
     class Meta:
         fields = (
@@ -213,11 +220,18 @@ class ProductRetrieveSerializer(ProductReadOnlySerializer):
             "is_archived",
             "is_sold",
             "is_favourited",
+            "favourites_count",
             "category",
             "images",
             "pub_date",
             "promotions",
         )
+
+    def get_favourites_count(self, obj):
+        user = self.context["request"].user
+        if user.is_authenticated:
+            return get_favourites_count(product_id=obj.id, user_id=user.id)
+        return None
 
     def get_address(self, obj):
         address = get_product_address(product_id=obj.id)

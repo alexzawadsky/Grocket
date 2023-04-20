@@ -5,8 +5,14 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.db.models.query import QuerySet
 from django.shortcuts import get_object_or_404
-from products.models import (Category, Favourite, Image, Product,
-                             ProductAddress, Promotion)
+from products.models import (
+    Category,
+    Favourite,
+    Image,
+    Product,
+    ProductAddress,
+    Promotion,
+)
 
 User = get_user_model()
 
@@ -127,6 +133,14 @@ def get_product_category(product_id: int) -> Category:
 def get_product_address(product_id: int) -> ProductAddress:
     product = get_object_or_404(Product, id=product_id)
     return get_object_or_404(ProductAddress, product=product)
+
+
+def get_favourites_count(product_id: int, user_id: int) -> Optional[int]:
+    product = get_object_or_404(Product, id=product_id)
+    user = get_object_or_404(User, id=user_id)
+    if product.user != user:
+        return None
+    return product.favourites.count()
 
 
 def get_is_favourited(product_id: int, user_id: int) -> bool:

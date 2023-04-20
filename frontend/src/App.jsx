@@ -33,10 +33,10 @@ function App() {
 
     const { open } = useContext(CategoriesListStateContext)
 
-    return <div className={`flex flex-col h-full ${open && 'overflow-hidden'}`} aria-label='all site'>
+    return <div className={`flex flex-col min-h-full ${open && 'overflow-hidden'}`} aria-label='all site'>
         <Navbar />
         <Toaster />
-        <main className='mt-20 container mx-auto flex-grow px-5 relative flex flex-col gap-5' aria-label='main site content'>
+        <main className='mt-5 container mx-auto flex-grow px-5 relative flex flex-col gap-5' aria-label='main site content'>
             <LanguageSelectionBanner />
             <Routes>
                 <Route path='/' errorElement={<NotFound />}>

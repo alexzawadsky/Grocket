@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react"
 import getSymbolFromCurrency from 'currency-symbol-map'
+import { useTranslation } from "react-i18next"
 
 const convertToCurrency = (value, targetCurrency) => {
     if (parseFloat(value) % 1 === 0) return parseInt(value)
@@ -9,6 +10,7 @@ const convertToCurrency = (value, targetCurrency) => {
 const Price = ({ className, price, currency }) => {
 
     const targetCurrency = currency
+    const { t } = useTranslation()
     const [value, setValue] = useState(useMemo(() =>
         convertToCurrency(price, targetCurrency),
         [price, targetCurrency]
@@ -16,7 +18,7 @@ const Price = ({ className, price, currency }) => {
 
     return (
         <p className={className} aria-label='item price'>
-            {value} {getSymbolFromCurrency(targetCurrency)}
+            {price == 0 ? t('free') : `${value} ${getSymbolFromCurrency(targetCurrency)}`}
         </p>
     )
 }

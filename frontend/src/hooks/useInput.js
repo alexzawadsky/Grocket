@@ -38,6 +38,7 @@ const useValidation = (value, validations) => {
     useEffect(() => {
         let re = '';
         for (const validation in validations) {
+            if (validation !== 'isEmpty' && value?.length === 0) return
             switch (validation) {
                 case 'isEmpty':
                     value ? setEmpty(false) : setEmpty(true)

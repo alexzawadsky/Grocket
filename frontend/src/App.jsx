@@ -26,7 +26,6 @@ import {
 } from './pages'
 import CategoriesListStateContext from './contexts/CategoriesListStateContext';
 import { useContext } from 'react';
-// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast'
 
 function App() {

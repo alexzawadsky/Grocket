@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import api, { useCategories } from '../../api/api'
+import { useCategories } from '../../api/api'
 import { BsArrowRight, BsTrashFill } from 'react-icons/bs'
 import Spinner from '../../components/ui/Spinner'
 import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../../components/ui'
+import cn from 'classnames'
+import { IoIosArrowBack } from 'react-icons/io'
 
 const CategoryList = ({ category, setCategory }) => {
 
     const [lastChild, setLastChild] = useState(null)
-    const [parentId, setParentId] = useState(null)
-    const { data, isLoading, error } = useCategories({ parent_id: parentId })
+    const { data, isLoading, error } = useCategories({ parent_id: lastChild?.id })
     const { isMinTablet } = useScreen()
     const { t } = useTranslation()
 
@@ -18,13 +19,8 @@ const CategoryList = ({ category, setCategory }) => {
         setLastChild(category.length > 0 ? category[category.length - 1] : null)
     }, [category])
 
-    useEffect(() => {
-        setParentId(lastChild?.id)
-    }, [lastChild])
-
-    const updateCategory = (newCategory) => {
-        setCategory([...category, newCategory])
-    }
+    const updateCategory = (newCategory) => setCategory([...category, newCategory])
+    const removeLastCategory = () => setCategory(category.slice(0, category.length - 1))
 
     return (
         <div className="flex flex-col md:flex-row gap-2 md:gap-5">
@@ -33,26 +29,41 @@ const CategoryList = ({ category, setCategory }) => {
                     <li
 
                         key={key}
-                        className='flex gap-2 md:gap-5 items-center'
+                        className='flex gap-2 md:gap-5 items-center py-2'
                     >
                         <p className={`${el.is_lower ? 'font-bold' : null}`}>{el.title}</p>
                         {el.is_lower ? null : <BsArrowRight />}
                     </li>
                 ))}
             </ul>}
-            {!lastChild?.is_lower ?
-                <div className='grid gap-2 px-5 h-fit'>
-                    {isLoading ? <Spinner /> :
-                        error ? error.message : data.map((el, key) =>
-                            <div
-                                className='list-item cursor-pointer hover:marker:text-accent-orange'
+            {!category[category.length - 1]?.is_lower &&
+                <div>
+                    <ul className={cn(
+                        isLoading && 'w-24 gap-1',
+                        data?.length > 10 && 'grid-cols-[1fr_1fr]',
+                        'grid h-fit w-fit rounded-xl p-1 border dark:border-2 dark:border-zinc-600'
+                    )}>
+                        {isLoading && <Spinner type='category' count={5} />}
+                        {data && data.map((el, key) =>
+                            <li
+                                className='h-fit py-1 rounded-lg align-baseline w-full hover:bg-slate-100 dark:hover:bg-zinc-700 px-2 cursor-pointer'
                                 key={key}
                                 onClick={() => updateCategory(el)}
                             >
                                 {el.title}
-                            </div>)}
-                </div> : null}
-            {lastChild?.is_lower &&
+                            </li>)}
+                    </ul>
+                    {category.length > 0 && <Button
+                        className='mt-1 hover:text-accent-orange'
+                        onClick={removeLastCategory}
+                        type='button'
+                        border={false}
+                    >
+                        <IoIosArrowBack />back
+                    </Button>}
+                </div>}
+
+            {category[category.length - 1]?.is_lower &&
                 <Button
                     border={false}
                     type='button'

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { BsHeartFill, BsHeart } from 'react-icons/bs'
 import SearchHistoryContext from '../../contexts/HistoryContext';
 import { Spinner, GMap, Title, Price, PublishTime, Button } from '../../components/ui';
 import { ReadMore } from '../../components'
@@ -74,7 +74,7 @@ const ProductPage = () => {
                                 disabled={userIsSeller}
                             >
                                 {userIsSeller && data?.favourites_count}
-                                {userIsSeller || data.is_favourited ? <AiFillHeart /> : <AiOutlineHeart />}
+                                {userIsSeller || data.is_favourited ? <BsHeartFill size={25} /> : <BsHeart size={25} />}
                             </Button>
                         </div>
                         <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">

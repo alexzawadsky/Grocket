@@ -96,9 +96,9 @@ class ImageService:
         img = Image.open(image)
 
         watermark = Image.open(
-            f"{img_settings['WATERMARK_URL']}/" f"{img_settings['WATERMARK_FILE_NAME']}"
-        )
-        img.paste(watermark, img_settings["WATERMARK_INDENTS"])
+            f"{img_settings['WATERMARK_URL']}/{img_settings['WATERMARK_FILE_NAME']}"
+        ).convert("RGBA")
+        img.paste(watermark, img_settings["WATERMARK_INDENTS"], watermark)
 
         thumb_io = BytesIO()
         img.save(thumb_io, img_settings["FORMAT"])

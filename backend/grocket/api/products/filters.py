@@ -8,23 +8,10 @@ class ProductFilter(django_filters.FilterSet):
     max_price = django_filters.NumberFilter(field_name="price", lookup_expr="lte")
     category_id = django_filters.NumberFilter(field_name="category", method="category")
     country = django_filters.CharFilter(field_name="product_addresses__country_code")
-    user_rating = django_filters.NumberFilter(method="rating")
 
     class Meta:
         model = Product
         fields = ["price"]
-
-    def rating(self, queryset, name, value):
-        # print(queryset, value)
-
-        # queryset = queryset.filter(
-        #     user__seller_comments__rate__gte=aggregate(
-        #         Avg("user__seller_comments__rate")
-        #     )
-        # )
-        # print(queryset)
-
-        return queryset
 
     def category(self, queryset, name, value):
         category_ids = dict(self.data.lists())["category_id"]

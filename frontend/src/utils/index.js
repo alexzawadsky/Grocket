@@ -34,22 +34,6 @@ export const info = (text) => {
     toast(text, { duration: 2000 })
 }
 
-export const confirm = (text, onConfirm, onConfirmText, onDenyText) => {
-    // Swal.fire({
-    //     title: text,
-    //     icon: 'warning',
-    //     position: 'top',
-    //     backdrop: null,
-    //     confirmButtonColor: '#dc2626',
-    //     showCancelButton: true,
-    //     confirmButtonText: 'Delete',
-    // }).then((result) => {
-    //     if (result.isConfirmed) {
-    //         onConfirm()
-    //     }
-    // })
-}
-
 export const saveImage = (editorRef, images, setImages, setCurrentImage, imageInputRef, setUploading) => {
     try {
         setUploading(true)

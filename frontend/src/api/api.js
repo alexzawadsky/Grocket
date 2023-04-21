@@ -28,7 +28,8 @@ export const useAddProduct = () => {
     return useMutation((product) => api.post('/api/v1/products/', product),
         {
             onSuccess: (res) => {
-                navigate(`/products/${res?.data?.slug}/promote?redirect=true`)
+                navigate(`/products/${res?.data?.slug}/promote`)
+                window.scrollTo(0, 0)
                 notification(res?.data?.message, 5000)
                 queryClient.invalidateQueries('products')
             }
@@ -105,10 +106,15 @@ export const useArchiveProduct = () => {
 export const useDeleteProduct = () => {
     const api = useAxios()
     const queryClient = useQueryClient()
+    const navigate = useNavigate()
     return useMutation((productId) => api.delete(`/api/v1/products/${productId}/`),
         {
             onSuccess: (res) => {
                 notification(res?.data?.message)
+                if (window.location.pathname.split('/')[1] === 'products') {
+                    window.scrollTo(0, 0)
+                    navigate('/users/me/items')
+                }
                 queryClient.invalidateQueries('products')
                 queryClient.invalidateQueries('product')
             }

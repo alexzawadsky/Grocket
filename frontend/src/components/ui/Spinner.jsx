@@ -64,7 +64,7 @@ const Spinner = ({ gap, type, count = 1, className }) => {
             )
             break
         case 'category':
-            spinner = <div className="w-full h-10 rounded-lg animate-pulse duration-75 bg-slate-100 dark:bg-zinc-700"></div>
+            spinner = <div className="w-full h-7 rounded-lg animate-pulse duration-75 bg-slate-100 dark:bg-zinc-700"></div>
             break
         case 'comment':
             spinner = (

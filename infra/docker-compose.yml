@@ -15,8 +15,9 @@ services:
       - data_value:/app/data/
       - static_value:/app/static/
       - media_value:/app/media/
-    # depends_on:
-    #   - db
+    depends_on:
+      - redis
+      # - db
     env_file:
       - ./.env
 
@@ -39,8 +40,18 @@ services:
       - frontend
       - web
 
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis:/data
+
 volumes:
   static_value:
   media_value:
-  data_value: # postgres_data:
+  data_value:
   react_build:
+  redis:

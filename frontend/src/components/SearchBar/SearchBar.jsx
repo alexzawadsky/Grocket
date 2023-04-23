@@ -27,6 +27,7 @@ const SearchForm = () => {
                 className='flex flex-col-reverse md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 w-full'
                 onSubmit={(e) => {
                     search.value && navigate(`/search?search=${stateToQuery(search.value.toLowerCase())}`)
+                    setOpen(false)
                 }}
             >
                 <Button

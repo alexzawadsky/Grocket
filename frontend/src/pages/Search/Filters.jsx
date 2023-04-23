@@ -6,7 +6,7 @@ import cn from 'classnames'
 import { useContext } from 'react'
 import CurrencyContext from '../../contexts/CurrencyContext'
 
-const Filters = ({ mnP, mxP, open }) => {
+const Filters = ({ mnP, mxP, open, setOpen }) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const minPrice = useInput(searchParams.get('min_price') || '', { isInt: true })
@@ -54,7 +54,10 @@ const Filters = ({ mnP, mxP, open }) => {
                 style='fill'
                 width='fit'
                 color='accent-orange'
-                onClick={handleApply}
+                onClick={() => {
+                    handleApply()
+                    setOpen && setOpen(false)
+                }}
             >
                 {t('apply')}
             </Button>

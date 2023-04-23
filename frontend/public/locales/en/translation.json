@@ -142,7 +142,7 @@
     "login_to_acc": "Sign in to account",
     "remember_me": "Remember me",
     "forgot_password": "Forgot password",
-    "bought": "bought",
+    "bought": "purchased",
     "open_product_page": "Open product page",
     "promotions_fetch_error": "Failed to get available promotions, please try again later",
     "product_fetch_fail": "Data for item card failed to fetch",

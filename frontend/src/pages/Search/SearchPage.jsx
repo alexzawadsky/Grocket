@@ -26,7 +26,7 @@ const Search = () => {
         <div className='grid gap-5'>
             <SearchBar />
             <div>
-                <Title className='pl-0 md:pl-5 lg:pl-0'>
+                <Title className='pl-0 md:pl-5 lg:pl-0 !text-2xl md:!text-3xl'>
                     Products matching "{searchParams.get('search')}" ({data?.count || 0})
                 </Title>
                 <div className='lg:grid lg:grid-cols-[1fr_3fr] gap-5 mt-5'>
@@ -52,6 +52,7 @@ const Search = () => {
                             !isList && 'max-md:gap-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'
                         )}>
                             {!isMinPC && <Filters
+                                setOpen={setFiltersOpen}
                                 open={filtersOpen}
                                 mnP={data?.min_price}
                                 mxP={data?.max_price}

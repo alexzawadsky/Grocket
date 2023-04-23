@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="frontend/src/assets/logo.png" alt="logo" width="150" height="auto" />
+  <img src="frontend/src/assets/images/logo.png" alt="logo" width="150" height="auto" />
   <h1>Grocket</h1>
   <p>
     Grocket is an international online marketplace that specializes in secondhand items. It provides a platform for users to buy and sell a variety of used goods from all over the world, including clothing, electronics, furniture, and more.

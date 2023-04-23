@@ -6,12 +6,13 @@ import { FiLogIn, FiUserPlus } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
 import useScreen from '../../hooks/useScreen'
 import LanguageDropdown from './LanguageDropdown'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/images/logo.png'
 import heart from '../../assets/icons/ukraine.svg'
 import ThemeToggle from './ThemeToggle'
 import { Button } from '../ui'
 import { GoKebabVertical } from 'react-icons/go'
 import ProfileButton from './ProfileButton'
+import CurrencyDropdown from './CurrencyDropdown'
 
 const Navbar = () => {
 
@@ -58,6 +59,9 @@ const Navbar = () => {
                     <li>
                         <LanguageDropdown />
                     </li>
+                    <li>
+                        <CurrencyDropdown />
+                    </li>
                     <li className='mr-auto'>
                         <ThemeToggle />
                     </li>
@@ -98,6 +102,9 @@ const Navbar = () => {
             {(!isMinTablet && open) && <ul className='flex container items-center px-5 gap-3 mx-auto nav-toggle'>
                 <li>
                     <LanguageDropdown />
+                </li>
+                <li>
+                    <CurrencyDropdown />
                 </li>
                 <li className='mr-auto h-full'>
                     <ThemeToggle />

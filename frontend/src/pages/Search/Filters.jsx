@@ -3,12 +3,15 @@ import { Input, Button } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
+import { useContext } from 'react'
+import CurrencyContext from '../../contexts/CurrencyContext'
 
 const Filters = ({ mnP, mxP, open }) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const minPrice = useInput(searchParams.get('min_price') || '', { isInt: true })
     const maxPrice = useInput(searchParams.get('max_price') || '', { isInt: true })
+    const { convertPrice } = useContext(CurrencyContext)
     const country = useInput(searchParams.get('country'))
     const { t } = useTranslation()
 
@@ -30,11 +33,11 @@ const Filters = ({ mnP, mxP, open }) => {
             <div className="flex gap-1 items-center">
                 <Input
                     instance={minPrice}
-                    placeholder={`${t('from_price')}   ${mnP || 0}`}
+                    placeholder={`${t('from_price')} ${convertPrice(mnP) || 0}`}
                 />
                 <Input
                     instance={maxPrice}
-                    placeholder={`${t('to_price')}   ${mxP || 0}`}
+                    placeholder={`${t('to_price')} ${convertPrice(mxP) || 0}`}
                 />
             </div>
             <Input

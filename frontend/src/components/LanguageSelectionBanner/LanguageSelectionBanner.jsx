@@ -1,7 +1,7 @@
 import useLocalStorage from "../../hooks/useLocalStorage"
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import localization from '../../assets/localization.json'
+import localization from '../../assets/json/localization.json'
 import Flag from "../ui/Flag"
 import useScreen from "../../hooks/useScreen"
 import { BsCheck } from 'react-icons/bs'

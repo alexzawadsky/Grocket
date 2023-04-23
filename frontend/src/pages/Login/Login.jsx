@@ -5,7 +5,7 @@ import { NavLink, useSearchParams } from 'react-router-dom'
 import { Input, Form, Title, Button } from '../../components/ui'
 import AuthContext from '../../contexts/AuthProvider'
 import useInput from '../../hooks/useInput'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/images/logo.png'
 
 const Login = () => {
 

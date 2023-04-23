@@ -1,6 +1,6 @@
 import TimeAgo from 'javascript-time-ago'
 import ReactTimeAgo from 'react-time-ago'
-import localization from '../../assets/localization.json'
+import localization from '../../assets/json/localization.json'
 import en from 'javascript-time-ago/locale/en.json'
 import ru from 'javascript-time-ago/locale/ru.json'
 import sv from 'javascript-time-ago/locale/sv.json'

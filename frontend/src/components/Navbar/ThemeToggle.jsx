@@ -54,7 +54,7 @@ const ThemeToggle = () => {
                 {options[themeSetting].title}
             </Button>
             <div className="relative">
-                {open && <ul className="absolute bg-white dark:bg-zinc-800 grid gap-1 top-3 p-1 border dark:border-2 dark:border-zinc-600 rounded-md -left-4">
+                {open && <ul className="absolute bg-white dark:bg-zinc-800 grid gap-1 top-3 p-1 border-2 dark:border-zinc-600 rounded-md -left-4">
                     {Object.keys(options).map(key => <li key={key}>
                         <Button
                             onClick={() => setThemeSetting(options[key].code)}
@@ -64,7 +64,7 @@ const ThemeToggle = () => {
                                 themeSetting === options[key].code && '!bg-slate-200 dark:!bg-zinc-600'
                             )}
                             height={8}
-                            px={3}
+                            px={2}
                         >
                             {options[key].menuIcon} {options[key].title}
                         </Button>

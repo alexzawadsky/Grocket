@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { useTranslation } from "react-i18next"
-import langs from '../../assets/localization.json'
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
+import langs from '../../assets/json/localization.json'
 import useScreen from "../../hooks/useScreen"
 import Flag from '../ui/Flag'
 import { Button } from "../ui"
@@ -28,10 +27,9 @@ const LanguageDropdown = () => {
     }, [])
 
     return (
-        <div className="rounded-md text-black dark:text-slate-50 font-bold lang-drop h-full">
+        <div className="lang-drop">
             <Button
                 onClick={() => setOpen(prevState => !prevState)}
-                className='flex items-center gap-2 cursor-pointer'
                 border={false}
             >
                 <Flag
@@ -47,7 +45,7 @@ const LanguageDropdown = () => {
                             border={false}
                             px={2}
                             width='full'
-                            className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200 dark:!bg-zinc-600'} hover:bg-slate-100 hover:dark:bg-zinc-700 py-1 md:py-2 !rounded-md leading-none cursor-pointer flex items-center gap-2 !justify-start`}
+                            className={`${selectedLang?.code === langs[l]?.code && '!bg-slate-200 dark:!bg-zinc-600'} hover:bg-slate-100 hover:dark:bg-zinc-700 !rounded-md leading-none cursor-pointer flex items-center gap-2 !justify-start h-8 md:h-10`}
                             onClick={() => {
                                 i18n.changeLanguage(langs[l]?.code)
                                 setOpen(false)

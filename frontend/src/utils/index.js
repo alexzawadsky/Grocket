@@ -1,5 +1,5 @@
+import { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 
 export const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -27,7 +27,15 @@ export const getCookie = (name) => {
 }
 
 export const notification = (text, duration) => {
-    toast.success(text, { duration: duration ? duration : 2000 })
+    const isDark = localStorage.getItem('theme') === '"dark"' || (localStorage.getItem('theme') !== '"auto"' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    toast.success(text,
+        {
+            duration: duration ? duration : 2000,
+            style: isDark ? {
+                background: '#333',
+                color: '#fff',
+            } : null
+        })
 }
 
 export const info = (text) => {

@@ -6,6 +6,7 @@ const Avatar = ({ avatar, height, width, alt, className }) => {
         className={cn(
             'object-cover rounded-full aspect-square',
             !width && 'w-full',
+            !avatar && 'dark:invert dark:brightness-75',
             className
         )}
         src={avatar ? avatar : defaultAvatar}

@@ -23,9 +23,9 @@ const FullCategoriesList = () => {
     )
     const [parentCategory, setParentCategory] = useState({ id: -1 })
 
-    // useEffect(() => {
-    //     return () => setOpen(false)
-    // }, [])
+    useEffect(() => {
+        return () => setOpen(false)
+    }, [])
 
     if (error) return
     if (!open) return

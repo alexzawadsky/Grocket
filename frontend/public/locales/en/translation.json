@@ -9,9 +9,6 @@
     "you_looked_earlier": "You looked earlier",
     "clear_history": "Clear history",
     "view_full_history": "View full browsing history",
-    "choose_lang": "Choose language",
-    "next": "Next",
-    "prev": "Previous",
     "you_checked_earlier": "You've checked this products earlier",
     "back_to_mainpage": "Back to main page",
     "description": "Description",
@@ -26,7 +23,6 @@
     "on_grocket_since": "On Grocket since",
     "comments": "Comments",
     "favourites": "Favourites",
-    "settings": "Settings",
     "logout_from_acc": "Logout from account",
     "manage": "Manage",
     "loading": "Loading",
@@ -151,5 +147,6 @@
     "to_price": "To",
     "apply": "Apply",
     "free": "Free",
-    "filters": "Filters"
+    "filters": "Filters",
+    "back": "Back"
 }

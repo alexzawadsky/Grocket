@@ -5,13 +5,14 @@ import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
 import { useContext } from 'react'
 import CurrencyContext from '../../contexts/CurrencyContext'
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 const Filters = ({ mnP, mxP, open, setOpen }) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const minPrice = useInput(searchParams.get('min_price') || '', { isInt: true })
     const maxPrice = useInput(searchParams.get('max_price') || '', { isInt: true })
-    const { convertPrice } = useContext(CurrencyContext)
+    const { convertPrice, targetCurrency } = useContext(CurrencyContext)
     const country = useInput(searchParams.get('country'))
     const { t } = useTranslation()
 
@@ -26,18 +27,18 @@ const Filters = ({ mnP, mxP, open, setOpen }) => {
 
     return (
         <aside className={cn(
-            open && '!right-0 max-md:!pl-0',
-            'max-lg:absolute z-40 -right-[110%] max-md:pl-5 transition-all duration-200 top-0 grid gap-1 pb-5 md:p-5 lg:p-0 md:w-80 lg:w-full md:border dark:md:border-2 dark:md:border-zinc-600 lg:border-none md:rounded-lg lg:rounded-lg h-fit w-full bg-white dark:bg-zinc-800'
+            open ? 'right-0 max-md:!pl-0' : '-right-[110%]',
+            'max-lg:absolute z-40 max-md:pl-5 transition-[right] duration-200 top-0 grid gap-1 pb-5 md:p-5 lg:p-0 md:w-80 lg:w-full md:border dark:md:border-2 dark:md:border-zinc-600 lg:border-none md:rounded-lg lg:rounded-lg h-fit w-full bg-white dark:bg-zinc-800'
         )}>
             <p className='font-bold text-lg'>{t('price')}</p>
             <div className="flex gap-1 items-center">
                 <Input
                     instance={minPrice}
-                    placeholder={`${t('from_price')} ${convertPrice(mnP) || 0}`}
+                    placeholder={`${t('from_price')}  ${convertPrice(mnP) || 0} ${getSymbolFromCurrency(targetCurrency)}`}
                 />
                 <Input
                     instance={maxPrice}
-                    placeholder={`${t('to_price')} ${convertPrice(mxP) || 0}`}
+                    placeholder={`${t('to_price')}  ${convertPrice(mxP) || 0} ${getSymbolFromCurrency(targetCurrency)}`}
                 />
             </div>
             <Input

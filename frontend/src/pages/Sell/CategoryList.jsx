@@ -24,13 +24,9 @@ const CategoryList = ({ category, setCategory }) => {
 
     return (
         <div className="flex flex-col md:flex-row gap-2 md:gap-5">
-            {category.length > 0 && <ul className="flex gap-2 md:gap-5 flex-wrap items-center h-fit">
+            {category.length > 0 && <ul className="flex gap-x-2 gap-y-1 md:gap-5 flex-wrap items-center h-fit">
                 {category.map((el, key) => (
-                    <li
-
-                        key={key}
-                        className='flex gap-2 md:gap-5 items-center py-2'
-                    >
+                    <li key={key} className='flex gap-2 md:gap-5 items-center'>
                         <p className={`${el.is_lower ? 'font-bold' : null}`}>{el.title}</p>
                         {el.is_lower ? null : <BsArrowRight />}
                     </li>
@@ -39,7 +35,7 @@ const CategoryList = ({ category, setCategory }) => {
             {!category[category.length - 1]?.is_lower &&
                 <div>
                     <ul className={cn(
-                        isLoading && 'w-24 gap-1',
+                        isLoading && '!w-32 gap-1 !border-none',
                         data?.length > 10 && 'grid-cols-[1fr_1fr]',
                         'grid h-fit w-fit rounded-xl p-1 border dark:border-2 dark:border-zinc-600'
                     )}>
@@ -54,12 +50,12 @@ const CategoryList = ({ category, setCategory }) => {
                             </li>)}
                     </ul>
                     {category.length > 0 && <Button
-                        className='mt-1 hover:text-accent-orange'
+                        className='mt-1 hover:text-accent-orange ml-[10px] !gap-0.5'
                         onClick={removeLastCategory}
                         type='button'
                         border={false}
                     >
-                        <IoIosArrowBack />back
+                        <IoIosArrowBack />{t('back')}
                     </Button>}
                 </div>}
 
@@ -67,7 +63,9 @@ const CategoryList = ({ category, setCategory }) => {
                 <Button
                     border={false}
                     type='button'
-                    className='text-accent-red flex items-center gap-2'
+                    width='fit'
+                    textColor='accent-red'
+                    className=''
                     onClick={() => setCategory([])}
                 >
                     <BsTrashFill />{!isMinTablet && t('change_category')}

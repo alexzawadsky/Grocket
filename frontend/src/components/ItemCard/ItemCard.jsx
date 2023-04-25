@@ -108,10 +108,10 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                         <FiMail />
                         {t('send_message')}
                     </NavLink>}
-                    <p className='flex items-center gap-2 text-green-600 dark:text-green-300 dark:bg-green-800 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mt-auto'>
+                    {product?.user?.phone_verified && <p className='flex items-center gap-2 text-green-600 dark:text-green-300 dark:bg-green-800 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mt-auto'>
                         <TbPhoneCheck />
                         {t('phone_verified')}
-                    </p>
+                    </p>}
                 </div>
             </div>}
         </NavLink>
@@ -164,9 +164,9 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     to={product?.user?.id === user?.user_id ? '/users/me' : `/users/${product?.user?.id}`}
                     className='font-bold hover:text-accent-orange flex items-center gap-1'
                 >
-                    <p className='flex items-center gap-2 text-green-600 dark:text-green-300 dark:bg-green-800 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mr-1.5'>
+                    {product?.user?.phone_verified && <p className='flex items-center gap-2 text-green-600 dark:text-green-300 dark:bg-green-800 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mr-1.5'>
                         <TbPhoneCheck />
-                    </p>
+                    </p>}
                     <div className='flex flex-wrap gap-1 text-[12px] 2xl:text-sm'>
                         <p>{product?.user?.first_name}</p>
                         <p>{product?.user?.last_name}</p>

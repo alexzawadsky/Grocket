@@ -95,13 +95,6 @@ const Spinner = ({ gap, type, count = 1, className }) => {
                 </div>
             )
             break
-        case 'price':
-            spinner = (
-                <div className="bg-slate-100 animate-pulse duration-75 w-20 h-5">
-
-                </div>
-            )
-            break
         default:
             spinner = (
                 <span className={`flex items-center font-bold ${gap && 'pt-5 md:pl-5'}`}>

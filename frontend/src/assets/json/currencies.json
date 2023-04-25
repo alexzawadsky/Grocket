@@ -1,6 +1,7 @@
 [
     "USD",
     "EUR",
+    "GBP",
     "CNY",
     "UAH",
     "RUB",
@@ -10,5 +11,6 @@
     "GEL",
     "INR",
     "ILS",
-    "SAR"
+    "AED",
+    "KRW"
 ]

@@ -11,7 +11,7 @@ const LanguageDropdown = () => {
     const { i18n } = useTranslation()
     const [open, setOpen] = useState(false)
     const selectedLang = langs[i18n.resolvedLanguage.toUpperCase()]
-    const { isMinTablet } = useScreen()
+    const { isMinTablet, isMinPC } = useScreen()
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -36,7 +36,10 @@ const LanguageDropdown = () => {
                     className='h-10 w-5'
                     country={selectedLang?.flag}
                 />
-                <p>{selectedLang?.name}</p>
+                <p>
+                    {(isMinPC || !isMinTablet) ?
+                        selectedLang?.name : selectedLang?.code.toUpperCase()}
+                </p>
             </Button>
             <div className="relative">
                 {open && <ul className="absolute -left-3 top-1 text-black dark:text-slate-50 font-bold bg-white dark:bg-zinc-800 border-2 dark:border-zinc-600 rounded-lg  p-1 grid grid-cols-2  gap-1 w-20 md:w-80">

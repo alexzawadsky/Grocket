@@ -14,7 +14,7 @@ const ImageEditor = ({ images, setImages }) => {
     const imageInputRef = useRef()
     const { minTabletW } = useScreen()
     let referenceWidth = 1250
-    if (window.innerWidth > minTabletW) {
+    if (window.innerWidth >= minTabletW) {
         referenceWidth = 320
     }
     const editorWidth = referenceWidth * (window.innerWidth / 1920)

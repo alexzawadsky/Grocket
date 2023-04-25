@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { BsArrowLeft, BsCheckCircleFill } from 'react-icons/bs'
+import { BsArrowLeft, BsCheckCircleFill, BsCircle } from 'react-icons/bs'
 import { useParams } from 'react-router'
 import { NavLink, useSearchParams } from 'react-router-dom'
 import { useProduct, usePromotions } from '../../api/api'
@@ -53,7 +53,7 @@ const Promote = () => {
             <Title text={t('buy_promotions_head')} />
             <div className='grid lg:grid-cols-[1fr_3fr] gap-5'>
                 <div>
-                    <ul className='grid h-fit gap-5' aria-label='list of available product promotions'>
+                    <ul className='grid h-fit gap-5 md:max-lg:grid-cols-[1fr_1fr]' aria-label='list of available product promotions'>
                         {promotions.isError && <p>{t('promotions_fetch_error')}</p>}
                         {promotions.isLoading && <Spinner type='promotion' count={2} />}
                         {promotions.data && promotions.data?.map((promo, key) =>
@@ -69,13 +69,12 @@ const Promote = () => {
                                 onClick={() => !product.data?.promotions.includes(promo.name) && updateSelected(promo)}
                             >
                                 <div className="flex items-center justify-between">
-                                    <h3 className='font-bold text-lg'>
+                                    <h3 className='font-bold text-lg whitespace-normal'>
                                         {promo?.title} {product.data?.promotions.includes(promo?.name) && `(${t('bought')})`}
                                     </h3>
-                                    {(selected.find(el => el.id === promo.id) || product.data?.promotions.includes(promo?.name)) &&
-                                        <span className='text-accent-orange text-xl'><BsCheckCircleFill /></span>}
+                                    {(selected.find(el => el.id === promo.id) || product.data?.promotions.includes(promo?.name)) ?
+                                        <span className='text-accent-orange text-xl'><BsCheckCircleFill /></span> : <span className='text-xl text-slate-200 dark:text-zinc-600'><BsCircle /></span>}
                                 </div>
-
                                 <p aria-label='promotion description'>{promo?.description}</p>
                                 <Price
                                     className='font-bold'

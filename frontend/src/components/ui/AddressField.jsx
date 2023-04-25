@@ -4,7 +4,7 @@ import Input from './Input'
 import useInput from '../../hooks/useInput'
 import useScreen from '../../hooks/useScreen'
 
-const AddressField = ({ setAddress, split }) => {
+const AddressField = ({ setAddress }) => {
 
     const { t } = useTranslation()
     const address = useInput('')
@@ -30,42 +30,15 @@ const AddressField = ({ setAddress, split }) => {
 
 
 
-    if (split) {
-        return (
-            <>
-                {/* <label
-                    for='address'
-                    className='h-10 flex items-center after:content-["*"] after:text-accent-red after:pl-1'
-                >
-                    {t('address')}
-                </label> */}
-                <Input
-                    split={isMinTablet}
-                    instance={address}
-                    title={t('address')}
-                    must
-                    type="text"
-                    id='address'
-                    className='grocket-input'
-                />
-            </>
-        )
-    }
-    return (
-        <div>
-            <label
-                for='address'
-                className='flex items-center after:content-["*"] after:text-accent-red after:pl-1'
-            >
-                {t('address')}
-            </label>
-            <input
-                type="text"
-                id='address'
-                className='grocket-input'
-            />
-        </div>
-    )
+    return <Input
+        split={isMinTablet}
+        instance={address}
+        title={t('address')}
+        must
+        type="text"
+        id='address'
+        className='grocket-input'
+    />
 }
 
 export default AddressField

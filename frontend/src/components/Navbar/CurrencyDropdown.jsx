@@ -4,11 +4,13 @@ import getSymbolFromCurrency from 'currency-symbol-map'
 import { Button } from "../ui"
 import currencies from '../../assets/json/currencies.json'
 import cn from 'classnames'
+import useScreen from "../../hooks/useScreen"
 
 const CurrencyDropdown = () => {
 
     const { targetCurrency, setTargetCurrency } = useContext(CurrencyContext)
     const [open, setOpen] = useState(false)
+    const { isMinPC, isMinTablet } = useScreen()
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -30,7 +32,7 @@ const CurrencyDropdown = () => {
                 onClick={() => setOpen(prevState => !prevState)}
                 className='currency-drop'
             >
-                {getSymbolFromCurrency(targetCurrency)} {targetCurrency}
+                {getSymbolFromCurrency(targetCurrency)} {(isMinPC || !isMinTablet) && targetCurrency}
             </Button>
             <div className="relative">
                 {open && <ul className="absolute border-2 dark:border-zinc-600 rounded-lg p-1 grid grid-cols-[1fr_1fr] bg-white dark:bg-zinc-800 gap-1 -left-3 top-3">

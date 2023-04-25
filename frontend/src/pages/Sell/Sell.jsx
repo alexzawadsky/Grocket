@@ -8,6 +8,7 @@ import CategoryList from './CategoryList'
 import { useAddProduct } from '../../api/api'
 import ProductForm from '../../forms/ProductForm'
 import { useTranslation } from 'react-i18next'
+import { Helmet } from 'react-helmet-async'
 
 const Sell = () => {
 
@@ -39,6 +40,9 @@ const Sell = () => {
 
     return (
         <div className='flex flex-col md:grid gap-5 w-full xl:w-8/12 mx-auto'>
+            <Helmet>
+                <title>Sell item - Grocket</title>
+            </Helmet>
             <Title
                 text={t('sell_your_item')}
                 className='col-span-full'

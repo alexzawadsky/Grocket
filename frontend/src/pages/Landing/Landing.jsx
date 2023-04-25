@@ -4,6 +4,7 @@ import ProductsList from './ProductsList'
 import HistoryList from './HistoryList'
 import { useTranslation } from 'react-i18next'
 import useScreen from '../../hooks/useScreen'
+import { Helmet } from 'react-helmet-async'
 
 const Landing = () => {
 
@@ -13,6 +14,9 @@ const Landing = () => {
     return (
         // < className='flex flex-col md:gap-5 items-center md:items-start'>
         <>
+            <Helmet>
+                <title>Grocket - Goods especially for you</title>
+            </Helmet>
             <SearchBar />
             <div className='md:grid md:grid-cols-[2fr_1fr] lg:grid-cols-[3fr_1fr] flex flex-col-reverse md:gap-7 w-full md:pr-5'>
                 <section aria-label='main section of index page'>

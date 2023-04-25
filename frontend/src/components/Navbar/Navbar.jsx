@@ -13,6 +13,7 @@ import { Button } from '../ui'
 import { GoKebabVertical } from 'react-icons/go'
 import ProfileButton from './ProfileButton'
 import CurrencyDropdown from './CurrencyDropdown'
+import cn from 'classnames'
 
 const Navbar = () => {
 
@@ -37,8 +38,11 @@ const Navbar = () => {
     }, [])
 
     return (
-        <nav className='w-full sticky z-[99] left-0 top-0 shadow-lg bg-white dark:bg-zinc-800' aria-label='website navigation bar'>
-            <ul className='flex container pl-5 md:px-5 mx-auto md:gap-4 lg:gap-6 h-16 items-center' aria-label='navigation bar items list'>
+        <nav className={cn(
+            'w-full sticky z-[99] left-0 top-0 bg-white dark:bg-zinc-800',
+            isMinTablet ? 'shadow-lg' : ''
+        )} aria-label='website navigation bar'>
+            <ul className='flex container pl-5 md:px-5 mx-auto md:gap-4 lg:gap-6 h-16 items-center bg-white dark:bg-zinc-800' aria-label='navigation bar items list'>
                 <li className="flex items-center gap-1 max-md:mr-auto">
                     <NavLink className='text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
                         {isMinTablet ? 'Grocket' : <img className='h-10' src={logo} alt='grocket logo' />}
@@ -99,17 +103,25 @@ const Navbar = () => {
                     <GoKebabVertical />
                 </Button>}
             </ul>
-            {(!isMinTablet && open) && <ul className='flex container items-center px-5 gap-3 mx-auto nav-toggle'>
-                <li>
-                    <LanguageDropdown />
-                </li>
-                <li>
-                    <CurrencyDropdown />
-                </li>
-                <li className='mr-auto h-full'>
-                    <ThemeToggle />
-                </li>
-            </ul>}
+            {!isMinTablet && <div className={cn(
+                'transition-[top] w-full nav-toggle absolute h-10 bg-white dark:bg-zinc-800 shadow-lg -z-40',
+                open ? 'top-16' : 'top-6'
+            )}>
+                <ul className={cn(
+                    'flex container items-center px-5 gap-3 mx-auto transition-opacity',
+                    open ? 'opacity-100' : 'opacity-0'
+                )}>
+                    <li>
+                        <LanguageDropdown />
+                    </li>
+                    <li>
+                        <CurrencyDropdown />
+                    </li>
+                    <li className='mr-auto h-full'>
+                        <ThemeToggle />
+                    </li>
+                </ul>
+            </div>}
         </nav>
     )
 }

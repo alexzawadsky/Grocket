@@ -8,6 +8,7 @@ const Pagination = ({ className, page, pagesCount, setPage }) => {
     const { isMinTablet } = useScreen()
 
     return <ReactPaginate
+        onClick={() => window.scrollTo(0, 0)}
         forcePage={page}
         pageCount={pagesCount}
         pageRangeDisplayed={!isMinTablet ? 1 : 3}

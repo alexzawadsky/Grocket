@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 
 const Category = ({ category }) => {
     return (
-        <ul className="flex gap-3 md:gap-5 flex-wrap items-center" aria-label='list of product categories'>
+        <ul className="flex gap-x-3 gap-y-1 md:gap-5 flex-wrap items-center" aria-label='list of product categories'>
             {category.parents.map((el, key) => <li key={key} className="flex gap-3 md:gap-5 items-center">
                 <NavLink
                     to={`/search?category_id=${el?.id}`}

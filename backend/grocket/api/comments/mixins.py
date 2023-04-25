@@ -3,8 +3,12 @@ from rest_framework.mixins import CreateModelMixin, DestroyModelMixin
 
 from ..mixins import BaseMixin
 from .paginators import CommentPageLimitPagination
-from .serializers import (CommentCreateSerializer, CommentReadOnlySerializer,
-                          CommentReplyCreateSerializer, StatusSerializer)
+from .serializers import (
+    CommentCreateSerializer,
+    CommentReadOnlySerializer,
+    CommentReplyCreateSerializer,
+    StatusSerializer,
+)
 
 
 class CommentMixin(CreateModelMixin, DestroyModelMixin, BaseMixin):
@@ -31,5 +35,5 @@ class CommentMixin(CreateModelMixin, DestroyModelMixin, BaseMixin):
         elif self.action in ("statuses",):
             return StatusSerializer
 
-    def get_response_message(self, method=None):
-        return super().get_response_message(app="comments", method=method)
+    def _get_response_message(self, method=None):
+        return super()._get_response_message(app="comments", method=method)

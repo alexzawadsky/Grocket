@@ -44,7 +44,7 @@ class Image(models.Model):
         on_delete=models.CASCADE,
         verbose_name="product",
     )
-    image = models.ImageField(verbose_name="image", upload_to="images/")
+    image = models.ImageField(verbose_name="image", upload_to="images/%Y-%m-%d/")
     is_main = models.BooleanField(verbose_name="is main", default=False)
 
     class Meta:

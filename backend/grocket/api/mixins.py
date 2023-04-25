@@ -28,7 +28,7 @@ RESPONSE_MESSAGES = {
 
 
 class BaseMixin(GenericViewSet):
-    def get_response_message(self, app, method=None):
+    def _get_response_message(self, app, method=None):
         try:
             message = RESPONSE_MESSAGES[app][self.action]
             if method is not None:

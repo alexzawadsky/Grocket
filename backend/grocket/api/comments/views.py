@@ -1,7 +1,10 @@
 from comments.selectors import get_comments, get_statuses
-from comments.services.services import (CommentReplyService, CommentService,
-                                        CreateCommentReplyService,
-                                        CreateCommentService)
+from comments.services.services import (
+    CommentReplyService,
+    CommentService,
+    CreateCommentReplyService,
+    CreateCommentService,
+)
 from django.db import transaction
 from rest_framework import status
 from rest_framework.decorators import action
@@ -15,7 +18,7 @@ class CommentViewSet(CommentMixin):
         user_id = self.request.user.id
         service = CommentService(comment_id=pk)
         service.delete(user_id=user_id)
-        data = self.get_response_message()
+        data = self._get_response_message()
         return Response(data, status=status.HTTP_200_OK)
 
     @transaction.atomic()
@@ -25,7 +28,7 @@ class CommentViewSet(CommentMixin):
         serializer.is_valid(raise_exception=True)
         service = CreateCommentService()
         service.create(**serializer.data)
-        data = self.get_response_message()
+        data = self._get_response_message()
         return Response(data, status=status.HTTP_201_CREATED)
 
     @action(["get"], detail=False)
@@ -48,14 +51,14 @@ class CommentViewSet(CommentMixin):
             serializer.is_valid(raise_exception=True)
             service = CreateCommentReplyService()
             service.reply_to_comment(**serializer.data)
-            data = self.get_response_message(method="POST")
+            data = self._get_response_message(method="POST")
             return Response(data, status=status.HTTP_201_CREATED)
 
         if request.method == "DELETE":
             user = self.request.user
             service = CommentReplyService(reply_id=pk)
             service.delete(user_id=user.id)
-            data = self.get_response_message(method="DELETE")
+            data = self._get_response_message(method="DELETE")
             return Response(data, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

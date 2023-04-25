@@ -113,6 +113,13 @@ def get_product_or_404(user_id: Optional[int] = None, **fields) -> Product:
     return product
 
 
+@http_404_logger
+def get_category_name_by_id_or_none(category_id: int) -> Optional[str]:
+    if Category.objects.filter(id=category_id).exists():
+        return get_object_or_404(Category, id=category_id).title
+    return None
+
+
 def get_product_images(product_id: int) -> QuerySet[Image]:
     return Image.objects.filter(product__id=product_id)
 

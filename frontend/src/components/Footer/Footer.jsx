@@ -2,8 +2,7 @@ import { useTranslation } from "react-i18next"
 import FooterCol from "./FooterCol"
 import { BiNews, BiServer } from "react-icons/bi"
 import { BsGithub } from 'react-icons/bs'
-import { AiOutlineInfoCircle } from 'react-icons/ai'
-import { CgMoreO } from 'react-icons/cg'
+import { AiOutlineInfoCircle, AiOutlineForm } from 'react-icons/ai'
 import { RiHandHeartLine } from 'react-icons/ri'
 
 const Footer = () => {
@@ -24,6 +23,12 @@ const Footer = () => {
                     icon: <AiOutlineInfoCircle />,
                     name: t('about_site'),
                     url: '/about-site'
+                },
+                {
+                    icon: <AiOutlineForm />,
+                    name: t('feedback_form'),
+                    url: 'https://forms.gle/1ECKNCFyHhyCEkvL8',
+                    blank: true
                 }
             ]
         },

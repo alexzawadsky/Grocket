@@ -8,13 +8,21 @@ const Price = ({ className, price }) => {
 
     const { convertPrice, targetCurrency, isLoading } = useContext(CurrencyContext)
     const { t } = useTranslation()
+    const convertedPrice = convertPrice(price)
 
     return <p className={cn(
         className,
         'flex items-center'
     )} aria-label='item price'>
         {price == 0 ? t('free') :
-            `${isLoading ? t('loading') : convertPrice(price)} ${getSymbolFromCurrency(targetCurrency)}`}
+            `${isLoading ?
+                t('loading')
+                :
+                parseFloat(convertedPrice)
+                    .toFixed((convertedPrice - Math.floor(convertedPrice)) !== 0 ? 2 : 0)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+            } ${getSymbolFromCurrency(targetCurrency)}`}
     </p>
 }
 

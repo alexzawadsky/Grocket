@@ -26,7 +26,7 @@ const SellerCard = ({ profile }) => {
                         to={user?.user_id !== profile.id ? `/users/${profile.id}` : '/users/me'}
                         className='hover:text-accent-orange'
                     >{profile.last_name} {profile.first_name} {user && user.user_id === profile.id ? `(${t('me')})` : null}</NavLink>
-                    <RatingStars rating={profile.rate} />
+                    <RatingStars rating={profile.rating} />
                 </div>
             </div>
             <p className='text-sm text-primary-300 dark:text-zinc-400' aria-label='user grocket join date'>{`${t('on_grocket_since')} ${date}`}</p>

@@ -12,8 +12,8 @@ export const CurrencyProvider = ({ children }) => {
     const { data, isLoading } = useExchangeRates()
 
     const convertPrice = price => {
-        if (!data) return parseInt(price)
-        return parseInt(price * (data[targetCurrency] || 1))
+        if (!data) return price
+        return price * (data[targetCurrency] || 1)
     }
 
     const contextData = {

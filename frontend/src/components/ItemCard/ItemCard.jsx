@@ -55,16 +55,20 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                 >
                     {product?.description?.slice(0, product?.promotions?.includes('xl') ? 200 : 100)}{product?.description.length > (product?.promotions.includes('xl') ? 200 : 100) ? '...' : ''}
                 </p>
-                <p
-                    className={
-                        product?.promotions.includes('price') ?
-                            'font-bolditalic rounded-lg text-lg lg:text-2xl bg-accent-orange text-white w-fit py-1 px-2 leading-none'
-                            :
-                            'font-bolditalic leading-none text-md lg:text-xl'
-                    }
-                >
-                    <Price price={product?.price} currency={product?.price_currency} />
-                </p>
+                {product?.promotions.includes('price') ?
+                    <span className="before:block before:absolute before:-inset-1 before:-skew-x-[10deg] before:bg-accent-orange relative inline-block px-1 before:rounded-sm ml-1.5">
+                        <span className="relative text-white"><Price
+                            className='font-bolditalic leading-none text-lg lg:text-2xl'
+                            price={product?.price}
+                        />
+                        </span>
+                    </span>
+                    :
+                    <Price
+                        className='font-bolditalic leading-none text-md lg:text-xl'
+                        price={product?.price}
+                    />
+                }
                 <div>
                     <p className={`flex items-center gap-2 ${product?.promotions.includes('xl') ? 'text-sm lg:text-md' : 'text-[12px] lg:text-sm'}`}>
                         <BiTimeFive />
@@ -72,7 +76,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     </p>
                     <p className={`flex items-center gap-2 ${product?.promotions.includes('xl') ? 'text-sm lg:text-md' : 'text-[12px] lg:text-sm'}`}>
                         <FiMapPin />
-                        {product?.address?.short} {product?.addess?.city}
+                        {product?.address?.short} {product?.address?.city}
                     </p>
                     <p className={`flex items-center gap-2 ${product?.promotions.includes('xl') ? 'text-sm lg:text-md' : 'text-[12px] lg:text-sm'}`}>
                         <BiCategoryAlt />
@@ -135,16 +139,19 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     {product?.is_favourited && <AiFillHeart color='red' />}
                 </span>
             </h3>
-            <Price
-                className={
-                    search && product?.promotions.includes('price') ?
-                        'font-bolditalic rounded-lg text-2xl bg-accent-orange text-white w-fit py-1 px-2 leading-none'
-                        :
-                        'font-bolditalic leading-none text-xl'
-                }
-                price={product?.price}
-                currency={product?.price_currency}
-            />
+            {search && product?.promotions.includes('price') ?
+                <span className="before:block before:absolute before:-inset-1 before:-skew-x-[10deg] before:bg-accent-orange relative inline-block px-1 before:rounded-sm w-fit ml-1.5">
+                    <span className="relative text-white"><Price
+                        className='font-bolditalic leading-none text-lg lg:text-2xl'
+                        price={product?.price}
+                    />
+                    </span>
+                </span>
+                :
+                <Price
+                    className='font-bolditalic leading-none text-md lg:text-xl'
+                    price={product?.price}
+                />}
             <div className='grid grid-cols-[auto_1fr] gap-y-0.5 gap-x-1.5 items-center'>
                 <BiTimeFive />
                 <time className='text-sm line-clamp-1'><PublishTime pubDate={product?.pub_date} /></time>

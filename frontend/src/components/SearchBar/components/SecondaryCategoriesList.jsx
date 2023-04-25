@@ -2,7 +2,7 @@ import CategoryLink from "./CategoryLink"
 import ThirdLevelCategoriesList from "./ThirdCategoriesList"
 import { filterChildCategories } from "../utils"
 import { useCategories } from "../../../api/api"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Spinner } from "../../ui"
 import cn from 'classnames'
 
@@ -12,6 +12,10 @@ const ChildCategoriesList = ({ parentCategory }) => {
     const [expandedCatId, setExpandedCatId] = useState(null)
     const childCategories = useMemo(() => filterChildCategories(data, parentCategory?.id),
         [data, parentCategory?.id])
+
+    useEffect(() => {
+        setExpandedCatId(null)
+    }, [parentCategory?.id])
 
     if (!parentCategory?.id) return
 

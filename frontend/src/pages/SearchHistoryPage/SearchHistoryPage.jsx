@@ -4,6 +4,7 @@ import SearchHistoryContext from '../../contexts/HistoryContext'
 import { BsFillTrashFill, BsArrowLeft } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Helmet } from 'react-helmet-async'
 
 const SearchHistoryPage = () => {
 
@@ -12,6 +13,9 @@ const SearchHistoryPage = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Products browsing history - Grocket</title>
+            </Helmet>
             <h1 className='font-bold text-3xl'>{t('you_checked_earlier')}</h1>
             <div className="flex items-center justify-between md:justify-start md:gap-10 md:pl-5">
                 <NavLink className='flex items-center gap-3' to='/'><BsArrowLeft />{t('back_to_mainpage')}</NavLink>

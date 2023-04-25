@@ -148,5 +148,7 @@
     "apply": "Apply",
     "free": "Free",
     "filters": "Filters",
-    "back": "Back"
+    "back": "Back",
+    "show_more": "Show more",
+    "show_less": "Show less"
 }

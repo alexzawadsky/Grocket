@@ -2,7 +2,7 @@ import countryCodeEmoji from 'country-code-emoji';
 import { parse } from 'twemoji-parser';
 import cn from 'classnames'
 
-const Flag = ({ country, size, className }) => {
+const Flag = ({ country, size, className, width }) => {
 
     if (country === null || country === undefined) return
     const emoji = countryCodeEmoji(country)
@@ -15,6 +15,7 @@ const Flag = ({ country, size, className }) => {
         )}
         src={iconLink}
         alt={`${country} flag icon`}
+        width={width}
     />
 };
 

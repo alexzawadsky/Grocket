@@ -1,13 +1,16 @@
-from django.db.models import Avg
 from django_filters import rest_framework as django_filters
 from products.models import Category, Product
+
+
+class CountryCodeInFilter(django_filters.BaseInFilter, django_filters.CharFilter):
+    pass
 
 
 class ProductFilter(django_filters.FilterSet):
     min_price = django_filters.NumberFilter(field_name="price", lookup_expr="gte")
     max_price = django_filters.NumberFilter(field_name="price", lookup_expr="lte")
     category_id = django_filters.NumberFilter(field_name="category", method="category")
-    country = django_filters.CharFilter(field_name="product_addresses__country_code")
+    country = CountryCodeInFilter(field_name="product_addresses__country_code")
 
     class Meta:
         model = Product

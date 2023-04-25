@@ -1,4 +1,3 @@
-from core.exchange import ExchangeRateService
 from django.db import transaction
 from products.selectors import (
     get_all_products,
@@ -9,6 +8,7 @@ from products.selectors import (
     get_promotions,
     get_safe_products,
 )
+from products.services.exchange_service import ExchangeRateService
 from products.services.services import CreateProductService, ProductService
 from rest_framework import permissions, status
 from rest_framework.decorators import action, api_view, permission_classes
@@ -19,9 +19,24 @@ from .mixins import CategoryMixin, ProductMixin, PromotionMixin
 
 @api_view(["GET"])
 @permission_classes([permissions.AllowAny])
-def exchange(request, code):
-    service = ExchangeRateService(key=code)
-    data = {"rate": service.get_exchange_rate()}
+def exchange(request):
+    # service = ExchangeRateService(key=code)
+    # data = {"rate": service.get_exchange_rate()}
+    data = {
+        "EUR": 0.9,
+        "RUB": 82,
+        "UAH": 36,
+        "GPB": 0.8,
+        "SEK": 10,
+        "KZT": 454,
+        "TRY": 19,
+        "GEL": 2.5,
+        "INR": 82,
+        "ILS": 3.6,
+        "AED": 3.7,
+        "KRW": 1340,
+        "CNY": 7,
+    }
     return Response(data, status=status.HTTP_200_OK)
 
 
@@ -30,11 +45,14 @@ class ProductViewSet(ProductMixin):
         user_id = self.request.user.id
         service = ProductService(product_id=pk)
         service.delete(user_id=user_id)
-        data = self.get_response_message()
+        data = self._get_response_message()
         return Response(data, status=status.HTTP_200_OK)
 
     def list(self, request):
-        return super().list(request, queryset=get_safe_products())
+        queryset = self.filter_queryset(get_safe_products())
+        respones = super().list(request, queryset=queryset).data
+        data = self._get_searching_data(respones=respones, queryset=queryset)
+        return Response(data=data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, slug):
         user = self.request.user
@@ -52,7 +70,7 @@ class ProductViewSet(ProductMixin):
         service = CreateProductService()
         product_slug = service.create(**serializer.validated_data)
         data = {"slug": product_slug}
-        data.update((self.get_response_message()))
+        data.update((self._get_response_message()))
         return Response(data, status=status.HTTP_201_CREATED)
 
     def partial_update(self, request, pk):
@@ -113,7 +131,7 @@ class ProductViewSet(ProductMixin):
         user = self.request.user
         service = ProductService(product_id=pk)
         service.promote(user_id=user.id, promotions_ids=promotions)
-        data = self.get_response_message()
+        data = self._get_response_message()
         return Response(data, status=status.HTTP_200_OK)
 
     @action(["post", "delete"], detail=True)
@@ -123,13 +141,13 @@ class ProductViewSet(ProductMixin):
         if request.method == "POST":
             service = ProductService(product_id=pk)
             service.sell(user_id=user.id, is_sold=True)
-            data = self.get_response_message(method="POST")
+            data = self._get_response_message(method="POST")
             return Response(data, status=status.HTTP_200_OK)
 
         if request.method == "DELETE":
             service = ProductService(product_id=pk)
             service.sell(user_id=user.id, is_sold=False)
-            data = self.get_response_message(method="DELETE")
+            data = self._get_response_message(method="DELETE")
             return Response(data, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -141,13 +159,13 @@ class ProductViewSet(ProductMixin):
         if request.method == "POST":
             service = ProductService(product_id=pk)
             service.archive(user_id=user.id, is_archived=True)
-            data = self.get_response_message(method="POST")
+            data = self._get_response_message(method="POST")
             return Response(data, status=status.HTTP_200_OK)
 
         if request.method == "DELETE":
             service = ProductService(product_id=pk)
             service.archive(user_id=user.id, is_archived=False)
-            data = self.get_response_message(method="DELETE")
+            data = self._get_response_message(method="DELETE")
             return Response(data, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -159,13 +177,13 @@ class ProductViewSet(ProductMixin):
         if request.method == "POST":
             service = ProductService(product_id=pk)
             service.favourite(user_id=user.id, is_favourited=True)
-            data = self.get_response_message(method="POST")
+            data = self._get_response_message(method="POST")
             return Response(data, status=status.HTTP_200_OK)
 
         if request.method == "DELETE":
             service = ProductService(product_id=pk)
             service.favourite(user_id=user.id, is_favourited=False)
-            data = self.get_response_message(method="DELETE")
+            data = self._get_response_message(method="DELETE")
             return Response(data, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

@@ -1,14 +1,25 @@
 from django_filters import rest_framework as django_filters
 from rest_framework import filters, permissions
-from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
-                                   RetrieveModelMixin, UpdateModelMixin)
+from rest_framework.mixins import (
+    CreateModelMixin,
+    DestroyModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+)
+from django.db.models import Max, Min
 
 from ..mixins import BaseMixin
 from .filters import ProductFilter
-from .serializers import (CategoryListSerializer, ProductCreateSerializer,
-                          ProductListSerializer, ProductRetrieveSerializer,
-                          ProductUpdateSerializer,
-                          PromotionCreateUpdateSerializer, PromotionSerializer)
+from .serializers import (
+    CategoryListSerializer,
+    ProductCreateSerializer,
+    ProductListSerializer,
+    ProductRetrieveSerializer,
+    ProductUpdateSerializer,
+    PromotionCreateUpdateSerializer,
+    PromotionSerializer,
+)
+from products.selectors import get_category_name_by_id_or_none
 
 
 class ProductMixin(
@@ -23,8 +34,21 @@ class ProductMixin(
     ordering_fields = ["price", "pub_date"]
     search_fields = ["name", "description"]
 
-    def get_response_message(self, method=None):
-        return super().get_response_message(app="products", method=method)
+    def _get_searching_data(self, respones, queryset):
+        category_id = self.request.query_params.get("category_id")
+        category_name = get_category_name_by_id_or_none(category_id=category_id)
+        max_price = queryset.aggregate(Max("price"))["price__max"]
+        min_price = queryset.aggregate(Min("price"))["price__min"]
+        data = {
+            "category": category_name,
+            "min_price": min_price,
+            "max_price": max_price,
+        }
+        data.update(respones)
+        return data
+
+    def _get_response_message(self, method=None):
+        return super()._get_response_message(app="products", method=method)
 
     def get_permissions(self):
         if self.action in (

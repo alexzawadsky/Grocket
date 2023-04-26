@@ -28,7 +28,7 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
             </div>
             <div className="grid gap-2 md:gap-4">
                 <div className="flex items-center gap-2 flex-wrap">
-                    <p className='lg:text-xl font-bold flex items-center flex-wrap gap-2'>
+                    <p className='lg:text-xl font-bold flex items-center flex-wrap gap-x-2 leading-none'>
                         <Flag country={country} className='h-fit w-5 pb-0.5' />
                         <span className={!firstName && 'text-zinc-400'} aria-label='first name'>
                             {firstName ? firstName : t('first_name')}

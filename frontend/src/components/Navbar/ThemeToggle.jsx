@@ -60,11 +60,12 @@ const ThemeToggle = () => {
                             onClick={() => setThemeSetting(options[key].code)}
                             border={false}
                             className={cn(
-                                'flex md:h-10 !rounded-md items-center gap-2 hover:bg-slate-100 hover:dark:bg-zinc-700',
+                                'md:h-10 !rounded-md hover:bg-slate-100 hover:dark:bg-zinc-700',
                                 themeSetting === options[key].code && '!bg-slate-200 dark:!bg-zinc-600'
                             )}
                             height={8}
                             px={2}
+                            width='full'
                         >
                             {options[key].menuIcon} {options[key].title}
                         </Button>

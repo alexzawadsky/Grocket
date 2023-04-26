@@ -42,7 +42,7 @@ const Login = () => {
                 <div className='max-sm:max-w-[400px] w-full md:w-1/2 lg:w-1/3 xl:w-1/4'>
                     <img className='mx-auto my-7' width={35} height={35} src={logo} />
                     <Title
-                        className=' mb-5 mx-auto !w-fit'
+                        className='mb-5 text-center'
                         text={t('login_to_acc')}
                     />
                     <Form className='grid gap-1 md:gap-2 shadow-md rounded-xl p-5 border dark:border-2 dark:border-zinc-600' onSubmit={handleSubmit}>

@@ -132,7 +132,7 @@ const AddComment = () => {
                             <p className="text-green-500">{t('images_are_optional')}</p>
                             <ul className='col-span-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 h-fit'>
                                 {images.map((el, key) =>
-                                    <li key={key} className='w-full p-2 rounded-lg border-2 grid gap-2'>
+                                    <li key={key} className='w-full p-2 rounded-lg border-2 dark:border-zinc-600 grid gap-2'>
                                         <img className='w-full' src={el?.image} />
                                         <button
                                             type='button'

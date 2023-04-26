@@ -162,7 +162,7 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.AnonRateThrottle",
         "rest_framework.throttling.UserRateThrottle",
     ],
-    "DEFAULT_THROTTLE_RATES": {"anon": "500/day", "user": "1000/day"},
+    "DEFAULT_THROTTLE_RATES": {"anon": "2000/day", "user": "5000/day"},
 }
 
 # JWT токены

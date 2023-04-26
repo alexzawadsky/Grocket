@@ -30,7 +30,7 @@ const CurrencyDropdown = () => {
             <Button
                 border={false}
                 onClick={() => setOpen(prevState => !prevState)}
-                className='currency-drop'
+                className='currency-drop md:max-lg:px-2'
             >
                 {getSymbolFromCurrency(targetCurrency)} {(isMinPC || !isMinTablet) && targetCurrency}
             </Button>

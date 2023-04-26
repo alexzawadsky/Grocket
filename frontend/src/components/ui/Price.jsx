@@ -8,7 +8,6 @@ const Price = ({ className, price }) => {
 
     const { convertPrice, targetCurrency, isLoading } = useContext(CurrencyContext)
     const { t } = useTranslation()
-    const convertedPrice = convertPrice(price)
 
     return <p className={cn(
         className,
@@ -16,13 +15,7 @@ const Price = ({ className, price }) => {
     )} aria-label='item price'>
         {price == 0 ? t('free') :
             `${isLoading ?
-                t('loading')
-                :
-                parseFloat(convertedPrice)
-                    .toFixed((convertedPrice - Math.floor(convertedPrice)) !== 0 ? 2 : 0)
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-            } ${getSymbolFromCurrency(targetCurrency)}`}
+                t('loading') : convertPrice(price)} ${getSymbolFromCurrency(targetCurrency)}`}
     </p>
 }
 

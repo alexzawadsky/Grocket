@@ -35,7 +35,7 @@ const Spinner = ({ gap, type, count = 1, className }) => {
                     <div className="grid gap-2">
                         <p className="h-9 bg-slate-100 w-9/12 md:w-7/12 lg:w-5/12 dark:bg-zinc-700"></p>
                         <p className="bg-slate-100 dark:bg-zinc-700 h-6"></p>
-                        {!isMinTablet && <p className="h-10 w-3/12 bg-slate-100 pt-5"></p>}
+                        {!isMinTablet && <p className="h-10 w-3/12 bg-slate-100 pt-5 dark:bg-zinc-700"></p>}
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-5">
                             <div className="aspect-[4/3] bg-slate-100 rounded-lg dark:bg-zinc-700"></div>
                             <div className="aspect-[4/3] bg-slate-100 rounded-lg dark:bg-zinc-700"></div>

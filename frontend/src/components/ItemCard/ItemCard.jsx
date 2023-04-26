@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { BiCategoryAlt, BiTimeFive } from 'react-icons/bi'
 import { FiMapPin } from 'react-icons/fi'
 import { AiFillHeart } from 'react-icons/ai'
@@ -21,7 +21,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
 
 
     if (horizontal && isMinTablet) return (
-        <NavLink className='grid grid-cols-[1fr_2fr] xl:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 hover:dark:bg-zinc-700 transition-all duration-150' to={`/products/${product?.slug}`}>
+        <Link className='grid grid-cols-[1fr_2fr] xl:grid-cols-[1fr_2fr_1fr] rounded-2xl items-center overflow-hidden h-fit p-5 hover:bg-slate-50 hover:dark:bg-zinc-700 transition-all duration-150' to={`/products/${product?.slug}`}>
             <div className='grid grid-cols-2 gap-1'>
                 <div className="col-span-full rounded-lg overflow-hidden">
                     <ImagesCarousel images={product?.images} />
@@ -89,40 +89,40 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     <Avatar avatar={product?.user?.avatar} />
                 </div>
                 <div className='flex flex-col gap-1.5'>
-                    <NavLink
+                    <Link
                         to={product?.user?.id === user?.user_id ? '/users/me' : `/users/${product?.user?.id}`}
                         className='font-bold hover:text-accent-orange flex-wrap flex'
                     >
                         {product?.user?.first_name} {product?.user?.last_name} {product?.user?.id === user?.user_id && `(${t('me')})`}
-                    </NavLink>
+                    </Link>
                     <div className='flex items-center gap-1.5 flex-wrap'>
                         <RatingStars rating={product?.user?.rating} />
-                        <NavLink
+                        <Link
                             to={product?.user?.id === user?.user_id ? '/users/me/comments' : `/users/${product?.user?.id}/comments`}
                             className='text-sm hover:text-accent-orange'
                         >
                             {t('comments')} ({product?.user?.comments_count})
-                        </NavLink>
+                        </Link>
                     </div>
-                    <p>12 {t('items_sold')}</p>
-                    {product?.user?.id !== user?.user_id && <NavLink
+                    <p>{product?.user?.sold_count} {t('items_sold')}</p>
+                    {product?.user?.id !== user?.user_id && <Link
                         className='text-accent-orange flex items-center gap-2 h-fit'
                         to={`/users/${product?.user?.id}`}
                     >
                         <FiMail />
                         {t('send_message')}
-                    </NavLink>}
+                    </Link>}
                     {product?.user?.phone_verified && <p className='flex items-center gap-2 text-green-600 dark:text-green-300 dark:bg-green-800 bg-green-100 px-2 py-1 font-bold w-fit rounded-full text-sm mt-auto'>
                         <TbPhoneCheck />
                         {t('phone_verified')}
                     </p>}
                 </div>
             </div>}
-        </NavLink>
+        </Link>
     )
 
     return (
-        <NavLink
+        <Link
             to={`/products/${product?.slug}`}
             className={cn(
                 // product.promotions.includes('xl') && 'col-span-2',
@@ -167,7 +167,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                     </>}
             </div>
             {search && product?.promotions.includes('xl') && <div className='flex flex-col gap-0.5'>
-                <NavLink
+                <Link
                     to={product?.user?.id === user?.user_id ? '/users/me' : `/users/${product?.user?.id}`}
                     className='font-bold hover:text-accent-orange flex items-center gap-1'
                 >
@@ -179,7 +179,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
                         <p>{product?.user?.last_name}</p>
                         <p>{product?.user?.id === user?.user_id && `(${t('me')})`}</p>
                     </div>
-                </NavLink>
+                </Link>
                 <div className='flex items-center gap-1.5 flex-wrap justify-between '>
                     <RatingStars rating={product?.user?.rating} />
                 </div>
@@ -187,7 +187,7 @@ const ItemCard = ({ product, managable = false, search = false, horizontal }) =>
             {managable && (user?.user_id === product?.user?.id) && <div className='grid gap-2'>
                 <ManageProductMenu product={product} dropdown />
             </div>}
-        </NavLink>
+        </Link>
     )
 }
 

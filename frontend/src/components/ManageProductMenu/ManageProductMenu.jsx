@@ -65,7 +65,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
 
     useEffect(() => {
         const handleClickOutside = (e) => {
-            if (open && !e.target.closest('.manage-menu-drop')) {
+            if (open && !e.target.closest(`.manage-menu-drop-${product?.id}`)) {
                 setOpen(false);
             }
         }
@@ -80,7 +80,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
 
     return (
         <div
-            className="relative w-fit flex items-end justify-end border-2 dark:border-zinc-600   rounded-xl text-left group/dropdown manage-menu-drop"
+            className={`relative w-fit flex items-end justify-end  rounded-xl text-left group/dropdown manage-menu-drop-${product?.id}`}
         >
             {open && <div
                 className="w-44 absolute bottom-10 -left-1 z-10 origin-top-right "
@@ -94,7 +94,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
             <Link
                 to=''
                 type="button"
-                className="flex justify-center items-center gap-2 rounded-xl bg-white dark:bg-zinc-800 dark:text-zinc-50 hover:dark:bg-zinc-600 px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 dark:focus:ring-offset-zinc-600 min-w-32"
+                className="flex justify-center items-center gap-2 rounded-xl bg-white dark:bg-zinc-800 dark:text-zinc-50 hover:dark:bg-zinc-600 px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 dark:focus:ring-offset-zinc-600 min-w-32 border-2 dark:border-zinc-600"
                 id="menu-button"
                 aria-expanded="false"
                 onClick={() => setOpen(prevState => !prevState)}

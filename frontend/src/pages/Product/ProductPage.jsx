@@ -60,13 +60,13 @@ const ProductPage = () => {
                 />
             </Helmet>
             <div className='grid md:grid-cols-[2fr_1fr] gap-5 md:gap-x-7 lg:gap-x-10'>
-                <div className='grid gap-4 md:gap-7'>
+                <div className='grid gap-3 md:gap-7'>
                     <div className='grid gap-1.5'>
                         <div className='flex items-center justify-between'>
                             <h1 className="text-3xl font-bold">
                                 {data.name}
                             </h1>
-                            <Button
+                            {user && <Button
                                 ariaLabel='add to favourites button'
                                 className='!text-accent-red dark:!text-red-600 !border-none text-3xl'
                                 onClick={handleFavourite}
@@ -75,7 +75,7 @@ const ProductPage = () => {
                             >
                                 {userIsSeller && data?.favourites_count}
                                 {userIsSeller || data.is_favourited ? <BsHeartFill size={25} /> : <BsHeart size={25} />}
-                            </Button>
+                            </Button>}
                         </div>
                         <div className="flex xl:items-center justify-between flex-col xl:flex-row gap-3">
                             <span className='text-primary-300 dark:text-zinc-400 flex items-center gap-2'>
@@ -91,11 +91,11 @@ const ProductPage = () => {
                         currency={data?.price_currency}
                     />}
                     <ImagesGallery images={data.images} />
-                    <div className='grid gap-3'>
+                    <div className='grid gap-1 md:gap-3'>
                         <h2 className='font-bold text-2xl flex items-center gap-5'>{t('description')}</h2>
                         <ReadMore text={data.description} limit={450} />
                     </div>
-                    <div className='grid gap-3'>
+                    <div className='grid gap-1 md:gap-3'>
                         <h2 className='font-bold text-2xl flex items-center gap-2'><FiMapPin />{t('address')}</h2>
                         <GMap address={data.address} />
                     </div>
@@ -107,7 +107,7 @@ const ProductPage = () => {
                         currency={data?.price_currency}
                     />}
                     <SellerCard profile={data.user} />
-                    {userIsSeller && <div className='pb-3 grid gap-3'>
+                    {userIsSeller && <div className='grid gap-3'>
                         <h2 className='text-xl font-bold ml-3'>{t('manage_your_product')}</h2>
                         <ManageProductMenu product={data} />
                     </div>}

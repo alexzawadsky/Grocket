@@ -34,7 +34,7 @@ const Filters = ({ mnP, mxP, productsCountries, open, setOpen }) => {
     return (
         <aside className={cn(
             open ? 'right-0 max-md:pl-0' : '-right-[110%] max-md:pl-5',
-            'max-lg:absolute lg:sticky lg:top-20 z-40 transition-[right] duration-200 top-0 max-md:w-full w-80'
+            'max-lg:absolute h-fit lg:sticky lg:top-20 z-40 transition-[right] duration-200 top-0 max-md:w-full w-80'
         )}>
             <div className='grid gap-1 pb-5 md:p-5 lg:p-0 md:w-80 lg:w-full md:border dark:md:border-2 dark:md:border-zinc-600 lg:border-none md:rounded-lg lg:rounded-lg h-fit w-full bg-white dark:bg-zinc-800'>
                 <p className='font-bold text-lg'>{t('price')}</p>

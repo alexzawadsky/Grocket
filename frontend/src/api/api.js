@@ -231,4 +231,4 @@ export const useExchangeRates = () => {
     return useQuery(['exchangeRages'], () => api.get('/api/v1/exchange').then(res => res.data))
 }
 
-export default axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost' })
+export default axios.create({ baseURL: import.meta.env.VITE_API_URL || '' })

@@ -1,10 +1,10 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
-import api from "../api/api";
 import { alertErr, getCookie, notification } from "../utils";
 import { useQueryClient } from "@tanstack/react-query";
 import SearchHistoryContext from "./HistoryContext";
+import api from "../api/api";
 
 const AuthContext = createContext();
 
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
     const registerUser = ({ first_name, last_name, username, email, password, re_password, phone, country, avatar }) => {
         api.post(
-            'api/v1/users/',
+            '/api/v1/users/',
             JSON.stringify({
                 first_name,
                 last_name,

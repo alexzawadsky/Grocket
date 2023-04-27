@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Price } from "../../components/ui"
 
 const HistoryItem = ({ product }) => {
     return (
         <li>
-            <NavLink
+            <Link
                 to={`/products/${product.slug}`}
                 className='hover:bg-slate-50 hover:dark:bg-zinc-700 px-3 py-3 rounded-xl flex gap-5 items-center w-full transition-all duration-150'
             >
@@ -15,7 +15,7 @@ const HistoryItem = ({ product }) => {
                         <Price price={product?.price} currency={product?.price_currency} />
                     </p>
                 </div>
-            </NavLink>
+            </Link>
         </li>
     )
 }

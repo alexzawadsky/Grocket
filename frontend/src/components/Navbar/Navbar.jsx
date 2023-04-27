@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { MdOutlineSell } from 'react-icons/md'
 import AuthContext from '../../contexts/AuthProvider'
 import { useContext, useEffect, useState } from 'react'
@@ -44,9 +44,9 @@ const Navbar = () => {
         )} aria-label='website navigation bar'>
             <ul className='flex container pl-5 md:px-5 mx-auto md:gap-4 lg:gap-6 h-16 items-center bg-white dark:bg-zinc-800' aria-label='navigation bar items list'>
                 <li className="flex items-center gap-1 max-md:mr-auto">
-                    <NavLink className='text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
+                    <Link className='text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
                         {isMinTablet ? 'Grocket' : <img className='h-10' src={logo} alt='grocket logo' />}
-                    </NavLink>
+                    </Link>
                     <a
                         href='https://www.standwithukraine.how/'
                         target='_blank'
@@ -77,21 +77,21 @@ const Navbar = () => {
                     :
                     <>
                         {isMinPC && <li>
-                            <NavLink to='/register' className='flex items-center gap-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700 h-12 px-3 rounded-lg'>
+                            <Link to='/register' className='flex items-center gap-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700 h-12 px-3 rounded-lg'>
                                 <FiUserPlus />{t('register')}
-                            </NavLink>
+                            </Link>
                         </li>}
                         <li>
-                            <NavLink to='/login' className='flex items-center gap-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700 h-12 px-3 rounded-lg'>
+                            <Link to='/login' className='flex items-center gap-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700 h-12 px-3 rounded-lg'>
                                 <FiLogIn />{t('login')}
-                            </NavLink>
+                            </Link>
                         </li>
                     </>
                 }
                 <li>
-                    <NavLink className='px-2 md:px-6 h-12 gap-2 bg-accent-orange rounded-xl hover:bg-accent-orange/[0.8] flex items-center text-white text-lg font-bold whitespace-nowrap' to='/sell'>
+                    <Link className='px-2 md:px-6 h-12 gap-2 bg-accent-orange rounded-xl hover:bg-accent-orange/[0.8] flex items-center text-white text-lg font-bold whitespace-nowrap' to='/sell'>
                         {isMinTablet ? t('sell_item') : t('sell')}<MdOutlineSell />
-                    </NavLink>
+                    </Link>
                 </li>
                 {!isMinTablet && <Button
                     onClick={() => setOpen(prevState => !prevState)}

@@ -41,7 +41,7 @@ const Search = () => {
                 </Title>
                 <div className='lg:grid lg:grid-cols-[1fr_3fr] gap-5 mt-5'>
                     {isMinPC && filters}
-                    <div>
+                    <div className='grid gap-5'>
                         <div className="justify-between md:justify-start flex gap-3 items-center md:pl-5 bg-white dark:bg-zinc-800">
                             {isMinTablet && <CardModeToggle
                                 state={isList}
@@ -58,22 +58,24 @@ const Search = () => {
                             </Button>}
                         </div>
                         <ul className={cn(
-                            'bg-red relative max-w-full overflow-hidden mt-5',
-                            !isList && 'max-md:gap-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'
+                            'bg-red relative max-w-full overflow-hidden',
+                            !isList && 'max-md:gap-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4',
+                            !data?.count && 'min-h-[70vh]'
                         )}>
                             {!isMinPC && filters}
                             {isLoading && <Spinner
                                 type={isMinTablet ? isList ? 'hcard' : 'vcard' : 'vcard'}
                                 count={isMinTablet ? 4 : 1}
                             />}
-                            {data && data?.results.map((product, key) => <li key={key}>
+                            {!data?.count ? <p className='md:pl-5'>{t('no_results_found')}</p> : null}
+                            {data && data?.count ? data?.results.map((product, key) => <li key={key}>
                                 <ItemCard
                                     search
                                     product={product}
                                     horizontal={isList}
                                 />
                             </li>
-                            )}
+                            ) : null}
                         </ul>
                     </div>
                 </div>

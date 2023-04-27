@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { BiPencil } from 'react-icons/bi'
 import { HiOutlineMail } from 'react-icons/hi'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AuthContext from '../../contexts/AuthProvider'
 import { Avatar, RatingStars, Flag } from '../ui'
 import { useTranslation } from 'react-i18next'
@@ -18,17 +18,17 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
             <div className="w-full aspect-square relative" aria-label='avatar'>
                 <Avatar avatar={avatar} alt={`${firstName} ${lastName} avatar image`} />
                 {user?.user_id === id &&
-                    <NavLink
+                    <Link
                         to='settings'
                         className='absolute right-1 bottom-1 text-xl border-2 dark:border-zinc-600 p-2 rounded-full bg-white dark:bg-zinc-800 hover:dark:bg-zinc-700 hover:bg-slate-100'
                         aria-label='edit profile button'
                     >
                         <BiPencil />
-                    </NavLink>}
+                    </Link>}
             </div>
             <div className="grid gap-2 md:gap-4">
                 <div className="flex items-center gap-2 flex-wrap">
-                    <p className='lg:text-xl font-bold flex items-center flex-wrap gap-2'>
+                    <p className='lg:text-xl font-bold flex items-center flex-wrap gap-x-2 leading-none'>
                         <Flag country={country} className='h-fit w-5 pb-0.5' />
                         <span className={!firstName && 'text-zinc-400'} aria-label='first name'>
                             {firstName ? firstName : t('first_name')}
@@ -48,13 +48,13 @@ const ProfileCard = ({ id, firstName, lastName, email, phone, rating, avatar, wi
                 </p>
                 <div className='flex flex-wrap gap-1 md:gap-3 items-center'>
                     <RatingStars rating={rating} />
-                    {withComments && <NavLink
+                    {withComments && <Link
                         className='hover:text-accent-orange text-sm'
                         to='comments'
                         aria-label='link to comments'
                     >
                         {t('comments')} ({commentsCount})
-                    </NavLink>}
+                    </Link>}
                 </div>
             </div>
         </aside>

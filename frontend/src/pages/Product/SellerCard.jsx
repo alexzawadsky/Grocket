@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 import AuthContext from "../../contexts/AuthProvider"
 import { Avatar, RatingStars, Button } from "../../components/ui"
 import { useTranslation } from "react-i18next"
@@ -15,17 +15,17 @@ const SellerCard = ({ profile }) => {
     return (
         <div className='border dark:border-2 dark:border-zinc-600 shadow-md p-5 rounded-xl grid gap-3 w-full'>
             <div className='flex items-center gap-5'>
-                <NavLink
+                <Link
                     to={user?.user_id !== profile.id ? `/users/${profile.id}` : '/users/me'}
                     aria-label='user profile'
                 >
                     <Avatar height={50} width={50} avatar={profile.avatar} />
-                </NavLink>
+                </Link>
                 <div aria-label='user name and rating'>
-                    <NavLink
+                    <Link
                         to={user?.user_id !== profile.id ? `/users/${profile.id}` : '/users/me'}
                         className='hover:text-accent-orange'
-                    >{profile.last_name} {profile.first_name} {user && user.user_id === profile.id ? `(${t('me')})` : null}</NavLink>
+                    >{profile.last_name} {profile.first_name} {user && user.user_id === profile.id ? `(${t('me')})` : null}</Link>
                     <RatingStars rating={profile.rating} />
                 </div>
             </div>
@@ -38,9 +38,9 @@ const SellerCard = ({ profile }) => {
                     height={10}
                     px={5}
                 >
-                    <NavLink to={`/users/${profile.id}/chat`}>
+                    <Link to={`/users/${profile.id}/chat`}>
                         Send message
-                    </NavLink>
+                    </Link>
                 </Button>
             }
         </div>

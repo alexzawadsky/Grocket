@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useArchiveProduct, useSellProduct, useDeleteProduct } from '../../api/api'
-import { NavLink } from 'react-router-dom'
+import { useArchiveProduct, useSellProduct } from '../../api/api'
+import { Link } from 'react-router-dom'
 import { IoIosArrowUp, IoMdClose, IoIosArrowDown } from 'react-icons/io'
 import { BsMegaphone, BsPen } from 'react-icons/bs'
 import { useTranslation } from 'react-i18next'
@@ -13,7 +13,6 @@ const MenuInner = ({ product, fullW }) => {
     const { t } = useTranslation()
     const archiveProductMutation = useArchiveProduct()
     const sellProductMutation = useSellProduct()
-    const deleteProductMutation = useDeleteProduct()
 
     return (
         <div
@@ -21,37 +20,37 @@ const MenuInner = ({ product, fullW }) => {
             role="none"
         >
             {!product.is_sold &&
-                <NavLink
+                <Link
                     className='text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2 flex items-center gap-2'
                     to=''
                     onClick={() => archiveProductMutation.mutate({ id: product.id, state: product.is_archived })}
                 >
                     {product.is_archived ? <IoMdClose /> : <BsArchive />}
                     {product.is_archived ? t('remove_from_archive') : t('add_to_archive')}
-                </NavLink>}
+                </Link>}
             {!product.is_archived &&
-                <NavLink
+                <Link
                     to=''
                     className='text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2 flex items-center gap-2'
                     onClick={() => sellProductMutation.mutate({ id: product.id, state: product.is_sold })}
                 >
                     {product.is_sold ? <MdOutlineSell /> : <BsPatchCheck />}
                     {product.is_sold ? t('publish_again') : t('mark_as_sold')}
-                </NavLink>}
+                </Link>}
             {!product.is_sold && !product.is_archived &&
                 <>
-                    <NavLink
+                    <Link
                         to={`/products/${product?.slug}/edit`}
                         className='flex items-center gap-2 text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2'
                     >
                         <BsPen />{t('edit')}
-                    </NavLink>
-                    <NavLink
+                    </Link>
+                    <Link
                         to={`/products/${product?.slug}/promote`}
                         className='flex items-center gap-2 text-sm hover:bg-slate-100 hover:dark:bg-zinc-700 h-8 rounded-lg w-full px-2'
                     >
                         <BsMegaphone />{t('promote')}
-                    </NavLink >
+                    </Link >
                 </>
             }
             <DeleteButton product={product} />
@@ -66,7 +65,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
 
     useEffect(() => {
         const handleClickOutside = (e) => {
-            if (open && !e.target.closest('.manage-menu-drop')) {
+            if (open && !e.target.closest(`.manage-menu-drop-${product?.id}`)) {
                 setOpen(false);
             }
         }
@@ -81,7 +80,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
 
     return (
         <div
-            className="relative w-fit flex items-end justify-end border-2 dark:border-zinc-600   rounded-xl text-left group/dropdown manage-menu-drop"
+            className={`relative w-fit flex items-end justify-end  rounded-xl text-left group/dropdown manage-menu-drop-${product?.id}`}
         >
             {open && <div
                 className="w-44 absolute bottom-10 -left-1 z-10 origin-top-right "
@@ -92,16 +91,16 @@ const ManageProductMenu = ({ product, dropdown }) => {
             >
                 <MenuInner product={product} />
             </div>}
-            <NavLink
+            <Link
                 to=''
                 type="button"
-                className="flex justify-center items-center gap-2 rounded-xl bg-white dark:bg-zinc-800 dark:text-zinc-50 hover:dark:bg-zinc-600 px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 dark:focus:ring-offset-zinc-600 min-w-32"
+                className="flex justify-center items-center gap-2 rounded-xl bg-white dark:bg-zinc-800 dark:text-zinc-50 hover:dark:bg-zinc-600 px-3 h-8 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50  focus:ring-offset-gray-100 dark:focus:ring-offset-zinc-600 min-w-32 border-2 dark:border-zinc-600"
                 id="menu-button"
                 aria-expanded="false"
                 onClick={() => setOpen(prevState => !prevState)}
             >
                 {t('manage')}{open ? <IoIosArrowDown /> : <IoIosArrowUp />}
-            </NavLink>
+            </Link>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import dayjs from "dayjs";
 import jwt_decode from "jwt-decode";
 import AuthContext from "../contexts/AuthProvider";
+import api from "../api/api";
 
 const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const useAxios = () => {
         const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
 
         if (!isExpired) return req;
-        const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost'}/api/v1/auth/jwt/refresh/`, {
+        const response = await api.post(`/api/v1/auth/jwt/refresh/`, {
             refresh: authTokens.refresh
         });
 

@@ -1,15 +1,22 @@
-import { AiOutlineCheck, AiOutlineClose, AiOutlineMinus, AiOutlineEllipsis } from 'react-icons/ai'
+import {
+    AiOutlineCheck,
+    AiOutlineClose,
+    AiOutlineMinus,
+    AiOutlineEllipsis,
+} from 'react-icons/ai'
 
 const statusIcons = {
     other: <AiOutlineEllipsis />,
     did_not_agree: <AiOutlineClose />,
     ignored: <AiOutlineMinus />,
-    bought: <AiOutlineCheck />
+    bought: <AiOutlineCheck />,
 }
 
 const CommentStatus = ({ title, name }) => {
     return (
-        <>{statusIcons[name]} {title}</>
+        <>
+            {statusIcons[name]} {title}
+        </>
     )
 }
 

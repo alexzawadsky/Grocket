@@ -8,7 +8,6 @@ import { BsFolder } from 'react-icons/bs'
 import Button from './Button'
 
 const ImageEditor = ({ images, setImages }) => {
-
     const { t } = useTranslation()
     const editorRef = useRef()
     const imageInputRef = useRef()
@@ -24,28 +23,30 @@ const ImageEditor = ({ images, setImages }) => {
     const [imageUploading, setImageUploading] = useState(false)
 
     return (
-        <div className='flex flex-col gap-2 h-fit max-w-full'>
+        <div className="flex h-fit max-w-full flex-col gap-2">
             <h2 className="text-xl font-bold">{t('photos')}</h2>
-            <div className='rounded-xl border dark:border-2 dark:border-zinc-600 shadow-sm p-5'>
-                <div className='flex flex-col w-fit mx-auto gap-3'>
+            <div className="rounded-xl border p-5 shadow-sm dark:border-2 dark:border-zinc-600">
+                <div className="mx-auto flex w-fit flex-col gap-3">
                     <input
-                        className='text-sm hidden file:bg-slate-100 hover:file:bg-slate-200 file:rounded-lg file:outline-none file:px-3 file:h-10 file:mr-3 file:border-none file:font-bold w-fit'
+                        className="hidden w-fit text-sm file:mr-3 file:h-10 file:rounded-lg file:border-none file:bg-slate-100 file:px-3 file:font-bold file:outline-none hover:file:bg-slate-200"
                         ref={imageInputRef}
                         type="file"
                         onChange={(e) => setCurrentImage(e.target.files[0])}
                     />
                     <Button
-                        type='button'
-                        onClick={() => imageInputRef && imageInputRef.current.click()}
-                        color='slate-100'
-                        darkColor='zinc-600'
-                        onHoverDarkColor='zinc-700'
-                        onHoverColor='slate-200'
+                        type="button"
+                        onClick={() =>
+                            imageInputRef && imageInputRef.current.click()
+                        }
+                        color="slate-100"
+                        darkColor="zinc-600"
+                        onHoverDarkColor="zinc-700"
+                        onHoverColor="slate-200"
                         border={false}
-                        width='fit'
+                        width="fit"
                         height={8}
                         px={5}
-                        className='whitespace-nowrap !rounded-full'
+                        className="whitespace-nowrap !rounded-full"
                     >
                         {t('browse')}
                     </Button>
@@ -53,20 +54,33 @@ const ImageEditor = ({ images, setImages }) => {
                         ref={editorRef}
                         image={currentImage}
                         width={editorWidth}
-                        height={Math.ceil(editorWidth / 4 * 3)}
+                        height={Math.ceil((editorWidth / 4) * 3)}
                         border={20}
-                        className='border-2 dark:border-zinc-600 mx-auto'
-                        color={[255, 255, 255, document.querySelector('html').classList.contains('dark') && !currentImage ? 0.1 : 0.6]}
+                        className="mx-auto border-2 dark:border-zinc-600"
+                        color={[
+                            255,
+                            255,
+                            255,
+                            document
+                                .querySelector('html')
+                                .classList.contains('dark') && !currentImage
+                                ? 0.1
+                                : 0.6,
+                        ]}
                         scale={imageSize}
                         rotate={imageRotation}
                     />
-                    <div className="flex gap-1 w-full p-1 border dark:border-2 dark:border-zinc-600 shadow-sm rounded-lg items-center">
+                    <div className="flex w-full items-center gap-1 rounded-lg border p-1 shadow-sm dark:border-2 dark:border-zinc-600">
                         <Button
-                            onClick={() => setImageRotation(prevRotation => prevRotation - 90)}
-                            type='button'
-                            className='p-2 text-xl rounded-md'
-                            onHoverColor='slate-100'
-                            onHoverDarkColor='zinc-600'
+                            onClick={() =>
+                                setImageRotation(
+                                    (prevRotation) => prevRotation - 90
+                                )
+                            }
+                            type="button"
+                            className="rounded-md p-2 text-xl"
+                            onHoverColor="slate-100"
+                            onHoverDarkColor="zinc-600"
                             border={false}
                         >
                             <AiOutlineRotateLeft />
@@ -77,27 +91,40 @@ const ImageEditor = ({ images, setImages }) => {
                             step={0.01}
                             value={imageSize}
                             onChange={(e) => setImageSize(e.target.value)}
-                            className='grow appearance-none w-full h-1 rounded-md bg-gray-300 dark:bg-zinc-600 focus:outline-none focus:ring-0 focus:ring-blue-500'
+                            className="h-1 w-full grow appearance-none rounded-md bg-gray-300 focus:outline-none focus:ring-0 focus:ring-blue-500 dark:bg-zinc-600"
                             type="range"
                         />
                         <Button
-                            onClick={() => setImageRotation(prevRotation => prevRotation + 90)}
-                            type='button'
-                            onHoverColor='slate-100'
-                            onHoverDarkColor='zinc-600'
-                            className='p-2 text-xl rounded-md'
+                            onClick={() =>
+                                setImageRotation(
+                                    (prevRotation) => prevRotation + 90
+                                )
+                            }
+                            type="button"
+                            onHoverColor="slate-100"
+                            onHoverDarkColor="zinc-600"
+                            className="rounded-md p-2 text-xl"
                             border={false}
                         >
                             <AiOutlineRotateRight />
                         </Button>
                     </div>
                     <Button
-                        onClick={() => { saveImage(editorRef, images, setImages, setCurrentImage, imageInputRef, setImageUploading) }}
+                        onClick={() => {
+                            saveImage(
+                                editorRef,
+                                images,
+                                setImages,
+                                setCurrentImage,
+                                imageInputRef,
+                                setImageUploading
+                            )
+                        }}
                         height={10}
                         px={5}
-                        style='outline'
-                        color='accent-orange'
-                        type='button'
+                        style="outline"
+                        color="accent-orange"
+                        type="button"
                         disabled={imageUploading || !currentImage}
                     >
                         {t('save_image')}

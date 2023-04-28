@@ -1,4 +1,9 @@
-export const deleteImage = (imageIndex, images, setMainImageIndex, setImages) => {
+export const deleteImage = (
+    imageIndex,
+    images,
+    setMainImageIndex,
+    setImages
+) => {
     if (images[imageIndex].is_main) {
         setMainImageIndex(0)
     }
@@ -6,10 +11,15 @@ export const deleteImage = (imageIndex, images, setMainImageIndex, setImages) =>
 }
 
 export const prepareImages = (images) => {
-    return images && images.map(image =>
-        Object.keys(image).includes('id') ? {
-            image: image.id,
-            is_main: image.is_main
-        } : image
+    return (
+        images &&
+        images.map((image) =>
+            Object.keys(image).includes('id')
+                ? {
+                      image: image.id,
+                      is_main: image.is_main,
+                  }
+                : image
+        )
     )
 }

@@ -4,7 +4,7 @@ const useInput = (initialValue, validations) => {
     const [value, setValue] = useState(initialValue)
     const [isDirty, setIsDirty] = useState(false)
     const valid = useValidation(value, validations)
-    const allValid = Object.values(valid).every(item => !item)
+    const allValid = Object.values(valid).every((item) => !item)
 
     const checkValue = (e) => {
         setValue(e.target.value)
@@ -22,7 +22,7 @@ const useInput = (initialValue, validations) => {
         checkValue,
         allValid,
         clear,
-        ...valid
+        ...valid,
     }
 }
 
@@ -36,7 +36,7 @@ const useValidation = (value, validations) => {
     const [floatError, setFloatError] = useState(false)
 
     useEffect(() => {
-        let re = '';
+        let re = ''
         for (const validation in validations) {
             if (validation !== 'isEmpty' && value?.length === 0) break
             switch (validation) {
@@ -47,22 +47,38 @@ const useValidation = (value, validations) => {
                     setMinLengthError(value.length < validations[validation])
                     break
                 case 'isEmail':
-                    re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-                    setEmailError(!re.test(value));
+                    re =
+                        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+                    setEmailError(!re.test(value))
                     break
                 case 'isPassword':
-                    re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-                    setPwdError(!re.test(value));
+                    re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+                    setPwdError(!re.test(value))
                     break
                 case 'isMatch':
                     setMatchError(value !== validations[validation])
                     break
                 case 'isInt':
-                    setIntError(!(!isNaN(value) && (function (x) { return (x | 0) === x; })(parseFloat(value))))
+                    setIntError(
+                        !(
+                            !isNaN(value) &&
+                            (function (x) {
+                                return (x | 0) === x
+                            })(parseFloat(value))
+                        )
+                    )
                     break
                 case 'isFloat':
                     re = /^[-+]?[0-9]+\.[0-9]+$/
-                    setFloatError(!(re.test(String(value)) || (!isNaN(value) && (function (x) { return (x | 0) === x; })(parseFloat(value)))))
+                    setFloatError(
+                        !(
+                            re.test(String(value)) ||
+                            (!isNaN(value) &&
+                                (function (x) {
+                                    return (x | 0) === x
+                                })(parseFloat(value)))
+                        )
+                    )
                     break
                 default:
                     break
@@ -77,7 +93,7 @@ const useValidation = (value, validations) => {
         pwdError,
         emailError,
         intError,
-        floatError
+        floatError,
     }
 }
 

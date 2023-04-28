@@ -8,37 +8,37 @@ import { HelmetProvider } from 'react-helmet-async'
 import './i18n'
 import { CategoriesListStateProvider } from './contexts/CategoriesListStateContext'
 import { ThemeProvider } from './contexts/ThemeContext'
-import { SearchHistoryProvider } from './contexts/HistoryContext';
-import { AuthProvider } from './contexts/AuthProvider';
+import { SearchHistoryProvider } from './contexts/HistoryContext'
+import { AuthProvider } from './contexts/AuthProvider'
 import { BrowserRouter } from 'react-router-dom'
 import { CurrencyProvider } from './contexts/CurrencyContext'
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retryDelay: 0,
-      retry: 1
-    }
-  }
+    defaultOptions: {
+        queries: {
+            retryDelay: 0,
+            retry: 1,
+        },
+    },
 })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <SearchHistoryProvider>
-          <HelmetProvider>
-            <ThemeProvider>
-              <CategoriesListStateProvider>
-                <CurrencyProvider>
-                  <App />
-                  <ReactQueryDevtools />
-                </CurrencyProvider>
-              </CategoriesListStateProvider>
-            </ThemeProvider>
-          </HelmetProvider>
-        </SearchHistoryProvider>
-      </AuthProvider>
-    </QueryClientProvider>
-  </BrowserRouter>
+    <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+            <AuthProvider>
+                <SearchHistoryProvider>
+                    <HelmetProvider>
+                        <ThemeProvider>
+                            <CategoriesListStateProvider>
+                                <CurrencyProvider>
+                                    <App />
+                                    <ReactQueryDevtools />
+                                </CurrencyProvider>
+                            </CategoriesListStateProvider>
+                        </ThemeProvider>
+                    </HelmetProvider>
+                </SearchHistoryProvider>
+            </AuthProvider>
+        </QueryClientProvider>
+    </BrowserRouter>
 )

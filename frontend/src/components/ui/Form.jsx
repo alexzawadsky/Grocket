@@ -7,8 +7,7 @@ const Form = ({ onSubmit, className, children, ariaLabel }) => {
             onSubmit={(e) => {
                 e.preventDefault()
                 onSubmit && onSubmit()
-            }
-            }
+            }}
             className={className}
         >
             {children}

@@ -24,25 +24,27 @@ TimeAgo.addLocale(ka)
 TimeAgo.addLocale(nl)
 
 const PublishTime = ({ full, pubDate }) => {
-
     const { i18n } = useTranslation()
 
-    if (full) return new Date(pubDate).toLocaleDateString(
-        undefined,
-        {
+    if (full)
+        return new Date(pubDate).toLocaleDateString(undefined, {
             weekday: 'short',
             year: 'numeric',
             month: 'short',
             day: 'numeric',
             hour: 'numeric',
-            minute: 'numeric'
-        }
-    )
+            minute: 'numeric',
+        })
 
-    return <ReactTimeAgo
-        date={pubDate}
-        locale={localization[i18n.resolvedLanguage.toUpperCase()].codeForTimeStamp}
-    />
+    return (
+        <ReactTimeAgo
+            date={pubDate}
+            locale={
+                localization[i18n.resolvedLanguage.toUpperCase()]
+                    .codeForTimeStamp
+            }
+        />
+    )
 }
 
 export default PublishTime

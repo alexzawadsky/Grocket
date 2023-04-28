@@ -1,9 +1,7 @@
 import React from 'react'
 
 const SpecialThanks = () => {
-    return (
-        <div>SpecialThanks</div>
-    )
+    return <div>SpecialThanks</div>
 }
 
 export default SpecialThanks

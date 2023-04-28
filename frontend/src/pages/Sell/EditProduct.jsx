@@ -9,7 +9,6 @@ import { prepareImages } from './utils'
 import { useTranslation } from 'react-i18next'
 
 const EditProduct = () => {
-
     const { t } = useTranslation()
     const { productId } = useParams()
     const { data, isLoading, error } = useProduct(productId)
@@ -21,27 +20,36 @@ const EditProduct = () => {
 
     useEffect(() => {
         if (!formData) return
-        let changedFields = Object.entries(formData).filter(([key, value]) => value !== data[key])
+        let changedFields = Object.entries(formData).filter(
+            ([key, value]) => value !== data[key]
+        )
         if (category.length > 0) {
-            if ((category[category.length - 1].id !== data?.category?.id) && category[category.length - 1].is_lower)
+            if (
+                category[category.length - 1].id !== data?.category?.id &&
+                category[category.length - 1].is_lower
+            )
                 changedFields = [
                     ...changedFields,
-                    ['category', category[category.length - 1].id]
+                    ['category', category[category.length - 1].id],
                 ]
         }
-        if (JSON.stringify(formData.images) === JSON.stringify(prepareImages(data?.images))) {
-            changedFields = changedFields.filter(el => el[0] !== 'images')
+        if (
+            JSON.stringify(formData.images) ===
+            JSON.stringify(prepareImages(data?.images))
+        ) {
+            changedFields = changedFields.filter((el) => el[0] !== 'images')
         }
-        if (changedFields) setChanges({
-            ...Object.fromEntries(changedFields),
-        })
+        if (changedFields)
+            setChanges({
+                ...Object.fromEntries(changedFields),
+            })
     }, [formData, category])
 
     useEffect(() => {
         if (data) {
             setCategory([
                 ...data?.category?.parents,
-                { ...data?.category, is_lower: true }
+                { ...data?.category, is_lower: true },
             ])
         }
     }, [data])
@@ -50,37 +58,46 @@ const EditProduct = () => {
     if (error) return error.message
 
     return (
-        <div className='grid gap-4'>
+        <div className="grid gap-4">
             <Form
-                className='lg:w-10/12 xl:w-8/12 mx-auto grid gap-2'
-                onSubmit={() => updateProductMutation.mutate({ id: data?.id, body: changes })}
+                className="mx-auto grid gap-2 lg:w-10/12 xl:w-8/12"
+                onSubmit={() =>
+                    updateProductMutation.mutate({
+                        id: data?.id,
+                        body: changes,
+                    })
+                }
             >
-                <NavLink to={`/products/${productId}`} className='flex items-center gap-2 hover:text-accent-orange font-bold'>
-                    <BsArrowLeft />{t('product_page')}
+                <NavLink
+                    to={`/products/${productId}`}
+                    className="flex items-center gap-2 font-bold hover:text-accent-orange"
+                >
+                    <BsArrowLeft />
+                    {t('product_page')}
                 </NavLink>
-                <h2 className='font-bold text-xl'>{t('change_category')}</h2>
-                <CategoryList
-                    category={category}
-                    setCategory={setCategory}
-                />
+                <h2 className="text-xl font-bold">{t('change_category')}</h2>
+                <CategoryList category={category} setCategory={setCategory} />
                 <ProductForm
                     data={data}
                     setData={setFormData}
                     setValid={setValid}
                 />
                 <Button
-                    type='submit'
-                    color='accent-orange'
-                    style='fill'
-                    width='fit'
+                    type="submit"
+                    color="accent-orange"
+                    style="fill"
+                    width="fit"
                     height={12}
                     px={5}
                     disabled={!valid || Object.keys(changes).length === 0}
-                    className='mt-3'
+                    className="mt-3"
                 >
-                    {updateProductMutation.isLoading ? t('loading') : t('update')}
+                    {updateProductMutation.isLoading
+                        ? t('loading')
+                        : t('update')}
                 </Button>
-                {updateProductMutation.error && updateProductMutation.error.message}
+                {updateProductMutation.error &&
+                    updateProductMutation.error.message}
             </Form>
         </div>
     )

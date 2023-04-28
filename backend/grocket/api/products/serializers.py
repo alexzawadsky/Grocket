@@ -144,6 +144,7 @@ class ProductAddressRetrieveSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     full = serializers.CharField()
     city = serializers.CharField()
+    short = serializers.CharField()
     country_code = serializers.CharField()
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()
@@ -152,8 +153,10 @@ class ProductAddressRetrieveSerializer(serializers.Serializer):
         fields = (
             "id",
             "full",
+            "short",
             "city",
-            "country_code" "latitude",
+            "country_code",
+            "latitude",
             "longitude",
         )
 

@@ -49,9 +49,8 @@ class ProductViewSet(ProductMixin):
         return Response(data, status=status.HTTP_200_OK)
 
     def list(self, request):
-        queryset = self.filter_queryset(get_safe_products())
-        respones = super().list(request, queryset=queryset).data
-        data = self._get_searching_data(respones=respones, queryset=queryset)
+        respones = super().list(request, queryset=get_safe_products()).data
+        data = self._get_searching_data(respones=respones)
         return Response(data=data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, slug):

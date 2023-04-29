@@ -19,6 +19,10 @@ const SearchForm = () => {
     const navigate = useNavigate()
     const { isMinTablet } = useScreen()
 
+    useEffect(() => {
+        !searchParams.get('search') && search.setValue('')
+    }, [window.location.href])
+
     return (
         <>
             <Form

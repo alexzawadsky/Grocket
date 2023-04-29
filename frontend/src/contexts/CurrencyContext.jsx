@@ -12,6 +12,7 @@ export const CurrencyProvider = ({ children }) => {
         'USD'
     )
     const { data, isLoading } = useExchangeRates()
+    const exchangeRate = data ? data[targetCurrency] : 1
 
     const convertPrice = (price) => {
         let convertedPrice
@@ -31,6 +32,7 @@ export const CurrencyProvider = ({ children }) => {
         setTargetCurrency,
         convertPrice,
         isLoading,
+        exchangeRate,
     }
 
     return (

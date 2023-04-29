@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import useInput from '../hooks/useInput'
 import {
     Input,
@@ -12,13 +12,16 @@ import { BsTrashFill } from 'react-icons/bs'
 import { prepareImages } from '../pages/Sell/utils'
 import { useTranslation } from 'react-i18next'
 import useScreen from '../hooks/useScreen'
+import CurrencyContext from '../contexts/CurrencyContext'
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 const ProductForm = ({ data, setData, setValid }) => {
     const { t } = useTranslation()
     const [images, setImages] = useState(data?.images || [])
     const [mainImageIndex, setMainImageIndex] = useState(0)
     const [allValid, setAllValid] = useState(false)
-    const { isMinPC, isMinTablet, isLargePC } = useScreen()
+    const { isMinTablet, isLargePC } = useScreen()
+    const { targetCurrency, exchangeRate } = useContext(CurrencyContext)
 
     const name = useInput(data?.name || '', { isEmpty: true })
     const [description, setDescription] = useState(data?.description || '')
@@ -47,7 +50,7 @@ const ProductForm = ({ data, setData, setValid }) => {
         setData({
             name: name.value,
             description: description,
-            price: price.value,
+            price: price.value / exchangeRate,
             address: address,
             images: prepareImages(images),
         })
@@ -79,7 +82,9 @@ const ProductForm = ({ data, setData, setValid }) => {
                 {t('price')}
             </h2>
             <Input
-                title={`${t('price')} $`}
+                title={`${t('price')}, ${getSymbolFromCurrency(
+                    targetCurrency
+                )}`}
                 instance={price}
                 split={isMinTablet}
                 must

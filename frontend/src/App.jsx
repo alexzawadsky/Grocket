@@ -5,7 +5,7 @@ import {
     LanguageSelectionBanner,
 } from './components'
 import { WindowScroll } from './components/ui'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import {
     Landing,
     Login,
@@ -32,23 +32,23 @@ import {
 import CategoriesListStateContext from './contexts/CategoriesListStateContext'
 import { useContext } from 'react'
 import { Toaster } from 'react-hot-toast'
+import cn from 'classnames'
 
 function App() {
     const { open } = useContext(CategoriesListStateContext)
 
     return (
         <div
-            className={`flex min-h-full flex-col ${
-                open && 'max-h-full overflow-hidden'
-            }`}
+            className={cn(
+                'flex min-h-full flex-col',
+                open ? 'max-h-full overflow-hidden' : ''
+            )}
             aria-label="all site"
         >
             <Navbar />
             <Toaster />
             <main
-                className={
-                    'container relative mx-auto mt-5 flex flex-grow flex-col gap-5 px-5'
-                }
+                className="container relative mx-auto mt-5 flex flex-grow flex-col gap-5 px-5"
                 aria-label="main site content"
             >
                 <LanguageSelectionBanner />

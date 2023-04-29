@@ -6,6 +6,7 @@ import Flag from '../ui/Flag'
 import useScreen from '../../hooks/useScreen'
 import { BsCheck } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
+import { Button } from '../ui'
 
 const LanguageSelectionBanner = () => {
     const [languageSelected, setLanguageSelected] = useLocalStorage(
@@ -58,15 +59,19 @@ const LanguageSelectionBanner = () => {
             </div>
             {code && (
                 <div className="ml-auto flex gap-2">
-                    <button
-                        className="rounded-lg bg-accent-orange px-2 py-1 font-bold text-white"
+                    <Button
+                        className="rounded-lg py-1 "
                         onClick={() => {
                             i18n.changeLanguage(code)
                             setLanguageSelected(true)
                         }}
+                        px={2}
+                        style="fill"
+                        color="accent-orange"
+                        border={false}
                     >
                         {isMinTablet ? 'Switch' : <BsCheck />}
-                    </button>
+                    </Button>
                     <button
                         className="hover:text-accent-orange"
                         onClick={() => setLanguageSelected(true)}

@@ -48,9 +48,7 @@ const Promote = () => {
                 className="col-span-full flex w-fit items-center gap-2 font-bold hover:text-accent-orange"
             >
                 <BsArrowLeft />
-                {params.get('redirect')
-                    ? t('open_product_page')
-                    : t('product_page')}
+                {t('product_page')}
             </NavLink>
             {/* {params.get('redirect') && <p className='font-bold border-2 text-green-600 border-green-600 dark:border-green-300 dark:text-green-300 dark:bg-green-800 bg-green-100 py-3 px-5 rounded-lg w-fit text-lg'>
                 {t('sell_success')}

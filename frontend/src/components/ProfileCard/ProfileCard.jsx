@@ -4,9 +4,10 @@ import { BiPencil } from 'react-icons/bi'
 import { HiOutlineMail } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
 import AuthContext from '../../contexts/AuthProvider'
-import { Avatar, RatingStars, Flag } from '../ui'
+import { Avatar, RatingStars, Flag, Button } from '../ui'
 import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
+import { FiLogOut } from 'react-icons/fi'
 
 const ProfileCard = ({
     id,
@@ -21,11 +22,11 @@ const ProfileCard = ({
     country,
 }) => {
     const { t } = useTranslation()
-    const { user } = useContext(AuthContext)
+    const { user, logoutUser } = useContext(AuthContext)
 
     return (
         <aside
-            className="grid h-fit shrink-0 grid-cols-2 items-center gap-5 rounded-xl border p-5 shadow-md dark:border-2 dark:border-zinc-600 md:grid-cols-1 md:items-start"
+            className="grid h-fit grid-cols-2 items-center gap-5 rounded-xl border p-5 shadow-md dark:border-2 dark:border-zinc-600 md:grid-cols-1 md:items-start"
             aria-label="user profile card"
         >
             <div className="relative aspect-square w-full" aria-label="avatar">
@@ -35,7 +36,7 @@ const ProfileCard = ({
                 />
                 {user?.user_id === id && (
                     <Link
-                        to="settings"
+                        to="settings/password"
                         className="absolute bottom-1 right-1 rounded-full border-2 bg-white p-2 text-xl hover:bg-slate-100 dark:border-zinc-600 dark:bg-zinc-800 hover:dark:bg-zinc-700"
                         aria-label="edit profile button"
                     >
@@ -43,7 +44,7 @@ const ProfileCard = ({
                     </Link>
                 )}
             </div>
-            <div className="grid gap-2 md:gap-4">
+            <div className="grid gap-2 lg:gap-2 xl:gap-4">
                 <div className="flex flex-wrap items-center gap-2">
                     <p className="flex flex-wrap items-center gap-x-2 font-bold leading-none lg:text-xl">
                         <Flag country={country} className="h-fit w-5 pb-0.5" />
@@ -60,8 +61,6 @@ const ProfileCard = ({
                             {lastName ? lastName : t('last_name')}
                         </span>
                     </p>
-                    {/* {firstName ? <p className='lg:text-xl font-bold'>{firstName}</p> : <p className='text-primary-100 text-xl'>{t('first_name')}</p>}
-                    {lastName ? <p className='lg:text-xl font-bold'>{lastName}</p> : <p className='text-primary-100 text-xl'>{t('last_name')}</p>} */}
                 </div>
                 {phone && (
                     <p
@@ -83,7 +82,7 @@ const ProfileCard = ({
                     <HiOutlineMail width={1.5} />
                     {email ? email : 'email@email.com'}
                 </p>
-                <div className="flex flex-wrap items-center gap-1 md:gap-3">
+                <div className="flex flex-wrap items-center gap-1 md:gap-x-3 md:gap-y-0.5">
                     <RatingStars rating={rating} />
                     {withComments && (
                         <Link
@@ -96,6 +95,16 @@ const ProfileCard = ({
                     )}
                 </div>
             </div>
+            <Button
+                onClick={logoutUser}
+                textColor="accent-red"
+                border={false}
+                className="col-span-full text-start"
+                width="fit"
+            >
+                {t('logout_from_acc')}
+                <FiLogOut />
+            </Button>
         </aside>
     )
 }

@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import AuthContext from '../../contexts/AuthProvider'
 import { Avatar, RatingStars, Button } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 const SellerCard = ({ profile }) => {
     const { t } = useTranslation()
     const { user } = useContext(AuthContext)
+    const { productId } = useParams()
     const date = new Date(profile.date_joined).toLocaleDateString(undefined, {
         year: 'numeric',
         month: 'short',
@@ -55,7 +56,7 @@ const SellerCard = ({ profile }) => {
                     height={10}
                     px={5}
                 >
-                    <Link to={`/users/${profile.id}/chat`}>Send message</Link>
+                    <Link to={`/messenger/${productId}`}>Send message</Link>
                 </Button>
             )}
         </div>

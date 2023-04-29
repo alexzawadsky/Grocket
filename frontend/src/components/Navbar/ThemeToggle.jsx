@@ -58,7 +58,7 @@ const ThemeToggle = () => {
             </Button>
             <div className="relative">
                 {open && (
-                    <ul className="absolute -left-3 top-3 grid gap-1 rounded-md border-2 bg-white p-1 dark:border-zinc-600 dark:bg-zinc-800">
+                    <ul className="absolute -left-3 top-3 grid gap-1 rounded-lg border-2 bg-white p-1 dark:border-zinc-600 dark:bg-zinc-800">
                         {Object.keys(options).map((key) => (
                             <li key={key}>
                                 <Button

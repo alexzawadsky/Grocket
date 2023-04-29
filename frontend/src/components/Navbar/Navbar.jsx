@@ -63,8 +63,8 @@ const Navbar = () => {
                             />
                         )}
                     </Link>
-                    <a
-                        href="https://www.standwithukraine.how/"
+                    <Link
+                        to="https://www.standwithukraine.how/"
                         target="_blank"
                         className="mb-auto"
                     >
@@ -73,8 +73,9 @@ const Navbar = () => {
                             className="mb-auto aspect-square w-4 md:w-5"
                             alt="heart with ukranian flag background"
                         />
-                    </a>
+                    </Link>
                 </li>
+
                 {isMinTablet && (
                     <>
                         <li>

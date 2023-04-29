@@ -48,7 +48,7 @@ const ItemCard = ({
                 </div>
                 <div
                     className={cn(
-                        'flex h-full flex-col items-start justify-center p-4',
+                        'flex h-full flex-col items-start justify-center px-4',
                         product?.promotions.includes('xl')
                             ? 'gap-2 lg:gap-3'
                             : 'gap-1 lg:gap-2'
@@ -78,22 +78,11 @@ const ItemCard = ({
                     <p
                         className={`overflow-hidden text-ellipsis ${
                             product?.promotions.includes('xl')
-                                ? 'lg:text-md text-sm'
-                                : 'text-sm'
+                                ? 'lg:text-md line-clamp-3 text-sm'
+                                : 'line-clamp-2 text-sm'
                         }`}
-                        style={{
-                            lineClamp: 2,
-                            WebkitLineClamp: 2,
-                        }}
                     >
-                        {product?.description?.slice(
-                            0,
-                            product?.promotions?.includes('xl') ? 200 : 100
-                        )}
-                        {product?.description.length >
-                        (product?.promotions.includes('xl') ? 200 : 100)
-                            ? '...'
-                            : ''}
+                        {product?.description}
                     </p>
                     {product?.promotions.includes('price') ? (
                         <span className="relative ml-1.5 inline-block px-1 before:absolute before:-inset-1 before:block before:-skew-x-[10deg] before:rounded-sm before:bg-accent-orange">
@@ -155,7 +144,7 @@ const ItemCard = ({
                                         ? '/users/me'
                                         : `/users/${product?.user?.id}`
                                 }
-                                className="flex flex-wrap font-bold hover:text-accent-orange"
+                                className="font-bold hover:text-accent-orange"
                             >
                                 {product?.user?.first_name}{' '}
                                 {product?.user?.last_name}{' '}
@@ -181,8 +170,8 @@ const ItemCard = ({
                             </p>
                             {product?.user?.id !== user?.user_id && (
                                 <Link
-                                    className="flex h-fit items-center gap-2 text-accent-orange"
-                                    to={`/users/${product?.user?.id}`}
+                                    className="flex h-fit items-center gap-2 text-accent-orange hover:underline"
+                                    to={`/messenger/${product?.slug}`}
                                 >
                                     <FiMail />
                                     {t('send_message')}

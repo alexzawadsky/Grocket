@@ -11,23 +11,16 @@ import {
     Login,
     Sell,
     UserProfile,
-    UserComments,
     NotFound,
-    UserProductsPage,
     ProductPage,
     Register,
-    PasswordReset,
     SearchHistoryPage,
-    ProfileSettings,
-    ChangeAvatar,
-    UpdateProfile,
-    DeleteProfile,
     EditProduct,
     Promote,
-    AddComment,
     Search,
     AboutSite,
     SpecialThanks,
+    Messenger,
 } from './pages'
 import CategoriesListStateContext from './contexts/CategoriesListStateContext'
 import { useContext } from 'react'
@@ -64,38 +57,9 @@ function App() {
                             element={<ProductPage />}
                         />
                         <Route
-                            path="users/:profileId"
+                            path="users/:profileId/*"
                             element={<UserProfile />}
-                        >
-                            <Route
-                                path="settings"
-                                element={<ProfileSettings />}
-                            >
-                                <Route
-                                    path="password"
-                                    element={<PasswordReset />}
-                                />
-                                <Route
-                                    path="avatar"
-                                    element={<ChangeAvatar />}
-                                />
-                                <Route
-                                    path="info"
-                                    element={<UpdateProfile />}
-                                />
-                                <Route
-                                    path="delete"
-                                    element={<DeleteProfile />}
-                                />
-                            </Route>
-                            <Route
-                                path="items"
-                                element={<UserProductsPage />}
-                            />
-                            <Route path="comments" element={<UserComments />}>
-                                <Route path="add" element={<AddComment />} />
-                            </Route>
-                        </Route>
+                        />
                         <Route path="about-site" element={<AboutSite />} />
                         <Route
                             path="special-thanks"
@@ -111,6 +75,7 @@ function App() {
                                 path="products/:productId/promote"
                                 element={<Promote />}
                             />
+                            <Route path="messenger/*" element={<Messenger />} />
                         </Route>
                         <Route path="*" element={<NotFound />} />
                     </Route>

@@ -10,6 +10,7 @@ import { IoClose } from 'react-icons/io5'
 import useScreen from '../../hooks/useScreen'
 import { Button, Form, Input } from '../ui'
 import useInput from '../../hooks/useInput'
+import { useProducts } from '../../api/api'
 
 const SearchForm = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -18,6 +19,7 @@ const SearchForm = () => {
     const { open, setOpen } = useContext(CategoriesListStateContext)
     const navigate = useNavigate()
     const { isMinTablet } = useScreen()
+    const { data } = useProducts(new URLSearchParams({ page: 1 }))
 
     useEffect(() => {
         !searchParams.get('search') && search.setValue('')
@@ -58,7 +60,7 @@ const SearchForm = () => {
                         ariaLabel="search input for items search"
                         instance={search}
                         className="!rounded-xl !border-2"
-                        placeholder="eg. Iphone 14 Pro Max 512Gb"
+                        placeholder={`${t('eg.')} Apple Watch Ultra`}
                         containerClassName="grow"
                         type="text"
                     />

@@ -55,9 +55,9 @@ const Button = ({
                     className,
                     buttonStyle,
                     bold && 'font-bold',
-                    `w-${width}`,
-                    `h-${height}`,
-                    `px-${px}`,
+                    width && `w-${width}`,
+                    height && `h-${height}`,
+                    px && `px-${px}`,
                     border && 'border-2',
                     'flex items-center justify-center gap-2 rounded-xl transition-all duration-100'
                 )}
@@ -74,11 +74,14 @@ const Button = ({
                 className,
                 buttonStyle,
                 textColor && `text-${textColor}`,
-                !style && `bg-${color} dark:bg-${darkColor}`,
+                !style &&
+                    color &&
+                    darkColor &&
+                    `bg-${color} dark:bg-${darkColor}`,
                 bold && 'font-bold',
-                `w-${width}`,
-                `h-${height}`,
-                `px-${px}`,
+                width && `w-${width}`,
+                height && `h-${height}`,
+                px && `px-${px}`,
                 borderColor && `border-${borderColor}`,
                 onHoverColor && `hover:bg-${onHoverColor}`,
                 onHoverDarkColor && `dark:hover:bg-${onHoverDarkColor}`,

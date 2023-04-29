@@ -4,7 +4,6 @@ import AvatarEditor from 'react-avatar-editor'
 import { saveImage } from '../../utils'
 import { AiOutlineRotateLeft, AiOutlineRotateRight } from 'react-icons/ai'
 import useScreen from '../../hooks/useScreen'
-import { BsFolder } from 'react-icons/bs'
 import Button from './Button'
 
 const ImageEditor = ({ images, setImages }) => {

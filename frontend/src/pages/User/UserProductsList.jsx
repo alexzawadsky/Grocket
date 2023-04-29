@@ -6,6 +6,7 @@ import { Spinner, Pagination } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
 import AuthContext from '../../contexts/AuthProvider'
 import { AiFillHeart } from 'react-icons/ai'
+import cn from 'classnames'
 
 const UserProductsList = () => {
     const { t } = useTranslation()
@@ -60,11 +61,12 @@ const UserProductsList = () => {
                         .map((el, key) => (
                             <li
                                 key={key}
-                                className={`md:text-md flex h-8 cursor-pointer items-center justify-center rounded-lg p-0.5 text-sm font-bold transition-all hover:bg-slate-100 dark:hover:bg-zinc-700 md:p-2 ${
+                                className={cn(
+                                    'md:text-md flex h-8 cursor-pointer items-center justify-center gap-2 rounded-lg p-2 text-sm font-bold transition-all hover:bg-slate-100 dark:hover:bg-zinc-700',
                                     JSON.stringify(el.query) ===
                                         JSON.stringify(query) &&
-                                    '!bg-slate-200 dark:!bg-zinc-600'
-                                } gap-2`}
+                                        '!bg-slate-200 dark:!bg-zinc-600'
+                                )}
                                 onClick={() => {
                                     setPage(0)
                                     setQuery(el.query)

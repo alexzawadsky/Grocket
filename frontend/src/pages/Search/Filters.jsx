@@ -45,7 +45,7 @@ const Filters = ({ mnP, mxP, productsCountries, open, setOpen }) => {
         <aside
             className={cn(
                 open ? 'right-0 max-md:pl-0' : '-right-[110%] max-md:pl-5',
-                'top-0 z-40 h-fit w-80 transition-[right] duration-200 max-lg:absolute max-md:w-full lg:sticky lg:top-20'
+                'top-0 z-40 h-fit w-80 transition-[right] duration-200 max-lg:absolute max-md:w-full md:w-fit lg:sticky lg:top-20 lg:w-full'
             )}
         >
             <div className="grid h-fit w-full gap-1 bg-white pb-5 dark:bg-zinc-800 md:w-80 md:rounded-lg md:border md:p-5 dark:md:border-2 dark:md:border-zinc-600 lg:w-full lg:rounded-lg lg:border-none lg:p-0">

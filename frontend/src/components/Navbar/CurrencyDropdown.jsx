@@ -29,10 +29,9 @@ const CurrencyDropdown = () => {
             <Button
                 border={false}
                 onClick={() => setOpen((prevState) => !prevState)}
-                className="currency-drop md:max-lg:px-2"
+                className="currency-drop"
             >
-                {getSymbolFromCurrency(targetCurrency)}{' '}
-                {(isMinPC || !isMinTablet) && targetCurrency}
+                {getSymbolFromCurrency(targetCurrency)} {targetCurrency}
             </Button>
             <div className="relative">
                 {open && (

@@ -99,7 +99,7 @@
     "404_text": "The page you are looking for is not found, check URL or press the button bellow to go back",
     "how_rating_works": "How rating works",
     "add_comment": "Add comment",
-    "rating_is": "User rating is based on comments, posted by other users",
+    "rating_is": "User rating is based on comments posted by other users",
     "based_on": "Based on",
     "Other": "Other",
     "Did not agree": "Did not agree",
@@ -151,5 +151,8 @@
     "back": "Back",
     "show_more": "Show more",
     "show_less": "Show less",
-    "feedback_form": "Feedback"
+    "feedback_form": "Feedback",
+    "messenger_in_progress": "Messenger page is in progress, does not represent the final result",
+    "call": "Call",
+    "eg.": "eg."
 }

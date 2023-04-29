@@ -3,7 +3,7 @@ import useScreen from '../../hooks/useScreen'
 
 const ImagesCarousel = ({ images }) => {
     const [currentIndex, setCurrentIndex] = useState(0)
-    const { isMinTabet } = useScreen()
+    const { isMinTablet } = useScreen()
     if (images.length === 0) return
 
     return (
@@ -12,7 +12,7 @@ const ImagesCarousel = ({ images }) => {
                 aria-label="item card photo"
                 src={images[currentIndex]?.image}
             />
-            {isMinTabet && (
+            {isMinTablet && (
                 <div
                     className="absolute left-0 top-0 flex h-full w-full"
                     onMouseLeave={() => setCurrentIndex(0)}

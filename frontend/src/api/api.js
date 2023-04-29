@@ -4,6 +4,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import useAxios from '../hooks/useAxios'
 import { notification, getLastRoute } from '../utils'
+import { useContext } from 'react'
+import AuthContext from '../contexts/AuthProvider'
 
 const limit = 12
 
@@ -164,6 +166,17 @@ export const useUpdatePassword = () => {
         (data) => api.post('/api/v1/users/set_password/', data),
         {
             onSuccess: () => notification('Your password has been updated'),
+        }
+    )
+}
+
+export const useDeleteProfile = () => {
+    const api = useAxios()
+    const { logoutUser } = useContext(AuthContext)
+    return useMutation(
+        (data) => api.delete('/api/v1/users/me', data),
+        {
+            onSuccess: logoutUser
         }
     )
 }

@@ -300,7 +300,7 @@ class ProductCreateSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
     user = serializers.IntegerField()
     description = serializers.CharField(max_length=5000)
-    price = serializers.IntegerField(min_value=0)
+    price = serializers.FloatField(min_value=0)
     category = serializers.IntegerField()
     address = ProductAddressCreateUpdateSerializer()
 

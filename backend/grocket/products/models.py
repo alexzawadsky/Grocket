@@ -15,10 +15,23 @@ class ProductAddress(models.Model):
         verbose_name="product",
         related_name="product_addresses",
     )
-    full = models.CharField(max_length=200, verbose_name="full address")
-    short = models.CharField(max_length=200, verbose_name="short address")
-    city = models.CharField(max_length=100, verbose_name="city", blank=True)
-    country_code = models.CharField(max_length=2, verbose_name="country code")
+    full = models.CharField(
+        max_length=200,
+        verbose_name="full address",
+    )
+    short = models.CharField(
+        max_length=200,
+        verbose_name="short address",
+    )
+    city = models.CharField(
+        max_length=100,
+        verbose_name="city",
+        blank=True,
+    )
+    country_code = models.CharField(
+        max_length=2,
+        verbose_name="country code",
+    )
     latitude = models.FloatField(
         verbose_name="latitude",
         validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)],
@@ -44,8 +57,14 @@ class Image(models.Model):
         on_delete=models.CASCADE,
         verbose_name="product",
     )
-    image = models.ImageField(verbose_name="image", upload_to="images/%Y-%m-%d/")
-    is_main = models.BooleanField(verbose_name="is main", default=False)
+    image = models.ImageField(
+        verbose_name="image",
+        upload_to="images/%Y-%m-%d/",
+    )
+    is_main = models.BooleanField(
+        verbose_name="is main",
+        default=False,
+    )
 
     class Meta:
         ordering = ("-id",)
@@ -92,7 +111,9 @@ class Promotion(models.Model):
         verbose_name="name",
         unique=True,
     )
-    price = models.PositiveIntegerField(verbose_name="price($)")
+    price = models.PositiveIntegerField(
+        verbose_name="price($)",
+    )
     description = models.TextField(
         max_length=500,
         verbose_name="description",
@@ -112,7 +133,11 @@ class Product(models.Model):
         max_length=200,
         verbose_name="name",
     )
-    slug = models.SlugField(verbose_name="slug", max_length=200, unique=True)
+    slug = models.SlugField(
+        verbose_name="slug",
+        max_length=200,
+        unique=True,
+    )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -129,7 +154,10 @@ class Product(models.Model):
         max_length=10000,
         verbose_name="description",
     )
-    price = models.PositiveIntegerField(verbose_name="price($)")
+    price = models.FloatField(
+        verbose_name="price($)",
+        validators=[MinValueValidator(0)],
+    )
     promotions = models.ManyToManyField(
         "Promotion",
         related_name="products",

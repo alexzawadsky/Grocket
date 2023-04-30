@@ -23,6 +23,7 @@ def exchange(request):
     # service = ExchangeRateService(key=code)
     # data = {"rate": service.get_exchange_rate()}
     data = {
+        "USD": 1,
         "EUR": 0.9,
         "RUB": 82,
         "UAH": 36,

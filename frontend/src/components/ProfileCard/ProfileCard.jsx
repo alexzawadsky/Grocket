@@ -95,16 +95,18 @@ const ProfileCard = ({
                     )}
                 </div>
             </div>
-            <Button
-                onClick={logoutUser}
-                textColor="accent-red"
-                border={false}
-                className="col-span-full text-start"
-                width="fit"
-            >
-                {t('logout_from_acc')}
-                <FiLogOut />
-            </Button>
+            {user?.user_id === id && (
+                <Button
+                    onClick={logoutUser}
+                    textColor="accent-red"
+                    border={false}
+                    className="col-span-full text-start"
+                    width="fit"
+                >
+                    {t('logout_from_acc')}
+                    <FiLogOut />
+                </Button>
+            )}
         </aside>
     )
 }

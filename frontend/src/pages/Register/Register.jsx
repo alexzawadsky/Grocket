@@ -44,6 +44,7 @@ const Register = () => {
                                 avatar={formData?.avatar}
                                 withComments={false}
                                 withPhone={false}
+                                country="US"
                             />
                         </div>
                     )}

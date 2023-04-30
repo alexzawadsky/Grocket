@@ -165,7 +165,7 @@ export const useUpdatePassword = () => {
     return useMutation(
         (data) => api.post('/api/v1/users/set_password/', data),
         {
-            onSuccess: () => notification('Your password has been updated'),
+            onSuccess: (res) => notification(res?.data?.message),
         }
     )
 }
@@ -176,7 +176,10 @@ export const useDeleteProfile = () => {
     return useMutation(
         (data) => api.delete('/api/v1/users/me', data),
         {
-            onSuccess: logoutUser
+            onSuccess: (res) => {
+                logoutUser()
+                notification(res?.data?.message)
+            } 
         }
     )
 }

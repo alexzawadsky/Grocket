@@ -26,17 +26,14 @@ export const PasswordReset = () => {
 
     const updatePasswordMutation = useUpdatePassword()
 
-    const handleSubmit = (e) => {
-        const data = {
-            new_password: newPwd.value,
-            current_password: oldPwd.value,
-        }
-        updatePasswordMutation.mutate(data)
-    }
-
     return (
         <Form
-            onSubmit={handleSubmit}
+            onSubmit={() => {
+                updatePasswordMutation.mutate({
+                    new_password: newPwd.value,
+                    current_password: oldPwd.value,
+                })
+            }}
             className="grid w-full gap-3 md:w-2/3 lg:w-1/2"
         >
             <Input
@@ -90,14 +87,16 @@ export const UpdateProfile = () => {
         ? Object.entries(formData).filter(([key, value]) => value !== data[key])
         : {}
 
-    const handleSubmit = () => {
-        const data = Object.fromEntries(changedFields)
-        updateProfileMutation.mutate(data)
-    }
-
     return (
         <div className="grid w-full gap-3 md:w-2/3 lg:w-1/2">
-            <Form className="grid gap-3 md:grid-cols-2" onSubmit={handleSubmit}>
+            <Form
+                className="grid gap-3 md:grid-cols-2"
+                onSubmit={() => {
+                    updateProfileMutation.mutate(
+                        Object.fromEntries(changedFields)
+                    )
+                }}
+            >
                 <Input title={t('first_name')} instance={name} />
                 <Input title={t('last_name')} instance={lastName} />
                 <Input title={t('phone')} instance={phone} />
@@ -114,7 +113,10 @@ export const UpdateProfile = () => {
                     width="fit"
                     px={5}
                     className="col-span-full"
-                    disabled={changedFields.length === 0}
+                    disabled={
+                        changedFields.length === 0 ||
+                        updateProfileMutation.isLoading
+                    }
                 >
                     {updateProfileMutation.isLoading ? (
                         <Spinner />

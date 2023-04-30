@@ -8,14 +8,14 @@ function createWindow() {
         height: 600,
         webPreferences: {
             nodeIntegration: true,
-            contextIsolation: false
-        }
+            contextIsolation: false,
+        },
     })
 
     // window.loadFile(`${app.getAppPath()}\\dist\\index.html`) // Replace 'index.html' with the path to your React app's HTML file
-    window.loadURL(startUrl);
+    window.loadURL(startUrl)
 
-    window.show();
+    window.show()
     // window.webContents.openDevTools({ mode: 'detach' });
 }
 

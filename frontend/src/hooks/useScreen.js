@@ -1,7 +1,6 @@
-import { useMediaQuery } from "react-responsive"
+import { useMediaQuery } from 'react-responsive'
 
 const useScreen = () => {
-
     const maxPhoneW = 639
     const minTabletW = 768
     const maxTabletW = 1023
@@ -24,7 +23,7 @@ const useScreen = () => {
         isMinTablet,
         isMaxTablet,
         isMinPC,
-        isLargePC
+        isLargePC,
     }
 }
 

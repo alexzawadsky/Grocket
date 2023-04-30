@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
 
 const Button = ({
     type,
@@ -21,9 +21,8 @@ const Button = ({
     ariaLabel,
     tabIndex = 1,
     to,
-    bold = true
+    bold = true,
 }) => {
-
     let buttonStyle
 
     switch (style) {
@@ -34,7 +33,7 @@ const Button = ({
                 `border-${color} dark:border-${darkColor}`,
                 `hover:bg-${color}/[0.2]`
             )
-            break;
+            break
         case 'fill':
             buttonStyle = cn(
                 `bg-${color} dark:bg-${darkColor}`,
@@ -43,28 +42,29 @@ const Button = ({
                 `hover:bg-${color}/[0.8]`
             )
         default:
-            break;
+            break
     }
 
-    if (to) return (
-        <NavLink
-            onClick={() => onClick && onClick()}
-            to={to}
-            aria-label={ariaLabel}
-            className={cn(
-                className,
-                buttonStyle,
-                bold && 'font-bold',
-                `w-${width}`,
-                `h-${height}`,
-                `px-${px}`,
-                border && 'border-2',
-                'transition-all duration-100 flex items-center justify-center gap-2 rounded-xl'
-            )}
-        >
-            {children}
-        </NavLink>
-    )
+    if (to)
+        return (
+            <NavLink
+                onClick={() => onClick && onClick()}
+                to={to}
+                aria-label={ariaLabel}
+                className={cn(
+                    className,
+                    buttonStyle,
+                    bold && 'font-bold',
+                    width && `w-${width}`,
+                    height && `h-${height}`,
+                    px && `px-${px}`,
+                    border && 'border-2',
+                    'flex items-center justify-center gap-2 rounded-xl transition-all duration-100'
+                )}
+            >
+                {children}
+            </NavLink>
+        )
 
     return (
         <button
@@ -74,17 +74,20 @@ const Button = ({
                 className,
                 buttonStyle,
                 textColor && `text-${textColor}`,
-                !style && `bg-${color} dark:bg-${darkColor}`,
+                !style &&
+                    color &&
+                    darkColor &&
+                    `bg-${color} dark:bg-${darkColor}`,
                 bold && 'font-bold',
-                `w-${width}`,
-                `h-${height}`,
-                `px-${px}`,
+                width && `w-${width}`,
+                height && `h-${height}`,
+                px && `px-${px}`,
                 borderColor && `border-${borderColor}`,
                 onHoverColor && `hover:bg-${onHoverColor}`,
                 onHoverDarkColor && `dark:hover:bg-${onHoverDarkColor}`,
                 border && 'border-2',
-                'transition-all duration-100 flex items-center justify-center gap-2 rounded-xl',
-                'disabled:text-slate-600 disabled:border-2 disabled:border-slate-600 disabled:cursor-not-allowed disabled:bg-transparent'
+                'flex items-center justify-center gap-2 rounded-xl transition-all duration-100',
+                'disabled:cursor-not-allowed disabled:border-2 disabled:border-slate-600 disabled:bg-transparent disabled:text-slate-600'
             )}
             disabled={disabled}
             type={type}

@@ -1,17 +1,20 @@
-import { createContext } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
-import { useExchangeRates } from "../api/api";
+import { createContext } from 'react'
+import useLocalStorage from '../hooks/useLocalStorage'
+import { useExchangeRates } from '../api/api'
 
 const CurrencyContext = createContext()
 
 export default CurrencyContext
 
 export const CurrencyProvider = ({ children }) => {
-
-    const [targetCurrency, setTargetCurrency] = useLocalStorage('targetCurrency', 'USD')
+    const [targetCurrency, setTargetCurrency] = useLocalStorage(
+        'targetCurrency',
+        'USD'
+    )
     const { data, isLoading } = useExchangeRates()
+    const exchangeRate = data ? data[targetCurrency] : 1
 
-    const convertPrice = price => {
+    const convertPrice = (price) => {
         let convertedPrice
         if (!data) {
             convertedPrice = price
@@ -19,16 +22,17 @@ export const CurrencyProvider = ({ children }) => {
             convertedPrice = price * (data[targetCurrency] || 1)
         }
         return parseFloat(convertedPrice)
-            .toFixed((convertedPrice - Math.floor(convertedPrice)) !== 0 ? 2 : 0)
+            .toFixed(convertedPrice - Math.floor(convertedPrice) !== 0 ? 2 : 0)
             .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
     }
 
     const contextData = {
         targetCurrency,
         setTargetCurrency,
         convertPrice,
-        isLoading
+        isLoading,
+        exchangeRate,
     }
 
     return (

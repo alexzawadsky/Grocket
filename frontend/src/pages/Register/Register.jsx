@@ -9,7 +9,7 @@ import { Title, Button, Form } from '../../components/ui'
 import { Helmet } from 'react-helmet-async'
 
 const Register = () => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     const { registerUser } = useContext(AuthContext)
 
     const [formData, setFormData] = useState()
@@ -44,6 +44,7 @@ const Register = () => {
                                 avatar={formData?.avatar}
                                 withComments={false}
                                 withPhone={false}
+                                country={i18n.resolvedLanguage}
                             />
                         </div>
                     )}

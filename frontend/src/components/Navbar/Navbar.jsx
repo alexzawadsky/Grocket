@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { MdOutlineSell } from 'react-icons/md'
 import AuthContext from '../../contexts/AuthProvider'
 import { useContext, useEffect, useState } from 'react'
@@ -45,7 +45,7 @@ const Navbar = () => {
             aria-label="website navigation bar"
         >
             <ul
-                className="container mx-auto flex h-16 items-center bg-white pl-5 dark:bg-zinc-800 md:gap-4 md:px-5 lg:gap-6"
+                className="container mx-auto flex h-16 items-center gap-1 bg-white pl-5 dark:bg-zinc-800 md:gap-4 md:px-5 lg:gap-6"
                 aria-label="navigation bar items list"
             >
                 <li className="flex items-center gap-1 max-md:mr-auto">
@@ -97,23 +97,37 @@ const Navbar = () => {
                     <>
                         {isMinPC && (
                             <li>
-                                <Link
+                                <NavLink
                                     to="/register"
-                                    className="flex h-12 items-center gap-2 rounded-lg px-3 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700"
+                                    className={({ isActive }) =>
+                                        cn(
+                                            'flex h-12 items-center gap-2 rounded-lg px-3 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700',
+                                            isActive
+                                                ? 'bg-slate-100 dark:bg-zinc-700'
+                                                : ''
+                                        )
+                                    }
                                 >
                                     <FiUserPlus />
                                     {t('register')}
-                                </Link>
+                                </NavLink>
                             </li>
                         )}
                         <li>
-                            <Link
+                            <NavLink
                                 to="/login"
-                                className="flex h-12 items-center gap-2 rounded-lg px-3 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700"
+                                className={({ isActive }) =>
+                                    cn(
+                                        'flex h-12 items-center gap-2 rounded-lg px-3 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700',
+                                        isActive
+                                            ? 'bg-slate-100 dark:bg-zinc-700'
+                                            : ''
+                                    )
+                                }
                             >
                                 <FiLogIn />
                                 {t('login')}
-                            </Link>
+                            </NavLink>
                         </li>
                     </>
                 )}

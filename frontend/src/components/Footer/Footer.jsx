@@ -48,7 +48,7 @@ const Footer = () => {
                 },
                 {
                     icon: <RiHandHeartLine />,
-                    name: 'Special thanks',
+                    name: t('special_thanks'),
                     url: '/special-thanks',
                 },
             ],

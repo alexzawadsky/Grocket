@@ -3,29 +3,31 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import cn from 'classnames'
 import { useSearchParams } from 'react-router-dom'
 import { BsArrowDownRight, BsArrowUpRight } from 'react-icons/bs'
+import { useTranslation } from 'react-i18next'
 
 const SortBy = () => {
     const [open, setOpen] = useState(false)
+    const { t } = useTranslation()
     const [searchParams, setSearchParams] = useSearchParams()
 
     const options = [
         {
-            title: 'Price Low-High',
+            title: t('price_low_high'),
             code: 'price',
             icon: <BsArrowUpRight />,
         },
         {
-            title: 'Price High-Low',
+            title: t('price_high_low'),
             code: '-price',
             icon: <BsArrowDownRight />,
         },
         {
-            title: 'Time New-Old',
+            title: t('time_new_old'),
             code: '-pub_date',
             icon: <BsArrowDownRight />,
         },
         {
-            title: 'Time Old-New',
+            title: t('time_old_new'),
             code: 'pub_date',
             icon: <BsArrowUpRight />,
         },

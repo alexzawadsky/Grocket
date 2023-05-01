@@ -35,7 +35,7 @@ const Search = () => {
             <SearchBar />
             <div>
                 <Title className="flex pl-0 !text-2xl md:pl-5 md:!text-3xl lg:pl-0">
-                    Products matching "
+                    {t('products_matching')} "
                     {searchParams.get('search') ? (
                         searchParams.get('search')
                     ) : data?.category ? (

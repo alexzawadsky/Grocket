@@ -67,7 +67,7 @@ const ThemeToggle = () => {
                                     }
                                     border={false}
                                     className={cn(
-                                        '!rounded-md hover:bg-slate-100 hover:dark:bg-zinc-700 md:h-10',
+                                        '!justify-start whitespace-nowrap !rounded-md hover:bg-slate-100 hover:dark:bg-zinc-700 md:h-10',
                                         themeSetting === options[key].code &&
                                             '!bg-slate-200 dark:!bg-zinc-600'
                                     )}

@@ -47,6 +47,7 @@ const ProductForm = ({ data, setData, setValid }) => {
         } else {
             setAllValid(false)
         }
+        console.log(exchangeRate)
         setData({
             name: name.value,
             description: description,

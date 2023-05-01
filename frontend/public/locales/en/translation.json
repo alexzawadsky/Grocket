@@ -154,5 +154,8 @@
     "feedback_form": "Feedback",
     "messenger_in_progress": "Messenger page is in progress, does not represent the final result",
     "call": "Call",
-    "eg.": "eg."
+    "eg.": "eg.",
+    "translate": "Translate",
+    "show_original": "Show original",
+    "powered_by": "Powered by"
 }

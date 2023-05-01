@@ -6,6 +6,7 @@ import useAxios from '../hooks/useAxios'
 import { notification, getLastRoute } from '../utils'
 import { useContext } from 'react'
 import AuthContext from '../contexts/AuthProvider'
+import localization from '../assets/json/localization.json'
 
 const limit = 12
 
@@ -290,6 +291,23 @@ export const useExchangeRates = () => {
     return useQuery(['exchangeRages'], () =>
         api.get('/api/v1/exchange').then((res) => res.data)
     )
+}
+
+
+export const useTranslateText = (text, translated) => {
+    const { i18n } = useTranslation()
+    const targetLang = localization[i18n.resolvedLanguage.toUpperCase()]
+    .codeForTranslate
+    const api = useAxios()
+    return useQuery(['translate', text, translated, targetLang], translated ?  () => 
+    api.post("https://translate.terraprint.co/translate", 
+        {
+            q: text,
+            source: "auto",
+            target: targetLang,
+            format: "html"
+        }
+    ).then((res) => res.data?.translatedText) : () => text)
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || '' })

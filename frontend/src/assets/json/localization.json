@@ -4,66 +4,76 @@
         "name": "English",
         "code": "en",
         "flag": "GB",
-        "codeForTimeStamp": "en"
+        "codeForTimeStamp": "en",
+        "codeForTranslate": "en"
     },
     "RU": {
         "icon": "🇷🇺",
         "name": "Русский",
         "code": "ru",
         "flag": "RU",
-        "codeForTimeStamp": "ru"
+        "codeForTimeStamp": "ru",
+        "codeForTranslate": "ru"
     },
     "UA": {
         "icon": "🇺🇦",
         "name": "Українська",
         "code": "ua",
         "flag": "UA",
-        "codeForTimeStamp": "uk"
+        "codeForTimeStamp": "uk",
+        "codeForTranslate": "uk"
     },
     "KZ": {
         "name": "Қазақ",
         "code": "kz",
         "flag": "KZ",
-        "codeForTimeStamp": "kz"
+        "codeForTimeStamp": "kz",
+        "codeForTranslate": "ru"
     },
     "SE": {
         "icon": "🇸🇪",
         "name": "Svenska",
         "code": "se",
         "flag": "SE",
-        "codeForTimeStamp": "sv"
+        "codeForTimeStamp": "sv",
+        "codeForTranslate": "sv"
     },
     "NL": {
         "icon": "🇳🇱",
         "name": "Dutch",
         "code": "nl",
         "flag": "NL",
-        "codeForTimeStamp": "nl"
+        "codeForTimeStamp": "nl",
+        "codeForTranslate": "nl"
     },
     "FR": {
         "icon": "🇫🇷",
         "name": "Français",
         "code": "fr",
         "flag": "FR",
-        "codeForTimeStamp": "fr"
+        "codeForTimeStamp": "fr",
+        "codeForTranslate": "fr"
     },
     "DE": {
         "name": "Deutsch",
         "code": "de",
         "flag": "DE",
-        "codeForTimeStamp": "de"
+        "codeForTimeStamp": "de",
+        "codeForTranslate": "de"
     },
     "CN": {
         "icon": "🇨🇳",
         "name": "中国人",
         "code": "cn",
         "flag": "CN",
-        "codeForTimeStamp": "zh"
+        "codeForTimeStamp": "zh",
+        "codeForTranslate": "zh"
     },
     "GE": {
         "name": "ქართული",
         "code": "ge",
         "flag": "GE",
-        "codeForTimeStamp": "ka"
+        "codeForTimeStamp": "ka",
+        "codeForTranslate": "en"
     }
 }

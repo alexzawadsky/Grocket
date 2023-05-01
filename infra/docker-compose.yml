@@ -49,17 +49,6 @@ services:
     volumes:
       - redis:/data
 
-  translator:
-    container_name: translator
-    build:
-      context: .
-      dockerfile: ../translator/docker/Dockerfile
-    restart: unless-stopped
-    ports:
-      - "5000:5000"
-    healthcheck:
-      test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py']
-
 volumes:
   static_value:
   media_value:

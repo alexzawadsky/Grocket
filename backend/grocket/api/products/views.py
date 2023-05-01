@@ -50,8 +50,8 @@ class ProductViewSet(ProductMixin):
 
     def list(self, request):
         respones = super().list(request, queryset=get_safe_products()).data
-        data = self._get_searching_data(respones=respones)
-        return Response(data=data, status=status.HTTP_200_OK)
+        # data = self._get_searching_data(respones=respones)
+        return Response(data=respones, status=status.HTTP_200_OK)
 
     def retrieve(self, request, slug):
         user = self.request.user

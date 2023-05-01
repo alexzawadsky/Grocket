@@ -4,24 +4,17 @@ from ..paginators import PageLimitPagination
 
 
 class ProductPageLimitPagination(PageLimitPagination):
-    def get_stats(self, data):
-        rates = []
-        for comment in data:
-            rates.append(comment["rate"])
+    def get_countries(self, data):
+        print(data)
 
-        rates_lenth = len(rates)
-        avg = 0 if rates_lenth == 0 else round((sum(rates) / rates_lenth), 2)
+    def get_categories(self, data):
+        pass
 
-        stats = {
-            "avg": avg,
-            "1": rates.count(1),
-            "2": rates.count(2),
-            "3": rates.count(3),
-            "4": rates.count(4),
-            "5": rates.count(5),
-        }
+    def get_min_price(self, data):
+        pass
 
-        return stats
+    def get_max_price(self, data):
+        pass
 
     def get_paginated_response(self, data):
         return Response(
@@ -37,7 +30,10 @@ class ProductPageLimitPagination(PageLimitPagination):
                     "next": self.get_next_link(),
                     "previous": self.get_previous_link(),
                 },
-                "countries": self.get
+                "min_price": self.get_min_price(data),
+                "max_price": self.get_max_price(data),
+                "categories": self.get_categories(data),
+                "countries": self.get_countries(data),
                 "results": data,
             }
         )

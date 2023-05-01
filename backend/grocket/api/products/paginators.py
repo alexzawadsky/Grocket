@@ -1,20 +1,35 @@
 from rest_framework.response import Response
 
 from ..paginators import PageLimitPagination
+from products.selectors import get_categories as get_all_categories
+from .serializers import CategoryListSerializer
 
 
 class ProductPageLimitPagination(PageLimitPagination):
     def get_countries(self, data):
-        print(data)
+        countries = []
+        for product in data:
+            countries.append(product["address"]["country_code"])
+        return set(countries)
 
     def get_categories(self, data):
-        pass
+        categories = []
+        for product in data:
+            categories.append(product["category"]["id"])
+        queryset = get_all_categories(id__in=set(categories))
+        return CategoryListSerializer(instance=queryset, many=True).data
 
     def get_min_price(self, data):
-        pass
+        prices = []
+        for product in data:
+            prices.append(product["price"])
+        return min(prices)
 
     def get_max_price(self, data):
-        pass
+        prices = []
+        for product in data:
+            prices.append(product["price"])
+        return max(prices)
 
     def get_paginated_response(self, data):
         return Response(

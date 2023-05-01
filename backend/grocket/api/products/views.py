@@ -2,6 +2,7 @@ from django.db import transaction
 from products.selectors import (
     get_all_products,
     get_categories,
+    get_category_name_by_id_or_none,
     get_favourited_products,
     get_product_or_404,
     get_products_for_comments,
@@ -50,9 +51,11 @@ class ProductViewSet(ProductMixin):
         return Response(data, status=status.HTTP_200_OK)
 
     def list(self, request):
-        respones = super().list(request, queryset=get_safe_products()).data
-        # data = self._get_searching_data(respones=respones)
-        return Response(data=respones, status=status.HTTP_200_OK)
+        data = super().list(request, queryset=get_safe_products()).data
+        category_id = self.request.query_params.get("category_id")
+        category_name = get_category_name_by_id_or_none(category_id=category_id)
+        data.update({"category": category_name})
+        return Response(data=data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, slug):
         user = self.request.user

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { MdOutlineSell } from 'react-icons/md'
 import AuthContext from '../../contexts/AuthProvider'
 import { useContext, useEffect, useState } from 'react'
@@ -6,15 +6,16 @@ import { FiLogIn, FiUserPlus } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
 import useScreen from '../../hooks/useScreen'
 import LanguageDropdown from './LanguageDropdown'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/images/logo.png'
 import heart from '../../assets/icons/ukraine.svg'
 import ThemeToggle from './ThemeToggle'
 import { Button } from '../ui'
 import { GoKebabVertical } from 'react-icons/go'
 import ProfileButton from './ProfileButton'
+import CurrencyDropdown from './CurrencyDropdown'
+import cn from 'classnames'
 
 const Navbar = () => {
-
     const { t } = useTranslation()
     const { user } = useContext(AuthContext)
     const { isMinTablet, isMinPC } = useScreen()
@@ -36,73 +37,132 @@ const Navbar = () => {
     }, [])
 
     return (
-        <nav className='w-full sticky z-[99] left-0 top-0 shadow-lg bg-white dark:bg-zinc-800' aria-label='website navigation bar'>
-            <ul className='flex container pl-5 md:px-5 mx-auto md:gap-4 lg:gap-6 h-16 items-center' aria-label='navigation bar items list'>
+        <nav
+            className={cn(
+                'sticky left-0 top-0 z-[99] w-full bg-white dark:bg-zinc-800',
+                isMinTablet ? 'shadow-lg' : ''
+            )}
+            aria-label="website navigation bar"
+        >
+            <ul
+                className="container mx-auto flex h-16 items-center bg-white pl-5 dark:bg-zinc-800 md:gap-4 md:px-5 lg:gap-6"
+                aria-label="navigation bar items list"
+            >
                 <li className="flex items-center gap-1 max-md:mr-auto">
-                    <NavLink className='text-3xl font-bolditalic text-accent-orange hover:text-accent-orange/[0.8] flex items-center gap-2' to='/'>
-                        {isMinTablet ? 'Grocket' : <img className='h-10' src={logo} alt='grocket logo' />}
-                    </NavLink>
-                    <a
-                        href='https://www.standwithukraine.how/'
-                        target='_blank'
-                        className='mb-auto'
+                    <Link
+                        className="flex items-center gap-2 font-bolditalic text-3xl text-accent-orange hover:text-accent-orange/[0.8]"
+                        to="/"
+                    >
+                        {isMinTablet ? (
+                            'Grocket'
+                        ) : (
+                            <img
+                                className="h-10"
+                                src={logo}
+                                alt="grocket logo"
+                            />
+                        )}
+                    </Link>
+                    <Link
+                        to="https://www.standwithukraine.how/"
+                        target="_blank"
+                        className="mb-auto"
                     >
                         <img
                             src={heart}
-                            className='w-4 md:w-5 aspect-square mb-auto'
-                            alt='heart with ukranian flag background'
+                            className="mb-auto aspect-square w-4 md:w-5"
+                            alt="heart with ukranian flag background"
                         />
-                    </a>
+                    </Link>
                 </li>
-                {isMinTablet && <>
-                    <li>
-                        <LanguageDropdown />
-                    </li>
-                    <li className='mr-auto'>
-                        <ThemeToggle />
-                    </li>
-                </>}
-                {user ?
+
+                {isMinTablet && (
+                    <>
+                        <li>
+                            <LanguageDropdown />
+                        </li>
+                        <li>
+                            <CurrencyDropdown />
+                        </li>
+                        <li className="mr-auto">
+                            <ThemeToggle />
+                        </li>
+                    </>
+                )}
+                {user ? (
                     <li>
                         <ProfileButton />
                     </li>
-                    :
+                ) : (
                     <>
-                        {isMinPC && <li>
-                            <NavLink to='/register' className='flex items-center gap-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700 h-12 px-3 rounded-lg'>
-                                <FiUserPlus />{t('register')}
-                            </NavLink>
-                        </li>}
+                        {isMinPC && (
+                            <li>
+                                <Link
+                                    to="/register"
+                                    className="flex h-12 items-center gap-2 rounded-lg px-3 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700"
+                                >
+                                    <FiUserPlus />
+                                    {t('register')}
+                                </Link>
+                            </li>
+                        )}
                         <li>
-                            <NavLink to='/login' className='flex items-center gap-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700 h-12 px-3 rounded-lg'>
-                                <FiLogIn />{t('login')}
-                            </NavLink>
+                            <Link
+                                to="/login"
+                                className="flex h-12 items-center gap-2 rounded-lg px-3 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700"
+                            >
+                                <FiLogIn />
+                                {t('login')}
+                            </Link>
                         </li>
                     </>
-                }
+                )}
                 <li>
-                    <NavLink className='px-2 md:px-6 h-12 gap-2 bg-accent-orange rounded-xl hover:bg-accent-orange/[0.8] flex items-center text-white text-lg font-bold whitespace-nowrap' to='/sell'>
-                        {isMinTablet ? t('sell_item') : t('sell')}<MdOutlineSell />
-                    </NavLink>
+                    <Link
+                        className="flex h-12 items-center gap-2 whitespace-nowrap rounded-xl bg-accent-orange px-2 text-lg font-bold text-white hover:bg-accent-orange/[0.8] md:px-6"
+                        to="/sell"
+                    >
+                        {isMinTablet ? t('sell_item') : t('sell')}
+                        <MdOutlineSell />
+                    </Link>
                 </li>
-                {!isMinTablet && <Button
-                    onClick={() => setOpen(prevState => !prevState)}
-                    border={false}
-                    px={3}
-                    height={10}
-                    className='nav-toggle pr-3 sm:px-4'
-                >
-                    <GoKebabVertical />
-                </Button>}
+                {!isMinTablet && (
+                    <Button
+                        onClick={() => setOpen((prevState) => !prevState)}
+                        border={false}
+                        px={3}
+                        height={10}
+                        className="nav-toggle pr-3 sm:px-4"
+                    >
+                        <GoKebabVertical />
+                    </Button>
+                )}
             </ul>
-            {(!isMinTablet && open) && <ul className='flex container items-center px-5 gap-3 mx-auto nav-toggle'>
-                <li>
-                    <LanguageDropdown />
-                </li>
-                <li className='mr-auto h-full'>
-                    <ThemeToggle />
-                </li>
-            </ul>}
+            {!isMinTablet && (
+                <div
+                    className={cn(
+                        'nav-toggle absolute -z-40 h-10 w-full bg-white shadow-lg transition-[top] dark:bg-zinc-800',
+                        open ? 'top-16' : 'top-6'
+                    )}
+                >
+                    <ul
+                        className={cn(
+                            'container mx-auto flex items-center gap-3 px-5 transition-opacity',
+                            open ? 'opacity-100' : 'opacity-0'
+                        )}
+                    >
+                        <li>
+                            <LanguageDropdown />
+                        </li>
+                        <li>
+                            <CurrencyDropdown />
+                        </li>
+                        <li className="mr-auto h-full">
+                            <ThemeToggle />
+                        </li>
+                    </ul>
+                </div>
+            )}
         </nav>
     )
 }

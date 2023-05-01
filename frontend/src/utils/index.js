@@ -1,12 +1,13 @@
-import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react'
+import { toast } from 'react-hot-toast'
 
-export const toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-});
+export const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = (error) => reject(error)
+    })
 
 export const alertErr = (err) => {
     // Swal.fire({
@@ -21,51 +22,54 @@ export const alertErr = (err) => {
 }
 
 export const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
+    const value = `; ${document.cookie}`
+    const parts = value.split(`; ${name}=`)
+    if (parts.length === 2) return parts.pop().split(';').shift()
 }
 
 export const notification = (text, duration) => {
-    toast.success(text, { duration: duration ? duration : 2000 })
+    const isDark =
+        localStorage.getItem('theme') === '"dark"' ||
+        (localStorage.getItem('theme') !== '"auto"' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+    toast.success(text, {
+        duration: duration ? duration : 2000,
+        style: isDark
+            ? {
+                  background: '#333',
+                  color: '#fff',
+              }
+            : null,
+    })
 }
 
 export const info = (text) => {
     toast(text, { duration: 2000 })
 }
 
-export const confirm = (text, onConfirm, onConfirmText, onDenyText) => {
-    // Swal.fire({
-    //     title: text,
-    //     icon: 'warning',
-    //     position: 'top',
-    //     backdrop: null,
-    //     confirmButtonColor: '#dc2626',
-    //     showCancelButton: true,
-    //     confirmButtonText: 'Delete',
-    // }).then((result) => {
-    //     if (result.isConfirmed) {
-    //         onConfirm()
-    //     }
-    // })
-}
-
-export const saveImage = (editorRef, images, setImages, setCurrentImage, imageInputRef, setUploading) => {
+export const saveImage = (
+    editorRef,
+    images,
+    setImages,
+    setCurrentImage,
+    imageInputRef,
+    setUploading
+) => {
     try {
         setUploading(true)
         const img = new Image()
         img.src = editorRef.current.getImage().toDataURL()
         img.onload = () => {
-            const canvas = document.createElement("canvas")
+            const canvas = document.createElement('canvas')
             canvas.width = 800
             canvas.height = 600
-            const ctx = canvas.getContext("2d")
+            const ctx = canvas.getContext('2d')
             ctx.drawImage(img, 0, 0, 800, 600)
             const newImage = {
                 is_main: images.length > 0 ? false : true,
-                image: canvas.toDataURL("image/png")
+                image: canvas.toDataURL('image/png'),
             }
-            setImages(prevImages => [...prevImages, newImage])
+            setImages((prevImages) => [...prevImages, newImage])
             imageInputRef.current.value = null
             setCurrentImage(null)
         }

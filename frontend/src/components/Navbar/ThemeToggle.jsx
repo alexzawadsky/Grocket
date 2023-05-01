@@ -1,14 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs'
-import { TbSunMoon, TbSun, TbMoon, TbMoonFilled, TbSunFilled } from 'react-icons/tb'
+import {
+    TbSunMoon,
+    TbSun,
+    TbMoon,
+    TbMoonFilled,
+    TbSunFilled,
+} from 'react-icons/tb'
 import { Button } from '../ui'
 import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
 import ThemeContext from '../../contexts/ThemeContext'
 
 const ThemeToggle = () => {
-
     const [open, setOpen] = useState(false)
     const { t } = useTranslation()
     const { themeSetting, setThemeSetting, isDark } = useContext(ThemeContext)
@@ -17,18 +22,18 @@ const ThemeToggle = () => {
         light: {
             title: t('light'),
             menuIcon: <TbSun />,
-            code: 'light'
+            code: 'light',
         },
         dark: {
             title: t('dark'),
             menuIcon: <TbMoon />,
-            code: 'dark'
+            code: 'dark',
         },
         auto: {
             title: t('auto'),
             menuIcon: <TbSunMoon />,
-            code: 'auto'
-        }
+            code: 'auto',
+        },
     }
 
     useEffect(() => {
@@ -40,36 +45,42 @@ const ThemeToggle = () => {
         return () => document.removeEventListener('click', handleClickOutside)
     }, [])
 
-
-
     return (
-        <div className='theme-drop h-full'>
+        <div className="theme-drop h-full">
             <Button
-                onClick={() => setOpen(prevState => !prevState)}
+                onClick={() => setOpen((prevState) => !prevState)}
                 border={false}
-                height='full'
-                className='!gap-1'
+                height="full"
+                className="!gap-1"
             >
                 {isDark ? <TbMoonFilled /> : <TbSunFilled />}
                 {options[themeSetting].title}
             </Button>
             <div className="relative">
-                {open && <ul className="absolute bg-white dark:bg-zinc-800 grid gap-1 top-3 p-1 border dark:border-2 dark:border-zinc-600 rounded-md -left-4">
-                    {Object.keys(options).map(key => <li key={key}>
-                        <Button
-                            onClick={() => setThemeSetting(options[key].code)}
-                            border={false}
-                            className={cn(
-                                'flex md:h-10 !rounded-md items-center gap-2 hover:bg-slate-100 hover:dark:bg-zinc-700',
-                                themeSetting === options[key].code && '!bg-slate-200 dark:!bg-zinc-600'
-                            )}
-                            height={8}
-                            px={3}
-                        >
-                            {options[key].menuIcon} {options[key].title}
-                        </Button>
-                    </li>)}
-                </ul>}
+                {open && (
+                    <ul className="absolute -left-3 top-3 grid gap-1 rounded-lg border-2 bg-white p-1 dark:border-zinc-600 dark:bg-zinc-800">
+                        {Object.keys(options).map((key) => (
+                            <li key={key}>
+                                <Button
+                                    onClick={() =>
+                                        setThemeSetting(options[key].code)
+                                    }
+                                    border={false}
+                                    className={cn(
+                                        '!rounded-md hover:bg-slate-100 hover:dark:bg-zinc-700 md:h-10',
+                                        themeSetting === options[key].code &&
+                                            '!bg-slate-200 dark:!bg-zinc-600'
+                                    )}
+                                    height={8}
+                                    px={2}
+                                    width="full"
+                                >
+                                    {options[key].menuIcon} {options[key].title}
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
         </div>
     )

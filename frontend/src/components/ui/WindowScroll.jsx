@@ -1,9 +1,8 @@
-import { useEffect, useState, useContext } from "react"
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
-import CategoriesListStateContext from "../../contexts/CategoriesListStateContext"
+import { useEffect, useState, useContext } from 'react'
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
+import CategoriesListStateContext from '../../contexts/CategoriesListStateContext'
 
 const WindowScroll = () => {
-
     const [isTop, setIsTop] = useState(false)
     const [isBottom, setIsBottom] = useState(true)
     const { open } = useContext(CategoriesListStateContext)
@@ -23,27 +22,38 @@ const WindowScroll = () => {
     if (open) return
 
     return (
-        <div className='fixed z-50 right-2 bottom-2 flex flex-col border-2 dark:border-zinc-600 rounded-xl bg-white dark:bg-zinc-800 gap-1 p-1' aria-label="page scroll controls">
-            {!isTop && <button
-                aria-label='scroll up button'
-                className="w-10 h-10 hover:bg-slate-100 dark:hover:bg-zinc-700 rounded-lg flex items-center justify-center"
-                onClick={() => window.scroll({
-                    top: 0,
-                    behavior: 'smooth'
-                })}
-            >
-                <IoIosArrowUp />
-            </button>}
-            {!isBottom && <button
-                aria-label='scroll down button'
-                className="w-10 h-10 hover:bg-slate-100 dark:hover:bg-zinc-700 rounded-lg flex items-center justify-center"
-                onClick={() => window.scrollTo({
-                    top: document.documentElement.scrollHeight,
-                    behavior: 'smooth'
-                })}
-            >
-                <IoIosArrowDown />
-            </button>}
+        <div
+            className="fixed bottom-2 right-2 z-50 flex flex-col gap-1 rounded-xl border-2 bg-white p-1 dark:border-zinc-600 dark:bg-zinc-800"
+            aria-label="page scroll controls"
+        >
+            {!isTop && (
+                <button
+                    aria-label="scroll up button"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-700"
+                    onClick={() =>
+                        window.scroll({
+                            top: 0,
+                            behavior: 'smooth',
+                        })
+                    }
+                >
+                    <IoIosArrowUp />
+                </button>
+            )}
+            {!isBottom && (
+                <button
+                    aria-label="scroll down button"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-700"
+                    onClick={() =>
+                        window.scrollTo({
+                            top: document.documentElement.scrollHeight,
+                            behavior: 'smooth',
+                        })
+                    }
+                >
+                    <IoIosArrowDown />
+                </button>
+            )}
         </div>
     )
 }

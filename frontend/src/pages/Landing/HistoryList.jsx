@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { IoBookOutline } from 'react-icons/io5'
@@ -10,43 +9,59 @@ import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
 
 const HistoryList = () => {
-
     const { t } = useTranslation()
     const { isMinTablet, isLargePC } = useScreen()
     const { lookHistory, clearHistory } = useContext(SearchHistoryContext)
 
     return (
-        <aside className='grid gap-2 h-fit md:sticky top-20 z-40' aria-label='list of items you opened recently'>
-            {isMinTablet &&
+        <aside
+            className="top-20 z-40 grid h-fit gap-2 md:sticky"
+            aria-label="list of items you opened recently"
+        >
+            {isMinTablet && (
                 <>
-                    <h2 to='/history' className='text-lg lg:text-xl xl:text-2xl font-bold flex items-center gap-3 text-truncate'>
+                    <h2
+                        to="/history"
+                        className="text-truncate flex items-center gap-3 text-lg font-bold lg:text-xl xl:text-2xl"
+                    >
                         <IoBookOutline />
                         {t('you_looked_earlier')}
                     </h2>
-                    {lookHistory.length > 0 && <button
-                        onClick={clearHistory}
-                        className='flex items-center gap-2 text-accent-red ml-2 mt-3'
-                    >
-                        <BsFillTrashFill />{t('clear_history')}
-                    </button>}
-                </>}
-            {isMinTablet && <ul aria-label='items history list'>
-                {lookHistory.length === 0 ?
-                    <p className='pt-2 pl-2'>{t('nothing_yet')}</p>
-                    :
-                    lookHistory.slice(0, 4).map((el, key) =>
-                        <HistoryItem
-                            key={key}
-                            product={el}
-                        />)
-                }
-            </ul>}
-            {lookHistory.length > 0 && <NavLink
-                className={`text-md ${(isMinTablet && !isLargePC) && '!text-sm'} flex items-center gap-3 hover:gap-5 transition-all hover:text-accent-orange mb-5 leading-none md:pl-3`}
-                to='/history'
-            >
-                {t('view_full_history')}<BsArrowRight />
-            </NavLink>}
+                    {lookHistory.length > 0 && (
+                        <button
+                            onClick={clearHistory}
+                            className="ml-2 mt-3 flex items-center gap-2 text-accent-red"
+                        >
+                            <BsFillTrashFill />
+                            {t('clear_history')}
+                        </button>
+                    )}
+                </>
+            )}
+            {isMinTablet && (
+                <ul aria-label="items history list">
+                    {lookHistory.length === 0 ? (
+                        <p className="pl-2 pt-2">{t('nothing_yet')}</p>
+                    ) : (
+                        lookHistory
+                            .slice(0, 4)
+                            .map((el, key) => (
+                                <HistoryItem key={key} product={el} />
+                            ))
+                    )}
+                </ul>
+            )}
+            {lookHistory.length > 0 && (
+                <NavLink
+                    className={`text-md ${
+                        isMinTablet && !isLargePC && '!text-sm'
+                    } mb-5 flex items-center gap-3 leading-none transition-all hover:gap-5 hover:text-accent-orange md:pl-3`}
+                    to="/history"
+                >
+                    {t('view_full_history')}
+                    <BsArrowRight />
+                </NavLink>
+            )}
         </aside>
     )
 }

@@ -1,21 +1,20 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react'
 
-const CategoriesListStateContext = createContext();
+const CategoriesListStateContext = createContext()
 
 export default CategoriesListStateContext
 
 export const CategoriesListStateProvider = ({ children }) => {
-
     const [open, setOpen] = useState(false)
 
     const contextData = {
         open,
-        setOpen
-    };
+        setOpen,
+    }
 
     return (
         <CategoriesListStateContext.Provider value={contextData}>
             {children}
         </CategoriesListStateContext.Provider>
-    );
+    )
 }

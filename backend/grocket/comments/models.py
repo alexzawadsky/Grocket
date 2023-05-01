@@ -5,8 +5,14 @@ from users.models import User
 
 
 class Status(models.Model):
-    title = name = models.CharField(max_length=50, verbose_name="title")
-    name = models.SlugField(max_length=50, verbose_name="code")
+    title = name = models.CharField(
+        max_length=50,
+        verbose_name="title",
+    )
+    name = models.SlugField(
+        max_length=50,
+        verbose_name="code",
+    )
 
     class Meta:
         ordering = ("-id",)
@@ -24,7 +30,9 @@ class CommentImage(models.Model):
         on_delete=models.CASCADE,
         verbose_name="comment",
     )
-    image = models.ImageField(upload_to="comments/")
+    image = models.ImageField(
+        upload_to="comments/",
+    )
 
     class Meta:
         ordering = ("-id",)

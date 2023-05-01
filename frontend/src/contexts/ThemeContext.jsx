@@ -1,12 +1,11 @@
-import { createContext, useState, useEffect } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { createContext, useState, useEffect } from 'react'
+import useLocalStorage from '../hooks/useLocalStorage'
 
-const ThemeContext = createContext();
+const ThemeContext = createContext()
 
 export default ThemeContext
 
 export const ThemeProvider = ({ children }) => {
-
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     const [isDark, setIsDark] = useState(mediaQuery.matches)
     const [themeSetting, setThemeSetting] = useLocalStorage('theme', 'auto')
@@ -35,12 +34,12 @@ export const ThemeProvider = ({ children }) => {
         isDark,
         themeSetting,
         setThemeSetting,
-        setIsDark
-    };
+        setIsDark,
+    }
 
     return (
         <ThemeContext.Provider value={contextData}>
             {children}
         </ThemeContext.Provider>
-    );
+    )
 }

@@ -1,5 +1,3 @@
-import SearchForm from "./SearchBar";
+import SearchForm from './SearchBar'
 
-export {
-    SearchForm
-}
+export { SearchForm }

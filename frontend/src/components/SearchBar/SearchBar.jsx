@@ -10,51 +10,65 @@ import { IoClose } from 'react-icons/io5'
 import useScreen from '../../hooks/useScreen'
 import { Button, Form, Input } from '../ui'
 import useInput from '../../hooks/useInput'
+import { useProducts } from '../../api/api'
 
 const SearchForm = () => {
-
     const [searchParams, setSearchParams] = useSearchParams()
     const search = useInput(searchParams.get('search') || '')
     const { t } = useTranslation()
     const { open, setOpen } = useContext(CategoriesListStateContext)
     const navigate = useNavigate()
     const { isMinTablet } = useScreen()
+    const { data } = useProducts(new URLSearchParams({ page: 1 }))
+
+    useEffect(() => {
+        !searchParams.get('search') && search.setValue('')
+    }, [window.location.href])
 
     return (
         <>
             <Form
-                ariaLabel='search form'
-                className='flex flex-col-reverse md:flex-row items-start md:items-center gap-3 md:gap-8 h-fit md:h-10 w-full'
+                ariaLabel="search form"
+                className="flex h-fit w-full flex-col-reverse items-start gap-3 md:h-10 md:flex-row md:items-center md:gap-8"
                 onSubmit={(e) => {
-                    search.value && navigate(`/search?search=${stateToQuery(search.value.toLowerCase())}`)
+                    search.value &&
+                        navigate(
+                            `/search?search=${stateToQuery(
+                                search.value.toLowerCase()
+                            )}`
+                        )
+                    setOpen(false)
                 }}
             >
                 <Button
-                    className='max-md:!w-full whitespace-nowrap'
-                    type='button'
+                    className="whitespace-nowrap max-md:!w-full"
+                    type="button"
                     onClick={() => setOpen(!open)}
-                    style='outline'
-                    color='accent-orange'
+                    style="outline"
+                    color="accent-orange"
                     height={10}
                     px={5}
                 >
                     {open ? <IoClose /> : <BiCategoryAlt />}
                     {t('categories')}
                 </Button>
-                <div className="flex items-center h-10 gap-3 md:gap-8 w-full" aria-label='input and submit button part'>
+                <div
+                    className="flex h-10 w-full items-center gap-3 md:gap-8"
+                    aria-label="input and submit button part"
+                >
                     <Input
-                        ariaLabel='search input for items search'
+                        ariaLabel="search input for items search"
                         instance={search}
-                        className='!border-2 !rounded-xl'
-                        placeholder='eg. Iphone 14 Pro Max 512Gb'
-                        containerClassName='grow'
+                        className="!rounded-xl !border-2"
+                        placeholder={`${t('eg.')} Apple Watch Ultra`}
+                        containerClassName="grow"
                         type="text"
                     />
                     <Button
-                        className='max-md:!w-11 max-md:!p-1 max-md:!px-2 whitespace-nowrap'
-                        type='submit'
-                        color='accent-orange'
-                        style='fill'
+                        className="whitespace-nowrap max-md:!w-11 max-md:!p-1 max-md:!px-2"
+                        type="submit"
+                        color="accent-orange"
+                        style="fill"
                         height={10}
                         px={5}
                     >

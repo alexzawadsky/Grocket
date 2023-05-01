@@ -23,7 +23,7 @@ const ReadMore = ({ text, limit }) => {
                 <Button
                     onClick={() => setTranslated((prevState) => !prevState)}
                     border={false}
-                    className="hover:text-accent-orange"
+                    className="text-sm hover:text-accent-orange"
                 >
                     {translated ? t('show_original') : t('translate')}
                 </Button>

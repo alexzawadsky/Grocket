@@ -30,9 +30,9 @@ const SearchHistoryPage = () => {
                 </button>
             </div>
             {lookHistory.length === 0 && (
-                <p className="pt-5 font-bold">{t('nothing_yet')}</p>
+                <p className="font-bold md:pl-5">{t('nothing_yet')}</p>
             )}
-            <ul className="grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-0 md:pt-0 lg:grid-cols-5">
+            <ul className="grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-0 md:pt-0 lg:grid-cols-4 xl:grid-cols-5">
                 {lookHistory.map((el, key) => (
                     <li>
                         <ItemCard key={key} product={el} />

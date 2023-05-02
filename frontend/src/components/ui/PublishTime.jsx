@@ -10,6 +10,8 @@ import fr from 'javascript-time-ago/locale/fr.json'
 import de from 'javascript-time-ago/locale/de.json'
 import nl from 'javascript-time-ago/locale/nl.json'
 import ka from 'javascript-time-ago/locale/ka.json'
+import it from 'javascript-time-ago/locale/it.json'
+import pl from 'javascript-time-ago/locale/pl.json'
 
 import { useTranslation } from 'react-i18next'
 
@@ -22,6 +24,8 @@ TimeAgo.addLocale(fr)
 TimeAgo.addLocale(de)
 TimeAgo.addLocale(ka)
 TimeAgo.addLocale(nl)
+TimeAgo.addLocale(it)
+TimeAgo.addLocale(pl)
 
 const PublishTime = ({ full, pubDate }) => {
     const { i18n } = useTranslation()

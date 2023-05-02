@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom'
 import { BsArrowDownRight, BsArrowUpRight } from 'react-icons/bs'
 import { useTranslation } from 'react-i18next'
 
-const SortBy = () => {
+const SortBy = ({ setPage }) => {
     const [open, setOpen] = useState(false)
     const { t } = useTranslation()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -54,7 +54,10 @@ const SortBy = () => {
         <div>
             <p
                 className="sortby-drop flex h-10 cursor-pointer items-center gap-3 rounded-xl border-2 px-3 py-2 font-bold dark:border-zinc-600 hover:dark:bg-zinc-700"
-                onClick={() => setOpen((prevState) => !prevState)}
+                onClick={() => {
+                    setOpen((prevState) => !prevState)
+                    setPage(0)
+                }}
             >
                 {selectedOption?.icon} {selectedOption?.title}{' '}
                 {open ? <IoIosArrowUp /> : <IoIosArrowDown />}

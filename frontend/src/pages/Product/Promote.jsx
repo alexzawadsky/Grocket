@@ -25,7 +25,6 @@ const Promote = () => {
     const [isList, setIsList] = useState(true)
 
     const updateSelected = (promo) => {
-        console.log(promo.id)
         if (selected.filter((el) => el.id === promo.id).length > 0) {
             setSelected(selected.filter((el) => el.id !== promo.id))
         } else {

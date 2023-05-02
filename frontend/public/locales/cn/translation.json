@@ -71,7 +71,6 @@
     "send_message": "发信息",
     "dont_have_acc": "没有账户",
     "create_acc": "创建账户",
-    "repeat_pass": "重复输入密码",
     "already_have_acc": "已有帐号",
     "login_to_see": "此页面存在，但您需要登录您的帐户才能看到",
     "items_sold": "已售出的物品",
@@ -133,5 +132,6 @@
     "price_high_low": "價格從高到低",
     "time_new_old": "新舊時間",
     "time_old_new": "新舊時間",
-    "special_thanks": "特別感謝"
+    "special_thanks": "特別感謝",
+    "browse": "瀏覽"
 }

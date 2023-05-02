@@ -1,18 +1,19 @@
 import { Outlet, useOutlet, useParams, NavLink } from 'react-router-dom'
-import { Button, Spinner } from '../../../components/ui'
+import { Button, Pagination, Spinner } from '../../../components/ui'
 import CommentsStats from './CommentStats'
 import Comment from './Comment'
 import { useUserComments } from '../../../api/api'
 import BackToProfile from '../BackToProfile'
 import { useTranslation } from 'react-i18next'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import AuthContext from '../../../contexts/AuthProvider'
 
 const Comments = () => {
     const outlet = useOutlet()
     const { t } = useTranslation()
     const { profileId } = useParams()
-    const { data, isLoading, error } = useUserComments(profileId)
+    const [page, setPage] = useState(0)
+    const { data, isLoading, error } = useUserComments(profileId, page + 1)
     const { user } = useContext(AuthContext)
 
     if (outlet) return <Outlet />
@@ -53,11 +54,19 @@ const Comments = () => {
                 {isLoading && <Spinner type="comment" count={2} />}
                 {!isLoading &&
                     data?.results.map((el, key) => (
-                        <li aria-label="comment">
-                            <Comment key={key} comment={el} />
+                        <li key={key} aria-label="comment">
+                            <Comment comment={el} />
                         </li>
                     ))}
             </ul>
+            {data?.pages_count > 1 && (
+                <Pagination
+                    className="mt-1"
+                    page={page}
+                    setPage={setPage}
+                    pagesCount={data?.pages_count}
+                />
+            )}
         </div>
     )
 }

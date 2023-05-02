@@ -77,12 +77,11 @@
     "phone_verified": "Verified",
     "no_results_found": "No results found",
     "nothing_yet": "Nothing seen yet",
-    "404_text": "The page you are looking for is not found, check URL or press the button bellow to go back",
+    "404_text": "The page you are looking for is not found, check URL or press the button below to go back",
     "how_rating_works": "How rating works",
     "add_comment": "Add comment",
     "rating_is": "User rating is based on comments posted by other users",
     "based_on": "Based on",
-    "status": "Status",
     "based_comments": "comments",
     "back_to_comments": "Back to comments",
     "text": "Text",
@@ -133,5 +132,6 @@
     "price_high_low": "Price High-Low",
     "time_new_old": "Time New-Old",
     "time_old_new": "Time Old-New",
-    "special_thanks": "Special thanks"
+    "special_thanks": "Special thanks",
+    "browse": "Browse"
 }

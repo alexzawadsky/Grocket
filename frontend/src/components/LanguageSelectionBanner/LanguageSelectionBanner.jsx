@@ -70,13 +70,13 @@ const LanguageSelectionBanner = () => {
                         color="accent-orange"
                         border={false}
                     >
-                        {isMinTablet ? 'Switch' : <BsCheck />}
+                        {isMinTablet ? 'Yes' : <BsCheck />}
                     </Button>
                     <button
                         className="hover:text-accent-orange"
                         onClick={() => setLanguageSelected(true)}
                     >
-                        {isMinTablet ? 'Cancel' : <IoClose />}
+                        {isMinTablet ? 'No' : <IoClose />}
                     </button>
                 </div>
             )}

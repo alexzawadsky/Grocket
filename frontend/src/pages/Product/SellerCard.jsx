@@ -56,7 +56,9 @@ const SellerCard = ({ profile }) => {
                     height={10}
                     px={5}
                 >
-                    <Link to={`/messenger/${productId}`}>Send message</Link>
+                    <Link to={`/messenger/${productId}`}>
+                        {t('send_message')}
+                    </Link>
                 </Button>
             )}
         </div>

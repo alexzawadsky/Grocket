@@ -23,13 +23,6 @@
         "codeForTimeStamp": "uk",
         "codeForTranslate": "uk"
     },
-    "KZ": {
-        "name": "Қазақ",
-        "code": "kz",
-        "flag": "KZ",
-        "codeForTimeStamp": "kz",
-        "codeForTranslate": "ru"
-    },
     "SE": {
         "icon": "🇸🇪",
         "name": "Svenska",
@@ -61,6 +54,20 @@
         "codeForTimeStamp": "de",
         "codeForTranslate": "de"
     },
+    "IT": {
+        "name": "Italiano",
+        "code": "it",
+        "flag": "IT",
+        "codeForTimeStamp": "it",
+        "codeForTranslate": "it"
+    },
+    "PL": {
+        "name": "Polski",
+        "code": "pl",
+        "flag": "PL",
+        "codeForTimeStamp": "pl",
+        "codeForTranslate": "pl"
+    },
     "CN": {
         "icon": "🇨🇳",
         "name": "中国人",
@@ -68,12 +75,5 @@
         "flag": "CN",
         "codeForTimeStamp": "zh",
         "codeForTranslate": "zh"
-    },
-    "GE": {
-        "name": "ქართული",
-        "code": "ge",
-        "flag": "GE",
-        "codeForTimeStamp": "ka",
-        "codeForTranslate": "en"
     }
 }

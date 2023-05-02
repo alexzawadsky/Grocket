@@ -7,7 +7,7 @@ import { useContext, useState } from 'react'
 import CurrencyContext from '../../contexts/CurrencyContext'
 import getSymbolFromCurrency from 'currency-symbol-map'
 
-const Filters = ({ mnP, mxP, productsCountries, open, setOpen }) => {
+const Filters = ({ mnP, mxP, productsCountries, open, setOpen, setPage }) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const minPrice = useInput(searchParams.get('min_price') || '', {
         isInt: true,
@@ -33,6 +33,7 @@ const Filters = ({ mnP, mxP, productsCountries, open, setOpen }) => {
             ? searchParams.set('country', countries.join(','))
             : searchParams.delete('country')
         setSearchParams(searchParams)
+        setPage(0)
     }
 
     const toggleCountry = (code) => {

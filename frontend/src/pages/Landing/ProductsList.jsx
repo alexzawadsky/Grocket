@@ -4,12 +4,12 @@ import { ItemCard } from '../../components'
 import { Pagination, Spinner } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
 
-const ProductsList = ({ query }) => {
+const ProductsList = () => {
     const { t } = useTranslation()
     const [page, setPage] = useState(0)
 
     const { isLoading, data, error } = useProducts(
-        new URLSearchParams({ ...query, page: page + 1 })
+        new URLSearchParams({ page: page + 1 })
     )
 
     if (error) return <p className="md:pl-5 md:pt-5">{error.message}</p>

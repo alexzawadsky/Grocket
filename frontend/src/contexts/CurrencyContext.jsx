@@ -15,6 +15,7 @@ export const CurrencyProvider = ({ children }) => {
     const exchangeRate = data ? data[targetCurrency] : 1
 
     const convertPrice = (price) => {
+        if (!price) return 0
         let convertedPrice
         if (!data) {
             convertedPrice = price

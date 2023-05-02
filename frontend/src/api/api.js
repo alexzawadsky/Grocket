@@ -210,10 +210,11 @@ export const usePromotions = () => {
     )
 }
 
-export const useUserComments = (userId) => {
+export const useUserComments = (userId, page) => {
     const api = useAxios()
-    return useQuery(['comments', userId], () =>
-        api.get(`/api/v1/users/${userId}/comments`).then((res) => res.data)
+    return useQuery(['comments', userId, page], () =>
+        api.get(`/api/v1/users/${userId}/comments`, {params: {page}}).then((res) => res.data),
+        {keepPreviousData: true}
     )
 }
 

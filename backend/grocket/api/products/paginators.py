@@ -20,16 +20,10 @@ class ProductPageLimitPagination(PageLimitPagination):
         return CategoryListSerializer(instance=queryset, many=True).data
 
     def get_min_price(self, data):
-        prices = []
-        for product in data:
-            prices.append(product["price"])
-        return min(prices)
+        return min(data, key=lambda x: x['price'])['price'] if len(data) > 0 else 0
 
     def get_max_price(self, data):
-        prices = []
-        for product in data:
-            prices.append(product["price"])
-        return max(prices)
+        return max(data, key=lambda x: x['price'])['price'] if len(data) > 0 else 0
 
     def get_paginated_response(self, data):
         return Response(

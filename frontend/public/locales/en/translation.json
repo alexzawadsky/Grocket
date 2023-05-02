@@ -49,7 +49,7 @@
     "currency": "Currency",
     "location": "Location",
     "photos": "Photos",
-    "list_of_images": "List of uploaded product's photos",
+    "list_of_images": "List of product's uploaded photos",
     "you_can_choose_main_image": "You can choose main image by pressing on a circle below it",
     "upload_one_image": "Upload at least one image to place a product",
     "save_image": "Save image",

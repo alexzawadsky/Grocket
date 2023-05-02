@@ -55,8 +55,8 @@ export const saveImage = (
     imageInputRef,
     setUploading
 ) => {
+    setUploading(true)
     try {
-        setUploading(true)
         const img = new Image()
         img.src = editorRef.current.getImage().toDataURL()
         img.onload = () => {
@@ -72,8 +72,9 @@ export const saveImage = (
             setImages((prevImages) => [...prevImages, newImage])
             imageInputRef.current.value = null
             setCurrentImage(null)
+            setUploading(false)
         }
-        setUploading(false)
+        
     } catch (e) {
         setUploading(false)
         alert(e)

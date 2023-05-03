@@ -21,11 +21,13 @@ const ProductForm = ({ data, setData, setValid }) => {
     const [mainImageIndex, setMainImageIndex] = useState(0)
     const [allValid, setAllValid] = useState(false)
     const { isMinTablet, isLargePC } = useScreen()
-    const { targetCurrency, exchangeRate } = useContext(CurrencyContext)
+    const { targetCurrency, exchangeRate, convertPrice } =
+        useContext(CurrencyContext)
 
     const name = useInput(data?.name || '', { isEmpty: true })
     const [description, setDescription] = useState(data?.description || '')
-    const price = useInput(data?.price || '', { isFloat: true })
+    const price = useInput(convertPrice(data?.price, false), { isFloat: true })
+    const usdPrice = useInput(data?.price, { isFloat: true })
     const [address, setAddress] = useState(data?.address || null)
 
     useEffect(() => {
@@ -50,7 +52,7 @@ const ProductForm = ({ data, setData, setValid }) => {
         setData({
             name: name.value,
             description: description,
-            price: price.value / exchangeRate,
+            price: (price.value / exchangeRate).toFixed(2),
             address: address,
             images: prepareImages(images),
         })
@@ -59,6 +61,16 @@ const ProductForm = ({ data, setData, setValid }) => {
     useEffect(() => {
         setValid(allValid)
     }, [allValid])
+
+    useEffect(() => {
+        price.allValid &&
+            usdPrice.setValue((price.value / exchangeRate).toFixed(2))
+    }, [price.value])
+
+    // useEffect(() => {
+    //     usdPrice.allValid &&
+    //         price.setValue((usdPrice.value * exchangeRate).toFixed(2))
+    // }, [usdPrice.value])
 
     return (
         <div className="flex grid-cols-[5fr_9fr] flex-col gap-x-5 gap-y-2 md:grid xl:grid-cols-[auto_1fr_30px]">
@@ -90,6 +102,16 @@ const ProductForm = ({ data, setData, setValid }) => {
                 must
                 deleteBtn={isLargePC}
             />
+            {targetCurrency !== 'USD' && (
+                <Input
+                    title={`${t('price')}, $`}
+                    instance={usdPrice}
+                    split={isMinTablet}
+                    must
+                    deleteBtn={isLargePC}
+                    disabled={true}
+                />
+            )}
             <h2 className="col-span-full pt-5 text-xl font-bold">
                 {t('location')}
             </h2>

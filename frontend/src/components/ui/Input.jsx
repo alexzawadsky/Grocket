@@ -70,7 +70,7 @@ const Input = ({
     }, [])
 
     const inputStyle =
-        'rounded-lg transition-colors duration-[25] border-slate-500 dark:border-zinc-500 dark:bg-zinc-700 focus:border-slate-800 focus:dark:border-zinc-400 focus:shadow-md focus:outline-none border dark:border-2 px-3 w-full h-10'
+        'rounded-lg transition-colors duration-[25] border-slate-500 dark:border-zinc-500 dark:bg-zinc-700 focus:border-slate-800 focus:dark:border-zinc-400 focus:shadow-md focus:outline-none border dark:border-2 px-3 w-full h-10 disabled:text-zinc-600 disabled:bg-zinc-100 disabled:dark:bg-zinc-800 disabled:dark:border-zinc-600'
     const errorStyle =
         instance.isDirty &&
         !instance.allValid &&

@@ -15,5 +15,5 @@ def write_translations(langs):
             
             f.write("\n")
 
-langs = ["en", "it"]
+langs = ["en", "se"]
 write_translations(langs)

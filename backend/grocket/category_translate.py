@@ -36,12 +36,13 @@ for key, category in enumerate(categories):
         print(lang_code)
 
         res = requests.post(
-                url='https://translate.argosopentech.com/translate',
+                url='https://libretranslate.com/translate',
                 headers={'Content-Type': 'application/json'},
                 data=json.dumps({
                     'q': category_title,
                     'source': 'en',
-                    'target': lang_code
+                    'target': lang_code,
+		            "api_key": "3HLPWIX"
                 })
             )
         

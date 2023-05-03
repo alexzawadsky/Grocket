@@ -28,9 +28,10 @@ for key, category in enumerate(categories):
     for lang_code in languages:
         if [i for i in translated_categories if i.get('pk') == category.get('pk')]:
             trans = [i for i in translated_categories if i.get('pk') == category.get('pk')][0].get(f'title_{lang_code}')
-            translated_category.update({f'title_{lang_code}': trans})
-            print(f'Skip {category_title} {lang_code}, translation already exists')
-            continue
+            if trans:
+                translated_category.update({f'title_{lang_code}': trans})
+                print(f'Skip {category_title} {lang_code}, translation already exists')
+                continue
 
         print(lang_code)
 

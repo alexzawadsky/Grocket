@@ -10,7 +10,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Trasporti",
-        "title_pl": "Transport Transport Transport"
+        "title_pl": "Transport"
     },
     {
         "pk": 25985,
@@ -75,7 +75,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Quad e buggie",
-        "title_pl": "Quads and buggy (ang.)."
+        "title_pl": "Quady i buggy"
     },
     {
         "pk": 25991,
@@ -88,20 +88,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Mopedi e scooter",
-        "title_pl": "Mopeds and scooters (ang.)."
+        "title_pl": "Motorowery i skutery"
     },
     {
         "pk": 25992,
         "title_en": "Motobikes",
         "title_ru": "\u041c\u043e\u0442\u043e\u0446\u0438\u043a\u043b\u044b",
-        "title_zh": "Motobikes",
+        "title_zh": "摩托車",
         "title_fr": "Motobikes",
         "title_de": "Motorrad",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Motocicli",
-        "title_pl": "Motobike"
+        "title_pl": "Motocykle"
     },
     {
         "pk": 25998,
@@ -114,7 +114,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Motoslitta",
-        "title_pl": "Snowmobile"
+        "title_pl": "Skutery śnieżne"
     },
     {
         "pk": 25999,
@@ -127,7 +127,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Ricambi e accessori",
-        "title_pl": "akcesoria i akcesoria"
+        "title_pl": "Części zamienne i akcesoria"
     },
     {
         "pk": 26000,
@@ -140,24 +140,24 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Ricambi",
-        "title_pl": "cz\u0119\u015b\u0107 spu\u015bcizna"
+        "title_pl": "Części zamienne"
     },
     {
         "pk": 26005,
         "title_en": "GPS-navigators",
         "title_ru": "GPS-\u043d\u0430\u0432\u0438\u0433\u0430\u0442\u043e\u0440\u044b",
-        "title_zh": "GPS-navis",
+        "title_zh": "GPS導航儀",
         "title_fr": "GPS-navigateurs",
         "title_de": "GPS-Navigatoren",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "GPS-navigatori",
-        "title_pl": "GPS-navigator"
+        "title_pl": "Nawigatory GPS"
     },
     {
         "pk": 26006,
-        "title_en": "Tires, wheels and wheels",
+        "title_en": "Tires and wheels",
         "title_ru": "\u0428\u0438\u043d\u044b, \u0434\u0438\u0441\u043a\u0438 \u0438 \u043a\u043e\u043b\u0451\u0441\u0430",
         "title_zh": "\u8f6e\u80ce\u3001\u8f6e\u8f6e\u6905\u548c\u8f6e\u8f6e\u6905",
         "title_fr": "Pneus, roues et roues",
@@ -166,7 +166,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Pneumatici, ruote e ruote",
-        "title_pl": "felgi i felgi"
+        "title_pl": "Opony, koła i koła"
     },
     {
         "pk": 26012,
@@ -179,7 +179,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Accessori",
-        "title_pl": "Dost\u0119p"
+        "title_pl": "Akcesoria"
     },
     {
         "pk": 26013,
@@ -192,7 +192,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Oli e chimica",
-        "title_pl": "Chemia i chemia"
+        "title_pl": "Oleje i chemia"
     },
     {
         "pk": 26014,
@@ -205,7 +205,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Attrezzature audio e video",
-        "title_pl": "sprz\u0119t audio i video"
+        "title_pl": "Sprzęt audio i wideo"
     },
     {
         "pk": 26015,
@@ -218,7 +218,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Tronchi e towbar",
-        "title_pl": "Trunk i towbar."
+        "title_pl": "Bagażniki i haki holownicze"
     },
     {
         "pk": 26016,
@@ -231,7 +231,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Strumenti",
-        "title_pl": "Instrument"
+        "title_pl": "Instrumenty"
     },
     {
         "pk": 26017,
@@ -244,7 +244,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Rimorchi",
-        "title_pl": "Trailer"
+        "title_pl": "Przyczepy"
     },
     {
         "pk": 26018,
@@ -257,7 +257,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Dispositivi antifurto",
-        "title_pl": "Antytheft"
+        "title_pl": "Urządzenia antywłamaniowe"
     },
     {
         "pk": 26023,
@@ -270,7 +270,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Tuning",
-        "title_pl": "tuning"
+        "title_pl": "Strojenie"
     },
     {
         "pk": 26024,
@@ -283,7 +283,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Attrezzatura",
-        "title_pl": "wyposa\u017cenie"
+        "title_pl": "Sprzęt"
     },
     {
         "pk": 26025,
@@ -328,7 +328,7 @@
         "pk": 26028,
         "title_en": "Truck cranes",
         "title_ru": "\u0410\u0432\u0442\u043e\u043a\u0440\u0430\u043d\u044b",
-        "title_zh": "2. \u9ed1\u585e\u8f66",
+        "title_zh": "\u9ed1\u585e\u8f66",
         "title_fr": "Grues de camion",
         "title_de": "LKW-Krane",
         "title_nl": null,
@@ -341,7 +341,7 @@
         "pk": 26029,
         "title_en": "Bulldozers",
         "title_ru": "\u0411\u0443\u043b\u044c\u0434\u043e\u0437\u0435\u0440\u044b",
-        "title_zh": "Bulldozers",
+        "title_zh": "推土機",
         "title_fr": "Bulldozers",
         "title_de": "Bulldozers",
         "title_nl": null,
@@ -510,7 +510,7 @@
         "pk": 26042,
         "title_en": "Jet skis",
         "title_ru": "\u0413\u0438\u0434\u0440\u043e\u0446\u0438\u043a\u043b\u044b",
-        "title_zh": "Jet ski",
+        "title_zh": "摩托艇",
         "title_fr": "Jet skis",
         "title_de": "Jetski",
         "title_nl": null,
@@ -523,7 +523,7 @@
         "pk": 26043,
         "title_en": "Boats and yachts",
         "title_ru": "\u041a\u0430\u0442\u0435\u0440\u0430 \u0438 \u044f\u0445\u0442\u044b",
-        "title_zh": "B. \u571f \u548c\u6d77",
+        "title_zh": "\u571f \u548c\u6d77",
         "title_fr": "Bateaux et yachts",
         "title_de": "Boote und Yachten",
         "title_nl": null,
@@ -692,7 +692,7 @@
         "pk": 26077,
         "title_en": "Beds, sofas and armchairs",
         "title_ru": "\u041a\u0440\u043e\u0432\u0430\u0442\u0438, \u0434\u0438\u0432\u0430\u043d\u044b \u0438 \u043a\u0440\u0435\u0441\u043b\u0430",
-        "title_zh": "Beds, sofas and Arm\u6905",
+        "title_zh": "床、沙發和扶手椅",
         "title_fr": "Lits, canap\u00e9s et fauteuils",
         "title_de": "Betten, Sofas und Sessel",
         "title_nl": null,
@@ -705,7 +705,7 @@
         "pk": 26078,
         "title_en": "Kitchen sets",
         "title_ru": "\u041a\u0443\u0445\u043e\u043d\u043d\u044b\u0435 \u0433\u0430\u0440\u043d\u0438\u0442\u0443\u0440\u044b",
-        "title_zh": "Kitcheneries",
+        "title_zh": "廚具",
         "title_fr": "Ensembles de cuisine",
         "title_de": "K\u00fcchenger\u00e4te",
         "title_nl": null,
@@ -783,7 +783,7 @@
         "pk": 26084,
         "title_en": "Crockery and kitchen products",
         "title_ru": "\u041f\u043e\u0441\u0443\u0434\u0430 \u0438 \u0442\u043e\u0432\u0430\u0440\u044b \u0434\u043b\u044f \u043a\u0443\u0445\u043d\u0438",
-        "title_zh": "Crocker\u548c\u53a8\u623f\u4ea7\u54c1",
+        "title_zh": "餐具和廚房用品",
         "title_fr": "Crockery et produits de cuisine",
         "title_de": "Geschirr und K\u00fcchenartikel",
         "title_nl": null,
@@ -809,7 +809,7 @@
         "pk": 26086,
         "title_en": "Kitchen goods",
         "title_ru": "\u0422\u043e\u0432\u0430\u0440\u044b \u0434\u043b\u044f \u043a\u0443\u0445\u043d\u0438",
-        "title_zh": "Kitchy\u8d27\u7269",
+        "title_zh": "廚房用品",
         "title_fr": "Articles de cuisine",
         "title_de": "K\u00fcchenartikel",
         "title_nl": null,
@@ -978,7 +978,7 @@
         "pk": 26099,
         "title_en": "Dogs",
         "title_ru": "\u0421\u043e\u0431\u0430\u043a\u0438",
-        "title_zh": "D. \u5019\u9009\u4eba",
+        "title_zh": "\u5019\u9009\u4eba",
         "title_fr": "Chiens",
         "title_de": "Hunde",
         "title_nl": null,
@@ -1043,7 +1043,7 @@
         "pk": 26104,
         "title_en": "Amphibians",
         "title_ru": "\u0410\u043c\u0444\u0438\u0431\u0438\u0438",
-        "title_zh": "Amphib",
+        "title_zh": "兩棲動物",
         "title_fr": "Amphibiens",
         "title_de": "Amphibien",
         "title_nl": null,
@@ -1069,7 +1069,7 @@
         "pk": 26106,
         "title_en": "Rabbits",
         "title_ru": "\u041a\u0440\u043e\u043b\u0438\u043a\u0438",
-        "title_zh": "2. Rabbits",
+        "title_zh": "兔子",
         "title_fr": "Lapins",
         "title_de": "Kaninchen",
         "title_nl": null,
@@ -1186,7 +1186,7 @@
         "pk": 26128,
         "title_en": "Clothes, shoes, accessories",
         "title_ru": "\u041e\u0434\u0435\u0436\u0434\u0430, \u043e\u0431\u0443\u0432\u044c, \u0430\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b",
-        "title_zh": "Clothes,\u978b,\u63a5\u5165\u5668",
+        "title_zh": "衣服、鞋子、配飾",
         "title_fr": "V\u00eatements, chaussures, accessoires",
         "title_de": "Kleidung, Schuhe, Zubeh\u00f6r",
         "title_nl": null,
@@ -1264,7 +1264,7 @@
         "pk": 26153,
         "title_en": "Kids clothing and shoes",
         "title_ru": "\u0414\u0435\u0442\u0441\u043a\u0430\u044f \u043e\u0434\u0435\u0436\u0434\u0430 \u0438 \u043e\u0431\u0443\u0432\u044c",
-        "title_zh": "Kids\u8863\u670d\u548c\u978b",
+        "title_zh": "兒童服裝和鞋子",
         "title_fr": "V\u00eatements et chaussures pour enfants",
         "title_de": "Kleidung und Schuhe f\u00fcr Kinder",
         "title_nl": null,
@@ -1316,7 +1316,7 @@
         "pk": 26174,
         "title_en": "Car kids chairs",
         "title_ru": "\u0410\u0432\u0442\u043e\u043c\u043e\u0431\u0438\u043b\u044c\u043d\u044b\u0435 \u043a\u0440\u0435\u0441\u043b\u0430",
-        "title_zh": "C kids \u5e2d",
+        "title_zh": "汽車兒童椅",
         "title_fr": "Chaises pour enfants de voiture",
         "title_de": "Kinderstuhl f\u00fcr Kinder",
         "title_nl": null,
@@ -1329,7 +1329,7 @@
         "pk": 26175,
         "title_en": "Baby strollers",
         "title_ru": "\u0414\u0435\u0442\u0441\u043a\u0438\u0435 \u043a\u043e\u043b\u044f\u0441\u043a\u0438",
-        "title_zh": "B. \u5305\u5546",
+        "title_zh": "\u5305\u5546",
         "title_fr": "poussettes pour b\u00e9b\u00e9s",
         "title_de": "Kinderwagen",
         "title_nl": null,
@@ -1342,7 +1342,7 @@
         "pk": 26176,
         "title_en": "Bed dress",
         "title_ru": "\u041f\u043e\u0441\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u043f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u043d\u043e\u0441\u0442\u0438",
-        "title_zh": "B. \u5904\u7406",
+        "title_zh": "\u5904\u7406",
         "title_fr": "robe de chambre",
         "title_de": "Kleid",
         "title_nl": null,
@@ -1355,7 +1355,7 @@
         "pk": 26177,
         "title_en": "Bikes and kick-scooters",
         "title_ru": "\u0412\u0435\u043b\u043e\u0441\u0438\u043f\u0435\u0434\u044b \u0438 \u0441\u0430\u043c\u043e\u043a\u0430\u0442\u044b",
-        "title_zh": "B. \u523a\u4f24\u5458\u548c\u811a\u8e22\u673a",
+        "title_zh": "\u523a\u4f24\u5458\u548c\u811a\u8e22\u673a",
         "title_fr": "V\u00e9los et kick-scooters",
         "title_de": "Fahrr\u00e4der und Kick-Scooter",
         "title_nl": null,
@@ -1446,7 +1446,7 @@
         "pk": 26184,
         "title_en": "Bijouterie",
         "title_ru": "\u0411\u0438\u0436\u0443\u0442\u0435\u0440\u0438\u044f",
-        "title_zh": "Bjouterie",
+        "title_zh": "首飾店",
         "title_fr": "Bijouterie",
         "title_de": "Bijouterie",
         "title_nl": null,
@@ -1485,7 +1485,7 @@
         "pk": 26187,
         "title_en": "Beauty and health",
         "title_ru": "\u041a\u0440\u0430\u0441\u043e\u0442\u0430 \u0438 \u0437\u0434\u043e\u0440\u043e\u0432\u044c\u0435",
-        "title_zh": "B. aute and health",
+        "title_zh": "美麗與健康",
         "title_fr": "Beaut\u00e9 et sant\u00e9",
         "title_de": "Sch\u00f6nheit und Gesundheit",
         "title_nl": null,
@@ -1550,7 +1550,7 @@
         "pk": 26192,
         "title_en": "Hygiene products",
         "title_ru": "\u0421\u0440\u0435\u0434\u0441\u0442\u0432\u0430 \u0433\u0438\u0433\u0438\u0435\u043d\u044b",
-        "title_zh": "Hygiene\u4ea7\u54c1",
+        "title_zh": "衛生用品",
         "title_fr": "Produits hygi\u00e9niques",
         "title_de": "Hygieneprodukte",
         "title_nl": null,
@@ -1615,14 +1615,14 @@
         "pk": 26197,
         "title_en": "MP3-players",
         "title_ru": "MP3-\u043f\u043b\u0435\u0435\u0440\u044b",
-        "title_zh": "MP3- \u5bfc \u8a00",
+        "title_zh": "MP3播放器",
         "title_fr": "MP3-players",
         "title_de": "MP3-Player",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Giocatori MP3",
-        "title_pl": "MP3-player"
+        "title_pl": "Odtwarzacze mp3"
     },
     {
         "pk": 26198,
@@ -1635,20 +1635,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Video, DVD, lettori Blu-ray",
-        "title_pl": "Video, DVD, Blu-ray player"
+        "title_pl": "Odtwarzacze wideo, DVD, Blu-ray"
     },
     {
         "pk": 26199,
         "title_en": "Acoustics, speakers, subwoofers",
         "title_ru": "\u0410\u043a\u0443\u0441\u0442\u0438\u043a\u0430, \u043a\u043e\u043b\u043e\u043d\u043a\u0438, \u0441\u0430\u0431\u0432\u0443\u0444\u0435\u0440\u044b",
-        "title_zh": "Acoustic,\u53d1\u8a00\u8005,\u52a9\u7406",
+        "title_zh": "聲學、揚聲器、低音炮",
         "title_fr": "Acoustique, haut-parleurs, subwoofers",
         "title_de": "Akustik, Lautsprecher, Subwoofer",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Acustica, altoparlanti, subwoofer",
-        "title_pl": "Acoustics, speakers, podwoofers."
+        "title_pl": "Akustyka, głośniki, subwoofery"
     },
     {
         "pk": 26200,
@@ -1726,7 +1726,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Cuffie",
-        "title_pl": "Headphone"
+        "title_pl": "Słuchawki"
     },
     {
         "pk": 26206,
@@ -1739,7 +1739,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "TV e proiettori",
-        "title_pl": "telewizor i projektor"
+        "title_pl": "Telewizory i projektory"
     },
     {
         "pk": 26207,
@@ -1752,7 +1752,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Amplificatori e ricevitori",
-        "title_pl": "Amplyfikator i odbiornik."
+        "title_pl": "Amplyfikatory i odbiorniky"
     },
     {
         "pk": 26208,
@@ -1765,7 +1765,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Accessori",
-        "title_pl": "Dost\u0119p"
+        "title_pl": "Akcesoria"
     },
     {
         "pk": 26209,
@@ -1778,7 +1778,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Attrezzature fotografiche",
-        "title_pl": "sprz\u0119t fotograficzny"
+        "title_pl": "Sprz\u0119t fotograficzny"
     },
     {
         "pk": 26210,
@@ -1791,13 +1791,13 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Fotocamere compatte",
-        "title_pl": "kamera Compact"
+        "title_pl": "Kompaktowe aparaty"
     },
     {
         "pk": 26211,
         "title_en": "SLR Cameras",
         "title_ru": "\u0417\u0435\u0440\u043a\u0430\u043b\u044c\u043d\u044b\u0435 \u0444\u043e\u0442\u043e\u0430\u043f\u043f\u0430\u0440\u0430\u0442\u044b",
-        "title_zh": "SLR Cameras",
+        "title_zh": "單反相機",
         "title_fr": "Cam\u00e9ras SLR",
         "title_de": "SLR Kameras",
         "title_nl": null,
@@ -1823,7 +1823,7 @@
         "pk": 26213,
         "title_en": "Binoculars and telescopes",
         "title_ru": "\u0411\u0438\u043d\u043e\u043a\u043b\u0438 \u0438 \u0442\u0435\u043b\u0435\u0441\u043a\u043e\u043f\u044b",
-        "title_zh": "Binocular\u548c\u7535\u671b\u8fdc\u955c",
+        "title_zh": "雙筒望遠鏡和望遠鏡",
         "title_fr": "Binoculaires et t\u00e9lescopes",
         "title_de": "Fernglas und Fernrohre",
         "title_nl": null,
@@ -1849,7 +1849,7 @@
         "pk": 26215,
         "title_en": "Equipment and accessories",
         "title_ru": "\u041e\u0431\u043e\u0440\u0443\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u0438 \u0430\u043a\u0441\u0435\u0441\u0441\u0443\u0430\u0440\u044b",
-        "title_zh": "B. \u8bbe\u5907\u548c\u7528\u54c1",
+        "title_zh": "\u8bbe\u5907\u548c\u7528\u54c1",
         "title_fr": "Equipements et accessoires",
         "title_de": "Ausr\u00fcstung und Zubeh\u00f6r",
         "title_nl": null,
@@ -1888,27 +1888,27 @@
         "pk": 26218,
         "title_en": "PC games",
         "title_ru": "\u041a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u043d\u044b\u0435 \u0438\u0433\u0440\u044b",
-        "title_zh": "F. PC\u6e38\u620f",
-        "title_fr": "Jeux PC \u00e0 PC",
+        "title_zh": "電腦遊戲",
+        "title_fr": "Jeux PC",
         "title_de": "PC Spiele",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Giochi per PC",
-        "title_pl": "PC"
+        "title_pl": "Gry komputerowe"
     },
     {
         "pk": 26219,
         "title_en": "Game consoles",
         "title_ru": "\u0418\u0433\u0440\u043e\u0432\u044b\u0435 \u043f\u0440\u0438\u0441\u0442\u0430\u0432\u043a\u0438",
         "title_zh": "\u6559 \u58eb",
-        "title_fr": "consoles de jeu",
+        "title_fr": "Consoles de jeu",
         "title_de": "Spielkonsolen",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Console di gioco",
-        "title_pl": "konsola gier"
+        "title_pl": "Konsola gier"
     },
     {
         "pk": 26220,
@@ -1921,13 +1921,13 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Programmi",
-        "title_pl": "program"
+        "title_pl": "Programy"
     },
     {
         "pk": 26221,
         "title_en": "Built PCs",
         "title_ru": "\u041d\u0430\u0441\u0442\u043e\u043b\u044c\u043d\u044b\u0435 \u043a\u043e\u043c\u043f\u044c\u044e\u0442\u0435\u0440\u044b",
-        "title_zh": "BiltPCs",
+        "title_zh": "內置電腦",
         "title_fr": "PC construits",
         "title_de": "Bebaute PCs",
         "title_nl": null,
@@ -1946,8 +1946,8 @@
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
-        "title_it": "Portatile",
-        "title_pl": "Laptop"
+        "title_it": "Computer portatili",
+        "title_pl": "Laptopy"
     },
     {
         "pk": 26223,
@@ -1960,33 +1960,33 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Apparecchiature per ufficio e materiali di consumo",
-        "title_pl": "wyposa\u017cenie i konsumowalne"
+        "title_pl": "Sprzęt biurowy i materiały eksploatacyjne"
     },
     {
         "pk": 26224,
         "title_en": "MFPs, copiers and scanners",
         "title_ru": "\u041c\u0424\u0423, \u043a\u043e\u043f\u0438\u0440\u044b \u0438 \u0441\u043a\u0430\u043d\u0435\u0440\u044b",
-        "title_zh": "MFPs,piers and\u626b\u63cf\u5668",
+        "title_zh": "複合機、複印機和掃描儀",
         "title_fr": "MFP, photocopieurs et scanners",
         "title_de": "MFPs, Kopierer und Scanner",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "MFP, fotocopiatrici e scanner",
-        "title_pl": "MFP, kopiers i skanery."
+        "title_pl": "Urządzenia wielofunkcyjne, kopiarki i skanery"
     },
     {
         "pk": 26225,
         "title_en": "Printers",
         "title_ru": "\u041f\u0440\u0438\u043d\u0442\u0435\u0440\u044b",
-        "title_zh": "Printers",
+        "title_zh": "打印機",
         "title_fr": "Imprimantes",
         "title_de": "Drucker",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Stampanti",
-        "title_pl": "Printer (ang.)."
+        "title_pl": "Drukarki"
     },
     {
         "pk": 26226,
@@ -2005,14 +2005,14 @@
         "pk": 26227,
         "title_en": "UPS, LC-filters",
         "title_ru": "\u0418\u0411\u041f, \u0441\u0435\u0442\u0435\u0432\u044b\u0435 \u0444\u0438\u043b\u044c\u0442\u0440\u044b",
-        "title_zh": "UPS, LC-filters",
+        "title_zh": "UPS、LC 濾波器",
         "title_fr": "UPS, LC-filters",
         "title_de": "UPS, LC-Filter",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "UPS, filtri LC",
-        "title_pl": "UPS, LC-filter"
+        "title_pl": "UPS, filtry LC"
     },
     {
         "pk": 26228,
@@ -2025,7 +2025,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Trituratori di carta",
-        "title_pl": "Ksi\u0119garnia"
+        "title_pl": "Niszczarki do papieru"
     },
     {
         "pk": 26229,
@@ -2051,20 +2051,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Articoli da ufficio",
-        "title_pl": "dobra"
+        "title_pl": "Towary biurowe"
     },
     {
         "pk": 26236,
         "title_en": "Tablets and E-Books",
         "title_ru": "\u041f\u043b\u0430\u043d\u0448\u0435\u0442\u044b \u0438 \u044d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u044b\u0435 \u043a\u043d\u0438\u0433\u0438",
-        "title_zh": "\u8868\u548cE-Books",
+        "title_zh": "平板電腦和電子書",
         "title_fr": "Tablettes et livres \u00e9lectroniques",
         "title_de": "Tablets und E-Books",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Tavole ed E-Book",
-        "title_pl": "Tabele i E-Book"
+        "title_pl": "Tablety i e-książki"
     },
     {
         "pk": 26237,
@@ -2077,20 +2077,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Tavole",
-        "title_pl": "Tablet"
+        "title_pl": "Tablety"
     },
     {
         "pk": 26238,
         "title_en": "E-Books",
         "title_ru": "\u042d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u044b\u0435 \u043a\u043d\u0438\u0433\u0438",
-        "title_zh": "E-Books",
+        "title_zh": "電子書",
         "title_fr": "E-Books",
         "title_de": "E-Books",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "E-Books",
-        "title_pl": "E-Book"
+        "title_pl": "E-książki"
     },
     {
         "pk": 26239,
@@ -2103,7 +2103,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Accessori",
-        "title_pl": "Dost\u0119p"
+        "title_pl": "Akcesoria"
     },
     {
         "pk": 26249,
@@ -2116,20 +2116,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Telefoni",
-        "title_pl": "Phone"
+        "title_pl": "Telefony"
     },
     {
         "pk": 26282,
         "title_en": "Walkie-talkies",
         "title_ru": "\u0420\u0430\u0446\u0438\u0438",
-        "title_zh": "Walkie-talkies",
+        "title_zh": "對講機",
         "title_fr": "Walkie-talkies",
         "title_de": "Walkie-Talkies",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "I tuoi amici",
-        "title_pl": "Walkie-talkie"
+        "title_pl": "Krótkofalówki"
     },
     {
         "pk": 26283,
@@ -2137,12 +2137,12 @@
         "title_ru": "\u0421\u0442\u0430\u0446\u0438\u043e\u043d\u0430\u0440\u043d\u044b\u0435 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u044b",
         "title_zh": "\u571f\u5730",
         "title_fr": "Landlines",
-        "title_de": "Land",
+        "title_de": "Festnetz",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Territorio",
-        "title_pl": "Landline"
+        "title_pl": "Telefony stacjonarne"
     },
     {
         "pk": 26284,
@@ -2168,7 +2168,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Prodotti per PC",
-        "title_pl": "Oficjalna strona PC"
+        "title_pl": "Towary na PC"
     },
     {
         "pk": 26293,
@@ -2194,7 +2194,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Web-camere",
-        "title_pl": "web-kamery"
+        "title_pl": "Web-kamery"
     },
     {
         "pk": 26295,
@@ -2207,7 +2207,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Joystics e ruote",
-        "title_pl": "Joystic and wheels (ang.)."
+        "title_pl": "Joystics i koła"
     },
     {
         "pk": 26296,
@@ -2233,7 +2233,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Parti",
-        "title_pl": "cz\u0119\u015b\u0107"
+        "title_pl": "Części"
     },
     {
         "pk": 26309,
@@ -2246,20 +2246,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Monitor",
-        "title_pl": "Monitor"
+        "title_pl": "Monitory"
     },
     {
         "pk": 26310,
-        "title_en": "Potrable HDDs",
+        "title_en": "Portable HDDs",
         "title_ru": "\u041f\u0435\u0440\u0435\u043d\u043e\u0441\u043d\u044b\u0435 \u0436\u0451\u0441\u0442\u043a\u0438\u0435 \u0434\u0438\u0441\u043a\u0438",
-        "title_zh": "A. \u6613\u71c3\u7684HDD",
+        "title_zh": "便攜式硬盤",
         "title_fr": "Potrable HDDs",
         "title_de": "Potrable HDDs",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "HDDs",
-        "title_pl": "Potrable HDD"
+        "title_pl": "Przenośne dyski twarde"
     },
     {
         "pk": 26311,
@@ -2272,7 +2272,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Attrezzature di rete",
-        "title_pl": "sprz\u0119t sieciowy"
+        "title_pl": "Sprz\u0119t sieciowy"
     },
     {
         "pk": 26312,
@@ -2298,7 +2298,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Flash e SD",
-        "title_pl": "Flashs and SD (ang.)."
+        "title_pl": "Lampy błyskowe i SD"
     },
     {
         "pk": 26314,
@@ -2311,7 +2311,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Accessori",
-        "title_pl": "Dost\u0119p"
+        "title_pl": "Akcesoria"
     },
     {
         "pk": 26315,
@@ -2337,7 +2337,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Biglietti e viaggi",
-        "title_pl": "Tickets and trips (ang.)."
+        "title_pl": "Bilety i wycieczki"
     },
     {
         "pk": 26317,
@@ -2350,7 +2350,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Carte, coupon",
-        "title_pl": "karty, koszulki"
+        "title_pl": "Karty, koszulki"
     },
     {
         "pk": 26318,
@@ -2363,7 +2363,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Concerti",
-        "title_pl": "Koncert"
+        "title_pl": "Koncerty"
     },
     {
         "pk": 26319,
@@ -2376,7 +2376,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Viaggi",
-        "title_pl": "Trips"
+        "title_pl": "Wycieczki"
     },
     {
         "pk": 26320,
@@ -2395,7 +2395,7 @@
         "pk": 26321,
         "title_en": "Theatre, opera, ballet",
         "title_ru": "\u0422\u0435\u0430\u0442\u0440, \u043e\u043f\u0435\u0440\u0430, \u0431\u0430\u043b\u0435\u0442",
-        "title_zh": "A. \u65f6\u4ee3\u3001\u963f\u62c9\u3001\u7403",
+        "title_zh": "戲劇、歌劇、芭蕾",
         "title_fr": "Th\u00e9\u00e2tre, op\u00e9ra, ballet",
         "title_de": "Theater, Oper, Ballett",
         "title_nl": null,
@@ -2408,14 +2408,14 @@
         "pk": 26322,
         "title_en": "Circus, cinema",
         "title_ru": "\u0426\u0438\u0440\u043a, \u043a\u0438\u043d\u043e",
-        "title_zh": "Circus, cinema",
+        "title_zh": "馬戲團、電影院",
         "title_fr": "Circus, cin\u00e9ma",
         "title_de": "Circus, Kino",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Circo, cinema",
-        "title_pl": "Circus, kino"
+        "title_pl": "Cyrk, kino"
     },
     {
         "pk": 26323,
@@ -2428,7 +2428,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Spettacolo, musical",
-        "title_pl": "Show, musical"
+        "title_pl": "Przedstawienie, musicall"
     },
     {
         "pk": 26324,
@@ -2441,7 +2441,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Caccia e pesca",
-        "title_pl": "polowania i rybo\u0142\u00f3wstwo"
+        "title_pl": "Polowania i rybo\u0142\u00f3wstwo"
     },
     {
         "pk": 26325,
@@ -2460,20 +2460,20 @@
         "pk": 26326,
         "title_en": "Billiards and bowling",
         "title_ru": "\u0411\u0438\u043b\u044c\u044f\u0440\u0434 \u0438 \u0431\u043e\u0443\u043b\u0438\u043d\u0433",
-        "title_zh": "B. \u6cd5\u6848\u548c\u5934\u5dfe",
+        "title_zh": "台球和保齡球",
         "title_fr": "Billards et bowling",
         "title_de": "Billard und Bowling",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Biliardo e bowling",
-        "title_pl": "Billiard i bowling"
+        "title_pl": "Bilard i kręgle"
     },
     {
         "pk": 26327,
         "title_en": "Diving and water sports",
         "title_ru": "\u0414\u0430\u0439\u0432\u0438\u043d\u0433 \u0438 \u0432\u043e\u0434\u043d\u044b\u0439 \u0441\u043f\u043e\u0440\u0442",
-        "title_zh": "iv\u548c\u6c34\u8fd0\u52a8",
+        "title_zh": "潛水和水上運動",
         "title_fr": "Plong\u00e9e et sports nautiques",
         "title_de": "Tauchen und Wassersport",
         "title_nl": null,
@@ -2493,7 +2493,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Arti marziali",
-        "title_pl": "sztuka Martial"
+        "title_pl": "Sztuka Martial"
     },
     {
         "pk": 26329,
@@ -2506,20 +2506,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Sport invernali",
-        "title_pl": "sporty zimowe"
+        "title_pl": "Sporty zimowe"
     },
     {
         "pk": 26330,
         "title_en": "Ball games",
         "title_ru": "\u0418\u0433\u0440\u044b \u0441 \u043c\u044f\u0447\u043e\u043c",
-        "title_zh": "Ball\u6e38\u620f",
+        "title_zh": "球賽",
         "title_fr": "Jeux de ballon",
         "title_de": "Ball Spiele",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Giochi di palla",
-        "title_pl": "Ball game"
+        "title_pl": "Gry w piłkę"
     },
     {
         "pk": 26331,
@@ -2532,7 +2532,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Giochi da tavolo",
-        "title_pl": "karta"
+        "title_pl": "Gry planszowe"
     },
     {
         "pk": 26332,
@@ -2540,12 +2540,12 @@
         "title_ru": "\u041f\u0435\u0439\u043d\u0442\u0431\u043e\u043b \u0438 \u0441\u0442\u0440\u0430\u0439\u043a\u0431\u043e\u043b",
         "title_zh": "\u4e5d. \u6c14\u7403\u548c\u7f62\u5de5",
         "title_fr": "Paintball and strikeball",
-        "title_de": "Paintball und Streikball",
+        "title_de": "Paintball und Strikeball",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Paintball e strikeball",
-        "title_pl": "Paintball and strikeball"
+        "title_pl": "Paintball i strikeball"
     },
     {
         "pk": 26333,
@@ -2553,25 +2553,25 @@
         "title_ru": "\u0420\u043e\u043b\u0438\u043a\u0438 \u0438 \u0441\u043a\u0435\u0439\u0442\u0431\u043e\u0440\u0434\u0438\u043d\u0433",
         "title_zh": "\u51cf\u5458\u548c\u677f",
         "title_fr": "Rollers et skateboard",
-        "title_de": "Rollen und Skateboarding",
+        "title_de": "Roller und Skateboarding",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Rulli e skateboard",
-        "title_pl": "Rollers and skateboarding"
+        "title_pl": "Rolki i deskorolka"
     },
     {
         "pk": 26334,
         "title_en": "Tennis, badminton, ping-pong",
         "title_ru": "\u0422\u0435\u043d\u043d\u0438\u0441, \u0431\u0430\u0434\u043c\u0438\u043d\u0442\u043e\u043d, \u043f\u0438\u043d\u0433-\u043f\u043e\u043d\u0433",
-        "title_zh": "\u5341nis, \u60e0\u7075,",
+        "title_zh": "網球、羽毛球、乒乓球",
         "title_fr": "Tennis, badminton, ping-pong",
         "title_de": "Tennis, Badminton, Tischtennis",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Tennis, badminton, ping-pong",
-        "title_pl": "Tennis, badminton, ping-pong."
+        "title_pl": "Tenis, badminton, ping-pong."
     },
     {
         "pk": 26335,
@@ -2597,7 +2597,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Attrezzatura per il fitness e l'esercizio",
-        "title_pl": "\u015awietno\u015b\u0107 i wyposa\u017cenie"
+        "title_pl": "Sprzęt do ćwiczeń i ćwiczeń"
     },
     {
         "pk": 26337,
@@ -2610,7 +2610,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Nutrizione sportiva",
-        "title_pl": "nutrition"
+        "title_pl": "Odżywianie sportowe"
     },
     {
         "pk": 26338,
@@ -2623,7 +2623,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 26339,
@@ -2636,7 +2636,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Biciclette",
-        "title_pl": "Bike"
+        "title_pl": "Rowery"
     },
     {
         "pk": 26340,
@@ -2662,7 +2662,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Strada",
-        "title_pl": "Road"
+        "title_pl": "Rowery"
     },
     {
         "pk": 26342,
@@ -2675,7 +2675,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Ricambi e accessori",
-        "title_pl": "akcesoria i akcesoria"
+        "title_pl": "Części zamienne i akcesoria"
     },
     {
         "pk": 26343,
@@ -2720,7 +2720,7 @@
         "pk": 26346,
         "title_en": "Magazines, newspapers, brochures",
         "title_ru": "\u0416\u0443\u0440\u043d\u0430\u043b\u044b, \u0433\u0430\u0437\u0435\u0442\u044b, \u0431\u0440\u043e\u0448\u044e\u0440\u044b",
-        "title_zh": "Magazines,\u62a5\u7eb8,\u5c0f\u518c\u5b50",
+        "title_zh": "雜誌、報紙、小冊子",
         "title_fr": "Magazines, journaux, brochures",
         "title_de": "Zeitschriften, Zeitungen, Brosch\u00fcren",
         "title_nl": null,
@@ -2747,13 +2747,13 @@
         "title_en": "Educational literature",
         "title_ru": "\u0423\u0447\u0435\u0431\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430",
         "title_zh": "\u5b66\u5386",
-        "title_fr": "litt\u00e9rature \u00e9ducative",
+        "title_fr": "Litt\u00e9rature \u00e9ducative",
         "title_de": "Bildungsliteratur",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Letteratura educativa",
-        "title_pl": "literatura o\u015bwiatowa"
+        "title_pl": "Literatura o\u015bwiatowa"
     },
     {
         "pk": 26349,
@@ -2766,7 +2766,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Collezionismo",
-        "title_pl": "kolektyw"
+        "title_pl": "Kolektyw"
     },
     {
         "pk": 26350,
@@ -2779,7 +2779,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Noti bancari",
-        "title_pl": "banknoty"
+        "title_pl": "Banknoty"
     },
     {
         "pk": 26351,
@@ -2792,7 +2792,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Documenti",
-        "title_pl": "dokument"
+        "title_pl": "Dokumenty"
     },
     {
         "pk": 26352,
@@ -2800,12 +2800,12 @@
         "title_ru": "\u0416\u0435\u0442\u043e\u043d\u044b, \u043c\u0435\u0434\u0430\u043b\u0438, \u0437\u043d\u0430\u0447\u043a\u0438",
         "title_zh": "\u65bd\u66b4\u8005\u3001\u65bd\u66b4\u8005",
         "title_fr": "Jetons, m\u00e9dailles, badges",
-        "title_de": "Token, Medaillen, Abzeichen",
+        "title_de": "Marken, Medaillen, Abzeichen",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Token, medaglie, distintivi",
-        "title_pl": "Tokens, medale, odznaki"
+        "title_pl": "Żetony, medale, odznaki"
     },
     {
         "pk": 26353,
@@ -2818,7 +2818,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Giochi",
-        "title_pl": "Igrzyska Olimpijskie"
+        "title_pl": "Gry"
     },
     {
         "pk": 26354,
@@ -2831,7 +2831,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Calendario",
-        "title_pl": "Kalendarz"
+        "title_pl": "Kalendarze"
     },
     {
         "pk": 26355,
@@ -2857,7 +2857,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Piatti, accendini",
-        "title_pl": "Asztrays, l\u017cejsze l\u017cejsze"
+        "title_pl": "Popielniczki, zapalniczki"
     },
     {
         "pk": 26357,
@@ -2870,7 +2870,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Biglietti",
-        "title_pl": "Ticket"
+        "title_pl": "Bilety"
     },
     {
         "pk": 26358,
@@ -2883,11 +2883,11 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Oggetti di celebrit\u00e0, autografi",
-        "title_pl": "przedmioty, autografy"
+        "title_pl": "Przedmioty celebrytów, autografy"
     },
     {
         "pk": 26359,
-        "title_en": "Millitary items",
+        "title_en": "Military items",
         "title_ru": "\u0412\u043e\u0435\u043d\u043d\u044b\u0435 \u0432\u0435\u0449\u0438",
         "title_zh": "\u519b\u4e8b\u9879\u76ee",
         "title_fr": "Articles de frais",
@@ -2896,7 +2896,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Oggetti di fresatura",
-        "title_pl": "przedmioty rolnicze"
+        "title_pl": "Przedmioty wojskowe"
     },
     {
         "pk": 26360,
@@ -2909,33 +2909,33 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Registrazione del suono",
-        "title_pl": "gramofon"
+        "title_pl": "Płyty gramofonowe"
     },
     {
         "pk": 26361,
         "title_en": "Paintings",
         "title_ru": "\u041a\u0430\u0440\u0442\u0438\u043d\u044b",
-        "title_zh": "\u4e03. \u8981\u70b9",
+        "title_zh": "繪畫",
         "title_fr": "Peintures",
         "title_de": "Gem\u00e4lde",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Dipinti",
-        "title_pl": "malowanie"
+        "title_pl": "Obrazy"
     },
     {
         "pk": 26362,
         "title_en": "Kinder-surprise",
         "title_ru": "\u041a\u0438\u043d\u0434\u0435\u0440-\u0441\u044e\u0440\u043f\u0440\u0438\u0437",
-        "title_zh": "\u91d1 \u91d1",
+        "title_zh": "更親切的驚喜",
         "title_fr": "Kinder-surprise",
         "title_de": "Kinder-\u00dcberraschung",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Kinder-surprise",
-        "title_pl": "Kinder-surprise"
+        "title_pl": "Kinder-niespodzianka"
     },
     {
         "pk": 26364,
@@ -2948,7 +2948,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Francobolli",
-        "title_pl": "Stamp"
+        "title_pl": "Znaczki"
     },
     {
         "pk": 26365,
@@ -2961,7 +2961,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Modelli",
-        "title_pl": "Model"
+        "title_pl": "Modely"
     },
     {
         "pk": 26366,
@@ -2974,7 +2974,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Monete",
-        "title_pl": "Coins"
+        "title_pl": "Monety"
     },
     {
         "pk": 26368,
@@ -2987,7 +2987,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Carte di plastica",
-        "title_pl": "karty plastyczne"
+        "title_pl": "Karty plastyczne"
     },
     {
         "pk": 26369,
@@ -3000,7 +3000,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Carte sportive",
-        "title_pl": "karta sportowa"
+        "title_pl": "Karty sportowa"
     },
     {
         "pk": 26370,
@@ -3019,14 +3019,14 @@
         "pk": 26371,
         "title_en": "Labels, bottles, corks",
         "title_ru": "\u042d\u0442\u0438\u043a\u0435\u0442\u043a\u0438, \u0431\u0443\u0442\u044b\u043b\u043a\u0438, \u043f\u0440\u043e\u0431\u043a\u0438",
-        "title_zh": "Labels,\u74f6\u9888, Corks",
+        "title_zh": "標籤、瓶子、軟木塞",
         "title_fr": "\u00c9tiquettes, bouteilles, bouchons",
         "title_de": "Etiketten, Flaschen, Korken",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Etichette, bottiglie, tappi",
-        "title_pl": "Labels, butelki, korek"
+        "title_pl": "Etykiety, butelki, korki"
     },
     {
         "pk": 26372,
@@ -3039,7 +3039,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 26373,
@@ -3052,7 +3052,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Intuizioni musicali",
-        "title_pl": "instument muzyczny"
+        "title_pl": "Instumenty muzyczny"
     },
     {
         "pk": 26374,
@@ -3065,33 +3065,33 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Accordi, armonia, fisarmonica",
-        "title_pl": "Akcordacje, harmonia, akordeonacje przyciskowe."
+        "title_pl": "Akordeony, harmonia, akordeony guzikowe"
     },
     {
         "pk": 26375,
         "title_en": "Guitars and other string instruments",
         "title_ru": "\u0413\u0438\u0442\u0430\u0440\u044b \u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u0441\u0442\u0440\u0443\u043d\u043d\u044b\u0435",
-        "title_zh": "G. \u53e4\u5854\u5c14\u548c\u5176\u4ed6\u4e00\u7cfb\u5217\u6587\u4e66",
+        "title_zh": "吉他和其他弦樂器",
         "title_fr": "Guitares et autres instruments \u00e0 cordes",
         "title_de": "Gitarren und andere Saiteninstrumente",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Chitarra e altri strumenti a corda",
-        "title_pl": "Gitara i inne instrumenty smyczkowe"
+        "title_pl": "Gitary i inne instrumenty smyczkowe"
     },
     {
         "pk": 26376,
         "title_en": "Brass instruments",
         "title_ru": "\u0414\u0443\u0445\u043e\u0432\u044b\u0435",
-        "title_zh": "B. \u6587\u4e66",
+        "title_zh": "銅管樂器",
         "title_fr": "Instruments de freinage",
         "title_de": "Messinstrumente",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Strumenti in ottone",
-        "title_pl": "instrument Brassa"
+        "title_pl": "Instrumenty dęte blaszane"
     },
     {
         "pk": 26377,
@@ -3104,7 +3104,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Pianoforte e altra tastiera",
-        "title_pl": "Piano i inne klawisze"
+        "title_pl": "Fortepian i inna klawiatura"
     },
     {
         "pk": 26378,
@@ -3123,14 +3123,14 @@
         "pk": 26379,
         "title_en": "Drums",
         "title_ru": "\u0423\u0434\u0430\u0440\u043d\u044b\u0435",
-        "title_zh": "Drums",
+        "title_zh": "鼓",
         "title_fr": "Drums",
         "title_de": "Trommeln",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Tamburi",
-        "title_pl": "Drum"
+        "title_pl": "Bębny"
     },
     {
         "pk": 26380,
@@ -3143,7 +3143,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Per studio e concerti",
-        "title_pl": "na koncertach i koncertach"
+        "title_pl": "Do studia i na koncerty"
     },
     {
         "pk": 26381,
@@ -3156,7 +3156,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Accessori",
-        "title_pl": "Dost\u0119p"
+        "title_pl": "Akcesoria"
     },
     {
         "pk": 26382,
@@ -3169,20 +3169,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Affari e attrezzature",
-        "title_pl": "umiej\u0119tno\u015b\u0107 i wyposa\u017cenie"
+        "title_pl": "Biznes i wyposażenie"
     },
     {
         "pk": 26383,
         "title_en": "Ready business",
         "title_ru": "\u0413\u043e\u0442\u043e\u0432\u044b\u0439 \u0431\u0438\u0437\u043d\u0435\u0441",
         "title_zh": "\u9605\u8bfb\u4f01\u4e1a",
-        "title_fr": "Pr\u00eats",
+        "title_fr": "Entreprise prête",
         "title_de": "Fertiges Gesch\u00e4ft",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Affari pronti",
-        "title_pl": "Czytanie"
+        "title_pl": "Gotowy biznes"
     },
     {
         "pk": 26384,
@@ -3202,13 +3202,13 @@
         "title_en": "Online-shops and IT",
         "title_ru": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u043c\u0430\u0433\u0430\u0437\u0438\u043d\u044b \u0438 IT",
         "title_zh": "\u7f51\u4e0a\u5546\u548c\u4fe1\u606f\u6280\u672f",
-        "title_fr": "Online-shops and IT",
+        "title_fr": "Boutiques en ligne et informatique",
         "title_de": "Online-Shops und IT",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Online-shops e IT",
-        "title_pl": "Online-shops and IT-shops (ang.)."
+        "title_pl": "Sklepy internetowe i IT"
     },
     {
         "pk": 26386,
@@ -3221,7 +3221,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Catering",
-        "title_pl": "Catering"
+        "title_pl": "Żywnościowy"
     },
     {
         "pk": 26387,
@@ -3234,7 +3234,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Produzione",
-        "title_pl": "Production"
+        "title_pl": "Produkcja"
     },
     {
         "pk": 26388,
@@ -3247,7 +3247,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Intrattenimento",
-        "title_pl": "Entertainment"
+        "title_pl": "Rozrywka"
     },
     {
         "pk": 26389,
@@ -3273,7 +3273,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Settore dei servizi",
-        "title_pl": "sektor us\u0142ug"
+        "title_pl": "Sektor us\u0142ug"
     },
     {
         "pk": 26391,
@@ -3286,7 +3286,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Negozi e punti di pick-up",
-        "title_pl": "punkty i punkty zdobywcze"
+        "title_pl": "Sklepy i punkty odbioru"
     },
     {
         "pk": 26392,
@@ -3299,7 +3299,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 26393,
@@ -3312,7 +3312,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Attrezzatura per il business",
-        "title_pl": "obs\u0142uga sprz\u0119tu dla urz\u0105dze\u0144 biznesowych"
+        "title_pl": "Sprzęt dla biznesu"
     },
     {
         "pk": 26394,
@@ -3325,7 +3325,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Per il negozio",
-        "title_pl": "zamawia\u0107"
+        "title_pl": "Do sklepu"
     },
     {
         "pk": 26395,
@@ -3351,7 +3351,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Per ristorante",
-        "title_pl": "restauracji"
+        "title_pl": "Do restauracji"
     },
     {
         "pk": 26397,
@@ -3364,7 +3364,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Per il salone di bellezza",
-        "title_pl": "salon pi\u0119kna"
+        "title_pl": "Do salona pi\u0119kna"
     },
     {
         "pk": 26398,
@@ -3377,7 +3377,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Industria",
-        "title_pl": "przemys\u0142owy"
+        "title_pl": "Przemysłowy"
     },
     {
         "pk": 26399,
@@ -3390,7 +3390,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 26400,
@@ -3403,7 +3403,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavoro",
-        "title_pl": "praca"
+        "title_pl": "Praca"
     },
     {
         "pk": 26401,
@@ -3429,7 +3429,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "IT, internet, telecomunicazioni",
-        "title_pl": "IT, Internet, telecom"
+        "title_pl": "IT, internet, telekomunikacja"
     },
     {
         "pk": 26403,
@@ -3481,7 +3481,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Affari automobilistici",
-        "title_pl": "firma"
+        "title_pl": "Biznes samochodowy"
     },
     {
         "pk": 26407,
@@ -3520,7 +3520,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Contabilit\u00e0, finanza",
-        "title_pl": "ksi\u0119gowo\u015b\u0107, finansowo"
+        "title_pl": "Ksi\u0119gowo\u015b\u0107, finansowo"
     },
     {
         "pk": 26410,
@@ -3559,7 +3559,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Personale della casa",
-        "title_pl": "Household"
+        "title_pl": "Personel gospodarstwa domowego"
     },
     {
         "pk": 26413,
@@ -3585,7 +3585,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Consulenza",
-        "title_pl": "konsultacja"
+        "title_pl": "Konsultacja"
     },
     {
         "pk": 26415,
@@ -3598,7 +3598,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Marketing, annunci, PR",
-        "title_pl": "Marketing, ads, PR, PR."
+        "title_pl": "Marketing, reklama, PR"
     },
     {
         "pk": 26416,
@@ -3624,7 +3624,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Sicurezza",
-        "title_pl": "Security"
+        "title_pl": "Bezpieczeństwo"
     },
     {
         "pk": 26418,
@@ -3637,7 +3637,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Vendite",
-        "title_pl": "Sales"
+        "title_pl": "Obroty"
     },
     {
         "pk": 26419,
@@ -3650,7 +3650,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Produzione, agricoltura",
-        "title_pl": "rolnictwo"
+        "title_pl": "Produkcja, rolnictwo"
     },
     {
         "pk": 26420,
@@ -3676,7 +3676,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Edilizia",
-        "title_pl": "Budowa"
+        "title_pl": "Budynek"
     },
     {
         "pk": 26422,
@@ -3702,7 +3702,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Turismo, ristorazione",
-        "title_pl": "Turystyka"
+        "title_pl": "Turystyka, gastronomia"
     },
     {
         "pk": 26424,
@@ -3715,26 +3715,26 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Gestione del personale",
-        "title_pl": "Zarz\u0105dzanie"
+        "title_pl": "Zarządzanie personelem"
     },
     {
         "pk": 26425,
         "title_en": "Fitness, beauty salons",
         "title_ru": "\u0424\u0438\u0442\u043d\u0435\u0441, \u0441\u0430\u043b\u043e\u043d\u044b \u043a\u0440\u0430\u0441\u043e\u0442\u044b",
-        "title_zh": "F. \u79c1 \u91d1",
+        "title_zh": "健身、美容美髮",
         "title_fr": "Salles de fitness, salons de beaut\u00e9",
         "title_de": "Fitness, Sch\u00f6nheitssalons",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Fitness, saloni di bellezza",
-        "title_pl": "pi\u0119kno"
+        "title_pl": "Siłownia, salony piękności"
     },
     {
         "pk": 26426,
         "title_en": "Jurisprudence",
         "title_ru": "\u042e\u0440\u0438\u0441\u043f\u0440\u0443\u0434\u0435\u043d\u0446\u0438\u044f",
-        "title_zh": "Jurisprudence",
+        "title_zh": "法理",
         "title_fr": "Jurisprudence",
         "title_de": "Jurisprudenz",
         "title_nl": null,
@@ -3767,7 +3767,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "IT, internet, telecomunicazioni",
-        "title_pl": "IT, Internet, telecom"
+        "title_pl": "IT, internet, telekomunikacja"
     },
     {
         "pk": 26429,
@@ -3806,7 +3806,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Affari automobilistici",
-        "title_pl": "firma"
+        "title_pl": "Biznes samochodowy"
     },
     {
         "pk": 26432,
@@ -3832,7 +3832,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Nessuna esperienza",
-        "title_pl": "nie ma \u017cadnych do\u015bwiadcze\u0144 zdrowotnych."
+        "title_pl": "Brak doświadczenia"
     },
     {
         "pk": 26434,
@@ -3845,7 +3845,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Contabilit\u00e0, finanza",
-        "title_pl": "ksi\u0119gowo\u015b\u0107, finansowo"
+        "title_pl": "Ksi\u0119gowo\u015b\u0107, finansowo"
     },
     {
         "pk": 26435,
@@ -3858,7 +3858,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Top management",
-        "title_pl": "Zarz\u0105dzanie"
+        "title_pl": "Najwyższe kierownictwo"
     },
     {
         "pk": 26436,
@@ -3884,7 +3884,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Personale della casa",
-        "title_pl": "Household"
+        "title_pl": "Personel gospodarstwa domowego"
     },
     {
         "pk": 26438,
@@ -3910,7 +3910,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Consulenza",
-        "title_pl": "konsultacja"
+        "title_pl": "Konsultacja"
     },
     {
         "pk": 26440,
@@ -3923,7 +3923,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Marketing, annunci, PR",
-        "title_pl": "Marketing, ads, PR, PR."
+        "title_pl": "Marketing, reklama, PR"
     },
     {
         "pk": 26441,
@@ -3962,7 +3962,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Sicurezza",
-        "title_pl": "Security"
+        "title_pl": "Bezpieczeństwo"
     },
     {
         "pk": 26444,
@@ -3975,7 +3975,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Vendite",
-        "title_pl": "Sales"
+        "title_pl": "Obroty"
     },
     {
         "pk": 26445,
@@ -3988,7 +3988,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Produzione, agricoltura",
-        "title_pl": "rolnictwo"
+        "title_pl": "Produkcja, rolnictwo"
     },
     {
         "pk": 26446,
@@ -4040,7 +4040,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Turismo, ristorazione",
-        "title_pl": "Turystyka"
+        "title_pl": "Turystyka, gastronomia"
     },
     {
         "pk": 26450,
@@ -4053,7 +4053,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Gestione del personale",
-        "title_pl": "Zarz\u0105dzanie"
+        "title_pl": "Zarządzanie personelem"
     },
     {
         "pk": 26451,
@@ -4066,13 +4066,13 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Fitness, saloni di bellezza",
-        "title_pl": "pi\u0119kno"
+        "title_pl": "Siłownia, salony piękności"
     },
     {
         "pk": 26452,
         "title_en": "Jurisprudence",
         "title_ru": "\u042e\u0440\u0438\u0441\u043f\u0440\u0443\u0434\u0435\u043d\u0446\u0438\u044f",
-        "title_zh": "Jurisprudence",
+        "title_zh": "法理",
         "title_fr": "Jurisprudence",
         "title_de": "Jurisprudenz",
         "title_nl": null,
@@ -4105,7 +4105,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "IT, internet, telecomunicazioni",
-        "title_pl": "IT, Internet, telecom"
+        "title_pl": "IT, internet, telekomunikacja"
     },
     {
         "pk": 26488,
@@ -4170,7 +4170,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Installazione attrezzature",
-        "title_pl": "instalacja"
+        "title_pl": "Instalacja sprzętu"
     },
     {
         "pk": 26493,
@@ -4183,13 +4183,13 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Servizi nazionali",
-        "title_pl": "us\u0142ugi krajowe"
+        "title_pl": "Us\u0142ugi krajowe"
     },
     {
         "pk": 26494,
         "title_en": "Production of keys",
         "title_ru": "\u0418\u0437\u0433\u043e\u0442\u043e\u0432\u043b\u0435\u043d\u0438\u0435 \u043a\u043b\u044e\u0447\u0435\u0439",
-        "title_zh": "D. \u5173\u952e\u4ea7\u54c1",
+        "title_zh": "鑰匙製作",
         "title_fr": "Production de cl\u00e9s",
         "title_de": "Herstellung von Schl\u00fcsseln",
         "title_nl": null,
@@ -4209,7 +4209,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Riparazione orologio",
-        "title_pl": "remont"
+        "title_pl": "Naprawa zegarków"
     },
     {
         "pk": 26496,
@@ -4228,20 +4228,20 @@
         "pk": 26497,
         "title_en": "Dry cleaning, laundry",
         "title_ru": "\u0425\u0438\u043c\u0447\u0438\u0441\u0442\u043a\u0430, \u0441\u0442\u0438\u0440\u043a\u0430",
-        "title_zh": "Dry\u6e05\u6d01,\u6d17\u8863",
+        "title_zh": "乾洗、洗衣",
         "title_fr": "Nettoyage \u00e0 sec, blanchisserie",
         "title_de": "Chemische Reinigung, W\u00e4sche",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavaggio a secco, lavanderia",
-        "title_pl": "Dry clean, pralnia"
+        "title_pl": "Czyszczenie chemiczne, pralnia"
     },
     {
         "pk": 26498,
         "title_en": "Jewelry services",
         "title_ru": "\u042e\u0432\u0435\u043b\u0438\u0440\u043d\u044b\u0435 \u0443\u0441\u043b\u0443\u0433\u0438",
-        "title_zh": "G. \u8036\u7a23\u5bb6\u653f\u670d\u52a1",
+        "title_zh": "珠寶服務",
         "title_fr": "Services de bijouterie",
         "title_de": "Schmuckwaren",
         "title_nl": null,
@@ -4261,7 +4261,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Servizi aziendali",
-        "title_pl": "us\u0142ugi biznesowe"
+        "title_pl": "Us\u0142ugi biznesowe"
     },
     {
         "pk": 26500,
@@ -4274,7 +4274,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Contabilit\u00e0, finanza",
-        "title_pl": "ksi\u0119gowo\u015b\u0107, finansowo"
+        "title_pl": "Ksi\u0119gowo\u015b\u0107, finansowo"
     },
     {
         "pk": 26501,
@@ -4300,7 +4300,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Consulenza",
-        "title_pl": "konsultacja"
+        "title_pl": "Konsultacja"
     },
     {
         "pk": 26503,
@@ -4326,13 +4326,13 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Servizi legali",
-        "title_pl": "us\u0142ugi prawne"
+        "title_pl": "Us\u0142ugi prawne"
     },
     {
         "pk": 26505,
         "title_en": "Art",
         "title_ru": "\u0418\u0441\u043a\u0443\u0441\u0441\u0442\u0432\u043e",
-        "title_zh": "\u7b2c1\u6761",
+        "title_zh": "藝術",
         "title_fr": "Art",
         "title_de": "Art",
         "title_nl": null,
@@ -4345,27 +4345,27 @@
         "pk": 26506,
         "title_en": "Beauty and health",
         "title_ru": "\u041a\u0440\u0430\u0441\u043e\u0442\u0430, \u0437\u0434\u043e\u0440\u043e\u0432\u044c\u0435",
-        "title_zh": "B. aute and health",
+        "title_zh": "美麗與健康",
         "title_fr": "Beaut\u00e9 et sant\u00e9",
         "title_de": "Sch\u00f6nheit und Gesundheit",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Bellezza e salute",
-        "title_pl": "Beauty i zdrowie"
+        "title_pl": "Piękno i zdrowie"
     },
     {
         "pk": 26507,
         "title_en": "Barber",
         "title_ru": "\u0423\u0441\u043b\u0443\u0433\u0438 \u043f\u0430\u0440\u0438\u043a\u043c\u0430\u0445\u0435\u0440\u0430",
         "title_zh": "\u5f8b\u5e08\u534f\u4f1a",
-        "title_fr": "Barber",
+        "title_fr": "Coiffeur",
         "title_de": "Barber",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Barbiere",
-        "title_pl": "Barber"
+        "title_pl": "Fryzjer"
     },
     {
         "pk": 26508,
@@ -4378,7 +4378,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Manicure, pedicure",
-        "title_pl": "Manicure, w\u0142a\u015bc."
+        "title_pl": "Manicure, w\u0142a\u015bc"
     },
     {
         "pk": 26509,
@@ -4391,46 +4391,46 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Trucco",
-        "title_pl": "Makeup"
+        "title_pl": "Makijaż"
     },
     {
         "pk": 26510,
-        "title_en": "Cosmetology, hair removal",
+        "title_en": "Cosmetology, depilation",
         "title_ru": "\u041a\u043e\u0441\u043c\u0435\u0442\u043e\u043b\u043e\u0433\u0438\u044f, \u044d\u043f\u0438\u043b\u044f\u0446\u0438\u044f",
-        "title_zh": "A. Cometology, \u5934\u76d4",
+        "title_zh": "美容、脫毛",
         "title_fr": "Cosm\u00e9tologie, \u00e9pilation",
         "title_de": "Kosmetologie, Haarentfernung",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Cosmetologia, depilazione",
-        "title_pl": "Cosmetologia, usuwanie w\u0142os\u00f3w"
+        "title_pl": "Kosmetologia, depilacja"
     },
     {
         "pk": 26511,
         "title_en": "SPA-care, health",
         "title_ru": "\u0421\u041f\u0410-\u0443\u0441\u043b\u0443\u0433\u0438, \u0437\u0434\u043e\u0440\u043e\u0432\u044c\u0435",
-        "title_zh": "SPA \u62a4\u7406\u3001\u4fdd\u5065",
+        "title_zh": "SPA-護理、健康",
         "title_fr": "SPA-care, sant\u00e9",
         "title_de": "Kurf\u00fcrsorge, Gesundheit",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "SPA-care, salute",
-        "title_pl": "SPA-care, zdrowia"
+        "title_pl": "SPA-pielęgnacja, zdrowie"
     },
     {
         "pk": 26512,
-        "title_en": "Tatoo, piercing",
+        "title_en": "Tattoo, piercing",
         "title_ru": "\u0422\u0430\u0442\u0443, \u043f\u0438\u0440\u0441\u0438\u043d\u0433",
-        "title_zh": "Tatoo, piercing",
-        "title_fr": "Tatoo, piercing",
-        "title_de": "Tatoo, Piercing",
+        "title_zh": "紋身、穿孔",
+        "title_fr": "Tatouage, piercing",
+        "title_de": "Tattoo, Piercing",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
-        "title_it": "Tatoo, piercing",
-        "title_pl": "Tatoo, piercing."
+        "title_it": "Tattoo, piercing",
+        "title_pl": "Tatuaż, przebijanie"
     },
     {
         "pk": 26513,
@@ -4443,20 +4443,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 26514,
         "title_en": "Delivery, courier",
         "title_ru": "\u0414\u043e\u0441\u0442\u0430\u0432\u043a\u0430, \u043a\u0443\u0440\u044c\u0435\u0440\u044b",
-        "title_zh": "D. \u4ea4\u4ed8\u3001\u5171\u540c\u7167\u6599",
+        "title_zh": "送貨、快遞",
         "title_fr": "Livraison, courrier",
         "title_de": "Lieferung, Kurier",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Consegna, corriere",
-        "title_pl": "Dostarczenie"
+        "title_pl": "Dostawa, kurier"
     },
     {
         "pk": 26515,
@@ -4469,14 +4469,14 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Maestro per un'ora",
-        "title_pl": "Mistrz przez godzin\u0119"
+        "title_pl": "Mistrz na godzinę"
     },
     {
         "pk": 26516,
         "title_en": "Babysitters, nurses",
         "title_ru": "\u041d\u044f\u043d\u0438, \u0441\u0438\u0434\u0435\u043b\u043a\u0438",
         "title_zh": "\u5a74\u513f\u533b\u5e08\u3001\u62a4\u58eb",
-        "title_fr": "baby-sitters, infirmi\u00e8res",
+        "title_fr": "Baby-sitters, infirmi\u00e8res",
         "title_de": "Babysitter, Krankenschwestern",
         "title_nl": null,
         "title_se": null,
@@ -4495,7 +4495,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Attrezzature, produzione",
-        "title_pl": "wyposa\u017cenie, produkcja"
+        "title_pl": "Wyposa\u017cenie, produkcja"
     },
     {
         "pk": 26518,
@@ -4508,7 +4508,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Noleggio attrezzatura",
-        "title_pl": "rentowno\u015b\u0107"
+        "title_pl": "Wynajem sprzętu"
     },
     {
         "pk": 26519,
@@ -4566,7 +4566,7 @@
         "pk": 26523,
         "title_en": "Music, theatre",
         "title_ru": "\u041c\u0443\u0437\u044b\u043a\u0430, \u0442\u0435\u0430\u0442\u0440",
-        "title_zh": "Music,\u620f\u5267",
+        "title_zh": "音樂、戲劇",
         "title_fr": "Musique, th\u00e9\u00e2tre",
         "title_de": "Musik, Theater",
         "title_nl": null,
@@ -4586,7 +4586,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 26525,
@@ -4599,7 +4599,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Istruzione linguistica",
-        "title_pl": "edukacja j\u0119zykowa"
+        "title_pl": "Edukacja j\u0119zykowa"
     },
     {
         "pk": 26526,
@@ -4651,7 +4651,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Formazione professionale",
-        "title_pl": "trenowa\u0107"
+        "title_pl": "Profesjonalny trening"
     },
     {
         "pk": 26530,
@@ -4677,7 +4677,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Sicurezza",
-        "title_pl": "Security"
+        "title_pl": "Bezpieczeństwo"
     },
     {
         "pk": 26532,
@@ -4690,7 +4690,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Consegna del cibo",
-        "title_pl": "po\u017cywienie"
+        "title_pl": "Dostawa jedzenia"
     },
     {
         "pk": 26533,
@@ -4703,7 +4703,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Vacanze, eventi",
-        "title_pl": "\u015bwi\u0119ta"
+        "title_pl": "Święta, imprezy"
     },
     {
         "pk": 26534,
@@ -4716,7 +4716,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Stampa, design",
-        "title_pl": "Printing, design"
+        "title_pl": "Druk, projekt"
     },
     {
         "pk": 26535,
@@ -4729,7 +4729,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Marketing, annunci, PR",
-        "title_pl": "Marketing, ads, PR, PR."
+        "title_pl": "Marketing, reklama, PR"
     },
     {
         "pk": 26536,
@@ -4742,7 +4742,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Stampa, design",
-        "title_pl": "Printing, design"
+        "title_pl": "Druk, projekt"
     },
     {
         "pk": 26537,
@@ -4755,7 +4755,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Riparazione e manutenzione di attrezzature",
-        "title_pl": "naprawa i utrzymanie wyposa\u017cenia"
+        "title_pl": "Naprawa i utrzymanie wyposa\u017cenia"
     },
     {
         "pk": 26538,
@@ -4768,7 +4768,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "TV",
-        "title_pl": "TV"
+        "title_pl": "Telewizory"
     },
     {
         "pk": 26539,
@@ -4781,7 +4781,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Cose da computer",
-        "title_pl": "Komputer"
+        "title_pl": "Rzeczy komputerowe"
     },
     {
         "pk": 26540,
@@ -4794,7 +4794,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Console di gioco",
-        "title_pl": "konsola Gaming"
+        "title_pl": "Konsola gaming"
     },
     {
         "pk": 26541,
@@ -4859,7 +4859,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Riparazione e decorazione",
-        "title_pl": "odznaczania i dekoracja"
+        "title_pl": "Odznaczania i dekoracja"
     },
     {
         "pk": 26546,
@@ -4878,14 +4878,14 @@
         "pk": 26547,
         "title_en": "Balcony glazing",
         "title_ru": "\u041e\u0441\u0442\u0435\u043a\u043b\u0435\u043d\u0438\u0435 \u0431\u0430\u043b\u043a\u043e\u043d\u043e\u0432",
-        "title_zh": "B. \u5b88\u6cd5",
+        "title_zh": "陽台玻璃",
         "title_fr": "Vitrages de balcon",
         "title_de": "Balkonverglasung",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Balcone vetrate",
-        "title_pl": "Balcony glazing"
+        "title_pl": "Przeszklenie balkonu"
     },
     {
         "pk": 26549,
@@ -4898,7 +4898,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Elettronica",
-        "title_pl": "elektronika"
+        "title_pl": "Elektronika"
     },
     {
         "pk": 26550,
@@ -4911,7 +4911,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Plumbing",
-        "title_pl": "Plumbing"
+        "title_pl": "Instalacja wodociągowa"
     },
     {
         "pk": 26551,
@@ -4924,7 +4924,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Ristrutturazione dell'ufficio",
-        "title_pl": "remont"
+        "title_pl": "Remont biura"
     },
     {
         "pk": 26556,
@@ -4937,20 +4937,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Riparazione di appartamenti e case chiavi in mano",
-        "title_pl": "apartamenty i w\u0119ze\u0142"
+        "title_pl": "Remont mieszkań i domów pod klucz"
     },
     {
         "pk": 26557,
         "title_en": "Garden, landscaping",
         "title_ru": "\u0421\u0430\u0434, \u0431\u043b\u0430\u0433\u043e\u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e",
-        "title_zh": "Garden, \u571f\u5730",
+        "title_zh": "花園、園林綠化",
         "title_fr": "Jardin, am\u00e9nagement paysager",
         "title_de": "Garten, Landschaftsbau",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Giardino, paesaggio",
-        "title_pl": "Ogr\u00f3d"
+        "title_pl": "Ogród, kształtowanie krajobrazu"
     },
     {
         "pk": 26558,
@@ -4982,14 +4982,14 @@
         "pk": 26560,
         "title_en": "Car rent",
         "title_ru": "\u0410\u0440\u0435\u043d\u0434\u0430 \u0430\u0432\u0442\u043e",
-        "title_zh": "\u79df\u91d1",
+        "title_zh": "汽車出租",
         "title_fr": "Location de voiture",
         "title_de": "Autovermietung",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Noleggio auto",
-        "title_pl": "wypo\u017cyczenie"
+        "title_pl": "Wynajem samochodu"
     },
     {
         "pk": 26561,
@@ -5002,7 +5002,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Trasporto commerciale",
-        "title_pl": "transport"
+        "title_pl": "Transport komercyjny"
     },
     {
         "pk": 26562,
@@ -5015,7 +5015,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Movers",
-        "title_pl": "Mower"
+        "title_pl": "Mowery"
     },
     {
         "pk": 26563,
@@ -5028,7 +5028,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Ripartizioni",
-        "title_pl": "relokacja"
+        "title_pl": "Relokacja"
     },
     {
         "pk": 26564,
@@ -5041,7 +5041,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Veicoli speciali",
-        "title_pl": "pojazdy specjalne"
+        "title_pl": "Pojazdy specjalne"
     },
     {
         "pk": 26565,
@@ -5054,59 +5054,59 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Pulizia",
-        "title_pl": "Cleaning"
+        "title_pl": "Czyszczenie"
     },
     {
         "pk": 26566,
         "title_en": "Garbage removal",
         "title_ru": "\u0412\u044b\u0432\u043e\u0437 \u043c\u0443\u0441\u043e\u0440\u0430",
-        "title_zh": "B. \u642c\u8d70",
-        "title_fr": "\u00c9limination des ordures",
+        "title_zh": "清除垃圾",
+        "title_fr": "Le ramassage des poubelles",
         "title_de": "M\u00fcllentfernung",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Rimozione della spazzatura",
-        "title_pl": "Garbage usuwa\u0107"
+        "title_pl": "Wywóz śmieci"
     },
     {
         "pk": 26567,
         "title_en": "Spring-cleaning",
         "title_ru": "\u0413\u0435\u043d\u0435\u0440\u0430\u043b\u044c\u043d\u0430\u044f \u0443\u0431\u043e\u0440\u043a\u0430",
-        "title_zh": "\u6392 \u7269",
+        "title_zh": "春季大掃除",
         "title_fr": "Nettoyage de printemps",
         "title_de": "Fr\u00fchlingsreinigung",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Pulire la primavera",
-        "title_pl": "wiosny"
+        "title_pl": "Wiosenne porządki"
     },
     {
         "pk": 26568,
         "title_en": "Ironing",
         "title_ru": "\u0413\u043b\u0430\u0436\u043a\u0430 \u0431\u0435\u043b\u044c\u044f",
         "title_zh": "\u73af\u5883",
-        "title_fr": "Ironing",
+        "title_fr": "Repassage",
         "title_de": "B\u00fcgeln",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Ferro",
-        "title_pl": "iron"
+        "title_pl": "Prasowanie"
     },
     {
         "pk": 26569,
         "title_en": "Windows cleaning",
         "title_ru": "\u041c\u043e\u0439\u043a\u0430 \u043e\u043a\u043e\u043d",
         "title_zh": "\u9910\u5385",
-        "title_fr": "Nettoyage Windows",
+        "title_fr": "Nettoyage des vitres",
         "title_de": "Reinigung von Windows",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Pulizia di Windows",
-        "title_pl": "Windows cleaning"
+        "title_pl": "Czyszczenie okien"
     },
     {
         "pk": 26570,
@@ -5119,7 +5119,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Pulizia di base",
-        "title_pl": "czyszczenie podstawowe"
+        "title_pl": "Czyszczenie podstawowe"
     },
     {
         "pk": 26571,
@@ -5132,7 +5132,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Pulizia dopo la ristrutturazione",
-        "title_pl": "Po remoncie"
+        "title_pl": "Sprzątanie po remoncie"
     },
     {
         "pk": 26572,
@@ -5145,7 +5145,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Pulizia tappeti",
-        "title_pl": "czyszczenie"
+        "title_pl": "Czyszczenie dywanów"
     },
     {
         "pk": 26573,
@@ -5158,7 +5158,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Pulizia di mobili imbottiti",
-        "title_pl": "Upholster"
+        "title_pl": "Czyszczenie mebli tapicerowanych"
     },
     {
         "pk": 26574,
@@ -5171,20 +5171,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Animali domestici",
-        "title_pl": "Piekarnia"
+        "title_pl": "Opieka nad zwierzętami"
     },
     {
         "pk": 26575,
         "title_en": "Photo and video capture",
         "title_ru": "\u0424\u043e\u0442\u043e \u0438 \u0432\u0438\u0434\u0435\u043e\u0441\u044a\u0451\u043c\u043a\u0430",
         "title_zh": "\u7167\u7247\u548c\u5f55\u50cf",
-        "title_fr": "Photo et vid\u00e9o capture",
+        "title_fr": "Capture photo et vidéo",
         "title_de": "Foto- und Videoaufnahme",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Foto e video cattura",
-        "title_pl": "Zdj\u0119cia i wideo"
+        "title_pl": "Przechwytywanie zdjęć i filmów"
     },
     {
         "pk": 26576,
@@ -5197,7 +5197,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 29364,
@@ -5205,38 +5205,38 @@
         "title_ru": "\u041c\u043e\u0431\u0438\u043b\u044c\u043d\u044b\u0435 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u044b",
         "title_zh": "\u79fb\u52a8\u7535\u8bdd",
         "title_fr": "T\u00e9l\u00e9phones portables",
-        "title_de": "Handys",
+        "title_de": "Mobiltelefone",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Telefoni cellulari",
-        "title_pl": "telefon Mobile"
+        "title_pl": "Telefony komórkowe"
     },
     {
         "pk": 30201,
         "title_en": "Attachments",
         "title_ru": "\u041d\u0430\u0432\u0435\u0441\u043d\u043e\u0435 \u043e\u0431\u043e\u0440\u0443\u0434\u043e\u0432\u0430\u043d\u0438\u0435",
         "title_zh": "\u9644\u5f55",
-        "title_fr": "Attachements",
+        "title_fr": "Pièces jointes",
         "title_de": "Anh\u00e4nge",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Attacchi",
-        "title_pl": "Attachment"
+        "title_pl": "Załączniki"
     },
     {
         "pk": 30705,
         "title_en": "Finished buildings and log cabins",
         "title_ru": "\u0413\u043e\u0442\u043e\u0432\u044b\u0435 \u0441\u0442\u0440\u043e\u0435\u043d\u0438\u044f \u0438 \u0441\u0440\u0443\u0431\u044b",
-        "title_zh": "Finied\u5efa\u7b51\u7269\u548c\u6728\u56fe",
+        "title_zh": "成品建築和小木屋",
         "title_fr": "B\u00e2timents finis et cabanes en bois",
         "title_de": "Fertigbauten und Blockh\u00e4user",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Edifici finiti e cabine di log",
-        "title_pl": "Zabudowania i kabiny log\u00f3w"
+        "title_pl": "Gotowe budynki i domki z bali"
     },
     {
         "pk": 30757,
@@ -5249,7 +5249,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Ricambi e accessori",
-        "title_pl": "akcesoria i akcesoria"
+        "title_pl": "Części zamienne i akcesoria"
     },
     {
         "pk": 30773,
@@ -5262,20 +5262,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Ricambi",
-        "title_pl": "cz\u0119\u015b\u0107 spu\u015bcizna"
+        "title_pl": "Części zamienne"
     },
     {
         "pk": 30774,
         "title_en": "Tires, wheels and wheels",
         "title_ru": "\u0428\u0438\u043d\u044b, \u0434\u0438\u0441\u043a\u0438 \u0438 \u043a\u043e\u043b\u0451\u0441\u0430",
         "title_zh": "\u8f6e\u80ce\u3001\u8f6e\u8f6e\u6905\u548c\u8f6e\u8f6e\u6905",
-        "title_fr": "Pneus, roues et roues",
-        "title_de": "Reifen, R\u00e4der und R\u00e4der",
+        "title_fr": "Pneuset roues",
+        "title_de": "Reifen und R\u00e4der",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
-        "title_it": "Pneumatici, ruote e ruote",
-        "title_pl": "felgi i felgi"
+        "title_it": "Pneumatici e ruote",
+        "title_pl": "Opony i koła"
     },
     {
         "pk": 30783,
@@ -5288,7 +5288,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Dispositivi antifurto",
-        "title_pl": "Antytheft"
+        "title_pl": "Urządzenia antywłamaniowe"
     },
     {
         "pk": 31202,
@@ -5314,7 +5314,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Consegna",
-        "title_pl": "Dostarczenie"
+        "title_pl": "Dostawa"
     },
     {
         "pk": 31204,
@@ -5340,7 +5340,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Consegna",
-        "title_pl": "Dostarczenie"
+        "title_pl": "Dostawa"
     },
     {
         "pk": 32350,
@@ -5379,13 +5379,13 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Autobusiness",
-        "title_pl": "Autobusiness"
+        "title_pl": "Autobusowość"
     },
     {
         "pk": 32353,
         "title_en": "Beauty and care",
         "title_ru": "\u041a\u0440\u0430\u0441\u043e\u0442\u0430 \u0438 \u0443\u0445\u043e\u0434",
-        "title_zh": "B. \u966a\u5ba1\u56e2\u548c\u7167\u6599",
+        "title_zh": "美容護理",
         "title_fr": "Beaut\u00e9 et soins",
         "title_de": "Sch\u00f6nheit und Pflege",
         "title_nl": null,
@@ -5398,18 +5398,18 @@
         "pk": 34161,
         "title_en": "Ventilation",
         "title_ru": "\u0412\u0435\u043d\u0442\u0438\u043b\u044f\u0446\u0438\u044f",
-        "title_zh": "\u65f6\u95f4",
+        "title_zh": "通風",
         "title_fr": "Ventilation",
         "title_de": "L\u00fcftung",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Ventilazione",
-        "title_pl": "Wenecja"
+        "title_pl": "Wentylacja"
     },
     {
         "pk": 34162,
-        "title_en": "High-altiture works",
+        "title_en": "High-altitude works",
         "title_ru": "\u0412\u044b\u0441\u043e\u0442\u043d\u044b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b",
         "title_zh": "\u9ad8\u7ea7\u5efa\u7b51\u5de5\u7a0b",
         "title_fr": "Travaux d'altiture",
@@ -5418,7 +5418,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavori di alta qualit\u00e0",
-        "title_pl": "Praca zbiorowa"
+        "title_pl": "Prace na dużych wysokościach"
     },
     {
         "pk": 34163,
@@ -5431,7 +5431,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavoro a bordo",
-        "title_pl": "Plasterboard"
+        "title_pl": "Prace z płyt gipsowo-kartonowych"
     },
     {
         "pk": 34164,
@@ -5444,20 +5444,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Porte",
-        "title_pl": "Door"
+        "title_pl": "Drzwi"
     },
     {
         "pk": 34165,
         "title_en": "Isolation",
         "title_ru": "\u0418\u0437\u043e\u043b\u044f\u0446\u0438\u044f",
         "title_zh": "\u51b3 \u5b9a",
-        "title_fr": "Isolation",
+        "title_fr": "Isolement",
         "title_de": "Isolierung",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Isolamento",
-        "title_pl": "Isolation"
+        "title_pl": "Izolacja"
     },
     {
         "pk": 34166,
@@ -5477,13 +5477,13 @@
         "title_en": "Tiled work",
         "title_ru": "\u041f\u043b\u0438\u0442\u043e\u0447\u043d\u044b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b",
         "title_zh": "\u5bfc \u8a00",
-        "title_fr": "Travail carrel\u00e9",
+        "title_fr": "Travaux de carrelage",
         "title_de": "Fliesenarbeit",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavoro in piastrelle",
-        "title_pl": "Praca Tileda"
+        "title_pl": "Praca kaflowa"
     },
     {
         "pk": 34169,
@@ -5502,14 +5502,14 @@
         "pk": 34170,
         "title_en": "Floors and floor coverings",
         "title_ru": "\u041f\u043e\u043b\u044b \u0438 \u043d\u0430\u043f\u043e\u043b\u044c\u043d\u044b\u0435 \u043f\u043e\u043a\u0440\u044b\u0442\u0438\u044f",
-        "title_zh": "Floors and floor of the Floors",
+        "title_zh": "地板和地板覆蓋物",
         "title_fr": "Planchers et rev\u00eatements de sol",
         "title_de": "Bodenbel\u00e4ge und Bodenbel\u00e4ge",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Pavimenti e rivestimenti per pavimenti",
-        "title_pl": "Powierzchnia i pod\u0142ogi"
+        "title_pl": "Podłogi i wykładziny podłogowe"
     },
     {
         "pk": 34171,
@@ -5522,7 +5522,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Seduta",
-        "title_pl": "Seiling"
+        "title_pl": "Uszczelnienia"
     },
     {
         "pk": 34172,
@@ -5535,7 +5535,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 34173,
@@ -5555,26 +5555,26 @@
         "title_en": "Plaster work",
         "title_ru": "\u0428\u0442\u0443\u043a\u0430\u0442\u0443\u0440\u043d\u044b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b",
         "title_zh": "\u540d\u518c",
-        "title_fr": "Travail de plaster",
+        "title_fr": "Travaux de plâtrerie",
         "title_de": "Plastische Arbeit",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavoro di battitura",
-        "title_pl": "Plasterwork"
+        "title_pl": "Prace tynkarskie"
     },
     {
         "pk": 34251,
         "title_en": "Cryptomining",
         "title_ru": "\u041c\u0430\u0439\u043d\u0438\u043d\u0433",
         "title_zh": "\u6392 \u7269",
-        "title_fr": "Cryptomining",
+        "title_fr": "Cryptominage",
         "title_de": "Cryptomin",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Pianificazione",
-        "title_pl": "Cryptomining"
+        "title_pl": "Kopanie kryptowalut"
     },
     {
         "pk": 34252,
@@ -5600,7 +5600,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Chioschi e strutture mobili",
-        "title_pl": "struktura mobilna i struktura mobilna"
+        "title_pl": "Kioski i konstrukcje mobilne"
     },
     {
         "pk": 34254,
@@ -5639,7 +5639,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Telecomunicazioni",
-        "title_pl": "telekomunikacja"
+        "title_pl": "Telekomunikacja"
     },
     {
         "pk": 34318,
@@ -5671,27 +5671,27 @@
         "pk": 34743,
         "title_en": "Construction of baths, saunas",
         "title_ru": "\u0421\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e \u0431\u0430\u043d\u044c, \u0441\u0430\u0443\u043d",
-        "title_zh": "D. \u5efa\u9020\u7ba1\u9053\u3001\u7834\u574f\u91ce\u751f\u52a8\u7269",
+        "title_zh": "建造浴室、桑拿房",
         "title_fr": "Construction de bains, saunas",
         "title_de": "Bau von B\u00e4dern, Saunen",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Costruzione di bagni, saune",
-        "title_pl": "Budowa \u0142a\u017ani, saunas."
+        "title_pl": "Budowa łaźni, saun"
     },
     {
         "pk": 34745,
         "title_en": "Finishing wooden houses, baths, saunas",
         "title_ru": "\u041e\u0442\u0434\u0435\u043b\u043a\u0430 \u0434\u0435\u0440\u0435\u0432\u044f\u043d\u043d\u044b\u0445 \u0434\u043e\u043c\u043e\u0432, \u0431\u0430\u043d\u044c, \u0441\u0430\u0443\u043d",
-        "title_zh": "Finishen\u623f\u5b50\u3001\u6c34\u4e95\u3001\u9057\u5c5e",
+        "title_zh": "裝修木屋、浴室、桑拿房",
         "title_fr": "Maisons en bois, bains, saunas",
         "title_de": "Holzh\u00e4user, B\u00e4der, Saunen",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Finitura case in legno, bagni, saune",
-        "title_pl": "Znajduj\u0105c drewniane domy, k\u0105pieli, saunas."
+        "title_pl": "Wykańczanie domów drewnianych, łaźni, saun"
     },
     {
         "pk": 35450,
@@ -5704,7 +5704,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 35451,
@@ -5717,7 +5717,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Compra una casa",
-        "title_pl": "Buy's home"
+        "title_pl": "Kup dom"
     },
     {
         "pk": 35452,
@@ -5730,7 +5730,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Affitto giornaliero",
-        "title_pl": "Rent codziennie"
+        "title_pl": "Wynajem na dobę"
     },
     {
         "pk": 35453,
@@ -5743,7 +5743,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Affitto a lungo termine",
-        "title_pl": "D\u0142ugoterminowa nazwa"
+        "title_pl": "Wynajem długoterminowy"
     },
     {
         "pk": 35454,
@@ -5756,7 +5756,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Immobiliare commerciale",
-        "title_pl": "real estate"
+        "title_pl": "Nieruchomość komercyjna"
     },
     {
         "pk": 35455,
@@ -5769,7 +5769,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altre categorie",
-        "title_pl": "inne kategorie"
+        "title_pl": "Inne kategorie"
     },
     {
         "pk": 35456,
@@ -5795,7 +5795,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Rivendita",
-        "title_pl": "Resale"
+        "title_pl": "Odsprzedaż"
     },
     {
         "pk": 35458,
@@ -5821,7 +5821,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Case, dache, cottage",
-        "title_pl": "Houses, dachas, schronisko"
+        "title_pl": "Domy, dacze, domki letniskowe"
     },
     {
         "pk": 35460,
@@ -5834,20 +5834,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Camere",
-        "title_pl": "Pok\u00f3j"
+        "title_pl": "Pokoje"
     },
     {
         "pk": 35461,
         "title_en": "Flats",
         "title_ru": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u044b",
-        "title_zh": "Flats",
+        "title_zh": "公寓",
         "title_fr": "Appartements",
         "title_de": "Flachs",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Appartamenti",
-        "title_pl": "Flat"
+        "title_pl": "Mieszkania"
     },
     {
         "pk": 35462,
@@ -5860,7 +5860,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Case, dache, cottage",
-        "title_pl": "Houses, dachas, schronisko"
+        "title_pl": "Domy, dacze, domki letniskowe"
     },
     {
         "pk": 35463,
@@ -5873,20 +5873,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Camere e letti",
-        "title_pl": "pok\u00f3j i \u0142\u00f3\u017cko"
+        "title_pl": "Pokoje i łóżka"
     },
     {
         "pk": 35464,
         "title_en": "Flats",
         "title_ru": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u044b",
-        "title_zh": "Flats",
+        "title_zh": "公寓",
         "title_fr": "Appartements",
         "title_de": "Flachs",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Appartamenti",
-        "title_pl": "Flat"
+        "title_pl": "Mieszkania"
     },
     {
         "pk": 35465,
@@ -5899,7 +5899,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Case, dache, cottage",
-        "title_pl": "Houses, dachas, schronisko"
+        "title_pl": "Domy, dacze, domki letniskowe"
     },
     {
         "pk": 35466,
@@ -5912,7 +5912,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Camere e letti",
-        "title_pl": "pok\u00f3j i \u0142\u00f3\u017cko"
+        "title_pl": "Pokoje i łóżka"
     },
     {
         "pk": 35467,
@@ -5925,7 +5925,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Comprare",
-        "title_pl": "Buy"
+        "title_pl": "Kupić"
     },
     {
         "pk": 35468,
@@ -5938,7 +5938,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Affitto",
-        "title_pl": "Rent"
+        "title_pl": "Wynajem"
     },
     {
         "pk": 35469,
@@ -5951,7 +5951,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Terreno",
-        "title_pl": "Land"
+        "title_pl": "Grunt"
     },
     {
         "pk": 35470,
@@ -5977,20 +5977,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Propriet\u00e0 d'oltremare",
-        "title_pl": "w\u0142asno\u015b\u0107"
+        "title_pl": "Majątek za granicą"
     },
     {
         "pk": 35472,
         "title_en": "Wells",
         "title_ru": "C\u043a\u0432\u0430\u0436\u0438\u043d\u044b, \u043a\u043e\u043b\u043e\u0434\u0446\u044b",
         "title_zh": "\u798f\u5229",
-        "title_fr": "Wells",
+        "title_fr": "Puits",
         "title_de": "Wells",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Pozzi",
-        "title_pl": "Wells"
+        "title_pl": "Studnie"
     },
     {
         "pk": 35473,
@@ -6003,7 +6003,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Stagni e fontane",
-        "title_pl": "Ponds and fountains (ang.)."
+        "title_pl": "Stawy i fontanny"
     },
     {
         "pk": 35474,
@@ -6016,7 +6016,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Costruzione stradale",
-        "title_pl": "budowa drogi"
+        "title_pl": "Budowa drogi"
     },
     {
         "pk": 35475,
@@ -6029,7 +6029,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Piedi, ringhiere, tende",
-        "title_pl": "\u015amig\u0142y, kawa\u0142ki, awny."
+        "title_pl": "Ogrodzenia, balustrady, markizy"
     },
     {
         "pk": 35476,
@@ -6042,20 +6042,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Scavatura",
-        "title_pl": "egzekwacja"
+        "title_pl": "Egzekwacja"
     },
     {
         "pk": 35477,
-        "title_en": "Landscaping, gardening and gardening",
+        "title_en": "Landscaping and gardening",
         "title_ru": "\u041e\u0437\u0435\u043b\u0435\u043d\u0435\u043d\u0438\u0435, \u0443\u0445\u043e\u0434 \u0437\u0430 \u0441\u0430\u0434\u043e\u043c \u0438 \u043e\u0433\u043e\u0440\u043e\u0434\u043e\u043c",
         "title_zh": "\u571f\u5730\u3001\u82b1\u56ed\u548c\u82b1\u56ed",
-        "title_fr": "Am\u00e9nagement paysager, jardinage et jardinage",
-        "title_de": "Landschaftsbau, Gartenbau und Gartenbau",
+        "title_fr": "Am\u00e9nagement paysager et jardinage",
+        "title_de": "Landschaftsbau und Gartenbau",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
-        "title_it": "Paesaggi, giardinaggio e giardinaggio",
-        "title_pl": "krajobraz, ogrodnictwo i ogrodnictwo"
+        "title_it": "Paesaggi e giardinaggio",
+        "title_pl": "Krajobraz i ogrodnictwo"
     },
     {
         "pk": 35478,
@@ -6081,20 +6081,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 35496,
         "title_en": "Bags, backpacks and suitcases",
         "title_ru": "\u0421\u0443\u043c\u043a\u0438, \u0440\u044e\u043a\u0437\u0430\u043a\u0438 \u0438 \u0447\u0435\u043c\u043e\u0434\u0430\u043d\u044b",
-        "title_zh": "Bags,\u540e\u76fe\u548c\u6848\u4ef6",
+        "title_zh": "手袋、背包和手提箱",
         "title_fr": "Sacs, sacs \u00e0 dos et valises",
         "title_de": "Taschen, Rucks\u00e4cke und Koffer",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Borse, zaini e valigie",
-        "title_pl": "Bags, backpacks and suitcases"
+        "title_pl": "Torby, plecaki i walizki"
     },
     {
         "pk": 35497,
@@ -6107,7 +6107,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Per auto",
-        "title_pl": "wagony"
+        "title_pl": "Do samochodów"
     },
     {
         "pk": 35498,
@@ -6120,7 +6120,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Per moto",
-        "title_pl": "dla motocykli"
+        "title_pl": "Dla motocykli"
     },
     {
         "pk": 35499,
@@ -6146,7 +6146,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Per il trasporto idrico",
-        "title_pl": "transport wodny"
+        "title_pl": "Dla transport wodny"
     },
     {
         "pk": 35501,
@@ -6159,7 +6159,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Pneumatici per auto",
-        "title_pl": "opon Car"
+        "title_pl": "Opony samochodowe"
     },
     {
         "pk": 35502,
@@ -6178,14 +6178,14 @@
         "pk": 35503,
         "title_en": "Moto tires",
         "title_ru": "\u041c\u043e\u0442\u043e\u0448\u0438\u043d\u044b",
-        "title_zh": "Mototires",
+        "title_zh": "摩托車輪胎",
         "title_fr": "Pneus Moto",
         "title_de": "Moto-Reifen",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Pneumatici Moto",
-        "title_pl": "Moto tire"
+        "title_pl": "Opony motocyklowe"
     },
     {
         "pk": 35504,
@@ -6198,46 +6198,46 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Disco",
-        "title_pl": "Dysk"
+        "title_pl": "Dyski"
     },
     {
         "pk": 35505,
         "title_en": "Caps",
         "title_ru": "\u041a\u043e\u043b\u043f\u0430\u043a\u0438",
-        "title_zh": "A. \u80fd\u529b",
+        "title_zh": "帽子",
         "title_fr": "Caps",
         "title_de": "Caps",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Caps",
-        "title_pl": "Caps"
+        "title_pl": "Czapki"
     },
     {
         "pk": 35506,
         "title_en": "Wheels",
         "title_ru": "\u041a\u043e\u043b\u0451\u0441\u0430",
-        "title_zh": "Wels",
+        "title_zh": "車輪",
         "title_fr": "Roues",
         "title_de": "R\u00e4der",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Ruote",
-        "title_pl": "Wheels"
+        "title_pl": "Koła"
     },
     {
         "pk": 35507,
         "title_en": "Car alarms",
         "title_ru": "\u0410\u0432\u0442\u043e\u0441\u0438\u0433\u043d\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0438",
         "title_zh": "\u8b66\u89c9",
-        "title_fr": "alarmes de voiture",
+        "title_fr": "Alarmes de voiture",
         "title_de": "Autoalarm",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Allarmi auto",
-        "title_pl": "alarm samochodowy"
+        "title_pl": "Alarm samochodowy"
     },
     {
         "pk": 35508,
@@ -6263,7 +6263,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Dissuasori meccanici",
-        "title_pl": "bollardard mechaniczny"
+        "title_pl": "Bollardard mechaniczny"
     },
     {
         "pk": 35510,
@@ -6289,20 +6289,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavoro d'indagine",
-        "title_pl": "praca"
+        "title_pl": "Praca ankietowa"
     },
     {
         "pk": 46056,
         "title_en": "Masonry work",
         "title_ru": "\u041a\u043b\u0430\u0434\u043e\u0447\u043d\u044b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b",
-        "title_zh": "Masonry\u5de5\u4f5c",
+        "title_zh": "砌體工程",
         "title_fr": "Travaux de ma\u00e7onnerie",
         "title_de": "Mauerwerk",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavoro di muratura",
-        "title_pl": "Masonry"
+        "title_pl": "Prace murarskie"
     },
     {
         "pk": 46058,
@@ -6334,7 +6334,7 @@
         "pk": 46060,
         "title_en": "Gasification",
         "title_ru": "\u0413\u0430\u0437\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f",
-        "title_zh": "A. \u7edf\u4e00",
+        "title_zh": "氣化",
         "title_fr": "Gasification",
         "title_de": "Vergasung",
         "title_nl": null,
@@ -6354,20 +6354,20 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Tetto",
-        "title_pl": "Roofing"
+        "title_pl": "Zadaszenie"
     },
     {
         "pk": 46062,
         "title_en": "Ladders",
         "title_ru": "\u041b\u0435\u0441\u0442\u043d\u0438\u0446\u044b",
-        "title_zh": "Ladders",
+        "title_zh": "梯子",
         "title_fr": "\u00c9chelles",
         "title_de": "Ladder",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Scale",
-        "title_pl": "Ladder"
+        "title_pl": "Drabiny"
     },
     {
         "pk": 46063,
@@ -6393,7 +6393,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Saldatura",
-        "title_pl": "Welding"
+        "title_pl": "Spawalniczy"
     },
     {
         "pk": 46065,
@@ -6406,46 +6406,46 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Demolizione e smantellamento",
-        "title_pl": "Demolition and dismantling"
+        "title_pl": "Rozbiórka i demontaż"
     },
     {
         "pk": 46066,
         "title_en": "Construction of turnkey houses",
         "title_ru": "\u0421\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e \u0434\u043e\u043c\u043e\u0432 \u043f\u043e\u0434 \u043a\u043b\u044e\u0447",
-        "title_zh": "B. \u5efa\u9020\u6df7\u5408\u623f\u5c4b",
+        "title_zh": "建造交鑰匙房屋",
         "title_fr": "Construction de maisons en main",
         "title_de": "Bau von schl\u00fcsselfertigen H\u00e4usern",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Costruzione di case chiavi in mano",
-        "title_pl": "Budowa dom\u00f3w turnkey"
+        "title_pl": "Budowa domów pod klucz"
     },
     {
         "pk": 46067,
         "title_en": "Facade works",
         "title_ru": "\u0424\u0430\u0441\u0430\u0434\u043d\u044b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b",
-        "title_zh": "Fcade\u5de5\u7a0b",
-        "title_fr": "Facade works",
+        "title_zh": "門面工程",
+        "title_fr": "Travaux de façade",
         "title_de": "Facade Werke",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavori di Facade",
-        "title_pl": "Facadework"
+        "title_pl": "Prace fasadowe"
     },
     {
         "pk": 46068,
         "title_en": "Foundation works",
         "title_ru": "\u0424\u0443\u043d\u0434\u0430\u043c\u0435\u043d\u0442\u043d\u044b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b",
         "title_zh": "\u57fa\u91d1\u4f1a",
-        "title_fr": "Foundation works",
+        "title_fr": "Travaux de fondation",
         "title_de": "Stiftungsarbeiten",
         "title_nl": null,
         "title_se": null,
         "title_ua": null,
         "title_it": "Lavori della Fondazione",
-        "title_pl": "Fundacja"
+        "title_pl": "Prace fundamentowe"
     },
     {
         "pk": 46069,
@@ -6458,7 +6458,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Altri",
-        "title_pl": "Inny inny"
+        "title_pl": "Inny"
     },
     {
         "pk": 59438,
@@ -6497,7 +6497,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Pubblicit\u00e0",
-        "title_pl": "Advertising"
+        "title_pl": "Reklama"
     },
     {
         "pk": 59441,
@@ -6510,7 +6510,7 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Inserimento",
-        "title_pl": "Entertaining"
+        "title_pl": "Rozrywkowy"
     },
     {
         "pk": 59442,
@@ -6523,6 +6523,6 @@
         "title_se": null,
         "title_ua": null,
         "title_it": "Telecamere a specchio",
-        "title_pl": "kamera bezwierna"
+        "title_pl": "Aparaty bezlusterkowe"
     }
 ]

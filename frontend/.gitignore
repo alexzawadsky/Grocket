@@ -25,6 +25,7 @@ dist-ssr
 .env.production
 .env
 .env.development
+*.txt
 
 1.jpg
 2.jpg 

@@ -12,6 +12,7 @@ import { TbPhoneCheck } from 'react-icons/tb'
 import { useTranslation } from 'react-i18next'
 import { Flag, RatingStars, Avatar, Price, PublishTime } from '../ui'
 import cn from 'classnames'
+import { BsPerson } from 'react-icons/bs'
 
 const ItemCard = ({
     product,
@@ -58,18 +59,34 @@ const ItemCard = ({
                         <Flag
                             size={5}
                             country={product?.address?.country_code}
-                            className="mb-auto mt-[3px] h-fit"
+                            className={cn(
+                                'mb-auto h-fit',
+                                product?.promotions.includes('xl')
+                                    ? 'mt-0.5 xl:mt-1.5'
+                                    : 'mt-0.5 xl:mt-1'
+                            )}
                         />
                         <p
-                            className={`flex items-center justify-between font-bold hover:text-accent-orange ${
+                            className={cn(
+                                `line-clamp-2 font-bold hover:text-accent-orange`,
                                 product?.promotions.includes('xl')
                                     ? 'text-md xl:text-2xl'
                                     : 'text-md xl:text-xl'
-                            }`}
+                            )}
                         >
                             {product?.name}
                         </p>
-                        <span className="ml-auto">
+                        <span
+                            className={cn(
+                                'mb-auto ml-auto',
+                                product?.promotions?.includes('xl')
+                                    ? 'mt-1 xl:mt-2'
+                                    : 'mt-1 xl:mt-1.5'
+                            )}
+                        >
+                            {product?.user?.id === user?.user_id && (
+                                <BsPerson />
+                            )}
                             {product?.is_favourited && (
                                 <AiFillHeart color="red" />
                             )}
@@ -134,9 +151,16 @@ const ItemCard = ({
                 </div>
                 {isLargePC && (
                     <div className="hidden h-full gap-4 px-4 py-7 text-sm lg:flex">
-                        <div className="h-fit w-10">
-                            <Avatar avatar={product?.user?.avatar} />
-                        </div>
+                        <Link
+                            to={
+                                product?.user?.id === user?.user_id
+                                    ? '/users/me'
+                                    : `/users/${product?.user?.id}`
+                            }
+                            className="h-fit drop-shadow-sm hover:drop-shadow-md"
+                        >
+                            <Avatar avatar={product?.user?.avatar} width={40} />
+                        </Link>
                         <div className="flex flex-col gap-1.5">
                             <Link
                                 to={
@@ -205,7 +229,7 @@ const ItemCard = ({
                     <Flag
                         size={5}
                         country={product?.address?.country_code}
-                        className="mb-auto mt-[3px] h-fit"
+                        className="mb-auto mt-1 h-fit"
                     />
                 )}
                 <p
@@ -215,7 +239,8 @@ const ItemCard = ({
                 >
                     {product?.name}
                 </p>
-                <span className="ml-auto">
+                <span className="mb-auto ml-auto mt-1.5">
+                    {product?.user?.id === user?.user_id && <BsPerson />}
                     {product?.is_favourited && <AiFillHeart color="red" />}
                 </span>
             </h3>

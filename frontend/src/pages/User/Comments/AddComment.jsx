@@ -52,16 +52,6 @@ const AddComment = () => {
         )
     }, [filterString.value])
 
-    const handleUpload = () => {
-        addCommentMutation.mutate({
-            product: selectedProduct.id,
-            rate: rating,
-            status: statusId,
-            images: images,
-            text: text.value,
-        })
-    }
-
     return (
         <div className="grid gap-3">
             <NavLink
@@ -74,7 +64,15 @@ const AddComment = () => {
             <Title text={t('add_comment')} />
             <Form
                 className="grid gap-5 md:grid-cols-[1fr_2fr]"
-                onSubmit={handleUpload}
+                onSubmit={() => {
+                    addCommentMutation.mutate({
+                        product: selectedProduct.id,
+                        rate: rating,
+                        status: statusId,
+                        images: images,
+                        text: text.value,
+                    })
+                }}
             >
                 <h2 className="text-xl font-bold">{t('select_product')}</h2>
                 <div className="grid gap-3">
@@ -84,9 +82,6 @@ const AddComment = () => {
                                 instance={filterString}
                                 className="w-full md:w-2/3 lg:w-1/2"
                                 placeholder={t('type_to_filter')}
-                                onChange={(e) =>
-                                    setFilterString(e.target.value)
-                                }
                             />
                             {products.isLoading && <Spinner />}
                             {products.error && error.message}
@@ -181,11 +176,11 @@ const AddComment = () => {
                                         <button
                                             type="button"
                                             onClick={() =>
-                                                deleteImage(
-                                                    key,
-                                                    images,
-                                                    setMainIndex,
-                                                    setImages
+                                                setImages((prevState) =>
+                                                    prevState.filter(
+                                                        (img, imgKey) =>
+                                                            imgKey !== key
+                                                    )
                                                 )
                                             }
                                             className="text-accent-red"

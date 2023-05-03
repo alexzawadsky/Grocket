@@ -59,7 +59,10 @@ const ProductPage = () => {
                     name="og:title"
                     content={`${data?.name} - ${data.price}${data?.price_currency}`}
                 />
-                <meta name="og:image" content={data?.images[0]?.image} />
+                <meta
+                    name="og:image"
+                    content={`${window.location.host}${data?.images[0]?.image}`}
+                />
                 <meta
                     name="og:description"
                     content={`Buy ${data?.name} on Grocket for just ${data?.price}${data?.price_currency}`}

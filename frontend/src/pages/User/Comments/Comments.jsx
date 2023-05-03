@@ -61,7 +61,7 @@ const Comments = () => {
             </ul>
             {data?.pages_count > 1 && (
                 <Pagination
-                    className="mt-1"
+                    className="mt-1 max-md:mx-auto"
                     page={page}
                     setPage={setPage}
                     pagesCount={data?.pages_count}

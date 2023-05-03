@@ -126,9 +126,10 @@ const ImageEditor = ({ images, setImages }) => {
                         type="button"
                         disabled={imageUploading || !currentImage}
                     >
-                        {t('save_image')}
+                        {imageUploading
+                            ? `${t('loading')}...`
+                            : t('save_image')}
                     </Button>
-                    {imageUploading && `${t('loading')}...`}
                 </div>
             </div>
         </div>

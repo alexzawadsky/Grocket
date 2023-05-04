@@ -1,9 +1,18 @@
 import json
 import requests
-import io
+import logging
 
-languages = ['zh','fr', 'de', 'nl', 'se', 'ua', 'it', 'pl']
+LANGUAGES = ['zh','fr', 'de', 'nl', 'sv', 'uk', 'it', 'pl']
 result_arr = []
+logging.basicConfig(filename='cat_log.log',
+                    filemode='a',
+                    format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                    datefmt='%H:%M:%S',
+                    level=logging.DEBUG)
+
+logging.info("Running Urban Planning")
+
+logger = logging.getLogger('urbanGUI')
 
 with open('./data/json/categories.json', encoding='UTF-8') as f:
     categories = json.load(f)
@@ -23,9 +32,9 @@ for key, category in enumerate(categories):
         }
     
     category_title= category.get('fields').get('title')
-    print(f'({key + 1}/{len(categories)}) {key / len(categories)}% - Translating {category_title}')
+    print(f'({key + 1}/{len(categories)}) {(key / len(categories)) * 100}% - Translating {category_title}')
 
-    for lang_code in languages:
+    for lang_code in LANGUAGES:
         if [i for i in translated_categories if i.get('pk') == category.get('pk')]:
             trans = [i for i in translated_categories if i.get('pk') == category.get('pk')][0].get(f'title_{lang_code}')
             if trans:
@@ -36,7 +45,7 @@ for key, category in enumerate(categories):
         print(lang_code)
 
         res = requests.post(
-                url='https://translate.argosopentech.com/translate',
+                url='https://translate.terraprint.co/translate',
                 headers={'Content-Type': 'application/json'},
                 data=json.dumps({
                     'q': category_title,
@@ -44,12 +53,22 @@ for key, category in enumerate(categories):
                     'target': lang_code
                 })
             )
-        
-        res_json = res.json()
-        translated_category.update({f'title_{lang_code}': res_json.get('translatedText')})
-        print(res_json)
-    result_arr.append(translated_category)
+        try:
+            res_json = res.json()
+            translated_category.update({f'title_{lang_code}': res_json.get('translatedText')})
+            print(res_json)
+        except json.decoder.JSONDecodeError:
+            logger.debug(res.content)
+            print('err')
+            translated_category.update({f'title_{lang_code}': None})
+    index = 0
+    for i, obj in enumerate(translated_categories):
+        if obj['pk'] == category.get('pk'):
+            # If the parameter matches, return the index of the element
+            index = i
+            break
+    translated_categories[index] = translated_category
     with open('translated_categories.json', mode='w', encoding='UTF-8') as f:
-        f.write(json.dumps(result_arr, indent='    '))
+        f.write(json.dumps(translated_categories, indent='    '))
 
 print('Translation finished!')

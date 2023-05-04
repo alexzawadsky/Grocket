@@ -14,7 +14,7 @@ export const CurrencyProvider = ({ children }) => {
     const { data, isLoading } = useExchangeRates()
     const exchangeRate = data ? data[targetCurrency] : 1
 
-    const convertPrice = (price) => {
+    const convertPrice = (price, formatted = true) => {
         if (!price) return 0
         let convertedPrice
         if (!data) {
@@ -25,7 +25,7 @@ export const CurrencyProvider = ({ children }) => {
         return parseFloat(convertedPrice)
             .toFixed(convertedPrice - Math.floor(convertedPrice) !== 0 ? 2 : 0)
             .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+            .replace(/\B(?=(\d{3})+(?!\d))/g, formatted ? ' ' : '')
     }
 
     const contextData = {

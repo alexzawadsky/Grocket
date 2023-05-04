@@ -123,13 +123,13 @@ LANGUAGES = [
     ("en", "English"),
     ("ru", "Russian"),
     ("nl", "Dutch"),
-    ("se", "Swedish"),
-    ("ua", "Ukranian"),
+    ("sv", "Swedish"),
+    ("uk", "Ukranian"),
     ("it", "Italian"),
     ("fr", "French"),
     ("de", "Deuch"),
-    ("cn", "Chinese"),
-    ("pl", "Polish")
+    ("zh-hant", "Chinese"),
+    ("pl", "Polish"),
 ]
 
 LOCALE_PATHS = [

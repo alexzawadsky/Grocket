@@ -54,7 +54,7 @@ const Navbar = () => {
                         to="/"
                     >
                         {isMinTablet ? (
-                            'Grockett'
+                            'Grocket'
                         ) : (
                             <img
                                 className="h-10"

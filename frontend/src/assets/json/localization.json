@@ -15,18 +15,18 @@
         "codeForTimeStamp": "ru",
         "codeForTranslate": "ru"
     },
-    "UA": {
+    "UK": {
         "icon": "🇺🇦",
         "name": "Українська",
-        "code": "ua",
+        "code": "uk",
         "flag": "UA",
         "codeForTimeStamp": "uk",
         "codeForTranslate": "uk"
     },
-    "SE": {
+    "SV": {
         "icon": "🇸🇪",
         "name": "Svenska",
-        "code": "se",
+        "code": "sv",
         "flag": "SE",
         "codeForTimeStamp": "sv",
         "codeForTranslate": "sv"
@@ -68,10 +68,10 @@
         "codeForTimeStamp": "pl",
         "codeForTranslate": "pl"
     },
-    "CN": {
+    "ZH_HANT": {
         "icon": "🇨🇳",
         "name": "中国人",
-        "code": "cn",
+        "code": "zh_hant",
         "flag": "CN",
         "codeForTimeStamp": "zh",
         "codeForTranslate": "zh"

@@ -120,9 +120,16 @@ AUTH_PASSWORD_VALIDATORS: list = []  # В конце добавить валид
 
 # <--- Локализация --->
 LANGUAGES = [
-    ("en", _("English")),
-    ("ru", _("Russian")),
-    ("nl", _("Dutch")),
+    ("en", "English"),
+    ("ru", "Russian"),
+    ("nl", "Dutch"),
+    ("se", "Swedish"),
+    ("ua", "Ukranian"),
+    ("it", "Italian"),
+    ("fr", "French"),
+    ("de", "Deuch"),
+    ("cn", "Chinese"),
+    ("pl", "Polish")
 ]
 
 LOCALE_PATHS = [

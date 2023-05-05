@@ -20,7 +20,7 @@ import CommentSelectItem from './CommentSelectItem'
 import { BsTrashFill } from 'react-icons/bs'
 import useInput from '../../../hooks/useInput'
 import { deleteImage } from '../../Sell/utils'
-import CommentStatus from '../CommentStatus'
+import CommentStatus from './CommentStatus'
 
 const AddComment = () => {
     const { t } = useTranslation()

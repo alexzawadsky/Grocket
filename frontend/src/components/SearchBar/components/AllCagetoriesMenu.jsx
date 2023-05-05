@@ -108,11 +108,13 @@ const FullCategoriesList = () => {
                                                 ])
                                             }
                                         >
-                                            <p className="mr-auto">
+                                            <p className="mr-auto text-left">
                                                 {el?.title}
                                             </p>
                                             {!el?.is_lower && (
-                                                <IoIosArrowForward />
+                                                <span>
+                                                    <IoIosArrowForward />
+                                                </span>
                                             )}
                                         </Button>
                                     ) : (

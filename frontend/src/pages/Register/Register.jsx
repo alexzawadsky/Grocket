@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import CreateUserForm from '../../forms/CreateUserForm'
 import { Title, Button, Form } from '../../components/ui'
 import { Helmet } from 'react-helmet-async'
+import localizations from '../../assets/json/localization.json'
 
 const Register = () => {
     const { t, i18n } = useTranslation()
@@ -44,7 +45,11 @@ const Register = () => {
                                 avatar={formData?.avatar}
                                 withComments={false}
                                 withPhone={false}
-                                country={i18n.resolvedLanguage}
+                                country={
+                                    localizations[
+                                        i18n.resolvedLanguage.toLocaleUpperCase()
+                                    ].flag
+                                }
                             />
                         </div>
                     )}

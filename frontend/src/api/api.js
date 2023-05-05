@@ -298,7 +298,7 @@ export const useExchangeRates = () => {
 export const useTranslateText = (text, translated) => {
     const { i18n } = useTranslation()
     const targetLang = localization[i18n.resolvedLanguage.toUpperCase()]
-    .codeForTranslate
+    .codeForTimeStamp
     const api = useAxios()
     return useQuery(['translate', text, translated, targetLang], translated ?  () => 
     api.post("https://translate.terraprint.co/translate", 

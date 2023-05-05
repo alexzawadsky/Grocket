@@ -6,7 +6,7 @@ import { Button, PublishTime, RatingStars } from '../../../components/ui'
 import AuthContext from '../../../contexts/AuthProvider'
 import { SlideshowLightbox } from 'lightbox.js-react'
 import 'lightbox.js-react/dist/index.css'
-import CommentStatus from '../CommentStatus'
+import CommentStatus from './CommentStatus'
 import { BsTrash } from 'react-icons/bs'
 import CommentReply from './CommentReply'
 import { useDeleteComment } from '../../../api/api'
@@ -42,23 +42,21 @@ const Comment = ({ comment }) => {
                 <PublishTime pubDate={comment?.pub_date} />
             </p>
             <RatingStars rating={comment?.rate} />
-            <div className="flex items-center gap-1">
-                <p
-                    className="flex items-center gap-1.5 text-sm font-bold text-primary-300/[0.8] dark:text-slate-400"
-                    aria-label="comment status and product"
-                >
-                    <CommentStatus
-                        title={comment?.status?.title}
-                        name={comment?.status?.name}
-                    />{' '}
-                    -
+            <div className="line-clamp-1 flex items-center gap-1 text-sm font-bold text-zinc-500 dark:text-slate-400">
+                <CommentStatus
+                    title={comment?.status?.title}
+                    name={comment?.status?.name}
+                />
+                <p className="line-clamp-1">
+                    {' '}
+                    -{' '}
+                    <NavLink
+                        className=" hover:text-accent-orange"
+                        to={`/products/${comment?.product?.id}`}
+                    >
+                        {comment?.product?.name}
+                    </NavLink>
                 </p>
-                <NavLink
-                    className="text-sm font-bold text-primary-300/[0.8] hover:text-accent-orange dark:text-slate-400"
-                    to={`/products/${comment?.product?.id}`}
-                >
-                    {comment?.product?.name}
-                </NavLink>
             </div>
             <ReadMore text={comment?.text} limit={100} />
             <SlideshowLightbox

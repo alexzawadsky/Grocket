@@ -41,6 +41,7 @@ const ReadMore = ({ text, limit }) => {
                     LibreTranslate
                 </Link>
             </div>
+            {error && t('translation_fail')}
             {isLoading && <Spinner />}
             <p dangerouslySetInnerHTML={{ __html: res }} aria-label="text"></p>
             {long && (

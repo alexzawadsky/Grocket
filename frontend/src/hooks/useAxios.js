@@ -5,6 +5,7 @@ import jwt_decode from 'jwt-decode'
 import AuthContext from '../contexts/AuthProvider'
 import api from '../api/api'
 import { useTranslation } from 'react-i18next'
+import localizations from '../assets/json/localization.json'
 
 const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext)
@@ -14,7 +15,7 @@ const useAxios = () => {
         baseURL: import.meta.env.VITE_API_URL || '',
         headers: {
             Authorization: authTokens ? `Bearer ${authTokens?.access}` : null,
-            'Accept-Language': i18n.resolvedLanguage,
+            'Accept-Language': localizations[i18n.resolvedLanguage.toLocaleUpperCase()].codeForAPI,
         },
     })
 

@@ -29,8 +29,8 @@ export const getCookie = (name) => {
 
 export const notification = (text, duration) => {
     const isDark =
-        localStorage.getItem('theme') === '"dark"' ||
-        (localStorage.getItem('theme') !== '"auto"' &&
+        JSON.parse(localStorage.getItem('theme')) === 'dark' ||
+        (JSON.parse(localStorage.getItem('theme')) !== 'auto' &&
             window.matchMedia('(prefers-color-scheme: dark)').matches)
     toast.success(text, {
         duration: duration ? duration : 2000,

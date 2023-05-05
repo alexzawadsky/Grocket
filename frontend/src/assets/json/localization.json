@@ -5,7 +5,7 @@
         "code": "en",
         "flag": "GB",
         "codeForTimeStamp": "en",
-        "codeForTranslate": "en"
+        "codeForAPI": "en"
     },
     "RU": {
         "icon": "🇷🇺",
@@ -13,7 +13,7 @@
         "code": "ru",
         "flag": "RU",
         "codeForTimeStamp": "ru",
-        "codeForTranslate": "ru"
+        "codeForAPI": "ru"
     },
     "UK": {
         "icon": "🇺🇦",
@@ -21,7 +21,7 @@
         "code": "uk",
         "flag": "UA",
         "codeForTimeStamp": "uk",
-        "codeForTranslate": "uk"
+        "codeForAPI": "uk"
     },
     "SV": {
         "icon": "🇸🇪",
@@ -29,7 +29,7 @@
         "code": "sv",
         "flag": "SE",
         "codeForTimeStamp": "sv",
-        "codeForTranslate": "sv"
+        "codeForAPI": "sv"
     },
     "NL": {
         "icon": "🇳🇱",
@@ -37,7 +37,7 @@
         "code": "nl",
         "flag": "NL",
         "codeForTimeStamp": "nl",
-        "codeForTranslate": "nl"
+        "codeForAPI": "nl"
     },
     "FR": {
         "icon": "🇫🇷",
@@ -45,35 +45,35 @@
         "code": "fr",
         "flag": "FR",
         "codeForTimeStamp": "fr",
-        "codeForTranslate": "fr"
+        "codeForAPI": "fr"
     },
     "DE": {
         "name": "Deutsch",
         "code": "de",
         "flag": "DE",
         "codeForTimeStamp": "de",
-        "codeForTranslate": "de"
+        "codeForAPI": "de"
     },
     "IT": {
         "name": "Italiano",
         "code": "it",
         "flag": "IT",
         "codeForTimeStamp": "it",
-        "codeForTranslate": "it"
+        "codeForAPI": "it"
     },
     "PL": {
         "name": "Polski",
         "code": "pl",
         "flag": "PL",
         "codeForTimeStamp": "pl",
-        "codeForTranslate": "pl"
+        "codeForAPI": "pl"
     },
-    "ZH_HANT": {
+    "ZH": {
         "icon": "🇨🇳",
         "name": "中国人",
-        "code": "zh_hant",
+        "code": "zh",
         "flag": "CN",
         "codeForTimeStamp": "zh",
-        "codeForTranslate": "zh"
+        "codeForAPI": "zh-hant"
     }
 }

@@ -71,7 +71,7 @@ const ProductPage = () => {
             <div className="grid gap-5 md:grid-cols-[2fr_1fr] md:gap-x-7 lg:gap-x-10">
                 <div className="grid gap-3 md:gap-7">
                     <div className="grid gap-1.5">
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-3 md:gap-5">
                             <h1 className="text-3xl font-bold">{data.name}</h1>
                             {user && (
                                 <Button

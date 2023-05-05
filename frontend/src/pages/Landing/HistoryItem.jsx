@@ -13,7 +13,7 @@ const HistoryItem = ({ product }) => {
                     className="w-1/4 rounded-md"
                 />
                 <div>
-                    <p className="overflow-hidden truncate text-sm hover:text-accent-orange xl:text-lg">
+                    <p className="line-clamp-1 text-sm hover:text-accent-orange xl:text-lg">
                         {product?.name}
                     </p>
                     <p className="font-bold">

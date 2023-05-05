@@ -6,7 +6,14 @@
             "title": "Other",
             "title_en": "Other",
             "title_ru": "Другое",
-            "title_nl": null,
+            "title_nl": "Andet",
+            "title_sv": "Övrig",
+            "title_it": "Altro",
+            "title_uk": "Інший",
+            "title_de": "Andere",
+            "title_fr": "Autre",
+            "title_pl": "Inny",
+            "title_zh_hant": "其他",
             "name": "other"
         }
     },
@@ -17,7 +24,14 @@
             "title": "Bought",
             "title_en": "Bought",
             "title_ru": "Куплено",
-            "title_nl": null,
+            "title_nl": "Købt",
+            "title_sv": "Köpt",
+            "title_it": "Comprato",
+            "title_uk": "Купив",
+            "title_de": "Gekauft",
+            "title_fr": "Acheté",
+            "title_pl": "Kupił",
+            "title_zh_hant": "買",
             "name": "bought"
         }
     },
@@ -28,7 +42,14 @@
             "title": "Did not agree",
             "title_en": "Did not agree",
             "title_ru": "Не договорились",
-            "title_nl": null,
+            "title_nl": "Var ikke enig",
+            "title_sv": "Håller inte med",
+            "title_it": "Non sono d'accordo",
+            "title_uk": "Не погодився",
+            "title_de": "War nicht einverstanden",
+            "title_fr": "N'étais pas d'accord",
+            "title_pl": "Nie zgodził się",
+            "title_zh_hant": "不同意",
             "name": "did_not_agree"
         }
     },
@@ -39,7 +60,14 @@
             "title": "Ignored",
             "title_en": "Ignored",
             "title_ru": "Не ответил",
-            "title_nl": null,
+            "title_nl": "Ignoreret",
+            "title_sv": "Ignorerade",
+            "title_it": "Ignorato",
+            "title_uk": "Не відповів",
+            "title_de": "Ignoriert",
+            "title_fr": "Ignoré",
+            "title_pl": "Ignorowane",
+            "title_zh_hant": "忽略",
             "name": "ignored"
         }
     }

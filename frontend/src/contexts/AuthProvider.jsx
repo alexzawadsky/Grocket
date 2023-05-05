@@ -4,13 +4,16 @@ import jwt_decode from 'jwt-decode'
 import { alertErr, getCookie, notification } from '../utils'
 import { useQueryClient } from '@tanstack/react-query'
 import SearchHistoryContext from './HistoryContext'
+import localizations from '../assets/json/localization.json'
 import api from '../api/api'
+import { useTranslation } from 'react-i18next'
 
 const AuthContext = createContext()
 
 export default AuthContext
 
 export const AuthProvider = ({ children }) => {
+    const { i18n } = useTranslation()
     const navigate = useNavigate()
     // const queryClient = useQueryClient()
 
@@ -34,6 +37,9 @@ export const AuthProvider = ({ children }) => {
                 headers: {
                     accept: 'application/json',
                     'Content-Type': 'application/json',
+                    'Accept-Language':
+                        localizations[i18n.resolvedLanguage.toLocaleUpperCase()]
+                            .codeForAPI,
                 },
             }
         )
@@ -80,6 +86,9 @@ export const AuthProvider = ({ children }) => {
                     accept: 'application/json',
                     'Content-Type': 'application/json',
                     'X-CSRFToken': getCookie('csrftoken'),
+                    'Accept-Language':
+                        localizations[i18n.resolvedLanguage.toLocaleUpperCase()]
+                            .codeForAPI,
                 },
             }
         )

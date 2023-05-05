@@ -95,7 +95,7 @@ const Login = () => {
                             </NavLink>
                         )}
                     </Form>
-                    <p className="ml-5 mt-2 flex gap-2">
+                    <p className="mx-5 mt-2 flex gap-2">
                         {t('dont_have_acc')}?
                         <NavLink
                             className="text-accent-orange underline"

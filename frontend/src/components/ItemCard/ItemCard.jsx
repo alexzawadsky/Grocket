@@ -229,7 +229,7 @@ const ItemCard = ({
                     <Flag
                         size={5}
                         country={product?.address?.country_code}
-                        className="mb-auto mt-1 h-fit"
+                        className="mb-auto mt-1"
                     />
                 )}
                 <p

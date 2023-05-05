@@ -16,7 +16,3 @@
     font-family: 'grocketbolditalic';
     src: url('/fonts/NunitoSans-ExtraBoldItalic.ttf');
 }
-
-* {
-    outline: 1px solid red;
-}

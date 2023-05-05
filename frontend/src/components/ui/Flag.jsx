@@ -9,7 +9,7 @@ const Flag = ({ country, size, className, width }) => {
 
     return (
         <img
-            className={cn(`w-${size}`, className)}
+            className={cn(`w-${size} h-${size}`, className)}
             src={iconLink}
             alt={`${country} flag icon`}
             width={width}

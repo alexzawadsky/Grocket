@@ -39,7 +39,7 @@
     "email": "E-mail",
     "country": "Paese",
     "update": "Aggiornamento",
-    "password": "Parola d'ordine",
+    "password": "Password",
     "delete_heading": "QUESTA AZIONE NON È REVERSIBILE, PENSATECI DUE VOLTE PRIMA DI FARLA!",
     "delete_confirm": "Capisco le conseguenze, cancella il mio account",
     "sell_your_item": "Vendi il tuo prodotto",
@@ -133,5 +133,6 @@
     "time_new_old": "Più nuovo",
     "time_old_new": "Più vecchio",
     "special_thanks": "Ringraziamenti speciali",
-    "browse": "Navigare"
+    "browse": "Navigare",
+    "translation_fail": "Traduzione non riuscita, riprova più tardi"
 }

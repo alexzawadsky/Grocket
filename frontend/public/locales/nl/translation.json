@@ -133,5 +133,6 @@
     "time_new_old": "Time New-Old",
     "time_old_new": "Time Old-New",
     "special_thanks": "Special thanks",
-    "browse": "Browse"
+    "browse": "Browse",
+    "translation_fail": "Vertaling mislukt, probeer het later opnieuw"
 }

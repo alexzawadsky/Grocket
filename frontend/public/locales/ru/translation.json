@@ -133,5 +133,6 @@
     "time_new_old": "Новее",
     "time_old_new": "Старее",
     "special_thanks": "Особые благодарности",
-    "browse": "Обзор"
+    "browse": "Обзор",
+    "translation_fail": "Произошла ошибка, попрубуй перевести позже"
 }

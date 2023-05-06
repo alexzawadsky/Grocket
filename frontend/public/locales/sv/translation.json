@@ -133,5 +133,6 @@
     "time_new_old": "Nyare",
     "time_old_new": "Äldre",
     "special_thanks": "Speciellt tack",
-    "browse": "Bläddra"
+    "browse": "Bläddra",
+    "translation_fail": "Översättningen misslyckades, försök igen senare"
 }

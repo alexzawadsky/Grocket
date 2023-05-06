@@ -133,5 +133,6 @@
     "time_new_old": "Temps Nouveau-Ancien",
     "time_old_new": "Temps Ancien-Nouveau",
     "special_thanks": "Remerciement spécial",
-    "browse": "Parcourir"
+    "browse": "Parcourir",
+    "translation_fail": "La traduction a échoué, réessayez plus tard"
 }

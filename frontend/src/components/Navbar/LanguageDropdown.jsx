@@ -58,7 +58,7 @@ const LanguageDropdown = () => {
                                     <div className="flex h-6 w-[24px] items-center md:w-5">
                                         <Flag
                                             country={langs[l]?.flag}
-                                            size={64}
+                                            size={6}
                                         />
                                     </div>
                                     {isMinTablet && (

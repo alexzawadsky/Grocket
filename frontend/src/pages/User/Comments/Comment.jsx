@@ -52,7 +52,7 @@ const Comment = ({ comment }) => {
                     -{' '}
                     <NavLink
                         className=" hover:text-accent-orange"
-                        to={`/products/${comment?.product?.id}`}
+                        to={`/products/${comment?.product?.slug}`}
                     >
                         {comment?.product?.name}
                     </NavLink>

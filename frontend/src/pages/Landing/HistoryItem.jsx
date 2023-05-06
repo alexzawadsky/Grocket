@@ -10,7 +10,7 @@ const HistoryItem = ({ product }) => {
             >
                 <img
                     src={product?.images[0]?.image}
-                    className="w-1/4 rounded-md"
+                    className="w-1/3 rounded-md xl:w-1/4"
                 />
                 <div>
                     <p className="line-clamp-1 text-sm hover:text-accent-orange xl:text-lg">

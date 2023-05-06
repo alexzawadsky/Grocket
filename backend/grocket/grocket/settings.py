@@ -315,3 +315,6 @@ EXCHANGE = {
     "EXPIRE_TIME": 10,  # в секундах
     "CURRENCIES": ("rub", "eur", "bmd"),
 }
+
+STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
+STRIPE_PRIVATE_KEY = os.getenv("STRIPE_PRIVATE_KEY")

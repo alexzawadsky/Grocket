@@ -31,11 +31,12 @@ const ItemCard = ({
                 to={`/products/${product?.slug}`}
             >
                 <div className="grid grid-cols-2 gap-1">
-                    <div className="col-span-full overflow-hidden rounded-lg">
-                        <ImagesCarousel images={product?.images} />
-                    </div>
-                    {product?.promotions.includes('xl') && (
+                    {product?.promotions.includes('xl') ? (
                         <>
+                            <img
+                                className="col-span-full rounded-lg"
+                                src={product?.images[0]?.image}
+                            />
                             <img
                                 className="rounded-lg"
                                 src={product?.images[1]?.image}
@@ -45,6 +46,10 @@ const ItemCard = ({
                                 src={product?.images[2]?.image}
                             />
                         </>
+                    ) : (
+                        <div className="col-span-full overflow-hidden rounded-lg">
+                            <ImagesCarousel images={product?.images} />
+                        </div>
                     )}
                 </div>
                 <div

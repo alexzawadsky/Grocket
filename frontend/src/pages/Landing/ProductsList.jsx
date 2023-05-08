@@ -24,8 +24,8 @@ const ProductsList = () => {
             >
                 {isLoading && <Spinner count={8} type="vcard" />}
                 {data &&
-                    data.results.map((el, key) => (
-                        <li key={key}>
+                    data.results.map((el) => (
+                        <li key={el?.id}>
                             <ItemCard product={el} managable={false} />
                         </li>
                     ))}

@@ -5,14 +5,17 @@ import { Avatar, RatingStars, Button } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
 
 const SellerCard = ({ profile }) => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     const { user } = useContext(AuthContext)
     const { productId } = useParams()
-    const date = new Date(profile.date_joined).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-    })
+    const date = new Date(profile.date_joined).toLocaleDateString(
+        i18n.resolvedLanguage,
+        {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+        }
+    )
 
     return (
         <div className="grid w-full gap-3 rounded-xl border p-5 shadow-md dark:border-2 dark:border-zinc-600">
@@ -55,10 +58,9 @@ const SellerCard = ({ profile }) => {
                     color="accent-orange"
                     height={10}
                     px={5}
+                    to={`/messenger/${productId}`}
                 >
-                    <Link to={`/messenger/${productId}`}>
-                        {t('send_message')}
-                    </Link>
+                    {t('send_message')}
                 </Button>
             )}
         </div>

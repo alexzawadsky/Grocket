@@ -31,7 +31,7 @@ const PublishTime = ({ full, pubDate }) => {
     const { i18n } = useTranslation()
 
     if (full)
-        return new Date(pubDate).toLocaleDateString(undefined, {
+        return new Date(pubDate).toLocaleDateString(i18n.resolvedLanguage, {
             weekday: 'short',
             year: 'numeric',
             month: 'short',

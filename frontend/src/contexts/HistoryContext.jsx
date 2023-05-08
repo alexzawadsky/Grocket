@@ -13,8 +13,10 @@ export const SearchHistoryProvider = ({ children }) => {
 
     const updateHistory = (product) => {
         if (product.user.id === user?.user_id) return
-        if (lookHistory.filter((el) => el.id === product.id).length > 0) return
-        setLookHistory([product, ...lookHistory])
+        setLookHistory([
+            product,
+            ...lookHistory.filter((el) => el.id !== product.id),
+        ])
     }
 
     const clearHistory = () => {

@@ -11,7 +11,7 @@ const Flag = ({ country, size, className, width }) => {
         <img
             className={cn(`w-${size} h-${size}`, className)}
             src={iconLink}
-            alt={`${country} flag icon`}
+            aria-label={`${country} flag icon`}
             width={width}
         />
     )

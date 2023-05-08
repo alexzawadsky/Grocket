@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { BsHeartFill, BsHeart } from 'react-icons/bs'
 import SearchHistoryContext from '../../contexts/HistoryContext'
@@ -39,7 +39,10 @@ const ProductPage = () => {
             state: data?.is_favourited,
         })
 
-    if (data) updateHistory(data)
+    useEffect(() => {
+        data && updateHistory(data)
+    }, [data])
+
     if (error?.response?.status === 404)
         return (
             <div className="grid gap-3">

@@ -88,8 +88,8 @@ const UserProductsList = () => {
                 )}
                 {!isLoading &&
                     data &&
-                    data?.results.map((el, key) => (
-                        <li key={key}>
+                    data?.results.map((el) => (
+                        <li key={el?.id}>
                             <ItemCard
                                 product={el}
                                 managable={el?.user?.id === user?.user_id}

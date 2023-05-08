@@ -38,7 +38,7 @@ const Login = () => {
                 <title>Sign in - Grocket</title>
             </Helmet>
             <div className="flex h-full w-full justify-center md:items-center">
-                <div className="w-full max-sm:max-w-[400px] md:w-1/2 lg:w-1/3 xl:w-1/4">
+                <div className="w-[400px]">
                     <img
                         className="mx-auto my-7"
                         width={35}

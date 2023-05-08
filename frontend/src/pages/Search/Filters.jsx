@@ -15,7 +15,8 @@ const Filters = ({ mnP, mxP, productsCountries, open, setOpen, setPage }) => {
     const maxPrice = useInput(searchParams.get('max_price') || '', {
         isInt: true,
     })
-    const { convertPrice, targetCurrency } = useContext(CurrencyContext)
+    const { convertPrice, targetCurrency, exchangeRate } =
+        useContext(CurrencyContext)
     const [countries, setCountries] = useState(
         searchParams.get('country') || []
     )
@@ -24,10 +25,16 @@ const Filters = ({ mnP, mxP, productsCountries, open, setOpen, setPage }) => {
 
     const handleApply = () => {
         minPrice.value && minPrice.allValid
-            ? searchParams.set('min_price', minPrice.value)
+            ? searchParams.set(
+                  'min_price',
+                  (minPrice.value / exchangeRate).toFixed(2)
+              )
             : searchParams.delete('min_price')
         maxPrice.value && maxPrice.allValid
-            ? searchParams.set('max_price', maxPrice.value)
+            ? searchParams.set(
+                  'max_price',
+                  (maxPrice.value / exchangeRate).toFixed(2)
+              )
             : searchParams.delete('max_price')
         countries.length
             ? searchParams.set('country', countries.join(','))

@@ -19,7 +19,7 @@ const ReadMore = ({ text, limit }) => {
 
     return (
         <div aria-label="read more container">
-            <div className="flex items-baseline gap-3">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0">
                 <Button
                     onClick={() => setTranslated((prevState) => !prevState)}
                     border={false}

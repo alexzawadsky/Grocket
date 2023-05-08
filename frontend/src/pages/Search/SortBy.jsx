@@ -54,10 +54,7 @@ const SortBy = ({ setPage }) => {
         <div>
             <p
                 className="sortby-drop flex h-10 cursor-pointer items-center gap-3 rounded-xl border-2 px-3 py-2 font-bold dark:border-zinc-600 hover:dark:bg-zinc-700"
-                onClick={() => {
-                    setOpen((prevState) => !prevState)
-                    setPage(0)
-                }}
+                onClick={() => setOpen((prevState) => !prevState)}
             >
                 {selectedOption?.icon} {selectedOption?.title}{' '}
                 {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -71,6 +68,7 @@ const SortBy = ({ setPage }) => {
                                 onClick={() => {
                                     searchParams.set('ordering', el?.code)
                                     setSearchParams(searchParams)
+                                    setPage(0)
                                 }}
                                 className={cn(
                                     `flex items-center gap-3 whitespace-nowrap`,

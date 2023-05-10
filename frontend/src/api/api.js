@@ -174,15 +174,12 @@ export const useUpdatePassword = () => {
 export const useDeleteProfile = () => {
     const api = useAxios()
     const { logoutUser } = useContext(AuthContext)
-    return useMutation(
-        (data) => api.delete('/api/v1/users/me', data),
-        {
-            onSuccess: (res) => {
-                logoutUser()
-                notification(res?.data?.message)
-            } 
-        }
-    )
+    return useMutation((data) => api.delete('/api/v1/users/me', data), {
+        onSuccess: (res) => {
+            logoutUser()
+            notification(res?.data?.message)
+        },
+    })
 }
 
 export const useFavouriteProduct = () => {
@@ -210,11 +207,29 @@ export const usePromotions = () => {
     )
 }
 
+export const usePromoteProduct = () => {
+    const api = useAxios()
+    const navigate = useNavigate()
+    return useMutation(
+        (data) =>
+            api
+                .post(`/api/v1/stripe/${data.id}/`, {
+                    promotions: data.promotions,
+                })
+                .then((res) => res.data),
+        { onSuccess: (res) => (window.location.href = res) }
+    )
+}
+
 export const useUserComments = (userId, page) => {
     const api = useAxios()
-    return useQuery(['comments', userId, page], () =>
-        api.get(`/api/v1/users/${userId}/comments`, {params: {page}}).then((res) => res.data),
-        {keepPreviousData: true}
+    return useQuery(
+        ['comments', userId, page],
+        () =>
+            api
+                .get(`/api/v1/users/${userId}/comments`, { params: { page } })
+                .then((res) => res.data),
+        { keepPreviousData: true }
     )
 }
 
@@ -294,21 +309,25 @@ export const useExchangeRates = () => {
     )
 }
 
-
 export const useTranslateText = (text, translated) => {
     const { i18n } = useTranslation()
-    const targetLang = localization[i18n.resolvedLanguage.toUpperCase()]
-    .codeForTimeStamp
+    const targetLang =
+        localization[i18n.resolvedLanguage.toUpperCase()].codeForTimeStamp
     const api = useAxios()
-    return useQuery(['translate', text, translated, targetLang], translated ?  () => 
-    api.post("https://translate.terraprint.co/translate", 
-        {
-            q: text,
-            source: "auto",
-            target: targetLang,
-            format: "html"
-        }
-    ).then((res) => res.data?.translatedText) : () => text)
+    return useQuery(
+        ['translate', text, translated, targetLang],
+        translated
+            ? () =>
+                  api
+                      .post('https://translate.terraprint.co/translate', {
+                          q: text,
+                          source: 'auto',
+                          target: targetLang,
+                          format: 'html',
+                      })
+                      .then((res) => res.data?.translatedText)
+            : () => text
+    )
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || '' })

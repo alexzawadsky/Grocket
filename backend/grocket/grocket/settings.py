@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "products",
     "comments",
     "images",
+    "payments"
 ]
 
 MIDDLEWARE = [
@@ -318,3 +319,4 @@ EXCHANGE = {
 
 STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
 STRIPE_PRIVATE_KEY = os.getenv("STRIPE_PRIVATE_KEY")
+STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")

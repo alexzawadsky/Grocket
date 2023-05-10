@@ -15,7 +15,7 @@ import useScreen from '../hooks/useScreen'
 import CurrencyContext from '../contexts/CurrencyContext'
 import getSymbolFromCurrency from 'currency-symbol-map'
 
-const ProductForm = ({ data, setData, setValid }) => {
+const ProductForm = ({ data, setData, setValid, errors }) => {
     const { t } = useTranslation()
     const [images, setImages] = useState(data?.images || [])
     const [mainImageIndex, setMainImageIndex] = useState(0)
@@ -78,22 +78,29 @@ const ProductForm = ({ data, setData, setValid }) => {
                 {t('info')}
             </h2>
             <Input
+                name="name"
                 title={t('product_name')}
                 instance={name}
                 split={isMinTablet}
                 must
                 deleteBtn={isLargePC}
+                hasError={errors['name']}
             />
             <label className='after:pl-1 after:text-accent-red after:content-["*"]'>
                 {t('description')}
             </label>
             <div className="col-start-2 md:col-end-2 lg:col-end-3">
-                <TextEditor text={description} setText={setDescription} />
+                <TextEditor
+                    name="description"
+                    text={description}
+                    setText={setDescription}
+                />
             </div>
             <h2 className="col-span-full pt-5 text-xl font-bold">
                 {t('price')}
             </h2>
             <Input
+                name="price"
                 title={`${t('price')}, ${getSymbolFromCurrency(
                     targetCurrency
                 )}`}
@@ -101,6 +108,7 @@ const ProductForm = ({ data, setData, setValid }) => {
                 split={isMinTablet}
                 must
                 deleteBtn={isLargePC}
+                hasError={errors['price']}
             />
             {targetCurrency !== 'USD' && (
                 <Input
@@ -108,7 +116,7 @@ const ProductForm = ({ data, setData, setValid }) => {
                     instance={usdPrice}
                     split={isMinTablet}
                     must
-                    deleteBtn={isLargePC}
+                    deleteBtn={false}
                     disabled={true}
                 />
             )}

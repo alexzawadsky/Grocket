@@ -3,7 +3,7 @@ import { Input } from '../components/ui'
 import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 
-const CreateUserForm = ({ setFormData, setValid }) => {
+const CreateUserForm = ({ setFormData, setValid, errors }) => {
     const firstName = useInput('')
     const lastName = useInput('', {})
     const email = useInput('', {})
@@ -27,16 +27,37 @@ const CreateUserForm = ({ setFormData, setValid }) => {
 
     return (
         <div className="grid gap-2 md:grid-cols-2">
-            <Input title={t('first_name')} instance={firstName} must autoRef />
-            <Input title={t('last_name')} instance={lastName} must />
+            <Input
+                name="first_name"
+                title={t('first_name')}
+                instance={firstName}
+                must
+                autoRef
+                hasError={errors['first_name']}
+            />
+            <Input
+                name="last_name"
+                title={t('last_name')}
+                instance={lastName}
+                must
+                hasError={errors['last_name']}
+            />
             <div className="col-span-full">
-                <Input title={t('email')} instance={email} must />
+                <Input
+                    name="email"
+                    title={t('email')}
+                    instance={email}
+                    must
+                    hasError={errors['email']}
+                />
             </div>
             <Input
+                name="password"
                 title={t('password')}
                 instance={password}
                 type="password"
                 must
+                hasError={errors['password']}
             />
         </div>
     )

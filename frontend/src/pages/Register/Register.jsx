@@ -15,6 +15,7 @@ const Register = () => {
 
     const [formData, setFormData] = useState()
     const [valid, setValid] = useState(null)
+    const [error, setError] = useState(null)
 
     const { isMinPC, isMinTablet, isLargePC } = useScreen()
 
@@ -22,7 +23,7 @@ const Register = () => {
 
     const handleSubmit = async () => {
         setLoading(true)
-        registerUser(formData)
+        registerUser(formData, setError)
         setLoading(false)
     }
 
@@ -56,12 +57,14 @@ const Register = () => {
                     <Form
                         onSubmit={handleSubmit}
                         className="mx-auto mt-8 grid h-fit w-full max-w-[400px] gap-3 md:my-auto md:mr-auto lg:max-w-[550px]"
+                        errors={error?.response?.data}
                     >
                         <Title className="px-5" text={t('create_acc')} />
                         <div className="rounded-xl border p-5 shadow-md dark:border-2 dark:border-zinc-600">
                             <CreateUserForm
                                 setFormData={setFormData}
                                 setValid={setValid}
+                                errors={error?.response?.data || {}}
                             />
                             <Button
                                 className="mt-5"

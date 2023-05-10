@@ -9,7 +9,7 @@ const BackToProfile = () => {
 
     return (
         <NavLink
-            className="flex items-center gap-2 hover:text-accent-orange"
+            className="flex w-fit items-center gap-2 hover:text-accent-orange"
             to={`/users/${profileId}`}
         >
             <BsArrowLeft />

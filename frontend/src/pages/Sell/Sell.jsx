@@ -22,7 +22,7 @@ const Sell = () => {
     const handleSubmit = () => {
         addProductMutation.mutate({
             ...formData,
-            category: category[category.length - 1].id,
+            category: category.at(-1).id,
         })
     }
 
@@ -58,8 +58,12 @@ const Sell = () => {
                 </>
             )}
             {stage === 2 && (
-                <Form onSubmit={handleSubmit}>
+                <Form
+                    onSubmit={handleSubmit}
+                    errors={addProductMutation.error?.response?.data}
+                >
                     <ProductForm
+                        errors={addProductMutation.error?.response?.data || {}}
                         setData={setFormData}
                         setValid={setFormValid}
                     />
@@ -80,8 +84,6 @@ const Sell = () => {
                             t('place_item')
                         )}
                     </Button>
-                    {addProductMutation.isError &&
-                        addProductMutation.error.message}
                 </Form>
             )}
         </div>

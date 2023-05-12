@@ -17,19 +17,19 @@ const RatingStars = ({ rating, setRating }) => {
                         style={
                             setRating
                                 ? {
-                                      color:
-                                          i + 1 <= localRating + 0.3
-                                              ? '#FF9001'
-                                              : i + 1 <= rating
-                                              ? '#ffd8a6'
-                                              : '#C0D6E4',
-                                  }
+                                    color:
+                                        i + 1 <= localRating + 0.3
+                                            ? '#FF9001'
+                                            : i + 1 <= rating
+                                                ? '#ffd8a6'
+                                                : '#C0D6E4',
+                                }
                                 : {
-                                      color:
-                                          i + 1 <= rating + 0.3
-                                              ? '#FF9001'
-                                              : '#C0D6E4',
-                                  }
+                                    color:
+                                        i + 1 <= rating + 0.3
+                                            ? '#FF9001'
+                                            : '#C0D6E4',
+                                }
                         }
                         className={setRating ? 'cursor-pointer text-3xl' : ''}
                         onMouseEnter={() =>

@@ -76,7 +76,7 @@
     "items_sold": "products sold",
     "phone_verified": "Verified",
     "no_results_found": "No results found",
-    "nothing_yet": "Nothing seen yet",
+    "nothing_yet": "Nothing viewed yet",
     "404_text": "The page you are looking for is not found, check URL or press the button below to go back",
     "how_rating_works": "How the rating works",
     "add_comment": "Add comment",
@@ -123,7 +123,7 @@
     "feedback_form": "Feedback",
     "messenger_in_progress": "Messenger page is in progress, does not represent the final result",
     "call": "Call",
-    "eg.": "ex.",
+    "eg.": "e.g.",
     "translate": "Translate",
     "show_original": "Show original",
     "powered_by": "Powered by",
@@ -134,5 +134,6 @@
     "time_old_new": "Older",
     "special_thanks": "Special thanks",
     "browse": "Browse",
-    "translation_fail": "Translation failed, try again later"
+    "translation_fail": "Translation failed, try again later",
+    "translation": "translation"
 }

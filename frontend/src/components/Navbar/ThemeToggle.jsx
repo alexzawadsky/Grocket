@@ -22,17 +22,17 @@ const ThemeToggle = () => {
         light: {
             title: t('light'),
             menuIcon: <TbSun />,
-            code: 'light',
+            code: "light",
         },
         dark: {
             title: t('dark'),
             menuIcon: <TbMoon />,
-            code: 'dark',
+            code: "dark",
         },
         auto: {
             title: t('auto'),
             menuIcon: <TbSunMoon />,
-            code: 'auto',
+            code: "auto",
         },
     }
 
@@ -69,7 +69,7 @@ const ThemeToggle = () => {
                                     className={cn(
                                         '!justify-start whitespace-nowrap !rounded-md hover:bg-slate-100 hover:dark:bg-zinc-700 md:h-10',
                                         themeSetting === options[key].code &&
-                                            '!bg-slate-200 dark:!bg-zinc-600'
+                                        '!bg-slate-200 dark:!bg-zinc-600'
                                     )}
                                     height={8}
                                     px={2}

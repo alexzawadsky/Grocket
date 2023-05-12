@@ -22,6 +22,7 @@ import ManageProductMenu from '../../components/ManageProductMenu/ManageProductM
 import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
 import ImagesGallery from './ImagesGallery'
+import NotFound from '../NotFound/NotFound'
 
 const ProductPage = () => {
     const { productId } = useParams()
@@ -44,12 +45,7 @@ const ProductPage = () => {
     }, [data])
 
     if (error?.response?.status === 404)
-        return (
-            <div className="grid gap-3">
-                <Title text="Product not found" />
-                <p>This can happen if product has been archived or deleted</p>
-            </div>
-        )
+        return <NotFound />
     if (error) return error.message
     if (isLoading) return <Spinner type="productPage" />
 

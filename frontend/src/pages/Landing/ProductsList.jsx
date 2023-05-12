@@ -14,7 +14,7 @@ const ProductsList = () => {
 
     if (error) return <p className="md:pl-5 md:pt-5">{error.message}</p>
     if (data?.count === 0)
-        return <p className="md:pl-5 md:pt-5">{t('no_results_found')}</p>
+        return <p className="md:pl-5 md:pt-3">{t('no_results_found')}</p>
 
     return (
         <>

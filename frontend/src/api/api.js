@@ -141,7 +141,7 @@ export const useDeleteProduct = () => {
                 notification(res?.data?.message)
                 if (window.location.pathname.split('/')[1] === 'products') {
                     window.scrollTo(0, 0)
-                    navigate('/users/me/items')
+                    navigate('/users/me')
                 }
                 queryClient.invalidateQueries('products')
                 queryClient.invalidateQueries('product')
@@ -318,14 +318,14 @@ export const useTranslateText = (text, translated) => {
         ['translate', text, translated, targetLang],
         translated
             ? () =>
-                  api
-                      .post('https://translate.terraprint.co/translate', {
-                          q: text,
-                          source: 'auto',
-                          target: targetLang,
-                          format: 'html',
-                      })
-                      .then((res) => res.data?.translatedText)
+                api
+                    .post('https://translate.terraprint.co/translate', {
+                        q: text,
+                        source: 'auto',
+                        target: targetLang,
+                        format: 'html',
+                    })
+                    .then((res) => res.data?.translatedText)
             : () => text
     )
 }

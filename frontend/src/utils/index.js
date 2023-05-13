@@ -74,7 +74,6 @@ export const saveImage = (
             setCurrentImage(null)
             setUploading(false)
         }
-        
     } catch (e) {
         setUploading(false)
         alert(e)

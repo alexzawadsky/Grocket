@@ -2,13 +2,11 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BsArrowLeft, BsCheckCircleFill, BsCircle } from 'react-icons/bs'
 import { useParams } from 'react-router'
-import { NavLink, useSearchParams } from 'react-router-dom'
-import { useProduct, usePromotions } from '../../api/api'
+import { NavLink } from 'react-router-dom'
+import { useProduct, usePromoteProduct, usePromotions } from '../../api/api'
 import { Price, Spinner, Title, Button } from '../../components/ui'
 import { ItemCard } from '../../components'
-import useAxios from '../../hooks/useAxios'
 import useScreen from '../../hooks/useScreen'
-import { alertErr } from '../../utils'
 import SearchItemCardTemplate from './SearchItemCardTemplate'
 import CardModeToggle from '../Search/CardModeToggle'
 import cn from 'classnames'
@@ -16,13 +14,12 @@ import cn from 'classnames'
 const Promote = () => {
     const { t } = useTranslation()
     const { productId } = useParams()
-    const [params, _] = useSearchParams()
     const { isMinTablet } = useScreen()
     const promotions = usePromotions()
     const product = useProduct(productId)
     const [selected, setSelected] = useState([])
-    const api = useAxios()
     const [isList, setIsList] = useState(true)
+    const promoteProductMutation = usePromoteProduct()
 
     const updateSelected = (promo) => {
         if (selected.filter((el) => el.id === promo.id).length > 0) {
@@ -30,14 +27,6 @@ const Promote = () => {
         } else {
             setSelected([...selected, promo])
         }
-    }
-
-    const handleSubmit = () => {
-        api.post(`/api/v1/products/${product.data?.id}/promote/`, {
-            promotions: selected.map((el) => el.id),
-        })
-            .then((res) => alert('saved'))
-            .catch((err) => alertErr(err))
     }
 
     return (
@@ -49,9 +38,6 @@ const Promote = () => {
                 <BsArrowLeft />
                 {t('product_page')}
             </NavLink>
-            {/* {params.get('redirect') && <p className='font-bold border-2 text-green-600 border-green-600 dark:border-green-300 dark:text-green-300 dark:bg-green-800 bg-green-100 py-3 px-5 rounded-lg w-fit text-lg'>
-                {t('sell_success')}
-            </p>} */}
             <Title text={t('buy_promotions_head')} />
             <div className="grid gap-5 lg:grid-cols-[1fr_3fr]">
                 <div>
@@ -127,7 +113,12 @@ const Promote = () => {
                         style="fill"
                         color="accent-orange"
                         width="full"
-                        onClick={handleSubmit}
+                        onClick={() =>
+                            promoteProductMutation.mutate({
+                                id: productId,
+                                promotions: selected.map((el) => el.id),
+                            })
+                        }
                         height={12}
                         px={5}
                         className="mt-5"

@@ -141,15 +141,18 @@ const Navbar = () => {
                     </Link>
                 </li>
                 {!isMinTablet && (
-                    <Button
-                        onClick={() => setOpen((prevState) => !prevState)}
-                        border={false}
-                        px={3}
-                        height={10}
-                        className="nav-toggle pr-3 sm:px-4"
-                    >
-                        <GoKebabVertical />
-                    </Button>
+                    <li>
+                        <Button
+                            onClick={() => setOpen((prevState) => !prevState)}
+                            border={false}
+                            px={3}
+                            height={10}
+                            className="nav-toggle pr-3 sm:px-4"
+                            ariaLabel="open navbar"
+                        >
+                            <GoKebabVertical />
+                        </Button>
+                    </li>
                 )}
             </ul>
             {!isMinTablet && (

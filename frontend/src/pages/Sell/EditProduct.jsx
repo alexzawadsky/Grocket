@@ -67,6 +67,7 @@ const EditProduct = () => {
                         body: changes,
                     })
                 }
+                errors={updateProductMutation.error?.response?.data}
             >
                 <NavLink
                     to={`/products/${productId}`}
@@ -81,6 +82,7 @@ const EditProduct = () => {
                     data={data}
                     setData={setFormData}
                     setValid={setValid}
+                    errors={updateProductMutation.error?.response?.data || {}}
                 />
                 <Button
                     type="submit"
@@ -89,15 +91,19 @@ const EditProduct = () => {
                     width="fit"
                     height={12}
                     px={5}
-                    disabled={!valid || Object.keys(changes).length === 0}
+                    disabled={
+                        !valid ||
+                        Object.keys(changes).length === 0 ||
+                        updateProductMutation.isLoading
+                    }
                     className="mt-3"
                 >
-                    {updateProductMutation.isLoading
-                        ? t('loading')
-                        : t('update')}
+                    {updateProductMutation.isLoading ? (
+                        <Spinner />
+                    ) : (
+                        t('update')
+                    )}
                 </Button>
-                {updateProductMutation.error &&
-                    updateProductMutation.error.message}
             </Form>
         </div>
     )

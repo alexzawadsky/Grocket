@@ -24,7 +24,7 @@ const ImageEditor = ({ images, setImages }) => {
     return (
         <div className="flex h-fit max-w-full flex-col gap-2">
             <h2 className="text-xl font-bold">{t('photos')}</h2>
-            <div className="rounded-xl border p-5 shadow-sm dark:border-2 dark:border-zinc-600">
+            <div className="rounded-xl border p-5 pt-3 shadow-sm dark:border-2 dark:border-zinc-600">
                 <div className="mx-auto flex w-fit flex-col gap-3">
                     <input
                         className="hidden w-fit text-sm file:mr-3 file:h-10 file:rounded-lg file:border-none file:bg-slate-100 file:px-3 file:font-bold file:outline-none hover:file:bg-slate-200"
@@ -44,7 +44,7 @@ const ImageEditor = ({ images, setImages }) => {
                         border={false}
                         width="fit"
                         height={8}
-                        px={5}
+                        px={3}
                         className="whitespace-nowrap !rounded-full"
                     >
                         {t('browse')}

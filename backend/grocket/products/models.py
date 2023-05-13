@@ -118,6 +118,12 @@ class Promotion(models.Model):
         max_length=500,
         verbose_name="description",
     )
+    stripe_id = models.CharField(
+        max_length=50,
+        verbose_name='stripe_id',
+        default=None,
+        null=True
+    )
 
     class Meta:
         ordering = ("-id",)

@@ -222,21 +222,18 @@ const ItemCard = ({
         <Link
             to={`/products/${product?.slug}`}
             className={cn(
-                // product.promotions.includes('xl') && 'col-span-2',
                 `rounded-2xl md:p-5 hover:md:bg-slate-50 hover:md:dark:bg-zinc-700`,
                 search && 'pb-5',
                 `flex h-full flex-col gap-2 transition-all duration-150`
             )}
         >
             <ImagesCarousel images={product?.images} />
-            <h3 className="flex items-center gap-2">
-                {product?.address?.country_code && (
-                    <Flag
-                        size={5}
-                        country={product?.address?.country_code}
-                        className="mb-auto mt-1"
-                    />
-                )}
+            <div className="flex items-center gap-2">
+                <Flag
+                    size={5}
+                    country={product?.address?.country_code}
+                    className="mb-auto mt-1"
+                />
                 <p
                     className={`${
                         search ? 'text-xl font-bold' : 'my-auto text-lg'
@@ -248,7 +245,7 @@ const ItemCard = ({
                     {product?.user?.id === user?.user_id && <BsPerson />}
                     {product?.is_favourited && <AiFillHeart color="red" />}
                 </span>
-            </h3>
+            </div>
             {search && product?.promotions.includes('price') ? (
                 <span className="relative ml-1.5 inline-block w-fit px-1 before:absolute before:-inset-1 before:block before:-skew-x-[10deg] before:rounded-sm before:bg-accent-orange">
                     <span className="relative text-white">

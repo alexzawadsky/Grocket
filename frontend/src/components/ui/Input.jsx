@@ -1,47 +1,8 @@
 import { useEffect, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import { BsTrashFill } from 'react-icons/bs'
 import cn from 'classnames'
 import Button from './Button'
 import { BiError } from 'react-icons/bi'
-
-const Errors = ({ instance }) => {
-    const { t } = useTranslation()
-
-    return (
-        <>
-            {instance.isDirty && instance.emailError && (
-                <p className="font-bold text-accent-red">
-                    {t('not_email_err')}
-                </p>
-            )}
-            {instance.isDirty && instance.pwdError && (
-                <p className="font-bold text-accent-red">{t('pass_err')}</p>
-            )}
-            {instance.isDirty && instance.isEmpty && (
-                <p className="font-bold text-accent-red">
-                    {t('empty_field_err')}
-                </p>
-            )}
-            {instance.isDirty && instance.matchError && (
-                <p className="font-bold text-accent-red">
-                    {t('pass_miss_error')}
-                </p>
-            )}
-            {instance.isDirty && instance.minLengthError && (
-                <p className="font-bold text-accent-red">Value is too short</p>
-            )}
-            {instance.isDirty && instance.intError && (
-                <p className="font-bold text-accent-red">{t('not_int_err')}</p>
-            )}
-            {instance.isDirty && instance.floatError && (
-                <p className="font-bold text-accent-red">
-                    {t('not_float_err')}
-                </p>
-            )}
-        </>
-    )
-}
 
 const Input = ({
     className,
@@ -60,6 +21,8 @@ const Input = ({
     ariaLabel,
     boldTitle,
     titleSize,
+    name,
+    hasError,
 }) => {
     const inputRef = useRef()
 
@@ -72,8 +35,7 @@ const Input = ({
     const inputStyle =
         'rounded-lg transition-colors duration-[25] border-slate-500 dark:border-zinc-500 dark:bg-zinc-700 focus:border-slate-800 focus:dark:border-zinc-400 focus:shadow-md focus:outline-none border dark:border-2 px-3 w-full h-10 disabled:text-zinc-600 disabled:bg-zinc-100 disabled:dark:bg-zinc-800 disabled:dark:border-zinc-600'
     const errorStyle =
-        instance.isDirty &&
-        !instance.allValid &&
+        (hasError || (instance.isDirty && !instance.allValid)) &&
         '!outline-2 !text-accent-red !bg-accent-red/[0.05] !border-accent-red !outline-offset-1'
     const inputInner = (
         <>
@@ -121,12 +83,16 @@ const Input = ({
                         placeholder={placeholder}
                     />
                 )}
-                {instance.isDirty && !instance.allValid && (
-                    <span className="absolute right-3 top-3 text-accent-red">
-                        <BiError />
-                    </span>
+                {(hasError || (instance.isDirty && !instance.allValid)) && (
+                    <BiError className="absolute right-3 top-3 text-accent-red" />
                 )}
-                {/* <Errors instance={instance} /> */}
+                {hasError && (
+                    <p
+                        aria-live="assertive"
+                        className="font-bolditalic text-sm text-accent-red"
+                        id={`${name}-error`}
+                    ></p>
+                )}
             </div>
             {deleteBtn && (
                 <Button
@@ -137,6 +103,7 @@ const Input = ({
                     px={2}
                     width="fit"
                     tabindex={-1}
+                    className="mb-auto mt-3"
                 >
                     <BsTrashFill />
                 </Button>

@@ -24,29 +24,40 @@ export const PasswordReset = () => {
     const oldPwd = useInput('', { isEmpty: true })
     const newPwd = useInput('', { isEmpty: true })
 
-    const updatePasswordMutation = useUpdatePassword()
+    const updateProfileMutation = useUpdatePassword()
 
     return (
         <Form
             onSubmit={() => {
-                updatePasswordMutation.mutate({
+                updateProfileMutation.mutate({
                     new_password: newPwd.value,
                     current_password: oldPwd.value,
                 })
             }}
             className="grid w-full gap-3 md:w-2/3 lg:w-1/2"
+            errors={updateProfileMutation.error?.response.data}
         >
             <Input
+                name="current_password"
                 title={t('old_pass')}
                 type="password"
                 instance={oldPwd}
                 must={true}
+                hasError={
+                    updateProfileMutation.error?.response.data[
+                        'current_password'
+                    ]
+                }
             />
             <Input
+                name="new_password"
                 title={t('new_pass')}
                 type="password"
                 instance={newPwd}
                 must={true}
+                hasError={
+                    updateProfileMutation.error?.response.data['new_password']
+                }
             />
             <Button
                 disabled={!oldPwd.allValid || !newPwd.allValid}
@@ -56,7 +67,7 @@ export const PasswordReset = () => {
                 height={10}
                 px={5}
             >
-                {updatePasswordMutation.isLoading ? (
+                {updateProfileMutation.isLoading ? (
                     <Spinner />
                 ) : (
                     t('change_pass')
@@ -96,14 +107,40 @@ export const UpdateProfile = () => {
                         Object.fromEntries(changedFields)
                     )
                 }}
+                errors={updateProfileMutation?.error?.response.data}
             >
-                <Input title={t('first_name')} instance={name} />
-                <Input title={t('last_name')} instance={lastName} />
-                <Input title={t('phone')} instance={phone} />
                 <Input
+                    name="first_name"
+                    title={t('first_name')}
+                    instance={name}
+                    hasError={
+                        updateProfileMutation.error?.response.data['first_name']
+                    }
+                />
+                <Input
+                    name="last_name"
+                    title={t('last_name')}
+                    instance={lastName}
+                    hasError={
+                        updateProfileMutation.error?.response.data['last_name']
+                    }
+                />
+                <Input
+                    name="phone"
+                    title={t('phone')}
+                    instance={phone}
+                    hasError={
+                        updateProfileMutation.error?.response.data['phone']
+                    }
+                />
+                <Input
+                    name="email"
                     className="col-span-full"
                     title={t('email')}
                     instance={email}
+                    hasError={
+                        updateProfileMutation.error?.response.data['email']
+                    }
                 />
                 <Button
                     type="submit"
@@ -137,44 +174,58 @@ export const DeleteProfile = () => {
     const deleteProfileMutation = useDeleteProfile()
 
     return (
-        <div className="grid w-full gap-3 md:w-2/3 lg:w-1/2">
+        <>
             <h2 className="text-lg text-accent-red">{t('delete_heading')}</h2>
-            <Input
-                title={t('password')}
-                instance={pwd}
-                type="password"
-                must={true}
-            />
-            <div>
-                <input
-                    onChange={(e) => setAgreed(e.target.checked)}
-                    ref={inputRef}
-                    type="checkbox"
-                    className="accent-accent-orange dark:bg-zinc-600"
-                    id="check"
-                />
-                <label className="pl-2" htmlFor="check">
-                    {t('delete_confirm')}
-                </label>
-            </div>
-            <Button
-                onClick={() =>
+            <Form
+                className="grid w-full gap-3 md:w-2/3 lg:w-1/2"
+                errors={deleteProfileMutation.error?.response?.data}
+                onSubmit={() =>
                     deleteProfileMutation.mutate({
                         data: {
                             current_password: pwd.value,
                         },
                     })
                 }
-                style="outline"
-                color="accent-red"
-                height={10}
-                width="fit"
-                px={5}
-                disabled={!agreed || !pwd.allValid || pwd.value.length === 0}
             >
-                {t('delete')}
-            </Button>
-        </div>
+                <Input
+                    title={t('password')}
+                    instance={pwd}
+                    type="password"
+                    must={true}
+                    name="current_password"
+                    hasError={
+                        deleteProfileMutation.error?.response?.data[
+                            'current_password'
+                        ]
+                    }
+                />
+                <div>
+                    <input
+                        onChange={(e) => setAgreed(e.target.checked)}
+                        ref={inputRef}
+                        type="checkbox"
+                        className="accent-accent-orange dark:bg-zinc-600"
+                        id="check"
+                    />
+                    <label className="pl-2" htmlFor="check">
+                        {t('delete_confirm')}
+                    </label>
+                </div>
+                <Button
+                    type="submit"
+                    style="outline"
+                    color="accent-red"
+                    height={10}
+                    width="fit"
+                    px={5}
+                    disabled={
+                        !agreed || !pwd.allValid || pwd.value.length === 0
+                    }
+                >
+                    {t('delete')}
+                </Button>
+            </Form>
+        </>
     )
 }
 

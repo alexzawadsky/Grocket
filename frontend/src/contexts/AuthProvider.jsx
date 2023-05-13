@@ -57,17 +57,20 @@ export const AuthProvider = ({ children }) => {
             })
     }
 
-    const registerUser = ({
-        first_name,
-        last_name,
-        username,
-        email,
-        password,
-        re_password,
-        phone,
-        country,
-        avatar,
-    }) => {
+    const registerUser = (
+        {
+            first_name,
+            last_name,
+            username,
+            email,
+            password,
+            re_password,
+            phone,
+            country,
+            avatar,
+        },
+        setError
+    ) => {
         api.post(
             '/api/v1/users/',
             JSON.stringify({
@@ -92,11 +95,11 @@ export const AuthProvider = ({ children }) => {
                 },
             }
         )
-            .then((_) => {
-                notification('Acc created')
-                navigate('/login')
+            .then((res) => {
+                notification(res.data.message)
+                loginUser({ email, password, redirectFrom: '/users/me' })
             })
-            .catch((err) => alert(err))
+            .catch((err) => setError(err))
     }
 
     const logoutUser = () => {

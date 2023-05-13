@@ -53,6 +53,12 @@ const LanguageDropdown = () => {
                                     onClick={() => {
                                         i18n.changeLanguage(langs[l]?.code)
                                         setOpen(false)
+                                        document
+                                            .querySelector('html')
+                                            .setAttribute(
+                                                'lang',
+                                                langs[l]?.code
+                                            )
                                     }}
                                 >
                                     <div className="flex h-6 w-[24px] items-center md:w-5">

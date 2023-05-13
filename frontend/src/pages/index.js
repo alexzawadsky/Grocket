@@ -31,5 +31,5 @@ export {
     Search,
     AboutSite,
     SpecialThanks,
-    Messenger
+    Messenger,
 }

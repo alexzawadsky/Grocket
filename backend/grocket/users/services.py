@@ -27,7 +27,7 @@ class UserService:
 
     def create_avatar_file_name(self) -> str:
         date = datetime.date(datetime.now())
-        return f"{date}.png"
+        return f"{date}.webp"
 
     def prepair_avatar_img(self, avatar: SimpleUploadedFile, file_name: str) -> File:
         avatar_settings = settings.AVATAR
@@ -36,7 +36,7 @@ class UserService:
         img.convert("RGB")
         img.resize(avatar_settings["SIZE"])
         thumb_io = BytesIO()
-        img.save(thumb_io, "PNG")
+        img.save(thumb_io, "WEBP")
         avatar = File(thumb_io, name=file_name)
 
         return avatar
@@ -68,7 +68,7 @@ class UserService:
         )
 
         thumb_io = BytesIO()
-        img.save(thumb_io, "PNG")
+        img.save(thumb_io, "WEBP")
         avatar = File(thumb_io, name=file_name)
 
         return avatar

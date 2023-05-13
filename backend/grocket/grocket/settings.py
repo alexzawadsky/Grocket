@@ -235,13 +235,13 @@ WATERMARK = {
     "WATERMARK_INDENTS": (100, 100),
     "WATERMARK_URL": os.path.join(DATA_ROOT, "img_templates"),
     "WATERMARK_FILE_NAME": "watermark.png",
-    "FORMAT": "PNG",  # Большими буквами; ФОРМАТ КАРТИНКИ, А НЕ ВОТЕРМАРКИ
+    "FORMAT": "WEBP",  # Большими буквами; ФОРМАТ КАРТИНКИ, А НЕ ВОТЕРМАРКИ
 }
 
 # Основная обработка картинок
 BASE_IMAGE_SETTINGS = {
     "SIZE": (700, 700),
-    "FORMAT": "PNG",  # Большими буквами
+    "FORMAT": "WEBP",  # Большими буквами
 }
 
 # <--- Работа с каринками --->

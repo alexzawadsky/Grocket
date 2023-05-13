@@ -44,8 +44,7 @@ const ProductPage = () => {
         data && updateHistory(data)
     }, [data])
 
-    if (error?.response?.status === 404)
-        return <NotFound />
+    if (error?.response?.status === 404) return <NotFound />
     if (error) return error.message
     if (isLoading) return <Spinner type="productPage" />
 

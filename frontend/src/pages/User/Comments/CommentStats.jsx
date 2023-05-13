@@ -38,7 +38,7 @@ const CommentsStats = ({ count, stats }) => {
                 className="flex items-center gap-5 text-xl font-bold"
                 aria-label="user rating"
             >
-                {stats?.avg}
+                {stats?.avg || 0}
                 <RatingStars rating={stats?.avg} />
             </span>
             <p aria-label={`based on ${count} comments`}>

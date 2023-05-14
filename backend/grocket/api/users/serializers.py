@@ -1,5 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db.models import Avg
+import re
+import string
+from django.utils.translation import gettext_lazy as _
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
@@ -58,6 +61,8 @@ class CustomUserSerializer(djserializers.UserSerializer):
 
 class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
     avatar = Base64ImageField(allow_null=True, required=False)
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
 
     class Meta:
         model = User
@@ -74,6 +79,18 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
             "last_login",
         )
         read_only_fields = ("id",)
+
+    def _chek_latin_letters(self, value):
+        for letter in value:
+            if letter not in string.ascii_letters:
+                raise serializers.ValidationError(_("Only latin letters can be used"))
+        return value
+
+    def validate_first_name(self, value):
+        return self._chek_latin_letters(value)
+
+    def validate_last_name(self, value):
+        return self._chek_latin_letters(value)
 
     def create(self, validated_data):
         avatar = validated_data.get("avatar")

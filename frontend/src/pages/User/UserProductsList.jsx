@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import AuthContext from '../../contexts/AuthProvider'
 import { AiFillHeart } from 'react-icons/ai'
 import cn from 'classnames'
+import NoResults from '../../components/Placeholders/NoResults'
 
 const UserProductsList = () => {
     const { t } = useTranslation()
@@ -49,8 +50,11 @@ const UserProductsList = () => {
     })
 
     return (
-        <div className="grid gap-2">
-            <nav aria-label="user products filters navigation">
+        <div className="grid min-h-full grid-rows-[auto_1fr] gap-2">
+            <nav
+                aria-label="user products filters navigation"
+                className="h-fit"
+            >
                 <ul
                     className="mb-5 flex w-fit flex-wrap items-center gap-1 rounded-xl border p-1 shadow-sm dark:border-2 dark:border-zinc-600 md:mb-0 md:ml-5"
                     aria-label="filters list"
@@ -83,10 +87,8 @@ const UserProductsList = () => {
             >
                 {isLoading && <Spinner count={8} type="vcard" />}
                 {error && error.message}
-                {data?.count === 0 && (
-                    <p className="md:pl-5 md:pt-3">{t('no_results_found')}</p>
-                )}
-                {!isLoading &&
+                {data?.count ? (
+                    !isLoading &&
                     data &&
                     data?.results.map((el) => (
                         <li key={el?.id}>
@@ -95,7 +97,10 @@ const UserProductsList = () => {
                                 managable={el?.user?.id === user?.user_id}
                             />
                         </li>
-                    ))}
+                    ))
+                ) : (
+                    <NoResults className="max-md:py-7 md:pl-5" />
+                )}
             </ul>
             {data?.pages_count > 1 && (
                 <Pagination

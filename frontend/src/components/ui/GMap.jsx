@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import Flag from './Flag'
 import cn from 'classnames'
+import ThemeContext from '../../contexts/ThemeContext'
 
 const GMap = ({ address }) => {
+    const { isDark } = useContext(ThemeContext)
     useEffect(() => {
         const initMap = () => {
             const coords = {
@@ -18,9 +20,7 @@ const GMap = ({ address }) => {
                 streetViewControl: false,
                 rotateControl: true,
                 fullscreenControl: false,
-                styles: document
-                    .querySelector('html')
-                    .classList.contains('dark') && [
+                styles: isDark && [
                     {
                         elementType: 'geometry',
                         stylers: [{ color: '#242f3e' }],

@@ -3,6 +3,7 @@ import { useProducts } from '../../api/api'
 import { ItemCard } from '../../components'
 import { Pagination, Spinner } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
+import NoResults from '../../components/Placeholders/NoResults'
 
 const ProductsList = () => {
     const { t } = useTranslation()
@@ -13,8 +14,7 @@ const ProductsList = () => {
     )
 
     if (error) return <p className="md:pl-5 md:pt-5">{error.message}</p>
-    if (data?.count === 0)
-        return <p className="md:pl-5 md:pt-3">{t('no_results_found')}</p>
+    if (data?.count === 0) return <NoResults className="py-14 md:pl-5" />
 
     return (
         <>

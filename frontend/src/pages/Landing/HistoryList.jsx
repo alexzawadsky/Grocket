@@ -46,7 +46,9 @@ const HistoryList = () => {
                         ))}
                     </ul>
                 ) : (
-                    t('nothing_yet')
+                    <span className="pl-8 xl:pl-[38px]">
+                        <i>{t('nothing_yet')}</i>
+                    </span>
                 ))}
             {lookHistory.length > 4 ||
                 (lookHistory.length && !isMinTablet ? (

@@ -11,7 +11,6 @@ const Landing = () => {
     const { isMinTablet } = useScreen()
 
     return (
-        // < className='flex flex-col md:gap-5 items-center md:items-start'>
         <>
             <Helmet>
                 <title>Grocket - Goods especially for you</title>

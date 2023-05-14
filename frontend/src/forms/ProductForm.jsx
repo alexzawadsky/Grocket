@@ -25,7 +25,8 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
         useContext(CurrencyContext)
 
     const name = useInput(data?.name || '', { isEmpty: true })
-    const [description, setDescription] = useState(data?.description || '')
+    const description = useInput(data?.desctiprion || '')
+    // const [description, setDescription] = useState(data?.description || '')
     const price = useInput(convertPrice(data?.price, false), { isFloat: true })
     const usdPrice = useInput(data?.price, { isFloat: true })
     const [address, setAddress] = useState(data?.address || null)
@@ -86,7 +87,7 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
                 deleteBtn={isLargePC}
                 hasError={errors['name']}
             />
-            <label className='after:pl-1 after:text-accent-red after:content-["*"]'>
+            {/* <label className='after:pl-1 after:text-accent-red after:content-["*"]'>
                 {t('description')}
             </label>
             <div className="col-start-2 md:col-end-2 lg:col-end-3">
@@ -95,7 +96,15 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
                     text={description}
                     setText={setDescription}
                 />
-            </div>
+            </div> */}
+            <Input
+                instance={description}
+                must
+                large
+                split
+                deleteBtn
+                title={t('description')}
+            />
             <h2 className="col-span-full pt-5 text-xl font-bold">
                 {t('price')}
             </h2>
@@ -109,6 +118,7 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
                 must
                 deleteBtn={isLargePC}
                 hasError={errors['price']}
+                placeholder="0"
             />
             {targetCurrency !== 'USD' && (
                 <Input

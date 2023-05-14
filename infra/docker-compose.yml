@@ -1,12 +1,12 @@
 version: '3.3'
 
 services:
-  # db:
-  #   image: postgres:13.0-alpine
-  #   volumes:
-  #     - /var/lib/postgresql/data/
-  #   env_file:
-  #     - ./.env
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - /var/lib/postgresql/data/
+    env_file:
+      - ./.env
 
   web:
     build: ../backend/grocket/
@@ -17,7 +17,7 @@ services:
       - media_value:/app/media/
     depends_on:
       - redis
-      # - db
+      - db
     env_file:
       - ./.env
 

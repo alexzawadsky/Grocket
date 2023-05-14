@@ -5,13 +5,14 @@ from djoser.views import UserViewSet
 from .comments.views import CommentViewSet
 from .products.views import CategoryViewSet, ProductViewSet, PromotionViewSet, exchange
 from .users.views import CustomUserRegisterViewSet, CustomUserRetrieveViewSet
-from payments.views import create_payment_view
+from payments.views import create_payment_view, payment_callback
 
 app_name = "api"
 
 urlpatterns = [
     path("v1/exchange/", exchange, name="exchange"),
-    path("v1/stripe/", create_payment_view, name="stripe"),
+    path("v1/stripe-callback", payment_callback, name="payment_callback"),
+    path("v1/stripe/<str:slug>/", create_payment_view, name="stripe"),
     # <--------- Products --------->
     path(
         "v1/promotions/", PromotionViewSet.as_view({"get": "list"}), name="promotions"

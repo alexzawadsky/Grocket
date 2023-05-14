@@ -26,7 +26,8 @@
             "description_de": "Durch diese Werbeaktion hebt sich Ihr Artikel in den Suchergebnissen von den anderen ab. Fügen Sie mindestens 3 Fotos hinzu, um ein besseres Ergebnis zu erzielen.",
             "description_fr": "Cette promotion permet à votre article de se démarquer des autres dans les résultats de recherche. Ajoutez au moins 3 photos pour un meilleur résultat.",
             "description_pl": "Dzięki tej promocji Twój przedmiot wyróżnia się spośród innych w wynikach wyszukiwania. Dodaj co najmniej 3 zdjęcia, aby uzyskać lepszy wynik.",
-            "description_zh_hant": "此促銷活動使您的商品在搜索結果中脫穎而出。 添加至少 3 張照片以獲得更好的效果。"
+            "description_zh_hant": "此促銷活動使您的商品在搜索結果中脫穎而出。 添加至少 3 張照片以獲得更好的效果。",
+            "stripe_id": "price_1N4kDLE5e9FltXO2qv22DSj0"
         }
     },
     {
@@ -56,7 +57,8 @@
             "description_de": "Diese Aktion macht Ihren Artikelpreis auffälliger.",
             "description_fr": "Cette promotion rend le prix de votre article plus visible.",
             "description_pl": "Ta promocja sprawia, że cena przedmiotu jest bardziej zauważalna.",
-            "description_zh_hant": "此促銷活動使您的商品價格更加引人注目。"
+            "description_zh_hant": "此促銷活動使您的商品價格更加引人注目。",
+            "stripe_id": "price_1N4k75E5e9FltXO2hPGAURL4"
         }
     }
 ]

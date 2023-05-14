@@ -1,1 +1,2 @@
 dist
+../backend/grocket/core/templates/admin/base_site.html

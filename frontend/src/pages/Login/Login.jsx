@@ -52,14 +52,17 @@ const Login = () => {
                     <Form
                         className="grid gap-1 rounded-xl border p-5 shadow-md dark:border-2 dark:border-zinc-600 md:gap-2"
                         onSubmit={handleSubmit}
+                        errors={error?.data}
                     >
                         <Input
+                            name="email"
                             autoRef
                             title={t('email')}
                             type="text"
                             instance={email}
                         />
                         <Input
+                            name="password"
                             title={t('password')}
                             type="password"
                             instance={password}

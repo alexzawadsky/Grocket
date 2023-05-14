@@ -56,10 +56,7 @@ const Footer = () => {
     ]
 
     return (
-        <footer
-            className="mt-5 w-full bg-accent-orange"
-            aria-label="website footer"
-        >
+        <footer className="w-full bg-accent-orange" aria-label="website footer">
             <div className="container mx-auto p-5 text-white dark:text-zinc-800">
                 <ul
                     className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4"

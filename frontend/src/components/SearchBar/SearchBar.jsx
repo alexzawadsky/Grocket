@@ -69,6 +69,7 @@ const SearchForm = () => {
                         style="fill"
                         height={10}
                         px={5}
+                        ariaLabel="submit search"
                     >
                         <HiMagnifyingGlass />
                         {isMinTablet && t('search')}

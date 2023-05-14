@@ -1,7 +1,7 @@
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import localization from '../../assets/json/localization.json'
+import localizations from '../../assets/json/localization.json'
 import Flag from '../ui/Flag'
 import useScreen from '../../hooks/useScreen'
 import { BsCheck } from 'react-icons/bs'
@@ -13,8 +13,7 @@ const LanguageSelectionBanner = () => {
         'languageSelected',
         false
     )
-    const [resolvedLanguage, setResolvedLanguage] = useState(null)
-    const [code, setCode] = useState(null)
+    const [localization, setLocalization] = useState(null)
     const { i18n } = useTranslation()
     const { isMinTablet } = useScreen()
 
@@ -28,11 +27,11 @@ const LanguageSelectionBanner = () => {
                 fetch(locationUrl)
                     .then((response) => response.json())
                     .then((data) => {
-                        if (data?.countryCode in localization) {
-                            setResolvedLanguage(
-                                localization[data?.countryCode]?.name
-                            )
-                            setCode(data?.countryCode.toLowerCase())
+                        const locale = Object.values(localizations).find(
+                            (el) => el?.flag === data?.countryCode
+                        )
+                        if (locale) {
+                            setLocalization(locale)
                         } else {
                             setLanguageSelected(true)
                         }
@@ -44,44 +43,42 @@ const LanguageSelectionBanner = () => {
         }
     }, [])
 
-    if (!resolvedLanguage) return
-    return !languageSelected && i18n.resolvedLanguage !== code ? (
+    if (!localization) return
+    if (languageSelected) return
+    if (i18n.resolvedLanguage === localization?.code) return
+    return (
         <div className="fixed bottom-2 z-50 flex h-[51px] w-fit flex-wrap items-center gap-3 rounded-2xl border-2 bg-white px-3 dark:border-zinc-600 dark:bg-zinc-800 max-md:left-2 md:right-[68px] md:gap-6">
             <div className="my-1 flex items-center gap-1">
                 Do you speak
-                <div className="ml-1 w-5">
-                    <Flag country={localization[code.toUpperCase()].flag} />
-                </div>
+                <Flag width={20} className="ml-1" country={localization.flag} />
                 {isMinTablet && (
-                    <span className="font-bold">{resolvedLanguage}</span>
+                    <span className="font-bold">{localization.name}</span>
                 )}
                 ?
             </div>
-            {code && (
-                <div className="ml-auto flex gap-2">
-                    <Button
-                        className="rounded-lg py-1 "
-                        onClick={() => {
-                            i18n.changeLanguage(code)
-                            setLanguageSelected(true)
-                        }}
-                        px={2}
-                        style="fill"
-                        color="accent-orange"
-                        border={false}
-                    >
-                        {isMinTablet ? 'Yes' : <BsCheck />}
-                    </Button>
-                    <button
-                        className="hover:text-accent-orange"
-                        onClick={() => setLanguageSelected(true)}
-                    >
-                        {isMinTablet ? 'No' : <IoClose />}
-                    </button>
-                </div>
-            )}
+            <div className="ml-auto flex gap-2">
+                <Button
+                    className="rounded-lg py-1 "
+                    onClick={() => {
+                        i18n.changeLanguage(localization.code)
+                        setLanguageSelected(true)
+                    }}
+                    px={2}
+                    style="fill"
+                    color="accent-orange"
+                    border={false}
+                >
+                    {isMinTablet ? 'Yes' : <BsCheck />}
+                </Button>
+                <button
+                    className="hover:text-accent-orange"
+                    onClick={() => setLanguageSelected(true)}
+                >
+                    {isMinTablet ? 'No' : <IoClose />}
+                </button>
+            </div>
         </div>
-    ) : null
+    )
 }
 
 export default LanguageSelectionBanner

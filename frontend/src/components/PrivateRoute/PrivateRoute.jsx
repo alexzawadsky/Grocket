@@ -21,7 +21,7 @@ const PrivateRoute = ({ children }) => {
                     <Title text={t('login_to_see')} />
                     <NavLink
                         className="w-fit rounded-xl bg-accent-orange px-5 py-3 font-bold text-white"
-                        to="/login"
+                        to={`/login?redirectFrom=${window.location.pathname}`}
                     >
                         {t('login')}
                     </NavLink>

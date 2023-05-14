@@ -41,7 +41,7 @@ function App() {
             <Navbar />
             <Toaster />
             <main
-                className="container relative mx-auto mt-5 flex flex-grow flex-col gap-5 px-5"
+                className="container relative mx-auto flex flex-grow flex-col gap-5 p-5"
                 aria-label="main site content"
             >
                 <LanguageSelectionBanner />

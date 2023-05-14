@@ -9,13 +9,15 @@ import localizations from '../assets/json/localization.json'
 
 const useAxios = () => {
     const { authTokens, setUser, setAuthTokens } = useContext(AuthContext)
-    const { i18n} = useTranslation()
+    const { i18n } = useTranslation()
 
     const axiosInstance = axios.create({
         baseURL: import.meta.env.VITE_API_URL || '',
         headers: {
             Authorization: authTokens ? `Bearer ${authTokens?.access}` : null,
-            'Accept-Language': localizations[i18n.resolvedLanguage.toLocaleUpperCase()].codeForAPI,
+            'Accept-Language':
+                localizations[i18n.resolvedLanguage.toLocaleUpperCase()]
+                    .codeForAPI,
         },
     })
 

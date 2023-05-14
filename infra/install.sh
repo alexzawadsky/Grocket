@@ -22,7 +22,7 @@ docker-compose exec web rm db.sqlite3
 echo -e "\n"
 
 echo -e "${green}${uline}${bold}MAKING MIGRATIONS...${reset}"
-docker-compose exec web python manage.py makemigrations users products comments
+docker-compose exec web python manage.py makemigrations users products comments payments
 echo -e "\n"
 
 echo -e "${green}${uline}${bold}MIGRATING...${reset}"

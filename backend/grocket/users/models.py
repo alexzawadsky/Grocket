@@ -50,7 +50,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone = PhoneNumberField(
         verbose_name="phone",
         blank=True,
-        unique=True,
     )
     country = CountryField(default="US")
     is_staff = models.BooleanField(verbose_name="staff status", default=False)

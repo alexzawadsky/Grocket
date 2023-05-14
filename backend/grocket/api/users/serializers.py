@@ -104,4 +104,4 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
         )
         validated_data["avatar"] = avatar
 
-        return super().create(validated_data)
+        return User.objects.create_user(**validated_data)

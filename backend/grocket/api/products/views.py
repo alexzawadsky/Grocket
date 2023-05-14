@@ -102,7 +102,7 @@ class ProductViewSet(ProductMixin):
         if not any([is_sold, is_archived, is_favourited]):
             queryset = get_safe_products(user__id=user.id)
         elif is_sold:
-            queryset = get_all_products(user_id=user.id, is_sold=True)
+            queryset = get_all_products(user__id=user.id, is_sold=True)
         elif is_archived:
             queryset = get_all_products(user_id=user.id, is_archived=True)
         elif is_favourited:

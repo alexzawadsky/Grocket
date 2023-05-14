@@ -43,13 +43,13 @@ def get_all_products(user_id: Optional[int] = None, **fields) -> QuerySet[Produc
             raise PermissionDenied()
     else:
         fields["is_archived"] = False
+
     return Product.objects.filter(**fields)
 
 
 def get_safe_products(**fields) -> QuerySet:
     """
-    Безопасно вызывать для получения всех товар без особых меток:
-    is_sold, is_archived
+    Безопасно вызывать для получения всех товар без особых меток: is_sold, is_archived
     """
     fields["is_sold"] = False
     fields["is_archived"] = False

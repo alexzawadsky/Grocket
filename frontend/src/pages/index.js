@@ -14,6 +14,7 @@ import Search from './Search/SearchPage'
 import AboutSite from './AboutSite/AboutSite'
 import SpecialThanks from './SpecialThanks/SpecialThanks'
 import Messenger from './Messenger/Messenger'
+import NoResults from '../components/Placeholders/NoResults'
 
 export {
     Landing,
@@ -32,4 +33,5 @@ export {
     AboutSite,
     SpecialThanks,
     Messenger,
+    NoResults
 }

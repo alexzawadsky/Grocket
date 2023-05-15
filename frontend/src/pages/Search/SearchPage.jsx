@@ -11,6 +11,7 @@ import cn from 'classnames'
 import Filters from './Filters'
 import { BiFilterAlt } from 'react-icons/bi'
 import { useTranslation } from 'react-i18next'
+import NoResults from '../../components/Placeholders/NoResults'
 
 const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -95,20 +96,19 @@ const Search = () => {
                                 count={isMinTablet ? 4 : 1}
                             />
                         )}
-                        {!isLoading && !data?.count ? (
-                            <p className="md:pl-5">{t('no_results_found')}</p>
-                        ) : null}
-                        {data && data?.count
-                            ? data?.results.map((product, key) => (
-                                  <li key={key}>
-                                      <ItemCard
-                                          search
-                                          product={product}
-                                          horizontal={isList}
-                                      />
-                                  </li>
-                              ))
-                            : null}
+                        {!data?.count ? (
+                            <NoResults className="py-10 md:pl-5" />
+                        ) : (
+                            data?.results.map((product, key) => (
+                                <li key={key}>
+                                    <ItemCard
+                                        search
+                                        product={product}
+                                        horizontal={isList}
+                                    />
+                                </li>
+                            ))
+                        )}
                     </ul>
                     {data?.pages_count > 1 && (
                         <Pagination

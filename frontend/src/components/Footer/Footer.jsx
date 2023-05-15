@@ -18,11 +18,11 @@ const Footer = () => {
                     url: 'https://github.com/alexzawadsky/Grocket',
                     blank: true,
                 },
-                {
-                    icon: <AiOutlineInfoCircle />,
-                    name: t('about_site'),
-                    url: '/about-site',
-                },
+                // {
+                //     icon: <AiOutlineInfoCircle />,
+                //     name: t('about_site'),
+                //     url: '/about-site',
+                // },
                 {
                     icon: <AiOutlineForm />,
                     name: t('feedback_form'),

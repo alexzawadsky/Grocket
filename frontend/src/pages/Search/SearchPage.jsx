@@ -46,7 +46,7 @@ const Search = () => {
                 ) : data?.category ? (
                     data?.category
                 ) : (
-                    <Spinner />
+                    t('loading')
                 )}
                 " ({data?.count || 0})
             </Title>
@@ -79,7 +79,7 @@ const Search = () => {
                         className={cn(
                             'bg-red relative max-w-full overflow-hidden',
                             !isList &&
-                                'grid grid-cols-2 max-md:gap-2 md:grid-cols-3 xl:grid-cols-4',
+                            'grid grid-cols-2 max-md:gap-2 md:grid-cols-3 xl:grid-cols-4',
                             !data?.count && 'min-h-[70vh]'
                         )}
                     >

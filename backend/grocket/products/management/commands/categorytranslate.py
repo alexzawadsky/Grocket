@@ -1,6 +1,7 @@
 import json
-import requests
 import logging
+
+import requests
 
 LANGUAGES = ['zh','fr', 'de', 'nl', 'sv', 'uk', 'it', 'pl']
 result_arr = []

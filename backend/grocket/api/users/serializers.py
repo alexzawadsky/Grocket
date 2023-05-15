@@ -1,11 +1,13 @@
-from django.contrib.auth import get_user_model
-from django.db.models import Avg
 import re
 import string
+
+from django.contrib.auth import get_user_model
+from django.db.models import Avg
 from django.utils.translation import gettext_lazy as _
 from djoser import serializers as djserializers
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
+
 from users.services import UserService
 
 User = get_user_model()

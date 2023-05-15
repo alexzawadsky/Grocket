@@ -1,10 +1,13 @@
+import json
+
 import stripe
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from products.models import Promotion, Product
+
+from products.models import Product, Promotion
+
 from .models import StripePromotionsTransaction
-import json
 
 stripe.api_key=settings.STRIPE_PRIVATE_KEY
 endpoint_secret = settings.STRIPE_WEBHOOK_SECRET

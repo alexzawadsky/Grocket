@@ -25,7 +25,7 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
         useContext(CurrencyContext)
 
     const name = useInput(data?.name || '', { isEmpty: true })
-    const description = useInput(data?.desctiprion || '')
+    const description = useInput(data?.description || '')
     // const [description, setDescription] = useState(data?.description || '')
     const price = useInput(convertPrice(data?.price, false), { isFloat: true })
     const usdPrice = useInput(data?.price, { isFloat: true })
@@ -42,9 +42,8 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
 
     useEffect(() => {
         if (
-            [name, price].every((el) => el.allValid) &&
-            images.length > 0 &&
-            description.length > 0
+            [name, price, description].every((el) => el.allValid) &&
+            images.length > 0
         ) {
             setAllValid(true)
         } else {
@@ -52,12 +51,12 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
         }
         setData({
             name: name.value,
-            description: description,
+            description: description.value,
             price: (price.value / exchangeRate).toFixed(2),
             address: address,
             images: prepareImages(images),
         })
-    }, [name.value, description, price.value, address, JSON.stringify(images)])
+    }, [name.value, description.value, price.value, address, JSON.stringify(images)])
 
     useEffect(() => {
         setValid(allValid)
@@ -157,11 +156,10 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
                                     <button
                                         type="button"
                                         onClick={() => setMainImageIndex(key)}
-                                        className={`h-4 w-4 rounded-full ${
-                                            key === mainImageIndex
-                                                ? 'bg-accent-orange'
-                                                : 'border-2'
-                                        }`}
+                                        className={`h-4 w-4 rounded-full ${key === mainImageIndex
+                                            ? 'bg-accent-orange'
+                                            : 'border-2'
+                                            }`}
                                     ></button>
                                     <button
                                         type="button"

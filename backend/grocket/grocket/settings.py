@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "products",
     "comments",
     "images",
-    "payments"
+    "payments",
 ]
 
 MIDDLEWARE = [
@@ -105,31 +105,15 @@ DATABASES = {
     #     "ENGINE": "django.db.backends.sqlite3",
     #     "NAME": BASE_DIR / "db.sqlite3",
     # },
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT')
+    "default": {
+        "ENGINE": os.getenv("DB_ENGINE"),
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
     }
 }
-
-
-AUTH_PASSWORD_VALIDATORS: list = [
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    # },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    # },
-]  # В конце добавить валидаторы!!!
 
 
 # <--- Локализация --->
@@ -333,3 +317,20 @@ EXCHANGE = {
 STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
 STRIPE_PRIVATE_KEY = os.getenv("STRIPE_PRIVATE_KEY")
 STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
+
+RATES = {
+    "USD": 1,
+    "EUR": 0.9,
+    "RUB": 82,
+    "UAH": 36,
+    "GPB": 0.8,
+    "SEK": 10,
+    "KZT": 454,
+    "TRY": 19,
+    "GEL": 2.5,
+    "INR": 82,
+    "ILS": 3.6,
+    "AED": 3.7,
+    "KRW": 1340,
+    "CNY": 7,
+}

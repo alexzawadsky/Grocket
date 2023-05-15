@@ -1,20 +1,22 @@
 import re
 
-from api.users.serializers import CustomUserSerializer
 from django.utils.translation import gettext_lazy as _
 from drf_extra_fields.fields import Base64ImageField
+from rest_framework import serializers
+
+from api.users.serializers import CustomUserSerializer
 from products.models import Category
 from products.selectors import (
     get_ancestors_by_category,
+    get_favourites_count,
     get_is_favourited,
     get_product_address,
     get_product_category,
     get_product_images,
     get_product_promotions,
-    get_favourites_count,
 )
-from rest_framework import serializers
 from users.services import UserService
+from .fields import ProductImagesUpdateField
 
 users_services = UserService()
 
@@ -331,13 +333,12 @@ class ProductCreateSerializer(serializers.Serializer):
 
 
 class ProductUpdateSerializer(serializers.Serializer):
-    pass
-    # images = ProductImagesUpdateField(required=False)
-    # name = serializers.CharField(required=False)
-    # description = serializers.CharField(required=False)
-    # price = serializers.IntegerField(min_value=0)
-    # address = serializers.CharField(required=False)
-    # category = serializers.IntegerField(required=False)
+    images = ProductImagesUpdateField(required=False)
+    name = serializers.CharField(required=False)
+    description = serializers.CharField(required=False)
+    price = serializers.IntegerField(min_value=0)
+    address = serializers.CharField(required=False)
+    category = serializers.IntegerField(required=False)
 
     # class Meta:
     #     fields = (

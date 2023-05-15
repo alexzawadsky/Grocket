@@ -1,6 +1,7 @@
-from comments.models import Comment, CommentImage, CommentReply, Status
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
+
+from comments.models import Comment, CommentImage, CommentReply, Status
 
 
 @admin.register(Status)

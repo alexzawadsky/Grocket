@@ -2,10 +2,12 @@ from django.conf.urls import include
 from django.urls import path
 from djoser.views import UserViewSet
 
-from .comments.views import CommentViewSet
-from .products.views import CategoryViewSet, ProductViewSet, PromotionViewSet, exchange
-from .users.views import CustomUserRegisterViewSet, CustomUserRetrieveViewSet
 from payments.views import create_payment_view, payment_callback
+
+from .comments.views import CommentViewSet
+from .products.views import (CategoryViewSet, ProductViewSet, PromotionViewSet,
+                             exchange)
+from .users.views import CustomUserRegisterViewSet, CustomUserRetrieveViewSet
 
 app_name = "api"
 

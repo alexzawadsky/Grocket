@@ -1,7 +1,8 @@
 from rest_framework.response import Response
 
-from ..paginators import PageLimitPagination
 from products.selectors import get_categories as get_all_categories
+
+from ..paginators import PageLimitPagination
 from .serializers import CategoryListSerializer
 
 

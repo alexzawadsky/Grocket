@@ -1,0 +1,111 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-15 11:13+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\api\mixins.py:8
+msgid "Product has been successfully placed"
+msgstr ""
+
+#: .\api\mixins.py:9
+msgid "Product has been deleted"
+msgstr ""
+
+#: .\api\mixins.py:10
+msgid "Successfully promoted"
+msgstr ""
+
+#: .\api\mixins.py:11
+msgid "Marked as sold"
+msgstr ""
+
+#: .\api\mixins.py:11
+msgid "Placed again"
+msgstr ""
+
+#: .\api\mixins.py:13
+msgid "Moved to the archive"
+msgstr ""
+
+#: .\api\mixins.py:14
+msgid "Removed from the archive"
+msgstr ""
+
+#: .\api\mixins.py:17
+msgid "Added to favourites"
+msgstr ""
+
+#: .\api\mixins.py:18
+msgid "Removed from favourites"
+msgstr ""
+
+#: .\api\mixins.py:23
+msgid "Comment added"
+msgstr ""
+
+#: .\api\mixins.py:24
+msgid "Comment deleted"
+msgstr ""
+
+#: .\api\mixins.py:25
+msgid "Peply added"
+msgstr ""
+
+#: .\api\mixins.py:25
+msgid "Reply deleted"
+msgstr ""
+
+#: .\api\products\fields.py:39
+msgid "The image field can only be id or base64."
+msgstr ""
+
+#: .\api\products\serializers.py:50
+#, python-brace-format
+msgid "`{promotion}` is not integer"
+msgstr ""
+
+#: .\api\products\serializers.py:323
+msgid "Only latin letters, numbers and punctuation marks can be used"
+msgstr ""
+
+#: .\api\users\serializers.py:86
+msgid "Only latin letters can be used"
+msgstr ""
+
+#: .\comments\services\services.py:17 .\products\services\services.py:90
+msgid "Unable create product: Invalid input data."
+msgstr ""
+
+#: .\core\templates\admin\base_site.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: .\core\templates\admin\base_site.html:9
+msgid "Django administration"
+msgstr ""
+
+#: .\products\services\_add_images_service.py:19
+msgid "Unable create product image: Invalid input data."
+msgstr ""
+
+#: .\products\services\_add_images_service.py:21
+msgid "You cannot add more than one main photo."
+msgstr ""
+
+#: .\products\services\_add_images_service.py:22
+msgid "Add a main photo."
+msgstr ""

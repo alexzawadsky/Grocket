@@ -1,19 +1,15 @@
+from django.conf import settings
 from django.db import transaction
-from products.selectors import (
-    get_all_products,
-    get_categories,
-    get_category_name_by_id_or_none,
-    get_favourited_products,
-    get_product_or_404,
-    get_products_for_comments,
-    get_promotions,
-    get_safe_products,
-)
-from products.services.exchange_service import ExchangeRateService
-from products.services.services import CreateProductService, ProductService
 from rest_framework import permissions, status
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
+
+from products.selectors import (get_all_products, get_categories,
+                                get_category_name_by_id_or_none,
+                                get_favourited_products, get_product_or_404,
+                                get_products_for_comments, get_promotions,
+                                get_safe_products)
+from products.services.services import CreateProductService, ProductService
 
 from .mixins import CategoryMixin, ProductMixin, PromotionMixin
 
@@ -21,25 +17,7 @@ from .mixins import CategoryMixin, ProductMixin, PromotionMixin
 @api_view(["GET"])
 @permission_classes([permissions.AllowAny])
 def exchange(request):
-    # service = ExchangeRateService(key=code)
-    # data = {"rate": service.get_exchange_rate()}
-    data = {
-        "USD": 1,
-        "EUR": 0.9,
-        "RUB": 82,
-        "UAH": 36,
-        "GPB": 0.8,
-        "SEK": 10,
-        "KZT": 454,
-        "TRY": 19,
-        "GEL": 2.5,
-        "INR": 82,
-        "ILS": 3.6,
-        "AED": 3.7,
-        "KRW": 1340,
-        "CNY": 7,
-    }
-    return Response(data, status=status.HTTP_200_OK)
+    return Response(settings.RATES, status=status.HTTP_200_OK)
 
 
 class ProductViewSet(ProductMixin):

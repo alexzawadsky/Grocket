@@ -1,5 +1,7 @@
 from django.db import models
+
 from products.models import Product, Promotion
+
 
 class StripePromotionsTransaction(models.Model):
     product = models.ForeignKey(

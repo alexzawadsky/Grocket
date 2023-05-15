@@ -77,7 +77,7 @@ class Image(models.Model):
 
 class Category(MPTTModel):
     title = models.CharField(
-        max_length=50,
+        max_length=150,
         verbose_name="title",
     )
     parent = TreeForeignKey(
@@ -119,10 +119,7 @@ class Promotion(models.Model):
         verbose_name="description",
     )
     stripe_id = models.CharField(
-        max_length=50,
-        verbose_name='stripe_id',
-        default=None,
-        null=True
+        max_length=50, verbose_name="stripe_id", default=None, null=True
     )
 
     class Meta:

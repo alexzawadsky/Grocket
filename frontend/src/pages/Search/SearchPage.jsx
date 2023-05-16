@@ -38,7 +38,6 @@ const Search = () => {
     return (
         <>
             <SearchBar />
-
             <Title className="flex pl-0 !text-2xl md:pl-5 md:!text-3xl lg:pl-0">
                 {t('products_matching')} "
                 {searchParams.get('search') ? (
@@ -77,10 +76,11 @@ const Search = () => {
                     </div>
                     <ul
                         className={cn(
-                            'bg-red relative max-w-full overflow-hidden',
+                            !data?.count && 'min-h-[70vh]',
+                            'bg-red relative grid max-w-full overflow-hidden',
                             !isList &&
-                                'grid grid-cols-2 max-md:gap-2 md:grid-cols-3 xl:grid-cols-4',
-                            !data?.count && 'min-h-[70vh]'
+                                ' grid-cols-2 max-md:gap-2 md:grid-cols-3 xl:grid-cols-4',
+                            !data?.count && ''
                         )}
                     >
                         {!isMinPC && filters}
@@ -96,8 +96,8 @@ const Search = () => {
                                 count={isMinTablet ? 4 : 1}
                             />
                         )}
-                        {!data?.count ? (
-                            <NoResults className="py-10 md:pl-5" />
+                        {!isLoading && !data?.count ? (
+                            <NoResults className="md:pl-5" />
                         ) : (
                             data?.results.map((product, key) => (
                                 <li key={key}>

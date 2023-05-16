@@ -25,11 +25,11 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
         useContext(CurrencyContext)
 
     const name = useInput(data?.name || '', { isEmpty: true })
-    const description = useInput(data?.description || '')
+    const description = useInput(data?.description || '', { isEmpty: true })
     // const [description, setDescription] = useState(data?.description || '')
-    const price = useInput(convertPrice(data?.price, false), { isFloat: true })
-    const usdPrice = useInput(data?.price, { isFloat: true })
-    const [address, setAddress] = useState(data?.address || null)
+    const price = useInput(convertPrice(data?.price, false), { isFloat: true, isEmpty: true })
+    const usdPrice = useInput(data?.price, { isFloat: true, isEmpty: true })
+    const [address, setAddress] = useState(data?.address || null, { isEmpty: true })
 
     useEffect(() => {
         if (images && images.length > 0) {
@@ -101,7 +101,7 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
                 must
                 large
                 split
-                deleteBtn
+                deleteBtn={isLargePC}
                 title={t('description')}
             />
             <h2 className="col-span-full pt-5 text-xl font-bold">

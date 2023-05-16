@@ -1,5 +1,5 @@
 import string
-from typing import List
+from typing import Any, Dict, List, Optional, Tuple
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied, ValidationError
@@ -116,7 +116,7 @@ class CreateProductService:
         if any([logic_is_bad_fields, logic_is_not_leaf_node, logic_is_not_images]):
             raise PermissionDenied()
 
-    def _parse_fields(self, fields: dict) -> set:
+    def _parse_fields(self, fields: dict) -> Tuple[Dict[str, Any], Dict[Any, Any]]:
         """
         Достает из словаря поля, нужные для обработки перед созданием.
         Вызывает ошибку валидации при отсутствии таковых.
@@ -161,8 +161,8 @@ class CreateProductService:
         return slug
 
     def _create_product_obj(
-        self, user_id: int, category_id: int, validated_fields: dict
-    ) -> set:
+        self, user_id: int, category_id: int, validated_fields: Dict[str, str]
+    ) -> Tuple[Any, Any]:
         """
         Поля is_sold и is_archived по умолчанию устанавливаются False.
         Принимает id объектов связанных моделей и
@@ -170,7 +170,7 @@ class CreateProductService:
         """
         category = get_object_or_404(Category, id=category_id)
         user = get_object_or_404(User, id=user_id)
-        slug = self._generate_slug(name=validated_fields.get("name"))
+        slug = self._generate_slug(name=validated_fields["name"])
 
         product = Product(
             user=user,

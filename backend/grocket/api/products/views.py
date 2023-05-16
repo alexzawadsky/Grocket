@@ -4,12 +4,18 @@ from rest_framework import permissions, status
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
 
-from products.selectors import (get_all_products, get_categories,
-                                get_category_name_by_id_or_none,
-                                get_favourited_products, get_product_or_404,
-                                get_products_for_comments, get_promotions,
-                                get_safe_products)
+from products.selectors import (
+    get_all_products,
+    get_categories,
+    get_category_name_by_id_or_none,
+    get_favourited_products,
+    get_product_or_404,
+    get_products_for_comments,
+    get_promotions,
+    get_safe_products,
+)
 from products.services.services import CreateProductService, ProductService
+from products.models import Product
 
 from .mixins import CategoryMixin, ProductMixin, PromotionMixin
 
@@ -21,6 +27,10 @@ def exchange(request):
 
 
 class ProductViewSet(ProductMixin):
+    def get_queryset(self):
+        queryset = Product.objects.filter(is_sold=False, is_archived=False)
+        return queryset
+
     def destroy(self, request, pk):
         user_id = self.request.user.id
         service = ProductService(product_id=pk)
@@ -54,20 +64,15 @@ class ProductViewSet(ProductMixin):
         data.update((self._get_response_message()))
         return Response(data, status=status.HTTP_201_CREATED)
 
-    def partial_update(self, request, pk):
-        # serializer = self.get_serializer_class()(
-        #     context={'product_id': pk},
-        #     data=request.data
-        # )
-        # serializer.is_valid(raise_exception=True)
+    # def partial_update(self, request, pk):
+    #     serializer = self.get_serializer_class()(
+    #         context={'product_id': pk},
+    #         data=request.data
+    #     )
+    #     serializer.is_valid(raise_exception=True)
+    #     super().partial_update()
 
-        # user_id = self.request.user.id
-        # products_services.update_product(
-        #     product_id=pk, user_id=user_id,
-        #     **serializer.validated_data
-        # )
-
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+    #     return Response(status=status.HTTP_400_BAD_REQUEST)
 
     @action(["get"], detail=False)
     def me_products(self, request):

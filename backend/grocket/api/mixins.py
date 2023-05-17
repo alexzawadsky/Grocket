@@ -17,7 +17,7 @@ RESPONSE_MESSAGES = {
             "POST": _("Added to favourites"),
             "DELETE": _("Removed from favourites"),
         },
-        # 'updated': _('Product has been updated'),
+        "partial_update": _("Product has been updated"),
     },
     "comments": {
         "create": _("Comment added"),

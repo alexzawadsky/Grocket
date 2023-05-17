@@ -5,7 +5,7 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.users.serializers import CustomUserSerializer
-from products.models import Category, Image, Product, Promotion, ProductAddress
+from products.models import Category, Image, Product, ProductAddress
 from products.selectors import (
     get_ancestors_by_category,
     get_favourites_count,
@@ -15,6 +15,8 @@ from products.selectors import (
     get_product_images,
     get_product_promotions,
 )
+from products.services.services import CreateProductService
+from images.services import ImageService
 from users.services import UserService
 from .fields import ProductImagesUpdateField
 
@@ -133,6 +135,13 @@ class ProductImageUpdateSerializer(serializers.ModelSerializer):
             "is_main",
             "product",
         )
+
+    def create(self, validated_data):
+        service = ImageService()
+        prepared_image = service.prepair_img(image=validated_data.get("image"))
+        with_watermark = service.add_watermark(prepared_image)
+        validated_data["image"] = with_watermark
+        return super().create(validated_data)
 
 
 # удалить при рефакторинге апдейта
@@ -394,6 +403,16 @@ class ProductUpdateSerializer(serializers.ModelSerializer):
 
         return value
 
+    def to_representation(self, instance):
+        return instance.slug
+
+    def validate_name(self, value):
+        if not re.match('^[a-zA-Z0-9_ !"#$%&()*+,-./:;<=>?@[\]^_`{|}~]+$', value):
+            raise serializers.ValidationError(
+                _("Only latin letters, numbers and punctuation marks can be used")
+            )
+        return value
+
     def validate_images(self, value):
         product = self.instance
         images_album, new_images = value
@@ -464,6 +483,10 @@ class ProductUpdateSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         images = validated_data.get("images")
         address = validated_data.pop("address", False)
+        name = validated_data.get("name")
+
+        if name is not None and instance.name != name:
+            instance.slug = CreateProductService()._generate_slug(name=name)
 
         if address:
             serializer = ProductAddressUpdateSerializer(

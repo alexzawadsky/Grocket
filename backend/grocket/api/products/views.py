@@ -66,9 +66,10 @@ class ProductViewSet(ProductMixin):
             product, data=request.data, partial=True
         )
         serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        return Response(status=status.HTTP_200_OK)
+        product = serializer.save()
+        data = {"slug": product.slug}
+        data.update(self._get_response_message())
+        return Response(data, status=status.HTTP_200_OK)
 
     @action(["get"], detail=False)
     def me_products(self, request):

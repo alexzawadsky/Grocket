@@ -1,3 +1,4 @@
 dist
 ../backend/grocket/core/templates/admin/base_site.html
 src/components/Navbar/ThemeToggle.jsx
+src/contexts/ThemeContext.jsx

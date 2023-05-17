@@ -56,7 +56,7 @@ export const useUpdateProduct = () => {
         {
             onSuccess: (res) => {
                 notification(res?.data?.message)
-                navigate(getLastRoute())
+                navigate(res?.data?.slug)
                 queryClient.invalidateQueries('product')
                 queryClient.invalidateQueries('products')
             },
@@ -318,14 +318,14 @@ export const useTranslateText = (text, translated) => {
         ['translate', text, translated, targetLang],
         translated
             ? () =>
-                  api
-                      .post('https://translate.terraprint.co/translate', {
-                          q: text,
-                          source: 'auto',
-                          target: targetLang,
-                          format: 'html',
-                      })
-                      .then((res) => res.data?.translatedText)
+                api
+                    .post('https://translate.terraprint.co/translate', {
+                        q: text,
+                        source: 'auto',
+                        target: targetLang,
+                        format: 'html',
+                    })
+                    .then((res) => res.data?.translatedText)
             : () => text
     )
 }

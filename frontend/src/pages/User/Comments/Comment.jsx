@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { ReadMore } from '../../../components'
 import { Button, PublishTime, RatingStars } from '../../../components/ui'
 import AuthContext from '../../../contexts/AuthProvider'
@@ -19,9 +19,13 @@ const Comment = ({ comment }) => {
     return (
         <div className="flex h-full flex-col gap-1 rounded-lg border p-5 shadow dark:border-2 dark:border-zinc-600">
             <div className="flex items-center justify-between">
-                <p className="text-lg font-bold" aria-label="comment author">
+                <Link
+                    className="text-lg font-bold hover:text-accent-orange"
+                    aria-label="comment author"
+                    to={`/users/${comment?.user?.id}`}
+                >
                     {comment?.user?.first_name} {comment?.user?.last_name}
-                </p>
+                </Link>
                 {comment?.user?.id === user?.user_id && (
                     <Button
                         ariaLabel="delete comment"
@@ -50,12 +54,12 @@ const Comment = ({ comment }) => {
                 <p className="line-clamp-1">
                     {' '}
                     -{' '}
-                    <NavLink
+                    <Link
                         className=" hover:text-accent-orange"
                         to={`/products/${comment?.product?.slug}`}
                     >
                         {comment?.product?.name}
-                    </NavLink>
+                    </Link>
                 </p>
             </div>
             <ReadMore text={comment?.text} limit={100} />

@@ -11,7 +11,7 @@ const NoResults = ({ className }) => {
         <div
             className={cn(
                 className,
-                'col-span-full flex h-full w-full flex-col items-center justify-center gap-5 text-xl font-bold lg:text-2xl'
+                'col-span-full flex min-h-full w-full flex-col items-center justify-center gap-5 text-xl font-bold lg:text-2xl'
             )}
         >
             <img className="w-16" src={iconLink} />

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import AuthContext from '../../contexts/AuthProvider'
-import { Avatar, RatingStars, Button } from '../../components/ui'
+import { Avatar, RatingStars, Button, Flag } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
 
 const SellerCard = ({ profile }) => {
@@ -37,12 +37,15 @@ const SellerCard = ({ profile }) => {
                                 ? `/users/${profile.id}`
                                 : '/users/me'
                         }
-                        className="hover:text-accent-orange"
+                        className="flex items-center gap-2 hover:text-accent-orange"
                     >
-                        {profile.last_name} {profile.first_name}{' '}
-                        {user && user.user_id === profile.id
-                            ? `(${t('me')})`
-                            : null}
+                        <Flag size="5" country={profile.country} />
+                        <p>
+                            {profile.last_name} {profile.first_name}{' '}
+                            {user && user.user_id === profile.id
+                                ? `(${t('me')})`
+                                : null}
+                        </p>
                     </Link>
                     <RatingStars rating={profile.rating} />
                 </div>

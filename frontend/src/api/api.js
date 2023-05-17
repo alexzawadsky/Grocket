@@ -56,7 +56,7 @@ export const useUpdateProduct = () => {
         {
             onSuccess: (res) => {
                 notification(res?.data?.message)
-                navigate(res?.data?.slug)
+                navigate(`/products/${res?.data?.slug}`)
                 queryClient.invalidateQueries('product')
                 queryClient.invalidateQueries('products')
             },

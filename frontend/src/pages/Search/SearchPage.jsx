@@ -40,13 +40,11 @@ const Search = () => {
             <SearchBar />
             <Title className="flex pl-0 !text-2xl md:pl-5 md:!text-3xl lg:pl-0">
                 {t('products_matching')} "
-                {searchParams.get('search') ? (
-                    searchParams.get('search')
-                ) : data?.category ? (
-                    data?.category
-                ) : (
-                    t('loading')
-                )}
+                {searchParams.get('search')
+                    ? searchParams.get('search')
+                    : data?.category
+                    ? data?.category
+                    : t('loading')}
                 " ({data?.count || 0})
             </Title>
             <div className="gap-5 lg:grid lg:grid-cols-[1fr_3fr]">
@@ -79,10 +77,7 @@ const Search = () => {
                             !data?.count && 'min-h-[70vh]',
                             'bg-red relative grid max-w-full overflow-hidden',
                             !isList &&
-                            'grid grid-cols-2 max-md:gap-2 md:grid-cols-3 xl:grid-cols-4',
-                            !data?.count && 'min-h-[70vh]'
-                                ' grid-cols-2 max-md:gap-2 md:grid-cols-3 xl:grid-cols-4',
-                            !data?.count && ''
+                                'grid grid-cols-2 max-md:gap-2 md:grid-cols-3 xl:grid-cols-4'
                         )}
                     >
                         {!isMinPC && filters}

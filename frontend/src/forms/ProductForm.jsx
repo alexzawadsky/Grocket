@@ -27,9 +27,12 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
     const name = useInput(data?.name || '', { isEmpty: true })
     const description = useInput(data?.description || '', { isEmpty: true })
     // const [description, setDescription] = useState(data?.description || '')
-    const price = useInput(convertPrice(data?.price, false), { isFloat: true, isEmpty: true })
-    const usdPrice = useInput(data?.price, { isFloat: true, isEmpty: true })
-    const [address, setAddress] = useState(data?.address || null, { isEmpty: true })
+    const price = useInput(convertPrice(data?.price, false), {
+        isFloat: true,
+        isEmpty: true,
+    })
+    const usdPrice = useInput(data?.price, { isFloat: true })
+    const [address, setAddress] = useState(data?.address || null)
 
     useEffect(() => {
         if (images && images.length > 0) {
@@ -41,14 +44,17 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
     }, [mainImageIndex])
 
     useEffect(() => {
-        if ([name, price].every((el) => el.allValid) && images.length > 0) {
+        if (
+            [name, price, description].every((el) => el.allValid) &&
+            images.length > 0 &&
+            images.length < 9
+        ) {
             setAllValid(true)
         } else {
             setAllValid(false)
         }
         setData({
             name: name.value,
-            description: description.value,
             description: description.value,
             price: (price.value / exchangeRate).toFixed(2),
             address: address,
@@ -144,8 +150,13 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
                 <ImageEditor images={images} setImages={setImages} />
             </div>
             <div className="flex h-fit flex-col gap-2 pt-5 xl:col-span-2">
-                <h2 className="w-full text-xl font-bold">
+                <h2 className="flex w-full gap-1 text-xl font-bold">
                     {t('list_of_images')}
+                    <span
+                        className={images.length > 8 ? 'text-accent-red' : null}
+                    >
+                        ({images.length}/8)
+                    </span>
                 </h2>
                 <p>{t('you_can_choose_main_image')}</p>
                 {images.length > 0 ? (
@@ -160,10 +171,11 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
                                     <button
                                         type="button"
                                         onClick={() => setMainImageIndex(key)}
-                                        className={`h-4 w-4 rounded-full ${key === mainImageIndex
-                                            ? 'bg-accent-orange'
-                                            : 'border-2'
-                                            }`}
+                                        className={`h-4 w-4 rounded-full ${
+                                            key === mainImageIndex
+                                                ? 'bg-accent-orange'
+                                                : 'border-2'
+                                        }`}
                                     ></button>
                                     <button
                                         type="button"

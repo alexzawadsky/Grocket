@@ -72,48 +72,60 @@ const Filters = ({ mnP, mxP, productsCountries, open, setOpen, setPage }) => {
                         } ${getSymbolFromCurrency(targetCurrency)}`}
                     />
                 </div>
-                <p className="text-lg font-bold">{t('country')}</p>
-                <ul className="flex flex-wrap gap-2">
-                    {productsCountries &&
-                        productsCountries
-                            .slice(
-                                0,
-                                productsCountries.length > 30
-                                    ? countriesListOpen
-                                        ? productsCountries.length
-                                        : 30
-                                    : productsCountries.length
-                            )
-                            .map((el, key) => (
-                                <li key={key}>
+                {productsCountries?.length ? (
+                    <>
+                        <p className="text-lg font-bold">{t('country')}</p>
+                        <ul className="flex flex-wrap gap-2">
+                            {productsCountries &&
+                                productsCountries
+                                    .slice(
+                                        0,
+                                        productsCountries.length > 30
+                                            ? countriesListOpen
+                                                ? productsCountries.length
+                                                : 30
+                                            : productsCountries.length
+                                    )
+                                    .map((el, key) => (
+                                        <li key={key}>
+                                            <Button
+                                                key={key}
+                                                px={2}
+                                                className={cn(
+                                                    countries.includes(el) &&
+                                                        '!border-accent-orange',
+                                                    'py-1 hover:border-accent-orange/[.5] dark:border-zinc-600 dark:hover:border-accent-orange/[.5]'
+                                                )}
+                                                onClick={() =>
+                                                    toggleCountry(el)
+                                                }
+                                            >
+                                                <Flag
+                                                    country={el}
+                                                    width="35px"
+                                                />
+                                            </Button>
+                                        </li>
+                                    ))}
+                            {productsCountries &&
+                                productsCountries.length > 30 && (
                                     <Button
-                                        key={key}
+                                        onClick={() =>
+                                            setCountriesListOpen(
+                                                (prevState) => !prevState
+                                            )
+                                        }
                                         px={2}
-                                        className={cn(
-                                            countries.includes(el) &&
-                                                '!border-accent-orange',
-                                            'py-1 hover:border-accent-orange/[.5] dark:border-zinc-600 dark:hover:border-accent-orange/[.5]'
-                                        )}
-                                        onClick={() => toggleCountry(el)}
+                                        border={false}
                                     >
-                                        <Flag country={el} width="35px" />
+                                        {countriesListOpen
+                                            ? t('show_less')
+                                            : t('show_more')}
                                     </Button>
-                                </li>
-                            ))}
-                    {productsCountries && productsCountries.length > 30 && (
-                        <Button
-                            onClick={() =>
-                                setCountriesListOpen((prevState) => !prevState)
-                            }
-                            px={2}
-                            border={false}
-                        >
-                            {countriesListOpen
-                                ? t('show_less')
-                                : t('show_more')}
-                        </Button>
-                    )}
-                </ul>
+                                )}
+                        </ul>
+                    </>
+                ) : null}
                 <Button
                     className="mt-4"
                     height={10}

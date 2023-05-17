@@ -15,7 +15,6 @@ from products.selectors import (
     get_safe_products,
 )
 from products.services.services import CreateProductService, ProductService
-from products.models import Product
 
 from .mixins import CategoryMixin, ProductMixin, PromotionMixin
 
@@ -27,10 +26,6 @@ def exchange(request):
 
 
 class ProductViewSet(ProductMixin):
-    def get_queryset(self):
-        queryset = Product.objects.filter(is_sold=False, is_archived=False)
-        return queryset
-
     def destroy(self, request, pk):
         user_id = self.request.user.id
         service = ProductService(product_id=pk)
@@ -64,15 +59,16 @@ class ProductViewSet(ProductMixin):
         data.update((self._get_response_message()))
         return Response(data, status=status.HTTP_201_CREATED)
 
-    # def partial_update(self, request, pk):
-    #     serializer = self.get_serializer_class()(
-    #         context={'product_id': pk},
-    #         data=request.data
-    #     )
-    #     serializer.is_valid(raise_exception=True)
-    #     super().partial_update()
+    def partial_update(self, request, pk):
+        user = self.request.user
+        product = get_product_or_404(user_id=user.id, id=pk)
+        serializer = self.get_serializer_class()(
+            product, data=request.data, partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
 
-    #     return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_200_OK)
 
     @action(["get"], detail=False)
     def me_products(self, request):

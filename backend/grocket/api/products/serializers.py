@@ -5,7 +5,7 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.users.serializers import CustomUserSerializer
-from products.models import Category, Image
+from products.models import Category, Image, Product, Promotion, ProductAddress
 from products.selectors import (
     get_ancestors_by_category,
     get_favourites_count,
@@ -122,6 +122,40 @@ class ProductImageCreateSerializer(serializers.Serializer):
         )
 
 
+# удалить при рефакторинге апдейта
+class ProductImageUpdateSerializer(serializers.ModelSerializer):
+    image = Base64ImageField(allow_null=True, required=False)
+
+    class Meta:
+        model = Image
+        fields = (
+            "image",
+            "is_main",
+            "product",
+        )
+
+
+# удалить при рефакторинге апдейта
+class ProductAddressUpdateSerializer(serializers.ModelSerializer):
+    full = serializers.CharField(max_length=100)
+    short = serializers.CharField(max_length=70)
+    city = serializers.CharField(required=False, max_length=30)
+    country_code = serializers.CharField(max_length=2)
+    latitude = serializers.FloatField(max_value=90.0, min_value=-90.0)
+    longitude = serializers.FloatField(max_value=180.0, min_value=-180.0)
+
+    class Meta:
+        model = ProductAddress
+        fields = (
+            "full",
+            "city",
+            "short",
+            "country_code",
+            "latitude",
+            "longitude",
+        )
+
+
 # ref
 class ProductAddressCreateUpdateSerializer(serializers.Serializer):
     full = serializers.CharField(max_length=100)
@@ -135,6 +169,7 @@ class ProductAddressCreateUpdateSerializer(serializers.Serializer):
         fields = (
             "full",
             "city",
+            "short",
             "country_code",
             "latitude",
             "longitude",
@@ -332,28 +367,24 @@ class ProductCreateSerializer(serializers.Serializer):
         return serializer.validated_data
 
 
-class ProductUpdateSerializer(serializers.Serializer):
-    images = ProductImagesUpdateField(max_length=8, required=False)
+class ProductUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=100, required=False)
     description = serializers.CharField(max_length=5000, required=False)
     price = serializers.FloatField(min_value=0, required=False)
-    address = ProductAddressCreateUpdateSerializer(required=False)
-    category = serializers.IntegerField(required=False)
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+    address = ProductAddressUpdateSerializer(required=False)
+    images = ProductImagesUpdateField(max_length=8, required=False)
 
     class Meta:
+        model = Product
         fields = (
             "name",
+            "address",
             "description",
             "price",
-            "address",
             "category",
             "images",
         )
-
-    def to_representation(self, product):
-        serializer = ProductRetrieveSerializer(product, context=self.context)
-
-        return serializer.data
 
     def validate_category(self, value):
         if not value.is_leaf_node():
@@ -364,8 +395,6 @@ class ProductUpdateSerializer(serializers.Serializer):
         return value
 
     def validate_images(self, value):
-        super().validate_images(value)
-
         product = self.instance
         images_album, new_images = value
         images_album_keys = list(images_album.keys())
@@ -402,13 +431,11 @@ class ProductUpdateSerializer(serializers.Serializer):
         return value
 
     def creating_images(self, new_images, product):
-        super().creating_images(new_images, product)
-
         for image in new_images.items():
             image_base64 = image[0]
             is_main = image[1]
 
-            images_serializer = ProductImageCreateSerializer(
+            images_serializer = ProductImageUpdateSerializer(
                 data={"image": image_base64, "is_main": is_main, "product": product.id}
             )
             images_serializer.is_valid(raise_exception=True)
@@ -436,6 +463,14 @@ class ProductUpdateSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         images = validated_data.get("images")
+        address = validated_data.pop("address", False)
+
+        if address:
+            serializer = ProductAddressUpdateSerializer(
+                instance=instance.product_addresses.get(product=instance), data=address
+            )
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
 
         if images is not None:
             images = validated_data.pop("images")
@@ -444,57 +479,3 @@ class ProductUpdateSerializer(serializers.Serializer):
             return instance
 
         return super().update(instance, validated_data)
-
-    #     def validate_images(self, value):
-    #         product_id = self.context["product_id"]
-    #         try:
-    #             products_services.check_product_images_update_logic(
-    #                 images=value, product_id=product_id
-    #             )
-    #         except ValidationError as error:
-    #             raise serializers.ValidationError(error.messages)
-
-    #         images_album, new_images = value
-    #         images = []
-    #         for image in new_images:
-    #             images.append({"image": image, "is_main": new_images[image]})
-
-    #         serializer = ProductImageCreateSerializer(data=images, many=True)
-    #         serializer.is_valid(raise_exception=True)
-    #         return serializer.validated_data
-
-    #     def creating_images(self, new_images, product):
-    #         super().creating_images(new_images.items(), product)
-
-    #     def _images_updating(self, images, instance):
-    #         """Запускает все манипудяции с обновлением картинок."""
-    #         # (images_album - старые, new_images - которые надо создать)
-    #         images_album, new_images = images
-    #         # Удаляем картинки, которые юзер удалил
-    #         Image.objects.filter(product=instance).exclude(
-    #             id__in=images_album.keys()
-    #         ).delete()
-    #         # Берем все картинки после удаления
-    #         images_after_deleting = Image.objects.filter(product=instance).only(
-    #             "id", "is_main"
-    #         )
-    #         # Меняем все is_main
-    #         for image_after_deleting in images_after_deleting:
-    #             if image_after_deleting.id in images_album.keys():
-    #                 image_after_deleting.is_main = images_album[image_after_deleting.id]
-    #                 image_after_deleting.save()
-    #         # Создаем новые картинки
-    #         self.creating_images(new_images, instance)
-
-    #     def update(self, instance, validated_data):
-    #         images = validated_data.get("images")
-
-    #         if images is not None:
-    #             images = validated_data.pop("images")
-
-    #             instance = super().update(instance, validated_data)
-    #             self._images_updating(images, instance)
-
-    #             return instance
-
-    #         return super().update(instance, validated_data)

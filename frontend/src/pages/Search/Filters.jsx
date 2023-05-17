@@ -10,10 +10,10 @@ import getSymbolFromCurrency from 'currency-symbol-map'
 const Filters = ({ mnP, mxP, productsCountries, open, setOpen, setPage }) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const minPrice = useInput(searchParams.get('min_price') || '', {
-        isInt: true,
+        isFloat: true,
     })
     const maxPrice = useInput(searchParams.get('max_price') || '', {
-        isInt: true,
+        isFloat: true,
     })
     const { convertPrice, targetCurrency, exchangeRate } =
         useContext(CurrencyContext)

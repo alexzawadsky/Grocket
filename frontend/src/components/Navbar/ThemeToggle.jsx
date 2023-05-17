@@ -22,17 +22,17 @@ const ThemeToggle = () => {
         light: {
             title: t('light'),
             menuIcon: <TbSun />,
-            code: "light",
+            code: 'light',
         },
         dark: {
             title: t('dark'),
             menuIcon: <TbMoon />,
-            code: "dark",
+            code: 'dark',
         },
         auto: {
             title: t('auto'),
             menuIcon: <TbSunMoon />,
-            code: "auto",
+            code: 'auto',
         },
     }
 

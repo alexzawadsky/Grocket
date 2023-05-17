@@ -11,46 +11,49 @@
   <a href="https://github.com/alexzawadsky/Grocket/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/alexzawadsky/Grocket" alt="contributors" />
   </a>
-  <a href="">
+  <a href="https://github.com/alexzawadsky/Grocket/commits/master">
     <img src="https://img.shields.io/github/last-commit/alexzawadsky/Grocket" alt="last update" />
   </a>
 </p>
 
 <h4>
-    <a href="https://github.com/Louis3797/awesome-readme-template/">View Demo</a>
+    <a href="http://localhost">View Demo</a>
   <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template">Documentation</a>
-  <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">Report Bug</a>
-  <span> · </span>
-    <a href="https://github.com/Louis3797/awesome-readme-template/issues/">Request Feature</a>
+    <a href="https://forms.gle/1ECKNCFyHhyCEkvL8">Request Feature / Report Bug</a>
   </h4>
 </div>
 
 <br />
 
 <!-- Table of Contents -->
+
 # :notebook_with_decorative_cover: Table of Contents
 
 - [:notebook\_with\_decorative\_cover: Table of Contents](#notebook_with_decorative_cover-table-of-contents)
   - [:star2: About the Project](#star2-about-the-project)
     - [:camera: Screenshots](#camera-screenshots)
     - [:space\_invader: Tech Stack](#space_invader-tech-stack)
-    - [:dart: Features](#dart-features)
+      - [Frontend](#frontend)
+      - [Backend](#backend)
+      - [Database](#database)
+      - [DevOps](#devops)
     - [:art: Color Reference](#art-color-reference)
     - [:key: Environment Variables](#key-environment-variables)
   - [:toolbox: Getting Started](#toolbox-getting-started)
     - [:bangbang: Prerequisites](#bangbang-prerequisites)
+      - [Instalation](#instalation)
     - [:running: Run Locally](#running-run-locally)
-      - [Frontend](#frontend)
-      - [Backend](#backend)
+      - [Frontend](#frontend-1)
+      - [Backend](#backend-1)
     - [:triangular\_flag\_on\_post: Deployment in docker](#triangular_flag_on_post-deployment-in-docker)
   - [:handshake: Contact](#handshake-contact)
 
 <!-- About the Project -->
+
 ## :star2: About the Project
 
 <!-- Screenshots -->
+
 ### :camera: Screenshots
 
 <div align="center">
@@ -58,39 +61,34 @@
 </div>
 
 <!-- TechStack -->
+
 ### :space_invader: Tech Stack
 
-<ul>
-<li>
-<summary>Client</summary>
-  <a href="https://reactjs.org/">React.js</a>
-    <a href="https://tailwindcss.com/">TailwindCSS</a>
-    </li>
-<li>
-<summary>Server</summary>
-    <a href="https://reactjs.org/">React.js</a>
-    <a href="https://tailwindcss.com/">TailwindCSS</a>
-    </li>
-<li>
-<summary>Database</summary>
-  <a href="https://reactjs.org/">React.js</a>
-    <a href="https://tailwindcss.com/">TailwindCSS</a>
-    </li>
-<li>
-<summary>Dev-Ops</summary>
-  <a href="https://reactjs.org/">React.js</a>
-    <a href="https://tailwindcss.com/">TailwindCSS</a>
-    </li>
-</ul>
+#### Frontend
+- [React](https://reactjs.org)
+- [Tailwind CSS](https://tailwindcss.com)
 
-<!-- Features -->
+#### Backend
+- [Django](https://www.djangoproject.com)
+
+#### Database
+- [PostgreSQL](https://www.postgresql.org)
+- [Redis](https://redis.io)
+
+#### DevOps
+- [Docker](https://www.docker.com)
+- [Nginx](https://nginx.org)
+
+<!-- Features
+
 ### :dart: Features
 
 - Global
 - Feature 2
-- Feature 3
+- Feature 3 -->
 
 <!-- Color Reference -->
+
 ### :art: Color Reference
 
 | Color         | Hex                                                              |
@@ -98,13 +96,14 @@
 | Primary Color | ![#FF9001](https://via.placeholder.com/10/FF9001?text=+) #FF9001 |
 
 <!-- Env Variables -->
+
 ### :key: Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file.
 
-#### Backend
 infra/.env
-```
+
+```env
 DB_ENGINE=django.db.backends.postgresql
 DB_NAME=postgres
 POSTGRES_USER=postgres
@@ -116,8 +115,10 @@ REDIS_PORT=6379
 REDIS_DB=0
 ```
 
-#### Frontend
+<!-- #### Frontend
+
 frontend/.../.env.deploy
+
 ```
 DB_ENGINE=django.db.backends.postgresql
 DB_NAME=postgres
@@ -125,28 +126,34 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=<your password>
 DB_HOST=db
 DB_PORT=5432
-```
+``` -->
 
 <!-- Getting Started -->
+
 ## :toolbox: Getting Started
 
 <!-- Prerequisites -->
+
 ### :bangbang: Prerequisites
 
 This project uses <a href='https://python-poetry.org/docs/'>Poetry</a> as backend package manager
 
 #### Instalation
+
 Linux, macOS, Windows (WSL)
+
 ```bash
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 Windows (Powershell)
+
 ```bash
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 ```
 
 <!-- Run Locally -->
+
 ### :running: Run Locally
 
 Clone the project
@@ -180,7 +187,7 @@ npm run dev
 Go to the backend directory
 
 ```bash
-cd backend/
+cd backend
 ```
 
 Install dependencies
@@ -193,7 +200,7 @@ poetry install
 Go to the project directory
 
 ```bash
-cd grocket/
+cd grocket
 ```
 
 Apply migrations
@@ -223,6 +230,7 @@ python manage.py runserver
 ```
 
 <!-- Deployment -->
+
 ### :triangular_flag_on_post: Deployment in docker
 
 Go to the docker-compose directory
@@ -238,6 +246,7 @@ sh install.sh
 ```
 
 Start docker manually
+
 ```bash
 docker-compose up -d --build
 docker-compose exec web python manage.py migrate
@@ -248,6 +257,7 @@ docker-compose exec web python manage.py loaddatautf8 data/json/statuses.json
 ```
 
 <!-- Contact -->
+
 ## :handshake: Contact
 
 All contact options are available in our profiles, feel free to DM using any option.

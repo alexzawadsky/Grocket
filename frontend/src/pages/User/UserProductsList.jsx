@@ -50,7 +50,12 @@ const UserProductsList = () => {
     })
 
     return (
-        <div className="grid min-h-full grid-rows-[auto_1fr] gap-2">
+        <div
+            className={cn(
+                !isLoading && !data?.count && 'min-h-full',
+                'grid grid-rows-[auto_1fr] gap-2'
+            )}
+        >
             <nav
                 aria-label="user products filters navigation"
                 className="h-fit"

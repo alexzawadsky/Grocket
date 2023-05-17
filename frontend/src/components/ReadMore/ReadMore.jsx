@@ -30,7 +30,7 @@ const ReadMore = ({ text, limit }) => {
                 <Link
                     to="https://libretranslate.com/"
                     target="_blank"
-                    className="flex gap-1 text-[12px] text-[#42a5f5] hover:underline"
+                    className="flex gap-1 text-[12px] text-[#42a5f5] hover:underline dark:text-blue-300"
                 >
                     {t('powered_by')}{' '}
                     <img

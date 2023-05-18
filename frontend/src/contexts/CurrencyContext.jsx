@@ -14,8 +14,8 @@ export const CurrencyProvider = ({ children }) => {
     const { data, isLoading } = useExchangeRates()
     const exchangeRate = data ? data[targetCurrency] : 1
 
-    const convertPrice = (price, formatted = true) => {
-        if (!price) return 0
+    const convertPrice = (price, formatted = true, noneIsZero = true) => {
+        if (!price) return noneIsZero ? 0 : ''
         let convertedPrice
         if (!data) {
             convertedPrice = price

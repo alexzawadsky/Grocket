@@ -135,5 +135,7 @@
     "special_thanks": "Besonderen Dank",
     "browse": "Übersicht",
     "translation_fail": "Übersetzung fehlgeschlagen, versuchen Sie es später erneut",
-    "translation": "Übersetzung"
+    "translation": "Übersetzung",
+    "status": "Status",
+    "auth_error": "Der Benutzer mit dieser E-Mail und diesem Passwort wurde nicht gefunden"
 }

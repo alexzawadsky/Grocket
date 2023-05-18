@@ -27,7 +27,7 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
     const name = useInput(data?.name || '', { isEmpty: true })
     const description = useInput(data?.description || '', { isEmpty: true })
     // const [description, setDescription] = useState(data?.description || '')
-    const price = useInput(convertPrice(data?.price, false), {
+    const price = useInput(convertPrice(data?.price, false, false), {
         isFloat: true,
         isEmpty: true,
     })

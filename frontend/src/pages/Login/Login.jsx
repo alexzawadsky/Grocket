@@ -89,14 +89,15 @@ const Login = () => {
                         >
                             {!loading ? t('login') : `${t('loading')}...`}
                         </Button>
-                        {error && error.status === 401 && (
-                            <NavLink
-                                to="/password-reset"
-                                className="hover:text-accent-orange"
-                            >
-                                {t('reset_pass')}
-                            </NavLink>
-                        )}
+                        {error &&
+                            error.status === 401 &&
+                            // <NavLink
+                            //     to="/password-reset"
+                            //     className="hover:text-accent-orange"
+                            // >
+                            //     {t('reset_pass')}
+                            // </NavLink>
+                            t('auth_error')}
                     </Form>
                     <p className="mx-5 mt-2 flex gap-2">
                         {t('dont_have_acc')}?

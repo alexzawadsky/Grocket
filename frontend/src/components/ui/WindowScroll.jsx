@@ -3,8 +3,9 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import CategoriesListStateContext from '../../contexts/CategoriesListStateContext'
 
 const WindowScroll = () => {
-    const [isTop, setIsTop] = useState(false)
-    const [isBottom, setIsBottom] = useState(true)
+    const [isTop, setIsTop] = useState(true)
+    const [isBottom, setIsBottom] = useState(false)
+    const [hasScroll, setHasScroll] = useState(false)
     const { open } = useContext(CategoriesListStateContext)
 
     useEffect(() => {
@@ -19,7 +20,13 @@ const WindowScroll = () => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    useEffect(() => {
+        console.log(document.body.scrollHeight)
+        setHasScroll(document.body.scrollHeight > document.body.clientHeight)
+    }, [document.body.scrollHeight])
+
     if (open) return
+    if (!hasScroll) return
 
     return (
         <div

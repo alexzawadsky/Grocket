@@ -92,9 +92,10 @@ const UserProductsList = () => {
             >
                 {isLoading && <Spinner count={8} type="vcard" />}
                 {error && error.message}
-                {data?.count ? (
-                    !isLoading &&
-                    data &&
+                {!isLoading && !data?.count && (
+                    <NoResults className="max-md:py-7 md:pl-5" />
+                )}
+                {data &&
                     data?.results.map((el) => (
                         <li key={el?.id}>
                             <ItemCard
@@ -102,10 +103,7 @@ const UserProductsList = () => {
                                 managable={el?.user?.id === user?.user_id}
                             />
                         </li>
-                    ))
-                ) : (
-                    <NoResults className="max-md:py-7 md:pl-5" />
-                )}
+                    ))}
             </ul>
             {data?.pages_count > 1 && (
                 <Pagination

@@ -135,5 +135,7 @@
     "special_thanks": "Specjalne podziękowania",
     "browse": "Browse",
     "translation_fail": "Tłumaczenie nie powiodło się, spróbuj ponownie później",
-    "translation": "tłumaczenie"
+    "translation": "tłumaczenie",
+    "status": "Status",
+    "auth_error": "Nie znaleziono użytkownika o tym adresie e-mail i haśle"
 }

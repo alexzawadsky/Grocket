@@ -51,13 +51,13 @@ const ProfileCard = ({
                     <p className="flex flex-wrap items-center gap-x-2 font-bold leading-none lg:text-xl">
                         <Flag country={country} className="h-fit w-5 pb-0.5" />
                         <span
-                            className={!firstName && 'text-zinc-400'}
+                            className={!firstName ? 'text-zinc-400' : null}
                             aria-label="first name"
                         >
                             {firstName ? firstName : t('first_name')}
                         </span>
                         <span
-                            className={!lastName && 'text-zinc-400'}
+                            className={!lastName ? 'text-zinc-400' : null}
                             aria-label="last name"
                         >
                             {lastName ? lastName : t('last_name')}

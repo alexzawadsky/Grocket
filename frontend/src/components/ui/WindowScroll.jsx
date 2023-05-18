@@ -21,7 +21,6 @@ const WindowScroll = () => {
     }, [])
 
     useEffect(() => {
-        console.log(document.body.scrollHeight)
         setHasScroll(document.body.scrollHeight > document.body.clientHeight)
     }, [document.body.scrollHeight])
 

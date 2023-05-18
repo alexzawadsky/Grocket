@@ -5,7 +5,7 @@ import {
     ImageEditor,
     AddressField,
     GMap,
-    TextEditor,
+    // TextEditor,
 } from '../components/ui'
 import { deleteImage } from '../pages/Sell/utils'
 import { BsTrashFill } from 'react-icons/bs'
@@ -23,7 +23,6 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
     const { isMinTablet, isLargePC } = useScreen()
     const { targetCurrency, exchangeRate, convertPrice } =
         useContext(CurrencyContext)
-
     const name = useInput(data?.name || '', { isEmpty: true })
     const description = useInput(data?.description || '', { isEmpty: true })
     // const [description, setDescription] = useState(data?.description || '')
@@ -35,11 +34,13 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
     const [address, setAddress] = useState(data?.address || null)
 
     useEffect(() => {
-        if (images && images.length > 0) {
-            if (images.filter((el) => el.is_main)[0]) {
-                images.filter((el) => el.is_main)[0].is_main = false
-            }
-            images[mainImageIndex].is_main = true
+        const mainImage = images.find((el) => el.is_main)
+        if (mainImage) {
+            mainImage.is_main = false
+        }
+        const newMainImage = images[mainImageIndex]
+        if (newMainImage) {
+            newMainImage.is_main = true
         }
     }, [mainImageIndex])
 
@@ -75,12 +76,7 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
     useEffect(() => {
         price.allValid &&
             usdPrice.setValue((price.value / exchangeRate).toFixed(2))
-    }, [price.value])
-
-    // useEffect(() => {
-    //     usdPrice.allValid &&
-    //         price.setValue((usdPrice.value * exchangeRate).toFixed(2))
-    // }, [usdPrice.value])
+    }, [price.value, exchangeRate])
 
     return (
         <div className="flex grid-cols-[5fr_9fr] flex-col gap-x-5 gap-y-2 md:grid xl:grid-cols-[auto_1fr_30px]">
@@ -174,7 +170,7 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
                                         className={`h-4 w-4 rounded-full ${
                                             key === mainImageIndex
                                                 ? 'bg-accent-orange'
-                                                : 'border-2'
+                                                : 'border-2 dark:border-zinc-600'
                                         }`}
                                     ></button>
                                     <button

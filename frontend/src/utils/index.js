@@ -36,9 +36,9 @@ export const notification = (text, duration) => {
         duration: duration ? duration : 2000,
         style: isDark
             ? {
-                  background: '#333',
-                  color: '#fff',
-              }
+                background: '#333',
+                color: '#fff',
+            }
             : null,
     })
 }
@@ -61,10 +61,10 @@ export const saveImage = (
         img.src = editorRef.current.getImage().toDataURL()
         img.onload = () => {
             const canvas = document.createElement('canvas')
-            canvas.width = 800
-            canvas.height = 600
+            canvas.width = 1000
+            canvas.height = 750
             const ctx = canvas.getContext('2d')
-            ctx.drawImage(img, 0, 0, 800, 600)
+            ctx.drawImage(img, 0, 0, 1000, 750)
             const newImage = {
                 is_main: images.length > 0 ? false : true,
                 image: canvas.toDataURL('image/png'),

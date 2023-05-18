@@ -64,7 +64,7 @@ const Navbar = () => {
                         )}
                     </Link>
                     <Link
-                        to="https://www.standwithukraine.how/"
+                        to="https://ukraine.europarl.europa.eu/en/home"
                         target="_blank"
                         className="mb-auto"
                     >

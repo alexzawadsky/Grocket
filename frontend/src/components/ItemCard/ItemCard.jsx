@@ -313,7 +313,7 @@ const ItemCard = ({
                 </div>
             )}
             {managable && user?.user_id === product?.user?.id && (
-                <div className="grid gap-2">
+                <div className="mt-auto grid gap-2">
                     <ManageProductMenu product={product} dropdown />
                 </div>
             )}

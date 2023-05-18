@@ -7,7 +7,7 @@ export const deleteImage = (
     if (images[imageIndex].is_main) {
         setMainImageIndex(0)
     }
-    setImages(images.filter((el, key) => key !== imageIndex))
+    setImages(images.filter((_, key) => key !== imageIndex))
 }
 
 export const prepareImages = (images) => {
@@ -16,9 +16,9 @@ export const prepareImages = (images) => {
         images.map((image) =>
             Object.keys(image).includes('id')
                 ? {
-                      image: image.id,
-                      is_main: image.is_main,
-                  }
+                    image: image.id,
+                    is_main: image.is_main,
+                }
                 : image
         )
     )

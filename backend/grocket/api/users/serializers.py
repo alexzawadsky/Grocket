@@ -84,7 +84,7 @@ class CustomUserCreateSerializer(djserializers.UserCreateSerializer):
 
     def _chek_latin_letters(self, value):
         for letter in value:
-            if letter not in string.ascii_letters:
+            if letter not in (string.ascii_letters + string.whitespace):
                 raise serializers.ValidationError(_("Only latin letters can be used"))
         return value
 

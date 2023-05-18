@@ -8,6 +8,7 @@ import { Avatar, RatingStars, Flag, Button } from '../ui'
 import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
 import { FiLogOut } from 'react-icons/fi'
+import { parsePhoneNumber } from 'awesome-phonenumber'
 
 const ProfileCard = ({
     id,
@@ -23,6 +24,7 @@ const ProfileCard = ({
 }) => {
     const { t } = useTranslation()
     const { user, logoutUser } = useContext(AuthContext)
+    const pn = parsePhoneNumber(phone)
 
     return (
         <aside
@@ -68,7 +70,7 @@ const ProfileCard = ({
                         aria-label="phone number"
                     >
                         <BsFillTelephoneFill />
-                        {phone}
+                        {pn.number.international}
                     </p>
                 )}
                 <p

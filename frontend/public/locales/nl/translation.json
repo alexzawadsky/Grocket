@@ -137,5 +137,6 @@
     "translation_fail": "Vertaling mislukt, probeer het later opnieuw",
     "translation": "vertaling",
     "status": "Toestand",
-    "auth_error": "Gebruiker met dit e-mailadres en wachtwoord is niet gevonden"
+    "auth_error": "Gebruiker met dit e-mailadres en wachtwoord is niet gevonden",
+    "no_response": "Backend-server reageert niet, probeer het later opnieuw"
 }

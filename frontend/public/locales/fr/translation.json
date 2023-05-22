@@ -137,5 +137,6 @@
     "translation_fail": "La traduction a échoué, réessayez plus tard",
     "translation": "traduction",
     "status": "Statut",
-    "auth_error": "L'utilisateur avec cet email et ce mot de passe est introuvable"
+    "auth_error": "L'utilisateur avec cet email et ce mot de passe est introuvable",
+    "no_response": "Le serveur principal ne répond pas, réessayez plus tard"
 }

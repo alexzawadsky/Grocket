@@ -8,6 +8,7 @@ import ProfileSettings from './ProfileSettings'
 import UserComments from './Comments/Comments'
 import AddComment from './Comments/AddComment'
 import UserProductsList from './UserProductsList'
+import NoResponse from '../../components/Placeholders/NoResponse'
 
 const Profile = () => {
     const { t } = useTranslation()
@@ -16,6 +17,7 @@ const Profile = () => {
     const location = useLocation()
     const { data, isLoading, error } = useProfile(profileId)
 
+    if (error?.response?.status.toString()[0] === '5') return <NoResponse />
     if (error) return error.message
 
     return (

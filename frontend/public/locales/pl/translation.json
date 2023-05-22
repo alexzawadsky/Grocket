@@ -137,5 +137,6 @@
     "translation_fail": "Tłumaczenie nie powiodło się, spróbuj ponownie później",
     "translation": "tłumaczenie",
     "status": "Status",
-    "auth_error": "Nie znaleziono użytkownika o tym adresie e-mail i haśle"
+    "auth_error": "Nie znaleziono użytkownika o tym adresie e-mail i haśle",
+    "no_response": "Serwer zaplecza nie odpowiada, spróbuj ponownie później"
 }

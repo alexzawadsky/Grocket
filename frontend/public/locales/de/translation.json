@@ -137,5 +137,6 @@
     "translation_fail": "Übersetzung fehlgeschlagen, versuchen Sie es später erneut",
     "translation": "Übersetzung",
     "status": "Status",
-    "auth_error": "Der Benutzer mit dieser E-Mail und diesem Passwort wurde nicht gefunden"
+    "auth_error": "Der Benutzer mit dieser E-Mail und diesem Passwort wurde nicht gefunden",
+    "no_response": "Der Backend-Server antwortet nicht. Versuchen Sie es später erneut"
 }

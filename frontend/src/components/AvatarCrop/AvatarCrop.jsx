@@ -23,12 +23,13 @@ const AvatarCrop = () => {
     const [updating, setUpdating] = useState(false)
 
     return (
-        <div className="w-fit rounded-xl border p-5 shadow-sm dark:border-2 dark:border-zinc-600 max-md:mx-auto">
+        <div className="w-fit rounded-xl border p-5 pt-3 shadow-sm dark:border-2 dark:border-zinc-600 max-md:mx-auto">
             <div className="mx-auto flex w-fit flex-col gap-3">
                 <input
                     className="hidden w-fit text-sm file:mr-3 file:h-10 file:rounded-lg file:border-none file:bg-slate-100 file:px-3 file:font-bold file:outline-none hover:file:bg-slate-200"
                     ref={imageInputRef}
                     type="file"
+                    accept="image/png, image/jpeg, image/webp, image/jpg, image/heic, image/svg"
                     onChange={(e) => setCurrentImage(e.target.files[0])}
                 />
                 <Button

@@ -8,7 +8,7 @@ const AboutSite = () => {
         <>
             <section className="my-5 grid w-full items-center gap-10 md:my-14 md:grid-cols-[1fr_1fr]">
                 <div className="grid gap-3">
-                    <p className="pl-1.5 font-bold text-zinc-600">
+                    <p className="pl-1.5 font-bold text-zinc-600 dark:text-zinc-400">
                         INTRODUCING
                     </p>
                     <h1 className="font-bolditalic text-6xl text-accent-orange md:text-8xl">

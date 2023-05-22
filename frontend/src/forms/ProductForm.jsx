@@ -34,17 +34,6 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
     const [address, setAddress] = useState(data?.address || null)
 
     useEffect(() => {
-        const mainImage = images.find((el) => el.is_main)
-        if (mainImage) {
-            mainImage.is_main = false
-        }
-        const newMainImage = images[mainImageIndex]
-        if (newMainImage) {
-            newMainImage.is_main = true
-        }
-    }, [mainImageIndex])
-
-    useEffect(() => {
         if (
             [name, price, description].every((el) => el.allValid) &&
             images.length > 0 &&
@@ -67,6 +56,7 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
         price.value,
         address,
         JSON.stringify(images),
+        mainImageIndex,
     ])
 
     useEffect(() => {
@@ -166,9 +156,18 @@ const ProductForm = ({ data, setData, setValid, errors }) => {
                                 <div className="flex w-full items-center justify-between gap-2">
                                     <button
                                         type="button"
-                                        onClick={() => setMainImageIndex(key)}
+                                        onClick={() => {
+                                            setMainImageIndex(key)
+                                            setImages((prevImages) => {
+                                                prevImages.find(
+                                                    (el) => el.is_main
+                                                ).is_main = false
+                                                prevImages[key].is_main = true
+                                                return prevImages
+                                            })
+                                        }}
                                         className={`h-4 w-4 rounded-full ${
-                                            key === mainImageIndex
+                                            el.is_main
                                                 ? 'bg-accent-orange'
                                                 : 'border-2 dark:border-zinc-600'
                                         }`}

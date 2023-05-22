@@ -12,6 +12,7 @@ import Filters from './Filters'
 import { BiFilterAlt } from 'react-icons/bi'
 import { useTranslation } from 'react-i18next'
 import NoResults from '../../components/Placeholders/NoResults'
+import NoResponse from '../../components/Placeholders/NoResponse'
 
 const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -81,7 +82,7 @@ const Search = () => {
                         )}
                     >
                         {!isMinPC && filters}
-                        {isLoading && (
+                        {isLoading ? (
                             <Spinner
                                 type={
                                     isMinTablet
@@ -92,8 +93,13 @@ const Search = () => {
                                 }
                                 count={isMinTablet ? 4 : 1}
                             />
-                        )}
-                        {!isLoading && !data?.count ? (
+                        ) : error ? (
+                            error.response.status.toString()[0] === '5' ? (
+                                <NoResponse className="mx-auto" />
+                            ) : (
+                                error?.message
+                            )
+                        ) : !data?.count ? (
                             <NoResults className="md:pl-5" />
                         ) : (
                             data?.results.map((product, key) => (

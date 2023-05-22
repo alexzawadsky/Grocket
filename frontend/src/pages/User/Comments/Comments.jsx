@@ -7,6 +7,7 @@ import BackToProfile from '../BackToProfile'
 import { useTranslation } from 'react-i18next'
 import { useContext, useState } from 'react'
 import AuthContext from '../../../contexts/AuthProvider'
+import NoResponse from '../../../components/Placeholders/NoResponse'
 
 const Comments = () => {
     const outlet = useOutlet()
@@ -17,7 +18,6 @@ const Comments = () => {
     const { user } = useContext(AuthContext)
 
     if (outlet) return <Outlet />
-    if (error) return error.message
 
     return (
         <div className="grid gap-4">
@@ -51,13 +51,21 @@ const Comments = () => {
                 className="grid gap-5 lg:grid-cols-2"
                 aria-label="list of comments"
             >
-                {isLoading && <Spinner type="comment" count={2} />}
-                {!isLoading &&
+                {isLoading ? (
+                    <Spinner type="comment" count={2} />
+                ) : error ? (
+                    error.response.status.toString()[0] === '5' ? (
+                        <NoResponse />
+                    ) : (
+                        error.message
+                    )
+                ) : (
                     data?.results.map((el, key) => (
                         <li key={key} aria-label="comment">
                             <Comment comment={el} />
                         </li>
-                    ))}
+                    ))
+                )}
             </ul>
             {data?.pages_count > 1 && (
                 <Pagination

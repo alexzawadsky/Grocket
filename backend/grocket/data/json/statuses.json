@@ -13,7 +13,7 @@
             "title_de": "Andere",
             "title_fr": "Autre",
             "title_pl": "Inny",
-            "title_zh_hant": "其他",
+            "title_zh_hans": "其他",
             "name": "other"
         }
     },
@@ -31,7 +31,7 @@
             "title_de": "Gekauft",
             "title_fr": "Acheté",
             "title_pl": "Kupił",
-            "title_zh_hant": "買",
+            "title_zh_hans": "買",
             "name": "bought"
         }
     },
@@ -49,7 +49,7 @@
             "title_de": "War nicht einverstanden",
             "title_fr": "N'étais pas d'accord",
             "title_pl": "Nie zgodził się",
-            "title_zh_hant": "不同意",
+            "title_zh_hans": "不同意",
             "name": "did_not_agree"
         }
     },
@@ -67,7 +67,7 @@
             "title_de": "Ignoriert",
             "title_fr": "Ignoré",
             "title_pl": "Ignorowane",
-            "title_zh_hant": "忽略",
+            "title_zh_hans": "忽略",
             "name": "ignored"
         }
     }

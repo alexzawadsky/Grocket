@@ -7,8 +7,6 @@ from rest_framework.mixins import (
     UpdateModelMixin,
 )
 
-from products.selectors import get_category_name_by_id_or_none
-
 from ..mixins import BaseMixin
 from .filters import ProductFilter
 from .paginators import ProductPageLimitPagination

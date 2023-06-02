@@ -37,6 +37,18 @@ class CustomUserSerializer(djserializers.UserSerializer):
             "last_login",
         )
 
+    def _chek_latin_letters(self, value):
+        for letter in value:
+            if letter not in (string.ascii_letters + string.whitespace):
+                raise serializers.ValidationError(_("Only latin letters can be used"))
+        return value
+
+    def validate_first_name(self, value):
+        return self._chek_latin_letters(value)
+
+    def validate_last_name(self, value):
+        return self._chek_latin_letters(value)
+
     def get_sold_count(self, obj):
         return obj.products.filter(is_sold=True).count()
 

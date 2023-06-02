@@ -15,6 +15,7 @@ class ProductCommentSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "name",
+            "slug",
         )
 
 

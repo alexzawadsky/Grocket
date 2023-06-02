@@ -349,7 +349,7 @@ class ProductCreateSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
     user = serializers.IntegerField()
     description = serializers.CharField(max_length=5000)
-    price = serializers.FloatField(min_value=0)
+    price = serializers.FloatField(min_value=0, max_value=3000000000)
     category = serializers.IntegerField()
     address = ProductAddressCreateUpdateSerializer()
 
@@ -379,7 +379,7 @@ class ProductCreateSerializer(serializers.Serializer):
 class ProductUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=100, required=False)
     description = serializers.CharField(max_length=5000, required=False)
-    price = serializers.FloatField(min_value=0, required=False)
+    price = serializers.FloatField(min_value=0, required=False, max_value=3000000000)
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     address = ProductAddressUpdateSerializer(required=False)
     images = ProductImagesUpdateField(max_length=8, required=False)

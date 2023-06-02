@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-15 11:11+0200\n"
+"POT-Creation-Date: 2023-06-02 14:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,6 +55,10 @@ msgstr ""
 msgid "Removed from favourites"
 msgstr ""
 
+#: .\api\mixins.py:20
+msgid "Product has been updated"
+msgstr ""
+
 #: .\api\mixins.py:23
 msgid "Comment added"
 msgstr ""
@@ -71,24 +75,29 @@ msgstr ""
 msgid "Reply deleted"
 msgstr ""
 
-#: .\api\products\fields.py:39
-msgid "The image field can only be id or base64."
+#: .\api\products\fields.py:60
+#, python-brace-format
+msgid "You can attach up to {self.max_length} photos"
 msgstr ""
 
-#: .\api\products\serializers.py:50
+#: .\api\products\fields.py:75
+msgid "The image field can only be id or base64"
+msgstr ""
+
+#: .\api\products\serializers.py:54
 #, python-brace-format
 msgid "`{promotion}` is not integer"
 msgstr ""
 
-#: .\api\products\serializers.py:323
+#: .\api\products\serializers.py:369 .\api\products\serializers.py:412
 msgid "Only latin letters, numbers and punctuation marks can be used"
 msgstr ""
 
-#: .\api\users\serializers.py:86
+#: .\api\users\serializers.py:43 .\api\users\serializers.py:100
 msgid "Only latin letters can be used"
 msgstr ""
 
-#: .\comments\services\services.py:17 .\products\services\services.py:90
+#: .\comments\services\services.py:18 .\products\services\services.py:90
 msgid "Unable create product: Invalid input data."
 msgstr ""
 
@@ -100,14 +109,14 @@ msgstr ""
 msgid "Django administration"
 msgstr ""
 
-#: .\products\services\_add_images_service.py:19
+#: .\products\services\_add_images_service.py:20
 msgid "Unable create product image: Invalid input data."
 msgstr ""
 
-#: .\products\services\_add_images_service.py:21
+#: .\products\services\_add_images_service.py:22
 msgid "You cannot add more than one main photo."
 msgstr ""
 
-#: .\products\services\_add_images_service.py:22
+#: .\products\services\_add_images_service.py:23
 msgid "Add a main photo."
 msgstr ""

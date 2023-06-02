@@ -126,7 +126,7 @@ LANGUAGES = [
     ("it", "Italian"),
     ("fr", "French"),
     ("de", "Deuch"),
-    ("zh-hant", "Chinese"),
+    ("zh-hans", "Chinese"),
     ("pl", "Polish"),
 ]
 
@@ -323,7 +323,7 @@ RATES = {
     "EUR": 0.9,
     "RUB": 82,
     "UAH": 36,
-    "GPB": 0.8,
+    "GBP": 0.8,
     "SEK": 10,
     "KZT": 454,
     "TRY": 19,

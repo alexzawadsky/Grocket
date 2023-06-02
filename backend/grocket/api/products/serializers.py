@@ -148,7 +148,7 @@ class ProductImageUpdateSerializer(serializers.ModelSerializer):
 class ProductAddressUpdateSerializer(serializers.ModelSerializer):
     full = serializers.CharField(max_length=100)
     short = serializers.CharField(max_length=70)
-    city = serializers.CharField(required=False, max_length=30)
+    city = serializers.CharField(required=False, max_length=30, allow_blank=True)
     country_code = serializers.CharField(max_length=2)
     latitude = serializers.FloatField(max_value=90.0, min_value=-90.0)
     longitude = serializers.FloatField(max_value=180.0, min_value=-180.0)
@@ -169,7 +169,7 @@ class ProductAddressUpdateSerializer(serializers.ModelSerializer):
 class ProductAddressCreateUpdateSerializer(serializers.Serializer):
     full = serializers.CharField(max_length=100)
     short = serializers.CharField(max_length=70)
-    city = serializers.CharField(required=False, max_length=30)
+    city = serializers.CharField(required=False, max_length=30, allow_blank=True)
     country_code = serializers.CharField(max_length=2)
     latitude = serializers.FloatField(max_value=90.0, min_value=-90.0)
     longitude = serializers.FloatField(max_value=180.0, min_value=-180.0)

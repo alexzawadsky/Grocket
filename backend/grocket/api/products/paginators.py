@@ -4,6 +4,7 @@ from products.selectors import get_categories as get_all_categories
 
 from ..paginators import PageLimitPagination
 from .serializers import CategoryListSerializer
+from products.models import Product
 
 
 class ProductPageLimitPagination(PageLimitPagination):

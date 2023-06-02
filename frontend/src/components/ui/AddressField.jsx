@@ -22,9 +22,10 @@ const AddressField = ({ setAddress }) => {
                 country_code: place?.address_components?.find((el) =>
                     el?.types.includes('country')
                 )?.short_name,
-                city: place?.address_components?.find((el) =>
-                    el?.types.includes('locality')
-                )?.long_name,
+                city:
+                    place?.address_components?.find((el) =>
+                        el?.types.includes('locality')
+                    )?.long_name || '',
                 full: place?.formatted_address,
                 short: place?.name,
             }

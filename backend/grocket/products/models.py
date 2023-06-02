@@ -26,6 +26,7 @@ class ProductAddress(models.Model):
     city = models.CharField(
         max_length=100,
         verbose_name="city",
+        null=True,
         blank=True,
     )
     country_code = models.CharField(

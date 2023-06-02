@@ -135,5 +135,8 @@
     "special_thanks": "Remerciement spécial",
     "browse": "Parcour",
     "translation_fail": "La traduction a échoué, réessayez plus tard",
-    "translation": "traduction"
+    "translation": "traduction",
+    "status": "Statut",
+    "auth_error": "L'utilisateur avec cet email et ce mot de passe est introuvable",
+    "no_response": "Le serveur principal ne répond pas, réessayez plus tard"
 }

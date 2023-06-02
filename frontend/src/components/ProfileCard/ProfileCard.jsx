@@ -8,6 +8,7 @@ import { Avatar, RatingStars, Flag, Button } from '../ui'
 import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
 import { FiLogOut } from 'react-icons/fi'
+import { parsePhoneNumber } from 'awesome-phonenumber'
 
 const ProfileCard = ({
     id,
@@ -23,6 +24,7 @@ const ProfileCard = ({
 }) => {
     const { t } = useTranslation()
     const { user, logoutUser } = useContext(AuthContext)
+    const pn = parsePhoneNumber(phone)
 
     return (
         <aside
@@ -49,13 +51,13 @@ const ProfileCard = ({
                     <p className="flex flex-wrap items-center gap-x-2 font-bold leading-none lg:text-xl">
                         <Flag country={country} className="h-fit w-5 pb-0.5" />
                         <span
-                            className={!firstName && 'text-zinc-400'}
+                            className={!firstName ? 'text-zinc-400' : null}
                             aria-label="first name"
                         >
                             {firstName ? firstName : t('first_name')}
                         </span>
                         <span
-                            className={!lastName && 'text-zinc-400'}
+                            className={!lastName ? 'text-zinc-400' : null}
                             aria-label="last name"
                         >
                             {lastName ? lastName : t('last_name')}
@@ -68,7 +70,7 @@ const ProfileCard = ({
                         aria-label="phone number"
                     >
                         <BsFillTelephoneFill />
-                        {phone}
+                        {pn.number.international}
                     </p>
                 )}
                 <p

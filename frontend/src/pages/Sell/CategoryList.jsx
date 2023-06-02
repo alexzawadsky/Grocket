@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '../../components/ui'
 import cn from 'classnames'
 import { IoIosArrowBack } from 'react-icons/io'
+import NoResponse from '../../components/Placeholders/NoResponse'
 
 const CategoryList = ({ category, setCategory }) => {
     const [lastChild, setLastChild] = useState(null)
@@ -55,8 +56,12 @@ const CategoryList = ({ category, setCategory }) => {
                             'grid h-fit w-fit rounded-xl border p-1 dark:border-2 dark:border-zinc-600'
                         )}
                     >
-                        {isLoading && <Spinner type="category" count={5} />}
-                        {data &&
+                        {isLoading ? (
+                            <Spinner type="category" count={5} />
+                        ) : error?.response?.status.toString()[0] === '5' ? (
+                            <NoResponse />
+                        ) : (
+                            data &&
                             data.map((el, key) => (
                                 <li
                                     className="h-fit w-full cursor-pointer rounded-lg px-2 py-1 align-baseline hover:bg-slate-100 dark:hover:bg-zinc-700"
@@ -65,7 +70,8 @@ const CategoryList = ({ category, setCategory }) => {
                                 >
                                     {el.title}
                                 </li>
-                            ))}
+                            ))
+                        )}
                     </ul>
                     {category.length > 0 && (
                         <Button

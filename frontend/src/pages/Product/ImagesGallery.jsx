@@ -6,6 +6,7 @@ const ImagesGallery = ({ images }) => {
         <SlideshowLightbox
             theme="lightbox"
             className="grid grid-cols-2 items-center gap-5 md:grid-cols-3 xl:grid-cols-4"
+            key={JSON.stringify(images)}
         >
             {images.map((el, key) => (
                 <img

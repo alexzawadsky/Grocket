@@ -7,6 +7,7 @@ import { BsArrowLeft } from 'react-icons/bs'
 import CategoryList from './CategoryList'
 import { prepareImages } from './utils'
 import { useTranslation } from 'react-i18next'
+import NoResponse from '../../components/Placeholders/NoResponse'
 
 const EditProduct = () => {
     const { t } = useTranslation()
@@ -35,7 +36,8 @@ const EditProduct = () => {
         }
         if (
             JSON.stringify(formData.images) ===
-            JSON.stringify(prepareImages(data?.images))
+                JSON.stringify(prepareImages(data?.images)) &&
+            formData.images.findIndex((el) => el.is_main) === 0
         ) {
             changedFields = changedFields.filter((el) => el[0] !== 'images')
         }
@@ -55,6 +57,7 @@ const EditProduct = () => {
     }, [data])
 
     if (isLoading) return <Spinner />
+    if (error?.response?.status.toString()[0] === '5') return <NoResponse />
     if (error) return error.message
 
     return (

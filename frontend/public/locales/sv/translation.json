@@ -135,5 +135,8 @@
     "special_thanks": "Stort tack",
     "browse": "Bläddra",
     "translation_fail": "Översättningen misslyckades, försök igen senare",
-    "translation": "översättning"
+    "translation": "översättning",
+    "status": "Status",
+    "auth_error": "Användare med denna e-postadress och lösenord hittades inte",
+    "no_response": "Backend-servern svarar inte, försök igen senare"
 }

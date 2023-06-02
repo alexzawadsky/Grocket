@@ -15,7 +15,7 @@ const MenuInner = ({ product, fullW }) => {
 
     return (
         <div
-            className={`flex flex-col items-start gap-1 rounded-xl border p-1 shadow-md dark:border-2 dark:border-zinc-600 ${
+            className={`flex w-full flex-col items-start gap-1 rounded-xl border p-1 shadow-md dark:border-2 dark:border-zinc-600 ${
                 !fullW && 'w-fit'
             } bg-white dark:bg-zinc-800`}
             role="none"
@@ -100,7 +100,7 @@ const ManageProductMenu = ({ product, dropdown }) => {
         >
             {open && (
                 <div
-                    className="absolute -left-1 bottom-10 z-10 w-44 origin-top-right "
+                    className="absolute -left-1 bottom-10 z-10 w-44 origin-top-right lg:w-52 "
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="menu-button"

@@ -69,16 +69,8 @@ const useValidation = (value, validations) => {
                     )
                     break
                 case 'isFloat':
-                    re = /^[-+]?[0-9]+\.[0-9]+$/
-                    setFloatError(
-                        !(
-                            re.test(String(value)) ||
-                            (!isNaN(value) &&
-                                (function (x) {
-                                    return (x | 0) === x
-                                })(parseFloat(value)))
-                        )
-                    )
+                    re = /^[+-]?\d+(\.\d+)?$/
+                    setFloatError(!re.test(String(value)))
                     break
                 default:
                     break

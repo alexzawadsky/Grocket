@@ -8,6 +8,7 @@ import AuthContext from '../../contexts/AuthProvider'
 import { AiFillHeart } from 'react-icons/ai'
 import cn from 'classnames'
 import NoResults from '../../components/Placeholders/NoResults'
+import NoResponse from '../../components/Placeholders/NoResponse'
 
 const UserProductsList = () => {
     const { t } = useTranslation()
@@ -90,11 +91,17 @@ const UserProductsList = () => {
                 className="grid grid-cols-2 gap-5 md:gap-0 lg:grid-cols-3 xl:grid-cols-4"
                 aria-label="list of user products"
             >
-                {isLoading && <Spinner count={8} type="vcard" />}
-                {error && error.message}
-                {data?.count ? (
-                    !isLoading &&
-                    data &&
+                {isLoading ? (
+                    <Spinner count={8} type="vcard" />
+                ) : error ? (
+                    error?.response?.status.toString()[0] === '5' ? (
+                        <NoResponse className="col-span-full mx-auto" />
+                    ) : (
+                        <span className="col-span-full mx-auto my-auto h-fit">
+                            {error?.message}
+                        </span>
+                    )
+                ) : data?.count ? (
                     data?.results.map((el) => (
                         <li key={el?.id}>
                             <ItemCard
@@ -104,7 +111,7 @@ const UserProductsList = () => {
                         </li>
                     ))
                 ) : (
-                    <NoResults className="max-md:py-7 md:pl-5" />
+                    <NoResults />
                 )}
             </ul>
             {data?.pages_count > 1 && (

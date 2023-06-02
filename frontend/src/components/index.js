@@ -10,6 +10,7 @@ import ImagesCarousel from './ImagesCarousel/ImagesCarousel'
 import ImageEditor from './ui/ImageEditor'
 import LanguageSelectionBanner from './LanguageSelectionBanner/LanguageSelectionBanner'
 import SearchBar from './SearchBar/SearchBar'
+import SEO from './SEO/SEO'
 
 export {
     AvatarCrop,
@@ -24,4 +25,5 @@ export {
     LanguageSelectionBanner,
     ImageEditor,
     SearchBar,
+    SEO
 }

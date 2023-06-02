@@ -23,6 +23,7 @@ import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
 import ImagesGallery from './ImagesGallery'
 import NotFound from '../NotFound/NotFound'
+import NoResponse from '../../components/Placeholders/NoResponse'
 
 const ProductPage = () => {
     const { productId } = useParams()
@@ -45,6 +46,7 @@ const ProductPage = () => {
     }, [data])
 
     if (error?.response?.status === 404) return <NotFound />
+    if (error?.response?.status.toString()[0] === '5') return <NoResponse />
     if (error) return error.message
     if (isLoading) return <Spinner type="productPage" />
 

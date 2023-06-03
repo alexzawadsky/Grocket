@@ -192,7 +192,8 @@ export const useFavouriteProduct = () => {
                 method: data.state ? 'DELETE' : 'POST',
             }).then((res) => res.data),
         {
-            onSuccess: () => {
+            onSuccess: (res) => {
+                notification(res?.message)
                 queryClient.invalidateQueries('products')
                 queryClient.invalidateQueries('product')
             },

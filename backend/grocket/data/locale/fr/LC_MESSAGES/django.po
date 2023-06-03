@@ -23,98 +23,98 @@ msgstr ""
 
 #: .\api\mixins.py:9
 msgid "Product has been deleted"
-msgstr ""
+msgstr "Le produit a été supprimé"
 
 #: .\api\mixins.py:10
 msgid "Successfully promoted"
-msgstr ""
+msgstr "Promotion réussie"
 
 #: .\api\mixins.py:11
 msgid "Marked as sold"
-msgstr ""
+msgstr "Marqué comme vendu"
 
 #: .\api\mixins.py:11
 msgid "Placed again"
-msgstr ""
+msgstr "Placé à nouveau"
 
 #: .\api\mixins.py:13
 msgid "Moved to the archive"
-msgstr ""
+msgstr "Déplacé dans les archives"
 
 #: .\api\mixins.py:14
 msgid "Removed from the archive"
-msgstr ""
+msgstr "Supprimé de l'archive"
 
 #: .\api\mixins.py:17
 msgid "Added to favourites"
-msgstr ""
+msgstr "Ajouté aux favoris"
 
 #: .\api\mixins.py:18
 msgid "Removed from favourites"
-msgstr ""
+msgstr "Supprimé des favoris"
 
 #: .\api\mixins.py:20
 msgid "Product has been updated"
-msgstr ""
+msgstr "Le produit a été mis à jour"
 
 #: .\api\mixins.py:23
 msgid "Comment added"
-msgstr ""
+msgstr "Commentaire ajouté"
 
 #: .\api\mixins.py:24
 msgid "Comment deleted"
-msgstr ""
+msgstr "Commentaire supprimé"
 
 #: .\api\mixins.py:25
 msgid "Peply added"
-msgstr ""
+msgstr "Réponse ajoutée"
 
 #: .\api\mixins.py:25
 msgid "Reply deleted"
-msgstr ""
+msgstr "Réponse supprimée"
 
 #: .\api\products\fields.py:60
 #, python-brace-format
 msgid "You can attach up to {self.max_length} photos"
-msgstr ""
+msgstr "Vous pouvez joindre jusqu'à {self.max_length} photos"
 
 #: .\api\products\fields.py:75
 msgid "The image field can only be id or base64"
-msgstr ""
+msgstr "Le champ image ne peut être que id ou base64"
 
 #: .\api\products\serializers.py:54
 #, python-brace-format
 msgid "`{promotion}` is not integer"
-msgstr ""
+msgstr "`{promotion}` n'est pas entier"
 
 #: .\api\products\serializers.py:369 .\api\products\serializers.py:412
 msgid "Only latin letters, numbers and punctuation marks can be used"
-msgstr ""
+msgstr "Seuls les lettres latines, les chiffres et les signes de ponctuation peuvent être utilisés"
 
 #: .\api\users\serializers.py:43 .\api\users\serializers.py:100
 msgid "Only latin letters can be used"
-msgstr ""
+msgstr "Seules les lettres latines peuvent être utilisées"
 
 #: .\comments\services\services.py:18 .\products\services\services.py:90
 msgid "Unable create product: Invalid input data."
-msgstr ""
+msgstr "Impossible de créer le produit : données d'entrée non valides."
 
 #: .\core\templates\admin\base_site.html:4
 msgid "Django site admin"
-msgstr ""
+msgstr "Administrateur du site Django"
 
 #: .\core\templates\admin\base_site.html:9
 msgid "Django administration"
-msgstr ""
+msgstr "Administration de Django"
 
 #: .\products\services\_add_images_service.py:20
 msgid "Unable create product image: Invalid input data."
-msgstr ""
+msgstr "Impossible de créer l'image du produit : données d'entrée non valides."
 
 #: .\products\services\_add_images_service.py:22
 msgid "You cannot add more than one main photo."
-msgstr ""
+msgstr "Vous ne pouvez pas ajouter plus d'une photo principale."
 
 #: .\products\services\_add_images_service.py:23
 msgid "Add a main photo."
-msgstr ""
+msgstr "Ajouter une photo principale."

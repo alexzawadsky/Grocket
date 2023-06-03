@@ -53,7 +53,7 @@ const UserProductsList = () => {
     return (
         <div
             className={cn(
-                !isLoading && !data?.count && 'min-h-full',
+                !isLoading && !data?.count && 'md:min-h-full',
                 'grid grid-rows-[auto_1fr] gap-2'
             )}
         >
@@ -111,7 +111,7 @@ const UserProductsList = () => {
                         </li>
                     ))
                 ) : (
-                    <NoResults />
+                    <NoResults className="max-md:py-10" />
                 )}
             </ul>
             {data?.pages_count > 1 && (

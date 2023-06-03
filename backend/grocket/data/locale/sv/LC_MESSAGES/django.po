@@ -23,98 +23,98 @@ msgstr ""
 
 #: .\api\mixins.py:9
 msgid "Product has been deleted"
-msgstr ""
+msgstr "Produkten har tagits bort"
 
 #: .\api\mixins.py:10
 msgid "Successfully promoted"
-msgstr ""
+msgstr "Framgångsrikt befordrad"
 
 #: .\api\mixins.py:11
 msgid "Marked as sold"
-msgstr ""
+msgstr "Märkt som såld"
 
 #: .\api\mixins.py:11
 msgid "Placed again"
-msgstr ""
+msgstr "Placerad igen"
 
 #: .\api\mixins.py:13
 msgid "Moved to the archive"
-msgstr ""
+msgstr "Flyttade till arkivet"
 
 #: .\api\mixins.py:14
 msgid "Removed from the archive"
-msgstr ""
+msgstr "Borttagen från arkivet"
 
 #: .\api\mixins.py:17
 msgid "Added to favourites"
-msgstr ""
+msgstr "Tillagd till favoriter"
 
 #: .\api\mixins.py:18
 msgid "Removed from favourites"
-msgstr ""
+msgstr "Borttagen från favoriter"
 
 #: .\api\mixins.py:20
 msgid "Product has been updated"
-msgstr ""
+msgstr "Produkten har uppdaterats"
 
 #: .\api\mixins.py:23
 msgid "Comment added"
-msgstr ""
+msgstr "Kommentar tillagd"
 
 #: .\api\mixins.py:24
 msgid "Comment deleted"
-msgstr ""
+msgstr "Kommentar raderad"
 
 #: .\api\mixins.py:25
 msgid "Peply added"
-msgstr ""
+msgstr "Svar tillagt"
 
 #: .\api\mixins.py:25
 msgid "Reply deleted"
-msgstr ""
+msgstr "Svar raderade"
 
 #: .\api\products\fields.py:60
 #, python-brace-format
 msgid "You can attach up to {self.max_length} photos"
-msgstr ""
+msgstr "Du kan bifoga upp till {self.max_length} foton"
 
 #: .\api\products\fields.py:75
 msgid "The image field can only be id or base64"
-msgstr ""
+msgstr "Bildfältet kan bara vara id eller base64"
 
 #: .\api\products\serializers.py:54
 #, python-brace-format
 msgid "`{promotion}` is not integer"
-msgstr ""
+msgstr "`{promotion}` är inte heltal"
 
 #: .\api\products\serializers.py:369 .\api\products\serializers.py:412
 msgid "Only latin letters, numbers and punctuation marks can be used"
-msgstr ""
+msgstr "Endast latinska bokstäver, siffror och skiljetecken kan användas"
 
 #: .\api\users\serializers.py:43 .\api\users\serializers.py:100
 msgid "Only latin letters can be used"
-msgstr ""
+msgstr "Endast latinska bokstäver kan användas"
 
 #: .\comments\services\services.py:18 .\products\services\services.py:90
 msgid "Unable create product: Invalid input data."
-msgstr ""
+msgstr "Det gick inte att skapa produkt: Ogiltig indata."
 
 #: .\core\templates\admin\base_site.html:4
 msgid "Django site admin"
-msgstr ""
+msgstr "Django-webbplatsadministratör"
 
 #: .\core\templates\admin\base_site.html:9
 msgid "Django administration"
-msgstr ""
+msgstr "Django administration"
 
 #: .\products\services\_add_images_service.py:20
 msgid "Unable create product image: Invalid input data."
-msgstr ""
+msgstr "Det gick inte att skapa produktbild: Ogiltig indata."
 
 #: .\products\services\_add_images_service.py:22
 msgid "You cannot add more than one main photo."
-msgstr ""
+msgstr "Du kan inte lägga till mer än ett huvudfoto."
 
 #: .\products\services\_add_images_service.py:23
 msgid "Add a main photo."
-msgstr ""
+msgstr "Lägg till ett huvudfoto."

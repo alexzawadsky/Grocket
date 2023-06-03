@@ -34,7 +34,7 @@ function App() {
         <div
             className={cn(
                 'flex min-h-full flex-col',
-                open ? 'max-h-full overflow-hidden' : ''
+                open ? 'max-h-[100dvh] overflow-hidden' : ''
             )}
             aria-label="all site"
         >

@@ -7,6 +7,7 @@ import SearchHistoryContext from './HistoryContext'
 import localizations from '../assets/json/localization.json'
 import api from '../api/api'
 import { useTranslation } from 'react-i18next'
+import { capitalizeName } from '../utils'
 
 const AuthContext = createContext()
 
@@ -74,8 +75,8 @@ export const AuthProvider = ({ children }) => {
         api.post(
             '/api/v1/users/',
             JSON.stringify({
-                first_name,
-                last_name,
+                first_name: capitalizeName(first_name),
+                last_name: capitalizeName(last_name),
                 username,
                 email,
                 password,

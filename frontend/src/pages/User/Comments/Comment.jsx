@@ -54,28 +54,34 @@ const Comment = ({ comment }) => {
                 <p className="line-clamp-1">
                     {' '}
                     -{' '}
-                    <Link
-                        className=" hover:text-accent-orange"
-                        to={`/products/${comment?.product?.slug}`}
-                    >
-                        {comment?.product?.name}
-                    </Link>
+                    {comment?.product ? (
+                        <Link
+                            className=" hover:text-accent-orange"
+                            to={`/products/${comment?.product?.slug}`}
+                        >
+                            {comment?.product?.name}
+                        </Link>
+                    ) : (
+                        <span className="text-accent-red">DELETED</span>
+                    )}
                 </p>
             </div>
             <ReadMore text={comment?.text} limit={100} />
-            <SlideshowLightbox
-                theme="lightbox"
-                className="mt-2 grid grow grid-cols-4 items-start gap-2 md:grid-cols-5 xl:grid-cols-6"
-            >
-                {comment?.images.map((el, key) => (
-                    <img
-                        key={key}
-                        src={el.image}
-                        className="aspect-auto rounded-lg border-2 dark:border-zinc-600"
-                        alt={`comment photo ${key + 1}`}
-                    />
-                ))}
-            </SlideshowLightbox>
+            {comment?.images.length ? (
+                <SlideshowLightbox
+                    theme="lightbox"
+                    className="mt-2 grid grow grid-cols-4 items-start gap-2 md:grid-cols-5 xl:grid-cols-6"
+                >
+                    {comment?.images.map((el, key) => (
+                        <img
+                            key={key}
+                            src={el.image}
+                            className="aspect-auto rounded-lg border-2 dark:border-zinc-600"
+                            alt={`comment photo ${key + 1}`}
+                        />
+                    ))}
+                </SlideshowLightbox>
+            ) : null}
             <CommentReply
                 commentId={comment?.id}
                 seller={comment?.seller}

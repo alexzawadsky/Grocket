@@ -67,7 +67,7 @@ const ItemCard = ({
                             className={cn(
                                 'mb-auto h-fit',
                                 product?.promotions.includes('xl')
-                                    ? 'mt-0.5 xl:mt-1.5'
+                                    ? 'mt-1 xl:mt-1.5'
                                     : 'mt-0.5 xl:mt-1'
                             )}
                         />
@@ -75,7 +75,7 @@ const ItemCard = ({
                             className={cn(
                                 `line-clamp-2 font-bold hover:text-accent-orange`,
                                 product?.promotions.includes('xl')
-                                    ? 'text-md xl:text-2xl'
+                                    ? 'text-lg xl:text-2xl'
                                     : 'text-md xl:text-xl'
                             )}
                         >
@@ -85,7 +85,7 @@ const ItemCard = ({
                             className={cn(
                                 'mb-auto ml-auto',
                                 product?.promotions?.includes('xl')
-                                    ? 'mt-1 xl:mt-2'
+                                    ? 'mt-1.5 xl:mt-2'
                                     : 'mt-1 xl:mt-1.5'
                             )}
                         >

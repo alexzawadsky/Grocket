@@ -78,7 +78,7 @@ const Search = () => {
                             !data?.count && 'min-h-[70vh]',
                             'bg-red relative grid max-w-full overflow-hidden',
                             !isList &&
-                                'grid grid-cols-2 max-md:gap-2 md:grid-cols-3 xl:grid-cols-4'
+                                'max-md:gap-2 md:grid-cols-3 xl:grid-cols-4'
                         )}
                     >
                         {!isMinPC && filters}

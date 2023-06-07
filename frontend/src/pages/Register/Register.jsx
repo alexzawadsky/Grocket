@@ -8,6 +8,7 @@ import CreateUserForm from '../../forms/CreateUserForm'
 import { Title, Button, Form } from '../../components/ui'
 import { Helmet } from 'react-helmet-async'
 import localizations from '../../assets/json/localization.json'
+import { capitalizeName } from '../../utils'
 
 const Register = () => {
     const { t, i18n } = useTranslation()
@@ -38,8 +39,8 @@ const Register = () => {
                         <div className="ml-auto w-fit">
                             <ProfileCard
                                 id={0}
-                                firstName={formData?.first_name}
-                                lastName={formData?.last_name}
+                                firstName={capitalizeName(formData?.first_name)}
+                                lastName={capitalizeName(formData?.last_name)}
                                 email={formData?.email}
                                 phone={formData?.phone}
                                 rating={5.0}

@@ -85,3 +85,13 @@ export const getLastRoute = () => {
     const lastRoute = currentPath.substring(0, currentPath.lastIndexOf('/'))
     return lastRoute
 }
+
+export const capitalizeName = (str) => {
+    if (!str) return
+    return str.split(' ').map(el => {
+        const firstLetter = el.charAt(0)
+        const firstLetterCap = firstLetter.toUpperCase()
+        const remainingLetters = el.slice(1)
+        return firstLetterCap + remainingLetters
+    }).join(' ')
+}

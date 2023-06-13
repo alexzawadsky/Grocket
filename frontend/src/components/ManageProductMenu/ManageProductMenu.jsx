@@ -1,12 +1,20 @@
 import { useState, useEffect } from 'react'
 import { useArchiveProduct, useSellProduct } from '../../api/api'
 import { Link } from 'react-router-dom'
-import { IoIosArrowUp, IoMdClose, IoIosArrowDown } from 'react-icons/io'
+import {
+    IoIosArrowUp,
+    IoMdClose,
+    IoIosArrowDown,
+    IoIosArrowForward,
+    IoIosArrowBack,
+} from 'react-icons/io'
 import { BsMegaphone, BsPen } from 'react-icons/bs'
 import { useTranslation } from 'react-i18next'
 import { BsArchive, BsPatchCheck } from 'react-icons/bs'
 import { MdOutlineSell } from 'react-icons/md'
 import DeleteButton from './DeleteButton'
+import useScreen from '../../hooks/useScreen'
+import cn from 'classnames'
 
 const MenuInner = ({ product, fullW }) => {
     const { t } = useTranslation()
@@ -15,9 +23,12 @@ const MenuInner = ({ product, fullW }) => {
 
     return (
         <div
-            className={`flex w-full flex-col items-start gap-1 rounded-xl border p-1 shadow-md dark:border-2 dark:border-zinc-600 ${
-                !fullW && 'w-fit'
-            } bg-white dark:bg-zinc-800`}
+            className={cn(
+                `flex flex-col items-start gap-1 
+                rounded-xl border bg-white p-1 shadow-md 
+                dark:border-2 dark:border-zinc-600 dark:bg-zinc-800`,
+                fullW ? 'w-full' : 'w-fit'
+            )}
             role="none"
         >
             {!product.is_sold && (
@@ -75,9 +86,10 @@ const MenuInner = ({ product, fullW }) => {
     )
 }
 
-const ManageProductMenu = ({ product, dropdown }) => {
+const ManageProductMenu = ({ product, dropdown, className }) => {
     const { t } = useTranslation()
     const [open, setOpen] = useState(false)
+    const { isMinTablet } = useScreen()
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -96,29 +108,44 @@ const ManageProductMenu = ({ product, dropdown }) => {
 
     return (
         <div
-            className={`group/dropdown relative flex w-fit items-end  justify-end rounded-xl text-left manage-menu-drop-${product?.id}`}
+            className={`group/dropdown relative flex w-fit items-end justify-end rounded-xl text-left md:flex-row manage-menu-drop-${product?.id} ${className}`}
         >
-            {open && (
-                <div
-                    className="absolute -left-1 bottom-10 z-10 w-44 origin-top-right lg:w-52 "
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="menu-button"
-                    tabIndex="-1"
-                >
-                    <MenuInner product={product} />
-                </div>
-            )}
+            <div
+                className={cn(
+                    open ? 'opacity-100' : 'opacity-0',
+                    'absolute bottom-10 z-50 w-44 origin-top-right transition-all max-md:-left-1 md:bottom-0 md:left-[110%] md:w-52'
+                )}
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="menu-button"
+                tabIndex="-1"
+            >
+                <MenuInner product={product} fullW />
+            </div>
             <Link
                 to=""
                 type="button"
-                className="min-w-32 flex h-8 items-center justify-center gap-2 rounded-xl border-2 bg-white px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:ring-offset-gray-100  dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-50 hover:dark:bg-zinc-600 dark:focus:ring-offset-zinc-600"
+                className="min-w-32 flex h-8 items-center justify-center gap-2 rounded-xl border bg-white px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:ring-offset-gray-100 dark:border-2  dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-50 hover:dark:bg-zinc-600 dark:focus:ring-offset-zinc-600"
                 id="menu-button"
                 aria-expanded="false"
                 onClick={() => setOpen((prevState) => !prevState)}
             >
                 {t('manage')}
-                {open ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                {isMinTablet ? (
+                    <IoIosArrowForward
+                        className={cn(
+                            open ? 'rotate-180' : null,
+                            'transition-transform'
+                        )}
+                    />
+                ) : (
+                    <IoIosArrowUp
+                        className={cn(
+                            open ? 'rotate-180' : null,
+                            'transition-transform'
+                        )}
+                    />
+                )}
             </Link>
         </div>
     )

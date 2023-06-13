@@ -19,7 +19,7 @@ const RatingStars = ({ rating, setRating }) => {
                                 ? {
                                       color:
                                           i + 1 <= localRating + 0.3
-                                              ? '#FF9001'
+                                              ? 'var(--primary)'
                                               : i + 1 <= rating
                                               ? '#ffd8a6'
                                               : '#C0D6E4',
@@ -27,7 +27,7 @@ const RatingStars = ({ rating, setRating }) => {
                                 : {
                                       color:
                                           i + 1 <= rating + 0.3
-                                              ? '#FF9001'
+                                              ? 'var(--primary)'
                                               : '#C0D6E4',
                                   }
                         }

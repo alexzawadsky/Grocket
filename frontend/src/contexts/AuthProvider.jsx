@@ -110,6 +110,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('languageSelected')
         // queryClient.invalidateQueries()
         localStorage.removeItem('authTokens')
+        localStorage.removeItem('accentColor')
         navigate('/login')
     }
 

@@ -20,7 +20,7 @@ const ItemCard = ({
     search = false,
     horizontal,
 }) => {
-    const { isLargePC, isMinTablet } = useScreen()
+    const { isLargePC, isMinTablet, isMinPC } = useScreen()
     const { user } = useContext(AuthContext)
     const { t } = useTranslation()
 
@@ -31,7 +31,7 @@ const ItemCard = ({
                 to={`/products/${product?.slug}`}
             >
                 <div className="grid grid-cols-2 gap-1">
-                    {product?.promotions.includes('xl') ? (
+                    {search && product?.promotions.includes('xl') ? (
                         <>
                             <img
                                 className="col-span-full rounded-lg"
@@ -55,7 +55,7 @@ const ItemCard = ({
                 <div
                     className={cn(
                         'flex h-full flex-col items-start justify-center px-4',
-                        product?.promotions.includes('xl')
+                        search && product?.promotions.includes('xl')
                             ? 'gap-2 lg:gap-3'
                             : 'gap-1 lg:gap-2'
                     )}
@@ -66,7 +66,7 @@ const ItemCard = ({
                             country={product?.address?.country_code}
                             className={cn(
                                 'mb-auto h-fit',
-                                product?.promotions.includes('xl')
+                                search && product?.promotions.includes('xl')
                                     ? 'mt-1 xl:mt-1.5'
                                     : 'mt-0.5 xl:mt-1'
                             )}
@@ -74,7 +74,7 @@ const ItemCard = ({
                         <p
                             className={cn(
                                 `line-clamp-2 font-bold hover:text-accent-orange`,
-                                product?.promotions.includes('xl')
+                                search && product?.promotions.includes('xl')
                                     ? 'text-lg xl:text-2xl'
                                     : 'text-md xl:text-xl'
                             )}
@@ -89,7 +89,7 @@ const ItemCard = ({
                                     : 'mt-1 xl:mt-1.5'
                             )}
                         >
-                            {product?.user?.id === user?.user_id && (
+                            {product?.user?.id === user?.user_id && search && (
                                 <BsPerson />
                             )}
                             {product?.is_favourited && (
@@ -99,14 +99,14 @@ const ItemCard = ({
                     </div>
                     <p
                         className={`overflow-hidden text-ellipsis ${
-                            product?.promotions.includes('xl')
+                            search && product?.promotions.includes('xl')
                                 ? 'lg:text-md line-clamp-3 text-sm'
                                 : 'line-clamp-2 text-sm'
                         }`}
                     >
                         {product?.description}
                     </p>
-                    {product?.promotions.includes('price') ? (
+                    {search && product?.promotions.includes('price') ? (
                         <span className="relative ml-1.5 inline-block px-1 before:absolute before:-inset-1 before:block before:-skew-x-[10deg] before:rounded-sm before:bg-accent-orange">
                             <span className="relative text-white">
                                 <Price
@@ -124,7 +124,7 @@ const ItemCard = ({
                     <div>
                         <p
                             className={`flex items-center gap-2 ${
-                                product?.promotions.includes('xl')
+                                search && product?.promotions.includes('xl')
                                     ? 'lg:text-md text-sm'
                                     : 'text-[12px] lg:text-sm'
                             }`}
@@ -134,7 +134,7 @@ const ItemCard = ({
                         </p>
                         <p
                             className={`flex items-center gap-2 ${
-                                product?.promotions.includes('xl')
+                                search && product?.promotions.includes('xl')
                                     ? 'lg:text-md text-sm'
                                     : 'text-[12px] lg:text-sm'
                             }`}
@@ -144,7 +144,7 @@ const ItemCard = ({
                         </p>
                         <p
                             className={`flex items-center gap-2 ${
-                                product?.promotions.includes('xl')
+                                search && product?.promotions.includes('xl')
                                     ? 'lg:text-md text-sm'
                                     : 'text-[12px] lg:text-sm'
                             }`}
@@ -154,7 +154,7 @@ const ItemCard = ({
                         </p>
                     </div>
                 </div>
-                {isLargePC && (
+                {isLargePC && search && (
                     <div className="hidden h-full gap-4 px-4 py-7 text-sm lg:flex">
                         <Link
                             to={
@@ -214,6 +214,13 @@ const ItemCard = ({
                             )}
                         </div>
                     </div>
+                )}
+                {managable && (
+                    <ManageProductMenu
+                        product={product}
+                        dropdown={!isLargePC}
+                        className="max-xl:mt-3"
+                    />
                 )}
             </Link>
         )

@@ -19,7 +19,8 @@ module.exports = {
                 },
                 accent: {
                     red: '#FF1500',
-                    orange: '#FF9001',
+                    // orange: '#FF9001',
+                    orange: 'var(--primary)',
                 },
             },
         },

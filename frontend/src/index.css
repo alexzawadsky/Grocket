@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --primary: #ff9001;
+}
+
 @font-face {
     font-family: 'grocket';
     src: url('/fonts/NunitoSans-Regular.ttf');

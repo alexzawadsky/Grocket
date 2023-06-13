@@ -4,10 +4,19 @@ import ProductsList from './ProductsList'
 import HistoryList from './HistoryList'
 import { useTranslation } from 'react-i18next'
 import useScreen from '../../hooks/useScreen'
+import { useEffect, useRef } from 'react'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 const Landing = () => {
     const { t } = useTranslation()
     const { isMinTablet } = useScreen()
+    const r = document.querySelector(':root')
+    const colorSelectorRef = useRef()
+    const [color, setColor] = useLocalStorage('accentColor', '#FF9001')
+
+    useEffect(() => {
+        r.style.setProperty('--primary', color)
+    }, [])
 
     return (
         <>
@@ -27,10 +36,27 @@ const Landing = () => {
                                 <>
                                     {t('goods_for_you')}
                                     <span className="relative ml-3 inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 before:rounded-sm before:bg-accent-orange">
-                                        <span className="relative text-white">
+                                        <span
+                                            className="relative text-white"
+                                            onClick={() =>
+                                                colorSelectorRef.current.click()
+                                            }
+                                        >
                                             {t('you')}
                                         </span>
                                     </span>
+                                    <input
+                                        ref={colorSelectorRef}
+                                        type="color"
+                                        className="hidden"
+                                        onChange={(e) => {
+                                            setColor(e.target.value)
+                                            r.style.setProperty(
+                                                '--primary',
+                                                e.target.value
+                                            )
+                                        }}
+                                    />
                                 </>
                             }
                         />

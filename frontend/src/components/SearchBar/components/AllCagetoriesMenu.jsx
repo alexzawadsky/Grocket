@@ -11,22 +11,29 @@ import { Button } from '../../ui'
 import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
 import CategoryLink from './CategoryLink'
+import { useQueryClient } from '@tanstack/react-query'
 
 const FullCategoriesList = () => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     const { open, setOpen } = useContext(CategoriesListStateContext)
     const { isMinTablet } = useScreen()
     const [categoryPath, setCategoryPath] = useState([])
-    const { data, error, isLoading } = useCategories(
+    const { data, error, isLoading, refetch } = useCategories(
         isMinTablet
             ? { all: true }
             : { parent_id: categoryPath.slice(-1)[0]?.id }
     )
     const [parentCategory, setParentCategory] = useState({ id: -1 })
+    const queryClient = useQueryClient()
 
     useEffect(() => {
         return () => setOpen(false)
     }, [])
+
+    useEffect(() => {
+        refetch()
+        setParentCategory(null)
+    }, [i18n.resolvedLanguage])
 
     if (!open) return
     if (error) return error.message

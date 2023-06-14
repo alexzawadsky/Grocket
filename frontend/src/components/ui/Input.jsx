@@ -23,6 +23,7 @@ const Input = ({
     titleSize,
     name,
     hasError,
+    autocomplete,
 }) => {
     const inputRef = useRef()
 
@@ -68,6 +69,7 @@ const Input = ({
                             'min-h-[100px] py-2',
                             className
                         )}
+                        autoComplete={autocomplete}
                     />
                 ) : (
                     <input
@@ -81,6 +83,7 @@ const Input = ({
                         disabled={disabled}
                         className={cn(inputStyle, errorStyle, className)}
                         placeholder={placeholder}
+                        autoComplete={autocomplete}
                     />
                 )}
                 {(hasError || (instance.isDirty && !instance.allValid)) && (

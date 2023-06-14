@@ -249,7 +249,9 @@ const ItemCard = ({
                     {product?.name}
                 </p>
                 <span className="mb-auto ml-auto mt-1.5">
-                    {product?.user?.id === user?.user_id && <BsPerson />}
+                    {product?.user?.id === user?.user_id && !managable && (
+                        <BsPerson />
+                    )}
                     {product?.is_favourited && <AiFillHeart color="red" />}
                 </span>
             </div>

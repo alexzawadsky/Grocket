@@ -103,7 +103,20 @@ const UserProductsList = () => {
                 aria-label="list of user products"
             >
                 {isLoading ? (
-                    <Spinner count={8} type="vcard" />
+                    <Spinner
+                        count={
+                            isMinTablet &&
+                            (profileId !== 'me' || viewOption.grid)
+                                ? 8
+                                : 3
+                        }
+                        type={
+                            isMinTablet &&
+                            (profileId !== 'me' || viewOption.grid)
+                                ? 'vcard'
+                                : 'hcard'
+                        }
+                    />
                 ) : error ? (
                     error?.response?.status.toString()[0] === '5' ? (
                         <NoResponse className="col-span-full mx-auto" />

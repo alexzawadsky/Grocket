@@ -25,7 +25,7 @@ class StripePromotionsTransaction(models.Model):
     )
 
     stripe_id = models.CharField(
-        max_length=50,
+        max_length=100,
         verbose_name='stripe_id',
         default=None,
         null=True

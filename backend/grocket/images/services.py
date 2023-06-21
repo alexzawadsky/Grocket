@@ -98,7 +98,7 @@ class ImageService:
         watermark = Image.open(
             f"{img_settings['WATERMARK_URL']}/{img_settings['WATERMARK_FILE_NAME']}"
         ).convert("RGBA")
-        # watermark.thumbnail((550, 550))
+        watermark.thumbnail((150, 150))
         img.paste(watermark, (img.width - watermark.width - img_settings['WATERMARK_INDENT'], img.height - watermark.height - img_settings['WATERMARK_INDENT']), watermark)
         img.paste(watermark, (img_settings['WATERMARK_INDENT'], img_settings['WATERMARK_INDENT']), watermark)
 

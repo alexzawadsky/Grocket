@@ -119,7 +119,7 @@ const GMap = ({ address }) => {
         }
 
         initMap()
-    }, [address])
+    }, [address, isDark])
 
     return (
         <div className="w-full" aria-label="product address and map">

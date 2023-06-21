@@ -8,7 +8,10 @@ export default ThemeContext
 export const ThemeProvider = ({ children }) => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     const [isDark, setIsDark] = useState(mediaQuery.matches)
-    const [themeSetting, setThemeSetting] = useLocalStorage('theme', 'auto')
+    const [themeSetting, setThemeSetting] = useLocalStorage(
+        'themeSetting',
+        'auto'
+    )
     const html = document.querySelector('html')
 
     useEffect(() => {

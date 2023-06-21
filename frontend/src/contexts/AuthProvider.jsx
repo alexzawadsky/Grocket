@@ -16,7 +16,7 @@ export default AuthContext
 export const AuthProvider = ({ children }) => {
     const { i18n } = useTranslation()
     const navigate = useNavigate()
-    // const queryClient = useQueryClient()
+    const queryClient = useQueryClient()
 
     const [authTokens, setAuthTokens] = useState(() =>
         localStorage.getItem('authTokens')
@@ -108,9 +108,10 @@ export const AuthProvider = ({ children }) => {
         setUser(null)
         localStorage.removeItem('lookHistory')
         localStorage.removeItem('languageSelected')
-        // queryClient.invalidateQueries()
+        queryClient.clear()
         localStorage.removeItem('authTokens')
         localStorage.removeItem('accentColor')
+        localStorage.removeItem('searchHistory')
         navigate('/login')
     }
 

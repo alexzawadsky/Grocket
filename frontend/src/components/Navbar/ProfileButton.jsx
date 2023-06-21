@@ -19,7 +19,7 @@ const ProfileButton = () => {
                             isLoading && 'animate-pulse opacity-30 duration-75'
                         }
                         avatar={data?.avatar}
-                        alt={`${data?.name} avatar`}
+                        alt={`${data?.first_name} ${data?.last_name} avatar`}
                         width={40}
                         height={40}
                     />

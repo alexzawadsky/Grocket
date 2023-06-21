@@ -24,6 +24,8 @@ const Input = ({
     name,
     hasError,
     autocomplete,
+    onfocus,
+    onblur,
 }) => {
     const inputRef = useRef()
 
@@ -61,7 +63,11 @@ const Input = ({
                         ref={inputRef}
                         value={instance.value}
                         onChange={instance.checkValue}
-                        onBlur={instance.checkValue}
+                        onBlur={() => {
+                            instance.checkValue
+                            onblur && onblur()
+                        }}
+                        onFocus={onfocus && onfocus()}
                         disabled={disabled}
                         className={cn(
                             inputStyle,
@@ -79,7 +85,11 @@ const Input = ({
                         ref={inputRef}
                         value={instance.value}
                         onChange={instance.checkValue}
-                        onBlur={instance.checkValue}
+                        onBlur={() => {
+                            instance.checkValue
+                            setTimeout(() => onblur && onblur(), 100)
+                        }}
+                        onFocus={() => onfocus && onfocus()}
                         disabled={disabled}
                         className={cn(inputStyle, errorStyle, className)}
                         placeholder={placeholder}

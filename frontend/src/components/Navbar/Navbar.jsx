@@ -50,7 +50,7 @@ const Navbar = () => {
             >
                 <li className="flex items-center gap-1 max-md:mr-auto">
                     <Link
-                        className="flex items-center gap-2 font-bolditalic text-3xl text-accent-orange hover:text-accent-orange/[0.8]"
+                        className="hover:text-accent-orange/[0.8] flex items-center gap-2 font-bolditalic text-3xl text-accent-orange"
                         to="/"
                     >
                         {isMinTablet ? (
@@ -133,7 +133,7 @@ const Navbar = () => {
                 )}
                 <li>
                     <Link
-                        className="flex h-12 items-center gap-2 whitespace-nowrap rounded-xl bg-accent-orange px-2 text-lg font-bold text-white hover:bg-accent-orange/[0.8] md:px-6"
+                        className="hover:bg-accent-orange/[0.8] flex h-12 items-center gap-2 whitespace-nowrap rounded-xl bg-accent-orange px-2 text-lg font-bold text-white md:px-6"
                         to="/sell"
                     >
                         {isMinTablet ? t('sell_item') : t('sell')}

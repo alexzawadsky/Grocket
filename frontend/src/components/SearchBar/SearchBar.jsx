@@ -64,11 +64,7 @@ const SearchForm = () => {
                     className="flex h-10 w-full items-center gap-3 md:gap-8"
                     aria-label="input and submit button part"
                 >
-                    <div
-                        className="relative grow"
-                        onFocus={() => setInputFocused(true)}
-                        onBlur={() => setInputFocused(false)}
-                    >
+                    <div className="relative grow">
                         <Input
                             id="search-input"
                             ariaLabel="search input for items search"
@@ -77,6 +73,8 @@ const SearchForm = () => {
                             placeholder={`${t('eg.')} Apple Watch Ultra`}
                             type="text"
                             autocomplete="off"
+                            onfocus={() => setInputFocused(true)}
+                            onblur={() => setInputFocused(false)}
                         />
                         {inputFocused &&
                         getFilteredHistory(search.value).length ? (
@@ -93,7 +91,7 @@ const SearchForm = () => {
                                         >
                                             <BiTimeFive />
                                             {el}
-                                            <Button
+                                            {/* <Button
                                                 className="ml-auto"
                                                 border={false}
                                                 onClick={() =>
@@ -107,7 +105,7 @@ const SearchForm = () => {
                                                 px={2}
                                             >
                                                 <IoClose />
-                                            </Button>
+                                            </Button> */}
                                         </Link>
                                     ))}
                                 {/* {getFilteredHistory(search.value).length >

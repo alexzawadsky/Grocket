@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import ThemeContext from '../../contexts/ThemeContext'
 
 const RatingStars = ({ rating, setRating }) => {
     const [localRating, setLocalRating] = useState(rating)
+    const { isDark } = useContext(ThemeContext)
 
     return (
         <ul
@@ -22,12 +24,16 @@ const RatingStars = ({ rating, setRating }) => {
                                               ? 'var(--primary)'
                                               : i + 1 <= rating
                                               ? '#ffd8a6'
+                                              : isDark
+                                              ? '#747b80'
                                               : '#C0D6E4',
                                   }
                                 : {
                                       color:
                                           i + 1 <= rating + 0.3
                                               ? 'var(--primary)'
+                                              : isDark
+                                              ? '#747b80'
                                               : '#C0D6E4',
                                   }
                         }

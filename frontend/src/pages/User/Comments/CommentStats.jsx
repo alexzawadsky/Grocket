@@ -8,7 +8,7 @@ const StatRow = ({ rate, count, total }) => {
             aria-label={`${count} comments with rating ${rate}`}
         >
             <RatingStars rating={rate} />
-            <div className="h-2/3 w-full rounded-full border-2 border-accent-orange/[0.2]">
+            <div className="h-2/3 w-full rounded-full border-2 dark:border-zinc-600">
                 <div
                     style={{
                         width: count > 0 ? `${(count / total) * 100}%` : '0px',

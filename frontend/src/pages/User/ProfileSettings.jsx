@@ -35,7 +35,7 @@ export const PasswordReset = () => {
                 })
             }}
             className="grid w-full gap-3 md:w-2/3 lg:w-1/2"
-            errors={updateProfileMutation.error?.response.data}
+            errors={updateProfileMutation?.error?.response?.data}
         >
             <Input
                 name="current_password"
@@ -44,7 +44,7 @@ export const PasswordReset = () => {
                 instance={oldPwd}
                 must={true}
                 hasError={
-                    updateProfileMutation.error?.response.data[
+                    updateProfileMutation?.error?.response?.data[
                         'current_password'
                     ]
                 }
@@ -56,7 +56,7 @@ export const PasswordReset = () => {
                 instance={newPwd}
                 must={true}
                 hasError={
-                    updateProfileMutation.error?.response.data['new_password']
+                    updateProfileMutation?.error?.response?.data['new_password']
                 }
             />
             <Button
@@ -107,14 +107,16 @@ export const UpdateProfile = () => {
                         Object.fromEntries(changedFields)
                     )
                 }}
-                errors={updateProfileMutation?.error?.response.data}
+                errors={updateProfileMutation?.error?.response?.data}
             >
                 <Input
                     name="first_name"
                     title={t('first_name')}
                     instance={name}
                     hasError={
-                        updateProfileMutation.error?.response.data['first_name']
+                        updateProfileMutation?.error?.response?.data[
+                            'first_name'
+                        ]
                     }
                 />
                 <Input
@@ -122,7 +124,9 @@ export const UpdateProfile = () => {
                     title={t('last_name')}
                     instance={lastName}
                     hasError={
-                        updateProfileMutation.error?.response.data['last_name']
+                        updateProfileMutation?.error?.response?.data[
+                            'last_name'
+                        ]
                     }
                 />
                 <Input
@@ -130,7 +134,7 @@ export const UpdateProfile = () => {
                     title={t('phone')}
                     instance={phone}
                     hasError={
-                        updateProfileMutation.error?.response.data['phone']
+                        updateProfileMutation?.error?.response?.data['phone']
                     }
                 />
                 <Input
@@ -139,7 +143,7 @@ export const UpdateProfile = () => {
                     title={t('email')}
                     instance={email}
                     hasError={
-                        updateProfileMutation.error?.response.data['email']
+                        updateProfileMutation?.error?.response?.data['email']
                     }
                 />
                 <Button
@@ -178,7 +182,7 @@ export const DeleteProfile = () => {
             <h2 className="text-lg text-accent-red">{t('delete_heading')}</h2>
             <Form
                 className="grid w-full gap-3 md:w-2/3 lg:w-1/2"
-                errors={deleteProfileMutation.error?.response?.data}
+                errors={deleteProfileMutation?.error?.response?.data}
                 onSubmit={() =>
                     deleteProfileMutation.mutate({
                         data: {
@@ -194,7 +198,7 @@ export const DeleteProfile = () => {
                     must={true}
                     name="current_password"
                     hasError={
-                        deleteProfileMutation.error?.response?.data[
+                        deleteProfileMutation?.error?.response?.data[
                             'current_password'
                         ]
                     }

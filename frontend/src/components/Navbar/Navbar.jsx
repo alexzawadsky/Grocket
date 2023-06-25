@@ -10,7 +10,7 @@ import logo from '../../assets/images/logo.png'
 import heart from '../../assets/icons/ukraine.svg'
 import ThemeToggle from './ThemeToggle'
 import { Button } from '../ui'
-import { GoKebabVertical } from 'react-icons/go'
+import { FiMoreVertical } from 'react-icons/fi'
 import ProfileButton from './ProfileButton'
 import CurrencyDropdown from './CurrencyDropdown'
 import cn from 'classnames'
@@ -64,7 +64,7 @@ const Navbar = () => {
                         )}
                     </Link>
                     <Link
-                        to="https://ukraine.europarl.europa.eu/en/home"
+                        to="https://www.standwithukraine.how"
                         target="_blank"
                         className="mb-auto"
                     >
@@ -150,7 +150,7 @@ const Navbar = () => {
                             className="nav-toggle pr-3 sm:px-4"
                             ariaLabel="open navbar"
                         >
-                            <GoKebabVertical />
+                            <FiMoreVertical />
                         </Button>
                     </li>
                 )}

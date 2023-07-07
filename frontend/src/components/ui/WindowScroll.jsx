@@ -1,12 +1,15 @@
 import { useEffect, useState, useContext } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import CategoriesListStateContext from '../../contexts/CategoriesListStateContext'
+import { useLocation } from 'react-router-dom'
 
 const WindowScroll = () => {
     const [isTop, setIsTop] = useState(true)
     const [isBottom, setIsBottom] = useState(false)
     const [hasScroll, setHasScroll] = useState(false)
     const { open } = useContext(CategoriesListStateContext)
+    const [hidden, setHidden] = useState(false)
+    const location = useLocation()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,9 +24,19 @@ const WindowScroll = () => {
     }, [])
 
     useEffect(() => {
+        const regex = /^\/messenger\/\w+$/
+        if (regex.test(location.pathname)) {
+            setHidden(true)
+        } else {
+            setHidden(false)
+        }
+    }, [location.pathname])
+
+    useEffect(() => {
         setHasScroll(document.body.scrollHeight > document.body.clientHeight)
     }, [document.body.scrollHeight])
 
+    if (hidden) return
     if (open) return
     if (!hasScroll) return
 

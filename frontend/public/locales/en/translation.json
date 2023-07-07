@@ -138,5 +138,8 @@
     "translation": "translation",
     "status": "Status",
     "auth_error": "User with this email and password is not found",
-    "no_response": "Backend server is not responding, try again later"
+    "no_response": "Backend server is not responding, try again later",
+    "messenger": "Messenger",
+    "online": "Online",
+    "offline": "Offline"
 }

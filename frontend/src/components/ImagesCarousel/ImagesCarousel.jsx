@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import useScreen from '../../hooks/useScreen'
 
-const ImagesCarousel = ({ images }) => {
+const ImagesCarousel = ({ images, sold }) => {
     const [currentIndex, setCurrentIndex] = useState(0)
     const { isMinTablet } = useScreen()
     if (images.length === 0) return
@@ -11,6 +11,7 @@ const ImagesCarousel = ({ images }) => {
             <img
                 aria-label="item card photo"
                 src={images[currentIndex]?.image}
+                className={sold ? ' contrast-[0.25] saturate-50' : null}
             />
             {isMinTablet && (
                 <div

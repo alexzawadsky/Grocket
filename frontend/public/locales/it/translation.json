@@ -138,5 +138,9 @@
     "translation": "traduzione",
     "status": "Stato",
     "auth_error": "L'utente con questa e-mail e password non è stato trovato",
-    "no_response": "Il server di backend non risponde, riprova più tardi"
+    "no_response": "Il server di backend non risponde, riprova più tardi",
+    "messenger": "Messenger",
+    "online": "Online",
+    "offline": "Offline",
+    "is_sold": "VENDUTO"
 }

@@ -24,6 +24,7 @@ import { useTranslation } from 'react-i18next'
 import ImagesGallery from './ImagesGallery'
 import NotFound from '../NotFound/NotFound'
 import NoResponse from '../../components/Placeholders/NoResponse'
+import cn from 'classnames'
 
 const ProductPage = () => {
     const { productId } = useParams()
@@ -72,8 +73,16 @@ const ProductPage = () => {
                 <div className="grid gap-3 md:gap-7">
                     <div className="grid gap-1.5">
                         <div className="flex items-center justify-between gap-3 md:gap-5">
-                            <h1 className="text-3xl font-bold">{data.name}</h1>
-                            {user && (
+                            <h1
+                                className={cn(
+                                    'text-3xl font-bold',
+                                    data?.is_sold ? 'text-zinc-500' : null
+                                )}
+                            >
+                                {data.name}{' '}
+                                {data.is_sold && `(${t('is_sold')})`}
+                            </h1>
+                            {!data?.is_sold && user && (
                                 <Button
                                     ariaLabel="add to favourites button"
                                     className="!border-none text-3xl !text-accent-red dark:!text-red-600"
@@ -131,7 +140,7 @@ const ProductPage = () => {
                             currency={data?.price_currency}
                         />
                     )}
-                    <SellerCard profile={data.user} />
+                    <SellerCard profile={data.user} sold={data?.is_sold} />
                     {userIsSeller && (
                         <div className="grid gap-3">
                             <h2 className="ml-3 text-xl font-bold">

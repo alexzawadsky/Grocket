@@ -4,7 +4,7 @@ import AuthContext from '../../contexts/AuthProvider'
 import { Avatar, RatingStars, Button, Flag } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
 
-const SellerCard = ({ profile }) => {
+const SellerCard = ({ profile, sold }) => {
     const { t, i18n } = useTranslation()
     const { user } = useContext(AuthContext)
     const { productId } = useParams()
@@ -54,13 +54,14 @@ const SellerCard = ({ profile }) => {
                 className="text-sm text-primary-300 dark:text-zinc-400"
                 aria-label="user grocket join date"
             >{`${t('on_grocket_since')} ${date}`}</p>
-            {user?.user_id !== profile.id && (
+            {user?.user_id !== profile.id && !sold && (
                 <Button
                     style="fill"
                     width="full"
                     color="accent-orange"
                     height={10}
                     px={5}
+                    className="!py-1"
                     to={`/messenger/${productId}`}
                 >
                     {t('send_message')}

@@ -141,5 +141,6 @@
     "no_response": "Backend server is not responding, try again later",
     "messenger": "Messenger",
     "online": "Online",
-    "offline": "Offline"
+    "offline": "Offline",
+    "is_sold": "SOLD"
 }

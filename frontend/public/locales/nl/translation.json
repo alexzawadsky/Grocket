@@ -138,5 +138,9 @@
     "translation": "vertaling",
     "status": "Toestand",
     "auth_error": "Gebruiker met dit e-mailadres en wachtwoord is niet gevonden",
-    "no_response": "Backend-server reageert niet, probeer het later opnieuw"
+    "no_response": "Backend-server reageert niet, probeer het later opnieuw",
+    "messenger": "Messenger",
+    "online": "Online",
+    "offline": "Offline",
+    "is_sold": "VERKOCHT"
 }

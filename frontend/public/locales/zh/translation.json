@@ -138,5 +138,9 @@
     "translation": "翻译",
     "status": "地位",
     "auth_error": "找不到使用此电子邮件和密码的用户",
-    "no_response": "后端服务器没有响应，请稍后重试"
+    "no_response": "后端服务器没有响应，请稍后重试",
+    "messenger": "Messenger",
+    "online": "Online",
+    "offline": "Offline",
+    "is_sold": "卖"
 }

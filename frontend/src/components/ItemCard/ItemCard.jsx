@@ -48,7 +48,10 @@ const ItemCard = ({
                         </>
                     ) : (
                         <div className="col-span-full overflow-hidden rounded-lg">
-                            <ImagesCarousel images={product?.images} />
+                            <ImagesCarousel
+                                images={product?.images}
+                                sold={product?.is_sold}
+                            />
                         </div>
                     )}
                 </div>
@@ -234,7 +237,7 @@ const ItemCard = ({
                 `flex h-full flex-col gap-2 transition-all duration-150`
             )}
         >
-            <ImagesCarousel images={product?.images} />
+            <ImagesCarousel images={product?.images} sold={product?.is_sold} />
             <div className="flex items-center gap-2">
                 <Flag
                     size={5}

@@ -138,5 +138,9 @@
     "translation": "traduction",
     "status": "Statut",
     "auth_error": "L'utilisateur avec cet email et ce mot de passe est introuvable",
-    "no_response": "Le serveur principal ne répond pas, réessayez plus tard"
+    "no_response": "Le serveur principal ne répond pas, réessayez plus tard",
+    "messenger": "Messenger",
+    "online": "Online",
+    "offline": "Offline",
+    "is_sold": "VENDU"
 }

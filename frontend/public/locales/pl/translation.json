@@ -138,5 +138,9 @@
     "translation": "tłumaczenie",
     "status": "Status",
     "auth_error": "Nie znaleziono użytkownika o tym adresie e-mail i haśle",
-    "no_response": "Serwer zaplecza nie odpowiada, spróbuj ponownie później"
+    "no_response": "Serwer zaplecza nie odpowiada, spróbuj ponownie później",
+    "messenger": "Messenger",
+    "online": "Online",
+    "offline": "Offline",
+    "is_sold": "SPRZEDANY"
 }

@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { NavLink } from 'react-router-dom'
 import { IoBookOutline } from 'react-icons/io5'
 import SearchHistoryContext from '../../contexts/HistoryContext'
 import { useContext } from 'react'
 import { BsFillTrashFill, BsArrowRight } from 'react-icons/bs'
-import HistoryItem from './HistoryItem'
 import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
+const HistoryItem = lazy(() => import('./HistoryItem'))
 
 const HistoryList = () => {
     const { t } = useTranslation()
@@ -38,18 +38,20 @@ const HistoryList = () => {
                     ) : null}
                 </>
             )}
-            {isMinTablet &&
-                (lookHistory.length ? (
-                    <ul aria-label="items history list">
-                        {lookHistory.slice(0, 4).map((el, key) => (
-                            <HistoryItem key={key} product={el} />
-                        ))}
-                    </ul>
-                ) : (
-                    <span className="pl-8 xl:pl-[38px]">
-                        <i>{t('nothing_yet')}</i>
-                    </span>
-                ))}
+            <Suspense>
+                {isMinTablet &&
+                    (lookHistory.length ? (
+                        <ul aria-label="items history list">
+                            {lookHistory.slice(0, 4).map((el, key) => (
+                                <HistoryItem key={key} product={el} />
+                            ))}
+                        </ul>
+                    ) : (
+                        <span className="pl-8 xl:pl-[38px]">
+                            <i>{t('nothing_yet')}</i>
+                        </span>
+                    ))}
+            </Suspense>
             {lookHistory.length > 4 ||
                 (lookHistory.length && !isMinTablet ? (
                     <NavLink

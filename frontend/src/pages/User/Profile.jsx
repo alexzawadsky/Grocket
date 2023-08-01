@@ -4,11 +4,14 @@ import { Spinner } from '../../components/ui'
 import { useProfile } from '../../api/api'
 import useScreen from '../../hooks/useScreen'
 import { useTranslation } from 'react-i18next'
-import ProfileSettings from './ProfileSettings'
-import UserComments from './Comments/Comments'
-import AddComment from './Comments/AddComment'
-import UserProductsList from './UserProductsList'
-import NoResponse from '../../components/Placeholders/NoResponse'
+import { Suspense, lazy } from 'react'
+const ProfileSettings = lazy(() => import('./ProfileSettings'))
+const UserComments = lazy(() => import('./Comments/Comments'))
+const AddComment = lazy(() => import('./Comments/AddComment'))
+const UserProductsList = lazy(() => import('./UserProductsList'))
+const NoResponse = lazy(() =>
+    import('../../components/Placeholders/NoResponse')
+)
 
 const Profile = () => {
     const { t } = useTranslation()
@@ -17,7 +20,12 @@ const Profile = () => {
     const location = useLocation()
     const { data, isLoading, error } = useProfile(profileId)
 
-    if (error?.response?.status.toString()[0] === '5') return <NoResponse />
+    if (error?.response?.status.toString()[0] === '5')
+        return (
+            <Suspense>
+                <NoResponse />
+            </Suspense>
+        )
     if (error) return error.message
 
     return (
@@ -46,33 +54,17 @@ const Profile = () => {
                             country={data?.country}
                         />
                     )}
-                    {/* {!isMinTablet && profileId === 'me' && (
-                        <NavLink
-                            to="items"
-                            className="ml-5 flex w-fit items-center gap-2 text-xl font-bold"
-                        >
-                            <BsBoxSeam />
-                            {t('items')}
-                        </NavLink>
-                    )} */}
-                    {/* {profileId === 'me' && (
-                        <button
-                            onClick={logoutUser}
-                            className="ml-5 flex w-fit items-center gap-2 font-bold text-accent-red transition-all duration-150 hover:gap-3"
-                        >
-                            {t('logout_from_acc')}
-                            <FiLogOut />
-                        </button>
-                    )} */}
                 </div>
             )}
-            <Routes>
-                <Route path="" element={<UserProductsList />} />
-                <Route path="comments" element={<UserComments />}>
-                    <Route path="add" element={<AddComment />} />
-                </Route>
-                <Route path="settings/*" element={<ProfileSettings />} />
-            </Routes>
+            <Suspense>
+                <Routes>
+                    <Route path="" element={<UserProductsList />} />
+                    <Route path="comments" element={<UserComments />}>
+                        <Route path="add" element={<AddComment />} />
+                    </Route>
+                    <Route path="settings/*" element={<ProfileSettings />} />
+                </Routes>
+            </Suspense>
         </div>
     )
 }

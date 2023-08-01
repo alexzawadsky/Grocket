@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { useProduct, useUpdateProduct } from '../../api/api'
 import { Spinner, Button, Form } from '../../components/ui'
-import ProductForm from '../../forms/ProductForm'
 import { BsArrowLeft } from 'react-icons/bs'
-import CategoryList from './CategoryList'
 import { prepareImages } from './utils'
 import { useTranslation } from 'react-i18next'
 import NoResponse from '../../components/Placeholders/NoResponse'
+const ProductForm = lazy(() => import('../../forms/ProductForm'))
+const CategoryList = lazy(() => import('./CategoryList'))
 
 const EditProduct = () => {
     const { t } = useTranslation()
@@ -62,52 +62,61 @@ const EditProduct = () => {
 
     return (
         <div className="grid gap-4">
-            <Form
-                className="mx-auto grid gap-2 lg:w-10/12 xl:w-8/12"
-                onSubmit={() =>
-                    updateProductMutation.mutate({
-                        id: data?.id,
-                        body: changes,
-                    })
-                }
-                errors={updateProductMutation.error?.response?.data}
-            >
-                <NavLink
-                    to={`/products/${productId}`}
-                    className="flex items-center gap-2 font-bold hover:text-accent-orange"
-                >
-                    <BsArrowLeft />
-                    {t('product_page')}
-                </NavLink>
-                <h2 className="text-xl font-bold">{t('change_category')}</h2>
-                <CategoryList category={category} setCategory={setCategory} />
-                <ProductForm
-                    data={data}
-                    setData={setFormData}
-                    setValid={setValid}
-                    errors={updateProductMutation.error?.response?.data || {}}
-                />
-                <Button
-                    type="submit"
-                    color="accent-orange"
-                    style="fill"
-                    width="fit"
-                    height={12}
-                    px={5}
-                    disabled={
-                        !valid ||
-                        Object.keys(changes).length === 0 ||
-                        updateProductMutation.isLoading
+            <Suspense>
+                <Form
+                    className="mx-auto grid gap-2 lg:w-10/12 xl:w-8/12"
+                    onSubmit={() =>
+                        updateProductMutation.mutate({
+                            id: data?.id,
+                            body: changes,
+                        })
                     }
-                    className="mt-3"
+                    errors={updateProductMutation.error?.response?.data}
                 >
-                    {updateProductMutation.isLoading ? (
-                        <Spinner />
-                    ) : (
-                        t('update')
-                    )}
-                </Button>
-            </Form>
+                    <NavLink
+                        to={`/products/${productId}`}
+                        className="flex items-center gap-2 font-bold hover:text-accent-orange"
+                    >
+                        <BsArrowLeft />
+                        {t('product_page')}
+                    </NavLink>
+                    <h2 className="text-xl font-bold">
+                        {t('change_category')}
+                    </h2>
+                    <CategoryList
+                        category={category}
+                        setCategory={setCategory}
+                    />
+                    <ProductForm
+                        data={data}
+                        setData={setFormData}
+                        setValid={setValid}
+                        errors={
+                            updateProductMutation.error?.response?.data || {}
+                        }
+                    />
+                    <Button
+                        type="submit"
+                        color="accent-orange"
+                        style="fill"
+                        width="fit"
+                        height={12}
+                        px={5}
+                        disabled={
+                            !valid ||
+                            Object.keys(changes).length === 0 ||
+                            updateProductMutation.isLoading
+                        }
+                        className="mt-3"
+                    >
+                        {updateProductMutation.isLoading ? (
+                            <Spinner />
+                        ) : (
+                            t('update')
+                        )}
+                    </Button>
+                </Form>
+            </Suspense>
         </div>
     )
 }

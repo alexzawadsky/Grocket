@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, lazy } from 'react'
 import { Link, Outlet, Routes, useOutlet, Route } from 'react-router-dom'
 import { Input, Spinner, Title, Button, Form } from '../../components/ui'
 import { AvatarCrop } from '../../components'
@@ -15,9 +15,9 @@ import {
     useUpdatePassword,
     useUpdateProfile,
 } from '../../api/api'
-import BackToProfile from './BackToProfile'
 import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
+const BackToProfile = lazy(() => import('./BackToProfile'))
 
 export const PasswordReset = () => {
     const { t } = useTranslation()

@@ -10,7 +10,7 @@ const Avatar = ({ avatar, height, width, alt, className }) => {
                 !avatar && 'dark:brightness-75 dark:invert',
                 className
             )}
-            src={avatar ? avatar : defaultAvatar}
+            src={avatar ? new URL(avatar).pathname : defaultAvatar}
             alt={alt}
             width={width && `${width}px`}
             height={height && `${height}px`}

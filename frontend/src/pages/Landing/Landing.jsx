@@ -1,11 +1,11 @@
 import { SearchBar, SEO } from '../../components'
 import { Title } from '../../components/ui'
-import ProductsList from './ProductsList'
-import HistoryList from './HistoryList'
 import { useTranslation } from 'react-i18next'
 import useScreen from '../../hooks/useScreen'
-import { useEffect, useRef } from 'react'
+import { lazy, useEffect, useRef } from 'react'
 import useLocalStorage from '../../hooks/useLocalStorage'
+const ProductsList = lazy(() => import('./ProductsList'))
+const HistoryList = lazy(() => import('./HistoryList'))
 
 const Landing = () => {
     const { t } = useTranslation()

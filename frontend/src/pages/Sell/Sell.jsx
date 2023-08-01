@@ -1,14 +1,12 @@
-import { useContext, useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Suspense, lazy, useContext, useEffect, useState } from 'react'
 import { Title, Spinner, Button, Form } from '../../components/ui'
-import { BsCheckCircleFill } from 'react-icons/bs'
 import { AiOutlineCheck } from 'react-icons/ai'
 import AuthContext from '../../contexts/AuthProvider'
-import CategoryList from './CategoryList'
 import { useAddProduct } from '../../api/api'
-import ProductForm from '../../forms/ProductForm'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet-async'
+const ProductForm = lazy(() => import('../../forms/ProductForm'))
+const CategoryList = lazy(() => import('./CategoryList'))
 
 const Sell = () => {
     const { t } = useTranslation()
@@ -51,40 +49,48 @@ const Sell = () => {
                     <h2 className="col-span-full text-xl font-bold">
                         {t('category')}
                     </h2>
-                    <CategoryList
-                        category={category}
-                        setCategory={setCategory}
-                    />
+                    <Suspense>
+                        <CategoryList
+                            category={category}
+                            setCategory={setCategory}
+                        />
+                    </Suspense>
                 </>
             )}
             {stage === 2 && (
-                <Form
-                    onSubmit={handleSubmit}
-                    errors={addProductMutation.error?.response?.data}
-                >
-                    <ProductForm
-                        errors={addProductMutation.error?.response?.data || {}}
-                        setData={setFormData}
-                        setValid={setFormValid}
-                    />
-                    <Button
-                        type="submit"
-                        disabled={!formValid || addProductMutation.isLoading}
-                        width="fit"
-                        style="fill"
-                        color="accent-orange"
-                        height={12}
-                        px={5}
-                        className="mt-5"
+                <Suspense>
+                    <Form
+                        onSubmit={handleSubmit}
+                        errors={addProductMutation.error?.response?.data}
                     >
-                        <AiOutlineCheck />
-                        {addProductMutation.isLoading ? (
-                            <Spinner />
-                        ) : (
-                            t('place_item')
-                        )}
-                    </Button>
-                </Form>
+                        <ProductForm
+                            errors={
+                                addProductMutation.error?.response?.data || {}
+                            }
+                            setData={setFormData}
+                            setValid={setFormValid}
+                        />
+                        <Button
+                            type="submit"
+                            disabled={
+                                !formValid || addProductMutation.isLoading
+                            }
+                            width="fit"
+                            style="fill"
+                            color="accent-orange"
+                            height={12}
+                            px={5}
+                            className="mt-5"
+                        >
+                            <AiOutlineCheck />
+                            {addProductMutation.isLoading ? (
+                                <Spinner />
+                            ) : (
+                                t('place_item')
+                            )}
+                        </Button>
+                    </Form>
+                </Suspense>
             )}
         </div>
     )

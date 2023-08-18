@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "comments",
     "images",
     "payments",
+    "channels"
 ]
 
 MIDDLEWARE = [
@@ -95,6 +96,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "grocket.wsgi.application"
+ASGI_APPLICATION = 'grocket.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Use Redis in production
+    },
+}
 
 
 AUTH_USER_MODEL = "users.User"
@@ -102,18 +110,18 @@ AUTH_USER_MODEL = "users.User"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # },
     "default": {
-        "ENGINE": os.getenv("DB_ENGINE"),
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
-    }
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    },
+    # "default": {
+    #     "ENGINE": os.getenv("DB_ENGINE"),
+    #     "NAME": os.getenv("DB_NAME"),
+    #     "USER": os.getenv("POSTGRES_USER"),
+    #     "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+    #     "HOST": os.getenv("DB_HOST"),
+    #     "PORT": os.getenv("DB_PORT"),
+    # }
 }
 
 

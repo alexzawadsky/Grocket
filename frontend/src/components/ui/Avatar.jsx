@@ -5,7 +5,7 @@ const Avatar = ({ avatar, height, width, alt, className }) => {
     return (
         <img
             className={cn(
-                'aspect-square rounded-full object-cover',
+                'aspect-square overflow-hidden rounded-full object-cover',
                 !width && 'w-full',
                 !avatar && 'dark:brightness-75 dark:invert',
                 className

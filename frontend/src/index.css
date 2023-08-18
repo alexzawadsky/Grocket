@@ -20,3 +20,22 @@
     font-family: 'grocketbolditalic';
     src: url('/fonts/NunitoSans-ExtraBoldItalic.ttf');
 }
+
+.chat-container {
+    overflow: auto; /* Enable scroll behavior */
+    scrollbar-width: none; /* Hide the scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide the scrollbar in Internet Explorer and Edge */
+}
+
+.chat-container::-webkit-scrollbar {
+    width: 0.5em; /* Adjust to your preference */
+    display: none; /* Hide the scrollbar in Webkit browsers (Chrome, Safari) */
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background-color: #888; /* Customize the scrollbar thumb color */
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background-color: transparent; /* Customize the scrollbar track color */
+}

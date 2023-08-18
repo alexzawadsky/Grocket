@@ -142,5 +142,6 @@
     "messenger": "Messenger",
     "online": "Online",
     "offline": "Offline",
-    "is_sold": "SOLD"
+    "is_sold": "SOLD",
+    "no_chat": "No chat selected"
 }

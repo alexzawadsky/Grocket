@@ -76,7 +76,7 @@ const Search = () => {
                     <ul
                         className={cn(
                             !data?.count && 'min-h-[70vh]',
-                            'bg-red relative grid max-w-full overflow-hidden',
+                            'bg-red relative grid max-w-full overflow-hidden max-md:gap-5',
                             !isList &&
                                 'max-md:gap-2 md:grid-cols-3 xl:grid-cols-4'
                         )}

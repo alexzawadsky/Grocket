@@ -1,44 +1,32 @@
-import json
 from channels.generic.websocket import AsyncWebsocketConsumer
-from datetime import datetime
+import json
+from asgiref.sync import async_to_sync
+from .notifications import send_notification
 
-class ChatConsumer(AsyncWebsocketConsumer):
+class NotificationConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.room_group_name = f"chat_{self.room_name}"
-        print('connected to', self.room_name, self.room_group_name)
+        # Authenticate the user
+        await self.accept()
+        await self.send(text_data="connected")
+        # Add the user to a user-specific group
+        # user_id = self.scope['user'].id
+        user_id = 2
         await self.channel_layer.group_add(
-            self.room_group_name,
+            f"user_notifications_{user_id}",  # User-specific group
             self.channel_name
         )
+        await send_notification(2, "test notification")
+        
 
-        await self.accept()
 
     async def disconnect(self, close_code):
+        # Remove the user from the user-specific group
+        user_id = self.scope['user'].id
         await self.channel_layer.group_discard(
-            self.room_group_name,
+            f"user_notifications_{user_id}",  # User-specific group
             self.channel_name
         )
 
-    async def receive(self, text_data):
-        data = json.loads(text_data)
-
-        await self.channel_layer.group_send(
-            self.room_group_name,
-            {
-                'type': 'chat_message',
-                'data': data
-            }
-        )
-
-    async def chat_message(self, event):
-        data = event['data']
-        print(data)
-
-        # вот тут надо создавать сообщение!!!
-
-        await self.send(text_data=json.dumps({
-            'message': data['message'],
-            'time': datetime.now().isoformat(),
-            'user_id': data['userId']
-        }))
+    async def notify(self, event):
+        # Send a notification to the user
+        await self.send(text_data=json.dumps(event))

@@ -14,9 +14,9 @@ const statusIcons = {
 
 const CommentStatus = ({ title, name }) => {
     return (
-        <>
+        <p className="flex items-center gap-1">
             {statusIcons[name]} {title}
-        </>
+        </p>
     )
 }
 

@@ -23,7 +23,7 @@ const ItemCard = ({
                 horizontal
                     ? 'md:grid-cols-[1fr_2fr] xl:grid-cols-[1fr_2fr_1fr]'
                     : 'md:gap-2',
-                'grid h-full content-start items-center overflow-hidden rounded-lg transition-all duration-150 max-md:gap-2 md:rounded-2xl md:p-5 md:hover:bg-slate-50 md:hover:dark:bg-zinc-700'
+                'grid h-full content-start items-center rounded-lg transition-all duration-150 max-md:gap-2 md:rounded-2xl md:p-5 md:hover:bg-slate-50 md:hover:dark:bg-zinc-700'
             )}
             to={`/products/${product?.slug}`}
         >

@@ -19,28 +19,13 @@ const ReadMore = ({ text, limit }) => {
 
     return (
         <div aria-label="read more container">
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0">
-                <Button
-                    onClick={() => setTranslated((prevState) => !prevState)}
-                    border={false}
-                    className="text-sm hover:text-accent-orange"
-                >
-                    {translated ? t('show_original') : t('translate')}
-                </Button>
-                <Link
-                    to="https://libretranslate.com/"
-                    target="_blank"
-                    className="flex gap-1 text-[12px] text-[#42a5f5] hover:underline dark:text-blue-300"
-                >
-                    {t('powered_by')}{' '}
-                    <img
-                        src={libretranslateIcon}
-                        className="h-4"
-                        alt="libretranslate icon"
-                    />{' '}
-                    LibreTranslate
-                </Link>
-            </div>
+            <Button
+                onClick={() => setTranslated((prevState) => !prevState)}
+                border={false}
+                className="text-sm hover:text-accent-orange"
+            >
+                {translated ? t('show_original') : t('translate')}
+            </Button>
             {error && t('translation_fail')}
             {isLoading && <Spinner />}
             <p dangerouslySetInnerHTML={{ __html: res }} aria-label="text"></p>

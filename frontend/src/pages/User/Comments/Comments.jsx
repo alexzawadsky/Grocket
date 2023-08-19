@@ -22,7 +22,7 @@ const Comments = () => {
     return (
         <div className="grid gap-4">
             <BackToProfile />
-            <h1 className="text-3xl font-bold">{t('comments')}</h1>
+            <h1 className="w-fit text-3xl font-bold">{t('comments')}</h1>
             <div className="grid gap-2 md:grid-cols-[3fr_2fr] md:gap-3 lg:grid-cols-[2fr_1fr] lg:gap-5">
                 <CommentsStats stats={data?.stats} count={data?.count} />
                 <div className="mt-auto" aria-label="how rating works">

@@ -71,7 +71,7 @@ const Footer = () => {
                     aria-label="website version and name"
                 >
                     © Grocket, {new Date().getFullYear()}{' '}
-                    <span className="pl-2">v1.0.0</span>
+                    <span className="pl-2">v1.1.1</span>
                 </p>
             </div>
         </footer>

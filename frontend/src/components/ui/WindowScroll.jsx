@@ -26,9 +26,11 @@ const WindowScroll = () => {
     useEffect(() => {
         const regex = /^\/messenger\/\w+$/
         if (regex.test(location.pathname)) {
+            document.body.style.overflow = 'hidden'
             setHidden(true)
         } else {
             setHidden(false)
+            document.body.style.overflow = 'auto'
         }
     }, [location.pathname])
 

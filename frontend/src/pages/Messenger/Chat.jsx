@@ -119,7 +119,7 @@ const Chat = () => {
                         className="flex items-center gap-1 hover:text-accent-orange md:gap-3"
                     >
                         <Avatar avatar={data.user.image} width={30} />
-                        <p className="flex items-center font-bold md:text-lg">
+                        <p className="flex items-center md:text-lg">
                             {!isMinTablet && onlineSymbol} {data.user.name}
                         </p>
                     </Link>
@@ -130,7 +130,7 @@ const Chat = () => {
                 </div>
                 <Link
                     to={`/products/${data.item.slug}`}
-                    className="flex w-fit items-center gap-3 font-bold hover:text-accent-orange max-md:text-sm"
+                    className="flex w-fit items-center gap-3 hover:text-accent-orange max-md:text-sm"
                 >
                     <img src={data.item.image} className="w-10 rounded-md" />
                     {data.item.name} - <Price price={data.item.price} text />

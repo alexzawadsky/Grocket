@@ -41,7 +41,11 @@ const ItemCard = ({
                     horizontal ? 'md:px-4' : ''
                 )}
             >
-                <ItemTitle product={product} search={search} />
+                <ItemTitle
+                    product={product}
+                    search={search}
+                    managable={managable}
+                />
                 <ItemDescription
                     product={product}
                     search={search}

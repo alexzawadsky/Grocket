@@ -3,7 +3,7 @@ import { Flag } from '../ui'
 import ItemTitleIcon from './ItemTitleIcon'
 import cn from 'classnames'
 
-const ItemTitle = ({ product, search }) => {
+const ItemTitle = ({ product, search, managable }) => {
     const { isMinTablet } = useScreen()
     return (
         <div className="flex w-full items-center gap-2">
@@ -24,7 +24,7 @@ const ItemTitle = ({ product, search }) => {
             >
                 {product?.name}
             </p>
-            <ItemTitleIcon product={product} search={search} />
+            <ItemTitleIcon product={product} managable={managable} />
         </div>
     )
 }

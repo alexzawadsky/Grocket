@@ -8,7 +8,7 @@ const ChatLink = ({ chat }) => {
 
     return (
         <NavLink
-            to={chat.id}
+            to={`${chat.id}`}
             className={({ isActive, isPending }) =>
                 isActive
                     ? 'rounded-lg bg-slate-100 p-3 dark:bg-zinc-600'

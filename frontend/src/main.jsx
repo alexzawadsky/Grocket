@@ -12,6 +12,7 @@ import { SearchHistoryProvider } from './contexts/HistoryContext'
 import { AuthProvider } from './contexts/AuthProvider'
 import { BrowserRouter } from 'react-router-dom'
 import { CurrencyProvider } from './contexts/CurrencyContext'
+import { MessengerProvider } from './contexts/MessengerContext'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -27,18 +28,20 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <QueryClientProvider client={queryClient}>
             <AuthProvider>
-                <SearchHistoryProvider>
-                    <HelmetProvider>
-                        <ThemeProvider>
-                            <CategoriesListStateProvider>
-                                <CurrencyProvider>
-                                    <App />
-                                    <ReactQueryDevtools />
-                                </CurrencyProvider>
-                            </CategoriesListStateProvider>
-                        </ThemeProvider>
-                    </HelmetProvider>
-                </SearchHistoryProvider>
+                <MessengerProvider>
+                    <SearchHistoryProvider>
+                        <HelmetProvider>
+                            <ThemeProvider>
+                                <CategoriesListStateProvider>
+                                    <CurrencyProvider>
+                                        <App />
+                                        <ReactQueryDevtools />
+                                    </CurrencyProvider>
+                                </CategoriesListStateProvider>
+                            </ThemeProvider>
+                        </HelmetProvider>
+                    </SearchHistoryProvider>
+                </MessengerProvider>
             </AuthProvider>
         </QueryClientProvider>
     </BrowserRouter>

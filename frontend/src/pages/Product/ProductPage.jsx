@@ -138,7 +138,7 @@ const ProductPage = () => {
                                 currency={data?.price_currency}
                             />
                         )}
-                        <SellerCard profile={data.user} sold={data?.is_sold} />
+                        <SellerCard profile={data.user} product={data} />
                         {userIsSeller && (
                             <div className="grid gap-3">
                                 <h2 className="ml-3 text-xl font-bold">

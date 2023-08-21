@@ -3,8 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 import AuthContext from '../../contexts/AuthProvider'
 import { Avatar, RatingStars, Button, Flag } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
+import SendMessageLink from './SendMessageLink'
 
-const SellerCard = ({ profile, sold }) => {
+const SellerCard = ({ profile, product }) => {
     const { t, i18n } = useTranslation()
     const { user } = useContext(AuthContext)
     const { productId } = useParams()
@@ -54,18 +55,8 @@ const SellerCard = ({ profile, sold }) => {
                 className="text-sm text-primary-300 dark:text-zinc-400"
                 aria-label="user grocket join date"
             >{`${t('on_grocket_since')} ${date}`}</p>
-            {user?.user_id !== profile.id && !sold && (
-                <Button
-                    style="fill"
-                    width="full"
-                    color="accent-orange"
-                    height={10}
-                    px={5}
-                    className="!py-1"
-                    to={`/messenger/${productId}`}
-                >
-                    {t('send_message')}
-                </Button>
+            {user?.user_id !== profile.id && !product?.is_sold && (
+                <SendMessageLink product={product} />
             )}
         </div>
     )

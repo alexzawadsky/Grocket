@@ -112,7 +112,7 @@ const ManageProductMenu = ({ product, dropdown, className }) => {
         >
             <div
                 className={cn(
-                    open ? 'opacity-100' : 'opacity-0',
+                    open ? 'block' : 'hidden',
                     'absolute bottom-10 z-50 w-44 origin-top-right transition-all max-md:-left-1 md:bottom-0 md:left-[110%] md:w-52'
                 )}
                 role="menu"

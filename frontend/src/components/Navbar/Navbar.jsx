@@ -92,7 +92,7 @@ const Navbar = () => {
                         className="hover:bg-accent-orange/[0.8] flex h-12 items-center gap-2 whitespace-nowrap rounded-xl bg-accent-orange px-2 text-lg font-bold text-white md:px-6"
                         to="/sell"
                     >
-                        {isMinTablet ? t('sell_item') : t('sell')}
+                        {isMinPC ? t('sell_item') : t('sell')}
                         <MdOutlineSell />
                     </Link>
                 </li>

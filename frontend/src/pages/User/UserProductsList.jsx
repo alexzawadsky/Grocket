@@ -60,7 +60,7 @@ const UserProductsList = () => {
         <div
             className={cn(
                 !isLoading && !data?.count && 'md:min-h-full',
-                'grid grid-rows-[auto_1fr] gap-2'
+                'grid grid-rows-[auto_1fr] md:gap-2'
             )}
         >
             <nav

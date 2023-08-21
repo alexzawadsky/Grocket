@@ -5,7 +5,7 @@ import useScreen from '../../hooks/useScreen'
 
 const ProfileButton = () => {
     const { data, isLoading } = useProfile('me')
-    const { isMinTablet } = useScreen()
+    const { isMinPC } = useScreen()
 
     return (
         <NavLink
@@ -23,12 +23,12 @@ const ProfileButton = () => {
                         width={40}
                         height={40}
                     />
-                    {isMinTablet && data?.first_name}
+                    {isMinPC && data?.first_name}
                 </>
             ) : (
                 <>
                     <p className="h-10 w-10 animate-pulse rounded-full bg-slate-100 duration-75 dark:bg-zinc-700"></p>
-                    {isMinTablet && (
+                    {isMinPC && (
                         <p
                             aria-hidden="true"
                             className="h-6 w-20 animate-pulse bg-slate-100 duration-75 dark:bg-zinc-700"

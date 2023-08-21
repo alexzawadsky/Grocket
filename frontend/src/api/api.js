@@ -331,4 +331,19 @@ export const useTranslateText = (text, translated) => {
     )
 }
 
+export const useGetChatMutation = () => {
+    const api = useAxios()
+    const navigate = useNavigate()
+    const queryClient = useQueryClient()
+    return useMutation(
+        (productId) => api.get(`/api/v1/messenger/products/${productId}/chat/`),
+        {
+            onSuccess: (res) => {
+                queryClient.invalidateQueries('messenger')
+                navigate(`/messenger/${res.data?.id}`)
+            }
+        }
+    )
+}
+
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || '' })

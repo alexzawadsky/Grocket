@@ -1,0 +1,17 @@
+import React, { useContext } from 'react'
+import MessengerContext from '../../contexts/MessengerContext'
+import ChatLink from './ChatLink'
+
+const ChatsList = () => {
+    const { chats } = useContext(MessengerContext)
+
+    return (
+        <ul className="grid max-h-[calc(100dvh-2.25rem-48px-1.25rem)] min-h-[calc(100dvh-5.25rem-48px-1.25rem)] gap-2 overflow-y-auto">
+            {chats.map((chat, key) => (
+                <ChatLink key={key} chat={chat} />
+            ))}
+        </ul>
+    )
+}
+
+export default ChatsList

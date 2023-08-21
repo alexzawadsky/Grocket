@@ -1,6 +1,13 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { Avatar, Button, Form, Input, Price } from '../../components/ui'
+import {
+    Avatar,
+    Button,
+    Form,
+    Input,
+    Price,
+    Spinner,
+} from '../../components/ui'
 import useInput from '../../hooks/useInput'
 import { IoSend, IoCloseOutline } from 'react-icons/io5'
 import { IoIosArrowDown } from 'react-icons/io'
@@ -11,6 +18,8 @@ import { RxDotFilled, RxDot } from 'react-icons/rx'
 import useScreen from '../../hooks/useScreen'
 import useWebSocket from 'react-use-websocket'
 import AuthContext from '../../contexts/AuthProvider'
+import MessengerContext from '../../contexts/MessengerContext'
+import ChatLoading from './ChatLoading'
 
 const Chat = () => {
     const navigate = useNavigate()
@@ -23,36 +32,12 @@ const Chat = () => {
     const [onBottom, setOnBottom] = useState(true)
     const chatRef = useRef()
     const bottomMarkerRef = useRef()
-
-    const data = {
-        user: {
-            id: '5',
-            name: 'Alexey Zawadsky',
-            image: null,
-        },
-        item: {
-            name: 'DJI Mini 2',
-            slug: 'dji-mini-2',
-            price: 450,
-            image: 'https://www.dpreview.com/files/p/articles/6857732420/DJI_Mavic_Mini_2.jpeg',
-        },
-    }
-
-    const [messages, setMessages] = useState([])
-    const { sendJsonMessage, lastJsonMessage } = useWebSocket(
-        `ws://localhost:8000/ws/chat/${chatId}/`
-    )
-
-    useEffect(() => {
-        if (lastJsonMessage && lastJsonMessage.message) {
-            setMessages((prevM) => [...prevM, lastJsonMessage])
-            console.log(lastJsonMessage)
-        }
-    }, [lastJsonMessage])
-
+    const { sendMessage, getChat } = useContext(MessengerContext)
+    const chat = getChat(parseInt(chatId))
+    console.log(chat)
     useEffect(() => {
         onBottom && scrollToBottom()
-    }, [messages.length])
+    }, [chat?.messages?.length])
 
     const scrollToBottom = () => {
         if (chatRef.current) {
@@ -114,44 +99,62 @@ const Chat = () => {
                     <Link to="/messenger" className="my-auto">
                         <IoCloseOutline size={25} />
                     </Link>
-                    <Link
-                        to={`/users/${data.user.id}`}
-                        className="flex items-center gap-1 hover:text-accent-orange md:gap-3"
-                    >
-                        <Avatar avatar={data.user.image} width={30} />
-                        <p className="flex items-center md:text-lg">
-                            {!isMinTablet && onlineSymbol} {data.user.name}
-                        </p>
-                    </Link>
-                    <span className="hidden items-center md:flex">
-                        {onlineSymbol}
-                        {isMinTablet && online ? t('online') : t('offline')}
-                    </span>
+                    {chat && (
+                        <>
+                            <Link
+                                to={`/users/${chat?.user?.id}`}
+                                className="flex items-center gap-1 hover:text-accent-orange md:gap-3"
+                            >
+                                <Avatar avatar={chat?.user?.image} width={30} />
+                                <p className="flex items-center md:text-lg">
+                                    {!isMinTablet && onlineSymbol}{' '}
+                                    {chat?.user?.name}
+                                </p>
+                            </Link>
+                            <span className="hidden items-center md:flex">
+                                {onlineSymbol}
+                                {isMinTablet && online
+                                    ? t('online')
+                                    : t('offline')}
+                            </span>
+                        </>
+                    )}
                 </div>
-                <Link
-                    to={`/products/${data.item.slug}`}
-                    className="flex w-fit items-center gap-3 hover:text-accent-orange max-md:text-sm"
-                >
-                    <img src={data.item.image} className="w-10 rounded-md" />
-                    {data.item.name} - <Price price={data.item.price} text />
-                </Link>
+                {chat && (
+                    <Link
+                        to={`/products/${chat?.item?.slug}`}
+                        className="flex w-fit items-center gap-3 hover:text-accent-orange max-md:text-sm"
+                    >
+                        <img
+                            src={chat?.item?.image}
+                            className="w-10 rounded-md"
+                        />
+                        {chat?.item?.name} -{' '}
+                        <Price price={chat?.item?.price} text />
+                    </Link>
+                )}
             </div>
-            <ul
-                className="chat-container mb-3 mt-auto grid grow gap-2 overflow-y-auto scroll-smooth"
-                ref={chatRef}
-            >
-                {messages.map((message, key) => (
-                    <Message key={key} message={message} />
-                ))}
-                <span ref={bottomMarkerRef} className="h-[1px]"></span>
-            </ul>
+            {!chat && <ChatLoading />}
+            {chat && (
+                <ul
+                    className="chat-container mb-3 mt-auto grid grow gap-2 overflow-y-auto scroll-smooth"
+                    ref={chatRef}
+                >
+                    {chat?.messages &&
+                        chat.messages.map((message, key) => (
+                            <Message key={key} message={message} />
+                        ))}
+                    <span ref={bottomMarkerRef} className="h-[1px]"></span>
+                </ul>
+            )}
             <Form className="relative flex gap-3" onSubmit={handleSend}>
                 <Input instance={message} containerClassName="w-full min-w-0" />
                 <Button
                     style="outline"
                     type="button"
-                    className="dark:hover:border-400 aspect-square h-10 w-10 !rounded-full !border  border-slate-500 text-slate-500 hover:bg-slate-100 dark:!border-2 dark:border-zinc-500 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-400 dark:hover:text-zinc-400"
+                    className="dark:hover:border-400 aspect-square h-10 w-10 !rounded-full  border-slate-500 text-slate-500 hover:bg-slate-100 dark:!border-2 dark:border-zinc-500 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-400 dark:hover:text-zinc-400"
                     onClick={handleSend}
+                    disabled={!chat}
                 >
                     <MdImage size={20} />
                 </Button>
@@ -161,10 +164,11 @@ const Chat = () => {
                     color="accent-orange"
                     className="aspect-square h-10 w-10 hover:drop-shadow-md"
                     onClick={handleSend}
+                    disabled={!chat}
                 >
                     <IoSend />
                 </Button>
-                {!onBottom && (
+                {!onBottom && chat && (
                     <Button
                         className="dark:hover:border-400 absolute -top-12 right-0 aspect-square h-10 w-10 !rounded-full !border border-slate-500  bg-white text-slate-500 hover:bg-slate-100 dark:!border-2 dark:border-zinc-500 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-400 dark:hover:text-zinc-400"
                         onClick={scrollToBottom}

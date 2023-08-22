@@ -97,7 +97,10 @@ const Chat = () => {
                                 to={`/users/${chat?.user?.id}`}
                                 className="flex items-center gap-1 hover:text-accent-orange md:gap-3"
                             >
-                                <Avatar avatar={chat?.user?.image} width={30} />
+                                <Avatar
+                                    avatar={chat?.user?.avatar}
+                                    width={30}
+                                />
                                 <p className="flex items-center md:text-lg">
                                     {!isMinTablet && onlineSymbol}{' '}
                                     {chat?.user?.first_name}{' '}

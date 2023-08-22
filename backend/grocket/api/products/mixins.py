@@ -1,24 +1,15 @@
 from django_filters import rest_framework as django_filters
 from rest_framework import filters, permissions
-from rest_framework.mixins import (
-    CreateModelMixin,
-    DestroyModelMixin,
-    RetrieveModelMixin,
-    UpdateModelMixin,
-)
+from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
+                                   RetrieveModelMixin, UpdateModelMixin)
 
 from ..mixins import BaseMixin
 from .filters import ProductFilter
 from .paginators import ProductPageLimitPagination
-from .serializers import (
-    CategoryListSerializer,
-    ProductCreateSerializer,
-    ProductListSerializer,
-    ProductRetrieveSerializer,
-    ProductUpdateSerializer,
-    PromotionCreateUpdateSerializer,
-    PromotionSerializer,
-)
+from .serializers import (CategoryListSerializer, ProductCreateSerializer,
+                          ProductListSerializer, ProductRetrieveSerializer,
+                          ProductUpdateSerializer,
+                          PromotionCreateUpdateSerializer, PromotionSerializer)
 
 
 class ProductMixin(

@@ -108,6 +108,15 @@ def get_product_or_404(user_id: Optional[int] = None, **fields) -> Product:
     return product
 
 
+def get_avilable_product_or_none(product_id: int) -> Optional[Product]:
+    """avilable - не проданный, не архивированный, не удаленный."""
+    if Product.objects.filter(id=product_id).exists():
+        product = Product.objects.get(id=product_id)
+        if not (product.is_sold and product.is_archived):
+            return product
+    return None
+
+
 @http_404_logger
 def get_category_name_by_id_or_none(category_id: int) -> Optional[str]:
     if Category.objects.filter(id=category_id).exists():

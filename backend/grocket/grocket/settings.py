@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-ixh5=+g%x22o)3f58^+tm$#%dz)gf_cy7+m&_8_7j#%mh9vhuu
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['http://opns-st-1.aboard.ru:34080']
+CSRF_TRUSTED_ORIGINS = ["http://opns-st-1.aboard.ru:34080"]
 
 
 INSTALLED_APPS = [
@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "channels",
     "django_dump_load_utf8",
     "phonenumber_field",
     "django_countries",
@@ -37,12 +38,12 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "ckeditor",
     "django_bleach",
+    "messenger",
     "users",
     "products",
     "comments",
     "images",
     "payments",
-    "channels"
 ]
 
 MIDDLEWARE = [
@@ -96,11 +97,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "grocket.wsgi.application"
-ASGI_APPLICATION = 'grocket.asgi.application'
+ASGI_APPLICATION = "grocket.asgi.application"
 
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Use Redis in production
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",  # Use Redis in production
     },
 }
 
@@ -181,7 +182,7 @@ REST_FRAMEWORK = {
 
 # JWT токены
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=1000),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=31),
     "UPDATE_LAST_LOGIN": True,
     "AUTH_HEADER_TYPES": ("Bearer",),

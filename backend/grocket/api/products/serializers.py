@@ -5,19 +5,15 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.users.serializers import CustomUserSerializer
-from products.models import Category, Image, Product, ProductAddress
-from products.selectors import (
-    get_ancestors_by_category,
-    get_favourites_count,
-    get_is_favourited,
-    get_product_address,
-    get_product_category,
-    get_product_images,
-    get_product_promotions,
-)
-from products.services.services import CreateProductService
 from images.services import ImageService
+from products.models import Category, Image, Product, ProductAddress
+from products.selectors import (get_ancestors_by_category,
+                                get_favourites_count, get_is_favourited,
+                                get_product_address, get_product_category,
+                                get_product_images, get_product_promotions)
+from products.services.services import CreateProductService
 from users.services import UserService
+
 from .fields import ProductImagesUpdateField
 
 users_services = UserService()

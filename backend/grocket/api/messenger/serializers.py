@@ -64,7 +64,7 @@ class ChatListSerializer(serializers.Serializer):
     unseen_count = serializers.SerializerMethodField()
     messages = serializers.SerializerMethodField()
 
-    def get_last_messages(self, obj):
+    def get_messages(self, obj):
         messages = get_last_message_in_queryset(chat_id=obj.id)
         serializer = MessageListSerializer(instance=messages, many=True, read_only=True)
         return serializer.data

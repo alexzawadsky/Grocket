@@ -20,7 +20,7 @@ const Message = ({ message }) => {
                 {message?.text}
             </div>
             <p className="text-[10px] text-slate-400">
-                {new Date(message.time).toLocaleTimeString([], {
+                {new Date(message?.pub_date).toLocaleTimeString([], {
                     hour: 'numeric',
                     minute: 'numeric',
                     hour12: false,

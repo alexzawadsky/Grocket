@@ -121,15 +121,15 @@ const Chat = () => {
                 </div>
                 {chat && (
                     <Link
-                        to={`/products/${chat?.item?.slug}`}
+                        to={`/products/${chat?.product?.slug}`}
                         className="flex w-fit items-center gap-3 hover:text-accent-orange max-md:text-sm"
                     >
                         <img
-                            src={chat?.item?.image}
+                            src={chat?.product?.image?.image}
                             className="w-10 rounded-md"
                         />
-                        {chat?.item?.name} -{' '}
-                        <Price price={chat?.item?.price} text />
+                        {chat?.product?.name} -{' '}
+                        <Price price={chat?.product?.price} text />
                     </Link>
                 )}
             </div>

@@ -17,10 +17,13 @@ const ChatLink = ({ chat }) => {
         >
             <div className="flex w-full items-center gap-2">
                 <div className="relative w-16">
-                    <img src={chat?.item?.image} className="rounded-md" />
+                    <img
+                        src={chat?.product?.image?.image}
+                        className="rounded-md"
+                    />
                     <Avatar
-                        avatar={chat?.user?.image}
-                        className="absolute left-0 top-0 z-40 -translate-x-1/2 -translate-y-1/2 border-2 border-white"
+                        avatar={chat?.user?.avatar}
+                        className="absolute left-0 top-0 z-40 -translate-x-1/2 -translate-y-1/2 border-2 border-white dark:border-zinc-600"
                         width={25}
                     />
                 </div>
@@ -41,7 +44,7 @@ const ChatLink = ({ chat }) => {
                         <p className="place-self-end whitespace-nowrap text-[10px] text-slate-500 dark:text-zinc-400">
                             <PublishTime
                                 style="twitter"
-                                pubDate={chat?.messages.at(-1)?.time}
+                                pubDate={chat?.messages.at(-1)?.pub_date}
                             />
                         </p>
                     </div>

@@ -24,6 +24,15 @@ module.exports = {
                     "orange-dimmed-dark": "#784c00"
                 },
             },
+            keyframes: {
+                spin: {
+                    '0%': { transform: 'rotate(0)' },
+                    '100%': { transform: 'rotate(360deg)' },
+                },
+            },
+            animation: {
+                spinmail: 'spin 2.5s linear infinite',
+            },
         },
     },
     plugins: [],

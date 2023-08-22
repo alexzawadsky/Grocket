@@ -27,9 +27,10 @@ TimeAgo.addLocale(nl)
 TimeAgo.addLocale(it)
 TimeAgo.addLocale(pl)
 
-const PublishTime = ({ full, pubDate }) => {
+const PublishTime = ({ full, pubDate, style }) => {
     const { i18n } = useTranslation()
 
+    if (!pubDate) return
     if (full)
         return new Date(pubDate).toLocaleDateString(i18n.resolvedLanguage, {
             weekday: 'short',
@@ -43,6 +44,7 @@ const PublishTime = ({ full, pubDate }) => {
     return (
         <ReactTimeAgo
             date={pubDate}
+            timeStyle={style}
             locale={
                 localization[i18n.resolvedLanguage.toUpperCase()]
                     .codeForTimeStamp

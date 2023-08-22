@@ -1,43 +1,16 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 import useWebSocket from 'react-use-websocket'
 import AuthContext from './AuthProvider'
+import { useChats } from '../api/api'
 
 const MessengerContext = createContext()
 
 export default MessengerContext
 
-const chatMock = {
-    unread: true,
-    id: 1,
-    item: {
-        name: 'Apple Watch',
-        image: 'https://www.dpreview.com/files/p/articles/6857732420/DJI_Mavic_Mini_2.jpeg',
-    },
-    last_message: {
-        user: 2,
-        text: 'Hi, is it still available? I would like to buy it today',
-        time: '17:23',
-    },
-    user: {
-        id: '5',
-        name: 'Alexey Zawadsky',
-        image: null,
-    },
-    item: {
-        name: 'DJI Mini 2',
-        slug: 'dji-mini-2',
-        price: 450,
-        image: 'https://www.dpreview.com/files/p/articles/6857732420/DJI_Mavic_Mini_2.jpeg',
-    },
-}
-
 export const MessengerProvider = ({ children }) => {
-    const [chats, setChats] = useState(
-        Array(20)
-            .fill(0)
-            .map(() => chatMock)
-    )
+    const [chats, setChats] = useState([])
     const { user } = useContext(AuthContext)
+    const { data, isLoading, error } = useChats()
 
     const { sendJsonMessage, lastJsonMessage } = useWebSocket(
         `ws://localhost:8000/ws/messenger/notifications/${user?.user_id}/`
@@ -50,17 +23,35 @@ export const MessengerProvider = ({ children }) => {
         }
     }, [lastJsonMessage])
 
+    useEffect(() => {
+        if (data) setChats(data)
+    }, [data])
+
     const sendMessage = (chatId, message) => {
         console.log('send', chatId, message)
     }
 
-    const getChat = (chatId) => {
+    const getChats = () => {
+        const compareChats = (chatA, chatB) => {
+            const lastMessageTimeA = new Date(
+                chatA.messages[chatA.messages.length - 1].time
+            )
+            const lastMessageTimeB = new Date(
+                chatB.messages[chatB.messages.length - 1].time
+            )
+            return lastMessageTimeB - lastMessageTimeA
+        }
+        chats.sort(compareChats)
+        return chats
+    }
+
+    const getChatById = (chatId) => {
         return chats.find((chat) => chat?.id == chatId)
     }
 
     const contextData = {
-        chats,
-        getChat,
+        getChats,
+        getChatById,
         sendMessage,
     }
 

@@ -1,13 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import {
-    Avatar,
-    Button,
-    Form,
-    Input,
-    Price,
-    Spinner,
-} from '../../components/ui'
+import { Avatar, Button, Flag, Form, Input, Price } from '../../components/ui'
 import useInput from '../../hooks/useInput'
 import { IoSend, IoCloseOutline } from 'react-icons/io5'
 import { IoIosArrowDown } from 'react-icons/io'
@@ -16,10 +9,10 @@ import { MdImage } from 'react-icons/md'
 import Message from './Message'
 import { RxDotFilled, RxDot } from 'react-icons/rx'
 import useScreen from '../../hooks/useScreen'
-import useWebSocket from 'react-use-websocket'
 import AuthContext from '../../contexts/AuthProvider'
 import MessengerContext from '../../contexts/MessengerContext'
 import ChatLoading from './ChatLoading'
+import MessagesSuggestions from './MessagesSuggestions'
 
 const Chat = () => {
     const navigate = useNavigate()
@@ -32,9 +25,9 @@ const Chat = () => {
     const [onBottom, setOnBottom] = useState(true)
     const chatRef = useRef()
     const bottomMarkerRef = useRef()
-    const { sendMessage, getChat } = useContext(MessengerContext)
-    const chat = getChat(parseInt(chatId))
-    console.log(chat)
+    const { sendMessage, getChatById } = useContext(MessengerContext)
+    const chat = getChatById(parseInt(chatId))
+
     useEffect(() => {
         onBottom && scrollToBottom()
     }, [chat?.messages?.length])
@@ -49,9 +42,8 @@ const Chat = () => {
         if (message.value.trim() === '') return
         const messageObj = {
             message: message.value,
-            userId: user.user_id,
         }
-        sendJsonMessage(messageObj)
+        sendMessage(chatId, messageObj)
         message.setValue('')
     }
 
@@ -108,8 +100,15 @@ const Chat = () => {
                                 <Avatar avatar={chat?.user?.image} width={30} />
                                 <p className="flex items-center md:text-lg">
                                     {!isMinTablet && onlineSymbol}{' '}
-                                    {chat?.user?.name}
+                                    {chat?.user?.first_name}{' '}
+                                    {isMinTablet
+                                        ? chat?.user?.last_name
+                                        : `${chat?.user?.last_name[0]}.`}
                                 </p>
+                                <Flag
+                                    country={chat?.user?.country}
+                                    width={20}
+                                />
                             </Link>
                             <span className="hidden items-center md:flex">
                                 {onlineSymbol}
@@ -147,8 +146,15 @@ const Chat = () => {
                     <span ref={bottomMarkerRef} className="h-[1px]"></span>
                 </ul>
             )}
+            {!chat?.messages?.length ? (
+                <MessagesSuggestions chatId={chatId} />
+            ) : null}
             <Form className="relative flex gap-3" onSubmit={handleSend}>
-                <Input instance={message} containerClassName="w-full min-w-0" />
+                <Input
+                    instance={message}
+                    containerClassName="w-full min-w-0"
+                    autoRef
+                />
                 <Button
                     style="outline"
                     type="button"

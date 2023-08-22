@@ -12,7 +12,7 @@ User = get_user_model()
 
 
 def get_last_message_in_queryset(chat_id: int) -> QuerySet[Message]:
-    return Message.objects.order_by("-pub_date")[:1]
+    return Message.objects.filter(chat__id=chat_id).order_by("-pub_date")[:1]
 
 
 def get_messages_by_chat(user_id: int, chat_id: int, **fields) -> QuerySet[Message]:

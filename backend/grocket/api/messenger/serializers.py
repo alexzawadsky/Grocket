@@ -18,9 +18,6 @@ class MessageAnswerToSerializer(serializers.Serializer):
     text = serializers.CharField()
     image = Base64ImageField()
 
-    class Meta:
-        fields = ("id", "text", "image")
-
 
 class MessageListSerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -31,18 +28,6 @@ class MessageListSerializer(serializers.Serializer):
     pub_date = serializers.DateTimeField()
     is_edited = serializers.BooleanField()
     is_seen = serializers.BooleanField()
-
-    class Meta:
-        fields = (
-            "id",
-            "author",
-            "text",
-            "image",
-            "answer_to",
-            "pub_date",
-            "is_edited",
-            "is_seen",
-        )
 
     def get_answer_to(self, obj):
         answer = get_answer_to_message_or_none(message_id=obj.id)
@@ -58,9 +43,6 @@ class ChatListUserSerializer(serializers.Serializer):
     last_name = serializers.CharField()
     country = serializers.CharField()
 
-    class Meta:
-        fields = ("id", "avatar", "first_name", "last_name", "country")
-
 
 class ChatListProductSerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -68,9 +50,6 @@ class ChatListProductSerializer(serializers.Serializer):
     name = serializers.CharField()
     price = serializers.FloatField()
     image = serializers.SerializerMethodField()
-
-    class Meta:
-        fields = ("id", "slug", "name", "price", "image")
 
     def get_image(self, obj):
         images = get_product_images(product_id=obj.id).filter(is_main=True).first()
@@ -83,7 +62,7 @@ class ChatListSerializer(serializers.Serializer):
     user = serializers.SerializerMethodField()
     product = serializers.SerializerMethodField()
     unseen_count = serializers.SerializerMethodField()
-    last_messages = serializers.SerializerMethodField()
+    messages = serializers.SerializerMethodField()
 
     def get_last_messages(self, obj):
         messages = get_last_message_in_queryset(chat_id=obj.id)

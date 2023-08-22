@@ -2,8 +2,11 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.products.serializers import ProductImageSerializer
-from messenger.selectors import (get_answer_to_message_or_none,
-                                 get_unseen_messages_count_by_chat)
+from messenger.selectors import (
+    get_answer_to_message_or_none,
+    get_unseen_messages_count_by_chat,
+    get_last_message_in_queryset,
+)
 from products.selectors import get_avilable_product_or_none, get_product_images
 from users.services import UserService
 
@@ -80,9 +83,12 @@ class ChatListSerializer(serializers.Serializer):
     user = serializers.SerializerMethodField()
     product = serializers.SerializerMethodField()
     unseen_count = serializers.SerializerMethodField()
+    last_messages = serializers.SerializerMethodField()
 
-    class Meta:
-        fields = ("id", "user", "product")
+    def get_last_messages(self, obj):
+        messages = get_last_message_in_queryset(chat_id=obj.id)
+        serializer = MessageListSerializer(instance=messages, many=True, read_only=True)
+        return serializer.data
 
     def get_unseen_count(self, obj):
         user_id = self.context["request"].user.id

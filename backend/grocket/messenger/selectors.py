@@ -11,6 +11,10 @@ from .models import Chat, Message
 User = get_user_model()
 
 
+def get_last_message_in_queryset(chat_id: int) -> QuerySet[Message]:
+    return Message.objects.order_by("-pub_date")[:1]
+
+
 def get_messages_by_chat(user_id: int, chat_id: int, **fields) -> QuerySet[Message]:
     user = User.objects.get(id=user_id)
     chat = get_object_or_404(Chat, id=chat_id)

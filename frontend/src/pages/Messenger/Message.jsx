@@ -17,7 +17,7 @@ const Message = ({ message }) => {
                     'w-fit max-w-[60%] rounded-lg p-1 px-2'
                 )}
             >
-                {message?.message}
+                {message?.text}
             </div>
             <p className="text-[10px] text-slate-400">
                 {new Date(message.time).toLocaleTimeString([], {

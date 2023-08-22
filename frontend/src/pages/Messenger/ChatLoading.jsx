@@ -8,7 +8,7 @@ const ChatLoading = () => {
     return (
         <div className="relative mb-3 grow">
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <img src={iconLink} className="animate-spin" />
+                <img src={iconLink} className="animate-spinmail" />
                 <p className="mt-3 font-bold">{t('loading')}...</p>
             </span>
         </div>

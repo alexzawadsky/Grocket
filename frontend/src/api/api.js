@@ -339,11 +339,16 @@ export const useGetChatMutation = () => {
         (productId) => api.get(`/api/v1/messenger/products/${productId}/chat/`),
         {
             onSuccess: (res) => {
-                queryClient.invalidateQueries('messenger')
                 navigate(`/messenger/${res.data?.id}`)
             }
         }
     )
+}
+
+export const useChats = () => {
+    const api = useAxios()
+    return useQuery(['messenger', 'chats'], () =>
+        api.get('/api/v1/messenger/users/me/chats/').then(res => res.data))
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || '' })

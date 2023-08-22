@@ -6,8 +6,14 @@ from django.db.models.query import QuerySet
 from django.shortcuts import get_object_or_404
 
 from core.utils import http_404_logger
-from products.models import (Category, Favourite, Image, Product,
-                             ProductAddress, Promotion)
+from products.models import (
+    Category,
+    Favourite,
+    Image,
+    Product,
+    ProductAddress,
+    Promotion,
+)
 
 User = get_user_model()
 
@@ -112,7 +118,7 @@ def get_avilable_product_or_none(product_id: int) -> Optional[Product]:
     """avilable - не проданный, не архивированный, не удаленный."""
     if Product.objects.filter(id=product_id).exists():
         product = Product.objects.get(id=product_id)
-        if not (product.is_sold and product.is_archived):
+        if not (product.is_sold or product.is_archived):
             return product
     return None
 

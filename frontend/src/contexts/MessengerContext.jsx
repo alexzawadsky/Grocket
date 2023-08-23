@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 import useWebSocket from 'react-use-websocket'
 import AuthContext from './AuthProvider'
-import { useChats } from '../api/api'
+import { useChats, useSendMessageMutation } from '../api/api'
 
 const MessengerContext = createContext()
 
@@ -11,6 +11,7 @@ export const MessengerProvider = ({ children }) => {
     const [chats, setChats] = useState([])
     const { user } = useContext(AuthContext)
     const { data, isLoading, error } = useChats()
+    const sendMessageMutation = useSendMessageMutation()
 
     const { sendJsonMessage, lastJsonMessage } = useWebSocket(
         `ws://localhost:8000/ws/messenger/notifications/${user?.user_id}/`
@@ -28,6 +29,7 @@ export const MessengerProvider = ({ children }) => {
     }, [data])
 
     const sendMessage = (chatId, message) => {
+        sendMessageMutation.mutate({ chatId, message })
         console.log('send', chatId, message)
     }
 

@@ -351,4 +351,18 @@ export const useChats = () => {
         api.get('/api/v1/messenger/users/me/chats/').then(res => res.data))
 }
 
+export const useSendMessageMutation = () => {
+    const api = useAxios()
+    return useMutation(
+        (data) => api.post(`/api/v1/messenger/chats/${data.chatId}/messages/`, data.message)
+    )
+}
+
+export const useDeleteChatMutation = () => {
+    const api = useAxios()
+    return useMutation(
+        (chatId) => api.delete(`/api/v1/messenger/chats/${chatId}/`)
+    )
+}
+
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || '' })

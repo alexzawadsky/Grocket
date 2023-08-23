@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import MessengerContext from '../../contexts/MessengerContext'
+import MessengerContext from '../../../contexts/MessengerContext'
 import ChatLink from './ChatLink'
 
 const ChatsList = () => {

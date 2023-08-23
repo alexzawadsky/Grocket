@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { Button } from '../../components/ui'
-import MessengerContext from '../../contexts/MessengerContext'
+import { Button } from '../../../components/ui'
+import MessengerContext from '../../../contexts/MessengerContext'
 
 const suggestions = [
     'Hello, is it still available?',

@@ -1,8 +1,8 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
-import Chat from './Chat'
+import Chat from './Chat/Chat'
 import useScreen from '../../hooks/useScreen'
-import NoChatPlaceholder from './NoChatPlaceholder'
-import ChatsList from './ChatsList'
+import NoChatPlaceholder from './Chat/NoChatPlaceholder'
+import ChatsList from './ChatsList/ChatsList'
 
 const Messenger = () => {
     const { isMinTablet } = useScreen()

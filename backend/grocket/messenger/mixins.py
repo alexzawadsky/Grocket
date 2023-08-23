@@ -3,10 +3,14 @@ from rest_framework.mixins import DestroyModelMixin
 
 from api.mixins import BaseMixin
 from api.paginators import PageLimitPagination
-from .serializers import ChatListSerializer, MessageListSerializer
+
+from .serializers import (ChatListSerializer, MessageCreateSerializer,
+                          MessageListSerializer)
 
 
 class ChatMixin(DestroyModelMixin, BaseMixin):
+    pagination_class = None
+
     def get_permissions(self):
         if self.action in ("destroy", "get_my_chats", "get_chat_by_product"):
             self.permission_classes = (permissions.IsAuthenticated,)
@@ -28,3 +32,5 @@ class MessageMixin(DestroyModelMixin, BaseMixin):
     def get_serializer_class(self):
         if self.action in ("list",):
             return MessageListSerializer
+        if self.action in ("create",):
+            return MessageCreateSerializer

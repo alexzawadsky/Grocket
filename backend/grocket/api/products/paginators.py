@@ -1,6 +1,5 @@
 from rest_framework.response import Response
 
-from products.models import Product
 from products.selectors import get_categories as get_all_categories
 
 from ..paginators import PageLimitPagination
@@ -22,10 +21,10 @@ class ProductPageLimitPagination(PageLimitPagination):
         return CategoryListSerializer(instance=queryset, many=True).data
 
     def get_min_price(self, data):
-        return min(data, key=lambda x: x['price'])['price'] if len(data) > 0 else 0
+        return min(data, key=lambda x: x["price"])["price"] if len(data) > 0 else 0
 
     def get_max_price(self, data):
-        return max(data, key=lambda x: x['price'])['price'] if len(data) > 0 else 0
+        return max(data, key=lambda x: x["price"])["price"] if len(data) > 0 else 0
 
     def get_paginated_response(self, data):
         return Response(

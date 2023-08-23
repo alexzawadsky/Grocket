@@ -54,6 +54,7 @@ class Message(models.Model):
     text = models.CharField(
         max_length=1000,
         blank=True,
+        null=True,
     )
     image = models.ImageField(
         verbose_name="image",
@@ -69,12 +70,9 @@ class Message(models.Model):
     is_seen = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ("pub_date",)
+        ordering = ("-pub_date",)
         verbose_name = "message"
         verbose_name_plural = "messages"
 
     def __str__(self):
-        return (
-            f"{self.id} chat:{self.chat.id} "
-            f"txt:{self.text[:10] if len(self.text) > 10 else self.text}"
-        )
+        return f"{self.id} chat:{self.chat.id}"

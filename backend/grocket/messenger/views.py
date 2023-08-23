@@ -2,10 +2,10 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .selectors import get_messages_by_chat, get_my_chats
-from .services import ChatService, CreateChatService
-
+from .chat_services import ChatService, CreateChatService
+from .message_services import MessageCreateService, MessageService
 from .mixins import ChatMixin, MessageMixin
+from .selectors import get_messages_by_chat, get_my_chats
 
 
 class MessageViewSet(MessageMixin):
@@ -15,15 +15,21 @@ class MessageViewSet(MessageMixin):
         return super().list(request, messages)
 
     def create(self, request, pk):
-        pass
+        user_id = self.request.user.id
+        serializer = self.get_serializer_class()(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        service = MessageCreateService()
+        service.create(user_id=user_id, chat_id=pk, **serializer.validated_data)
+        return Response(status=status.HTTP_201_CREATED)
 
     def destroy(self, request, pk):
-        pass
+        user_id = self.request.user.id
+        service = MessageService(message_id=pk)
+        service.delete(user_id=user_id)
+        return Response(status=status.HTTP_200_OK)
 
 
 class ChatViewSet(ChatMixin):
-    pagination_class = None
-
     def destroy(self, request, pk):
         user_id = self.request.user.id
         service = ChatService(chat_id=pk)

@@ -112,7 +112,7 @@ def get_avilable_product_or_none(product_id: int) -> Optional[Product]:
     """avilable - не проданный, не архивированный, не удаленный."""
     if Product.objects.filter(id=product_id).exists():
         product = Product.objects.get(id=product_id)
-        if not (product.is_sold or product.is_archived):
+        if not product.is_sold and not product.is_archived:
             return product
     return None
 

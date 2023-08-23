@@ -34,10 +34,10 @@ export const MessengerProvider = ({ children }) => {
     const getChats = () => {
         const compareChats = (chatA, chatB) => {
             const lastMessageTimeA = new Date(
-                chatA.messages[chatA.messages.length - 1].time
+                chatA.messages[chatA.messages.length - 1].pub_date
             )
             const lastMessageTimeB = new Date(
-                chatB.messages[chatB.messages.length - 1].time
+                chatB.messages[chatB.messages.length - 1].pub_date
             )
             return lastMessageTimeB - lastMessageTimeA
         }

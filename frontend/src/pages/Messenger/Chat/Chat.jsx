@@ -1,16 +1,23 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { Avatar, Button, Flag, Form, Input, Price } from '../../components/ui'
-import useInput from '../../hooks/useInput'
+import {
+    Avatar,
+    Button,
+    Flag,
+    Form,
+    Input,
+    Price,
+} from '../../../components/ui'
+import useInput from '../../../hooks/useInput'
 import { IoSend, IoCloseOutline } from 'react-icons/io5'
 import { IoIosArrowDown } from 'react-icons/io'
 import { useTranslation } from 'react-i18next'
 import { MdImage } from 'react-icons/md'
 import Message from './Message'
 import { RxDotFilled, RxDot } from 'react-icons/rx'
-import useScreen from '../../hooks/useScreen'
-import AuthContext from '../../contexts/AuthProvider'
-import MessengerContext from '../../contexts/MessengerContext'
+import useScreen from '../../../hooks/useScreen'
+import AuthContext from '../../../contexts/AuthProvider'
+import MessengerContext from '../../../contexts/MessengerContext'
 import ChatLoading from './ChatLoading'
 import MessagesSuggestions from './MessagesSuggestions'
 
@@ -21,8 +28,9 @@ const Chat = () => {
     const message = useInput()
     const online = true
     const { isMinTablet } = useScreen()
-    const { user } = useContext(AuthContext)
     const [onBottom, setOnBottom] = useState(true)
+    const [replyTo, setReplyTo] = useState(null)
+    const [image, setImage] = useState(null)
     const chatRef = useRef()
     const bottomMarkerRef = useRef()
     const { sendMessage, getChatById } = useContext(MessengerContext)
@@ -41,7 +49,9 @@ const Chat = () => {
     const handleSend = () => {
         if (message.value.trim() === '') return
         const messageObj = {
-            message: message.value,
+            text: message.value,
+            image: image,
+            answer_to: replyTo,
         }
         sendMessage(chatId, messageObj)
         message.setValue('')
@@ -139,19 +149,19 @@ const Chat = () => {
             {!chat && <ChatLoading />}
             {chat && (
                 <ul
-                    className="chat-container mb-3 mt-auto grid grow gap-2 overflow-y-auto scroll-smooth"
+                    className="chat-container mb-3 mt-auto flex grow flex-col-reverse gap-2 overflow-y-auto scroll-smooth pt-3"
                     ref={chatRef}
                 >
+                    <span ref={bottomMarkerRef} className="h-[1px]"></span>
                     {chat?.messages &&
                         chat.messages.map((message, key) => (
-                            <Message key={key} message={message} />
+                            <li key={key}>
+                                <Message message={message} />
+                            </li>
                         ))}
-                    <span ref={bottomMarkerRef} className="h-[1px]"></span>
                 </ul>
             )}
-            {!chat?.messages?.length ? (
-                <MessagesSuggestions chatId={chatId} />
-            ) : null}
+            {!chat?.messages?.length && <MessagesSuggestions chatId={chatId} />}
             <Form className="relative flex gap-3" onSubmit={handleSend}>
                 <Input
                     instance={message}

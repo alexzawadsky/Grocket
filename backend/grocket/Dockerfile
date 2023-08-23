@@ -4,4 +4,4 @@ WORKDIR /app
 COPY . .
 RUN apt-get update && apt-get install -y gettext
 RUN pip3 install -r requirements.txt --no-cache-dir
-CMD ["gunicorn", "grocket.wsgi:application", "--bind", "0:8000" ]
+CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "grocket.asgi:application"]

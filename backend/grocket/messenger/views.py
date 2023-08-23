@@ -2,8 +2,8 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from messenger.selectors import get_messages_by_chat, get_my_chats
-from messenger.services import ChatService, CreateChatService
+from .selectors import get_messages_by_chat, get_my_chats
+from .services import ChatService, CreateChatService
 
 from .mixins import ChatMixin, MessageMixin
 

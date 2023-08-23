@@ -5,9 +5,7 @@ from djoser.views import UserViewSet
 from payments.views import create_payment_view, payment_callback
 
 from .comments.views import CommentViewSet
-from .messenger.views import ChatViewSet, MessageViewSet
-from .products.views import (CategoryViewSet, ProductViewSet, PromotionViewSet,
-                             exchange)
+from .products.views import CategoryViewSet, ProductViewSet, PromotionViewSet, exchange
 from .users.views import CustomUserRegisterViewSet, CustomUserRetrieveViewSet
 
 app_name = "api"
@@ -16,33 +14,6 @@ urlpatterns = [
     path("v1/exchange/", exchange, name="exchange"),
     path("v1/stripe-callback", payment_callback, name="payment_callback"),
     path("v1/stripe/<str:slug>/", create_payment_view, name="stripe"),
-    # <--------- Messenger -------->
-    path(
-        "v1/messenger/chats/<int:pk>/messages/",
-        MessageViewSet.as_view({"get": "list", "post": "create"}),
-        name="messages",
-    ),
-    path(
-        "v1/messenger/messages/<int:pk>/",
-        MessageViewSet.as_view({"delete": "destroy"}),
-        name="message",
-    ),
-    path(
-        "v1/messenger/users/me/chats/",
-        ChatViewSet.as_view({"get": "get_my_chats"}),
-        name="get_my_chats",
-    ),
-    path(
-        "v1/messenger/products/<int:pk>/chat/",
-        ChatViewSet.as_view({"get": "get_chat_by_product"}),
-        name="get_chat_by_product",
-    ),
-    path(
-        "v1/messanger/chats/<int:pk>/",
-        ChatViewSet.as_view({"delete": "destroy"}),
-        name="get_my_chats",
-    ),
-    # <--------- Messenger -------->
     # <--------- Products --------->
     path(
         "v1/promotions/", PromotionViewSet.as_view({"get": "list"}), name="promotions"

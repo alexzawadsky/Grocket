@@ -2,7 +2,7 @@ from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.products.serializers import ProductImageSerializer
-from messenger.selectors import (
+from .selectors import (
     get_answer_to_message_or_none,
     get_unseen_messages_count_by_chat,
     get_last_message_in_queryset,

@@ -111,18 +111,18 @@ AUTH_USER_MODEL = "users.User"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # },
     "default": {
-        "ENGINE": os.getenv("DB_ENGINE"),
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
-    }
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    },
+    # "default": {
+    #     "ENGINE": os.getenv("DB_ENGINE"),
+    #     "NAME": os.getenv("DB_NAME"),
+    #     "USER": os.getenv("POSTGRES_USER"),
+    #     "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+    #     "HOST": os.getenv("DB_HOST"),
+    #     "PORT": os.getenv("DB_PORT"),
+    # }
 }
 
 
@@ -294,24 +294,24 @@ CKEDITOR_CONFIGS = {
 }
 
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "console": {"format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"},
-        "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
-    },
-    "handlers": {
-        # "console": {"class": "logging.StreamHandler", "formatter": "console"},
-        "file": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "formatter": "file",
-            "filename": "logs.log",
-        },
-    },
-    "loggers": {"": {"level": "DEBUG", "handlers": ["file"]}},
-}
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "formatters": {
+#         "console": {"format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"},
+#         "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+#     },
+#     "handlers": {
+#         # "console": {"class": "logging.StreamHandler", "formatter": "console"},
+#         "file": {
+#             "level": "DEBUG",
+#             "class": "logging.FileHandler",
+#             "formatter": "file",
+#             "filename": "logs.log",
+#         },
+#     },
+#     "loggers": {"": {"level": "DEBUG", "handlers": ["file"]}},
+# }
 
 
 EXCHANGE = {

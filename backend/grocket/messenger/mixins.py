@@ -1,8 +1,8 @@
 from rest_framework import permissions
 from rest_framework.mixins import DestroyModelMixin
 
-from ..mixins import BaseMixin
-from ..paginators import PageLimitPagination
+from api.mixins import BaseMixin
+from api.paginators import PageLimitPagination
 from .serializers import ChatListSerializer, MessageListSerializer
 
 

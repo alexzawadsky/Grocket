@@ -34,6 +34,7 @@ const useValidation = (value, validations) => {
     const [matchError, setMatchError] = useState(false)
     const [intError, setIntError] = useState(false)
     const [floatError, setFloatError] = useState(false)
+    const [maxLengthError, setMaxLengthError] = useState(false)
 
     useEffect(() => {
         let re = ''
@@ -45,6 +46,9 @@ const useValidation = (value, validations) => {
                     break
                 case 'minLength':
                     setMinLengthError(value.length < validations[validation])
+                    break
+                case 'maxLength':
+                    setMaxLengthError(value.length > validations[validation])
                     break
                 case 'isEmail':
                     re =
@@ -86,6 +90,7 @@ const useValidation = (value, validations) => {
         emailError,
         intError,
         floatError,
+        maxLengthError
     }
 }
 

@@ -18,7 +18,13 @@ const MessagesSuggestions = ({ chatId }) => {
                     key={key}
                     border={false}
                     className="bg-zinc-200  text-left !font-primary hover:bg-zinc-300 dark:bg-zinc-600 dark:text-white hover:dark:bg-zinc-500"
-                    onClick={() => sendMessage(chatId, { message: s })}
+                    onClick={() =>
+                        sendMessage(chatId, {
+                            text: s,
+                            answer_to: null,
+                            image: null,
+                        })
+                    }
                 >
                     {s}
                 </Button>

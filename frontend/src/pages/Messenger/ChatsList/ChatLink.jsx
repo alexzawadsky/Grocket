@@ -30,7 +30,7 @@ const ChatLink = ({ chat }) => {
                     />
                     <Avatar
                         avatar={chat?.user?.avatar}
-                        className="absolute left-0 top-0 z-40 -translate-x-1/2 -translate-y-1/2 border-2 border-white dark:border-zinc-600"
+                        className="absolute left-0 top-0 z-40 -translate-x-1/2 -translate-y-1/2 border border-white dark:border-zinc-600"
                         width={25}
                     />
                 </div>
@@ -51,8 +51,8 @@ const ChatLink = ({ chat }) => {
                         {open && (
                             <Button
                                 border={false}
-                                className=" h-5 !font-primary text-sm text-accent-red hover:bg-accent-red/[.1]"
-                                px={1}
+                                className=" h-5 !font-primary text-sm text-accent-red hover:bg-accent-red/[.1] dark:hover:bg-zinc-700"
+                                px={2}
                                 onClick={() =>
                                     deleteChatMutation.mutate(chat?.id)
                                 }
@@ -85,9 +85,9 @@ const ChatLink = ({ chat }) => {
                         {open && (
                             <Button
                                 border={false}
-                                className="font-primary text-sm hover:bg-zinc-200"
+                                className="font-primary text-sm hover:bg-zinc-200 dark:hover:bg-zinc-700"
                                 onClick={() => setOpen(false)}
-                                px={1}
+                                px={2}
                             >
                                 {t('cancel')}
                             </Button>

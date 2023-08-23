@@ -30,7 +30,6 @@ export const MessengerProvider = ({ children }) => {
 
     const sendMessage = (chatId, message) => {
         sendMessageMutation.mutate({ chatId, message })
-        console.log('send', chatId, message)
     }
 
     const getChats = () => {

@@ -20,21 +20,32 @@ import AuthContext from '../../../contexts/AuthProvider'
 import MessengerContext from '../../../contexts/MessengerContext'
 import ChatLoading from './ChatLoading'
 import MessagesSuggestions from './MessagesSuggestions'
+import { useChatMessages } from '../../../api/api'
+import ChatEndMarker from './ChatEndMarker'
+import LoadMoreMarker from './LoadMoreMarker'
 
 const Chat = () => {
     const navigate = useNavigate()
     const { t } = useTranslation()
     const { chatId } = useParams()
-    const message = useInput()
+    const message = useInput('', { maxLength: 1000 })
     const online = true
     const { isMinTablet } = useScreen()
     const [onBottom, setOnBottom] = useState(true)
     const [replyTo, setReplyTo] = useState(null)
     const [image, setImage] = useState(null)
     const chatRef = useRef()
-    const bottomMarkerRef = useRef()
     const { sendMessage, getChatById } = useContext(MessengerContext)
     const chat = getChatById(parseInt(chatId))
+    const {
+        data,
+        error,
+        fetchNextPage,
+        hasNextPage,
+        isFetching,
+        isFetchingNextPage,
+        status,
+    } = useChatMessages(parseInt(chatId))
 
     useEffect(() => {
         onBottom && scrollToBottom()
@@ -59,31 +70,8 @@ const Chat = () => {
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyPress)
-        const callback = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setOnBottom(true)
-                } else {
-                    setOnBottom(false)
-                }
-            })
-        }
 
-        const options = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.0,
-        }
-        const observer = new IntersectionObserver(callback, options)
-
-        if (bottomMarkerRef.current) {
-            observer.observe(bottomMarkerRef.current)
-        }
-
-        return () => {
-            document.removeEventListener('keydown', handleKeyPress)
-            observer.disconnect()
-        }
+        return () => document.removeEventListener('keydown', handleKeyPress)
     }, [])
 
     const handleKeyPress = (event) => {
@@ -152,16 +140,37 @@ const Chat = () => {
                     className="chat-container mb-3 mt-auto flex grow flex-col-reverse gap-2 overflow-y-auto scroll-smooth pt-3"
                     ref={chatRef}
                 >
-                    <span ref={bottomMarkerRef} className="h-[1px]"></span>
-                    {chat?.messages &&
-                        chat.messages.map((message, key) => (
-                            <li key={key}>
-                                <Message message={message} />
-                            </li>
-                        ))}
+                    <ChatEndMarker setOnBottom={setOnBottom} />
+                    {data?.pages?.map((page, i) => (
+                        <React.Fragment key={i}>
+                            {page.data?.results.map((message, key) => (
+                                <li key={key}>
+                                    <Message message={message} />
+                                </li>
+                            ))}
+                        </React.Fragment>
+                    ))}
+                    <LoadMoreMarker
+                        hasNextPage={hasNextPage}
+                        isFetching={isFetchingNextPage}
+                        fetch={fetchNextPage}
+                        error={error}
+                    />
+                    {/* <button
+                        onClick={() => fetchNextPage()}
+                        disabled={!hasNextPage || isFetchingNextPage}
+                    >
+                        {isFetchingNextPage
+                            ? 'Loading more...'
+                            : hasNextPage
+                            ? 'Load More'
+                            : 'Nothing more to load'}
+                    </button> */}
                 </ul>
             )}
-            {!chat?.messages?.length && <MessagesSuggestions chatId={chatId} />}
+            {!chat?.messages?.length && !isFetching && (
+                <MessagesSuggestions chatId={chatId} />
+            )}
             <Form className="relative flex gap-3" onSubmit={handleSend}>
                 <Input
                     instance={message}
@@ -173,7 +182,7 @@ const Chat = () => {
                     type="button"
                     className="dark:hover:border-400 aspect-square h-10 w-10 !rounded-full  border-slate-500 text-slate-500 hover:bg-slate-100 dark:!border-2 dark:border-zinc-500 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-400 dark:hover:text-zinc-400"
                     onClick={handleSend}
-                    disabled={!chat}
+                    disabled={!chat || !message.allValid}
                 >
                     <MdImage size={20} />
                 </Button>
@@ -183,14 +192,15 @@ const Chat = () => {
                     color="accent-orange"
                     className="aspect-square h-10 w-10 hover:drop-shadow-md"
                     onClick={handleSend}
-                    disabled={!chat}
+                    disabled={!chat || !message.allValid}
                 >
                     <IoSend />
                 </Button>
                 {!onBottom && chat && (
                     <Button
-                        className="dark:hover:border-400 absolute -top-12 right-0 aspect-square h-10 w-10 !rounded-full !border border-slate-500  bg-white text-slate-500 hover:bg-slate-100 dark:!border-2 dark:border-zinc-500 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-400 dark:hover:text-zinc-400"
+                        className="dark:hover:border-400 absolute -top-[3.25rem] right-0 aspect-square h-10 w-10 !rounded-full !border border-slate-500  bg-white text-slate-500 hover:bg-slate-100 dark:!border-2 dark:border-zinc-500 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-400 dark:hover:text-zinc-400"
                         onClick={scrollToBottom}
+                        type="button"
                     >
                         <IoIosArrowDown />
                     </Button>

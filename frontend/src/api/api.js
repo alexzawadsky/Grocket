@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import useAxios from '../hooks/useAxios'
 import { notification, getLastRoute } from '../utils'
@@ -363,6 +363,20 @@ export const useDeleteChatMutation = () => {
     return useMutation(
         (chatId) => api.delete(`/api/v1/messenger/chats/${chatId}/`)
     )
+}
+
+export const useChatMessages = (chatId) => {
+    const api = useAxios()
+    return useInfiniteQuery({
+        queryKey: ['messenger', 'chats', chatId],
+        queryFn: ({ pageParam = 1 }) => api.get(`/api/v1/messenger/chats/${chatId}/messages?limit=30&page=${pageParam}`),
+        getNextPageParam: (lastPage, allPages) => {
+            if (lastPage.data?.links.next === null) {
+                return undefined
+            }
+            return lastPage.data?.page_number + 1
+        },
+    })
 }
 
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || '' })

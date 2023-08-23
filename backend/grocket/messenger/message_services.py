@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
-
+from typing import Optional
 from .models import Chat, Message
 
 User = get_user_model()
@@ -25,12 +25,15 @@ class MessageService(BaseMessageService):
 
 
 class MessageCreateService:
-    def _check_creation_logic(self, user_id: int, chat_id: int, answer_to: int) -> None:
+    def _check_creation_logic(
+        self, user_id: int, chat_id: int, answer_to: Optional[int]
+    ) -> None:
         """Нельзя создать если этот юзер не находится в этом чате
         или чата не существует
         или сообения для ответа не существует
         """
-        get_object_or_404(Message, id=answer_to)
+        if answer_to is not None:
+            get_object_or_404(Message, id=answer_to)
         chat = get_object_or_404(Chat, id=chat_id)
         if chat.user_from.id != user_id and chat.user_to.id != user_id:
             raise PermissionDenied()
@@ -51,7 +54,11 @@ class MessageCreateService:
 
         user = User.objects.get(id=user_id)
         chat = Chat.objects.get(id=chat_id)
-        answer_to = Message.objects.get(id=fields["answer_to"])
+
+        if fields["answer_to"] is not None:
+            answer_to = Message.objects.get(id=fields["answer_to"])
+        else:
+            answer_to = None
 
         fields = self._clear_fields(fields=fields)
 

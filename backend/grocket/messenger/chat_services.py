@@ -4,20 +4,9 @@ from django.shortcuts import get_object_or_404
 
 from products.models import Product
 
-from django.shortcuts import get_object_or_404
-
-from .models import Chat, Message
+from .models import Chat
 
 User = get_user_model()
-
-
-class BaseMessageService:
-    def __init__(self, message_id: int) -> None:
-        self.message_id: int = message_id
-        self.message: Message = self._get_message_or_404(message_id=message_id)
-
-    def _get_message_or_404(self, message_id: int) -> Message:
-        return get_object_or_404(Message, id=message_id)
 
 
 class BaseChatService:

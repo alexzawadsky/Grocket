@@ -1,14 +1,14 @@
+from django.utils.translation import gettext_lazy as _
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
 from api.products.serializers import ProductImageSerializer
-from .selectors import (
-    get_answer_to_message_or_none,
-    get_unseen_messages_count_by_chat,
-    get_last_message_in_queryset,
-)
 from products.selectors import get_avilable_product_or_none, get_product_images
 from users.services import UserService
+
+from .selectors import (get_answer_to_message_or_none,
+                        get_last_message_in_queryset,
+                        get_unseen_messages_count_by_chat)
 
 users_services = UserService()
 
@@ -34,6 +34,23 @@ class MessageListSerializer(serializers.Serializer):
         if answer is not None:
             serializer = MessageAnswerToSerializer(instance=answer, read_only=True)
             return serializer.data
+
+
+class MessageCreateSerializer(serializers.Serializer):
+    answer_to = serializers.IntegerField(allow_null=True)
+    text = serializers.CharField(allow_null=True, max_length=300)
+    image = Base64ImageField(allow_null=True)
+
+    def validate(self, data):
+        if data["text"] is not None and data["image"] is not None:
+            raise serializers.ValidationError(
+                _("You can not send both a picture and a message together")
+            )
+        if data["text"] is None and data["image"] is None:
+            raise serializers.ValidationError(
+                _("You can not send message without text and picture")
+            )
+        return data
 
 
 class ChatListUserSerializer(serializers.Serializer):

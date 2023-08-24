@@ -2,7 +2,10 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from typing import Optional
+from asgiref.sync import async_to_sync
 from .models import Chat, Message
+from django.forms import model_to_dict
+from .notifications import send_notification
 
 User = get_user_model()
 
@@ -62,11 +65,18 @@ class MessageCreateService:
 
         fields = self._clear_fields(fields=fields)
 
-        Message.objects.create(
+        message = Message.objects.create(
             author=user,
             chat=chat,
             is_edited=False,
             is_seen=False,
             answer_to=answer_to,
             **fields
+        )
+
+        print(model_to_dict(message))
+        async_to_sync(send_notification)(
+            user_id=user_id,
+            notification_data=model_to_dict(message),
+            action="messages_new",
         )

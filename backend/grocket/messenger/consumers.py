@@ -1,9 +1,5 @@
 import json
-
-from asgiref.sync import async_to_sync
 from channels.generic.websocket import AsyncWebsocketConsumer
-
-from .notifications import send_notification
 
 
 class NotificationConsumer(AsyncWebsocketConsumer):
@@ -12,12 +8,10 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.accept()
         await self.send(text_data="connected")
         # Add the user to a user-specific group
-        # user_id = self.scope['user'].id
-        user_id = 2
+        user_id = self.scope["user"].id
         await self.channel_layer.group_add(
             f"user_notifications_{user_id}", self.channel_name  # User-specific group
         )
-        await send_notification(2, "test notification")
 
     async def disconnect(self, close_code):
         # Remove the user from the user-specific group

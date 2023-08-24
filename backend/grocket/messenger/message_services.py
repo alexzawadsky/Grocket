@@ -78,5 +78,5 @@ class MessageCreateService:
         async_to_sync(send_notification)(
             user_id=user_id,
             notification_data=model_to_dict(message),
-            action="messages_new",
+            action="messages__new",
         )

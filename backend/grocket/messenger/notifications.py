@@ -4,6 +4,7 @@ channel_layer = get_channel_layer()
 
 
 async def send_notification(user_id: int, notification_data: dict, action: str):
+    print(1)
     await channel_layer.group_send(
         f"user_notifications_{user_id}",
         {

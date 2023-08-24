@@ -16,10 +16,11 @@ export const MessengerProvider = ({ children }) => {
     const queryClient = useQueryClient()
 
     const { sendJsonMessage, lastJsonMessage } = useWebSocket(
-        `ws://localhost:8000/ws/messenger/notifications/${user?.user_id}/`
+        `ws://localhost/ws/messenger/notifications/${user?.user_id}/`
     )
 
     useEffect(() => {
+        console.log(lastJsonMessage)
         if (lastJsonMessage && lastJsonMessage.type) {
             const type = lastJsonMessage.type
             switch (type) {

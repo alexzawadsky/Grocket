@@ -4,7 +4,7 @@ import { parse } from 'twemoji-parser'
 
 const ChatLoading = ({ chatsLoading }) => {
     const mailIconLink = parse('✉️')[0]?.url
-    const notFoundIconLink = parse('❓')[0]?.url
+    const notFoundIconLink = parse('🕵🏿‍♂️')[0]?.url
     const { t } = useTranslation()
 
     return (
@@ -19,9 +19,11 @@ const ChatLoading = ({ chatsLoading }) => {
                     <>
                         <img
                             src={notFoundIconLink}
-                            style={{
-                                filter: 'hue-rotate(33deg) brightness(1.5)',
-                            }}
+                            style={
+                                {
+                                    // filter: 'hue-rotate(33deg) brightness(1.5)',
+                                }
+                            }
                         />
                         <p className="mt-3 font-bold">{t('chat_not_found')}</p>
                     </>

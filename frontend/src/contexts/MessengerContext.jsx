@@ -20,6 +20,7 @@ export const MessengerProvider = ({ children }) => {
     )
 
     useEffect(() => {
+        console.log(lastJsonMessage)
         if (lastJsonMessage && lastJsonMessage.action) {
             const action = lastJsonMessage.action
             switch (action) {

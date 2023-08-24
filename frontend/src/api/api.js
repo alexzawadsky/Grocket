@@ -379,4 +379,11 @@ export const useChatMessages = (chatId) => {
     })
 }
 
+export const useDeleteMessageMutation = () => {
+    const api = useAxios()
+    return useMutation(
+        (messageId) => api.delete(`/api/v1/messenger/messages/${messageId}/`)
+    )
+}
+
 export default axios.create({ baseURL: import.meta.env.VITE_API_URL || '' })

@@ -1,4 +1,4 @@
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import { Avatar, PublishTime } from '../../../components/ui'
 import { Button } from '../../../components/ui'
@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next'
 import { useDeleteChatMutation } from '../../../api/api'
 
 const ChatLink = ({ chat }) => {
-    const { chatId } = useParams()
     const [open, setOpen] = useState(false)
     const { t } = useTranslation()
     const deleteChatMutation = useDeleteChatMutation()
@@ -66,19 +65,19 @@ const ChatLink = ({ chat }) => {
                         <p
                             className={cn(
                                 'line-clamp-1 text-sm',
-                                !chat?.messages?.at(0).is_seen
+                                !chat?.last_message.is_seen
                                     ? 'text-accent-orange'
                                     : null
                             )}
                         >
-                            {!chat?.messages?.at(0).is_seen && '• '}
-                            {chat?.messages.at(0)?.text}
+                            {!chat?.last_message?.is_seen && '• '}
+                            {chat?.last_message?.text}
                         </p>
                         {!open && (
                             <p className="whitespace-nowrap text-[10px] text-slate-500 dark:text-zinc-400">
                                 <PublishTime
                                     style="twitter"
-                                    pubDate={chat?.messages.at(-1)?.pub_date}
+                                    pubDate={chat?.last_message?.pub_date}
                                 />
                             </p>
                         )}

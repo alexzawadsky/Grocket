@@ -143,5 +143,8 @@
     "online": "Online",
     "offline": "Offline",
     "is_sold": "SOLD",
-    "no_chat": "No chat selected"
+    "no_chat": "No chat selected",
+    "chat_not_found": "Chat not found",
+    "introducing": "INTRODUCING",
+    "about_text": "Grocket is an international online marketplace that specializes in secondhand items. It provides a platform for users to buy and sell a variety of used goods from all over the world, including clothing, electronics, furniture, and more."
 }

@@ -1,15 +1,36 @@
-import React, { useContext } from 'react'
+import React, { Suspense, useContext, useState } from 'react'
 import cn from 'classnames'
 import AuthContext from '../../../contexts/AuthProvider'
-import { BsCheck, BsCheckAll } from 'react-icons/bs'
+import {
+    BsCheck,
+    BsCheckAll,
+    BsTrash,
+    BsFillCheckCircleFill,
+} from 'react-icons/bs'
 import MessageReply from './MessageReply'
+import { Button } from '../../../components/ui'
+import { PiArrowBendUpLeftBold, PiArrowBendUpRightBold } from 'react-icons/pi'
+import { FiCopy } from 'react-icons/fi'
+import { useDeleteMessageMutation } from '../../../api/api'
 
-const Message = ({ message, setReply }) => {
+const Message = ({ message, setReplyTo }) => {
     const { user } = useContext(AuthContext)
     const userIsAuthor = message?.author == user?.user_id
+    const [isCopied, setIsCopied] = useState(false)
+    const deleteMessageMutation = useDeleteMessageMutation()
+
+    async function copyToClipboard() {
+        try {
+            await navigator.clipboard.writeText(message?.text)
+            setIsCopied(true)
+            setTimeout(() => setIsCopied(false), 2000)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
-        <div>
+        <div className="group/message">
             <MessageReply message={message} userIsAuthor={userIsAuthor} />
             <div
                 className={cn(
@@ -32,13 +53,51 @@ const Message = ({ message, setReply }) => {
                 >
                     {message?.text}
                 </div>
-                <p className="text-[10px] text-slate-400">
+                <p className="text-[10px] text-slate-400 group-hover/message:hidden group-focus/message:hidden">
                     {new Date(message?.pub_date).toLocaleTimeString([], {
                         hour: 'numeric',
                         minute: 'numeric',
                         hour12: false,
                     })}
                 </p>
+                <div
+                    className={cn(
+                        'hidden gap-3 group-hover/message:flex group-focus/message:flex',
+                        !userIsAuthor ? 'flex-row-reverse' : ''
+                    )}
+                >
+                    <Button
+                        className="text-slate-400 hover:text-slate-600"
+                        border={false}
+                        onClick={() => setReplyTo(message)}
+                    >
+                        {userIsAuthor ? (
+                            <PiArrowBendUpLeftBold />
+                        ) : (
+                            <PiArrowBendUpRightBold />
+                        )}
+                    </Button>
+                    <Button
+                        className="text-slate-400 hover:text-slate-600"
+                        border={false}
+                        onClick={copyToClipboard}
+                    >
+                        {isCopied ? (
+                            <BsFillCheckCircleFill color="#008000" />
+                        ) : (
+                            <FiCopy />
+                        )}
+                    </Button>
+                    <Button
+                        className="text-accent-red/[.65] hover:text-accent-red"
+                        border={false}
+                        onClick={() =>
+                            deleteMessageMutation.mutate(message?.id)
+                        }
+                    >
+                        <BsTrash />
+                    </Button>
+                </div>
             </div>
         </div>
     )

@@ -17,7 +17,7 @@ export const MessengerProvider = ({ children }) => {
 
     const { sendJsonMessage, lastJsonMessage } = useWebSocket(
         `ws://${
-            import.meta.env.VITE_API_URL || 'localhost'
+            import.meta.env.VITE_WS_HOST || 'localhost'
         }/ws/messenger/notifications/${user?.user_id}/`
     )
 

@@ -45,6 +45,10 @@ const Chat = () => {
         return () => document.removeEventListener('keydown', handleKeyPress)
     }, [])
 
+    useEffect(() => {
+        setReplyTo(null)
+    }, [chatId])
+
     const handleKeyPress = (event) => {
         if (event.key === 'Escape') {
             navigate('/messenger')
@@ -57,7 +61,7 @@ const Chat = () => {
             {!chat && <ChatLoading chatsLoading={chatsLoading} />}
             {chat && (
                 <ul
-                    className="chat-container mb-3 mt-auto flex grow flex-col-reverse gap-2 overflow-y-auto scroll-smooth pt-3"
+                    className="chat-container mt-auto flex grow flex-col-reverse gap-2 overflow-y-auto scroll-smooth py-3"
                     ref={chatRef}
                 >
                     <ChatEndMarker setOnBottom={setOnBottom} />

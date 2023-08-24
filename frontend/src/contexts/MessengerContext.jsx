@@ -23,7 +23,7 @@ export const MessengerProvider = ({ children }) => {
         if (lastJsonMessage && lastJsonMessage.type) {
             const type = lastJsonMessage.type
             switch (type) {
-                case 'messages_new':
+                case 'messages__new':
                     addNewMessage(lastJsonMessage, queryClient)
             }
         }

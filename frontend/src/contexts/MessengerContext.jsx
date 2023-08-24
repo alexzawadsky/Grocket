@@ -16,7 +16,9 @@ export const MessengerProvider = ({ children }) => {
     const queryClient = useQueryClient()
 
     const { sendJsonMessage, lastJsonMessage } = useWebSocket(
-        `ws://localhost/ws/messenger/notifications/${user?.user_id}/`
+        `ws://${
+            import.meta.env.VITE_API_URL || 'localhost'
+        }/ws/messenger/notifications/${user?.user_id}/`
     )
 
     useEffect(() => {

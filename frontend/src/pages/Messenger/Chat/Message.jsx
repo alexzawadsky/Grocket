@@ -67,7 +67,7 @@ const Message = ({ message, setReplyTo }) => {
                     )}
                 >
                     <Button
-                        className="text-slate-400 hover:text-slate-600"
+                        className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
                         border={false}
                         onClick={() => setReplyTo(message)}
                     >
@@ -78,7 +78,7 @@ const Message = ({ message, setReplyTo }) => {
                         )}
                     </Button>
                     <Button
-                        className="text-slate-400 hover:text-slate-600"
+                        className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
                         border={false}
                         onClick={copyToClipboard}
                     >
@@ -88,15 +88,17 @@ const Message = ({ message, setReplyTo }) => {
                             <FiCopy />
                         )}
                     </Button>
-                    <Button
-                        className="text-accent-red/[.65] hover:text-accent-red"
-                        border={false}
-                        onClick={() =>
-                            deleteMessageMutation.mutate(message?.id)
-                        }
-                    >
-                        <BsTrash />
-                    </Button>
+                    {userIsAuthor && (
+                        <Button
+                            className="text-accent-red/[.65] hover:text-accent-red"
+                            border={false}
+                            onClick={() =>
+                                deleteMessageMutation.mutate(message?.id)
+                            }
+                        >
+                            <BsTrash />
+                        </Button>
+                    )}
                 </div>
             </div>
         </div>

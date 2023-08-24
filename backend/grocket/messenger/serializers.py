@@ -6,11 +6,20 @@ from api.products.serializers import ProductImageSerializer
 from products.selectors import get_avilable_product_or_none, get_product_images
 from users.services import UserService
 
-from .selectors import (get_answer_to_message_or_none,
-                        get_last_message_in_queryset,
-                        get_unseen_messages_count_by_chat)
+from .selectors import (
+    get_answer_to_message_or_none,
+    get_last_message,
+    get_unseen_messages_count_by_chat,
+)
 
 users_services = UserService()
+
+
+class MessageLastInChat(serializers.Serializer):
+    id = serializers.IntegerField()
+    text = serializers.CharField()
+    pub_date = serializers.DateTimeField()
+    is_seen = serializers.BooleanField()
 
 
 class MessageAnswerToSerializer(serializers.Serializer):
@@ -79,11 +88,15 @@ class ChatListSerializer(serializers.Serializer):
     user = serializers.SerializerMethodField()
     product = serializers.SerializerMethodField()
     unseen_count = serializers.SerializerMethodField()
-    messages = serializers.SerializerMethodField()
+    last_message = serializers.SerializerMethodField()
 
-    def get_messages(self, obj):
-        messages = get_last_message_in_queryset(chat_id=obj.id)
-        serializer = MessageListSerializer(instance=messages, many=True, read_only=True)
+    def _choice_user(self, user_id, obj):
+        """Выбирает юзера существующего в чате но отличного от запрашивающего."""
+        return obj.user_from_id if obj.user_from_id != user_id else obj.user_to_id
+
+    def get_last_message(self, obj):
+        messages = get_last_message(chat_id=obj.id)
+        serializer = MessageLastInChat(instance=messages, read_only=True)
         return serializer.data
 
     def get_unseen_count(self, obj):
@@ -92,8 +105,7 @@ class ChatListSerializer(serializers.Serializer):
 
     def get_user(self, obj):
         user_id = self.context["request"].user.id
-        # Выбирает юзера существующего в чате но отличного от запрашивающего
-        author = obj.user_from_id if obj.user_from_id != user_id else obj.user_to_id
+        author = self._choice_user(user_id=user_id, obj=obj)
         user = users_services.get_user_or_404(id=author)
         serializer = ChatListUserSerializer(instance=user, read_only=True)
         return serializer.data

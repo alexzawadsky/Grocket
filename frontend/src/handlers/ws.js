@@ -2,7 +2,7 @@ export const addNewMessage = (message, queryClient) => {
     const currentData = queryClient.getQueryData([
         'messenger',
         'chats',
-        message?.chat_id,
+        message?.chat
     ])
     const updatedFirstPage = {
         ...currentData.pages[0],
@@ -15,7 +15,7 @@ export const addNewMessage = (message, queryClient) => {
         },
     }
     queryClient.setQueryData(
-        ['messenger', 'chats', message?.chat_id],
+        ['messenger', 'chats', message?.chat],
         {
             pages: [updatedFirstPage, ...currentData.pages.slice(1)],
             pageParams: currentData.pageParams,

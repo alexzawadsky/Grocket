@@ -20,12 +20,11 @@ export const MessengerProvider = ({ children }) => {
     )
 
     useEffect(() => {
-        console.log(lastJsonMessage)
-        if (lastJsonMessage && lastJsonMessage.type) {
-            const type = lastJsonMessage.type
-            switch (type) {
+        if (lastJsonMessage && lastJsonMessage.action) {
+            const action = lastJsonMessage.action
+            switch (action) {
                 case 'messages__new':
-                    addNewMessage(lastJsonMessage, queryClient)
+                    addNewMessage(lastJsonMessage?.data, queryClient)
             }
         }
     }, [lastJsonMessage])

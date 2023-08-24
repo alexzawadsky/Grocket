@@ -74,9 +74,15 @@ class MessageCreateService:
             **fields
         )
 
-        print(model_to_dict(message))
+        data = model_to_dict(message)
+        data.pop('image', None)
         async_to_sync(send_notification)(
-            user_id=user_id,
-            notification_data=model_to_dict(message),
+            user_id=chat.user_from.id,
+            notification_data=data,
+            action="messages__new",
+        )
+        async_to_sync(send_notification)(
+            user_id=chat.user_to.id,
+            notification_data=data,
             action="messages__new",
         )

@@ -42,7 +42,9 @@ class ChatService(BaseChatService):
 
         for id in (chat.user_from.id, chat.user_to.id):
             async_to_sync(send_notification)(
-                user_id=id, notification_data={"id": chat.id}, action="chats__delete"
+                user_id=id,
+                notification_data={"id": self.chat_id},
+                action="chats__delete",
             )
 
 

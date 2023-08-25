@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import { Avatar, PublishTime } from '../../../components/ui'
 import { Button } from '../../../components/ui'
@@ -39,25 +39,27 @@ const ChatLink = ({ chat }) => {
                             {chat?.user?.first_name} {chat.user?.last_name}
                         </p>
                         {!open && (
-                            <Button
+                            <Link
                                 border={false}
-                                className="text-lg"
+                                className="rounded-full"
                                 onClick={() => setOpen(true)}
+                                to=""
                             >
                                 <BiDotsHorizontalRounded />
-                            </Button>
+                            </Link>
                         )}
                         {open && (
-                            <Button
+                            <Link
                                 border={false}
-                                className=" h-5 !font-primary text-sm text-accent-red hover:bg-accent-red/[.1] dark:hover:bg-zinc-700"
+                                className=" h-5 rounded-full px-2 !font-primary text-sm text-accent-red transition-colors hover:bg-accent-red/[.1] dark:hover:bg-zinc-700"
                                 px={2}
                                 onClick={() =>
                                     deleteChatMutation.mutate(chat?.id)
                                 }
+                                to=""
                             >
                                 {t('delete')}
-                            </Button>
+                            </Link>
                         )}
                     </div>
 
@@ -82,14 +84,15 @@ const ChatLink = ({ chat }) => {
                             </p>
                         )}
                         {open && (
-                            <Button
+                            <Link
                                 border={false}
-                                className="font-primary text-sm hover:bg-zinc-200 dark:hover:bg-zinc-700"
+                                className="rounded-full px-2 font-primary text-sm transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
                                 onClick={() => setOpen(false)}
                                 px={2}
+                                to=""
                             >
                                 {t('cancel')}
-                            </Button>
+                            </Link>
                         )}
                     </div>
                 </div>

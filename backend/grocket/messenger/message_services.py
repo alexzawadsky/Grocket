@@ -1,11 +1,13 @@
+from typing import Optional
+
+from asgiref.sync import async_to_sync
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
-from typing import Optional
-from asgiref.sync import async_to_sync
+
 from .models import Chat, Message
-from django.forms import model_to_dict
 from .notifications import send_notification
+from .serializers import MessageListSerializer
 
 User = get_user_model()
 
@@ -50,6 +52,16 @@ class MessageCreateService:
 
         return fields
 
+    def _send_to_socket(self, message: Message, chat: Chat) -> None:
+        """Отправит на вебсокет обоим юзерам состоящим в чате полную информацию о новом сообщении."""
+        data = MessageListSerializer(instance=message, read_only=True).data
+        for id in (chat.user_from.id, chat.user_to.id):
+            async_to_sync(send_notification)(
+                user_id=id,
+                notification_data=data,
+                action="messages__new",
+            )
+
     def create(self, user_id: int, chat_id: int, **fields) -> None:
         self._check_creation_logic(
             user_id=user_id, chat_id=chat_id, answer_to=fields["answer_to"]
@@ -74,15 +86,4 @@ class MessageCreateService:
             **fields
         )
 
-        data = model_to_dict(message)
-        data.pop('image', None)
-        async_to_sync(send_notification)(
-            user_id=chat.user_from.id,
-            notification_data=data,
-            action="messages__new",
-        )
-        async_to_sync(send_notification)(
-            user_id=chat.user_to.id,
-            notification_data=data,
-            action="messages__new",
-        )
+        self._send_to_socket(message=message, chat=chat)

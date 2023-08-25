@@ -43,6 +43,7 @@ export const updateLastMessageInChatList = (message, queryClient) => {
 
 export const addNewChat = (chat, queryClient) => {
     const chatsList = queryClient.getQueryData(['messenger', 'chats'])
+    if (chatsList.some(ch => ch?.id === chat?.id)) return
     queryClient.setQueryData(['messenger', 'chats'], [...chatsList, chat])
 }
 

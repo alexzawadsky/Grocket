@@ -67,12 +67,15 @@ const ChatLink = ({ chat }) => {
                         <p
                             className={cn(
                                 'line-clamp-1 text-sm',
-                                !chat?.last_message?.is_seen
-                                    ? 'text-accent-orange'
-                                    : null
+                                chat?.last_message &&
+                                    chat?.last_message?.is_seen
+                                    ? null
+                                    : 'text-accent-orange'
                             )}
                         >
-                            {!chat?.last_message?.is_seen && '• '}
+                            {chat?.last_message && chat?.last_message?.is_seen
+                                ? null
+                                : '• '}
                             {chat?.last_message?.text}
                         </p>
                         {!open && (

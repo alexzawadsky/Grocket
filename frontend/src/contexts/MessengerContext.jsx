@@ -37,7 +37,7 @@ export const MessengerProvider = ({ children }) => {
                         queryClient
                     )
                     break
-                case 'chat__new':
+                case 'chats__new':
                     addNewChat(lastJsonMessage?.data, queryClient)
                     break
             }

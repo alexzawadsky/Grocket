@@ -371,7 +371,7 @@ export const useChatMessages = (chatId) => {
         queryKey: ['messenger', 'chats', chatId],
         queryFn: ({ pageParam = 1 }) => api.get(`/api/v1/messenger/chats/${chatId}/messages?limit=30&page=${pageParam}`),
         getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.data?.links.next === null) {
+            if (lastPage.data?.links?.next === null) {
                 return undefined
             }
             return lastPage.data?.page_number + 1

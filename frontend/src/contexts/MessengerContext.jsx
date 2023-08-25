@@ -3,7 +3,11 @@ import useWebSocket from 'react-use-websocket'
 import AuthContext from './AuthProvider'
 import { useChats, useSendMessageMutation } from '../api/api'
 import { useQueryClient } from '@tanstack/react-query'
-import { addNewMessage } from '../handlers/ws'
+import {
+    addNewChat,
+    addNewMessage,
+    updateLastMessageInChatList,
+} from '../handlers/ws'
 
 const MessengerContext = createContext()
 
@@ -28,6 +32,12 @@ export const MessengerProvider = ({ children }) => {
             switch (action) {
                 case 'messages__new':
                     addNewMessage(lastJsonMessage?.data, queryClient)
+                    updateLastMessageInChatList(
+                        lastJsonMessage?.data,
+                        queryClient
+                    )
+                case 'chat__new':
+                    addNewChat(lastJsonMessage?.data, queryClient)
             }
         }
     }, [lastJsonMessage])

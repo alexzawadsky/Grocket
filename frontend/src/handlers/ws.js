@@ -1,37 +1,16 @@
-const blinkTabWhenInBackground = () => {
-    const originalTitle = document.title
-    let isTabBlinking = false;
-
-    const blinkInterval = setInterval(() => {
-        if (!document.hidden) {
-            clearInterval(blinkInterval)
-            document.title = originalTitle
-        } else {
-            if (!isTabBlinking) {
-                document.title = "New Message!"
-            } else {
-                document.title = originalTitle
-            }
-            isTabBlinking = !isTabBlinking
-        }
-    }, 1000)
-}
-
-const openPage = (url) => {
-    const existingTab = Array.from(window.frames).find(frame => frame.location.href === url)
-    if (existingTab) {
-        existingTab.focus()
-    } else {
-        window.open(url, "_blank")
-    }
-}
+import { sendPushNotification } from "../utils"
 
 export const addNewMessage = (message, queryClient) => {
+    sendPushNotification('New message!', message?.text, `${import.meta.env.VITE_API_URL}/messenger/${message?.chat}`)
+
     const currentData = queryClient.getQueryData([
         'messenger',
         'chats',
         message?.chat
     ])
+
+    if (!currentData) return
+
     const updatedFirstPage = {
         ...currentData.pages[0],
         data: {
@@ -42,6 +21,7 @@ export const addNewMessage = (message, queryClient) => {
             ],
         },
     }
+
     queryClient.setQueryData(
         ['messenger', 'chats', message?.chat],
         {
@@ -49,17 +29,19 @@ export const addNewMessage = (message, queryClient) => {
             pageParams: currentData.pageParams,
         }
     )
-    Notification.requestPermission().then(perm => {
-        if (perm === 'granted' && document.hidden) {
-            const notification = new Notification("New Message", {
-                body: message?.text,
-                icon: "logo.png"
-            })
-            notification.onclick = () => {
-                openPage(`${import.meta.env.VITE_API_URL}/messenger/${message?.chat}`)
-            }
-            blinkTabWhenInBackground()
-        }
-    })
+}
 
+export const updateLastMessageInChatList = (message, queryClient) => {
+    const chatsListData = queryClient.getQueryData(['messenger', 'chats'])
+    const newList = chatsListData.map(chat => chat?.id === message?.chat ? {
+        ...chat,
+        last_message: message
+    } : chat)
+
+    queryClient.setQueryData(['messenger', 'chats'], newList)
+}
+
+export const addNewChat = (chat, queryClient) => {
+    const chatsList = queryClient.getQueryData(['messenger', 'chats'])
+    queryClient.setQueryData(['messenger', 'chats'], [...chatsList, chat])
 }

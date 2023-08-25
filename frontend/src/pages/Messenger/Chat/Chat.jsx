@@ -10,6 +10,7 @@ import ChatEndMarker from './ChatEndMarker'
 import LoadMoreMarker from './LoadMoreMarker'
 import ChatMessageForm from '../../../forms/ChatMessageForm'
 import ChatHeader from './ChatHeader'
+import DateBadge from './DateBadge'
 
 const Chat = () => {
     const navigate = useNavigate()
@@ -68,12 +69,25 @@ const Chat = () => {
                     {data?.pages?.map((page, i) => (
                         <React.Fragment key={i}>
                             {page.data?.results.map((message, key) => (
-                                <li key={key}>
-                                    <Message
-                                        message={message}
-                                        setReplyTo={setReplyTo}
+                                <>
+                                    <li key={key}>
+                                        <Message
+                                            message={message}
+                                            setReplyTo={setReplyTo}
+                                        />
+                                    </li>
+                                    <DateBadge
+                                        pubDate={message?.pub_date}
+                                        prevPubDate={
+                                            key + 1 ===
+                                            page.data?.results?.length
+                                                ? data.pages[i + 1]?.data
+                                                      ?.results[0]?.pub_date
+                                                : page.data?.results[key + 1]
+                                                      ?.pub_date
+                                        }
                                     />
-                                </li>
+                                </>
                             ))}
                         </React.Fragment>
                     ))}

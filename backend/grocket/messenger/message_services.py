@@ -95,5 +95,5 @@ class MessageCreateService:
             answer_to=answer_to,
             **fields
         )
-
+        request.user = chat.user_to
         send_to_socket(request=request, message=message, chat=chat)

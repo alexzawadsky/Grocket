@@ -13,7 +13,9 @@ from .chat_services import send_to_websocket as send_chat_to_websocket
 User = get_user_model()
 
 
-def send_to_socket(message: Message, chat: Chat, action: str = "messages__new") -> None:
+def send_to_socket(
+    request, message: Message, chat: Chat, action: str = "messages__new"
+) -> None:
     data = MessageListSerializer(instance=message, read_only=True).data
     data["chat"] = chat.id
     for id in (chat.user_from.id, chat.user_to.id):
@@ -24,9 +26,11 @@ def send_to_socket(message: Message, chat: Chat, action: str = "messages__new") 
         )
 
     messages_in_chat = Message.objects.filter(chat=chat)
-
+    print("before")
     if messages_in_chat.count() == 1 and messages_in_chat.first() == message:
-        send_chat_to_websocket(chat=chat, users_ids=(chat.user_to.id,))
+        print(messages_in_chat)
+        send_chat_to_websocket(request=request, chat=chat, users_ids=(chat.user_to.id,))
+    print("after")
 
 
 class BaseMessageService:
@@ -69,7 +73,7 @@ class MessageCreateService:
 
         return fields
 
-    def create(self, user_id: int, chat_id: int, **fields) -> None:
+    def create(self, request, user_id: int, chat_id: int, **fields) -> None:
         self._check_creation_logic(
             user_id=user_id, chat_id=chat_id, answer_to=fields["answer_to"]
         )
@@ -92,4 +96,4 @@ class MessageCreateService:
             **fields
         )
 
-        send_to_socket(message=message, chat=chat)
+        send_to_socket(request=request, message=message, chat=chat)

@@ -19,7 +19,9 @@ class MessageViewSet(MessageMixin):
         serializer = self.get_serializer_class()(data=request.data)
         serializer.is_valid(raise_exception=True)
         service = MessageCreateService()
-        service.create(user_id=user_id, chat_id=pk, **serializer.validated_data)
+        service.create(
+            request=request, user_id=user_id, chat_id=pk, **serializer.validated_data
+        )
         return Response(status=status.HTTP_201_CREATED)
 
     def destroy(self, request, pk):

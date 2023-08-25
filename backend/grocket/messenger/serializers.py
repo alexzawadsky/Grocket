@@ -95,9 +95,10 @@ class ChatListSerializer(serializers.Serializer):
         return obj.user_from_id if obj.user_from_id != user_id else obj.user_to_id
 
     def get_last_message(self, obj):
-        messages = get_last_message(chat_id=obj.id)
-        serializer = MessageLastInChat(instance=messages, read_only=True)
-        return serializer.data
+        message = get_last_message(chat_id=obj.id)
+        if message is not None:
+            serializer = MessageLastInChat(instance=message, read_only=True)
+            return serializer.data
 
     def get_unseen_count(self, obj):
         user_id = self.context["request"].user.id

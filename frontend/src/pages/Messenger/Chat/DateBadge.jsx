@@ -21,7 +21,7 @@ const DateBadge = ({ pubDate, prevPubDate }) => {
     if (!isFirstDateNewer(pubDate, prevPubDate)) return
 
     return (
-        <div className="mx-auto rounded-full border bg-slate-100 px-5 text-sm text-slate-600 shadow-sm dark:border-zinc-500 dark:bg-zinc-600 dark:text-slate-100">
+        <div className="mx-auto rounded-full bg-slate-100 px-5 text-sm text-slate-600 shadow-sm dark:border-zinc-500 dark:bg-zinc-600 dark:text-slate-100">
             {date.toLocaleString(i18n.resolvedLanguage, {
                 day: '2-digit',
                 month: 'short',

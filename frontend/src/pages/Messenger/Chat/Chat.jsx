@@ -69,8 +69,8 @@ const Chat = () => {
                     {data?.pages?.map((page, i) => (
                         <React.Fragment key={i}>
                             {page.data?.results.map((message, key) => (
-                                <>
-                                    <li key={key}>
+                                <React.Fragment key={key}>
+                                    <li>
                                         <Message
                                             message={message}
                                             setReplyTo={setReplyTo}
@@ -87,7 +87,7 @@ const Chat = () => {
                                                       ?.pub_date
                                         }
                                     />
-                                </>
+                                </React.Fragment>
                             ))}
                         </React.Fragment>
                     ))}

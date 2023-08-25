@@ -6,6 +6,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import {
     addNewChat,
     addNewMessage,
+    deleteChat,
     updateLastMessageInChatList,
 } from '../handlers/ws'
 
@@ -28,16 +29,17 @@ export const MessengerProvider = ({ children }) => {
     useEffect(() => {
         console.log(lastJsonMessage)
         if (lastJsonMessage && lastJsonMessage.action) {
-            const action = lastJsonMessage.action
-            switch (action) {
+            switch (lastJsonMessage.action) {
                 case 'messages__new':
                     addNewMessage(lastJsonMessage?.data, queryClient)
                     updateLastMessageInChatList(
                         lastJsonMessage?.data,
                         queryClient
                     )
+                    break
                 case 'chat__new':
                     addNewChat(lastJsonMessage?.data, queryClient)
+                    break
             }
         }
     }, [lastJsonMessage])
@@ -49,8 +51,8 @@ export const MessengerProvider = ({ children }) => {
     const getChats = () => {
         if (!chats) return []
         const compareChats = (chatA, chatB) => {
-            const lastMessageTimeA = new Date(chatA.last_message.pub_date)
-            const lastMessageTimeB = new Date(chatB.last_message.pub_date)
+            const lastMessageTimeA = new Date(chatA.last_message?.pub_date)
+            const lastMessageTimeB = new Date(chatB.last_message?.pub_date)
             return lastMessageTimeB - lastMessageTimeA
         }
         chats.sort(compareChats)

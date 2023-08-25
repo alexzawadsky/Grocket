@@ -12,6 +12,17 @@ from .serializers import MessageListSerializer
 User = get_user_model()
 
 
+def send_to_socket(message: Message, chat: Chat, action: str = "messages__new") -> None:
+    """Отправит на вебсокет обоим юзерам состоящим в чате полную информацию о новом сообщении."""
+    data = MessageListSerializer(instance=message, read_only=True).data
+    for id in (chat.user_from.id, chat.user_to.id):
+        async_to_sync(send_notification)(
+            user_id=id,
+            notification_data=data,
+            action=action,
+        )
+
+
 class BaseMessageService:
     def __init__(self, message_id: int) -> None:
         self.message_id: int = message_id
@@ -52,16 +63,6 @@ class MessageCreateService:
 
         return fields
 
-    def _send_to_socket(self, message: Message, chat: Chat) -> None:
-        """Отправит на вебсокет обоим юзерам состоящим в чате полную информацию о новом сообщении."""
-        data = MessageListSerializer(instance=message, read_only=True).data
-        for id in (chat.user_from.id, chat.user_to.id):
-            async_to_sync(send_notification)(
-                user_id=id,
-                notification_data=data,
-                action="messages__new",
-            )
-
     def create(self, user_id: int, chat_id: int, **fields) -> None:
         self._check_creation_logic(
             user_id=user_id, chat_id=chat_id, answer_to=fields["answer_to"]
@@ -85,4 +86,4 @@ class MessageCreateService:
             **fields
         )
 
-        self._send_to_socket(message=message, chat=chat)
+        send_to_socket(message=message, chat=chat)

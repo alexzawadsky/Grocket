@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
-
+from asgiref.sync import async_to_sync
 from products.models import Product
-
+from .notifications import send_notification
+from .serializers import ChatListSerializer
 from .models import Chat
 
 User = get_user_model()
@@ -39,7 +40,15 @@ class CreateChatService:
         if product.is_sold or product.is_archived or user_from_id == user_to_id:
             raise PermissionDenied()
 
-    def get_or_create_by_product(self, product_id: int, user_id: int, **fields):
+    def _send_to_websocket(self, chat: Chat) -> None:
+        data = ChatListSerializer(instance=chat, read_only=True).data
+        async_to_sync(send_notification)(
+            user_id=chat.user_from.id,
+            notification_data=data,
+            action="chats__new",
+        )
+
+    def get_or_create_by_product(self, product_id: int, user_id: int, **fields) -> int:
         """Вернет чат с таким же user_to, user_from и товаром или создаст если нет."""
         product = get_object_or_404(Product, id=product_id)
         user_from = User.objects.get(id=user_id)
@@ -49,7 +58,11 @@ class CreateChatService:
             product_id=product_id, user_from_id=user_from.id, user_to_id=user_to.id
         )
 
-        chat_id = Chat.objects.get_or_create(
+        chat = Chat.objects.get_or_create(
             user_from=user_from, user_to=user_to, product=product, **fields
-        )[0].id
-        return chat_id
+        )
+
+        if chat[1]:
+            self._send_to_websocket(chat=chat[0])
+
+        return chat[0].id

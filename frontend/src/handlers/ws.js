@@ -45,3 +45,9 @@ export const addNewChat = (chat, queryClient) => {
     const chatsList = queryClient.getQueryData(['messenger', 'chats'])
     queryClient.setQueryData(['messenger', 'chats'], [...chatsList, chat])
 }
+
+export const deleteChat = (chatId, queryClient) => {
+    const chatsList = queryClient.getQueryData(['messenger', 'chats'])
+    const newList = chatsList.filter(chat => chat?.id !== chatId)
+    queryClient.setQueryData(['messenger', 'chats'], newList)
+}

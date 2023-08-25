@@ -46,6 +46,6 @@ class ChatViewSet(ChatMixin):
     def get_chat_by_product(self, request, pk):
         user_id = self.request.user.id
         chat_id = CreateChatService().get_or_create_by_product(
-            product_id=pk, user_id=user_id
+            product_id=pk, user_id=user_id, request=request
         )
         return Response({"id": chat_id}, status=status.HTTP_200_OK)

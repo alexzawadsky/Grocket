@@ -14,7 +14,6 @@ User = get_user_model()
 
 
 def send_to_socket(message: Message, chat: Chat, action: str = "messages__new") -> None:
-    """Отправит на вебсокет обоим юзерам состоящим в чате полную информацию о новом сообщении."""
     data = MessageListSerializer(instance=message, read_only=True).data
     data["chat"] = chat.id
     for id in (chat.user_from.id, chat.user_to.id):

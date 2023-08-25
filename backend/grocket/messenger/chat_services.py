@@ -10,11 +10,15 @@ from .models import Chat
 User = get_user_model()
 
 
-def send_to_websocket(chat: Chat, users_ids: tuple, action: str = "chats__new") -> None:
-    data = ChatListSerializer(instance=chat, read_only=True).data
-    async_to_sync(send_notification)(
-        user_id=chat.user_from.id, notification_data=data, action=action
-    )
+def send_to_websocket(
+    request, chat: Chat, users_ids: tuple, action: str = "chats__new"
+) -> None:
+    context = {"request": request}
+    data = ChatListSerializer(context=context, instance=chat, read_only=True).data
+    for id in users_ids:
+        async_to_sync(send_notification)(
+            user_id=id, notification_data=data, action=action
+        )
 
 
 class BaseChatService:
@@ -47,7 +51,9 @@ class CreateChatService:
         if product.is_sold or product.is_archived or user_from_id == user_to_id:
             raise PermissionDenied()
 
-    def get_or_create_by_product(self, product_id: int, user_id: int, **fields) -> int:
+    def get_or_create_by_product(
+        self, product_id: int, user_id: int, request, **fields
+    ) -> int:
         """Вернет чат с таким же user_to, user_from и товаром или создаст если нет."""
         product = get_object_or_404(Product, id=product_id)
         user_from = User.objects.get(id=user_id)
@@ -61,6 +67,6 @@ class CreateChatService:
             user_from=user_from, user_to=user_to, product=product, **fields
         )[0]
 
-        send_to_websocket(chat=chat, users_ids=(chat.user_from.id,))
+        send_to_websocket(request=request, chat=chat, users_ids=(chat.user_from.id,))
 
         return chat.id

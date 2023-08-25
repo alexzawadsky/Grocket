@@ -6,8 +6,11 @@ from api.products.serializers import ProductImageSerializer
 from products.selectors import get_avilable_product_or_none, get_product_images
 from users.services import UserService
 
-from .selectors import (get_answer_to_message_or_none, get_last_message,
-                        get_unseen_messages_count_by_chat)
+from .selectors import (
+    get_answer_to_message_or_none,
+    get_last_message,
+    get_unseen_messages_count_by_chat,
+)
 
 users_services = UserService()
 

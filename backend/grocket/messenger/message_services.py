@@ -70,10 +70,9 @@ class MessageCreateService:
         user = User.objects.get(id=user_id)
         chat = Chat.objects.get(id=chat_id)
 
-        if fields["answer_to"] is not None:
+        answer_to = fields["answer_to"]
+        if answer_to is not None:
             answer_to = Message.objects.get(id=fields["answer_to"])
-        else:
-            answer_to = None
 
         fields = self._clear_fields(fields=fields)
 

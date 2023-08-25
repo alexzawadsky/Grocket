@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from .models import Chat, Message
 from .notifications import send_notification
 from .serializers import MessageListSerializer
+from .chat_services import send_to_websocket as send_chat_to_websocket
 
 User = get_user_model()
 
@@ -22,6 +23,11 @@ def send_to_socket(message: Message, chat: Chat, action: str = "messages__new") 
             notification_data=data,
             action=action,
         )
+
+    messages_in_chat = Message.objects.filter(chat=chat)
+
+    if messages_in_chat.count() == 1 and messages_in_chat.first() == message:
+        send_chat_to_websocket(chat=chat, users_ids=(chat.user_to.id,))
 
 
 class BaseMessageService:

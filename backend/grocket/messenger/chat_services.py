@@ -10,6 +10,13 @@ from .models import Chat
 User = get_user_model()
 
 
+def send_to_websocket(chat: Chat, users_ids: tuple, action: str = "chats__new") -> None:
+    data = ChatListSerializer(instance=chat, read_only=True).data
+    async_to_sync(send_notification)(
+        user_id=chat.user_from.id, notification_data=data, action=action
+    )
+
+
 class BaseChatService:
     def __init__(self, chat_id: int) -> None:
         self.chat_id: int = chat_id
@@ -40,14 +47,6 @@ class CreateChatService:
         if product.is_sold or product.is_archived or user_from_id == user_to_id:
             raise PermissionDenied()
 
-    def _send_to_websocket(self, chat: Chat) -> None:
-        data = ChatListSerializer(instance=chat, read_only=True).data
-        async_to_sync(send_notification)(
-            user_id=chat.user_from.id,
-            notification_data=data,
-            action="chats__new",
-        )
-
     def get_or_create_by_product(self, product_id: int, user_id: int, **fields) -> int:
         """Вернет чат с таким же user_to, user_from и товаром или создаст если нет."""
         product = get_object_or_404(Product, id=product_id)
@@ -60,9 +59,8 @@ class CreateChatService:
 
         chat = Chat.objects.get_or_create(
             user_from=user_from, user_to=user_to, product=product, **fields
-        )
+        )[0]
 
-        if chat[1]:
-            self._send_to_websocket(chat=chat[0])
+        send_to_websocket(chat=chat, users_ids=(chat.user_from.id,))
 
-        return chat[0].id
+        return chat.id

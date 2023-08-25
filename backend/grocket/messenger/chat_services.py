@@ -1,11 +1,13 @@
+from asgiref.sync import async_to_sync
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
-from asgiref.sync import async_to_sync
+
 from products.models import Product
+
+from .models import Chat
 from .notifications import send_notification
 from .serializers import ChatListSerializer
-from .models import Chat
 
 User = get_user_model()
 
@@ -37,6 +39,11 @@ class ChatService(BaseChatService):
         if chat.user_from != user and chat.user_to != user:
             raise PermissionDenied()
         chat.delete()
+
+        for id in (chat.user_from.id, chat.user_to.id):
+            async_to_sync(send_notification)(
+                user_id=id, notification_data={"id": chat.id}, action="chats__delete"
+            )
 
 
 class CreateChatService:

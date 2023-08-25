@@ -5,10 +5,10 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 
+from .chat_services import send_to_websocket as send_chat_to_websocket
 from .models import Chat, Message
 from .notifications import send_notification
 from .serializers import MessageListSerializer
-from .chat_services import send_to_websocket as send_chat_to_websocket
 
 User = get_user_model()
 

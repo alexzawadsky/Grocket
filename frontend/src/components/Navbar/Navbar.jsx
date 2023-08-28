@@ -11,6 +11,7 @@ import ProfileButton from './ProfileButton'
 import cn from 'classnames'
 import HomeButton from './HomeButton'
 import NavbarDropdowns from './NavbarDropdowns'
+import { GrMailOption } from 'react-icons/gr'
 
 const Navbar = () => {
     const { t } = useTranslation()
@@ -45,9 +46,19 @@ const Navbar = () => {
                 <HomeButton />
                 {isMinTablet && <NavbarDropdowns />}
                 {user ? (
-                    <li>
-                        <ProfileButton />
-                    </li>
+                    <>
+                        <li>
+                            <Link
+                                to="/messenger"
+                                className="flex h-12 w-12 items-center justify-center rounded-full transition-colors duration-75 max-md:mr-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700"
+                            >
+                                <GrMailOption />
+                            </Link>
+                        </li>
+                        <li>
+                            <ProfileButton />
+                        </li>
+                    </>
                 ) : (
                     <>
                         <li className="hidden lg:block">

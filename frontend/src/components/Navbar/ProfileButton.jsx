@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { Avatar } from '../ui'
 import { useProfile } from '../../api/api'
 import useScreen from '../../hooks/useScreen'
+import cn from 'classnames'
 
 const ProfileButton = () => {
     const { data, isLoading } = useProfile('me')
@@ -9,15 +10,16 @@ const ProfileButton = () => {
 
     return (
         <NavLink
-            className="flex h-10 items-center gap-2 font-bold max-md:mr-4"
+            className="group/avatar flex h-10 items-center gap-2 font-bold max-md:mr-4"
             to="/users/me"
         >
             {!isLoading ? (
                 <>
                     <Avatar
-                        className={
+                        className={cn(
+                            'group-hover/avatar:drop-shadow-md',
                             isLoading && 'animate-pulse opacity-30 duration-75'
-                        }
+                        )}
                         avatar={data?.avatar}
                         alt={`${data?.first_name} ${data?.last_name} avatar`}
                         width={40}

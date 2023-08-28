@@ -1,7 +1,8 @@
-import { sendPushNotification } from "../utils"
+import { blinkTabWhenInBackground, sendPushNotification } from "../utils"
 
 export const addNewMessage = (message, queryClient) => {
-    sendPushNotification('New message!', message?.text, `${import.meta.env.VITE_API_URL}/messenger/${message?.chat}`)
+    blinkTabWhenInBackground("New message!")
+    // sendPushNotification('New message!', message?.text, `${import.meta.env.VITE_API_URL}/messenger/${message?.chat}`)
 
     const currentData = queryClient.getQueryData([
         'messenger',
@@ -43,7 +44,7 @@ export const updateLastMessageInChatList = (message, queryClient) => {
 
 export const addNewChat = (chat, queryClient) => {
     const chatsList = queryClient.getQueryData(['messenger', 'chats'])
-    if (chatsList.some(ch => ch?.id === chat?.id)) return
+    if (chatsList?.some(ch => ch?.id === chat?.id)) return
     queryClient.setQueryData(['messenger', 'chats'], [...chatsList, chat])
 }
 

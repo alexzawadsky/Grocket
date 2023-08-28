@@ -11,7 +11,7 @@ const isFirstDateNewer = (firstPubDate, secondPubDate) => {
     const secondDateWithoutTime = new Date(secondDate)
     secondDateWithoutTime.setHours(0, 0, 0, 0) // Set time to midnight
 
-    return firstDateWithoutTime < secondDateWithoutTime
+    return firstDateWithoutTime > secondDateWithoutTime
 }
 
 const DateBadge = ({ pubDate, prevPubDate }) => {

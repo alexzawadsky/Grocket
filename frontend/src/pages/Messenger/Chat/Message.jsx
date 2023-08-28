@@ -48,7 +48,7 @@ const Message = ({ message, setReplyTo }) => {
                         userIsAuthor
                             ? 'items-end bg-accent-orange-dimmed dark:bg-accent-orange-dimmed-dark'
                             : 'items-start bg-slate-100 dark:bg-zinc-700',
-                        'w-fit max-w-[80%] rounded-lg px-2 py-1 md:max-w-[60%]'
+                        'white w-fit max-w-[80%] break-words rounded-lg px-2 py-1 md:max-w-[60%]'
                     )}
                 >
                     {message?.text}

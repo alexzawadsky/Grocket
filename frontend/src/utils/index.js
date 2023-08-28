@@ -96,26 +96,26 @@ export const capitalizeName = (str) => {
     }).join(' ')
 }
 
-export const sendPushNotification = (notificationTitle, notificationText, notificationLink) => {
-    const blinkTabWhenInBackground = (newTitle) => {
-        const originalTitle = document.title
-        let isTabBlinking = false;
+export const blinkTabWhenInBackground = (newTitle) => {
+    const originalTitle = document.title
+    let isTabBlinking = false;
 
-        const blinkInterval = setInterval(() => {
-            if (!document.hidden) {
-                clearInterval(blinkInterval)
-                document.title = originalTitle
+    const blinkInterval = setInterval(() => {
+        if (!document.hidden) {
+            clearInterval(blinkInterval)
+            document.title = originalTitle
+        } else {
+            if (!isTabBlinking) {
+                document.title = newTitle
             } else {
-                if (!isTabBlinking) {
-                    document.title = newTitle
-                } else {
-                    document.title = originalTitle
-                }
-                isTabBlinking = !isTabBlinking
+                document.title = originalTitle
             }
-        }, 1000)
-    }
+            isTabBlinking = !isTabBlinking
+        }
+    }, 1000)
+}
 
+export const sendPushNotification = (notificationTitle, notificationText, notificationLink) => {
     const openPage = (url) => {
         const existingTab = Array.from(window.frames).find(frame => frame.location.href === url)
         if (existingTab) {

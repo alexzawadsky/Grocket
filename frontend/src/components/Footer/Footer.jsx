@@ -4,9 +4,11 @@ import { BiNews, BiServer } from 'react-icons/bi'
 import { BsGithub } from 'react-icons/bs'
 import { AiOutlineInfoCircle, AiOutlineForm } from 'react-icons/ai'
 import { RiHandHeartLine } from 'react-icons/ri'
+import { useLocation } from 'react-router-dom'
 
 const Footer = () => {
     const { t } = useTranslation()
+    const location = useLocation()
 
     const footerData = [
         {
@@ -54,6 +56,8 @@ const Footer = () => {
             ],
         },
     ]
+
+    if (location.pathname.startsWith('/messenger')) return
 
     return (
         <footer className="w-full bg-accent-orange" aria-label="website footer">

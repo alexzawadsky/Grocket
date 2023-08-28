@@ -40,6 +40,9 @@ export const MessengerProvider = ({ children }) => {
                 case 'chats__new':
                     addNewChat(lastJsonMessage?.data, queryClient)
                     break
+                case 'chats__delete':
+                    deleteChat(lastJsonMessage?.data?.id, queryClient)
+                    break
             }
         }
     }, [lastJsonMessage])

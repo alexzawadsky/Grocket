@@ -69,7 +69,7 @@ const Chat = () => {
                     {data?.pages?.map((page, i) => (
                         <React.Fragment key={i}>
                             {page.data?.results.map((message, key) => (
-                                <React.Fragment key={key}>
+                                <React.Fragment key={message?.id}>
                                     <li>
                                         <Message
                                             message={message}

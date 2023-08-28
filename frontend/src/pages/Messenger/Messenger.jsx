@@ -9,7 +9,7 @@ const Messenger = () => {
     const location = useLocation()
 
     return (
-        <div className="grid max-h-[calc(100dvh-4rem-1.25rem)] min-h-[calc(100dvh-4rem-1.25rem)] gap-5 md:grid-cols-[1fr_2fr] xl:grid-cols-[1fr_3fr]">
+        <div className="grid max-h-[calc(100dvh-4rem-1.25rem-1.25rem)] min-h-[calc(100dvh-4rem-1.25rem-1.25rem)] gap-5 md:grid-cols-[1fr_2fr] xl:grid-cols-[1fr_3fr]">
             {(isMinTablet || location.pathname === '/messenger') && (
                 <ChatsList />
             )}

@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import CategoriesListStateContext from '../../contexts/CategoriesListStateContext'
-import { useLocation } from 'react-router-dom'
 
 const WindowScroll = () => {
     const [isTop, setIsTop] = useState(true)
@@ -9,7 +8,6 @@ const WindowScroll = () => {
     const [hasScroll, setHasScroll] = useState(false)
     const { open } = useContext(CategoriesListStateContext)
     const [hidden, setHidden] = useState(false)
-    const location = useLocation()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,17 +20,6 @@ const WindowScroll = () => {
 
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
-
-    useEffect(() => {
-        if (location.pathname.startsWith('/messenger')) {
-            window.scrollTo(0, 0)
-            document.body.style.overflow = 'hidden'
-            setHidden(true)
-        } else {
-            setHidden(false)
-            document.body.style.overflow = 'auto'
-        }
-    }, [location.pathname])
 
     useEffect(() => {
         setHasScroll(document.body.scrollHeight > document.body.clientHeight)

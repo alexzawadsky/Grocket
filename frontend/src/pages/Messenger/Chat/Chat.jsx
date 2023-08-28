@@ -99,9 +99,9 @@ const Chat = () => {
                     />
                 </ul>
             )}
-            {data?.pages[0]?.data?.results?.length === 0 && !isFetching && (
-                <MessagesSuggestions chatId={chatId} />
-            )}
+            {chat &&
+                data?.pages[0]?.data?.results?.length === 0 &&
+                !isFetching && <MessagesSuggestions chatId={chatId} />}
             <ChatMessageForm
                 chat={chat}
                 onBottom={onBottom}

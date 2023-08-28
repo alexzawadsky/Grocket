@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-ixh5=+g%x22o)3f58^+tm$#%dz)gf_cy7+m&_8_7j#%mh9vhuu
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["http://opns-st-1.aboard.ru:34080"]
+CSRF_TRUSTED_ORIGINS = ["http://opns-st-1.aboard.ru:34080", "http://timur.aboard.ru:34080"]
 
 
 INSTALLED_APPS = [

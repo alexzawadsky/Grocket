@@ -22,7 +22,7 @@ msgstr ""
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 #: .\api\mixins.py:8
 msgid "Product has been successfully placed"
-msgstr ""
+msgstr "Товар успішно розміщено"
 
 #: .\api\mixins.py:9
 msgid "Product has been deleted"
@@ -50,11 +50,11 @@ msgstr "Вилучено з архіву"
 
 #: .\api\mixins.py:17
 msgid "Added to favourites"
-msgstr "Додано до обраних"
+msgstr "Додано до улюблених"
 
 #: .\api\mixins.py:18
 msgid "Removed from favourites"
-msgstr "Видалено з вибраного"
+msgstr "Видалено з улюблених"
 
 #: .\api\mixins.py:20
 msgid "Product has been updated"
@@ -79,7 +79,7 @@ msgstr "Відповідь видалено"
 #: .\api\products\fields.py:60
 #, python-brace-format
 msgid "You can attach up to {self.max_length} photos"
-msgstr "Ви можете прикріпити до {self.max_length} фотографій"
+msgstr "Ви можете завантажити до {self.max_length} фотографій"
 
 #: .\api\products\fields.py:75
 msgid "The image field can only be id or base64"

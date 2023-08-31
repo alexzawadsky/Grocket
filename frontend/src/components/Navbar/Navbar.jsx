@@ -6,12 +6,11 @@ import { FiLogIn, FiUserPlus } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
 import useScreen from '../../hooks/useScreen'
 import { Button } from '../ui'
-import { FiMoreVertical } from 'react-icons/fi'
+import { FiMoreVertical, FiMail } from 'react-icons/fi'
 import ProfileButton from './ProfileButton'
 import cn from 'classnames'
 import HomeButton from './HomeButton'
 import NavbarDropdowns from './NavbarDropdowns'
-import { GrMailOption } from 'react-icons/gr'
 
 const Navbar = () => {
     const { t } = useTranslation()
@@ -50,9 +49,9 @@ const Navbar = () => {
                         <li>
                             <Link
                                 to="/messenger"
-                                className="flex h-12 w-12 items-center justify-center rounded-full transition-colors duration-75 max-md:mr-2 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700"
+                                className="flex h-12 w-12 items-center justify-center rounded-full transition-colors duration-75 max-md:mr-2 md:h-10 md:w-10 hover:md:bg-slate-100 hover:dark:md:bg-zinc-700"
                             >
-                                <GrMailOption />
+                                <FiMail />
                             </Link>
                         </li>
                         <li>

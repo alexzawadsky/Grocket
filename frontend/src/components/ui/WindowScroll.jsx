@@ -25,6 +25,15 @@ const WindowScroll = () => {
         setHasScroll(document.body.scrollHeight > document.body.clientHeight)
     }, [document.body.scrollHeight])
 
+    useEffect(() => {
+        if (location.pathname.startsWith('/messenger')) {
+            window.scrollTo(0, 0)
+            setHidden(true)
+        } else {
+            setHidden(false)
+        }
+    }, [location.pathname])
+
     if (hidden) return
     if (open) return
     if (!hasScroll) return

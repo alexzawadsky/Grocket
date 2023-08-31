@@ -25,7 +25,7 @@ const HomeButton = () => {
             {isMessenger && isMinTablet && (
                 <p className="px-1 text-2xl font-bold">{t('messenger')}</p>
             )}
-            <Link
+            {/* <Link
                 to="https://www.standwithukraine.how"
                 target="_blank"
                 className="mb-auto"
@@ -35,7 +35,7 @@ const HomeButton = () => {
                     className="mb-auto aspect-square w-4 md:w-5"
                     alt="heart with ukranian flag background"
                 />
-            </Link>
+            </Link> */}
         </li>
     )
 }

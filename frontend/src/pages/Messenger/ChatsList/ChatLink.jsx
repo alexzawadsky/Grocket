@@ -2,15 +2,18 @@ import { Link, NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import { Avatar, PublishTime } from '../../../components/ui'
 import { Button } from '../../../components/ui'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { useTranslation } from 'react-i18next'
 import { useDeleteChatMutation } from '../../../api/api'
+import AuthContext from '../../../contexts/AuthProvider'
+import LastMessage from './LastMessage'
 
 const ChatLink = ({ chat }) => {
     const [open, setOpen] = useState(false)
     const { t } = useTranslation()
     const deleteChatMutation = useDeleteChatMutation()
+    const { user } = useContext(AuthContext)
 
     return (
         <NavLink
@@ -21,7 +24,7 @@ const ChatLink = ({ chat }) => {
                     : 'h-fit rounded-lg p-3 hover:bg-slate-50 dark:hover:bg-zinc-700'
             }
         >
-            <div className="flex w-full items-center gap-2">
+            <div className="grid grid-cols-[auto_1fr_auto] gap-2">
                 <div className="relative w-16">
                     <img
                         src={chat?.product?.image?.image}
@@ -33,12 +36,15 @@ const ChatLink = ({ chat }) => {
                         width={25}
                     />
                 </div>
+                <div className="flex grow flex-col items-start justify-between">
+                    <p className="line-clamp-1">
+                        {chat?.user?.first_name} {chat.user?.last_name}
+                    </p>
+                    <LastMessage lastMessage={chat?.last_message} />
+                </div>
                 <div className="grid w-full">
-                    <div className="flex items-center justify-between">
-                        <p className="line-clamp-1">
-                            {chat?.user?.first_name} {chat.user?.last_name}
-                        </p>
-                        {!open && (
+                    <div className="flex flex-col items-baseline justify-between gap-2">
+                        {!open ? (
                             <Link
                                 border={false}
                                 className="rounded-full"
@@ -47,56 +53,29 @@ const ChatLink = ({ chat }) => {
                             >
                                 <BiDotsHorizontalRounded />
                             </Link>
-                        )}
-                        {open && (
-                            <Link
-                                border={false}
-                                className=" h-5 rounded-full px-2 !font-primary text-sm text-accent-red transition-colors hover:bg-accent-red/[.1] dark:hover:bg-zinc-700"
-                                px={2}
-                                onClick={() =>
-                                    deleteChatMutation.mutate(chat?.id)
-                                }
-                                to=""
-                            >
-                                {t('delete')}
-                            </Link>
-                        )}
-                    </div>
-
-                    <div className="flex items-baseline justify-between gap-2">
-                        <p
-                            className={cn(
-                                'line-clamp-1 text-sm',
-                                chat?.last_message === null ||
-                                    chat?.last_message?.is_seen
-                                    ? null
-                                    : 'text-accent-orange'
-                            )}
-                        >
-                            {chat?.last_message === null ||
-                            chat?.last_message?.is_seen
-                                ? null
-                                : '• '}
-                            {chat?.last_message?.text}
-                        </p>
-                        {!open && (
-                            <p className="whitespace-nowrap text-[10px] text-slate-500 dark:text-zinc-400">
-                                <PublishTime
-                                    style="twitter"
-                                    pubDate={chat?.last_message?.pub_date}
-                                />
-                            </p>
-                        )}
-                        {open && (
-                            <Link
-                                border={false}
-                                className="rounded-full px-2 font-primary text-sm transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
-                                onClick={() => setOpen(false)}
-                                px={2}
-                                to=""
-                            >
-                                {t('cancel')}
-                            </Link>
+                        ) : (
+                            <div>
+                                <Link
+                                    border={false}
+                                    className=" h-5 rounded-full px-2 !font-primary text-sm text-accent-red transition-colors hover:bg-accent-red/[.1] dark:hover:bg-zinc-700"
+                                    px={2}
+                                    onClick={() =>
+                                        deleteChatMutation.mutate(chat?.id)
+                                    }
+                                    to=""
+                                >
+                                    {t('delete')}
+                                </Link>
+                                <Link
+                                    border={false}
+                                    className="rounded-full px-2 font-primary text-sm transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
+                                    onClick={() => setOpen(false)}
+                                    px={2}
+                                    to=""
+                                >
+                                    {t('cancel')}
+                                </Link>
+                            </div>
                         )}
                     </div>
                 </div>

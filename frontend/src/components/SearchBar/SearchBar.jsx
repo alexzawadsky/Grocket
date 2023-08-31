@@ -116,7 +116,7 @@ const SearchForm = () => {
                         ) : null}
                     </div>
                     <Button
-                        className="whitespace-nowrap max-md:!w-11 max-md:!p-1 max-md:!px-2"
+                        className="whitespace-nowrap max-md:!w-10 max-md:!p-1 max-md:!px-2"
                         type="submit"
                         color="accent-orange"
                         style="fill"

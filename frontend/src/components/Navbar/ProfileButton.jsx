@@ -6,11 +6,11 @@ import cn from 'classnames'
 
 const ProfileButton = () => {
     const { data, isLoading } = useProfile('me')
-    const { isMinPC } = useScreen()
+    const { isMinPC, isMinTablet } = useScreen()
 
     return (
         <NavLink
-            className="group/avatar flex h-10 items-center gap-2 font-bold max-md:mr-4"
+            className="group/avatar flex h-12 items-center gap-2 font-bold max-md:mr-4 md:h-10"
             to="/users/me"
         >
             {!isLoading ? (
@@ -22,8 +22,8 @@ const ProfileButton = () => {
                         )}
                         avatar={data?.avatar}
                         alt={`${data?.first_name} ${data?.last_name} avatar`}
-                        width={40}
-                        height={40}
+                        width={isMinTablet ? 40 : 48}
+                        height={isMinTablet ? 40 : 48}
                     />
                     {isMinPC && data?.first_name}
                 </>

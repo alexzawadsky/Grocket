@@ -54,7 +54,16 @@ const ChatLink = ({ chat }) => {
                                 <BiDotsHorizontalRounded />
                             </Link>
                         ) : (
-                            <div>
+                            <>
+                                <Link
+                                    border={false}
+                                    className="rounded-full px-2 font-primary text-sm transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
+                                    onClick={() => setOpen(false)}
+                                    px={2}
+                                    to=""
+                                >
+                                    {t('cancel')}
+                                </Link>
                                 <Link
                                     border={false}
                                     className=" h-5 rounded-full px-2 !font-primary text-sm text-accent-red transition-colors hover:bg-accent-red/[.1] dark:hover:bg-zinc-700"
@@ -66,16 +75,7 @@ const ChatLink = ({ chat }) => {
                                 >
                                     {t('delete')}
                                 </Link>
-                                <Link
-                                    border={false}
-                                    className="rounded-full px-2 font-primary text-sm transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
-                                    onClick={() => setOpen(false)}
-                                    px={2}
-                                    to=""
-                                >
-                                    {t('cancel')}
-                                </Link>
-                            </div>
+                            </>
                         )}
                     </div>
                 </div>

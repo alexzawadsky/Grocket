@@ -8,6 +8,6 @@ from messenger.routing import websocket_urlpatterns
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "grocket.settings")
 
 application = ProtocolTypeRouter({
-    "https": get_asgi_application(),
+    "http": get_asgi_application(),
     "websocket": URLRouter(websocket_urlpatterns)
 })

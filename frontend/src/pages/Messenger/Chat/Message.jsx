@@ -38,11 +38,11 @@ const Message = ({ message, setReplyTo }) => {
                     userIsAuthor ? 'flex-row-reverse' : ''
                 )}
             >
-                {userIsAuthor && (
+                {/* {userIsAuthor && (
                     <p className="w-4 text-accent-orange">
                         {message.is_seen ? <BsCheckAll /> : <BsCheck />}
                     </p>
-                )}
+                )} */}
                 <div
                     className={cn(
                         userIsAuthor
@@ -88,7 +88,7 @@ const Message = ({ message, setReplyTo }) => {
                             <FiCopy />
                         )}
                     </Button>
-                    {userIsAuthor && (
+                    {/* {userIsAuthor && (
                         <Button
                             className="text-accent-red/[.65] hover:text-accent-red"
                             border={false}
@@ -98,7 +98,7 @@ const Message = ({ message, setReplyTo }) => {
                         >
                             <BsTrash />
                         </Button>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>

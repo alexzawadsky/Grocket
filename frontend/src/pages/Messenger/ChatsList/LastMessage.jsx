@@ -9,19 +9,19 @@ const LastMessage = ({ lastMessage }) => {
         <div className="flex w-full items-baseline justify-between">
             <p
                 className={cn(
-                    'line-clamp-1 text-sm',
-                    (user?.user_id !== lastMessage?.author &&
-                        lastMessage === null) ||
-                        lastMessage?.is_seen
-                        ? null
-                        : 'text-accent-orange'
+                    'line-clamp-1 text-sm'
+                    // (user?.user_id !== lastMessage?.author &&
+                    //     lastMessage === null) ||
+                    //     lastMessage?.is_seen
+                    //     ? null
+                    //     : 'text-accent-orange'
                 )}
             >
-                {(user?.user_id !== lastMessage?.author &&
+                {/* {(user?.user_id !== lastMessage?.author &&
                     lastMessage === null) ||
                 lastMessage?.is_seen
                     ? null
-                    : '• '}
+                    : '• '} */}
                 {lastMessage?.text}
             </p>
             <p className="whitespace-nowrap text-[10px] text-slate-500 dark:text-zinc-400">

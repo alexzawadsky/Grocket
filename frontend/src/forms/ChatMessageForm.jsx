@@ -56,7 +56,7 @@ const ChatMessageForm = ({
                 autoRef
                 disabled={!chat}
             />
-            <Button
+            {/* <Button
                 style="outline"
                 type="button"
                 className="dark:hover:border-400 aspect-square h-10 w-10 !rounded-full  border-slate-500 text-slate-500 hover:bg-slate-100 dark:!border-2 dark:border-zinc-500 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-400 dark:hover:text-zinc-400"
@@ -64,7 +64,7 @@ const ChatMessageForm = ({
                 disabled={!chat || !message.allValid}
             >
                 <MdImage size={20} />
-            </Button>
+            </Button> */}
             <Button
                 style="fill"
                 type="button"

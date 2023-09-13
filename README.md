@@ -17,7 +17,7 @@
 </p>
 
 <h4>
-    <a href="http://opns-st-1.aboard.ru:34080">View Demo</a>
+    <a href="https://timur.aboard.ru">View Demo</a>
   <span> · </span>
     <a href="https://forms.gle/1ECKNCFyHhyCEkvL8">Request Feature / Report Bug</a>
   </h4>

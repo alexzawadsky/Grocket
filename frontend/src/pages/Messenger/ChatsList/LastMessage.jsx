@@ -5,6 +5,9 @@ import { PublishTime } from '../../../components/ui'
 
 const LastMessage = ({ lastMessage }) => {
     const { user } = useContext(AuthContext)
+
+    if (!lastMessage?.text) return
+
     return (
         <div className="flex w-full items-baseline justify-between">
             <p

@@ -35,10 +35,10 @@ const ChatHeader = ({ chat }) => {
                             </p>
                             <Flag country={chat?.user?.country} width={20} />
                         </Link>
-                        <span className="hidden items-center md:flex">
+                        {/* <span className="hidden items-center md:flex">
                             {onlineSymbol}
                             {isMinTablet && online ? t('online') : t('offline')}
-                        </span>
+                        </span> */}
                     </>
                 )}
             </div>

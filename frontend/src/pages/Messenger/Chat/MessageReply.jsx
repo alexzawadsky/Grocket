@@ -8,7 +8,7 @@ const MessageReply = ({ message, userIsAuthor }) => {
         <div
             className={cn(
                 'mb-1.5 mt-2 flex w-fit max-w-[70%] items-center gap-3 text-accent-orange md:max-w-[50%]',
-                userIsAuthor ? 'ml-auto mr-7 flex-row-reverse' : 'mr-auto'
+                userIsAuthor ? 'ml-auto flex-row-reverse' : 'mr-auto'
             )}
         >
             <span className="min-w-[20px]">

@@ -26,11 +26,12 @@ const Input = ({
     autocomplete,
     onfocus,
     onblur,
+    ref,
 }) => {
     const inputRef = useRef()
 
     useEffect(() => {
-        if (autoRef) {
+        if (autoRef.current) {
             inputRef.current.focus()
         }
     }, [])
@@ -82,7 +83,7 @@ const Input = ({
                         aria-label={ariaLabel}
                         id={id}
                         type={type}
-                        ref={inputRef}
+                        ref={ref ? ref : inputRef}
                         value={instance.value}
                         onChange={instance.checkValue}
                         onBlur={() => {

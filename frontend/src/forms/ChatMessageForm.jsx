@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useRef } from 'react'
 import { Form, Input, Button } from '../components/ui'
 import { IoSend } from 'react-icons/io5'
 import { IoIosArrowDown, IoMdClose } from 'react-icons/io'
@@ -17,6 +17,7 @@ const ChatMessageForm = ({
     const message = useInput('', { maxLength: 1000 })
     const [image, setImage] = useState(null)
     const { sendMessage } = useContext(MessengerContext)
+    const inputRef = useRef()
 
     const handleSend = () => {
         if (message.value.trim() === '') return
@@ -43,7 +44,13 @@ const ChatMessageForm = ({
                     <Button
                         border={false}
                         className="!h-7 rounded-r-full bg-zinc-100 pl-1.5 pr-2  text-black hover:bg-zinc-200 dark:bg-zinc-600 dark:text-white  dark:hover:bg-zinc-500"
-                        onClick={() => setReplyTo(null)}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            if (inputRef.current) {
+                                inputRef.current.focus()
+                            }
+                            setReplyTo(null)
+                        }}
                         type="button"
                     >
                         <IoMdClose />
@@ -51,6 +58,7 @@ const ChatMessageForm = ({
                 </div>
             )}
             <Input
+                ref={inputRef}
                 instance={message}
                 containerClassName="w-full min-w-0"
                 autoRef

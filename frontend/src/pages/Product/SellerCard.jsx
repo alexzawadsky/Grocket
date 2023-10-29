@@ -3,12 +3,11 @@ import { Link, useParams } from 'react-router-dom'
 import AuthContext from '../../contexts/AuthProvider'
 import { Avatar, RatingStars, Button, Flag } from '../../components/ui'
 import { useTranslation } from 'react-i18next'
-import SendMessageLink from './SendMessageLink'
+import SendMessageLink from '../../components/SendMessageLink/SendMessageLink'
 
 const SellerCard = ({ profile, product }) => {
     const { t, i18n } = useTranslation()
     const { user } = useContext(AuthContext)
-    const { productId } = useParams()
     const date = new Date(profile.date_joined).toLocaleDateString(
         i18n.resolvedLanguage,
         {
@@ -56,7 +55,9 @@ const SellerCard = ({ profile, product }) => {
                 aria-label="user grocket join date"
             >{`${t('on_grocket_since')} ${date}`}</p>
             {user?.user_id !== profile.id && !product?.is_sold && (
-                <SendMessageLink product={product} />
+                <SendMessageLink product={product}>
+                    {t('send_message')}
+                </SendMessageLink>
             )}
         </div>
     )

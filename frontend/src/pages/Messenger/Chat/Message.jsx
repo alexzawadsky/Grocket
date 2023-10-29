@@ -12,6 +12,7 @@ import { Button } from '../../../components/ui'
 import { PiArrowBendUpLeftBold, PiArrowBendUpRightBold } from 'react-icons/pi'
 import { FiCopy } from 'react-icons/fi'
 import { useDeleteMessageMutation } from '../../../api/api'
+import { replaceLinksInText } from '../../../utils'
 
 const Message = ({ message, setReplyTo }) => {
     const { user } = useContext(AuthContext)
@@ -48,10 +49,10 @@ const Message = ({ message, setReplyTo }) => {
                         userIsAuthor
                             ? 'items-end bg-accent-orange-dimmed dark:bg-accent-orange-dimmed-dark'
                             : 'items-start bg-slate-100 dark:bg-zinc-700',
-                        'white w-fit max-w-[80%] break-words rounded-lg px-2 py-1 md:max-w-[60%]'
+                        'white w-fit max-w-[80%] break-words rounded-lg px-2 py-1 leading-tight md:max-w-[60%]'
                     )}
                 >
-                    {message?.text}
+                    {replaceLinksInText(message?.text)}
                 </div>
                 <p className="text-[10px] text-slate-400 group-hover/message:hidden group-focus/message:hidden">
                     {new Date(message?.pub_date).toLocaleTimeString([], {

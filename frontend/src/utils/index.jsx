@@ -36,9 +36,9 @@ export const notification = (text, duration) => {
         duration: duration ? duration : 2000,
         style: isDark
             ? {
-                background: '#333',
-                color: '#fff',
-            }
+                  background: '#333',
+                  color: '#fff',
+              }
             : null,
     })
 }
@@ -88,17 +88,20 @@ export const getLastRoute = () => {
 
 export const capitalizeName = (str) => {
     if (!str) return
-    return str.split(' ').map(el => {
-        const firstLetter = el.charAt(0)
-        const firstLetterCap = firstLetter.toUpperCase()
-        const remainingLetters = el.slice(1)
-        return firstLetterCap + remainingLetters
-    }).join(' ')
+    return str
+        .split(' ')
+        .map((el) => {
+            const firstLetter = el.charAt(0)
+            const firstLetterCap = firstLetter.toUpperCase()
+            const remainingLetters = el.slice(1)
+            return firstLetterCap + remainingLetters
+        })
+        .join(' ')
 }
 
 export const blinkTabWhenInBackground = (newTitle) => {
     const originalTitle = document.title
-    let isTabBlinking = false;
+    let isTabBlinking = false
 
     const blinkInterval = setInterval(() => {
         if (!document.hidden) {
@@ -115,21 +118,27 @@ export const blinkTabWhenInBackground = (newTitle) => {
     }, 1000)
 }
 
-export const sendPushNotification = (notificationTitle, notificationText, notificationLink) => {
+export const sendPushNotification = (
+    notificationTitle,
+    notificationText,
+    notificationLink
+) => {
     const openPage = (url) => {
-        const existingTab = Array.from(window.frames).find(frame => frame.location.href === url)
+        const existingTab = Array.from(window.frames).find(
+            (frame) => frame.location.href === url
+        )
         if (existingTab) {
             existingTab.focus()
         } else {
-            window.open(url, "_blank")
+            window.open(url, '_blank')
         }
     }
 
-    Notification.requestPermission().then(perm => {
+    Notification.requestPermission().then((perm) => {
         if (perm === 'granted' && document.hidden) {
             const notification = new Notification(notificationTitle, {
                 body: notificationText,
-                icon: "logo.png"
+                icon: 'logo.png',
             })
             notification.onclick = () => {
                 openPage(notificationLink)
@@ -137,4 +146,31 @@ export const sendPushNotification = (notificationTitle, notificationText, notifi
             blinkTabWhenInBackground(notificationTitle)
         }
     })
+}
+
+export const replaceLinksInText = (text) => {
+    var linkRegex = /(https?:\/\/[^/]+[^\s]*)/g
+    var segments = text.split(linkRegex)
+    var jsxElements = segments.map((segment, index) => {
+        if (linkRegex.test(segment)) {
+            const urlObj = new URL(segment)
+            const hostname = urlObj.hostname
+            const formattedHostname = hostname.replace(/^www\./i, '')
+
+            return (
+                <a
+                    key={index}
+                    href={segment}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-accent-orange underline"
+                >
+                    {`${formattedHostname}`}
+                </a>
+            )
+        } else {
+            return <span key={index}>{segment}</span>
+        }
+    })
+    return <p>{jsxElements}</p>
 }

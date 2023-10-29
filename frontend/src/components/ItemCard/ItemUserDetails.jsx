@@ -7,6 +7,7 @@ import AuthContext from '../../contexts/AuthProvider'
 import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
 import useScreen from '../../hooks/useScreen'
+import SendMessageLink from '../SendMessageLink/SendMessageLink'
 
 const ItemUserDetails = ({ product, search, horizontal }) => {
     const { user } = useContext(AuthContext)
@@ -72,13 +73,10 @@ const ItemUserDetails = ({ product, search, horizontal }) => {
                             {product?.user?.sold_count} {t('items_sold')}
                         </p>
                         {product?.user?.id !== user?.user_id && (
-                            <Link
-                                className="flex h-fit items-center gap-2 text-accent-orange hover:underline max-md:hidden"
-                                to={`/messenger/${product?.slug}`}
-                            >
+                            <SendMessageLink product={product} link>
                                 <FiMail />
                                 {t('send_message')}
-                            </Link>
+                            </SendMessageLink>
                         )}
                         {product?.user?.phone_verified && (
                             <p className="mt-auto flex w-fit items-center gap-2 rounded-full bg-green-100 px-2 py-1 text-sm font-bold text-green-600 dark:bg-green-800 dark:text-green-300">

@@ -31,7 +31,7 @@ const Input = ({
     const inputRef = useRef()
 
     useEffect(() => {
-        if (inputRef.current) {
+        if (inputRef.current && autoRef) {
             inputRef.current.focus()
         }
     }, [])

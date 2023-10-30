@@ -44,8 +44,8 @@ def create_payment_view(request, slug):
     checkout_session = stripe.checkout.Session.create(
         line_items=promotions,
         mode='payment',
-        success_url=f'{request.headers.get("Origin")}/?success=true',
-        cancel_url=f'{request.headers.get("Origin")}/?canceled=true',
+        success_url=request.headers.get("Referer"),
+        cancel_url=request.headers.get("Referer"),
         payment_method_types=['card'],
         locale=locales[request.headers.get('Accept-Language')]
     )

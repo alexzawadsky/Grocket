@@ -16,15 +16,19 @@ export default MessengerContext
 
 export const MessengerProvider = ({ children }) => {
     const { user } = useContext(AuthContext)
-    const { data: chats, isLoading: chatsLoading, error } = useChats()
+    const { data: chats, isLoading: chatsLoading } = useChats()
     const sendMessageMutation = useSendMessageMutation()
     const queryClient = useQueryClient()
 
-    const { sendJsonMessage, lastJsonMessage } = useWebSocket(
+    const { lastJsonMessage } = useWebSocket(
         `${
             import.meta.env.VITE_WS_HOST || 'ws://localhost'
         }/ws/messenger/notifications/${user?.user_id}/`
     )
+
+    useEffect(() => {
+        queryClient.invalidateQueries('messenger')
+    }, [user])
 
     useEffect(() => {
         console.log(lastJsonMessage)

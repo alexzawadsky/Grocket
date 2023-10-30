@@ -20,7 +20,11 @@ const SendMessageLink = ({ product, children, link }) => {
                 'text-accent-orange'
             )}
             onClick={() => user && getChatMutation.mutate(product?.id)}
-            to={user ? '' : `/login?redirectFrom=${window.location.pathname}`}
+            to={
+                user
+                    ? window.location.href
+                    : `/login?redirectFrom=${window.location.pathname}`
+            }
         >
             {children}
         </Link>

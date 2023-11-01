@@ -44,11 +44,7 @@ const ChatMessageForm = ({
                     <Button
                         border={false}
                         className="!h-7 rounded-r-full bg-zinc-100 pl-1.5 pr-2  text-black hover:bg-zinc-200 dark:bg-zinc-600 dark:text-white  dark:hover:bg-zinc-500"
-                        onClick={(e) => {
-                            e.preventDefault()
-                            if (inputRef.current) {
-                                inputRef.current.focus()
-                            }
+                        onClick={() => {
                             setReplyTo(null)
                         }}
                         type="button"
@@ -78,7 +74,12 @@ const ChatMessageForm = ({
                 type="button"
                 color="accent-orange"
                 className="aspect-square h-10 w-10 hover:drop-shadow-md"
-                onClick={handleSend}
+                onClick={() => {
+                    if (inputRef.current) {
+                        inputRef.current.focus()
+                    }
+                    handleSend()
+                }}
                 disabled={!chat || !message.allValid}
             >
                 <IoSend />

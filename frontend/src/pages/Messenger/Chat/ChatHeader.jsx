@@ -27,7 +27,7 @@ const ChatHeader = ({ chat }) => {
                         >
                             <Avatar avatar={chat?.user?.avatar} width={30} />
                             <p className="flex items-center md:text-lg">
-                                {!isMinTablet && onlineSymbol}{' '}
+                                {/* {!isMinTablet && onlineSymbol}{' '} */}
                                 {chat?.user?.first_name}{' '}
                                 {isMinTablet
                                     ? chat?.user?.last_name

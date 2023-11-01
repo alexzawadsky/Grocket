@@ -1,6 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 import { PiArrowBendUpLeftBold, PiArrowBendUpRightBold } from 'react-icons/pi'
+import { replaceLinksInText } from '../../../utils'
 
 const MessageReply = ({ message, userIsAuthor }) => {
     if (!message?.answer_to) return
@@ -20,7 +21,7 @@ const MessageReply = ({ message, userIsAuthor }) => {
             </span>
 
             <p className="line-clamp-1 rounded-full bg-zinc-100 p-1 px-2 text-sm text-black dark:bg-zinc-600 dark:text-white">
-                {message?.answer_to?.text}
+                {replaceLinksInText(message?.answer_to?.text)}
             </p>
         </div>
     )

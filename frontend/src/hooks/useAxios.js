@@ -6,10 +6,12 @@ import AuthContext from '../contexts/AuthProvider'
 import api from '../api/api'
 import { useTranslation } from 'react-i18next'
 import localizations from '../assets/json/localization.json'
+import { useNavigate } from 'react-router-dom'
 
 const useAxios = () => {
-    const { authTokens, setUser, setAuthTokens } = useContext(AuthContext)
+    const { authTokens, setUser, setAuthTokens, logoutUser } = useContext(AuthContext)
     const { i18n } = useTranslation()
+    const navigate = useNavigate()
 
     const axiosInstance = axios.create({
         baseURL: import.meta.env.VITE_API_URL || '',
@@ -30,6 +32,12 @@ const useAxios = () => {
         const response = await api.post(`/api/v1/auth/jwt/refresh/`, {
             refresh: authTokens.refresh,
         })
+
+        if (response.status === 401) {
+            logoutUser()
+            navigate('/login')
+            return
+        }
 
         localStorage.setItem(
             'authTokens',

@@ -5,12 +5,12 @@ import cn from 'classnames'
 const Flag = ({ country, size, className, width }) => {
     if (country === null || country === undefined) return
     const emoji = countryCodeEmoji(country)
-    const iconLink = parse(emoji)[0]?.url
+    const iconId = parse(emoji)[0]?.url.split('/').at(-1)
 
     return (
         <img
             className={cn(`w-${size} h-${size}`, className)}
-            src={iconLink}
+            src={'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/' + iconId}
             aria-label={`${country} flag icon`}
             width={width}
         />
